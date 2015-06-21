@@ -41,4 +41,4 @@ INTO
     TO_DATE('March 4, 1827','Month dd, YYYY'),
     'Jacksonville, Ohio',
     TO_DATE('January 29, 1900','Month dd, YYYY')
-  );
+  ); 
