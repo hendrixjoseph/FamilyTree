@@ -1,5 +1,7 @@
 # FamilyTree
 
+Only source code, such as, but not necessarily limited to, `*.java`, `*.xhtml`, and `*.sql` files, are provided in this repository, with the exception of this file and `.gitignore`.
+
 ## Libraries
 
 * [JSF 2.2](https://javaserverfaces.java.net/2.2/download.html) ([documentation](https://javaserverfaces.java.net/docs/2.2/))
