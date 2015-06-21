@@ -2,5 +2,8 @@
 *
 # Now, whitelist everything
 !.gitignore
+!README.md
+!sql/
+sql/Generated*.*
 !src/
 !web/
