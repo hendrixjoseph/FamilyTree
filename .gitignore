@@ -1,0 +1,6 @@
+# First, ignore everything
+*
+# Now, whitelist everything
+!.gitignore
+!src/
+!web/

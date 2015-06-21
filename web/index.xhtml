@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>#{personBean.person.name} details</title>
+    </h:head>
+    <h:body>
+        <h:outputText value="Father: #{personBean.person.fatherName}" /><br />
+        <h:outputText value="Mother: #{personBean.person.motherName}" /><br />
+        <h:outputText value="Name: #{personBean.person.name}" /><br />
+        <h:outputText value="Born in #{personBean.person.placeOfBirth} on " />
+        <h:outputText value="#{personBean.person.dateOfBirth}">
+            <f:convertDateTime pattern="MMM dd, yyyy" />
+        </h:outputText><br />
+        <h:outputText value="Died in #{personBean.person.placeOfDeath} on " />
+        <h:outputText value="#{personBean.person.dateOfDeath}">
+            <f:convertDateTime pattern="MMM dd, yyyy" />
+        </h:outputText>
+    </h:body>
+</html>
+
