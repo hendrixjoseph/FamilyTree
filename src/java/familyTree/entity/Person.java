@@ -35,9 +35,9 @@ public class Person
         {
             id = rs.getInt("ID");
             father = new Person();
-            father.setName(rs.getString("FATHER_NAME"));
+            father.setName(rs.getString("FATHER"));
             mother = new Person();
-            mother.setName(rs.getString("MOTHER_NAME"));
+            mother.setName(rs.getString("MOTHER"));
             name = rs.getString("NAME");
             placeOfBirth = rs.getString("PLACE_OF_BIRTH");
             dateOfBirth = rs.getDate("DATE_OF_BIRTH");

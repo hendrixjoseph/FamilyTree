@@ -49,7 +49,7 @@ public class Database
             // try (Statement statement = con.createStatement())
             // But I need the openConnection() to be in the try-catch block too!
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM PERSON WHERE ID=" + id);
+            ResultSet rs = statement.executeQuery("SELECT * FROM PERSON_VIEW WHERE ID=" + id);
             
             if(rs.next()) 
             {
