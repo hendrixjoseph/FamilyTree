@@ -10,6 +10,8 @@ import java.sql.*;
 import java.util.Properties;
 
 import familyTree.entity.Person;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -67,6 +69,47 @@ public class Database
         }
         
         return person;
+    }
+    
+    public static HashMap<Person, ArrayList<Person>> getChildren(int id)
+    {
+        HashMap<Person, ArrayList<Person>> spouseChildTable = new HashMap<Person, ArrayList<Person>>();  
+        ArrayList<Person> children;
+        
+        try
+        {
+            openConnection();
+
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM CHILDREN_VIEW WHERE ID=" + id);
+            
+            Person child;
+            Person spouse;
+            
+            while(rs.next())
+            {
+                spouse = new Person(rs.getString("SPOUSE"));
+                child = new Person(rs.getString("CHILD"));
+                
+                if(spouseChildTable.get(spouse) == null)
+                    spouseChildTable.put(spouse, new ArrayList<Person>());
+                
+                children = spouseChildTable.get(spouse);
+                
+                children.add(child);
+            }
+            
+            rs.close();
+            statement.close();
+            
+            closeConnection();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        
+        return spouseChildTable;
     }
     
     public static void setProperties()

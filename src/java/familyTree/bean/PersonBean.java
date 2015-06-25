@@ -3,9 +3,13 @@ package familyTree.bean;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import javax.annotation.PostConstruct;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import familyTree.entity.Person;
 import familyTree.database.Database;
-import javax.annotation.PostConstruct;
 
 /**
  *
@@ -16,6 +20,7 @@ import javax.annotation.PostConstruct;
 public class PersonBean 
 {
     private Person person;
+    private HashMap<Person, ArrayList<Person>> children;
        
     public PersonBean()
     {
@@ -25,34 +30,8 @@ public class PersonBean
     public void initialize()
     {
         Database.setProperties();
-        //hardWirePerson();        
-        databasePerson();
-    }
-    
-    /*
-    private void hardWirePerson()
-    {
-        Calendar cal = Calendar.getInstance();
-        
-        person = new Person();
-        
-        person.setId(1);
-        person.setFatherName("Samuel Thoroman");
-        person.setMotherName("Cynthiann McDonald Reynolds");
-        person.setName("William Zenos Thoroman");
-        person.setPlaceOfBirth("Ohio");
-        
-        cal.set(1827,Calendar.MARCH,4);
-        person.setDateOfBirth(cal);
-        person.setPlaceOfDeath("Jacksonville, Ohio");
-        cal.set(1900,Calendar.JANUARY,29);
-        person.setDateOfDeath(cal);
-    }
-    */
-    
-    private void databasePerson()
-    {
         person = Database.getPerson(1);
+        children = Database.getChildren(1);
     }
     
     public Person getPerson()
@@ -60,8 +39,18 @@ public class PersonBean
         return person;
     }
     
-    public void setPerson()
+    public void setPerson(Person person)
     {
         // Nothing yet...
+    }
+    
+    public HashMap<Person, ArrayList<Person>> getChildren()
+    {
+        return children;
+    }
+    
+    public void setChildren(HashMap<Person, ArrayList<Person>> children)
+    {
+        // Nothing
     }
 }

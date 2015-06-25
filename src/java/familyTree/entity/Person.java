@@ -8,6 +8,7 @@ package familyTree.entity;
 import java.sql.ResultSet;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  *
@@ -29,25 +30,44 @@ public class Person
         // No arg constructor
     }
     
-    public Person(ResultSet rs)
+    public Person(String name)
     {
-        try
-        {
-            id = rs.getInt("ID");
-            father = new Person();
-            father.setName(rs.getString("FATHER"));
-            mother = new Person();
-            mother.setName(rs.getString("MOTHER"));
-            name = rs.getString("NAME");
-            placeOfBirth = rs.getString("PLACE_OF_BIRTH");
-            dateOfBirth = rs.getDate("DATE_OF_BIRTH");
-            placeOfDeath = rs.getString("PLACE_OF_DEATH");
-            dateOfDeath = rs.getDate("DATE_OF_DEATH");
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
+        this.name = name;
+    }
+    
+    public Person(int id, String father, String mother, String name, Date dateOfBirth, String placeOfBirth, Date dateOfDeath, String placeOfDeath)
+    {
+        this(   id, 
+                new Person(father), 
+                new Person(mother),
+                name, dateOfBirth, 
+                placeOfBirth, 
+                dateOfDeath, 
+                placeOfDeath);
+    }
+
+    public Person(int id, Person father, Person mother, String name, Date dateOfBirth, String placeOfBirth, Date dateOfDeath, String placeOfDeath)
+    {
+        this.id = id;
+        this.father = father;
+        this.mother = mother;
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.placeOfBirth = placeOfBirth;
+        this.dateOfDeath = dateOfDeath;
+        this.placeOfDeath = placeOfDeath;
+    }
+    
+    public Person(ResultSet rs) throws Exception
+    {
+        this(   rs.getInt("ID"), 
+                rs.getString("FATHER"),
+                rs.getString("MOTHER"),
+                rs.getString("NAME"),
+                rs.getDate("DATE_OF_BIRTH"),
+                rs.getString("PLACE_OF_BIRTH"),
+                rs.getDate("DATE_OF_DEATH"),
+                rs.getString("PLACE_OF_DEATH"));
     }
     
     public int getId()
@@ -138,5 +158,33 @@ public class Person
     public void setPlaceOfDeath(String placeOfDeath)
     {
         this.placeOfDeath = placeOfDeath;
+    }
+    
+    @Override
+    public boolean equals(Object o)
+    {
+        if(o instanceof Person)
+        {
+            Person p = (Person)o;
+            
+            if(this.id != p.id)
+                return false;
+            
+            if(!this.name.equals(p.name))
+                return false;
+            
+            return true;
+        }
+        else
+            return false;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 5;
+        hash = 53 * hash + this.id;
+        hash = 53 * hash + Objects.hashCode(this.name);
+        return hash;
     }
 }
