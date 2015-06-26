@@ -21,6 +21,8 @@ public class PersonBean
 {
     private Person person;
     private HashMap<Person, ArrayList<Person>> children;
+    
+    private Person newPerson;
        
     public PersonBean()
     {
@@ -32,6 +34,8 @@ public class PersonBean
         Database.setProperties();
         person = Database.getPerson(1);
         children = Database.getChildren(1);
+        
+        newPerson = new Person();
     }
     
     public Person getPerson()
@@ -52,5 +56,15 @@ public class PersonBean
     public void setChildren(HashMap<Person, ArrayList<Person>> children)
     {
         // Nothing
+    }
+
+    public Person getNewPerson()
+    {
+        return newPerson;
+    }
+
+    public void setNewPerson(Person newPerson)
+    {
+        this.newPerson = newPerson;
     }
 }

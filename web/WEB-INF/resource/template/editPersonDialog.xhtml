@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:component xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui"
+              xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <p:dialog header="#{header}" modal="true" widgetVar="#{widgetVar}">
+        <p>
+            <p:panelGrid columns="2">
+                <c:set var="inputLength" value="100" />
+                <p:outputLabel value="Name:" />
+                <p:inputText value="#{person.name}" maxlength="#{inputLength}" size="#{inputLength}" />
+
+                <p:outputLabel value="Place of birth:" />
+                <p:inputText value="#{person.placeOfBirth}" maxlength="#{inputLength}" size="#{inputLength}" />
+
+                <p:outputLabel value="Date of birth:" />
+                <p:calendar value="#{person.dateOfBirth}" pattern="MMM dd yyyy"/>
+
+                <p:outputLabel value="Place of death:" />
+                <p:inputText value="#{person.placeOfDeath}" maxlength="#{inputLength}" size="#{inputLength}" />
+
+                <p:outputLabel value="Date of death:" />
+                <p:calendar value="#{person.dateOfDeath}" pattern="MMM dd yyyy" />
+            </p:panelGrid>
+        </p>
+        <p>
+            <p:commandButton value="Submit" />
+            <p:commandButton value="Cancel" onclick="" />
+        </p>
+    </p:dialog>
+</ui:component>
+
