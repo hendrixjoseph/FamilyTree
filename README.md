@@ -5,6 +5,7 @@ Only source code, such as, but not necessarily limited to, `*.java`, `*.xhtml`, 
 ## Libraries
 
 * [JSF 2.2](https://javaserverfaces.java.net/2.2/download.html) ([documentation](https://javaserverfaces.java.net/docs/2.2/))
+* [JSTL API 1.2] (http://central.maven.org/maven2/javax/servlet/jsp/jstl/jstl-api/1.2/)
 * [PrimeFaces 5.0](http://primefaces.org/downloads)
 * [ojdb7.jar](http://www.oracle.com/technetwork/database/features/jdbc/jdbc-drivers-12c-download-1958347.html)
 * [JDK 1.8](http://www.oracle.com/technetwork/java/javase/overview/index.html)
