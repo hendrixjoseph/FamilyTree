@@ -1,6 +1,6 @@
 --------------------------------------------------------
---  DDL for Index PERSON_PK
+--  DDL for Index GENDERS_PK
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "JOE"."PERSON_PK" ON "JOE"."PERSON" ("ID") 
+  CREATE UNIQUE INDEX "JOE"."GENDERS_PK" ON "JOE"."GENDERS" ("ABBR") 
   ;

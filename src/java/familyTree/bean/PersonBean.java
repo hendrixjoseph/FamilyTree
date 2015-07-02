@@ -1,12 +1,9 @@
 package familyTree.bean;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 
 import javax.annotation.PostConstruct;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import familyTree.entity.Person;
 import familyTree.database.Database;
@@ -16,13 +13,22 @@ import familyTree.database.Database;
  * @author Joe
  */
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class PersonBean 
 {
-    private Person person;
-    private HashMap<Person, ArrayList<Person>> children;
-    
+    private Person person;    
     private Person newPerson;
+    private String parent;
+
+    public String getParent()
+    {
+        return parent;
+    }
+
+    public void setParent(String parent)
+    {
+        this.parent = parent;
+    }
        
     public PersonBean()
     {
@@ -33,7 +39,6 @@ public class PersonBean
     {
         Database.setProperties();
         person = Database.getPerson(1);
-        children = Database.getChildren(1);
         
         newPerson = new Person();
     }
@@ -47,16 +52,6 @@ public class PersonBean
     {
         // Nothing yet...
     }
-    
-    public HashMap<Person, ArrayList<Person>> getChildren()
-    {
-        return children;
-    }
-    
-    public void setChildren(HashMap<Person, ArrayList<Person>> children)
-    {
-        // Nothing
-    }
 
     public Person getNewPerson()
     {
@@ -66,5 +61,15 @@ public class PersonBean
     public void setNewPerson(Person newPerson)
     {
         this.newPerson = newPerson;
+    }
+
+    public int getPersonId()
+    {
+        return person.getId();
+    }
+
+    public void setPersonId(int id)
+    {
+        person = Database.getPerson(id);
     }
 }

@@ -1,6 +1,6 @@
 --------------------------------------------------------
---  DDL for Index PERSON_PK
+--  DDL for Index PLACE_PK
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "JOE"."PERSON_PK" ON "JOE"."PERSON" ("ID") 
+  CREATE UNIQUE INDEX "JOE"."PLACE_PK" ON "JOE"."PLACE" ("ID") 
   ;

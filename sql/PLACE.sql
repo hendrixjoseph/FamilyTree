@@ -1,6 +1,8 @@
 --------------------------------------------------------
---  DDL for Index PERSON_PK
+--  DDL for Table PLACE
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "JOE"."PERSON_PK" ON "JOE"."PERSON" ("ID") 
-  ;
+  CREATE TABLE "JOE"."PLACE" 
+   (	"ID" NUMBER, 
+	"NAME" VARCHAR2(100)
+   ) ;

@@ -88,8 +88,8 @@ public class Database
             
             while(rs.next())
             {
-                spouse = new Person(rs.getString("SPOUSE"));
-                child = new Person(rs.getString("CHILD"));
+                spouse = new Person(rs.getInt("SPOUSE_ID"), rs.getString("SPOUSE"));
+                child = new Person(rs.getInt("CHILD_ID"), rs.getString("CHILD"));
                 
                 if(spouseChildTable.get(spouse) == null)
                     spouseChildTable.put(spouse, new ArrayList<Person>());
