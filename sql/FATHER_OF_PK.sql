@@ -1,8 +1,6 @@
 --------------------------------------------------------
---  DDL for Table GENDERS
+--  DDL for Index FATHER_OF_PK
 --------------------------------------------------------
 
-  CREATE TABLE "JOE"."GENDERS" 
-   (	"ABBR" CHAR(1), 
-	"FULL_WORD" VARCHAR2(20)
-   ) ;
+  CREATE UNIQUE INDEX "JOE"."FATHER_OF_PK" ON "JOE"."FATHER_OF" ("CHILD_ID") 
+  ;

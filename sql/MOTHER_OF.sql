@@ -1,6 +1,8 @@
 --------------------------------------------------------
---  DDL for Index GENDERS_PK
+--  DDL for Table MOTHER_OF
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "JOE"."GENDERS_PK" ON "JOE"."GENDER" ("ABBR") 
-  ;
+  CREATE TABLE "JOE"."MOTHER_OF" 
+   (	"MOTHER_ID" NUMBER, 
+	"CHILD_ID" NUMBER
+   ) ;
