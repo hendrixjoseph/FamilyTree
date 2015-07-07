@@ -2,5 +2,5 @@
 --  DDL for Index PLACE_PK
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "JOE"."PLACE_PK" ON "JOE"."PLACE" ("ID") 
+  CREATE UNIQUE INDEX "PLACE_PK" ON "PLACE" ("ID") 
   ;

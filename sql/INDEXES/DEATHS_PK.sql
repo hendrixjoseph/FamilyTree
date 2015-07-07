@@ -2,5 +2,5 @@
 --  DDL for Index DEATHS_PK
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "JOE"."DEATHS_PK" ON "JOE"."DEATH" ("PERSON_ID") 
+  CREATE UNIQUE INDEX "DEATHS_PK" ON "DEATH" ("PERSON_ID") 
   ;

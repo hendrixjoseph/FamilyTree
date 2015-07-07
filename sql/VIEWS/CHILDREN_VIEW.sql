@@ -2,7 +2,7 @@
 --  DDL for View CHILDREN_VIEW
 --------------------------------------------------------
 
-  CREATE OR REPLACE VIEW "JOE"."CHILDREN_VIEW" ("ID", "SPOUSE_ID", "SPOUSE", "CHILD_ID", "CHILD") AS 
+  CREATE OR REPLACE VIEW "CHILDREN_VIEW" ("ID", "SPOUSE_ID", "SPOUSE", "CHILD_ID", "CHILD") AS 
   SELECT 
     P.ID,
 	--P.NAME,

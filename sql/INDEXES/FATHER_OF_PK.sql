@@ -2,5 +2,5 @@
 --  DDL for Index FATHER_OF_PK
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "JOE"."FATHER_OF_PK" ON "JOE"."FATHER_OF" ("CHILD_ID") 
+  CREATE UNIQUE INDEX "FATHER_OF_PK" ON "FATHER_OF" ("CHILD_ID") 
   ;
