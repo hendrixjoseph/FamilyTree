@@ -1,138 +1,147 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-    <h:head>
-        <title>#{personBean.person.name} details</title>
-        <f:metadata>
-            <f:viewParam name="personId" value="#{personBean.personId}"/>
-        </f:metadata>
-    </h:head>
-    <h:body> 
-        <p:layout fullPage="true">
-            <p:layoutUnit position="north">
-                Menu. Id = #{personBean.personId}
-            </p:layoutUnit>
-            
-            <p:layoutUnit position="south">
-                <p:commandButton value="Edit person" type="button" onclick="PF('editDialog').show();" /> 
-            </p:layoutUnit>
-                          
-            <p:layoutUnit position="west">
-                <p:panelGrid columns="2">
-                    <f:facet name="header">
-                        #{personBean.person.name}
-                    </f:facet>
+<ui:composition template="/WEB-INF/resource/template/mainTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    
+    <f:metadata>
+        <f:viewParam name="personId" value="#{personBean.personId}"/>
+    </f:metadata>
 
-                    <p:outputLabel value="Father:" />
-                    <p:link value="#{personBean.person.father.name}" rendered="#{personBean.person.hasFather()}">
-                        <f:param name="personId" value="#{personBean.person.father.id}" />
-                    </p:link>
-                    <p:commandButton  value="Add father" type="button" onclick="PF('addParentDialog').show();" rendered="#{!personBean.person.hasFather()}">
-                        <p:ajax listener="#{personBean.setParent('father')}" update="addParentDialog" />
-                    </p:commandButton>
+    <ui:define name="title">
+        #{personBean.person.name} details
+    </ui:define>
 
-                    <p:outputLabel value="Mother:" />
-                    <p:link value="#{personBean.person.mother.name}" rendered="#{personBean.person.hasMother()}">
-                        <f:param name="personId" value="#{personBean.person.mother.id}" />
-                    </p:link>
-                    <p:commandButton value="Add mother" type="button" onclick="PF('addParentDialog').show();" rendered="#{!personBean.person.hasMother()}">
-                        <p:ajax listener="#{personBean.setParent('mother')}" />
-                    </p:commandButton>
-                    
-                    <p:outputLabel value="Gender:" />
-                    <p:outputLabel value="#{personBean.person.gender}" />
+    <ui:define name="north">            
+        <p:layoutUnit position="north">
+            Menu. Id = #{personBean.personId}
+        </p:layoutUnit>
+    </ui:define>
+    
+    <ui:define name="south">
+        <p:layoutUnit position="south">
+            <p:commandButton value="Edit person" type="button" onclick="PF('editDialog').show();" /> 
+        </p:layoutUnit>
+    </ui:define>    
+    
+    <!-- ui:define name="east">East</ui:define -->
+    
+    <ui:define name="west">
+        <p:layoutUnit position="west">
+            <p:panelGrid columns="2">
+                <f:facet name="header">
+                    #{personBean.person.name}
+                </f:facet>
 
-                    <p:outputLabel value="Place of birth:" />
-                    <p:outputLabel value="#{personBean.person.placeOfBirth}" />
+                <p:outputLabel value="Father:" />
+                <p:link value="#{personBean.person.father.name}" rendered="#{personBean.person.hasFather()}">
+                    <f:param name="personId" value="#{personBean.person.father.id}" />
+                </p:link>
+                <p:commandButton  value="Add father" type="button" onclick="PF('addParentDialog').show();" rendered="#{!personBean.person.hasFather()}">
+                    <p:ajax listener="#{personBean.setParent('father')}" update="addParentDialog" />
+                </p:commandButton>
 
-                    <p:outputLabel value="Date of birth:" />
-                    <p:outputLabel value="#{personBean.person.dateOfBirth}">
-                        <f:convertDateTime pattern="MMM dd, yyyy" />
-                    </p:outputLabel>
+                <p:outputLabel value="Mother:" />
+                <p:link value="#{personBean.person.mother.name}" rendered="#{personBean.person.hasMother()}">
+                    <f:param name="personId" value="#{personBean.person.mother.id}" />
+                </p:link>
+                <p:commandButton value="Add mother" type="button" onclick="PF('addParentDialog').show();" rendered="#{!personBean.person.hasMother()}">
+                    <p:ajax listener="#{personBean.setParent('mother')}" />
+                </p:commandButton>
 
-                    <p:outputLabel value="Place of death:" />
-                    <p:outputLabel value="#{personBean.person.placeOfDeath}" />
+                <p:outputLabel value="Gender:" />
+                <p:outputLabel value="#{personBean.person.gender}" />
 
-                    <p:outputLabel value="Date of death:" />
-                    <p:outputLabel value="#{personBean.person.dateOfDeath}">
-                        <f:convertDateTime pattern="MMM dd, yyyy" />
-                    </p:outputLabel>
-                </p:panelGrid>
-            </p:layoutUnit>
- 
-            <p:layoutUnit position="center">
-                <p:tabView>
-                    <c:forEach  items="#{personBean.person.spouseChildMap.keySet()}" var="spouse">
-                        <p:tab title="#{spouse.name}">
-                            <c:forEach items="#{personBean.person.spouseChildMap.get(spouse)}" var="child">
-                                <p:link value="#{child.name}">
-                                    <f:param name="personId" value="#{child.id}" />
-                                </p:link>                               
-                            </c:forEach>
-                            <p>
-                                <p:commandButton value="Add child" type="button" onclick="PF('addChildDialog').show();" />
-                            </p>
-                            <p>
-                                <p:link value="View spouse's page">
-                                    <f:param name="personId" value="#{spouse.id}" />                                            
-                                </p:link>
-                            </p>
-                        </p:tab>
-                    </c:forEach>
-                    <p:tab title="Add spouse or children">
+                <p:outputLabel value="Place of birth:" />
+                <p:outputLabel value="#{personBean.person.placeOfBirth}" />
+
+                <p:outputLabel value="Date of birth:" />
+                <p:outputLabel value="#{personBean.person.dateOfBirth}">
+                    <f:convertDateTime pattern="MMM dd, yyyy" />
+                </p:outputLabel>
+
+                <p:outputLabel value="Place of death:" />
+                <p:outputLabel value="#{personBean.person.placeOfDeath}" />
+
+                <p:outputLabel value="Date of death:" />
+                <p:outputLabel value="#{personBean.person.dateOfDeath}">
+                    <f:convertDateTime pattern="MMM dd, yyyy" />
+                </p:outputLabel>
+            </p:panelGrid>
+        </p:layoutUnit>
+    </ui:define>
+    
+    <ui:define name="center">
+        <p:layoutUnit position="center">
+            <p:tabView>
+                <c:forEach  items="#{personBean.person.spouseChildMap.keySet()}" var="spouse">
+                    <p:tab title="#{spouse.name}">
+                        <c:forEach items="#{personBean.person.spouseChildMap.get(spouse)}" var="child">
+                            <p:link value="#{child.name}">
+                                <f:param name="personId" value="#{child.id}" />
+                            </p:link>                               
+                        </c:forEach>
                         <p>
-                            <p:commandButton value="Add spouse" type="button" onclick="PF('addSpouseDialog').show();" />
-                        </p><p>
-                            <p:commandButton value="Add child" type="button" onclick="PF('addChildSingleParentDialog').show();" />
+                            <p:commandButton value="Add child" type="button" onclick="PF('addChildDialog').show();" />
+                        </p>
+                        <p>
+                            <p:link value="View spouse's page">
+                                <f:param name="personId" value="#{spouse.id}" />                                            
+                            </p:link>
                         </p>
                     </p:tab>
-                </p:tabView>
-            </p:layoutUnit>
-        </p:layout>
-        
-        <!-- Dialogs -->
-        <ui:include src="WEB-INF/resource/template/editPersonDialog.xhtml">
-            <ui:param name="header" value="Add Child to just #{personBean.person.name}" />
-            <ui:param name="widgetVar" value="addChildSingleParentDialog" />
-            <ui:param name="person" value="#{personBean.newPerson}" />
-            <ui:param name="isNewPerson" value="true" />
-            <ui:param name="parent" value="#{personBean.person.id}" />
-        </ui:include>
-        
-        <ui:include src="WEB-INF/resource/template/editPersonDialog.xhtml">
-            <ui:param name="header" value="Add Child to #{personBean.person.name} and spouse" />
-            <ui:param name="widgetVar" value="addChildDialog" />
-            <ui:param name="person" value="#{personBean.newPerson}" />
-            <ui:param name="isNewPerson" value="true" />
-            <ui:param name="parent" value="#{personBean.person}" />
-        </ui:include>
+                </c:forEach>
+                <p:tab title="Add spouse or children">
+                    <p>
+                        <p:commandButton value="Add spouse" type="button" onclick="PF('addSpouseDialog').show();" />
+                    </p><p>
+                        <p:commandButton value="Add child" type="button" onclick="PF('addChildSingleParentDialog').show();" />
+                    </p>
+                </p:tab>
+            </p:tabView>
+        </p:layoutUnit>
+    </ui:define>
+    
+    <!-- Dialogs -->
+    <ui:include src="WEB-INF/resource/template/editPersonDialog.xhtml">
+        <ui:param name="header" value="Add Child to just #{personBean.person.name}" />
+        <ui:param name="widgetVar" value="addChildSingleParentDialog" />
+        <ui:param name="person" value="#{personBean.newPerson}" />
+        <ui:param name="isNewPerson" value="true" />
+        <ui:param name="parent" value="#{personBean.person.id}" />
+    </ui:include>
 
-        <ui:include src="WEB-INF/resource/template/editPersonDialog.xhtml">
-            <ui:param name="header" value="Add Spouse to #{personBean.person.name}" />
-            <ui:param name="widgetVar" value="addSpouseDialog" />
-            <ui:param name="person" value="#{personBean.newPerson}" />
-            <ui:param name="isNewPerson" value="true" />
-            <ui:param name="spouse" value="#{personBean.person}" />
-        </ui:include>
+    <ui:include src="WEB-INF/resource/template/editPersonDialog.xhtml">
+        <ui:param name="header" value="Add Child to #{personBean.person.name} and spouse" />
+        <ui:param name="widgetVar" value="addChildDialog" />
+        <ui:param name="person" value="#{personBean.newPerson}" />
+        <ui:param name="isNewPerson" value="true" />
+        <ui:param name="parent" value="#{personBean.person}" />
+    </ui:include>
 
-        <ui:include src="WEB-INF/resource/template/editPersonDialog.xhtml">
-            <ui:param name="header" value="Add #{personBean.parent} to #{personBean.person.name}" />
-            <ui:param name="widgetVar" value="addParentDialog" />
-            <ui:param name="isNewPerson" value="true" />
-            <ui:param name="person" value="#{personBean.newPerson}" />
-            <ui:param name="child" value="#{personBean.person}" />
-        </ui:include> 
-        
-        <ui:include src="WEB-INF/resource/template/editPersonDialog.xhtml">
-            <ui:param name="header" value="Edit Individual: #{personBean.person.name}" />
-            <ui:param name="widgetVar" value="editDialog" />
-            <ui:param name="person" value="#{personBean.person}" />
-        </ui:include> 
-    </h:body>
-</html>
+    <ui:include src="WEB-INF/resource/template/editPersonDialog.xhtml">
+        <ui:param name="header" value="Add Spouse to #{personBean.person.name}" />
+        <ui:param name="widgetVar" value="addSpouseDialog" />
+        <ui:param name="person" value="#{personBean.newPerson}" />
+        <ui:param name="isNewPerson" value="true" />
+        <ui:param name="spouse" value="#{personBean.person}" />
+    </ui:include>
 
+    <ui:include src="WEB-INF/resource/template/editPersonDialog.xhtml">
+        <ui:param name="header" value="Add #{personBean.parent} to #{personBean.person.name}" />
+        <ui:param name="widgetVar" value="addParentDialog" />
+        <ui:param name="isNewPerson" value="true" />
+        <ui:param name="person" value="#{personBean.newPerson}" />
+        <ui:param name="child" value="#{personBean.person}" />
+    </ui:include> 
+
+    <ui:include src="WEB-INF/resource/template/editPersonDialog.xhtml">
+        <ui:param name="header" value="Edit Individual: #{personBean.person.name}" />
+        <ui:param name="widgetVar" value="editDialog" />
+        <ui:param name="person" value="#{personBean.person}" />
+    </ui:include> 
+</ui:composition>
