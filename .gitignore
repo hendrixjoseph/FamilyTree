@@ -7,3 +7,4 @@
 sql/Generated*.*
 !src/
 !web/
+!documentation/
