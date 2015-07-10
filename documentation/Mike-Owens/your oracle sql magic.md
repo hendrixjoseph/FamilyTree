@@ -62,14 +62,13 @@ Sent: Monday, July 06, 2015 3:14 PM<br />
 To: Owens, Michael (TS)<br />
 Subject: RE: your oracle sql magic
 
-•	PERSON
-•	FATHER_OF
-•	MOTHER_OF
-•	BIRTH
-•	DEATH
-•	GENDER
-•	PLACE
-
+* PERSON
+* FATHER_OF
+* MOTHER_OF
+* BIRTH
+* DEATH
+* GENDER
+* PLACE
 
 From: Owens, Michael (TS)<br />
 Sent: Monday, July 06, 2015 3:13 PM<br />
@@ -194,12 +193,13 @@ Subject: RE: your oracle sql magic
 
 Neither of these gives me an error. What I’m doing is trying to make a view that looks something like this:
 
-id	name	Spouse id	spouse	Child id	child
-1	Jim Bob	2	Suzy	3	Fred
-1	Jim Bob	2	Suzy	3	Fred
-2	Suzy	1	Jim Bob	3	Fred
-2	Suzy	1	Jim Bob	3	Fred
-3	Fred	null	null	4	John
+id | name | Spouse id | spouse | Child id | child
+---- | ---- | ---- | ---- | ---- | ---- 
+1 | Jim Bob | 2 | Suzy | 3 | Fred
+1 | Jim Bob | 2 | Suzy | 3 | Fred
+2 | Suzy | 1 | Jim Bob | 3 | Fred
+2 | Suzy | 1 | Jim Bob | 3 | Fred
+3 | Fred | null | null | 4 | John
 
 Which is a view of a person, their spouse (if applicable) and their child.
 
@@ -229,6 +229,8 @@ AND CHILD.ID = MOTHER_OF.CHILD_ID
 Although this is completely off of memory.
 
 My schema currently looks like this:
+
+![schema1](https://cloud.githubusercontent.com/assets/12754677/8515562/fac25c28-2372-11e5-8f71-6af8a93eaddd.jpg)
 
 From: Owens, Michael (TS) <br />
 Sent: Monday, July 06, 2015 2:12 PM<br />
