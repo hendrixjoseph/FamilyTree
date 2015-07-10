@@ -2,6 +2,7 @@
 
 Issue # | Citation
 ------------ | -------------
+[41](https://github.com/hendrixjoseph/FamilyTree/issues/41) | http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html
 [38](https://github.com/hendrixjoseph/FamilyTree/issues/38) | https://en.wikipedia.org/wiki/Generics_in_Java
 [31](https://github.com/hendrixjoseph/FamilyTree/issues/31) | http://www.w3schools.com/cssref/pr_pos_overflow.asp
 [11](https://github.com/hendrixjoseph/FamilyTree/issues/11) | https://github.com/hendrixjoseph/FamilyTree/issues/11
