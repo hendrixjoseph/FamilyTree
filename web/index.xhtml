@@ -9,16 +9,16 @@
     xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     
     <f:metadata>
-        <f:viewParam name="personId" value="#{personBean.personId}"/>
+        <f:viewParam name="personId" value="#{individualBean.personId}"/>
     </f:metadata>
 
     <ui:define name="title">
-        #{personBean.person.name} details
+        #{individualBean.person.name} details
     </ui:define>
 
     <ui:define name="north">            
         <p:layoutUnit position="north">
-            Menu. Id = #{personBean.personId}
+            Menu. Id = #{individualBean.personId}
         </p:layoutUnit>
     </ui:define>
     
@@ -34,41 +34,41 @@
         <p:layoutUnit position="west">
             <p:panelGrid columns="2">
                 <f:facet name="header">
-                    #{personBean.person.name}
+                    #{individualBean.person.name}
                 </f:facet>
 
                 <p:outputLabel value="Father:" />
-                <p:link value="#{personBean.person.father.name}" rendered="#{personBean.person.hasFather()}">
-                    <f:param name="personId" value="#{personBean.person.father.id}" />
+                <p:link value="#{individualBean.person.father.name}" rendered="#{individualBean.person.hasFather()}">
+                    <f:param name="personId" value="#{individualBean.person.father.id}" />
                 </p:link>
-                <p:commandButton  value="Add father" type="button" onclick="PF('addParentDialog').show();" rendered="#{!personBean.person.hasFather()}">
-                    <p:ajax listener="#{personBean.setParent('father')}" update="addParentDialog" />
+                <p:commandButton  value="Add father" type="button" onclick="PF('addParentDialog').show();" rendered="#{!individualBean.person.hasFather()}">
+                    <p:ajax listener="#{individualBean.setParent('father')}" update="addParentDialog" />
                 </p:commandButton>
 
                 <p:outputLabel value="Mother:" />
-                <p:link value="#{personBean.person.mother.name}" rendered="#{personBean.person.hasMother()}">
-                    <f:param name="personId" value="#{personBean.person.mother.id}" />
+                <p:link value="#{individualBean.person.mother.name}" rendered="#{individualBean.person.hasMother()}">
+                    <f:param name="personId" value="#{individualBean.person.mother.id}" />
                 </p:link>
-                <p:commandButton value="Add mother" type="button" onclick="PF('addParentDialog').show();" rendered="#{!personBean.person.hasMother()}">
-                    <p:ajax listener="#{personBean.setParent('mother')}" />
+                <p:commandButton value="Add mother" type="button" onclick="PF('addParentDialog').show();" rendered="#{!individualBean.person.hasMother()}">
+                    <p:ajax listener="#{individualBean.setParent('mother')}" />
                 </p:commandButton>
 
                 <p:outputLabel value="Gender:" />
-                <p:outputLabel value="#{personBean.person.gender}" />
+                <p:outputLabel value="#{individualBean.person.gender}" />
 
                 <p:outputLabel value="Place of birth:" />
-                <p:outputLabel value="#{personBean.person.placeOfBirth}" />
+                <p:outputLabel value="#{individualBean.person.placeOfBirth}" />
 
                 <p:outputLabel value="Date of birth:" />
-                <p:outputLabel value="#{personBean.person.dateOfBirth}">
+                <p:outputLabel value="#{individualBean.person.dateOfBirth}">
                     <f:convertDateTime pattern="MMM dd, yyyy" />
                 </p:outputLabel>
 
                 <p:outputLabel value="Place of death:" />
-                <p:outputLabel value="#{personBean.person.placeOfDeath}" />
+                <p:outputLabel value="#{individualBean.person.placeOfDeath}" />
 
                 <p:outputLabel value="Date of death:" />
-                <p:outputLabel value="#{personBean.person.dateOfDeath}">
+                <p:outputLabel value="#{individualBean.person.dateOfDeath}">
                     <f:convertDateTime pattern="MMM dd, yyyy" />
                 </p:outputLabel>
             </p:panelGrid>
@@ -78,9 +78,9 @@
     <ui:define name="center">
         <p:layoutUnit position="center">
             <p:tabView>
-                <c:forEach  items="#{personBean.person.spouseChildMap.keySet()}" var="spouse">
+                <c:forEach  items="#{individualBean.person.spouseChildMap.keySet()}" var="spouse">
                     <p:tab title="#{spouse.name}">
-                        <c:forEach items="#{personBean.person.spouseChildMap.get(spouse)}" var="child">
+                        <c:forEach items="#{individualBean.person.spouseChildMap.get(spouse)}" var="child">
                             <p:link value="#{child.name}">
                                 <f:param name="personId" value="#{child.id}" />
                             </p:link>                               

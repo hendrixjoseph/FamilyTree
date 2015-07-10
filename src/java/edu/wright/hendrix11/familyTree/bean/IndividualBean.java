@@ -14,7 +14,7 @@ import edu.wright.hendrix11.familyTree.database.Database;
  */
 @ManagedBean
 @RequestScoped
-public class PersonBean 
+public class IndividualBean 
 {
     private Person person;    
     private Person newPerson;
@@ -30,7 +30,7 @@ public class PersonBean
         this.parent = parent;
     }
        
-    public PersonBean()
+    public IndividualBean()
     {
     }
     
