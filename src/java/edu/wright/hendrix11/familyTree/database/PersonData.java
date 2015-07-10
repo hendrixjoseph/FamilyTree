@@ -55,21 +55,59 @@ public class PersonData extends Database<Person>
     }
 
     @Override
-    public Person update(Person p)
+    public boolean update(Person p)
     {
-        return null;
+        return false;
     }
 
     @Override
-    public Person insert(Person p)
+    public int insert(Person p)
     {
-        return null;
+        StringBuilder sb = new StringBuilder();
+        
+        HashMap<String, Object> columnValueMap = new HashMap<String, Object>();
+        
+        if(p.getName() != null && p.getName().length() > 0)
+            columnValueMap.put("NAME", p.getName());
+        
+        if(p.hasFather())
+            columnValueMap.put("FATHER_ID", Integer.toString(p.getFather().getId()));
+        
+        if(p.hasMother())
+            columnValueMap.put("MOTHER_ID", Integer.toString(p.getMother().getId()));
+        
+        if(p.getGender() != null)
+            columnValueMap.put("GENDER", p.getGender());
+        
+        if(p.getPlaceOfBirth() != null)
+            columnValueMap.put("PLACE_OF_BIRTH", p.getPlaceOfBirth());
+        
+        //if(p.getDateOfBirth() != null)
+            
+        
+        try
+        {
+            openConnection();
+            
+            Statement statement = createStatement();
+            
+            //rs.close();
+            statement.close();
+            
+            closeConnection();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        
+        return 0;
     }
 
     @Override
-    public Person delete(Person p)
+    public boolean delete(Person p)
     {
-        return null;
+        return false;
     }
     
     private HashMap<Person, ArrayList<Person>> getSpouseChildMap(int id)

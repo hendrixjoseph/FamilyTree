@@ -22,7 +22,7 @@
         <ui:include src="editPersonDialog.xhtml">
             <ui:param name="header" value="Add Child to just #{individualBean.person.name}" />
             <ui:param name="widgetVar" value="addChildSingleParentDialog" />
-            <ui:param name="person" value="#{individualBean.newPerson}" />
+            <ui:param name="person" value="#{insertPersonBean.person}" />
             <ui:param name="isNewPerson" value="true" />
             <ui:param name="parent" value="#{individualBean.person.id}" />
         </ui:include>
@@ -30,7 +30,7 @@
         <ui:include src="editPersonDialog.xhtml">
             <ui:param name="header" value="Add Child to #{individualBean.person.name} and spouse" />
             <ui:param name="widgetVar" value="addChildDialog" />
-            <ui:param name="person" value="#{individualBean.newPerson}" />
+            <ui:param name="person" value="#{insertPersonBean.person}" />
             <ui:param name="isNewPerson" value="true" />
             <ui:param name="parent" value="#{individualBean.person}" />
         </ui:include>
@@ -38,16 +38,16 @@
         <ui:include src="editPersonDialog.xhtml">
             <ui:param name="header" value="Add Spouse to #{individualBean.person.name}" />
             <ui:param name="widgetVar" value="addSpouseDialog" />
-            <ui:param name="person" value="#{individualBean.newPerson}" />
+            <ui:param name="person" value="#{insertPersonBean.person}" />
             <ui:param name="isNewPerson" value="true" />
             <ui:param name="spouse" value="#{individualBean.person}" />
         </ui:include>
 
         <ui:include src="editPersonDialog.xhtml">
-            <ui:param name="header" value="Add #{individualBean.parent} to #{individualBean.person.name}" />
+            <ui:param name="header" value="Add parent to #{individualBean.person.name}" />
             <ui:param name="widgetVar" value="addParentDialog" />
             <ui:param name="isNewPerson" value="true" />
-            <ui:param name="person" value="#{individualBean.newPerson}" />
+            <ui:param name="person" value="#{insertPersonBean.person}" />
             <ui:param name="child" value="#{individualBean.person}" />
         </ui:include> 
 

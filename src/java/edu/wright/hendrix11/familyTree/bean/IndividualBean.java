@@ -16,19 +16,7 @@ import edu.wright.hendrix11.familyTree.database.PersonData;
 @RequestScoped
 public class IndividualBean 
 {
-    private Person person;    
-    private Person newPerson;
-    private String parent;
-
-    public String getParent()
-    {
-        return parent;
-    }
-
-    public void setParent(String parent)
-    {
-        this.parent = parent;
-    }
+    private Person person; 
        
     public IndividualBean()
     {
@@ -38,8 +26,6 @@ public class IndividualBean
     public void initialize()
     {
         person = new PersonData().select(1);
-        
-        newPerson = new Person();
     }
     
     public Person getPerson()
@@ -50,16 +36,6 @@ public class IndividualBean
     public void setPerson(Person person)
     {
         // Nothing yet...
-    }
-
-    public Person getNewPerson()
-    {
-        return newPerson;
-    }
-
-    public void setNewPerson(Person newPerson)
-    {
-        this.newPerson = newPerson;
     }
 
     public int getPersonId()

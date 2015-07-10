@@ -32,9 +32,9 @@ public abstract class Database<O>
     }
     
     public abstract O select(int id);
-    public abstract O update(O o);
-    public abstract O insert(O o);
-    public abstract O delete(O o);
+    public abstract boolean update(O o);
+    public abstract int insert(O o);
+    public abstract boolean delete(O o);
     
     protected void openConnection() throws SQLException
     {
