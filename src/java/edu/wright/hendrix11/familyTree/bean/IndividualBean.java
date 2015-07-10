@@ -6,7 +6,7 @@ import javax.faces.bean.RequestScoped;
 import javax.annotation.PostConstruct;
 
 import edu.wright.hendrix11.familyTree.entity.Person;
-import edu.wright.hendrix11.familyTree.database.Database;
+import edu.wright.hendrix11.familyTree.database.PersonData;
 
 /**
  *
@@ -37,8 +37,7 @@ public class IndividualBean
     @PostConstruct
     public void initialize()
     {
-        Database.setProperties();
-        person = Database.getPerson(1);
+        person = new PersonData().select(1);
         
         newPerson = new Person();
     }
@@ -70,6 +69,6 @@ public class IndividualBean
 
     public void setPersonId(int id)
     {
-        person = Database.getPerson(id);
+        person = new PersonData().select(id);
     }
 }

@@ -1,7 +1,6 @@
 
 package edu.wright.hendrix11.familyTree.entity;
 
-import edu.wright.hendrix11.familyTree.database.Database;
 import java.lang.reflect.Field;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -70,8 +69,6 @@ public class Person
         this.placeOfBirth = placeOfBirth;
         this.dateOfDeath = dateOfDeath;
         this.placeOfDeath = placeOfDeath;
-        
-        spouseChildMap = Database.getChildren(id);
     }
     
     public Person(ResultSet rs) throws Exception

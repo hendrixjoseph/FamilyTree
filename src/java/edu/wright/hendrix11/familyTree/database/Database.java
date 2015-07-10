@@ -5,110 +5,55 @@ import java.io.*;
 import java.sql.*;
 import java.util.Properties;
 
-import edu.wright.hendrix11.familyTree.entity.Person;
-import java.util.ArrayList;
-import java.util.HashMap;
-
 /**
  *
  * @author Joe Hendrix
  */
-public class Database
+public abstract class Database<O>
 {
-    private static String url;
-    private static String user;
-    private static String pass;
+    private String url;
+    private String user;
+    private String pass;
     
-    private static final String propertiesFile = "database.properties";
+    private String propertiesFile;
     
-    private static Connection con;
+    private Connection con;
     
-    private static void openConnection() throws SQLException
+    public Database()
+    {
+        this("database.properties");
+    }
+    
+    public Database(String propertiesFile)
+    {
+        this.propertiesFile = propertiesFile;
+        
+        this.setProperties();
+    }
+    
+    public abstract O select(int id);
+    public abstract O update(O o);
+    public abstract O insert(O o);
+    public abstract O delete(O o);
+    
+    protected void openConnection() throws SQLException
     {
             // Load Oracle JDBC Driver
             DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
             con = DriverManager.getConnection(url, user, pass);
     }
     
-    private static void closeConnection() throws SQLException
+    protected void closeConnection() throws SQLException
     {
         con.close();
     }
     
-    public static Person getPerson(int id)
+    protected Statement createStatement() throws SQLException
     {
-        Person person = null;
-        
-        try
-        {
-            openConnection();
-
-            // Convert to try-with-resources
-            // try (Statement statement = con.createStatement())
-            // But I need the openConnection() to be in the try-catch block too!
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM PERSON_VIEW WHERE ID=" + id);
-            
-            if(rs.next()) 
-            {
-                person = new Person(rs);
-            }
-
-            rs.close();
-            statement.close();
-            
-            closeConnection();
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-        
-        return person;
+        return con.createStatement();
     }
-    
-    public static HashMap<Person, ArrayList<Person>> getChildren(int id)
-    {
-        HashMap<Person, ArrayList<Person>> spouseChildTable = new HashMap<Person, ArrayList<Person>>();  
-        ArrayList<Person> children;
         
-        try
-        {
-            openConnection();
-
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM CHILDREN_VIEW WHERE ID=" + id);
-            
-            Person child;
-            Person spouse;
-            
-            while(rs.next())
-            {
-                spouse = new Person(rs.getInt("SPOUSE_ID"), rs.getString("SPOUSE"));
-                child = new Person(rs.getInt("CHILD_ID"), rs.getString("CHILD"));
-                
-                if(spouseChildTable.get(spouse) == null)
-                    spouseChildTable.put(spouse, new ArrayList<Person>());
-                
-                children = spouseChildTable.get(spouse);
-                
-                children.add(child);
-            }
-            
-            rs.close();
-            statement.close();
-            
-            closeConnection();
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-        
-        return spouseChildTable;
-    }
-    
-    public static void setProperties()
+    public void setProperties()
     {
         try
         {
@@ -130,14 +75,14 @@ public class Database
         }
     }
     
-    public static void setProperities(String url, String user, String pass)
+    public void setProperities(String url, String user, String pass)
     {
-        Database.url = url;
-        Database.user = user;
-        Database.pass = pass;
+        url = url;
+        user = user;
+        pass = pass;
     }
     
-    public static void writeProperties()
+    public void writeProperties()
     {
         if(url == null || user == null || pass == null)
         {
