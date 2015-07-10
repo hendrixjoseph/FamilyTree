@@ -105,43 +105,4 @@
             </p:tabView>
         </p:layoutUnit>
     </ui:define>
-    
-    <!-- Dialogs -->
-    <ui:include src="WEB-INF/resource/template/editPersonDialog.xhtml">
-        <ui:param name="header" value="Add Child to just #{personBean.person.name}" />
-        <ui:param name="widgetVar" value="addChildSingleParentDialog" />
-        <ui:param name="person" value="#{personBean.newPerson}" />
-        <ui:param name="isNewPerson" value="true" />
-        <ui:param name="parent" value="#{personBean.person.id}" />
-    </ui:include>
-
-    <ui:include src="WEB-INF/resource/template/editPersonDialog.xhtml">
-        <ui:param name="header" value="Add Child to #{personBean.person.name} and spouse" />
-        <ui:param name="widgetVar" value="addChildDialog" />
-        <ui:param name="person" value="#{personBean.newPerson}" />
-        <ui:param name="isNewPerson" value="true" />
-        <ui:param name="parent" value="#{personBean.person}" />
-    </ui:include>
-
-    <ui:include src="WEB-INF/resource/template/editPersonDialog.xhtml">
-        <ui:param name="header" value="Add Spouse to #{personBean.person.name}" />
-        <ui:param name="widgetVar" value="addSpouseDialog" />
-        <ui:param name="person" value="#{personBean.newPerson}" />
-        <ui:param name="isNewPerson" value="true" />
-        <ui:param name="spouse" value="#{personBean.person}" />
-    </ui:include>
-
-    <ui:include src="WEB-INF/resource/template/editPersonDialog.xhtml">
-        <ui:param name="header" value="Add #{personBean.parent} to #{personBean.person.name}" />
-        <ui:param name="widgetVar" value="addParentDialog" />
-        <ui:param name="isNewPerson" value="true" />
-        <ui:param name="person" value="#{personBean.newPerson}" />
-        <ui:param name="child" value="#{personBean.person}" />
-    </ui:include> 
-
-    <ui:include src="WEB-INF/resource/template/editPersonDialog.xhtml">
-        <ui:param name="header" value="Edit Individual: #{personBean.person.name}" />
-        <ui:param name="widgetVar" value="editDialog" />
-        <ui:param name="person" value="#{personBean.person}" />
-    </ui:include> 
 </ui:composition>
