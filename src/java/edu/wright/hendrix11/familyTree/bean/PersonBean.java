@@ -1,16 +1,16 @@
-package familyTree.bean;
+package edu.wright.hendrix11.familyTree.bean;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import javax.annotation.PostConstruct;
 
-import familyTree.entity.Person;
-import familyTree.database.Database;
+import edu.wright.hendrix11.familyTree.entity.Person;
+import edu.wright.hendrix11.familyTree.database.Database;
 
 /**
  *
- * @author Joe
+ * @author Joe Hendrix
  */
 @ManagedBean
 @RequestScoped

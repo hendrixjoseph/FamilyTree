@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package familyTree.entity;
 
-import familyTree.database.Database;
+package edu.wright.hendrix11.familyTree.entity;
+
+import edu.wright.hendrix11.familyTree.database.Database;
 import java.lang.reflect.Field;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -16,7 +12,7 @@ import java.util.Objects;
 
 /**
  *
- * @author Joe
+ * @author Joe Hendrix
  */
 public class Person
 {
