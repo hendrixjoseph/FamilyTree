@@ -7,6 +7,12 @@ Issue # | Citation
 [31](https://github.com/hendrixjoseph/FamilyTree/issues/31) | http://www.w3schools.com/cssref/pr_pos_overflow.asp
 [11](https://github.com/hendrixjoseph/FamilyTree/issues/11) | https://github.com/hendrixjoseph/FamilyTree/issues/11
 
+# Email references
+
+Issue # | Citation
+------------ | -------------
+[1](https://github.com/hendrixjoseph/FamilyTree/issues/1) | https://github.com/hendrixjoseph/FamilyTree/blob/master/documentation/Mike-Owens/too%20many%20joins.md
+
 # Book references
 
 Issue # | Citation
