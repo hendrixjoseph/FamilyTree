@@ -28,3 +28,4 @@ Only source code, such as, but not necessarily limited to, `*.java`, `*.xhtml`, 
 ## Other resources
 
 * [Google Keep](http://www.google.com/keep/)
+* [Mike Owens](https://www.linkedin.com/profile/view?id=16163422)
