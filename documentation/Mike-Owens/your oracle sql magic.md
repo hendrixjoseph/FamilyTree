@@ -1,0 +1,314 @@
+Bring you tables loaded on the NGC and we can look at it further.
+
+From: Hendrix, Joseph D (TS)<br />
+Sent: Monday, July 06, 2015 3:43 PM<br />
+To: Owens, Michael (TS)<br />
+Subject: RE: your oracle sql magic
+
+Ok I think I misunderstood you when you asked “So person, spouse, and sibling is all contain in the “one” person table…. Is that correct?”
+
+The entries for person, spouse, and child exist in the PERSON table, but there is no foreign key or any column in the PERSON table that holds a value for spouse or child. You can only tell if a person is a spouse or child by referencing the MOTHER_OF and/or FATHER_OF tables.
+
+The PERSON_VIEW view, however, has a MOTHER and FATHER column for each entry.
+
+From: Owens, Michael (TS)<br />
+Sent: Monday, July 06, 2015 3:30 PM<br />
+To: Hendrix, Joseph D (TS)<br />
+Subject: RE: your oracle sql magic
+
+What about this:
+
+```sql
+Select    a.id,
+                a.person,
+                b.spouse,
+                c.child
+from      person a,
+                person b,
+                person c,
+                father_of d,
+                mother_of e,
+                birth f,
+                death g,
+                gender h,
+                place I,
+where   a.id=b.id(+)
+and        a.id=c.id(+)
+and        a.id=d.id(+)
+and        a.id=d.id(+)
+and        a.id=e.id(+)
+and        a.id=f.id(+)
+and        a.id=g.id(+)
+and        a.id=h.id(+)
+and        a.id=i.id(+)
+```
+
+From: Hendrix, Joseph D (TS)<br />
+Sent: Monday, July 06, 2015 3:20 PM<br />
+To: Owens, Michael (TS)<br />
+Subject: RE: your oracle sql magic
+
+Yes. Person, spouse, and child are all in the PERSON table.
+
+From: Owens, Michael (TS)<br />
+Sent: Monday, July 06, 2015 3:19 PM<br />
+To: Hendrix, Joseph D (TS)<br />
+Subject: RE: your oracle sql magic
+
+So person, spouse, and sibling is all contain in the “one” person table…. Is that correct?
+
+From: Hendrix, Joseph D (TS)<br />
+Sent: Monday, July 06, 2015 3:14 PM<br />
+To: Owens, Michael (TS)<br />
+Subject: RE: your oracle sql magic
+
+•	PERSON
+•	FATHER_OF
+•	MOTHER_OF
+•	BIRTH
+•	DEATH
+•	GENDER
+•	PLACE
+
+
+From: Owens, Michael (TS)<br />
+Sent: Monday, July 06, 2015 3:13 PM<br />
+To: Hendrix, Joseph D (TS)<br />
+Subject: RE: your oracle sql magic
+
+I think I know what mean/and want to do.
+
+What the name of you tables being used:
+
+From: Hendrix, Joseph D (TS)<br />
+Sent: Monday, July 06, 2015 3:11 PM<br />
+To: Owens, Michael (TS)<br />
+Subject: RE: your oracle sql magic
+
+Ok, I think I know what you mean.
+
+I’ll have to do that tonight and ask you again tomorrow.
+
+From: Owens, Michael (TS) 
+Sent: Monday, July 06, 2015 3:10 PM
+To: Hendrix, Joseph D (TS)
+Subject: RE: your oracle sql magic
+
+There should be an easier way, put usually I export to spreadsheet.
+
+From: Hendrix, Joseph D (TS)<br />
+Sent: Monday, July 06, 2015 3:08 PM<br />
+To: Owens, Michael (TS)<br />
+Subject: RE: your oracle sql magic
+
+It’s all at home.
+
+How do I do that, anyhow? (Preferable in sqldeveloper)
+
+From: Owens, Michael (TS)<br />
+Sent: Monday, July 06, 2015 3:08 PM<br />
+To: Hendrix, Joseph D (TS)<br />
+Subject: RE: your oracle sql magic
+
+Can you give me a sample dump of the data including headings?
+
+From: Hendrix, Joseph D (TS) <br />
+Sent: Monday, July 06, 2015 3:05 PM<br />
+To: Owens, Michael (TS)<br />
+Subject: RE: your oracle sql magic
+
+```sql
+CREATE TABLE "JOE"."PERSON"
+( "ID" NUMBER DEFAULT NULL,
+"NAME" VARCHAR2(100),
+"GENDER" CHAR(1)
+) ;
+
+ALTER TABLE "JOE"."PERSON" MODIFY ("GENDER" NOT NULL ENABLE);
+ALTER TABLE "JOE"."PERSON" ADD CONSTRAINT "PERSON_PK" PRIMARY KEY ("ID") ENABLE;
+ALTER TABLE "JOE"."PERSON" MODIFY ("NAME" NOT NULL ENABLE);
+ALTER TABLE "JOE"."PERSON" MODIFY ("ID" NOT NULL ENABLE);
+
+CREATE UNIQUE INDEX "JOE"."PERSON_PK" ON "JOE"."PERSON" ("ID");
+
+ALTER TABLE "JOE"."PERSON" ADD CONSTRAINT "PERSON_GENDER_FK" FOREIGN KEY ("GENDER")
+REFERENCES "JOE"."GENDER" ("ABBR") ENABLE;
+
+REM INSERTING into JOE.PERSON
+SET DEFINE OFF;
+Insert into JOE.PERSON (ID,NAME,GENDER) values (1,'William Zenos Thoroman','M');
+Insert into JOE.PERSON (ID,NAME,GENDER) values (2,'Samuel Thoroman','M');
+Insert into JOE.PERSON (ID,NAME,GENDER) values (3,'Cynthiann McDonald Reynolds','F');
+```
+
+From: Owens, Michael (TS) <br />
+Sent: Monday, July 06, 2015 3:01 PM<br />
+To: Hendrix, Joseph D (TS)<br />
+Subject: RE: your oracle sql magic
+
+Can you send me a sample of your person table
+
+From: Hendrix, Joseph D (TS) <br />
+Sent: Monday, July 06, 2015 2:25 PM<br />
+To: Owens, Michael (TS)<br />
+Subject: RE: your oracle sql magic
+
+This one:
+
+```sql
+SELECT
+P.ID,
+--P.NAME,
+SPOUSE.ID AS SPOUSE_ID,
+SPOUSE.NAME AS SPOUSE,
+CHILD.ID AS CHILD_ID,
+CHILD.NAME AS CHILD
+FROM
+PERSON_VIEW CHILD
+INNER JOIN
+PERSON_VIEW P
+ON
+CHILD.FATHER_ID = P.ID OR CHILD.MOTHER_ID = P.ID
+LEFT OUTER JOIN
+PERSON_VIEW SPOUSE
+ON
+(CHILD.FATHER_ID = SPOUSE.ID OR CHILD.MOTHER_ID = SPOUSE.ID) AND
+P.ID <> SPOUSE.ID
+ORDER BY
+P.NAME, SPOUSE.NAME;
+```
+
+Gives me exactly what I need. It’s just ugly.
+
+From: Owens, Michael (TS) <br />
+Sent: Monday, July 06, 2015 2:23 PM<br />
+To: Hendrix, Joseph D (TS)<br />
+Subject: RE: your oracle sql magic
+
+So it never gives you an error it just does return the values/records you expecting.
+
+From: Hendrix, Joseph D (TS) <br />
+Sent: Monday, July 06, 2015 2:21 PM<br />
+To: Owens, Michael (TS)<br />
+Subject: RE: your oracle sql magic
+
+Neither of these gives me an error. What I’m doing is trying to make a view that looks something like this:
+
+id	name	Spouse id	spouse	Child id	child
+1	Jim Bob	2	Suzy	3	Fred
+1	Jim Bob	2	Suzy	3	Fred
+2	Suzy	1	Jim Bob	3	Fred
+2	Suzy	1	Jim Bob	3	Fred
+3	Fred	null	null	4	John
+
+Which is a view of a person, their spouse (if applicable) and their child.
+
+What didn’t work when I was trying to use the (+) was something like this:
+
+```sql
+SELECT 
+    P.ID,
+    P.NAME,
+    SPOUSE.ID AS SPOUSE_ID,
+    SPOUSE.NAME AS SPOUSE,
+    CHILD.ID AS CHILD_ID,
+    CHILD.NAME AS CHILD
+FROM 
+    PERSON P,
+    PERSON SPOUSE,
+    PERSON CHILD,
+    FATHER_OF,
+    MOTHER_OF
+WHERE  
+    (P.ID = FATHER_OF.FATHER_ID OR P.ID = MOTHER_OF.MOTHER_ID)
+AND (SPOUSE.ID = MOTHER_OF.MOTHER_ID OR SPOUSE.ID = FATHER_OF.FATHER_ID) (+)
+AND CHILD.ID = FATHER_OF.CHILD_ID
+AND CHILD.ID = MOTHER_OF.CHILD_ID
+```
+
+Although this is completely off of memory.
+
+My schema currently looks like this:
+
+From: Owens, Michael (TS) <br />
+Sent: Monday, July 06, 2015 2:12 PM<br />
+To: Hendrix, Joseph D (TS)<br />
+Subject: RE: your oracle sql magic
+
+Does the sql statement give you an error.  It’s probably something to do with the “or”  violates the join
+
+In plain English what are you trying to do ?
+
+Your selecting against a view to determine a person father, spouse, children – where applicable???
+
+From: Hendrix, Joseph D (TS) <br />
+Sent: Monday, July 06, 2015 10:13 AM<br />
+To: Owens, Michael (TS)<br />
+Subject: your oracle sql magic
+
+Mike,
+
+I have a view / select statement:
+
+```sql
+SELECT
+P.ID,
+--P.NAME,
+SPOUSE.ID AS SPOUSE_ID,
+SPOUSE.NAME AS SPOUSE,
+CHILD.ID AS CHILD_ID,
+CHILD.NAME AS CHILD
+FROM
+PERSON_VIEW CHILD
+INNER JOIN
+PERSON_VIEW P
+ON
+CHILD.FATHER_ID = P.ID OR CHILD.MOTHER_ID = P.ID
+LEFT OUTER JOIN
+PERSON_VIEW SPOUSE
+ON
+(CHILD.FATHER_ID = SPOUSE.ID OR CHILD.MOTHER_ID = SPOUSE.ID) AND
+P.ID <> SPOUSE.ID
+ORDER BY
+P.NAME, SPOUSE.NAME;
+```
+
+Which isn’t as pretty as using the (+) to designate a join. I couldn’t get the (+) to work when using an “OR” so that’s why it’s not used here. Also, is it a bad idea to join views or to have views reference views?
+
+Another way I tried to make this view work:
+
+```sql
+SELECT 
+    P.ID,
+    P.NAME,
+    SPOUSE.ID AS SPOUSE_ID,
+    SPOUSE.NAME AS SPOUSE,
+    CHILD.ID AS CHILD_ID,
+    CHILD.NAME AS CHILD
+FROM 
+    PERSON P,
+    PERSON SPOUSE,
+    PERSON CHILD,
+    FATHER_OF,
+    MOTHER_OF
+WHERE (   
+    P.ID = FATHER_OF.FATHER_ID
+AND SPOUSE.ID = MOTHER_OF.MOTHER_ID
+AND CHILD.ID = FATHER_OF.CHILD_ID
+AND CHILD.ID = MOTHER_OF.CHILD_ID
+)
+OR
+(
+    P.ID = MOTHER_OF.MOTHER_ID
+AND SPOUSE.ID = FATHER_OF.FATHER_ID
+AND CHILD.ID = FATHER_OF.CHILD_ID
+AND CHILD.ID = MOTHER_OF.CHILD_ID
+)
+```
+
+Which I don’t think would work if there was no known spouse (mother or father)
+
+Thanks,
+
+ 
+
