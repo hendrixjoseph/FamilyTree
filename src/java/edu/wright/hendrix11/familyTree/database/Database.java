@@ -3,7 +3,11 @@ package edu.wright.hendrix11.familyTree.database;
 
 import java.io.*;
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Properties;
+import java.util.Date;
+import java.util.HashMap;
 
 /**
  *
@@ -18,6 +22,8 @@ public abstract class Database<O>
     private String propertiesFile;
     
     private Connection con;
+    
+    public static final String DATE_FORMAT = "MM DD YYYY";
     
     public Database()
     {
@@ -52,6 +58,65 @@ public abstract class Database<O>
     {
         return con.createStatement();
     }
+    
+    protected ResultSet executeQuery(String query) throws SQLException
+    {
+        ResultSet rs = null;
+        
+        openConnection();
+
+        // Convert to try-with-resources
+        // try (Statement statement = con.createStatement())
+        // But I need the openConnection() to be in the try-catch block too!
+        Statement statement = createStatement();
+        rs = statement.executeQuery(query);
+
+        statement.close();
+
+        closeConnection();
+        
+        return rs;
+    }
+    
+    protected String createToDate(Date date)
+    {
+        DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+        
+        StringBuilder toDate = new StringBuilder();
+        
+        toDate.append("TO_DATE('").append(dateFormat.format(date));
+        toDate.append("', '").append(DATE_FORMAT).append("')");
+        
+        return toDate.toString();
+    }
+    
+    protected String createInsertQuery(String table, HashMap<String, Object> columnValueMap)
+    {
+        StringBuilder query = new StringBuilder();
+        
+        query.append("INSERT INTO ").append(table).append("(");
+        
+        StringBuilder columns = new StringBuilder();
+        StringBuilder values = new StringBuilder();
+        
+        String[] keys = (String[])columnValueMap.keySet().toArray();
+        
+        for(int i = 0; i < keys.length; i++)
+        {
+            columns.append(keys[i]);
+            values.append(columnValueMap.get(keys[i]));
+            
+            if(i + 1 < keys.length)
+            {
+                columns.append(",");
+                values.append(",");
+            }
+        }
+        
+        query.append(columns).append(") VALUES (").append(values).append(")");
+        
+        return query.toString();
+    }
         
     public void setProperties()
     {
@@ -77,9 +142,9 @@ public abstract class Database<O>
     
     public void setProperities(String url, String user, String pass)
     {
-        url = url;
-        user = user;
-        pass = pass;
+        this.url = url;
+        this.user = user;
+        this.pass = pass;
     }
     
     public void writeProperties()

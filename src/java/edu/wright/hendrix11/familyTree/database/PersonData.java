@@ -24,14 +24,8 @@ public class PersonData extends Database<Person>
         Person person = null;
         
         try
-        {
-            openConnection();
-
-            // Convert to try-with-resources
-            // try (Statement statement = con.createStatement())
-            // But I need the openConnection() to be in the try-catch block too!
-            Statement statement = createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM PERSON_VIEW WHERE ID=" + id);
+        {        
+            ResultSet rs = executeQuery("SELECT * FROM PERSON_VIEW WHERE ID=" + id);
             
             if(rs.next()) 
             {
@@ -39,14 +33,11 @@ public class PersonData extends Database<Person>
             }
 
             rs.close();
-            statement.close();
-            
-            closeConnection();
         }
         catch(Exception e)
         {
             e.printStackTrace();
-        }
+        }            
         
         if(includeSpouseChildMap)
             person.setSpouseChildMap(getSpouseChildMap(id));
@@ -62,46 +53,60 @@ public class PersonData extends Database<Person>
 
     @Override
     public int insert(Person p)
-    {
-        StringBuilder sb = new StringBuilder();
-        
+    {        
         HashMap<String, Object> columnValueMap = new HashMap<String, Object>();
         
-        if(p.getName() != null && p.getName().length() > 0)
-            columnValueMap.put("NAME", p.getName());
+        if(p.getName() == null || p.getName().isEmpty())
+            throw new NullPointerException("Person's name is required!");
+
+        if(p.getGender() == null)
+            throw new NullPointerException("Person's gender is required! If gender is unknown, set it as \"Unknown\".");
+        
+        columnValueMap.put("NAME", p.getName());
+        columnValueMap.put("GENDER", p.getGender());
         
         if(p.hasFather())
             columnValueMap.put("FATHER_ID", Integer.toString(p.getFather().getId()));
         
         if(p.hasMother())
-            columnValueMap.put("MOTHER_ID", Integer.toString(p.getMother().getId()));
-        
-        if(p.getGender() != null)
-            columnValueMap.put("GENDER", p.getGender());
+            columnValueMap.put("MOTHER_ID", Integer.toString(p.getMother().getId())); 
         
         if(p.getPlaceOfBirth() != null)
             columnValueMap.put("PLACE_OF_BIRTH", p.getPlaceOfBirth());
         
-        //if(p.getDateOfBirth() != null)
-            
+        if(p.getDateOfBirth() != null)
+            columnValueMap.put("DATE_OF_BIRTH", createToDate(p.getDateOfBirth()));
         
-        try
-        {
-            openConnection();
+        if(p.getPlaceOfDeath() != null)
+            columnValueMap.put("PLACE_OF_DEATH", p.getPlaceOfDeath());
+        
+        if(p.getDateOfDeath() != null)
+            columnValueMap.put("DATE_OF_DEATH", createToDate(p.getDateOfDeath()));
             
-            Statement statement = createStatement();
-            
-            //rs.close();
-            statement.close();
-            
-            closeConnection();
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
+        String query = createInsertQuery("PERSON_VIEW", columnValueMap);
+        
+//        try
+//        {
+//            openConnection();
+//            
+//            Statement statement = createStatement();
+//            
+//            //rs.close();
+//            statement.close();
+//            
+//            closeConnection();
+//        }
+//        catch(Exception e)
+//        {
+//            e.printStackTrace();
+//        }
         
         return 0;
+    }
+    
+    public int insert(Person p, int childId)
+    {
+        return insert(p);
     }
 
     @Override
@@ -117,10 +122,7 @@ public class PersonData extends Database<Person>
         
         try
         {
-            openConnection();
-
-            Statement statement = createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM CHILDREN_VIEW WHERE ID=" + id);
+            ResultSet rs = executeQuery("SELECT * FROM CHILDREN_VIEW WHERE ID=" + id);
             
             Person child;
             Person spouse;
@@ -139,9 +141,6 @@ public class PersonData extends Database<Person>
             }
             
             rs.close();
-            statement.close();
-            
-            closeConnection();
         }
         catch(Exception e)
         {
