@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  *
@@ -13,6 +14,19 @@ import java.util.HashMap;
  */
 public class PersonData extends Database<Person>
 {
+    public PersonData()
+    {
+        super();
+        this.tableName = "PERSON_VIEW";
+        setColumnMethodMap("PERSON_VIEW", new Person());
+    }
+    
+    public PersonData(String propertyFile)
+    {
+        super("PERSON_VIEW", propertyFile);
+        setColumnMethodMap("PERSON_VIEW", new Person());
+    }
+    
     @Override
     public Person select(int id)
     {
@@ -21,18 +35,22 @@ public class PersonData extends Database<Person>
     
     public Person select(int id, boolean includeSpouseChildMap)
     {
-        Person person = null;
+        Person person = new Person();
         
         try
         {        
-            ResultSet rs = executeQuery("SELECT * FROM PERSON_VIEW WHERE ID=" + id);
+            openConnection();
+            Statement statement = createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM " + tableName + " WHERE ID=" + id);
             
             if(rs.next()) 
             {
-                person = new Person(rs);
+                this.setFields(person, rs);
             }
 
             rs.close();
+            statement.close();
+            closeConnection();
         }
         catch(Exception e)
         {
@@ -44,6 +62,64 @@ public class PersonData extends Database<Person>
                     
         return person;
     }
+    
+    public List<Person> select()
+    {
+        List<Person> persons = new ArrayList<Person>();
+        
+        try
+        {        
+            openConnection();
+            Statement statement = createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM " + tableName);
+            
+            while(rs.next()) 
+            {
+                Person person = new Person();
+                this.setFields(person, rs);
+                persons.add(person);
+            }
+
+            rs.close();
+            statement.close();
+            closeConnection();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        
+        return persons;
+    }
+    
+    private Integer selectMaxId()
+    {
+        Integer maxId = null;
+        
+        String query = "SELECT MAX(ID) AS ID FROM " + tableName;
+        
+        try
+        {        
+            openConnection();
+            Statement statement = createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            
+            if(rs.next()) 
+            {
+                maxId = rs.getInt("ID");
+            }
+
+            rs.close();
+            statement.close();
+            closeConnection();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        
+        return maxId;
+    }
 
     @Override
     public boolean update(Person p)
@@ -53,55 +129,28 @@ public class PersonData extends Database<Person>
 
     @Override
     public int insert(Person p)
-    {        
-        HashMap<String, Object> columnValueMap = new HashMap<String, Object>();
+    {
+        String query = generateInsertQuery(p);
         
-        if(p.getName() == null || p.getName().isEmpty())
-            throw new NullPointerException("Person's name is required!");
-
-        if(p.getGender() == null)
-            throw new NullPointerException("Person's gender is required! If gender is unknown, set it as \"Unknown\".");
+        try
+        {        
+            openConnection();
+            Statement statement = createStatement();
+            statement.executeUpdate(query);
+            statement.close();
+            closeConnection();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
         
-        columnValueMap.put("NAME", p.getName());
-        columnValueMap.put("GENDER", p.getGender());
+        Integer justInserted = selectMaxId();
         
-        if(p.hasFather())
-            columnValueMap.put("FATHER_ID", Integer.toString(p.getFather().getId()));
-        
-        if(p.hasMother())
-            columnValueMap.put("MOTHER_ID", Integer.toString(p.getMother().getId())); 
-        
-        if(p.getPlaceOfBirth() != null)
-            columnValueMap.put("PLACE_OF_BIRTH", p.getPlaceOfBirth());
-        
-        if(p.getDateOfBirth() != null)
-            columnValueMap.put("DATE_OF_BIRTH", createToDate(p.getDateOfBirth()));
-        
-        if(p.getPlaceOfDeath() != null)
-            columnValueMap.put("PLACE_OF_DEATH", p.getPlaceOfDeath());
-        
-        if(p.getDateOfDeath() != null)
-            columnValueMap.put("DATE_OF_DEATH", createToDate(p.getDateOfDeath()));
-            
-        String query = createInsertQuery("PERSON_VIEW", columnValueMap);
-        
-//        try
-//        {
-//            openConnection();
-//            
-//            Statement statement = createStatement();
-//            
-//            //rs.close();
-//            statement.close();
-//            
-//            closeConnection();
-//        }
-//        catch(Exception e)
-//        {
-//            e.printStackTrace();
-//        }
-        
-        return 0;
+        if(justInserted == null)
+            return 0;
+        else
+            return justInserted;
     }
     
     public int insert(Person p, int childId)
@@ -112,6 +161,26 @@ public class PersonData extends Database<Person>
     @Override
     public boolean delete(Person p)
     {
+        if(p != null && p.getId() != null)
+        {
+            String query = "DELETE FROM " + tableName + " WHERE ID=" + p.getId();
+            
+            try
+            {        
+                openConnection();
+                Statement statement = createStatement();
+                statement.executeUpdate(query);
+                statement.close();
+                closeConnection();
+                
+                return true;
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+        
         return false;
     }
     
@@ -122,7 +191,9 @@ public class PersonData extends Database<Person>
         
         try
         {
-            ResultSet rs = executeQuery("SELECT * FROM CHILDREN_VIEW WHERE ID=" + id);
+            openConnection();
+            Statement statement = createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM CHILDREN_VIEW WHERE ID=" + id);
             
             Person child;
             Person spouse;
@@ -141,6 +212,8 @@ public class PersonData extends Database<Person>
             }
             
             rs.close();
+            statement.close();
+            closeConnection();
         }
         catch(Exception e)
         {

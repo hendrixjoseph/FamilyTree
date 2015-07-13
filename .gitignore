@@ -8,3 +8,4 @@ sql/Generated*.*
 !src/
 !web/
 !documentation/
+!test/

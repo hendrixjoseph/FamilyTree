@@ -1,4 +1,4 @@
-"ID","FATHER_ID","FATHER","MOTHER_ID","MOTHER","NAME","GENDER","PLACE_OF_BIRTH","DATE_OF_BIRTH","PLACE_OF_DEATH","DATE_OF_DEATH"
+"ID","FATHER_ID","FATHER_NAME","MOTHER_ID","MOTHER_NAME","NAME","GENDER","PLACE_OF_BIRTH","DATE_OF_BIRTH","PLACE_OF_DEATH","DATE_OF_DEATH"
 2,,"",,"","Samuel Thoroman","Male","Washington, Pennsylvania",23-MAY-1795,"Ohio",12-DEC-1881
 1,2,"Samuel Thoroman",3,"Cynthiann McDonald Reynolds","William Zenos Thoroman","Male","Ohio",04-MAR-1827,"Jacksonville, Ohio",29-JAN-1900
 3,,"",,"","Cynthiann McDonald Reynolds","Female","",,"",

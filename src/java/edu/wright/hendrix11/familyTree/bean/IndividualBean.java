@@ -38,10 +38,10 @@ public class IndividualBean
         // Nothing yet...
     }
 
-    public int getPersonId()
-    {
-        return person.getId();
-    }
+//    public int getPersonId()
+//    {
+//        return person.getId();
+//    }
 
     public void setPersonId(int id)
     {

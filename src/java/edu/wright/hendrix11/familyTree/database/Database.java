@@ -2,12 +2,15 @@
 package edu.wright.hendrix11.familyTree.database;
 
 import java.io.*;
+import java.lang.reflect.Method;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  *
@@ -23,11 +26,21 @@ public abstract class Database<O>
     
     private Connection con;
     
-    public static final String DATE_FORMAT = "MM DD YYYY";
+    private ColumnMethodMap columnMethodMap;
+    
+    protected String tableName;
+    
+    public static final String DATE_FORMAT = "MM dd YYYY";
     
     public Database()
     {
         this("database.properties");
+    }
+    
+    public Database(String tableName, String propertiesFile)
+    {
+        this(propertiesFile);
+        this.tableName = tableName;
     }
     
     public Database(String propertiesFile)
@@ -41,6 +54,16 @@ public abstract class Database<O>
     public abstract boolean update(O o);
     public abstract int insert(O o);
     public abstract boolean delete(O o);
+
+    public ColumnMethodMap getColumnMethodMap()
+    {
+        return columnMethodMap;
+    }
+
+    protected void setColumnMethodMap(String tableName, Object object)
+    {
+        columnMethodMap = new ColumnMethodMap(tableName, object);
+    }
     
     protected void openConnection() throws SQLException
     {
@@ -59,26 +82,116 @@ public abstract class Database<O>
         return con.createStatement();
     }
     
-    protected ResultSet executeQuery(String query) throws SQLException
+//    protected ResultSet executeQuery(String query) throws SQLException
+//    {
+//        ResultSet rs = null;
+//        
+//        openConnection();
+//
+//        // Convert to try-with-resources
+//        // try (Statement statement = con.createStatement())
+//        // But I need the openConnection() to be in the try-catch block too!
+//        Statement statement = createStatement();
+//        rs = statement.executeQuery(query);
+//
+//        statement.close();
+//
+//        closeConnection();
+//        
+//        return rs;
+//    }
+      
+    protected String generateInsertQuery(Object object)
     {
-        ResultSet rs = null;
+        List<String> columns = columnMethodMap.getColumns();
+        HashMap<String, Method> getters = columnMethodMap.getGetters();
         
-        openConnection();
-
-        // Convert to try-with-resources
-        // try (Statement statement = con.createStatement())
-        // But I need the openConnection() to be in the try-catch block too!
-        Statement statement = createStatement();
-        rs = statement.executeQuery(query);
-
-        statement.close();
-
-        closeConnection();
+        StringBuilder query = new StringBuilder();
         
-        return rs;
+        query.append("INSERT INTO ").append(tableName).append(" (");
+        
+        StringBuilder columnPart = new StringBuilder();
+        StringBuilder valuePart = new StringBuilder();
+        
+        for(String column : columns)
+        {
+            Method getter = getters.get(column);
+            
+            try
+            {                
+                if(getter != null)
+                {
+                    String value = generateValue(getter.invoke(object));
+                    
+                    if(value != null)
+                    {
+                        columnPart.append(column).append(",");
+                        valuePart.append(value).append(",");
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+        
+        columnPart.deleteCharAt(columnPart.length() - 1);
+        valuePart.deleteCharAt(valuePart.length() - 1);
+        
+        query.append(columnPart).append(") VALUES (").append(valuePart).append(")");
+        
+        return query.toString();
     }
     
-    protected String createToDate(Date date)
+    protected void setFields(Object object, ResultSet rs)
+    {
+        List<String> columns = columnMethodMap.getColumns();
+        HashMap<String, Method> setters = columnMethodMap.getSetters();
+        
+        for(String column : columns)
+        {   
+            Method setter = setters.get(column);
+            
+            if(setter != null)
+            { 
+                Class c = setter.getParameterTypes()[0];
+                String name = c.getSimpleName();
+                
+                try
+                {                    
+                    if(name.equals("int"))
+                        setter.invoke(object, rs.getInt(column));
+                    else if(name.equals("String"))
+                        setter.invoke(object, rs.getString(column));
+                    else if(name.equals("Date"))
+                        setter.invoke(object, rs.getDate(column));
+                }
+                catch(SQLException sqle)
+                {
+                    if(!sqle.getMessage().contains("Invalid column name"))
+                        sqle.printStackTrace();
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                    return;
+                }
+            }
+        }
+    }
+    
+    private String generateValue(String string)
+    {
+        return "'" + string + "'";
+    }
+    
+    private String generateValue(Integer i)
+    {
+        return generateValue(Integer.toString(i));
+    }
+    
+    private String generateValue(Date date)
     {
         DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
         
@@ -90,32 +203,18 @@ public abstract class Database<O>
         return toDate.toString();
     }
     
-    protected String createInsertQuery(String table, HashMap<String, Object> columnValueMap)
+    private String generateValue(Object object)
     {
-        StringBuilder query = new StringBuilder();
+        if(object instanceof String)
+            return generateValue((String)object);
+        else if(object instanceof Date)
+            return generateValue((Date)object);
+        else if(object instanceof Integer)
+            return generateValue((Integer)object);
+        else if(object == null)
+            return null;
         
-        query.append("INSERT INTO ").append(table).append("(");
-        
-        StringBuilder columns = new StringBuilder();
-        StringBuilder values = new StringBuilder();
-        
-        String[] keys = (String[])columnValueMap.keySet().toArray();
-        
-        for(int i = 0; i < keys.length; i++)
-        {
-            columns.append(keys[i]);
-            values.append(columnValueMap.get(keys[i]));
-            
-            if(i + 1 < keys.length)
-            {
-                columns.append(",");
-                values.append(",");
-            }
-        }
-        
-        query.append(columns).append(") VALUES (").append(values).append(")");
-        
-        return query.toString();
+        return "'Object'";
     }
         
     public void setProperties()
@@ -171,6 +270,84 @@ public abstract class Database<O>
         catch(Exception e)
         {
             e.printStackTrace();
+        }
+    }
+    
+    protected class ColumnMethodMap
+    {
+        List<String> columns;
+        HashMap<String, Method> getters;
+        HashMap<String, Method> setters;
+        
+        public ColumnMethodMap(String tableName, Object object)
+        {
+            getters = new HashMap<String, Method>();
+            setters = new HashMap<String, Method>();
+            
+            HashMap<String, Method> methods = new HashMap<String, Method>();
+            
+            for(Method m : object.getClass().getMethods())
+            {
+                methods.put(m.getName().toUpperCase(), m);
+            }
+            
+            columns = getColumns(tableName);
+            
+            for(String column : columns)
+            {
+                String name = column.replaceAll("_", "").toUpperCase();
+                String getterName = "GET" + name;
+                String setterName = "SET" + name;
+                
+                if(methods.get(getterName) != null)
+                    getters.put(column, methods.get(getterName));
+                
+                if(methods.get(setterName) != null)
+                    setters.put(column, methods.get(setterName));
+            }
+        }
+
+        public List<String> getColumns()
+        {
+            return columns;
+        }
+
+        public HashMap<String, Method> getGetters()
+        {
+            return getters;
+        }
+
+        public HashMap<String, Method> getSetters()
+        {
+            return setters;
+        }
+        
+        private List<String> getColumns(String tableName)
+        {
+            List<String> columns = new ArrayList<String>();
+            
+            try
+            {
+                String query = "SELECT * FROM " + tableName;
+                
+                openConnection();
+                Statement statement = createStatement();
+                ResultSet rs = statement.executeQuery(query);
+                ResultSetMetaData rsmd = rs.getMetaData();
+                
+                for(int i = 1; i - 1 < rsmd.getColumnCount(); i++)
+                    columns.add(rsmd.getColumnName(i));
+                
+                rs.close();
+                statement.close();
+                closeConnection();
+            }
+            catch (SQLException ex)
+            {
+                ex.printStackTrace();
+            }
+            
+            return columns;
         }
     }
 }

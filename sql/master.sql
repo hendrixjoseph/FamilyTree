@@ -1,5 +1,5 @@
 --------------------------------------------------------
---  File created - Tuesday-July-07-2015   
+--  File created - Sunday-July-12-2015   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Sequence PLACE_SEQUENCE
@@ -10,7 +10,7 @@
 --  DDL for Sequence SEQUENCE_PERSON
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "SEQUENCE_PERSON"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 61 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "SEQUENCE_PERSON"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 101 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Table BIRTH
 --------------------------------------------------------
@@ -99,13 +99,13 @@ ORDER BY
 --  DDL for View PERSON_VIEW
 --------------------------------------------------------
 
-  CREATE OR REPLACE VIEW "PERSON_VIEW" ("ID", "FATHER_ID", "FATHER", "MOTHER_ID", "MOTHER", "NAME", "GENDER", "PLACE_OF_BIRTH", "DATE_OF_BIRTH", "PLACE_OF_DEATH", "DATE_OF_DEATH") AS 
+  CREATE OR REPLACE VIEW "PERSON_VIEW" ("ID", "FATHER_ID", "FATHER_NAME", "MOTHER_ID", "MOTHER_NAME", "NAME", "GENDER", "PLACE_OF_BIRTH", "DATE_OF_BIRTH", "PLACE_OF_DEATH", "DATE_OF_DEATH") AS 
   SELECT
     P.ID,
     DAD.ID AS FATHER_ID,
-    DAD.NAME AS FATHER,
+    DAD.NAME AS FATHER_NAME,
     MOM.ID AS MOTHER_ID,
-    MOM.NAME AS MOTHER,
+    MOM.NAME AS MOTHER_NAME,
     P.NAME,
     GENDER.FULL_WORD AS GENDER,
     B_PLACE.NAME AS PLACE_OF_BIRTH,
@@ -264,7 +264,7 @@ Insert into PLACE (ID,NAME) values (3,'Jacksonville, Ohio');
 --------------------------------------------------------
 
   ALTER TABLE "BIRTH" ADD CONSTRAINT "BIRTH_PERSON_FK" FOREIGN KEY ("PERSON_ID")
-	  REFERENCES "PERSON" ("ID") ENABLE;
+	  REFERENCES "PERSON" ("ID") ON DELETE CASCADE ENABLE;
   ALTER TABLE "BIRTH" ADD CONSTRAINT "BIRTH_PLACE_FK" FOREIGN KEY ("PLACE_ID")
 	  REFERENCES "PLACE" ("ID") ENABLE;
 --------------------------------------------------------
@@ -272,7 +272,7 @@ Insert into PLACE (ID,NAME) values (3,'Jacksonville, Ohio');
 --------------------------------------------------------
 
   ALTER TABLE "DEATH" ADD CONSTRAINT "DEATH_PERSON_FK" FOREIGN KEY ("PERSON_ID")
-	  REFERENCES "PERSON" ("ID") ENABLE;
+	  REFERENCES "PERSON" ("ID") ON DELETE CASCADE ENABLE;
   ALTER TABLE "DEATH" ADD CONSTRAINT "DEATH_PLACE_FK" FOREIGN KEY ("PLACE_ID")
 	  REFERENCES "PLACE" ("ID") ENABLE;
 --------------------------------------------------------
@@ -280,17 +280,17 @@ Insert into PLACE (ID,NAME) values (3,'Jacksonville, Ohio');
 --------------------------------------------------------
 
   ALTER TABLE "FATHER_OF" ADD CONSTRAINT "FATHER_FK" FOREIGN KEY ("FATHER_ID")
-	  REFERENCES "PERSON" ("ID") ENABLE;
+	  REFERENCES "PERSON" ("ID") ON DELETE CASCADE ENABLE;
   ALTER TABLE "FATHER_OF" ADD CONSTRAINT "FCHILD_FK" FOREIGN KEY ("CHILD_ID")
-	  REFERENCES "PERSON" ("ID") ENABLE;
+	  REFERENCES "PERSON" ("ID") ON DELETE CASCADE ENABLE;
 --------------------------------------------------------
 --  Ref Constraints for Table MOTHER_OF
 --------------------------------------------------------
 
   ALTER TABLE "MOTHER_OF" ADD CONSTRAINT "MCHILD_FK" FOREIGN KEY ("CHILD_ID")
-	  REFERENCES "PERSON" ("ID") ENABLE;
+	  REFERENCES "PERSON" ("ID") ON DELETE CASCADE ENABLE;
   ALTER TABLE "MOTHER_OF" ADD CONSTRAINT "MOTHER_FK" FOREIGN KEY ("MOTHER_ID")
-	  REFERENCES "PERSON" ("ID") ENABLE;
+	  REFERENCES "PERSON" ("ID") ON DELETE CASCADE ENABLE;
 --------------------------------------------------------
 --  Ref Constraints for Table PERSON
 --------------------------------------------------------
@@ -311,6 +311,17 @@ BEGIN
 END;
 /
 ALTER TRIGGER "PERSON_SEQ_TRIGGER" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger PERSON_VIEW_DELETE_TRIGGER
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "PERSON_VIEW_DELETE_TRIGGER" 
+INSTEAD OF DELETE ON PERSON_VIEW 
+BEGIN
+  DELETE FROM PERSON WHERE ID=:old.ID;
+END;
+/
+ALTER TRIGGER "PERSON_VIEW_DELETE_TRIGGER" ENABLE;
 --------------------------------------------------------
 --  DDL for Trigger PERSON_VIEW_INSERT_TRIGGER
 --------------------------------------------------------

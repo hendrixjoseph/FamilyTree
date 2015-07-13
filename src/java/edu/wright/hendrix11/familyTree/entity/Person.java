@@ -15,7 +15,7 @@ import java.util.Objects;
  */
 public class Person
 {
-    private int id;
+    private Integer id;
     private Person father;
     private Person mother;
     private String name = "";
@@ -30,7 +30,6 @@ public class Person
     public Person()
     {
         // No arg constructor
-        this("");
     }
     
     public Person(String name)
@@ -71,21 +70,6 @@ public class Person
         this.placeOfDeath = placeOfDeath;
     }
     
-    public Person(ResultSet rs) throws Exception
-    {
-        this(   rs.getInt("ID"),
-                rs.getInt("FATHER_ID"),
-                rs.getString("FATHER"),
-                rs.getInt("MOTHER_ID"),
-                rs.getString("MOTHER"),
-                rs.getString("NAME"),
-                rs.getString("GENDER"),
-                rs.getDate("DATE_OF_BIRTH"),
-                rs.getString("PLACE_OF_BIRTH"),
-                rs.getDate("DATE_OF_DEATH"),
-                rs.getString("PLACE_OF_DEATH"));
-    }
-    
     public boolean hasMother()
     {
         return mother != null;
@@ -96,7 +80,7 @@ public class Person
         return father != null;
     }
     
-    public int getId()
+    public Integer getId()
     {
         return id;
     }
@@ -166,10 +150,10 @@ public class Person
         this.gender = gender;
     }
 
-    public void setDateOfBirth(Calendar dateOfBirth)
-    {
-        setDateOfBirth(dateOfBirth.getTime());
-    }
+//    public void setDateOfBirth(Calendar dateOfBirth)
+//    {
+//        setDateOfBirth(dateOfBirth.getTime());
+//    }
 
     public void setDateOfBirth(Date dateOfBirth)
     {
@@ -181,10 +165,10 @@ public class Person
         this.placeOfBirth = placeOfBirth;
     }
 
-    public void setDateOfDeath(Calendar dateOfDeath)
-    {
-        setDateOfDeath(dateOfDeath.getTime());
-    }
+//    public void setDateOfDeath(Calendar dateOfDeath)
+//    {
+//        setDateOfDeath(dateOfDeath.getTime());
+//    }
 
     public void setDateOfDeath(Date dateOfDeath)
     {
@@ -194,6 +178,11 @@ public class Person
     public void setPlaceOfDeath(String placeOfDeath)
     {
         this.placeOfDeath = placeOfDeath;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
     }
 
     public void setSpouseChildMap(HashMap<Person, ArrayList<Person>> spouseChildMap)
