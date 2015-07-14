@@ -51,7 +51,7 @@ public class PersonDataTest
         
         table = new Table();
         
-        List<Person> persons = table.select();
+        List<Person> persons = new ArrayList<Person>();//table.select();
         
         System.out.println("Do not delete the following ids:");
         
@@ -67,7 +67,7 @@ public class PersonDataTest
     @AfterClass
     public static void tearDownClass()
     { 
-        List<Person> persons = table.select();
+        List<Person> persons = new ArrayList<Person>();//table.select();
         
         for(Person person : persons)
         {
@@ -94,15 +94,20 @@ public class PersonDataTest
     {
         Table table = new Table();
         
-        Person p = new Person("John");
-        p.setGender("Male");
+        table.outputMap();
         
+        Person p = table.select(1);
         table.outputInsert(p);
-        int id = table.insert(p);
-        
-        p = new Person();
-        p = table.select(id);
-        table.outputInsert(p);
+//        
+//        p = new Person("John");
+//        p.setGender("Male");
+//        
+//        table.outputInsert(p);
+//        int id = table.insert(p);
+//        
+//        p = new Person();
+//        p = table.select(id);
+//        table.outputInsert(p);
     }
     
     public static class Table extends PersonData
@@ -115,8 +120,8 @@ public class PersonDataTest
         public void outputMap()
         {
             List<String> columns = this.getColumnMethodMap().getColumns();
-            HashMap<String, Method> getters = this.getColumnMethodMap().getGetters();
-            HashMap<String, Method> setters = this.getColumnMethodMap().getSetters();
+            HashMap<String, List<Method>> getters = this.getColumnMethodMap().getGetters();
+            HashMap<String, List<Method>> setters = this.getColumnMethodMap().getSetters();
             
             System.out.println("Number columns:\t" + columns.size());
             System.out.println("Number getters:\t" + getters.size());
@@ -124,10 +129,42 @@ public class PersonDataTest
             
             for(String column : columns)
             {
-                String getterName = getters.get(column) != null ? getters.get(column).getName() : "(null)";
-                String setterName = setters.get(column) != null ? setters.get(column).getName() : "(null)";
+                List<Method> getter = getters.get(column);
+                List<Method> setter = setters.get(column);
                 
-                System.out.println(column + "\n\t" + getterName + "\t" + setterName);
+                StringBuilder getterName = new StringBuilder("(null)");
+                StringBuilder setterName = new StringBuilder("(null)");
+                
+                if(getter != null)
+                {
+                    getterName = new StringBuilder();
+                    
+                    for(Method g : getter)
+                    {
+                        getterName.append(g.getName()).append("().");
+                    }
+                    
+                    getterName.deleteCharAt(getterName.length() - 1);
+                }
+                
+                if(setter != null)
+                {
+                    setterName = new StringBuilder();
+                    
+                    for(Method s : setter)
+                    {
+                        setterName.append(s.getName()).append("().");
+                    }
+                    
+                    setterName.deleteCharAt(setterName.length() - 1);
+                }
+                
+                StringBuilder output = new StringBuilder();
+                output.append(column);
+                output.append("\nGetter:\t").append(getterName);
+                output.append("\nSetter:\t").append(setterName);
+                
+                System.out.println(output.toString());
             }
         }
         

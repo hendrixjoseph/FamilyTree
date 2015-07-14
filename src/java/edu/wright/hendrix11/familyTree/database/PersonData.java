@@ -19,12 +19,31 @@ public class PersonData extends Database<Person>
         super();
         this.tableName = "PERSON_VIEW";
         setColumnMethodMap("PERSON_VIEW", new Person());
+        setOtherMethods();
     }
     
     public PersonData(String propertyFile)
     {
         super("PERSON_VIEW", propertyFile);
         setColumnMethodMap("PERSON_VIEW", new Person());
+        setOtherMethods();
+    }
+    
+    private void setOtherMethods()
+    {
+        ColumnMethodMap columnMethodMap = this.getColumnMethodMap();
+        
+        columnMethodMap.putGetter("FATHER_ID","getFather().getId()");
+        columnMethodMap.putSetter("FATHER_ID","getFather().setId()");
+        
+        columnMethodMap.putGetter("FATHER_NAME","getFather().getName()");
+        columnMethodMap.putSetter("FATHER_NAME","getFather().setName()");
+        
+        columnMethodMap.putGetter("MOTHER_ID","getMother().getId()");
+        columnMethodMap.putSetter("MOTHER_ID","getMother().setId()");
+        
+        columnMethodMap.putGetter("MOTHER_NAME","getMother().getName()");
+        columnMethodMap.putSetter("MOTHER_NAME","getMother().setName()");
     }
     
     @Override
@@ -36,6 +55,8 @@ public class PersonData extends Database<Person>
     public Person select(int id, boolean includeSpouseChildMap)
     {
         Person person = new Person();
+        person.setFather(new Person());
+        person.setMother(new Person());
         
         try
         {        
