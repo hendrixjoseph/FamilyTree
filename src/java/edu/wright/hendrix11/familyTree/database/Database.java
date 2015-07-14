@@ -199,7 +199,7 @@ public abstract class Database<O>
                             Class c = setter.getParameterTypes()[0];
                             String name = c.getSimpleName();
                   
-                            if(name.equals("int"))
+                            if(name.equals("int") || name.equals("Integer"))
                                 setter.invoke(returnObject, rs.getInt(column));
                             else if(name.equals("String"))
                                 setter.invoke(returnObject, rs.getString(column));

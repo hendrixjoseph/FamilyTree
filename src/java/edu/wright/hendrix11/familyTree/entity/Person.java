@@ -39,12 +39,17 @@ public class Person
     
     public Person(int id, String name)
     {
+        this(Integer.valueOf(id), name);
+    }
+    
+    public Person(Integer id, String name)
+    {
         this(name);
         
         this.id = id;
     }
     
-    public Person(int id, int fatherId, String father, int motherId, String mother, String name, String gender, Date dateOfBirth, String placeOfBirth, Date dateOfDeath, String placeOfDeath)
+    public Person(Integer id, Integer fatherId, String father, Integer motherId, String mother, String name, String gender, Date dateOfBirth, String placeOfBirth, Date dateOfDeath, String placeOfDeath)
     {
         this(   id, 
                 father!=null?new Person(fatherId, father):null, 
@@ -57,7 +62,7 @@ public class Person
                 placeOfDeath);
     }
 
-    public Person(int id, Person father, Person mother, String name, String gender, Date dateOfBirth, String placeOfBirth, Date dateOfDeath, String placeOfDeath)
+    public Person(Integer id, Person father, Person mother, String name, String gender, Date dateOfBirth, String placeOfBirth, Date dateOfDeath, String placeOfDeath)
     {        
         this.id = id;
         this.father = father;
@@ -72,12 +77,20 @@ public class Person
     
     public boolean hasMother()
     {
-        return mother != null;
+        return hasParent(mother);
     }
     
     public boolean hasFather()
     {
-        return father != null;
+        return hasParent(father);
+    }
+    
+    private boolean hasParent(Person parent)
+    {
+        if(parent == null || parent.getName() == null || parent.getName().isEmpty())
+            return false;
+        else
+            return true;
     }
     
     public Integer getId()
@@ -180,7 +193,7 @@ public class Person
         this.placeOfDeath = placeOfDeath;
     }
 
-    public void setId(int id)
+    public void setId(Integer id)
     {
         this.id = id;
     }
