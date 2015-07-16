@@ -11,6 +11,10 @@ Only source code, such as, but not necessarily limited to, `*.java`, `*.xhtml`, 
 * [JDK 1.8](http://www.oracle.com/technetwork/java/javase/overview/index.html)
 * [Apache Tomcat 8.0.15.0](https://tomcat.apache.org/download-80.cgi)
 
+## Java Test Libraries
+
+* JUnit 4.10
+
 ## Development Tools Used
 
 * [GitHub for Windows 2.14.5](https://windows.github.com/)
@@ -19,7 +23,7 @@ Only source code, such as, but not necessarily limited to, `*.java`, `*.xhtml`, 
  * JSF 2.2, PrimeFaces 5.0, and Apache Tomcat 8.0.15 were installed as part of NetBeans
  * Local Git management, such as commits, are controlled through NetBeans
 * [Oracle SQL Developer 4.1.0.19](http://www.oracle.com/technetwork/developer-tools/sql-developer/overview/index-097090.html)
-* [Notepad++](https://notepad-plus-plus.org/)
+* [Notepad++ v6.7.8.2](https://notepad-plus-plus.org/)
 
 ## Database
 
@@ -28,4 +32,7 @@ Only source code, such as, but not necessarily limited to, `*.java`, `*.xhtml`, 
 ## Other resources
 
 * [Google Keep](http://www.google.com/keep/)
+* http://jsbeautifier.org/
 * [Mike Owens](https://www.linkedin.com/profile/view?id=16163422)
+
+Tested in Firefox 39.0
