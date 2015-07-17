@@ -1,6 +1,7 @@
 
 package edu.wright.hendrix11.familyTree.database;
 
+import edu.wright.hendrix11.familyTree.database.interfaces.*;
 import edu.wright.hendrix11.familyTree.entity.Person;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -12,7 +13,10 @@ import java.util.List;
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
-public class PersonData extends Database<Person>
+public class PersonData extends Database implements SelectData<Person, Integer>, 
+                                                    InsertData<Person>, 
+                                                    UpdateData<Person>, 
+                                                    DeleteData<Person>
 {
     public PersonData()
     {
@@ -47,12 +51,12 @@ public class PersonData extends Database<Person>
     }
     
     @Override
-    public Person select(int id)
+    public Person select(Integer id)
     {
         return select(id, true);
     }
     
-    public Person select(int id, boolean includeSpouseChildMap)
+    public Person select(Integer id, boolean includeSpouseChildMap)
     {
         Person person = new Person();
         person.setFather(new Person());
@@ -113,21 +117,19 @@ public class PersonData extends Database<Person>
         return persons;
     }
     
-    private Integer selectMaxId()
+    private Person selectLastInserted()
     {
-        Integer maxId = null;
-        
-        String query = "SELECT MAX(ID) AS ID FROM " + tableName;
+        Person person = null;
         
         try
         {        
             openConnection();
             Statement statement = createStatement();
-            ResultSet rs = statement.executeQuery(query);
+            ResultSet rs = statement.executeQuery("SELECT * FROM LAST_PERSON_INSERTED_VIEW");
             
             if(rs.next()) 
             {
-                maxId = rs.getInt("ID");
+                this.setFields(person, rs);
             }
 
             rs.close();
@@ -139,17 +141,17 @@ public class PersonData extends Database<Person>
             e.printStackTrace();
         }
         
-        return maxId;
+        return person;
     }
 
     @Override
-    public boolean update(Person p)
+    public Person update(Person p)
     {
-        return false;
+        return null;
     }
 
     @Override
-    public int insert(Person p)
+    public Person insert(Person p)
     {
         String query = generateInsertQuery(p);
         
@@ -166,15 +168,10 @@ public class PersonData extends Database<Person>
             e.printStackTrace();
         }
         
-        Integer justInserted = selectMaxId();
-        
-        if(justInserted == null)
-            return 0;
-        else
-            return justInserted;
+        return selectLastInserted();
     }
     
-    public int insert(Person p, int childId)
+    public Person insert(Person p, int childId)
     {
         return insert(p);
     }

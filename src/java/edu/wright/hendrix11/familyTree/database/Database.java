@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
  *
  * @author Joe Hendrix
  */
-public abstract class Database<O>
+public abstract class Database
 {
     private String url;
     private String user;
@@ -50,11 +50,6 @@ public abstract class Database<O>
         
         this.setProperties();
     }
-    
-    public abstract O select(int id);
-    public abstract boolean update(O o);
-    public abstract int insert(O o);
-    public abstract boolean delete(O o);
 
     public ColumnMethodMap getColumnMethodMap()
     {
