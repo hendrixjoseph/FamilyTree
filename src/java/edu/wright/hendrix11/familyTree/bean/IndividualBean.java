@@ -7,13 +7,15 @@ import javax.annotation.PostConstruct;
 
 import edu.wright.hendrix11.familyTree.entity.Person;
 import edu.wright.hendrix11.familyTree.database.PersonData;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author Joe Hendrix
  */
 @ManagedBean
-@RequestScoped
+//@RequestScoped
+@ViewScoped
 public class IndividualBean 
 {
     private Person person; 
@@ -43,8 +45,13 @@ public class IndividualBean
         return person.getId();
     }
 
-    public void setPersonId(int id)
+    public void setPersonId(Integer id)
     {
         person = new PersonData().select(id);
+    }
+    
+    public void setPersonId(int id)
+    {
+        setPersonId(Integer.valueOf(id));
     }
 }

@@ -2,12 +2,12 @@
 package edu.wright.hendrix11.familyTree.entity;
 
 import java.lang.reflect.Field;
-import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -37,10 +37,10 @@ public class Person
         this.name = name;
     }
     
-    public Person(int id, String name)
-    {
-        this(Integer.valueOf(id), name);
-    }
+//    public Person(int id, String name)
+//    {
+//        this(Integer.valueOf(id), name);
+//    }
     
     public Person(Integer id, String name)
     {
@@ -234,16 +234,35 @@ public class Person
     @Override
     public String toString()
     {
+        return toString("");
+    }
+    
+    public String toString(String tabs)
+    {            
         StringBuilder sb = new StringBuilder();
         
-        sb.append("Person.java:\n");
+        sb.append(tabs).append("id:\t").append(id).append("\n");
+        sb.append(tabs).append("name:\t").append(name).append("\n");
+        sb.append(tabs).append("gender:\t").append(gender).append("\n");
         
-        Field[] fields = this.getClass().getFields();
+        sb.append(tabs).append("father:\t");
         
-        for(Field field : fields)
-        {        
-            sb.append(field.getName()).append(":\t").append(field.getType().getName()).append("\n");
-        }
+        if(father != null)
+            sb.append(father.getId()).append(" ").append(father.getName()).append("\n");
+        else
+            sb.append("(null)").append("\n");
+        
+        sb.append(tabs).append("mother:\t");
+        
+        if(mother != null)
+            sb.append(mother.getId()).append(" ").append(mother.getName()).append("\n");
+        else
+            sb.append("(null)").append("\n");
+        
+//        private Date dateOfBirth;
+//        private String placeOfBirth;
+//        private Date dateOfDeath;
+//        private String placeOfDeath;
         
         return sb.toString();
     }

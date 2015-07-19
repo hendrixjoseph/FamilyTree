@@ -48,6 +48,8 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
         
         columnMethodMap.putGetter("MOTHER_NAME","getMother().getName()");
         columnMethodMap.putSetter("MOTHER_NAME","getMother().setName()");
+        
+        columnMethodMap.setPrimaryKey("ID");
     }
     
     @Override
@@ -61,6 +63,8 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
         Person person = new Person();
         person.setFather(new Person());
         person.setMother(new Person());
+        
+        System.err.println("Empty person:\n" + person.toString());
         
         try
         {        
@@ -84,6 +88,8 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
         
         if(includeSpouseChildMap)
             person.setSpouseChildMap(getSpouseChildMap(id));
+        
+        System.err.println("Selected person:\n" + person.toString());
                     
         return person;
     }
@@ -122,10 +128,13 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
         Person person = null;
         
         try
-        {        
+        {
+                        
             openConnection();
             Statement statement = createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM LAST_PERSON_INSERTED_VIEW");
+            
+            person = new Person();
             
             if(rs.next()) 
             {
@@ -147,6 +156,27 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
     @Override
     public Person update(Person p)
     {
+        String query = generateUpdateQuery(p);
+        
+        System.err.println(query);
+        
+        try
+        {
+            int id = p.getId();
+            
+            openConnection();
+            Statement statement = createStatement();
+            statement.executeUpdate(query);
+            statement.close();
+            closeConnection();
+            
+            return select(id);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        
         return null;
     }
 
@@ -162,13 +192,14 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
             statement.executeUpdate(query);
             statement.close();
             closeConnection();
+            return selectLastInserted();
         }
         catch(Exception e)
         {
             e.printStackTrace();
         }
         
-        return selectLastInserted();
+        return null;
     }
     
     public Person insert(Person p, int childId)
@@ -218,8 +249,10 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
             
             while(rs.next())
             {
-                spouse = new Person(rs.getInt("SPOUSE_ID"), rs.getString("SPOUSE"));
-                child = new Person(rs.getInt("CHILD_ID"), rs.getString("CHILD"));
+                spouse = new Person(rs.getString("SPOUSE"));
+                spouse.setId(rs.getInt("SPOUSE_ID"));
+                child = new Person(rs.getString("CHILD"));
+                child.setId(rs.getInt("CHILD_ID"));
                 
                 if(spouseChildTable.get(spouse) == null)
                     spouseChildTable.put(spouse, new ArrayList<Person>());

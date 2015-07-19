@@ -98,6 +98,7 @@ public class PersonDataTest
         
         Person p = table.select(1);
         table.outputInsert(p);
+        table.outputUpdate(p);
 //        
 //        p = new Person("John");
 //        p.setGender("Male");
@@ -119,53 +120,53 @@ public class PersonDataTest
         
         public void outputMap()
         {
-            List<String> columns = this.getColumnMethodMap().getColumns();
-            HashMap<String, List<Method>> getters = this.getColumnMethodMap().getGetters();
-            HashMap<String, List<Method>> setters = this.getColumnMethodMap().getSetters();
-            
-            System.out.println("Number columns:\t" + columns.size());
-            System.out.println("Number getters:\t" + getters.size());
-            System.out.println("Number setters:\t" + setters.size());
-            
-            for(String column : columns)
-            {
-                List<Method> getter = getters.get(column);
-                List<Method> setter = setters.get(column);
-                
-                StringBuilder getterName = new StringBuilder("(null)");
-                StringBuilder setterName = new StringBuilder("(null)");
-                
-                if(getter != null)
-                {
-                    getterName = new StringBuilder();
-                    
-                    for(Method g : getter)
-                    {
-                        getterName.append(g.getName()).append("().");
-                    }
-                    
-                    getterName.deleteCharAt(getterName.length() - 1);
-                }
-                
-                if(setter != null)
-                {
-                    setterName = new StringBuilder();
-                    
-                    for(Method s : setter)
-                    {
-                        setterName.append(s.getName()).append("().");
-                    }
-                    
-                    setterName.deleteCharAt(setterName.length() - 1);
-                }
-                
-                StringBuilder output = new StringBuilder();
-                output.append(column);
-                output.append("\nGetter:\t").append(getterName);
-                output.append("\nSetter:\t").append(setterName);
-                
-                System.out.println(output.toString());
-            }
+//            List<String> columns = this.getColumnMethodMap().getColumns();
+//            HashMap<String, List<Method>> getters = this.getColumnMethodMap().getGetters();
+//            HashMap<String, List<Method>> setters = this.getColumnMethodMap().getSetters();
+//            
+//            System.out.println("Number columns:\t" + columns.size());
+//            System.out.println("Number getters:\t" + getters.size());
+//            System.out.println("Number setters:\t" + setters.size());
+//            
+//            for(String column : columns)
+//            {
+//                List<Method> getter = getters.get(column);
+//                List<Method> setter = setters.get(column);
+//                
+//                StringBuilder getterName = new StringBuilder("(null)");
+//                StringBuilder setterName = new StringBuilder("(null)");
+//                
+//                if(getter != null)
+//                {
+//                    getterName = new StringBuilder();
+//                    
+//                    for(Method g : getter)
+//                    {
+//                        getterName.append(g.getName()).append("().");
+//                    }
+//                    
+//                    getterName.deleteCharAt(getterName.length() - 1);
+//                }
+//                
+//                if(setter != null)
+//                {
+//                    setterName = new StringBuilder();
+//                    
+//                    for(Method s : setter)
+//                    {
+//                        setterName.append(s.getName()).append("().");
+//                    }
+//                    
+//                    setterName.deleteCharAt(setterName.length() - 1);
+//                }
+//                
+//                StringBuilder output = new StringBuilder();
+//                output.append(column);
+//                output.append("\nGetter:\t").append(getterName);
+//                output.append("\nSetter:\t").append(setterName);
+//                
+//                System.out.println(output.toString());
+//            }
         }
         
         public void outputInsert(Person p)
@@ -173,5 +174,9 @@ public class PersonDataTest
             System.out.println(this.generateInsertQuery(p));
         }
         
+        public void outputUpdate(Person p)
+        {
+            System.out.println(this.generateUpdateQuery(p));
+        }
     }
 }

@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:f="http://java.sun.com/jsf/core"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:h="http://java.sun.com/jsf/html"
+              xmlns:p="http://primefaces.org/ui"
+              xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+                  <p:tabView>
+                <c:forEach  items="#{individualBean.person.spouseChildMap.keySet()}" var="spouse">
+                    <p:tab title="#{spouse.name}">
+                        <c:forEach items="#{individualBean.person.spouseChildMap.get(spouse)}" var="child">
+                            <p:link value="#{child.name}">
+                                <f:param name="personId" value="#{child.id}" />
+                            </p:link>                               
+                        </c:forEach>
+                        <p>
+                            <h:form>
+                                <p:commandButton value="Add child" actionListener="#{insertPersonBean.setPersonAsChild}" oncomplete="PF('addChildDialog').show()"/>
+                            </h:form>
+                        </p>
+                        <p>
+                            <p:link value="View spouse's page">
+                                <f:param name="personId" value="#{spouse.id}" />                                            
+                            </p:link>
+                        </p>
+                    </p:tab>
+                </c:forEach>
+                <p:tab title="Add spouse or children">
+                    <p>
+                        <h:form>
+                            <p:commandButton value="Add spouse" actionListener="#{insertPersonBean.setPersonAsSpouse}" oncomplete="PF('addSpouseDialog').show();" />
+                        </h:form>
+                    </p><p>
+                        <h:form>
+                            <p:commandButton value="Add child" actionListener="#{insertPersonBean.setPersonAsChild}" oncomplete="PF('addChildSingleParentDialog').show();" />
+                        </h:form>
+                    </p>
+                </p:tab>
+            </p:tabView>
+</ui:component>

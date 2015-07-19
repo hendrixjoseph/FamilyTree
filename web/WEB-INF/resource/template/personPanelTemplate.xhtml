@@ -1,64 +1,43 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<ui:component xmlns="http://www.w3.org/1999/xhtml"
-              xmlns:f="http://java.sun.com/jsf/core"
-              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-              xmlns:h="http://java.sun.com/jsf/html"
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:component xmlns="http://www.w3.org/1999/xhtml" 
+              xmlns:f="http://java.sun.com/jsf/core" 
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+              xmlns:h="http://java.sun.com/jsf/html" 
               xmlns:p="http://primefaces.org/ui">
-                  
-    <p:layoutUnit position="west" size="500">
-        <p:panelGrid columns="2">
+    <p:panelGrid columns="2">
             <f:facet name="header">
-                #{individualBean.person.name}
+                    #{individualBean.person.name}
             </f:facet>
-                
             <p:outputLabel value="Father:" />
-                <h:form id="fatherButton">
-                    <h:panelGroup id="debug">
-                        <p:link value="#{individualBean.person.father.name}" rendered="#{individualBean.person.hasFather()}">
+            <h:panelGroup id="debug">
+                    <p:link value="#{individualBean.person.father.name}" rendered="#{individualBean.person.hasFather()}">
                             <f:param name="personId" value="#{individualBean.person.father.id}" />
-                        </p:link>
-
-                        <p:outputLabel value="#{insertPersonBean.flip}" rendered="#{!individualBean.person.hasFather()}" />
-                        <p:commandButton value="Add father" id="ajax" update="debug" actionListener="#{insertPersonBean.buttonAction}" oncomplete="PF('addFatherDialog').show()" rendered="#{!individualBean.person.hasFather()}" />
-                    </h:panelGroup>
-                </h:form>                
-                
-
-                <p:outputLabel value="Mother:" />
-                <p:link value="#{individualBean.person.mother.name}" rendered="#{individualBean.person.hasMother()}">
+                    </p:link>
+                    <h:form id="fatherForm" rendered="#{!individualBean.person.hasFather()}">
+                        <p:commandButton value="Add father" update="@([id$=addFatherDialog_form])" actionListener="#{insertPersonBean.setPersonAsFather}" oncomplete="PF('addFatherDialog').show()" />
+                    </h:form>
+            </h:panelGroup>
+            <p:outputLabel value="Mother:" />
+            <p:link value="#{individualBean.person.mother.name}" rendered="#{individualBean.person.hasMother()}">
                     <f:param name="personId" value="#{individualBean.person.mother.id}" />
-                </p:link>
-                
-                <h:form>
-                    <p:commandButton value="Add mother" type="button" onclick="PF('addMotherDialog').show()" rendered="#{!individualBean.person.hasMother()}">
-                        <p:ajax event="click" listener="#{insertPersonBean.setChild(individualBean.person)}" />
-                    </p:commandButton>
-                </h:form>
-
-                <p:outputLabel value="Gender:" />
-                <p:outputLabel value="#{individualBean.person.gender}" />
-
-                <p:outputLabel value="Place of birth:" />
-                <p:outputLabel value="#{individualBean.person.placeOfBirth}" />
-
-                <p:outputLabel value="Date of birth:" />
-                <p:outputLabel value="#{individualBean.person.dateOfBirth}">
+            </p:link>
+            <h:form rendered="#{!individualBean.person.hasMother()}">
+                <p:commandButton value="Add mother" update="@([id$=addMotherDialog_form])" actionListener="#{insertPersonBean.setPersonAsMother}" oncomplete="PF('addMotherDialog').show()" />
+            </h:form>
+            <p:outputLabel value="Gender:" />
+            <p:outputLabel value="#{individualBean.person.gender}" />
+            <p:outputLabel value="Place of birth:" />
+            <p:outputLabel value="#{individualBean.person.placeOfBirth}" />
+            <p:outputLabel value="Date of birth:" />
+            <p:outputLabel value="#{individualBean.person.dateOfBirth}">
                     <f:convertDateTime pattern="MMM dd, yyyy" />
-                </p:outputLabel>
-
-                <p:outputLabel value="Place of death:" />
-                <p:outputLabel value="#{individualBean.person.placeOfDeath}" />
-
-                <p:outputLabel value="Date of death:" />
-                <p:outputLabel value="#{individualBean.person.dateOfDeath}">
+            </p:outputLabel>
+            <p:outputLabel value="Place of death:" />
+            <p:outputLabel value="#{individualBean.person.placeOfDeath}" />
+            <p:outputLabel value="Date of death:" />
+            <p:outputLabel value="#{individualBean.person.dateOfDeath}">
                     <f:convertDateTime pattern="MMM dd, yyyy" />
-                </p:outputLabel>
-            </p:panelGrid>
-        </p:layoutUnit>
+            </p:outputLabel>
+    </p:panelGrid>
 </ui:component>
