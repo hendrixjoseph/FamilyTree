@@ -3,6 +3,7 @@ package edu.wright.hendrix11.familyTree.bean.transaction;
 
 import edu.wright.hendrix11.familyTree.database.PersonData;
 import edu.wright.hendrix11.familyTree.entity.Person;
+import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -19,7 +20,7 @@ import org.primefaces.component.commandbutton.CommandButton;
 @ManagedBean
 //@RequestScoped
 @ViewScoped
-public class InsertPersonBean
+public class InsertPersonBean implements Serializable
 {   
     int personType;
         
@@ -40,11 +41,7 @@ public class InsertPersonBean
     }
     
     public void commit(ActionEvent actionEvent)
-    {
-        System.err.println("public void commit(ActionEvent actionEvent)");
-        
-        System.err.println("Before insert:\n" + this.toString());
-        
+    {        
         if(personType == CHILD)
         {
             if(relatedPerson.getGender().equals("Male"))
@@ -61,8 +58,6 @@ public class InsertPersonBean
         
         personToInsert = personData.insert(personToInsert);
         
-        System.err.println("After insert:\n" + this.toString());
-        
         if(personType != CHILD)
         {
             if(personType == FATHER)
@@ -78,10 +73,21 @@ public class InsertPersonBean
 
             }
             
-            //personData.update(relatedPerson);
+            personData.update(relatedPerson);
         }
+    }
+    
+    public String getAction()
+    {
+        StringBuilder sb = new StringBuilder();
         
-        System.err.println("After update added:\n" + this.toString());
+        sb.append("index?personId=");
+        sb.append(relatedPerson.getId());
+        sb.append("&amp;faces-redirect=true");
+        
+        System.err.println(sb.toString());
+        
+        return sb.toString();
     }
     
     public Person getPersonToInsert()

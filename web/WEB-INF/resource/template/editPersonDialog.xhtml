@@ -35,8 +35,8 @@
                 </p:panelGrid>
             </p>
             <p>
-                <p:commandButton value="Submit" actionListener="#{insertPersonBean.commit}" ajax="false" />
-                <p:commandButton value="Cancel" actionListener="#{insertPersonBean.buttonNoAction}" oncomplete="PF('#{widgetVar}').hide()" />
+                <p:commandButton value="Submit" actionListener="#{insertPersonBean.commit}" action="#{insertPersonBean.getAction()}" ajax="false" />
+                <p:commandButton value="Cancel" oncomplete="PF('#{widgetVar}').hide()" />
             </p>
         </p:dialog>
     </h:form>

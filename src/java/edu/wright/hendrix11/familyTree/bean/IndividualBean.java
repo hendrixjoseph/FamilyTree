@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 
 import edu.wright.hendrix11.familyTree.entity.Person;
 import edu.wright.hendrix11.familyTree.database.PersonData;
+import java.io.Serializable;
 import javax.faces.bean.ViewScoped;
 
 /**
@@ -16,7 +17,7 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean
 //@RequestScoped
 @ViewScoped
-public class IndividualBean 
+public class IndividualBean implements Serializable
 {
     private Person person; 
        

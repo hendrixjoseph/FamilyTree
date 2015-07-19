@@ -64,8 +64,6 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
         person.setFather(new Person());
         person.setMother(new Person());
         
-        System.err.println("Empty person:\n" + person.toString());
-        
         try
         {        
             openConnection();
@@ -88,8 +86,6 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
         
         if(includeSpouseChildMap)
             person.setSpouseChildMap(getSpouseChildMap(id));
-        
-        System.err.println("Selected person:\n" + person.toString());
                     
         return person;
     }
@@ -157,8 +153,6 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
     public Person update(Person p)
     {
         String query = generateUpdateQuery(p);
-        
-        System.err.println(query);
         
         try
         {

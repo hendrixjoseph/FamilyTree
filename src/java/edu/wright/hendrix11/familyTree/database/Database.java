@@ -275,10 +275,15 @@ public abstract class Database
         
         public ColumnMethodMap(String tableName, Object object)
         {
+            this(tableName, object.getClass());
+        }
+        
+        public ColumnMethodMap(String tableName, Class clazz)
+        {
             getters = new HashMap<String, List<Method>>();
             setters = new HashMap<String, List<Method>>();
             
-            this.clazz = object.getClass();
+            this.clazz = clazz;
             
             HashMap<String, Method> methods = new HashMap<String, Method>();
             
@@ -394,8 +399,12 @@ public abstract class Database
                   
                             if(name.equals("int") || name.equals("Integer"))
                             {
-                                setter.invoke(returnObject, rs.getInt(column));
-                                next time...
+                                int x = rs.getInt(column);
+                                
+                                // This is needed because rs.getInt()
+                                // returns 0 when null.
+                                if(!rs.wasNull())
+                                    setter.invoke(returnObject, x);
                             }
                             else if(name.equals("String"))
                                 setter.invoke(returnObject, rs.getString(column));
