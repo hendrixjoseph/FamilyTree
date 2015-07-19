@@ -2,6 +2,7 @@
 package edu.wright.hendrix11.familyTree.database;
 
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.*;
 import java.text.DateFormat;
@@ -11,6 +12,8 @@ import java.util.Properties;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 /**
@@ -78,24 +81,37 @@ public abstract class Database
         return con.createStatement();
     }
     
-//    protected ResultSet executeQuery(String query) throws SQLException
-//    {
-//        ResultSet rs = null;
-//        
-//        openConnection();
-//
-//        // Convert to try-with-resources
-//        // try (Statement statement = con.createStatement())
-//        // But I need the openConnection() to be in the try-catch block too!
-//        Statement statement = createStatement();
-//        rs = statement.executeQuery(query);
-//
-//        statement.close();
-//
-//        closeConnection();
-//        
-//        return rs;
-//    }
+    protected String generateUpdateQuery(Object object)
+    {
+        if(object == null)
+        {
+            throw new NullPointerException("Cannot generate update query for null object!");
+        }
+        
+        List<String> columns = columnMethodMap.getColumns();
+        
+        StringBuilder query = new StringBuilder();
+        
+        query.append("UPDATE ").append(tableName).append(" SET ");
+        
+        for(String column : columns)
+        {
+            if(!column.equals(columnMethodMap.getPrimaryKey()))
+            {
+                String value = columnMethodMap.get(column,object);
+                
+                if(value != null)
+                    query.append(column).append("=").append(value).append(",");
+            }
+        }
+        
+        query.deleteCharAt(query.length() - 1);
+        
+        query.append(" WHERE ").append(columnMethodMap.getPrimaryKey());
+        query.append("=").append(columnMethodMap.getPrimaryKeyValue(object));
+        
+        return query.toString();
+    }
       
     protected String generateInsertQuery(Object object)
     {
@@ -104,10 +120,8 @@ public abstract class Database
             throw new NullPointerException("Cannot generate insert query for null object!");
         }
         
-        List<String> columns = columnMethodMap.getColumns();
-        HashMap<String, List<Method>> getters = columnMethodMap.getGetters();
-        
         StringBuilder query = new StringBuilder();
+        List<String> columns = columnMethodMap.getColumns();
         
         query.append("INSERT INTO ").append(tableName).append(" (");
         
@@ -116,49 +130,12 @@ public abstract class Database
         
         for(String column : columns)
         {
-            List<Method> getterList = getters.get(column);
+            String value = columnMethodMap.get(column,object);
             
-            Object returnObject = object;
-            
-            if(getterList != null)
-            {                
-                for(int i = 0; i < getterList.size(); i++)
-                {
-                    Method getter = getterList.get(i);
-            
-                    try
-                    {
-                        if(i == getterList.size() - 1)
-                        {
-                            String value = generateValue(getter.invoke(returnObject));
-
-                            if(value != null)
-                            {
-                                columnPart.append(column).append(",");
-                                valuePart.append(value).append(",");
-                            }
-                        }
-                        else
-                        {
-                            returnObject = getter.invoke(returnObject);
-                        }
-                    }
-                    catch(NullPointerException npe)
-                    {
-                        System.err.println("Object " + getter.getDeclaringClass().getName() +
-                                " is null!");
-                        System.err.println("Method " + getter.getName() + 
-                                "() cannot access value for " + column + "! ");
-                        npe.printStackTrace();
-                    }
-                    catch(Exception e)
-                    {
-                        e.printStackTrace();
-                    }
-                    
-                    if(returnObject == null)
-                        break;
-                }
+            if(value != null)
+            {
+                columnPart.append(column).append(",");
+                valuePart.append(value).append(",");
             }
         }
         
@@ -172,60 +149,22 @@ public abstract class Database
     
     protected void setFields(Object object, ResultSet rs)
     {
+        if(object == null)
+        {
+            StringBuilder message = new StringBuilder();
+            
+            message.append("Object cannot be null!\n");
+            message.append("Object should be of class ");
+            message.append(columnMethodMap.getClassName()).append("!\n");
+            
+            throw new NullPointerException(message.toString());
+        }
+        
         List<String> columns = columnMethodMap.getColumns();
-        HashMap<String, List<Method>> setters = columnMethodMap.getSetters();
         
         for(String column : columns)
         {   
-            List<Method> setterList = setters.get(column);
-            
-            Object returnObject = object;
-            
-            if(setterList != null)
-            {
-                for(int i = 0; i < setterList.size(); i++)
-                {
-                    Method setter = setterList.get(i);            
-
-                    try
-                    {  
-                        if(i == setterList.size() - 1)
-                        {
-                            Class c = setter.getParameterTypes()[0];
-                            String name = c.getSimpleName();
-                  
-                            if(name.equals("int") || name.equals("Integer"))
-                                setter.invoke(returnObject, rs.getInt(column));
-                            else if(name.equals("String"))
-                                setter.invoke(returnObject, rs.getString(column));
-                            else if(name.equals("Date"))
-                                setter.invoke(returnObject, rs.getDate(column));                        
-                        }
-                        else
-                        {
-                            returnObject = setter.invoke(returnObject);
-                        }
-                    }
-                    catch(SQLException sqle)
-                    {
-                        if(!sqle.getMessage().contains("Invalid column name"))
-                            sqle.printStackTrace();
-                    }
-                    catch(NullPointerException npe)
-                    {
-                        System.err.println("Object " + setter.getDeclaringClass().getName() +
-                            " is null!");
-                        System.err.println("Method " + setter.getName() + 
-                            "() cannot insert value for column " + column + "! ");
-                        npe.printStackTrace();
-                    }
-                    catch(Exception e)
-                    {
-                        e.printStackTrace();
-                        return;
-                    }
-                }
-            }
+            columnMethodMap.set(column, object, rs);
         }
     }
     
@@ -323,11 +262,13 @@ public abstract class Database
     
     protected class ColumnMethodMap
     {
-        List<String> columns;
-        HashMap<String, List<Method>> getters;
-        HashMap<String, List<Method>> setters;
+        private List<String> columns;
+        private HashMap<String, List<Method>> getters;
+        private HashMap<String, List<Method>> setters;
         
-        Object object;
+        private String primaryKey;
+        
+        private Class clazz;
         
         public static final int GETTER = 1;
         public static final int SETTER = 2;
@@ -337,11 +278,11 @@ public abstract class Database
             getters = new HashMap<String, List<Method>>();
             setters = new HashMap<String, List<Method>>();
             
-            this.object = object;
+            this.clazz = object.getClass();
             
             HashMap<String, Method> methods = new HashMap<String, Method>();
             
-            for(Method m : object.getClass().getMethods())
+            for(Method m : clazz.getMethods())
             {
                 methods.put(m.getName().toUpperCase(), m);
             }
@@ -361,20 +302,134 @@ public abstract class Database
                     put(column, methods.get(setterName), setters);
             }
         }
+        
+        public String getClassName()
+        {
+            return clazz.getName();
+        }
+
+        public String getPrimaryKey()
+        {
+            return primaryKey;
+        }
+
+        public void setPrimaryKey(String primaryKey)
+        {
+            this.primaryKey = primaryKey;
+        }
+        
+        public String getPrimaryKeyValue(Object object)
+        {
+            if(object == null)
+            {
+                throw new NullPointerException("Cannot get primary from object of class " + clazz.getName() + " when object is null!");
+            }
+            
+            if(primaryKey == null)
+            {
+                throw new NullPointerException("Primary key not set for object of class " 
+                        + clazz.getName() + "!" +
+                        "\nSet it using method setPrimaryKey(String key) in class ColumnMethodMap!");
+            }
+            
+            return get(primaryKey, object);
+        }
+        
+        public String get(String column, Object object)
+        {
+            List<Method> getterList = getters.get(column);
+            
+            Object returnObject = object;
+            
+            String value = null;
+            
+            if(getterList != null)
+            {                
+                for(int i = 0; i < getterList.size(); i++)
+                {
+                    Method getter = getterList.get(i);
+            
+                    try
+                    {
+                        if(i == getterList.size() - 1)
+                        {
+                            value = generateValue(getter.invoke(returnObject));
+                        }
+                        else
+                        {
+                            returnObject = getter.invoke(returnObject);
+                        }
+                    }
+                    catch(Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+                    
+                    if(returnObject == null)
+                        break;
+                }
+            }
+            
+            return value;
+        }
+        
+        public void set(String column, Object object, ResultSet rs)
+        {
+            List<Method> setterList = setters.get(column);
+            
+            Object returnObject = object;
+            
+            if(setterList != null)
+            {
+                for(int i = 0; i < setterList.size(); i++)
+                {
+                    Method setter = setterList.get(i);            
+
+                    try
+                    {  
+                        if(i == setterList.size() - 1)
+                        {
+                            Class c = setter.getParameterTypes()[0];
+                            String name = c.getSimpleName();
+                  
+                            if(name.equals("int") || name.equals("Integer"))
+                            {
+                                setter.invoke(returnObject, rs.getInt(column));
+                                next time...
+                            }
+                            else if(name.equals("String"))
+                                setter.invoke(returnObject, rs.getString(column));
+                            else if(name.equals("Date"))
+                                setter.invoke(returnObject, rs.getDate(column));                        
+                        }
+                        else
+                        {
+                            returnObject = setter.invoke(returnObject);
+                        }
+                    }
+                    catch(SQLException sqle)
+                    {
+                        if(!sqle.getMessage().contains("Invalid column name"))
+                            sqle.printStackTrace();
+                    }
+                    catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException ex)
+                    {
+                        System.err.println("Exception when setting from column "
+                            + column + " using setter list " +
+                            setterList.toString() + "!");
+                        ex.printStackTrace();
+                        returnObject = null;
+                    }
+                    
+                    if(returnObject == null)
+                        break;
+                }
+            }
+        }
 
         public List<String> getColumns()
         {
             return columns;
-        }
-
-        public HashMap<String, List<Method>> getGetters()
-        {
-            return getters;
-        }
-
-        public HashMap<String, List<Method>> getSetters()
-        {
-            return setters;
         }
         
         protected void putGetter(String column, String methods)
@@ -398,7 +453,7 @@ public abstract class Database
         {
             List<Method> methodList = new ArrayList<Method>();
             
-            Method[] methodArray = this.object.getClass().getMethods();
+            Method[] methodArray = clazz.getMethods();
             
             for(String methodName : methodNames)
             {                
