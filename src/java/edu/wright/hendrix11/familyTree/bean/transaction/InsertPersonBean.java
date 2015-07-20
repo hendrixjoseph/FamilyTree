@@ -74,7 +74,8 @@ public class InsertPersonBean implements Serializable
         
         personToInsert = personData.insert(personToInsert);
         
-        if(personType != CHILD_WITH_NO_SPOUSE)
+        // I think this will work, or it needs to be "OR"
+        if(personType != CHILD_WITH_NO_SPOUSE && personType != CHILD_WITH_SPOUSE)
         {
             if(personType == FATHER)
             {
