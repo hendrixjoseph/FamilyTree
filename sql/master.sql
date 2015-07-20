@@ -1,16 +1,16 @@
 --------------------------------------------------------
---  File created - Sunday-July-12-2015   
+--  File created - Monday-July-20-2015   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Sequence PLACE_SEQUENCE
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "PLACE_SEQUENCE"  MINVALUE 1 MAXVALUE 99999999 INCREMENT BY 1 START WITH 41 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "PLACE_SEQUENCE"  MINVALUE 1 MAXVALUE 99999999 INCREMENT BY 1 START WITH 61 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SEQUENCE_PERSON
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "SEQUENCE_PERSON"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 101 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "SEQUENCE_PERSON"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 181 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Table BIRTH
 --------------------------------------------------------
@@ -46,6 +46,16 @@
 	"FULL_WORD" VARCHAR2(20)
    ) ;
 --------------------------------------------------------
+--  DDL for Table MARRIAGE
+--------------------------------------------------------
+
+  CREATE TABLE "MARRIAGE" 
+   (	"HUSBAND" NUMBER, 
+	"WIFE" NUMBER, 
+	"PLACE" NUMBER, 
+	"DATE" DATE
+   ) ;
+--------------------------------------------------------
 --  DDL for Table MOTHER_OF
 --------------------------------------------------------
 
@@ -74,10 +84,10 @@
 --  DDL for View CHILDREN_VIEW
 --------------------------------------------------------
 
-  CREATE OR REPLACE VIEW "CHILDREN_VIEW" ("ID", "SPOUSE_ID", "SPOUSE", "CHILD_ID", "CHILD") AS 
+  CREATE OR REPLACE VIEW "CHILDREN_VIEW" ("ID", "NAME", "SPOUSE_ID", "SPOUSE", "CHILD_ID", "CHILD") AS 
   SELECT 
     P.ID,
-	--P.NAME,
+	  P.NAME,
     SPOUSE.ID AS SPOUSE_ID,
     SPOUSE.NAME AS SPOUSE,
     CHILD.ID AS CHILD_ID,
@@ -95,6 +105,38 @@ ON
     P.ID <> SPOUSE.ID
 ORDER BY
     P.NAME, SPOUSE.NAME;
+--------------------------------------------------------
+--  DDL for View LAST_PERSON_INSERTED_VIEW
+--------------------------------------------------------
+
+  CREATE OR REPLACE VIEW "LAST_PERSON_INSERTED_VIEW" ("ID", "FATHER_ID", "FATHER_NAME", "MOTHER_ID", "MOTHER_NAME", "NAME", "GENDER", "PLACE_OF_BIRTH", "DATE_OF_BIRTH", "PLACE_OF_DEATH", "DATE_OF_DEATH") AS 
+  SELECT 
+    "ID","FATHER_ID","FATHER_NAME","MOTHER_ID","MOTHER_NAME","NAME","GENDER","PLACE_OF_BIRTH","DATE_OF_BIRTH","PLACE_OF_DEATH","DATE_OF_DEATH"
+FROM 
+  PERSON_VIEW
+WHERE
+  ID = (SELECT MAX(ID) FROM PERSON_VIEW);
+--------------------------------------------------------
+--  DDL for View MARRIAGE_VIEW
+--------------------------------------------------------
+
+  CREATE OR REPLACE VIEW "MARRIAGE_VIEW" ("HUSBAND_ID", "HUSBAND_NAME", "WIFE_ID", "WIFE_NAME", "PLACE", "DATE") AS 
+  SELECT 
+    HUSBAND AS HUSBAND_ID,
+    H.NAME AS HUSBAND_NAME,
+    WIFE AS WIFE_ID,
+    W.NAME AS WIFE_NAME,
+    PLACE.NAME AS PLACE,
+    "DATE"
+FROM 
+    MARRIAGE M,
+    PERSON H,
+    PERSON W,
+    PLACE
+WHERE
+    M.HUSBAND = H.ID
+AND M.WIFE = W.ID
+AND M.PLACE = PLACE.ID (+);
 --------------------------------------------------------
 --  DDL for View PERSON_VIEW
 --------------------------------------------------------
@@ -142,21 +184,49 @@ Insert into DEATH (PERSON_ID,PLACE_ID,"DATE") values (1,3,to_date('29-JAN-1900',
 Insert into DEATH (PERSON_ID,PLACE_ID,"DATE") values (2,1,to_date('12-DEC-1881','DD-MON-YYYY'));
 REM INSERTING into FATHER_OF
 SET DEFINE OFF;
+Insert into FATHER_OF (FATHER_ID,CHILD_ID) values (2,161);
+Insert into FATHER_OF (FATHER_ID,CHILD_ID) values (125,3);
+Insert into FATHER_OF (FATHER_ID,CHILD_ID) values (122,2);
+Insert into FATHER_OF (FATHER_ID,CHILD_ID) values (126,125);
+Insert into FATHER_OF (FATHER_ID,CHILD_ID) values (127,124);
+Insert into FATHER_OF (FATHER_ID,CHILD_ID) values (1,128);
+Insert into FATHER_OF (FATHER_ID,CHILD_ID) values (1,129);
 Insert into FATHER_OF (FATHER_ID,CHILD_ID) values (2,1);
+Insert into FATHER_OF (FATHER_ID,CHILD_ID) values (2,141);
+Insert into FATHER_OF (FATHER_ID,CHILD_ID) values (2,142);
 REM INSERTING into GENDER
 SET DEFINE OFF;
 Insert into GENDER (ABBR,FULL_WORD) values ('M','Male');
 Insert into GENDER (ABBR,FULL_WORD) values ('F','Female');
 Insert into GENDER (ABBR,FULL_WORD) values ('O','Other');
 Insert into GENDER (ABBR,FULL_WORD) values ('U','Unknown');
+REM INSERTING into MARRIAGE
+SET DEFINE OFF;
 REM INSERTING into MOTHER_OF
 SET DEFINE OFF;
+Insert into MOTHER_OF (MOTHER_ID,CHILD_ID) values (123,2);
+Insert into MOTHER_OF (MOTHER_ID,CHILD_ID) values (124,3);
+Insert into MOTHER_OF (MOTHER_ID,CHILD_ID) values (3,161);
 Insert into MOTHER_OF (MOTHER_ID,CHILD_ID) values (3,1);
+Insert into MOTHER_OF (MOTHER_ID,CHILD_ID) values (3,141);
+Insert into MOTHER_OF (MOTHER_ID,CHILD_ID) values (3,162);
 REM INSERTING into PERSON
 SET DEFINE OFF;
+Insert into PERSON (ID,NAME,GENDER) values (123,'Sarah','F');
+Insert into PERSON (ID,NAME,GENDER) values (161,'George','M');
+Insert into PERSON (ID,NAME,GENDER) values (124,'Jenny','F');
+Insert into PERSON (ID,NAME,GENDER) values (125,'Kevin','M');
+Insert into PERSON (ID,NAME,GENDER) values (127,'John','M');
+Insert into PERSON (ID,NAME,GENDER) values (122,'Thomas Thoroman','M');
+Insert into PERSON (ID,NAME,GENDER) values (126,'John','M');
+Insert into PERSON (ID,NAME,GENDER) values (128,'John','M');
+Insert into PERSON (ID,NAME,GENDER) values (129,'James','M');
 Insert into PERSON (ID,NAME,GENDER) values (1,'William Zenos Thoroman','M');
 Insert into PERSON (ID,NAME,GENDER) values (2,'Samuel Thoroman','M');
 Insert into PERSON (ID,NAME,GENDER) values (3,'Cynthiann McDonald Reynolds','F');
+Insert into PERSON (ID,NAME,GENDER) values (141,'Mark','M');
+Insert into PERSON (ID,NAME,GENDER) values (142,'John','M');
+Insert into PERSON (ID,NAME,GENDER) values (162,'Susan','F');
 REM INSERTING into PLACE
 SET DEFINE OFF;
 Insert into PLACE (ID,NAME) values (1,'Ohio');
@@ -167,6 +237,12 @@ Insert into PLACE (ID,NAME) values (3,'Jacksonville, Ohio');
 --------------------------------------------------------
 
   CREATE UNIQUE INDEX "FATHER_OF_PK" ON "FATHER_OF" ("CHILD_ID") 
+  ;
+--------------------------------------------------------
+--  DDL for Index MARRIAGE_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "MARRIAGE_PK" ON "MARRIAGE" ("HUSBAND", "WIFE") 
   ;
 --------------------------------------------------------
 --  DDL for Index BIRTHS_PK
@@ -245,6 +321,13 @@ Insert into PLACE (ID,NAME) values (3,'Jacksonville, Ohio');
   ALTER TABLE "GENDER" MODIFY ("FULL_WORD" NOT NULL ENABLE);
   ALTER TABLE "GENDER" MODIFY ("ABBR" NOT NULL ENABLE);
 --------------------------------------------------------
+--  Constraints for Table MARRIAGE
+--------------------------------------------------------
+
+  ALTER TABLE "MARRIAGE" ADD CONSTRAINT "MARRIAGE_PK" PRIMARY KEY ("HUSBAND", "WIFE") ENABLE;
+  ALTER TABLE "MARRIAGE" MODIFY ("WIFE" NOT NULL ENABLE);
+  ALTER TABLE "MARRIAGE" MODIFY ("HUSBAND" NOT NULL ENABLE);
+--------------------------------------------------------
 --  Constraints for Table MOTHER_OF
 --------------------------------------------------------
 
@@ -284,6 +367,16 @@ Insert into PLACE (ID,NAME) values (3,'Jacksonville, Ohio');
   ALTER TABLE "FATHER_OF" ADD CONSTRAINT "FCHILD_FK" FOREIGN KEY ("CHILD_ID")
 	  REFERENCES "PERSON" ("ID") ON DELETE CASCADE ENABLE;
 --------------------------------------------------------
+--  Ref Constraints for Table MARRIAGE
+--------------------------------------------------------
+
+  ALTER TABLE "MARRIAGE" ADD CONSTRAINT "MARRIAGE_HUSBAND_FK" FOREIGN KEY ("HUSBAND")
+	  REFERENCES "PERSON" ("ID") ON DELETE CASCADE ENABLE;
+  ALTER TABLE "MARRIAGE" ADD CONSTRAINT "MARRIAGE_PLACE_FK" FOREIGN KEY ("PLACE")
+	  REFERENCES "PLACE" ("ID") ON DELETE SET NULL ENABLE;
+  ALTER TABLE "MARRIAGE" ADD CONSTRAINT "MARRIAGE_WIFE_FK" FOREIGN KEY ("WIFE")
+	  REFERENCES "PERSON" ("ID") ENABLE;
+--------------------------------------------------------
 --  Ref Constraints for Table MOTHER_OF
 --------------------------------------------------------
 
@@ -297,6 +390,23 @@ Insert into PLACE (ID,NAME) values (3,'Jacksonville, Ohio');
 
   ALTER TABLE "PERSON" ADD CONSTRAINT "PERSON_GENDER_FK" FOREIGN KEY ("GENDER")
 	  REFERENCES "GENDER" ("ABBR") ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger MARRIAGE_VIEW_INSERT_TRIGGER
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "MARRIAGE_VIEW_INSERT_TRIGGER" 
+INSTEAD OF INSERT ON MARRIAGE_VIEW 
+BEGIN
+  -- Insert the couple
+  INSERT INTO MARRIAGE (HUSBAND, WIFE) VALUES (:new.HUSBAND_ID, :new.WIFE_ID);
+  
+  -- Insert (well, now update) the date
+  IF :new."DATE" IS NOT NULL THEN
+      UPDATE MARRIAGE SET "DATE"=:new."DATE" WHERE HUSBAND=:new.HUSBAND_ID AND WIFE=:new.WIFE_ID;
+  END IF;
+END;
+/
+ALTER TRIGGER "MARRIAGE_VIEW_INSERT_TRIGGER" ENABLE;
 --------------------------------------------------------
 --  DDL for Trigger PERSON_SEQ_TRIGGER
 --------------------------------------------------------
@@ -355,12 +465,9 @@ BEGIN
   -- First, map place
   IF :new.PLACE_OF_BIRTH IS NOT NULL THEN
     BEGIN
-      SELECT ID INTO PLACE_OF_BIRTH_ID FROM PLACE WHERE :new.PLACE_OF_BIRTH=PLACE.NAME;
-    EXCEPTION WHEN NO_DATA_FOUND THEN
-      INSERT INTO PLACE (NAME) VALUES (:new.PLACE_OF_BIRTH);
-      SELECT ID INTO PLACE_OF_BIRTH_ID FROM PLACE WHERE :new.PLACE_OF_BIRTH=PLACE.NAME;
+      INSERT_PLACE_PROCEDURE(:new.PLACE_OF_BIRTH, PLACE_OF_BIRTH_ID);
+      INSERT INTO BIRTH (PERSON_ID, PLACE_ID) VALUES (P_ID, PLACE_OF_BIRTH_ID);
     END;
-    INSERT INTO BIRTH (PERSON_ID, PLACE_ID) VALUES (P_ID, PLACE_OF_BIRTH_ID);
   END IF;
   
   -- Now, insert date
@@ -380,12 +487,9 @@ BEGIN
   -- First, map place
   IF :new.PLACE_OF_DEATH IS NOT NULL THEN
     BEGIN
-      SELECT ID INTO PLACE_OF_DEATH_ID FROM PLACE WHERE :new.PLACE_OF_DEATH=PLACE.NAME;
-    EXCEPTION WHEN NO_DATA_FOUND THEN
-      INSERT INTO PLACE (NAME) VALUES (:new.PLACE_OF_DEATH);
-      SELECT ID INTO PLACE_OF_DEATH_ID FROM PLACE WHERE :new.PLACE_OF_DEATH=PLACE.NAME;
+      INSERT_PLACE_PROCEDURE(:new.PLACE_OF_DEATH, PLACE_OF_DEATH_ID);
+      INSERT INTO BIRTH (PERSON_ID, PLACE_ID) VALUES (P_ID, PLACE_OF_DEATH_ID);
     END;
-    INSERT INTO DEATH (PERSON_ID, PLACE_ID) VALUES (P_ID, PLACE_OF_DEATH_ID);
   END IF;
   
   -- Now, insert date
@@ -404,6 +508,52 @@ END;
 /
 ALTER TRIGGER "PERSON_VIEW_INSERT_TRIGGER" ENABLE;
 --------------------------------------------------------
+--  DDL for Trigger PERSON_VIEW_UPDATE_TRIGGER
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "PERSON_VIEW_UPDATE_TRIGGER" 
+INSTEAD OF UPDATE ON PERSON_VIEW
+DECLARE
+  GENDER_ABBR CHAR(1);
+  DUMMY NUMBER;
+BEGIN
+  IF :new.ID IS NOT NULL THEN
+  
+    -- Update NAME and GENDER, which are required in the tables anyway
+    -- (NOT NULL constraints)
+    IF :new.NAME IS NOT NULL THEN
+      UPDATE PERSON SET NAME=:new.NAME WHERE ID=:new.ID;
+    END IF;
+    
+    IF :new.GENDER IS NOT NULL THEN
+      SELECT ABBR INTO GENDER_ABBR FROM GENDER WHERE GENDER.FULL_WORD=:new.GENDER;
+      UPDATE PERSON SET GENDER=GENDER_ABBR WHERE ID=:new.ID;
+    END IF;
+    
+    -- Insert / update parents
+    IF :new.FATHER_ID IS NOT NULL THEN
+       BEGIN
+          SELECT FATHER_ID INTO DUMMY FROM FATHER_OF WHERE CHILD_ID=:new.ID;
+          UPDATE FATHER_OF SET FATHER_ID=:new.FATHER_ID WHERE CHILD_ID=:new.ID;
+       EXCEPTION WHEN NO_DATA_FOUND THEN
+          INSERT INTO FATHER_OF (FATHER_ID, CHILD_ID) VALUES (:new.FATHER_ID, :new.ID);
+       END;
+    END IF;
+    
+    IF :new.MOTHER_ID IS NOT NULL THEN
+       BEGIN
+          SELECT MOTHER_ID INTO DUMMY FROM MOTHER_OF WHERE CHILD_ID=:new.ID;
+          UPDATE MOTHER_OF SET MOTHER_ID=:new.MOTHER_ID WHERE CHILD_ID=:new.ID;
+       EXCEPTION WHEN NO_DATA_FOUND THEN
+          INSERT INTO MOTHER_OF (MOTHER_ID, CHILD_ID) VALUES (:new.MOTHER_ID, :new.ID);
+       END;
+    END IF;
+    
+  END IF;
+END;
+/
+ALTER TRIGGER "PERSON_VIEW_UPDATE_TRIGGER" ENABLE;
+--------------------------------------------------------
 --  DDL for Trigger PLACE_SEQ_TRIGGER
 --------------------------------------------------------
 
@@ -418,3 +568,23 @@ BEGIN
 END;
 /
 ALTER TRIGGER "PLACE_SEQ_TRIGGER" ENABLE;
+--------------------------------------------------------
+--  DDL for Procedure INSERT_PLACE_PROCEDURE
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE PROCEDURE "INSERT_PLACE_PROCEDURE" 
+(
+  PLACE_NAME IN VARCHAR2 
+, PLACE_ID OUT NUMBER 
+) AS 
+BEGIN
+  BEGIN
+      SELECT ID INTO PLACE_ID FROM PLACE WHERE PLACE_NAME=PLACE.NAME;
+    EXCEPTION WHEN NO_DATA_FOUND THEN
+      INSERT INTO PLACE (NAME) VALUES (PLACE_NAME);
+      SELECT ID INTO PLACE_ID FROM PLACE WHERE PLACE_NAME=PLACE.NAME;
+    END;
+END INSERT_PLACE_PROCEDURE;
+
+/
