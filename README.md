@@ -13,7 +13,7 @@ Only source code, such as, but not necessarily limited to, `*.java`, `*.xhtml`, 
 
 ## Java Test Libraries
 
-* JUnit 4.10
+* [JUnit 4.10](http://junit.org/)
 
 ## Development Tools Used
 
@@ -35,4 +35,4 @@ Only source code, such as, but not necessarily limited to, `*.java`, `*.xhtml`, 
 * http://jsbeautifier.org/
 * [Mike Owens](https://www.linkedin.com/profile/view?id=16163422)
 
-Tested in Firefox 39.0
+Tested in [Firefox 39.0](https://www.mozilla.org/en-US/)
