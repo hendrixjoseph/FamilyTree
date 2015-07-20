@@ -1,43 +1,32 @@
 
 package Database;
 
-import edu.wright.hendrix11.familyTree.database.Database;
-import edu.wright.hendrix11.familyTree.database.PersonData;
+import edu.wright.hendrix11.familyTree.database.*;
 import edu.wright.hendrix11.familyTree.entity.Person;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
+import edu.wright.hendrix11.familyTree.entity.SpouseChildMap;
 import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
-public class PersonDataTest
+public class PersonDataTest extends DataTest
 {
-    private static List<Integer> doNotDelete;
+    public static Table table;
     
-    private static Table table;
+    public static List<Person> personsBefore;
     
-    public static final String propertyFile = "C:\\Program Files\\Apache Software Foundation\\Apache Tomcat 8.0.15\\bin\\database.properties";
+    public boolean withSpouseChildData = true;
     
     public PersonDataTest()
     {        
@@ -47,19 +36,23 @@ public class PersonDataTest
     @BeforeClass
     public static void setUpClass()
     {
-        doNotDelete = new ArrayList<Integer>();
+        DataTest.setUpClass();
         
         table = new Table();
         
-        List<Person> persons = new ArrayList<Person>();//table.select();
+        personsBefore = table.selectAll();
         
         System.out.println("Do not delete the following ids:");
         
-        for(Person person : persons)
+        for(Person person : personsBefore)
         {
             doNotDelete.add(person.getId());
             System.out.print("\t" + person.getId());
         }
+        
+        //System.out.println();
+        
+        //outputMap(table);
         
         System.out.println();
     }
@@ -67,7 +60,7 @@ public class PersonDataTest
     @AfterClass
     public static void tearDownClass()
     { 
-        List<Person> persons = new ArrayList<Person>();//table.select();
+        List<Person> persons = table.selectAll();
         
         for(Person person : persons)
         {
@@ -82,6 +75,7 @@ public class PersonDataTest
     @Before
     public void setUp()
     {
+        
     }
     
     @After
@@ -90,90 +84,78 @@ public class PersonDataTest
     }
 
     @Test
-    public void test()
+    public void testWithSpouseChildDate()
     {
-        Table table = new Table();
+        withSpouseChildData = true;
         
-        table.outputMap();
-        
-        Person p = table.select(1);
-        table.outputInsert(p);
-        table.outputUpdate(p);
-//        
-//        p = new Person("John");
-//        p.setGender("Male");
-//        
-//        table.outputInsert(p);
-//        int id = table.insert(p);
-//        
-//        p = new Person();
-//        p = table.select(id);
-//        table.outputInsert(p);
+        super.testNoErrors();
     }
     
-    public static class Table extends PersonData
+    @Test
+    @Ignore
+    public void testWithoutSpouseChildDate()
     {
-        public Table()
-        {
-            super(propertyFile);
-        }
+        withSpouseChildData = false;
         
-        public void outputMap()
-        {
-//            List<String> columns = this.getColumnMethodMap().getColumns();
-//            HashMap<String, List<Method>> getters = this.getColumnMethodMap().getGetters();
-//            HashMap<String, List<Method>> setters = this.getColumnMethodMap().getSetters();
-//            
-//            System.out.println("Number columns:\t" + columns.size());
-//            System.out.println("Number getters:\t" + getters.size());
-//            System.out.println("Number setters:\t" + setters.size());
-//            
-//            for(String column : columns)
-//            {
-//                List<Method> getter = getters.get(column);
-//                List<Method> setter = setters.get(column);
-//                
-//                StringBuilder getterName = new StringBuilder("(null)");
-//                StringBuilder setterName = new StringBuilder("(null)");
-//                
-//                if(getter != null)
-//                {
-//                    getterName = new StringBuilder();
-//                    
-//                    for(Method g : getter)
-//                    {
-//                        getterName.append(g.getName()).append("().");
-//                    }
-//                    
-//                    getterName.deleteCharAt(getterName.length() - 1);
-//                }
-//                
-//                if(setter != null)
-//                {
-//                    setterName = new StringBuilder();
-//                    
-//                    for(Method s : setter)
-//                    {
-//                        setterName.append(s.getName()).append("().");
-//                    }
-//                    
-//                    setterName.deleteCharAt(setterName.length() - 1);
-//                }
-//                
-//                StringBuilder output = new StringBuilder();
-//                output.append(column);
-//                output.append("\nGetter:\t").append(getterName);
-//                output.append("\nSetter:\t").append(setterName);
-//                
-//                System.out.println(output.toString());
-//            }
-        }
+        super.testNoErrors();
+    }
+    
+    @Override
+    public void test()
+    {
+        List<Integer> keys = new ArrayList<Integer>();
         
+//        for(Person person : personsBefore)
+//        {
+//            keys.add(person.getId());
+//        }
+        
+        keys.add(1);
+        
+        for(Integer key : keys)
+        {
+            Person person;
+            
+            if(withSpouseChildData)
+            {
+                person = table.select(key);
+                
+                for(List<SpouseChildMap> list : person.getSpouseChildMap().values())
+                {
+                    for(SpouseChildMap map : list)
+                    {
+                        StringBuilder sb = new StringBuilder();
+                        
+                        sb.append(map.getPerson().getName()).append("\n");
+                        sb.append(map.getSpouse().getName()).append("\n");
+                        sb.append(map.getChild().getName()).append("\n");
+                        
+                        System.out.println(sb.toString());
+                    }
+                }
+            }
+            else
+            {            
+                person = table.select(key, false);
+                
+                System.out.println(person.toString());
+                table.outputInsert(person);
+                table.outputUpdate(person);
+            } 
+        
+
+        }
+    }
+    
+    public static class Table extends PersonData implements TestData<Person>
+    {        
+        @Override
         public void outputInsert(Person p)
         {
             System.out.println(this.generateInsertQuery(p));
         }
         
+        @Override
         public void outputUpdate(Person p)
         {
             System.out.println(this.generateUpdateQuery(p));

@@ -27,12 +27,15 @@ public class InsertPersonBean implements Serializable
     private static final int FATHER = 0;
     private static final int MOTHER = 1;
     private static final int SPOUSE = 2;
-    private static final int CHILD = 3;
+    private static final int CHILD_WITH_NO_SPOUSE = 3;
+    private static final int CHILD_WITH_SPOUSE = 4;
     
     private Person personToInsert;
     
     @ManagedProperty(value="#{individualBean.person}")
     private Person relatedPerson;
+    
+    private Person spouseToRelated;
     
     @PostConstruct
     public void initialize()
@@ -42,7 +45,7 @@ public class InsertPersonBean implements Serializable
     
     public void commit(ActionEvent actionEvent)
     {        
-        if(personType == CHILD)
+        if(personType == CHILD_WITH_NO_SPOUSE)
         {
             if(relatedPerson.getGender().equals("Male"))
             {
@@ -53,12 +56,25 @@ public class InsertPersonBean implements Serializable
                 personToInsert.setMother(relatedPerson);
             }
         }
+        else if(personType == CHILD_WITH_SPOUSE)
+        {
+            if(relatedPerson.getGender().equals("Male"))
+            {
+                personToInsert.setFather(relatedPerson);
+                personToInsert.setMother(spouseToRelated);
+            }
+            else if(relatedPerson.getGender().equals("Female"))
+            {
+                personToInsert.setMother(relatedPerson);
+                personToInsert.setFather(spouseToRelated);
+            }
+        }
         
         PersonData personData = new PersonData();
         
         personToInsert = personData.insert(personToInsert);
         
-        if(personType != CHILD)
+        if(personType != CHILD_WITH_NO_SPOUSE)
         {
             if(personType == FATHER)
             {
@@ -84,8 +100,6 @@ public class InsertPersonBean implements Serializable
         sb.append("index?personId=");
         sb.append(relatedPerson.getId());
         sb.append("&amp;faces-redirect=true");
-        
-        System.err.println(sb.toString());
         
         return sb.toString();
     }
@@ -114,16 +128,12 @@ public class InsertPersonBean implements Serializable
     {
         personType = FATHER;
         personToInsert.setGender("Male");
-        System.err.println("public void setPersonAsFather(ActionEvent actionEvent)");
-        System.err.println("\tpersonType = FATHER;");
     }
     
     public void setPersonAsMother(ActionEvent actionEvent)
     {
         personType = MOTHER;
         personToInsert.setGender("Female");
-        System.err.println("public void setPersonAsMother(ActionEvent actionEvent)");
-        System.err.println("\tpersonType = MOTHER;");
     }
     
     public void setPersonAsSpouse(ActionEvent actionEvent)
@@ -133,11 +143,22 @@ public class InsertPersonBean implements Serializable
         System.err.println("\tpersonType = SPOUSE;");
     }
     
-    public void setPersonAsChild(ActionEvent actionEvent)
+    public void setPersonAsChildWithNoSpouse(ActionEvent actionEvent)
     {
-        personType = CHILD;
+        personType = CHILD_WITH_NO_SPOUSE;
         System.err.println("public void setPersonAsChild(ActionEvent actionEvent)");
         System.err.println("\tpersonType = CHILD;");
+    }
+    
+    public void setPersonAsChildWithSpouse(ActionEvent actionEvent)
+    {
+        personType = CHILD_WITH_SPOUSE;
+    }
+    
+    public void setPersonAsChildWithSpouse(Person spouse)
+    {
+        personType = CHILD_WITH_SPOUSE;
+        this.spouseToRelated = spouse;
     }
        
     public void buttonNoAction(ActionEvent actionEvent)
@@ -169,7 +190,7 @@ public class InsertPersonBean implements Serializable
     {
         StringBuilder sb = new StringBuilder();
         
-        String[] personType = {"Father","Mother","Spouse","Child"};
+        String[] personType = {"Father","Mother","Spouse","Child w/o spouse","Child w/ spouse"};
         
         sb.append("\n\tpersonToInsert is\n");
             sb.append("\t\ttype:\t").append(personType[this.personType]).append("\n");

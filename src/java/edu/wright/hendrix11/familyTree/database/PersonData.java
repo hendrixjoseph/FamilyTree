@@ -3,6 +3,7 @@ package edu.wright.hendrix11.familyTree.database;
 
 import edu.wright.hendrix11.familyTree.database.interfaces.*;
 import edu.wright.hendrix11.familyTree.entity.Person;
+import edu.wright.hendrix11.familyTree.entity.SpouseChildMap;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -20,16 +21,7 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
 {
     public PersonData()
     {
-        super();
-        this.tableName = "PERSON_VIEW";
-        setColumnMethodMap("PERSON_VIEW", new Person());
-        setOtherMethods();
-    }
-    
-    public PersonData(String propertyFile)
-    {
-        super("PERSON_VIEW", propertyFile);
-        setColumnMethodMap("PERSON_VIEW", new Person());
+        super("PERSON_VIEW", Person.class);
         setOtherMethods();
     }
     
@@ -65,19 +57,15 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
         person.setMother(new Person());
         
         try
-        {        
-            openConnection();
-            Statement statement = createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM " + tableName + " WHERE ID=" + id);
+        {
+            ResultSet rs = selectWithKey(id);//statement.executeQuery("SELECT * FROM " + tableName + " WHERE ID=" + id);
             
             if(rs.next()) 
             {
                 this.setFields(person, rs);
             }
 
-            rs.close();
-            statement.close();
-            closeConnection();
+            closeConnection(rs);
         }
         catch(Exception e)
         {
@@ -85,20 +73,24 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
         }            
         
         if(includeSpouseChildMap)
-            person.setSpouseChildMap(getSpouseChildMap(id));
+        {
+            SpouseChildData mapData = new SpouseChildData();
+            
+            HashMap<Person, List<SpouseChildMap>> map = mapData.select(id);
+            
+            person.setSpouseChildMap(map);
+        }
                     
         return person;
     }
     
-    public List<Person> select()
+    public List<Person> selectAll()
     {
         List<Person> persons = new ArrayList<Person>();
         
         try
         {        
-            openConnection();
-            Statement statement = createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM " + tableName);
+            ResultSet rs = select("SELECT * FROM " + tableName);
             
             while(rs.next()) 
             {
@@ -106,10 +98,8 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
                 this.setFields(person, rs);
                 persons.add(person);
             }
-
-            rs.close();
-            statement.close();
-            closeConnection();
+            
+            closeConnection(rs);
         }
         catch(Exception e)
         {
@@ -125,10 +115,7 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
         
         try
         {
-                        
-            openConnection();
-            Statement statement = createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM LAST_PERSON_INSERTED_VIEW");
+            ResultSet rs = select("SELECT * FROM LAST_PERSON_INSERTED_VIEW");
             
             person = new Person();
             
@@ -137,9 +124,7 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
                 this.setFields(person, rs);
             }
 
-            rs.close();
-            statement.close();
-            closeConnection();
+            closeConnection(rs);
         }
         catch(Exception e)
         {
@@ -158,11 +143,7 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
         {
             int id = p.getId();
             
-            openConnection();
-            Statement statement = createStatement();
-            statement.executeUpdate(query);
-            statement.close();
-            closeConnection();
+            executeUpdate(query);
             
             return select(id);
         }
@@ -181,11 +162,8 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
         
         try
         {        
-            openConnection();
-            Statement statement = createStatement();
-            statement.executeUpdate(query);
-            statement.close();
-            closeConnection();
+            executeUpdate(query);
+            
             return selectLastInserted();
         }
         catch(Exception e)
@@ -210,11 +188,7 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
             
             try
             {        
-                openConnection();
-                Statement statement = createStatement();
-                statement.executeUpdate(query);
-                statement.close();
-                closeConnection();
+                executeUpdate(query);
                 
                 return true;
             }
@@ -225,47 +199,5 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
         }
         
         return false;
-    }
-    
-    private HashMap<Person, ArrayList<Person>> getSpouseChildMap(int id)
-    {
-        HashMap<Person, ArrayList<Person>> spouseChildTable = new HashMap<Person, ArrayList<Person>>();  
-        ArrayList<Person> children;
-        
-        try
-        {
-            openConnection();
-            Statement statement = createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM CHILDREN_VIEW WHERE ID=" + id);
-            
-            Person child;
-            Person spouse;
-            
-            while(rs.next())
-            {
-                spouse = new Person(rs.getString("SPOUSE"));
-                spouse.setId(rs.getInt("SPOUSE_ID"));
-                child = new Person(rs.getString("CHILD"));
-                child.setId(rs.getInt("CHILD_ID"));
-                
-                if(spouseChildTable.get(spouse) == null)
-                    spouseChildTable.put(spouse, new ArrayList<Person>());
-                
-                children = spouseChildTable.get(spouse);
-                
-                children.add(child);
-            }
-            
-            rs.close();
-            statement.close();
-            closeConnection();
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-        
-        return spouseChildTable;
-    }
-    
+    }    
 }

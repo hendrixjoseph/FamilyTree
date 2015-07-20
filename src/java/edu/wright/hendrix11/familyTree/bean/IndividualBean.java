@@ -20,6 +20,8 @@ import javax.faces.bean.ViewScoped;
 public class IndividualBean implements Serializable
 {
     private Person person; 
+    
+    private PersonData personData;
        
     public IndividualBean()
     {
@@ -28,31 +30,29 @@ public class IndividualBean implements Serializable
     @PostConstruct
     public void initialize()
     {
-        person = new PersonData().select(1);
+        personData = new PersonData();
+        person = personData.select(1);
     }
     
     public Person getPerson()
     {   
         return person;
     }
-    
-    public void setPerson(Person person)
-    {
-        // Nothing yet...
-    }
 
-    public int getPersonId()
+    public Integer getPersonId()
     {
         return person.getId();
     }
 
     public void setPersonId(Integer id)
     {
-        person = new PersonData().select(id);
+        System.err.println("public void setPersonId(Integer " + id + ")");
+        person = personData.select(id);
     }
     
     public void setPersonId(int id)
     {
-        setPersonId(Integer.valueOf(id));
+        System.err.println("public void setPersonId(int " + id + ")");
+        person = personData.select(id);
     }
 }

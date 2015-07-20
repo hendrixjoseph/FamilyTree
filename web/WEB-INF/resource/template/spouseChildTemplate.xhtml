@@ -6,17 +6,19 @@
               xmlns:h="http://java.sun.com/jsf/html"
               xmlns:p="http://primefaces.org/ui"
               xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-                  <p:tabView>
+    <p:tabView style="height: 90%">
                 <c:forEach  items="#{individualBean.person.spouseChildMap.keySet()}" var="spouse">
                     <p:tab title="#{spouse.name}">
                         <c:forEach items="#{individualBean.person.spouseChildMap.get(spouse)}" var="child">
-                            <p:link value="#{child.name}">
-                                <f:param name="personId" value="#{child.id}" />
-                            </p:link>                               
+                            <p>
+                                <p:link value="#{child.child.name}">
+                                    <f:param name="personId" value="#{child.child.id}" />
+                                </p:link> 
+                            </p>
                         </c:forEach>
                         <p>
                             <h:form>
-                                <p:commandButton value="Add child" actionListener="#{insertPersonBean.setPersonAsChild}" oncomplete="PF('addChildDialog').show()"/>
+                                <p:commandButton value="Add child" actionListener="#{insertPersonBean.setPersonAsChildWithSpouse(spouse)}" oncomplete="PF('addChildDialog').show()"/>
                             </h:form>
                         </p>
                         <p>
@@ -26,14 +28,24 @@
                         </p>
                     </p:tab>
                 </c:forEach>
+                      <p:tab title="Children with unknown spouse" rendered="#{individualBean.person.childrenNoSpouse.size() > 0}">
+                        <c:forEach items="#{individualBean.person.childrenNoSpouse}" var="child">
+                        <p>
+                            <p:link value="#{child.name}">
+                                <f:param name="personId" value="#{child.id}" />
+                            </p:link> 
+                        </p>
+                    </c:forEach>
+                      </p:tab>
                 <p:tab title="Add spouse or children">
+
                     <p>
                         <h:form>
                             <p:commandButton value="Add spouse" actionListener="#{insertPersonBean.setPersonAsSpouse}" oncomplete="PF('addSpouseDialog').show();" />
                         </h:form>
                     </p><p>
                         <h:form>
-                            <p:commandButton value="Add child" actionListener="#{insertPersonBean.setPersonAsChild}" oncomplete="PF('addChildSingleParentDialog').show();" />
+                            <p:commandButton value="Add child" actionListener="#{insertPersonBean.setPersonAsChildWithNoSpouse}" oncomplete="PF('addChildSingleParentDialog').show();" />
                         </h:form>
                     </p>
                 </p:tab>

@@ -12,13 +12,13 @@ public class SpouseChildMap
 {
     Person person;
     Person spouse;
-    List<Person> children;
+    Person child;
     
     public SpouseChildMap()
     {
         person = new Person();
         spouse = null;
-        children = new ArrayList<Person>();
+        child = null;
     }
 
     public Person getPerson()
@@ -33,6 +33,9 @@ public class SpouseChildMap
 
     public Person getSpouse()
     {
+        if(spouse == null)
+            spouse = new Person();
+        
         return spouse;
     }
 
@@ -41,13 +44,31 @@ public class SpouseChildMap
         this.spouse = spouse;
     }
 
-    public List<Person> getChildren()
+    public Person getChild()
     {
-        return children;
+        if(child == null)
+            child = new Person();
+            
+        return child;
     }
 
-    public void setChildren(List<Person> children)
+    public void setChild(Person child)
     {
-        this.children = children;
+        this.child = child;
+    }
+    
+    @Override
+    public String toString()
+    {
+        StringBuilder sb = new StringBuilder();
+        
+        sb.append("person:\n").append(person.toString("\t"));
+        
+        sb.append("\nspouse:\n").append(spouse == null ? "\t(null)" : spouse.toString("\t"));
+        
+        sb.append("\nchild:\n").append(child == null ? "\t(null)" : child.toString("\t"));
+        
+        
+        return sb.toString();
     }
 }

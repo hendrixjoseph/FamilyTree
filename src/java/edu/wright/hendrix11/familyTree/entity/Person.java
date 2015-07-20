@@ -1,13 +1,11 @@
 
 package edu.wright.hendrix11.familyTree.entity;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -25,7 +23,9 @@ public class Person
     private Date dateOfDeath;
     private String placeOfDeath;
     
-    private HashMap<Person, ArrayList<Person>> spouseChildMap;
+    private HashMap<Person, List<SpouseChildMap>> spouseChildMap;
+    
+    private List<Person> childrenNoSpouse;
 
     public Person()
     {
@@ -87,7 +87,7 @@ public class Person
     
     private boolean hasParent(Person parent)
     {
-        if(parent == null || parent.getName() == null || parent.getName().isEmpty())
+        if(parent == null || !parent.exists())
             return false;
         else
             return true;
@@ -138,7 +138,7 @@ public class Person
         return placeOfDeath;
     }
 
-    public HashMap<Person, ArrayList<Person>> getSpouseChildMap()
+    public HashMap<Person, List<SpouseChildMap>> getSpouseChildMap()
     {
         return spouseChildMap;
     }
@@ -198,9 +198,41 @@ public class Person
         this.id = id;
     }
 
-    public void setSpouseChildMap(HashMap<Person, ArrayList<Person>> spouseChildMap)
+    public List<Person> getChildrenNoSpouse()
     {
+        return childrenNoSpouse;
+    }
+
+    public void setSpouseChildMap(HashMap<Person, List<SpouseChildMap>> spouseChildMap)
+    {
+        List<SpouseChildMap> noSpouseList = spouseChildMap.get(null);
+        
+        childrenNoSpouse = new ArrayList<Person>();
+        
+        if(noSpouseList != null)
+        {
+            for(SpouseChildMap map : noSpouseList)
+            {
+                childrenNoSpouse.add(map.getChild());
+            }
+        }
+        
+        spouseChildMap.remove(null);
+            
         this.spouseChildMap = spouseChildMap;
+    }
+    
+    public boolean exists()
+    {
+        boolean exists = false;
+        
+        if(id != null)
+            exists = true;
+        
+        if(name != null && !name.isEmpty())
+            exists = true;
+        
+        return exists;
     }
     
     @Override
@@ -241,23 +273,30 @@ public class Person
     {            
         StringBuilder sb = new StringBuilder();
         
-        sb.append(tabs).append("id:\t").append(id).append("\n");
-        sb.append(tabs).append("name:\t").append(name).append("\n");
-        sb.append(tabs).append("gender:\t").append(gender).append("\n");
-        
-        sb.append(tabs).append("father:\t");
-        
-        if(father != null)
-            sb.append(father.getId()).append(" ").append(father.getName()).append("\n");
+        if(exists())
+        {
+            sb.append(tabs).append("id:\t").append(id).append("\n");
+            sb.append(tabs).append("name:\t").append(name).append("\n");
+            sb.append(tabs).append("gender:\t").append(gender).append("\n");
+
+            sb.append(tabs).append("father:\t");
+
+            if(father != null && father.exists())
+                sb.append(father.getId()).append(" ").append(father.getName()).append("\n");
+            else
+                sb.append("(null)").append("\n");
+
+            sb.append(tabs).append("mother:\t");
+
+            if(mother != null && mother.exists())
+                sb.append(mother.getId()).append(" ").append(mother.getName());
+            else
+                sb.append("(null)");
+        }
         else
-            sb.append("(null)").append("\n");
-        
-        sb.append(tabs).append("mother:\t");
-        
-        if(mother != null)
-            sb.append(mother.getId()).append(" ").append(mother.getName()).append("\n");
-        else
-            sb.append("(null)").append("\n");
+        {
+            sb.append(tabs).append("(null)");
+        }
         
 //        private Date dateOfBirth;
 //        private String placeOfBirth;
