@@ -10,7 +10,7 @@ public abstract class Exporter extends Database
 {
     private static final String[] tableNames = {"", ""};
     
-    PrintStream out;
+    protected PrintStream out;
     
     public Exporter(String fileName)
     {
