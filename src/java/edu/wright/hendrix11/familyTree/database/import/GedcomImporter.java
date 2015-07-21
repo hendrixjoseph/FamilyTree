@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package edu.wright.hendrix11.familyTree.database;
 
 import edu.wright.hendrix11.familyTree.entity.Person;
@@ -22,13 +18,11 @@ import java.util.logging.Logger;
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
-public class DataLoader
+public class GedcomImporter extends Importer
 {
-    public static PrintStream out;
+    private static final DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
     
-    public static DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
-    
-    public static final String propertyFile = "C:\\Program Files\\Apache Software Foundation\\Apache Tomcat 8.0.15\\bin\\database.properties";
+    private static final String propertyFile = "C:\\Program Files\\Apache Software Foundation\\Apache Tomcat 8.0.15\\bin\\database.properties";
     
     private HashMap<String, Person> entry = new HashMap<String, Person>();
     
@@ -38,29 +32,14 @@ public class DataLoader
      *
      * @param filename
      */
-    public DataLoader(String filename)
+    public void import()
     {
-        Scanner inputStream;
-        
-        Database.setProperties(propertyFile);
         personData = new PersonData();
-        
-        try
-        {
-            File file = new File(filename);
 
-            inputStream = new Scanner(file);
-        }
-        catch(FileNotFoundException e)
-        {
-            e.printStackTrace();
-            return;
-        }  
-
-        while(inputStream.hasNext())
+        while(in.hasNext())
         {
             //read single line, put in string
-            String nextLine = inputStream.nextLine();
+            String nextLine = in.nextLine();
             
             int start;
                 
@@ -71,20 +50,20 @@ public class DataLoader
                 Person person = new Person();
                 PersonInfo personInfo = new PersonInfo();
 
-                nextLine = inputStream.nextLine();
+                nextLine = in.nextLine();
                 out.println(nextLine);
 
-                while(inputStream.hasNext() && !nextLine.startsWith("0 @I"))//!nextLine.contains("INDI") && !nextLine.endsWith("FAM"))
+                while(in.hasNext() && !nextLine.startsWith("0 @I"))//!nextLine.contains("INDI") && !nextLine.endsWith("FAM"))
                 {  
                     String change = nextLine;
                     
-                    nextLine = processPerson(inputStream, person, nextLine);
-                    nextLine = processPersonInfo(inputStream, personInfo, nextLine);
+                    nextLine = processPerson(in, person, nextLine);
+                    nextLine = processPersonInfo(in, personInfo, nextLine);
                     
                     if(change.equals(nextLine))
                     {
                         out.println(nextLine);
-                        nextLine = inputStream.nextLine();                        
+                        nextLine = in.nextLine();                        
                     }
                 }
                 
@@ -96,13 +75,13 @@ public class DataLoader
                
     }
     
-    private String processPersonInfo(Scanner inputStream, PersonInfo personInfo, String nextLine)
+    private String processPersonInfo(Scanner in, PersonInfo personInfo, String nextLine)
     {
         int start;
         
         if(nextLine.contains("BURI"))
         {
-            nextLine = inputStream.nextLine();
+            nextLine = in.nextLine();
             
             while(nextLine.contains("PLAC"))
             {
@@ -114,12 +93,12 @@ public class DataLoader
                     personInfo.setPlaceOfBurial(nextLine);
                 }
                 
-                nextLine = inputStream.nextLine();
+                nextLine = in.nextLine();
             }
         }
         else if(nextLine.contains("SSN"))
         {
-            nextLine = inputStream.nextLine();
+            nextLine = in.nextLine();
             
             while(nextLine.contains("PLAC"))
             {
@@ -131,14 +110,14 @@ public class DataLoader
                     personInfo.setSsn(nextLine);
                 }
                 
-                nextLine = inputStream.nextLine();
+                nextLine = in.nextLine();
             }
         }
         
         return nextLine;
     }
     
-    private String processPerson(Scanner inputStream, Person person, String nextLine)
+    private String processPerson(Scanner in, Person person, String nextLine)
     {        
         int start;
         
@@ -147,7 +126,7 @@ public class DataLoader
             start = "1 NAME ".length();
             String name = nextLine.substring(start);
             person.setName(name.replace("/", ""));
-            nextLine = inputStream.nextLine();
+            nextLine = in.nextLine();
         }
         else if(nextLine.contains("SEX"))
         {
@@ -156,11 +135,11 @@ public class DataLoader
             else if(nextLine.endsWith("F"))
                 person.setGender("Female");
             
-            nextLine = inputStream.nextLine();
+            nextLine = in.nextLine();
         }
         else if(nextLine.contains("BIRT"))
         {
-            nextLine = inputStream.nextLine();
+            nextLine = in.nextLine();
 
             while(nextLine.contains("DATE") || nextLine.contains("PLAC"))
             {
@@ -187,12 +166,12 @@ public class DataLoader
                     person.setPlaceOfBirth(nextLine); 
                 }
                 
-                nextLine = inputStream.nextLine();
+                nextLine = in.nextLine();
             }
         }
         else if(nextLine.contains("DEAT"))
         {
-            nextLine = inputStream.nextLine();
+            nextLine = in.nextLine();
 
             while(nextLine.contains("DATE") || nextLine.contains("PLAC"))
             {
@@ -219,12 +198,12 @@ public class DataLoader
                     person.setPlaceOfDeath(nextLine); 
                 }
                 
-                nextLine = inputStream.nextLine();
+                nextLine = in.nextLine();
             }
         }
         else
         {
-            //nextLine = inputStream.nextLine();
+            //nextLine = in.nextLine();
         }
         
         return nextLine;
@@ -252,6 +231,8 @@ public class DataLoader
      */
     public static void main(String[] args)
     {
+        Database.setProperties(propertyFile);
+        
         String path = "C:\\Users\\Joe\\Documents\\";
         String file = "hendrixfamily.fte.GED";
         
@@ -267,9 +248,9 @@ public class DataLoader
             out = System.out;
         }
             
-        DataLoader loader = new DataLoader(path + file);
+        GedcomImporter importer = new GedcomImporter(path + file);
         
-        HashMap<String, Person> entry = loader.getEntry();
+        HashMap<String, Person> entry = importer.getEntry();
         
         System.out.println(entry.size() + " people loaded.");
         
