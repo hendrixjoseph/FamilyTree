@@ -6,7 +6,6 @@
 package DatabaseTests;
 
 import DatabaseTests.NonTestClasses.DataTest;
-import DatabaseTests.NonTestClasses.TestData;
 import edu.wright.hendrix11.familyTree.database.GenderData;
 import edu.wright.hendrix11.familyTree.entity.Gender;
 import java.util.List;
@@ -23,7 +22,7 @@ import static org.junit.Assert.*;
  */
 public class GenderDataTest extends DataTest
 {
-    public static Table table;
+    public static GenderData table;
     
     public GenderDataTest()
     {
@@ -34,7 +33,7 @@ public class GenderDataTest extends DataTest
     {
         DataTest.setUpClass();
         
-        table = new Table();
+        table = new GenderData();
         
         outputMap(table);
     }
@@ -69,20 +68,5 @@ public class GenderDataTest extends DataTest
         {
             System.out.println(gender.getAbbr() + "\t" + gender.getFullWord());
         }
-    }
-    
-    public static class Table extends GenderData implements TestData<Gender>
-    {
-        @Override
-        public void outputInsert(Gender o)
-        {
-            System.out.println(this.generateInsertQuery(o));
-        }
-
-        @Override
-        public void outputUpdate(Gender o)
-        {
-            System.out.println(this.generateUpdateQuery(o));
-        }        
     }
 }
