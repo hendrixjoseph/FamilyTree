@@ -16,6 +16,7 @@ import java.util.List;
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
 public class PersonData extends Database implements SelectData<Person, Integer>, 
+                                                    SelectAllData<Person>,
                                                     InsertData<Person>, 
                                                     UpdateData<Person>, 
                                                     DeleteData<Person>
