@@ -25,7 +25,7 @@
             </p:submenu>
         </p:submenu>
         <p:submenu label="Edit">
-
+            <p:menuitem value="Edit individual" update="@([id$=editDialog_form])" actionListener="#{personQueryBean.setNoInsertJustUpdate}" oncomplete="PF('editDialog').show()" />
         </p:submenu>
         <p:submenu label="Search">
 
