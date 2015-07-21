@@ -1,5 +1,5 @@
 
-package edu.wright.hendrix11.familyTree.database.import;
+package edu.wright.hendrix11.familyTree.database.imports;
 
 /**
 *
