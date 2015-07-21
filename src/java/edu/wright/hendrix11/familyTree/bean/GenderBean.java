@@ -11,7 +11,7 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class GenderBean
 {
-    private List<Gender> genders;
+    private HashMap<String, String> genders;
     private GenderData genderData;
     
     /**
@@ -20,12 +20,15 @@ public class GenderBean
     @PostConstruct
     public void initialize()
     {
-        genders = new ArrayList<Gender>();
+        genders = HashMap<String, String>();
         genderData = new GenderData();
-        genders = genderData.selectAll();
+        List<Gender> genderList = genderData.selectAll();
+        
+        for(Gender gender : genderList)
+            genders.put(gender.getFullWord(), gender.getFullWord());
     }
     
-    public List<Gender> getGenders()
+    public HashMap<String, String> getGenders()
     {
         return genders;
     }
