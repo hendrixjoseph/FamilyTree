@@ -79,6 +79,9 @@ public class ColumnMethodMap extends Database
             if(methods.get(setterName) != null)
                 put(column, methods.get(setterName), setters);
         }
+        
+        // Default primary key
+        this.setPrimaryKey("ID");
     }
 
     /**
@@ -261,6 +264,17 @@ public class ColumnMethodMap extends Database
                             // returns 0 when null.
                             if(!rs.wasNull())
                                 setter.invoke(returnObject, x);
+                        }
+                        else if(name.equals("char") || name.equals("Character"))
+                        {
+                            String s = rs.getString(column);
+                            
+                            if(s != null && s.length() > 0)
+                            {
+                                char ch = s.charAt(0);
+                                
+                                setter.invoke(returnObject, ch);
+                            }
                         }
                         else if(name.equals("String"))
                             setter.invoke(returnObject, rs.getString(column));

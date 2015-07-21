@@ -1,5 +1,11 @@
 package edu.wright.hendrix11.familyTree.database;
 
+import edu.wright.hendrix11.familyTree.database.interfaces.SelectAllData;
+import edu.wright.hendrix11.familyTree.entity.Gender;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
 *
 * @author Joe Hendrix <hendrix.11@wright.edu>
@@ -15,6 +21,7 @@ public class GenderData extends Database implements SelectAllData<Gender>
         columnMethodMap.setPrimaryKey("ABBR");
     }
 
+    @Override
     public List<Gender> selectAll()
     {
         List<Gender> genders = new ArrayList<Gender>();

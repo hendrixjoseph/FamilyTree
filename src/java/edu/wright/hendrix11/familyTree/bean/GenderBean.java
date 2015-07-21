@@ -1,5 +1,10 @@
 package edu.wright.hendrix11.familyTree.bean;
 
+import edu.wright.hendrix11.familyTree.database.GenderData;
+import edu.wright.hendrix11.familyTree.entity.Gender;
+import java.util.HashMap;
+import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -20,7 +25,7 @@ public class GenderBean
     @PostConstruct
     public void initialize()
     {
-        genders = HashMap<String, String>();
+        genders = new HashMap<String, String>();
         genderData = new GenderData();
         List<Gender> genderList = genderData.selectAll();
         

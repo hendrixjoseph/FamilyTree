@@ -1,9 +1,6 @@
 
 package edu.wright.hendrix11.familyTree.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>

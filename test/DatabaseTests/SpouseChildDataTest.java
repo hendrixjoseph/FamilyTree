@@ -1,6 +1,8 @@
 
-package Database;
+package DatabaseTests;
 
+import DatabaseTests.NonTestClasses.TestData;
+import DatabaseTests.NonTestClasses.DataTest;
 import edu.wright.hendrix11.familyTree.database.SpouseChildData;
 import edu.wright.hendrix11.familyTree.entity.Person;
 import edu.wright.hendrix11.familyTree.entity.SpouseChildMap;

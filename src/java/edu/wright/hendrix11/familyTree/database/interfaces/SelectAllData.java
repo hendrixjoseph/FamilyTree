@@ -1,17 +1,17 @@
 package edu.wright.hendrix11.familyTree.database.interfaces;
 
+import java.util.List;
+
 /**
 *
 * @author Joe Hendrix <hendrix.11@wright.edu>
 * @param <T>
-* @param <K>
 */
 public interface SelectAllData<T>
 {
     /**
     *
-    * @param t
     * @return
     */
-    public List<T> selectAll(T t);
+    public List<T> selectAll();
 }

@@ -1,7 +1,7 @@
 
-package Database;
+package DatabaseTests.NonTestClasses;
 
-import static Database.PersonDataTest.propertyFile;
+import static DatabaseTests.PersonDataTest.propertyFile;
 import edu.wright.hendrix11.familyTree.database.Database;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -39,6 +39,26 @@ public abstract class DataTest
         }
     }
     
+    public void testNoErrors(Method m, Object o)
+    {
+        if(m == null || o == null)
+        {
+            return;
+        }
+        
+        try
+        {
+            m.invoke(o);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            Assert.fail("Exception " + e.getClass().getName() + " occurred\n"
+                    + "while trying to invoke method " + m.getName() + "\n"
+                    + "on object + " + o.getClass().getName() + "!");
+        }
+    }
+    
     public abstract void test();
     
     public static void outputMap(Database table)
@@ -46,10 +66,12 @@ public abstract class DataTest
         List<String> columns = table.getColumnMethodMap().getColumns();
         HashMap<String, List<Method>> getters = table.getColumnMethodMap().getGetters();
         HashMap<String, List<Method>> setters = table.getColumnMethodMap().getSetters();
+        List<String> primaryKey = table.getColumnMethodMap().getPrimaryKey();
 
         System.out.println("Number columns:\t" + columns.size());
         System.out.println("Number getters:\t" + getters.size());
         System.out.println("Number setters:\t" + setters.size());
+        System.out.println("Primary key:\t" + primaryKey);
 
         for(String column : columns)
         {

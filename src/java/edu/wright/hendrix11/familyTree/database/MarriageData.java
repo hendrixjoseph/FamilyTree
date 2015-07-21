@@ -4,13 +4,10 @@ package edu.wright.hendrix11.familyTree.database;
 import edu.wright.hendrix11.familyTree.database.interfaces.InsertData;
 import edu.wright.hendrix11.familyTree.database.interfaces.SelectData;
 import edu.wright.hendrix11.familyTree.entity.Marriage;
-import edu.wright.hendrix11.familyTree.entity.Person;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
