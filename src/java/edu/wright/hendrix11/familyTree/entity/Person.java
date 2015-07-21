@@ -27,11 +27,18 @@ public class Person
     
     private List<Person> childrenNoSpouse;
 
+    /**
+     *
+     */
     public Person()
     {
         // No arg constructor
     }
     
+    /**
+     *
+     * @param name
+     */
     public Person(String name)
     {
         this.name = name;
@@ -42,6 +49,12 @@ public class Person
 //        this(Integer.valueOf(id), name);
 //    }
     
+    /**
+     *
+     * @param id
+     * @param name
+     */
+        
     public Person(Integer id, String name)
     {
         this(name);
@@ -49,6 +62,20 @@ public class Person
         this.id = id;
     }
     
+    /**
+     *
+     * @param id
+     * @param fatherId
+     * @param father
+     * @param motherId
+     * @param mother
+     * @param name
+     * @param gender
+     * @param dateOfBirth
+     * @param placeOfBirth
+     * @param dateOfDeath
+     * @param placeOfDeath
+     */
     public Person(Integer id, Integer fatherId, String father, Integer motherId, String mother, String name, String gender, Date dateOfBirth, String placeOfBirth, Date dateOfDeath, String placeOfDeath)
     {
         this(   id, 
@@ -62,6 +89,18 @@ public class Person
                 placeOfDeath);
     }
 
+    /**
+     *
+     * @param id
+     * @param father
+     * @param mother
+     * @param name
+     * @param gender
+     * @param dateOfBirth
+     * @param placeOfBirth
+     * @param dateOfDeath
+     * @param placeOfDeath
+     */
     public Person(Integer id, Person father, Person mother, String name, String gender, Date dateOfBirth, String placeOfBirth, Date dateOfDeath, String placeOfDeath)
     {        
         this.id = id;
@@ -75,11 +114,19 @@ public class Person
         this.placeOfDeath = placeOfDeath;
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean hasMother()
     {
         return hasParent(mother);
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean hasFather()
     {
         return hasParent(father);
@@ -93,71 +140,127 @@ public class Person
             return true;
     }
     
+    /**
+     *
+     * @return
+     */
     public Integer getId()
     {
         return id;
     }
 
+    /**
+     *
+     * @return
+     */
     public Person getFather()
     {
         return father;
     }
 
+    /**
+     *
+     * @return
+     */
     public Person getMother()
     {
         return mother;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName()
     {
         return name;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getGender()
     {
         return gender;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getDateOfBirth()
     {
         return dateOfBirth;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPlaceOfBirth()
     {
         return placeOfBirth;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getDateOfDeath()
     {
         return dateOfDeath;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPlaceOfDeath()
     {
         return placeOfDeath;
     }
 
+    /**
+     *
+     * @return
+     */
     public HashMap<Person, List<SpouseChildMap>> getSpouseChildMap()
     {
         return spouseChildMap;
     }
 
+    /**
+     *
+     * @param father
+     */
     public void setFather(Person father)
     {
         this.father = father;
     }
 
+    /**
+     *
+     * @param mother
+     */
     public void setMother(Person mother)
     {
         this.mother = mother;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name)
     {
         this.name = name;
     }
 
+    /**
+     *
+     * @param gender
+     */
     public void setGender(String gender)
     {
         this.gender = gender;
@@ -168,11 +271,20 @@ public class Person
 //        setDateOfBirth(dateOfBirth.getTime());
 //    }
 
+    /**
+     *
+     * @param dateOfBirth
+     */
+    
     public void setDateOfBirth(Date dateOfBirth)
     {
         this.dateOfBirth = dateOfBirth;
     }
 
+    /**
+     *
+     * @param placeOfBirth
+     */
     public void setPlaceOfBirth(String placeOfBirth)
     {
         this.placeOfBirth = placeOfBirth;
@@ -183,26 +295,47 @@ public class Person
 //        setDateOfDeath(dateOfDeath.getTime());
 //    }
 
+    /**
+     *
+     * @param dateOfDeath
+     */
+    
     public void setDateOfDeath(Date dateOfDeath)
     {
         this.dateOfDeath = dateOfDeath;
     }
 
+    /**
+     *
+     * @param placeOfDeath
+     */
     public void setPlaceOfDeath(String placeOfDeath)
     {
         this.placeOfDeath = placeOfDeath;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(Integer id)
     {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Person> getChildrenNoSpouse()
     {
         return childrenNoSpouse;
     }
 
+    /**
+     *
+     * @param spouseChildMap
+     */
     public void setSpouseChildMap(HashMap<Person, List<SpouseChildMap>> spouseChildMap)
     {
         List<SpouseChildMap> noSpouseList = spouseChildMap.get(null);
@@ -222,6 +355,10 @@ public class Person
         this.spouseChildMap = spouseChildMap;
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean exists()
     {
         boolean exists = false;
@@ -269,6 +406,11 @@ public class Person
         return toString("");
     }
     
+    /**
+     *
+     * @param tabs
+     * @return
+     */
     public String toString(String tabs)
     {            
         StringBuilder sb = new StringBuilder();

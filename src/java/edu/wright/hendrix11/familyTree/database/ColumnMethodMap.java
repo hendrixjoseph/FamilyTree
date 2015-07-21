@@ -22,19 +22,35 @@ public class ColumnMethodMap extends Database
     private HashMap<String, List<Method>> getters;
     private HashMap<String, List<Method>> setters;
 
-    private String primaryKey;
+    private List<String> primaryKey;
 
     private Class clazz;
 
+    /**
+     *
+     */
     public static final int GETTER = 1;
+
+    /**
+     *
+     */
     public static final int SETTER = 2;
 
-    
+    /**
+     *
+     * @param tableName
+     * @param object
+     */
     public ColumnMethodMap(String tableName, Object object)
     {
         this(tableName, object.getClass());
     }
 
+    /**
+     *
+     * @param tableName
+     * @param clazz
+     */
     public ColumnMethodMap(String tableName, Class clazz)
     {
         getters = new HashMap<String, List<Method>>();
@@ -65,48 +81,115 @@ public class ColumnMethodMap extends Database
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String getClassName()
     {
         return clazz.getName();
     }
 
-    public String getPrimaryKey()
+    /**
+     *
+     * @return
+     */
+    public List<String> getPrimaryKey()
     {
+        if(primaryKey == null)
+            primaryKey = new ArrayList<String>();
+            
         return primaryKey;
     }
 
+    /**
+     *
+     * @param primaryKey
+     */
     public void setPrimaryKey(String primaryKey)
+    {
+        this.primaryKey = new ArrayList<String>();
+        this.primaryKey.add(primaryKey);
+    }
+    
+    public void setPrimaryKey(List<String> primaryKey)
     {
         this.primaryKey = primaryKey;
     }
+    
+    private void primaryKeyNull()
+    {
+        if(primaryKey == null)
+        {
+            throw new NullPointerException("Primary key not set for object of class " 
+                    + clazz.getName() + "!" +
+                    "\nSet it using method setPrimaryKey(String key) or" + 
+                    "\nmethod setPrimaryKey(List<String> key)" +
+                    "\nin class ColumnMethodMap!");
+        }
+    }
 
+    /**
+     *
+     * @param object
+     * @return
+     */
     public String getPrimaryKeyValue(Object object)
+    {   
+        primaryKeyNull();
+        
+        if(primaryKey.size() > 1)
+        {
+            throw new NullPointerException("Primary key is composite key, use " + 
+                    "public List<String> getPrimaryKeyValues(Object object) instead!");
+        }
+
+        return get(primaryKey.get(0), object);
+    }
+    
+    public List<String> getPrimaryKeyValues(Object object)
     {
         if(object == null)
         {
             throw new NullPointerException("Cannot get primary from object of class " + clazz.getName() + " when object is null!");
         }
 
-        if(primaryKey == null)
+        primaryKeyNull();
+        
+        List<String> values = new ArrayList<String>();
+        
+        for(String key : primaryKey)
         {
-            throw new NullPointerException("Primary key not set for object of class " 
-                    + clazz.getName() + "!" +
-                    "\nSet it using method setPrimaryKey(String key) in class ColumnMethodMap!");
+            values.add(get(key, object));
         }
-
-        return get(primaryKey, object);
+        
+        return values;
     }
 
+    /**
+     *
+     * @return
+     */
     public HashMap<String, List<Method>> getGetters()
     {
         return getters;
     }
 
+    /**
+     *
+     * @return
+     */
     public HashMap<String, List<Method>> getSetters()
     {
         return setters;
     }
 
+    /**
+     *
+     * @param column
+     * @param object
+     * @return
+     */
     public String get(String column, Object object)
     {
         List<Method> getterList = getters.get(column);
@@ -145,6 +228,12 @@ public class ColumnMethodMap extends Database
         return value;
     }
 
+    /**
+     *
+     * @param column
+     * @param object
+     * @param rs
+     */
     public void set(String column, Object object, ResultSet rs)
     {
         List<Method> setterList = setters.get(column);
@@ -203,16 +292,30 @@ public class ColumnMethodMap extends Database
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public List<String> getColumns()
     {
         return columns;
     }
 
+    /**
+     *
+     * @param column
+     * @param methods
+     */
     protected void putGetter(String column, String methods)
     {
         put(column, methods, getters);
     }
 
+    /**
+     *
+     * @param column
+     * @param methods
+     */
     protected void putSetter(String column, String methods)
     {
         put(column, methods, setters);

@@ -3,17 +3,11 @@ package Database;
 
 import static Database.PersonDataTest.propertyFile;
 import edu.wright.hendrix11.familyTree.database.Database;
-import edu.wright.hendrix11.familyTree.entity.Person;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import junit.framework.Assert;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
 
 /**
  *
@@ -40,8 +34,8 @@ public abstract class DataTest
         }
         catch(Exception e)
         {
-            Assert.fail("Exception " + e.getClass().getName() + " occurred!");
             e.printStackTrace();
+            Assert.fail("Exception " + e.getClass().getName() + " occurred!\n");
         }
     }
     

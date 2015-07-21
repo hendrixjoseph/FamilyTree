@@ -9,8 +9,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -18,6 +16,10 @@ import java.util.logging.Logger;
  */
 public class SpouseChildData extends Database implements SelectData<HashMap<Person, List<SpouseChildMap>>, Integer>
 {    
+
+    /**
+     *
+     */
     public SpouseChildData()
     {
         super("CHILDREN_VIEW",SpouseChildMap.class);
@@ -45,6 +47,11 @@ public class SpouseChildData extends Database implements SelectData<HashMap<Pers
         columnMethodMap.setPrimaryKey("ID");
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @Override
     public HashMap<Person, List<SpouseChildMap>> select(Integer id)
     {

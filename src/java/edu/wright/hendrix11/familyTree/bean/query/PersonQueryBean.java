@@ -1,26 +1,24 @@
 
-package edu.wright.hendrix11.familyTree.bean.transaction;
+package edu.wright.hendrix11.familyTree.bean.query;
 
+import edu.wright.hendrix11.familyTree.database.MarriageData;
 import edu.wright.hendrix11.familyTree.database.PersonData;
+import edu.wright.hendrix11.familyTree.entity.Marriage;
 import edu.wright.hendrix11.familyTree.entity.Person;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
-import javax.faces.component.UIComponent;
 import javax.faces.event.ActionEvent;
-import org.primefaces.component.commandbutton.CommandButton;
 
 /**
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
 @ManagedBean
-//@RequestScoped
 @ViewScoped
-public class InsertPersonBean implements Serializable
+public class PersonQueryBean implements Serializable, QueryBean
 {   
     int personType;
         
@@ -29,6 +27,7 @@ public class InsertPersonBean implements Serializable
     private static final int SPOUSE = 2;
     private static final int CHILD_WITH_NO_SPOUSE = 3;
     private static final int CHILD_WITH_SPOUSE = 4;
+    private static final int NO_INSERT_UPDATE_RELATED_PERSON = 5;
     
     private Person personToInsert;
     
@@ -37,14 +36,45 @@ public class InsertPersonBean implements Serializable
     
     private Person spouseToRelated;
     
+    private PersonData personData;
+    
+    /**
+     *
+     */
     @PostConstruct
     public void initialize()
     {
         personToInsert = new Person();
+        personData = new PersonData();
     }
     
+    /**
+     *
+     * @param actionEvent
+     */
+    @Override
     public void commit(ActionEvent actionEvent)
-    {        
+    {   
+        if(personType == NO_INSERT_UPDATE_RELATED_PERSON)
+        {
+            updateRelatedPerson();
+        }
+        else if(personType == CHILD_WITH_NO_SPOUSE || personType == CHILD_WITH_SPOUSE)
+        {
+            insertChild();
+        }
+        else if(personType == FATHER || personType == MOTHER)
+        {
+            insertParent();
+        }
+        else if(personType == SPOUSE)
+        {
+            insertSpouse();
+        }
+    }
+    
+    private void insertChild()
+    {
         if(personType == CHILD_WITH_NO_SPOUSE)
         {
             if(relatedPerson.getGender().equals("Male"))
@@ -69,31 +99,47 @@ public class InsertPersonBean implements Serializable
                 personToInsert.setFather(spouseToRelated);
             }
         }
+
+        personToInsert = personData.insert(personToInsert);
+    }
+    
+    private void insertParent()
+    {
+        personToInsert = personData.insert(personToInsert);
+
+        if(personType == FATHER)
+        {
+            relatedPerson.setFather(personToInsert);
+        }
+        else if(personType == MOTHER)
+        {
+            relatedPerson.setMother(personToInsert);
+        }
         
-        PersonData personData = new PersonData();
+        personData.update(relatedPerson);
+    }
+    
+    private void insertSpouse()
+    {
+        MarriageData md = new MarriageData();
+        Marriage m = new Marriage();
         
         personToInsert = personData.insert(personToInsert);
         
-        // I think this will work, or it needs to be "OR"
-        if(personType != CHILD_WITH_NO_SPOUSE && personType != CHILD_WITH_SPOUSE)
-        {
-            if(personType == FATHER)
-            {
-                relatedPerson.setFather(personToInsert);
-            }
-            else if(personType == MOTHER)
-            {
-                relatedPerson.setMother(personToInsert);
-            }
-            else if(personType == SPOUSE)
-            {
-
-            }
-            
-            personData.update(relatedPerson);
-        }
+        m.setCouple(personToInsert, relatedPerson);
+        
+        md.insert(m);
     }
     
+    private void updateRelatedPerson()
+    {
+        personData.update(relatedPerson);
+    }
+    
+    /**
+     *
+     * @return
+     */
     public String getAction()
     {
         StringBuilder sb = new StringBuilder();
@@ -105,85 +151,116 @@ public class InsertPersonBean implements Serializable
         return sb.toString();
     }
     
+    /**
+     *
+     * @return
+     */
     public Person getPersonToInsert()
     {
         return personToInsert;
     }
 
+    /**
+     *
+     * @param personToInsert
+     */
     public void setPersonToInsert(Person personToInsert)
     {
         this.personToInsert = personToInsert;
     }
 
+    /**
+     *
+     * @return
+     */
     public Person getRelatedPerson()
     {
         return relatedPerson;
     }
 
+    /**
+     *
+     * @param relatedPerson
+     */
     public void setRelatedPerson(Person relatedPerson)
     {
         this.relatedPerson = relatedPerson;
     }
     
+    /**
+     *
+     * @param actionEvent
+     */
     public void setPersonAsFather(ActionEvent actionEvent)
     {
         personType = FATHER;
         personToInsert.setGender("Male");
     }
     
+    /**
+     *
+     * @param actionEvent
+     */
     public void setPersonAsMother(ActionEvent actionEvent)
     {
         personType = MOTHER;
         personToInsert.setGender("Female");
     }
     
+    /**
+     *
+     * @param actionEvent
+     */
     public void setPersonAsSpouse(ActionEvent actionEvent)
     {
         personType = SPOUSE;
-        System.err.println("public void setPersonAsSpouse(ActionEvent actionEvent)");
-        System.err.println("\tpersonType = SPOUSE;");
+        
+        if(relatedPerson.getGender().equals("Male"))
+            personToInsert.setGender("Female");
+        else if(relatedPerson.getGender().equals("Female"))
+            personToInsert.setGender("Male");
     }
     
+    /**
+     *
+     * @param actionEvent
+     */
     public void setPersonAsChildWithNoSpouse(ActionEvent actionEvent)
     {
         personType = CHILD_WITH_NO_SPOUSE;
-        System.err.println("public void setPersonAsChild(ActionEvent actionEvent)");
-        System.err.println("\tpersonType = CHILD;");
     }
     
+    /**
+     *
+     * @param actionEvent
+     */
     public void setPersonAsChildWithSpouse(ActionEvent actionEvent)
     {
         personType = CHILD_WITH_SPOUSE;
     }
     
+    /**
+     *
+     * @param spouse
+     */
     public void setPersonAsChildWithSpouse(Person spouse)
     {
         personType = CHILD_WITH_SPOUSE;
         this.spouseToRelated = spouse;
     }
+    
+    public void setNoInsertJustUpdate(ActionEvent actionEvent)
+    {
+        personType = NO_INSERT_UPDATE_RELATED_PERSON;
+    }
        
+    /**
+     *
+     * @param actionEvent
+     */
     public void buttonNoAction(ActionEvent actionEvent)
     {
         System.err.println("public void buttonNoAction(ActionEvent actionEvent) called");
-        outputAction(actionEvent);
-    }
-    
-    public void outputAction(ActionEvent event)
-    {
-        UIComponent component = event.getComponent();
-               
-        System.err.println("\tActionEvent event class: " + event.getClass().getName());
-        System.err.println("\tComponent class: " + component.getClass().getName());
-        System.err.println("\tClient id: " + component.getClientId());
-        
-        if(component instanceof CommandButton)
-        {
-            CommandButton button = (CommandButton)component;
-            
-            System.err.println("\tbutton.getOncomplete(): " + button.getOncomplete());
-            System.err.println("\tbutton.isAjax(): " + button.isAjax());
-            System.err.println("\tbutton.getConfirmationScript(): " + button.getConfirmationScript());
-        }
     }
     
     @Override
@@ -191,7 +268,12 @@ public class InsertPersonBean implements Serializable
     {
         StringBuilder sb = new StringBuilder();
         
-        String[] personType = {"Father","Mother","Spouse","Child w/o spouse","Child w/ spouse"};
+        String[] personType = {"Father",
+                               "Mother",
+                               "Spouse",
+                               "Child w/o spouse",
+                               "Child w/ spouse",
+                               "No insert - update related person instead"};
         
         sb.append("\n\tpersonToInsert is\n");
             sb.append("\t\ttype:\t").append(personType[this.personType]).append("\n");

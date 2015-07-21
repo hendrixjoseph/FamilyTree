@@ -18,6 +18,10 @@ public class DataLoader
 {
     private HashMap<String, Person> entry = new HashMap<String, Person>();
     
+    /**
+     *
+     * @param filename
+     */
     public DataLoader(String filename)
     {
         try
@@ -68,11 +72,19 @@ public class DataLoader
         }                
     }
 
+    /**
+     *
+     * @return
+     */
     public HashMap<String, Person> getEntry()
     {
         return entry;
     }
     
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args)
     {
         String path = "C:\\Users\\Joe\\Documents\\";

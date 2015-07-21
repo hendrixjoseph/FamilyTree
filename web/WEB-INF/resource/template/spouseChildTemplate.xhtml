@@ -18,7 +18,7 @@
                         </c:forEach>
                         <p>
                             <h:form>
-                                <p:commandButton value="Add child" actionListener="#{insertPersonBean.setPersonAsChildWithSpouse(spouse)}" oncomplete="PF('addChildDialog').show()"/>
+                                <p:commandButton value="Add child" actionListener="#{personQueryBean.setPersonAsChildWithSpouse(spouse)}" oncomplete="PF('addChildDialog').show()"/>
                             </h:form>
                         </p>
                         <p>
@@ -41,11 +41,11 @@
 
                     <p>
                         <h:form>
-                            <p:commandButton value="Add spouse" actionListener="#{insertPersonBean.setPersonAsSpouse}" oncomplete="PF('addSpouseDialog').show();" />
+                            <p:commandButton value="Add spouse" update="@([id$=addSpouseDialog_form])" actionListener="#{personQueryBean.setPersonAsSpouse}" oncomplete="PF('addSpouseDialog').show();" />
                         </h:form>
                     </p><p>
                         <h:form>
-                            <p:commandButton value="Add child" actionListener="#{insertPersonBean.setPersonAsChildWithNoSpouse}" oncomplete="PF('addChildSingleParentDialog').show();" />
+                            <p:commandButton value="Add child" update="@([id$=addChildSingleParentDialog_form])" actionListener="#{personQueryBean.setPersonAsChildWithNoSpouse}" oncomplete="PF('addChildSingleParentDialog').show();" />
                         </h:form>
                     </p>
                 </p:tab>

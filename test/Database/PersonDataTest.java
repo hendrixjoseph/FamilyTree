@@ -4,9 +4,7 @@ package Database;
 import edu.wright.hendrix11.familyTree.database.*;
 import edu.wright.hendrix11.familyTree.entity.Person;
 import edu.wright.hendrix11.familyTree.entity.SpouseChildMap;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.junit.After;
@@ -84,6 +82,7 @@ public class PersonDataTest extends DataTest
     }
 
     @Test
+    @Ignore
     public void testWithSpouseChildDate()
     {
         withSpouseChildData = true;
@@ -92,7 +91,6 @@ public class PersonDataTest extends DataTest
     }
     
     @Test
-    @Ignore
     public void testWithoutSpouseChildDate()
     {
         withSpouseChildData = false;
@@ -140,7 +138,7 @@ public class PersonDataTest extends DataTest
                 
                 System.out.println(person.toString());
                 table.outputInsert(person);
-                table.outputUpdate(person);
+                //table.outputUpdate(person);
             } 
         
 

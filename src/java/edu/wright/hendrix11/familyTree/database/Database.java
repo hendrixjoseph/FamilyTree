@@ -2,19 +2,12 @@
 package edu.wright.hendrix11.familyTree.database;
 
 import java.io.*;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.regex.Pattern;
 
 /**
  *
@@ -33,10 +26,19 @@ public abstract class Database
     
     private ColumnMethodMap columnMethodMap;
     
+    /**
+     *
+     */
     protected String tableName;
     
+    /**
+     *
+     */
     public static final String DATE_FORMAT = "MM dd YYYY";    
     
+    /**
+     *
+     */
     public Database()
     {
         if(url == null || user == null || pass == null)
@@ -45,6 +47,11 @@ public abstract class Database
         }
     }
     
+    /**
+     *
+     * @param tableName
+     * @param clazz
+     */
     public Database(String tableName, Class clazz)
     {
         this();
@@ -52,6 +59,12 @@ public abstract class Database
         columnMethodMap = new ColumnMethodMap(tableName, clazz);
     }
     
+    /**
+     *
+     * @param url
+     * @param user
+     * @param pass
+     */
     public static void setProperities(String url, String user, String pass)
     {
         Database.url = url;
@@ -59,12 +72,19 @@ public abstract class Database
         Database.pass = pass;
     }
     
+    /**
+     *
+     * @param propertiesFile
+     */
     public static void setProperties(String propertiesFile)
     {
         Database.propertiesFile = propertiesFile;
         setProperties();
     }
     
+    /**
+     *
+     */
     public static void setProperties()
     {
         try
@@ -87,6 +107,9 @@ public abstract class Database
         }
     }
     
+    /**
+     *
+     */
     public static void writeProperties()
     {
         if(url == null || user == null || pass == null)
@@ -114,11 +137,19 @@ public abstract class Database
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public ColumnMethodMap getColumnMethodMap()
     {
         return columnMethodMap;
     }
     
+    /**
+     *
+     * @throws SQLException
+     */
     protected void openConnection() throws SQLException
     {
             // Load Oracle JDBC Driver
@@ -126,27 +157,52 @@ public abstract class Database
             con = DriverManager.getConnection(url, user, pass);
     }
     
+    /**
+     *
+     * @param rs
+     * @throws SQLException
+     */
     protected void closeConnection(ResultSet rs) throws SQLException
     {
         rs.close();
         closeConnection();
     }
     
+    /**
+     *
+     * @throws SQLException
+     */
     protected void closeConnection() throws SQLException
     {
         statement.close();
         con.close();
     }
     
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     protected Statement createStatement() throws SQLException
     {
         return con.createStatement();
     }
     
+    /**
+     *
+     * @param key
+     * @return
+     * @throws SQLException
+     */
     protected ResultSet selectWithKey(Object key) throws SQLException
     {
-        String primaryKey = columnMethodMap.getPrimaryKey();
+        String primaryKey = columnMethodMap.getPrimaryKey().get(0);
         
+        return selectWithKey(primaryKey, key);
+    }
+    
+    protected ResultSet selectWithKey(String primaryKey, Object key) throws SQLException
+    {        
         String query = "SELECT * FROM " + tableName + " WHERE " + primaryKey + "=" + key;
         
         if(primaryKey == null || key == null)
@@ -158,6 +214,41 @@ public abstract class Database
         return select(query);
     }
     
+    protected ResultSet selectWithKeys(List<Object> keys) throws SQLException
+    {
+        List<String> primaryKey = columnMethodMap.getPrimaryKey();
+        
+        if(primaryKey == null || keys == null)
+        {
+            throw new NullPointerException("Either primaryKey is not set or key value given is null!");
+        }                      
+        
+        StringBuilder query = new StringBuilder();
+        
+        query.append("SELECT * FROM ").append(tableName).append(" WHERE ");
+        
+        int max = Math.max(keys.size(), primaryKey.size());
+        
+        for(int i = 0; i < max; i++)
+        {
+            String pk = primaryKey.get(i);
+            String k = keys.get(i).toString();
+            
+            query.append(pk).append("=").append(k);
+            
+            if(i < max - 1)
+                query.append(" AND ");
+        }
+
+        return select(query.toString());
+    }
+    
+    /**
+     *
+     * @param query
+     * @return
+     * @throws SQLException
+     */
     protected ResultSet select(String query) throws SQLException
     {
         openConnection();
@@ -165,6 +256,11 @@ public abstract class Database
         return statement.executeQuery(query);
     }
     
+    /**
+     *
+     * @param query
+     * @throws SQLException
+     */
     protected void executeUpdate(String query) throws SQLException
     {
         openConnection();
@@ -174,6 +270,11 @@ public abstract class Database
         closeConnection();
     }
     
+    /**
+     *
+     * @param object
+     * @return
+     */
     protected String generateUpdateQuery(Object object)
     {
         if(object == null)
@@ -189,7 +290,7 @@ public abstract class Database
         
         for(String column : columns)
         {
-            if(!column.equals(columnMethodMap.getPrimaryKey()))
+            if(!columnMethodMap.getPrimaryKey().contains(column))
             {
                 String value = columnMethodMap.get(column,object);
                 
@@ -200,12 +301,17 @@ public abstract class Database
         
         query.deleteCharAt(query.length() - 1);
         
-        query.append(" WHERE ").append(columnMethodMap.getPrimaryKey());
+        query.append(" WHERE ").append(columnMethodMap.getPrimaryKey().get(0));
         query.append("=").append(columnMethodMap.getPrimaryKeyValue(object));
         
         return query.toString();
     }
       
+    /**
+     *
+     * @param object
+     * @return
+     */
     protected String generateInsertQuery(Object object)
     {
         if(object == null)
@@ -240,6 +346,11 @@ public abstract class Database
         return query.toString();
     }
     
+    /**
+     *
+     * @param object
+     * @param rs
+     */
     protected void setFields(Object object, ResultSet rs)
     {
         if(object == null)
@@ -261,16 +372,31 @@ public abstract class Database
         }
     }
     
+    /**
+     *
+     * @param string
+     * @return
+     */
     protected String generateValue(String string)
     {
         return "'" + string + "'";
     }
     
+    /**
+     *
+     * @param i
+     * @return
+     */
     protected String generateValue(Integer i)
     {
         return generateValue(Integer.toString(i));
     }
     
+    /**
+     *
+     * @param date
+     * @return
+     */
     protected String generateValue(Date date)
     {
         DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
@@ -283,6 +409,11 @@ public abstract class Database
         return toDate.toString();
     }
     
+    /**
+     *
+     * @param object
+     * @return
+     */
     protected String generateValue(Object object)
     {
         if(object instanceof String)

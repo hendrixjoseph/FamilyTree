@@ -14,6 +14,9 @@ public class SpouseChildMap
     Person spouse;
     Person child;
     
+    /**
+     *
+     */
     public SpouseChildMap()
     {
         person = new Person();
@@ -21,16 +24,28 @@ public class SpouseChildMap
         child = null;
     }
 
+    /**
+     *
+     * @return
+     */
     public Person getPerson()
     {
         return person;
     }
 
+    /**
+     *
+     * @param person
+     */
     public void setPerson(Person person)
     {
         this.person = person;
     }
 
+    /**
+     *
+     * @return
+     */
     public Person getSpouse()
     {
         if(spouse == null)
@@ -39,11 +54,19 @@ public class SpouseChildMap
         return spouse;
     }
 
+    /**
+     *
+     * @param spouse
+     */
     public void setSpouse(Person spouse)
     {
         this.spouse = spouse;
     }
 
+    /**
+     *
+     * @return
+     */
     public Person getChild()
     {
         if(child == null)
@@ -52,6 +75,10 @@ public class SpouseChildMap
         return child;
     }
 
+    /**
+     *
+     * @param child
+     */
     public void setChild(Person child)
     {
         this.child = child;

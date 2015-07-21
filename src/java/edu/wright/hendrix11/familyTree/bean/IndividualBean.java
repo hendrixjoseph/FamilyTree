@@ -23,10 +23,16 @@ public class IndividualBean implements Serializable
     
     private PersonData personData;
        
+    /**
+     *
+     */
     public IndividualBean()
     {
     }
     
+    /**
+     *
+     */
     @PostConstruct
     public void initialize()
     {
@@ -34,25 +40,39 @@ public class IndividualBean implements Serializable
         person = personData.select(1);
     }
     
+    /**
+     *
+     * @return
+     */
     public Person getPerson()
     {   
         return person;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getPersonId()
     {
         return person.getId();
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setPersonId(Integer id)
     {
-        System.err.println("public void setPersonId(Integer " + id + ")");
         person = personData.select(id);
     }
     
+    /**
+     *
+     * @param id
+     */
     public void setPersonId(int id)
     {
-        System.err.println("public void setPersonId(int " + id + ")");
         person = personData.select(id);
     }
 }

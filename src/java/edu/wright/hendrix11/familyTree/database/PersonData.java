@@ -2,6 +2,7 @@
 package edu.wright.hendrix11.familyTree.database;
 
 import edu.wright.hendrix11.familyTree.database.interfaces.*;
+import edu.wright.hendrix11.familyTree.entity.Marriage;
 import edu.wright.hendrix11.familyTree.entity.Person;
 import edu.wright.hendrix11.familyTree.entity.SpouseChildMap;
 import java.sql.ResultSet;
@@ -19,14 +20,14 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
                                                     UpdateData<Person>, 
                                                     DeleteData<Person>
 {
+
+    /**
+     *
+     */
     public PersonData()
     {
         super("PERSON_VIEW", Person.class);
-        setOtherMethods();
-    }
-    
-    private void setOtherMethods()
-    {
+ 
         ColumnMethodMap columnMethodMap = this.getColumnMethodMap();
         
         columnMethodMap.putGetter("FATHER_ID","getFather().getId()");
@@ -44,12 +45,23 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
         columnMethodMap.setPrimaryKey("ID");
     }
     
+    /**
+     *
+     * @param id
+     * @return
+     */
     @Override
     public Person select(Integer id)
     {
         return select(id, true);
     }
     
+    /**
+     *
+     * @param id
+     * @param includeSpouseChildMap
+     * @return
+     */
     public Person select(Integer id, boolean includeSpouseChildMap)
     {
         Person person = new Person();
@@ -58,7 +70,7 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
         
         try
         {
-            ResultSet rs = selectWithKey(id);//statement.executeQuery("SELECT * FROM " + tableName + " WHERE ID=" + id);
+            ResultSet rs = selectWithKey(id);
             
             if(rs.next()) 
             {
@@ -78,12 +90,42 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
             
             HashMap<Person, List<SpouseChildMap>> map = mapData.select(id);
             
+            MarriageData marriageData = new MarriageData();
+            
+            List<Marriage> marriages = marriageData.select(id);
+            
+            for(Marriage marriage : marriages)
+            {
+                List<SpouseChildMap> spouseList = new ArrayList<SpouseChildMap>();
+                SpouseChildMap spouseMap = new SpouseChildMap();
+                Person spouse = new Person();
+                
+                if(marriage.getHusband().getId().equals(id))
+                {
+                    spouse = marriage.getWife();
+                }
+                else if(marriage.getWife().getId().equals(id))
+                {
+                    spouse = marriage.getHusband();
+                }
+                
+                if(map.get(spouse) == null)
+                {
+                    spouseList.add(spouseMap);
+                    map.put(spouse, spouseList);
+                }
+            }
+            
             person.setSpouseChildMap(map);
         }
                     
         return person;
     }
     
+    /**
+     *
+     * @return
+     */
     public List<Person> selectAll()
     {
         List<Person> persons = new ArrayList<Person>();
@@ -134,6 +176,11 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
         return person;
     }
 
+    /**
+     *
+     * @param p
+     * @return
+     */
     @Override
     public Person update(Person p)
     {
@@ -155,6 +202,11 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
         return null;
     }
 
+    /**
+     *
+     * @param p
+     * @return
+     */
     @Override
     public Person insert(Person p)
     {
@@ -174,11 +226,22 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
         return null;
     }
     
+    /**
+     *
+     * @param p
+     * @param childId
+     * @return
+     */
     public Person insert(Person p, int childId)
     {
         return insert(p);
     }
 
+    /**
+     *
+     * @param p
+     * @return
+     */
     @Override
     public boolean delete(Person p)
     {
