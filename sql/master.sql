@@ -53,7 +53,7 @@
    (	"HUSBAND" NUMBER, 
 	"WIFE" NUMBER, 
 	"PLACE" NUMBER, 
-	"DATE" DATE
+	"ANNIVERSARY" DATE
    ) ;
 --------------------------------------------------------
 --  DDL for Table MOTHER_OF
@@ -120,14 +120,14 @@ WHERE
 --  DDL for View MARRIAGE_VIEW
 --------------------------------------------------------
 
-  CREATE OR REPLACE VIEW "MARRIAGE_VIEW" ("HUSBAND_ID", "HUSBAND_NAME", "WIFE_ID", "WIFE_NAME", "PLACE", "DATE") AS 
+  CREATE OR REPLACE VIEW "MARRIAGE_VIEW" ("HUSBAND_ID", "HUSBAND_NAME", "WIFE_ID", "WIFE_NAME", "PLACE", "ANNIVERSARY") AS 
   SELECT 
     HUSBAND AS HUSBAND_ID,
     H.NAME AS HUSBAND_NAME,
     WIFE AS WIFE_ID,
     W.NAME AS WIFE_NAME,
     PLACE.NAME AS PLACE,
-    "DATE"
+    ANNIVERSARY
 FROM 
     MARRIAGE M,
     PERSON H,
@@ -185,12 +185,15 @@ Insert into DEATH (PERSON_ID,PLACE_ID,"DATE") values (2,1,to_date('12-DEC-1881',
 REM INSERTING into FATHER_OF
 SET DEFINE OFF;
 Insert into FATHER_OF (FATHER_ID,CHILD_ID) values (2,161);
+Insert into FATHER_OF (FATHER_ID,CHILD_ID) values (163,122);
 Insert into FATHER_OF (FATHER_ID,CHILD_ID) values (125,3);
+Insert into FATHER_OF (FATHER_ID,CHILD_ID) values (122,166);
 Insert into FATHER_OF (FATHER_ID,CHILD_ID) values (122,2);
 Insert into FATHER_OF (FATHER_ID,CHILD_ID) values (126,125);
 Insert into FATHER_OF (FATHER_ID,CHILD_ID) values (127,124);
 Insert into FATHER_OF (FATHER_ID,CHILD_ID) values (1,128);
 Insert into FATHER_OF (FATHER_ID,CHILD_ID) values (1,129);
+Insert into FATHER_OF (FATHER_ID,CHILD_ID) values (122,165);
 Insert into FATHER_OF (FATHER_ID,CHILD_ID) values (2,1);
 Insert into FATHER_OF (FATHER_ID,CHILD_ID) values (2,141);
 Insert into FATHER_OF (FATHER_ID,CHILD_ID) values (2,142);
@@ -202,11 +205,15 @@ Insert into GENDER (ABBR,FULL_WORD) values ('O','Other');
 Insert into GENDER (ABBR,FULL_WORD) values ('U','Unknown');
 REM INSERTING into MARRIAGE
 SET DEFINE OFF;
+Insert into MARRIAGE (HUSBAND,WIFE,PLACE,ANNIVERSARY) values (1,167,null,null);
+Insert into MARRIAGE (HUSBAND,WIFE,PLACE,ANNIVERSARY) values (2,3,42,to_date('20-JUL-2015','DD-MON-YYYY'));
 REM INSERTING into MOTHER_OF
 SET DEFINE OFF;
 Insert into MOTHER_OF (MOTHER_ID,CHILD_ID) values (123,2);
 Insert into MOTHER_OF (MOTHER_ID,CHILD_ID) values (124,3);
 Insert into MOTHER_OF (MOTHER_ID,CHILD_ID) values (3,161);
+Insert into MOTHER_OF (MOTHER_ID,CHILD_ID) values (164,122);
+Insert into MOTHER_OF (MOTHER_ID,CHILD_ID) values (123,165);
 Insert into MOTHER_OF (MOTHER_ID,CHILD_ID) values (3,1);
 Insert into MOTHER_OF (MOTHER_ID,CHILD_ID) values (3,141);
 Insert into MOTHER_OF (MOTHER_ID,CHILD_ID) values (3,162);
@@ -215,13 +222,18 @@ SET DEFINE OFF;
 Insert into PERSON (ID,NAME,GENDER) values (123,'Sarah','F');
 Insert into PERSON (ID,NAME,GENDER) values (161,'George','M');
 Insert into PERSON (ID,NAME,GENDER) values (124,'Jenny','F');
+Insert into PERSON (ID,NAME,GENDER) values (164,'Jenny','F');
 Insert into PERSON (ID,NAME,GENDER) values (125,'Kevin','M');
+Insert into PERSON (ID,NAME,GENDER) values (163,'John','M');
+Insert into PERSON (ID,NAME,GENDER) values (166,'Benny','M');
 Insert into PERSON (ID,NAME,GENDER) values (127,'John','M');
 Insert into PERSON (ID,NAME,GENDER) values (122,'Thomas Thoroman','M');
 Insert into PERSON (ID,NAME,GENDER) values (126,'John','M');
 Insert into PERSON (ID,NAME,GENDER) values (128,'John','M');
 Insert into PERSON (ID,NAME,GENDER) values (129,'James','M');
-Insert into PERSON (ID,NAME,GENDER) values (1,'William Zenos Thoroman','M');
+Insert into PERSON (ID,NAME,GENDER) values (167,'The Other Woman','F');
+Insert into PERSON (ID,NAME,GENDER) values (1,'William Z Thoroman','M');
+Insert into PERSON (ID,NAME,GENDER) values (165,'Johnny Jr','M');
 Insert into PERSON (ID,NAME,GENDER) values (2,'Samuel Thoroman','M');
 Insert into PERSON (ID,NAME,GENDER) values (3,'Cynthiann McDonald Reynolds','F');
 Insert into PERSON (ID,NAME,GENDER) values (141,'Mark','M');
@@ -232,6 +244,7 @@ SET DEFINE OFF;
 Insert into PLACE (ID,NAME) values (1,'Ohio');
 Insert into PLACE (ID,NAME) values (2,'Washington, Pennsylvania');
 Insert into PLACE (ID,NAME) values (3,'Jacksonville, Ohio');
+Insert into PLACE (ID,NAME) values (42,'Alaska');
 --------------------------------------------------------
 --  DDL for Index FATHER_OF_PK
 --------------------------------------------------------
@@ -396,13 +409,21 @@ Insert into PLACE (ID,NAME) values (3,'Jacksonville, Ohio');
 
   CREATE OR REPLACE TRIGGER "MARRIAGE_VIEW_INSERT_TRIGGER" 
 INSTEAD OF INSERT ON MARRIAGE_VIEW 
+DECLARE
+  PLACE_ID NUMBER;
 BEGIN
   -- Insert the couple
   INSERT INTO MARRIAGE (HUSBAND, WIFE) VALUES (:new.HUSBAND_ID, :new.WIFE_ID);
   
   -- Insert (well, now update) the date
-  IF :new."DATE" IS NOT NULL THEN
-      UPDATE MARRIAGE SET "DATE"=:new."DATE" WHERE HUSBAND=:new.HUSBAND_ID AND WIFE=:new.WIFE_ID;
+  IF :new.ANNIVERSARY IS NOT NULL THEN
+      UPDATE MARRIAGE SET ANNIVERSARY=:new.ANNIVERSARY WHERE HUSBAND=:new.HUSBAND_ID AND WIFE=:new.WIFE_ID;
+  END IF;
+  
+  -- Finally, the place
+  IF :new.PLACE IS NOT NULL THEN
+      INSERT_PLACE_PROCEDURE(:new.PLACE, PLACE_ID);
+      UPDATE MARRIAGE SET PLACE=PLACE_ID WHERE HUSBAND=:new.HUSBAND_ID AND WIFE=:new.WIFE_ID;
   END IF;
 END;
 /
@@ -448,7 +469,7 @@ BEGIN
   SELECT ABBR INTO GENDER_ABBR FROM JOE.GENDER WHERE GENDER.FULL_WORD=:new.GENDER;
   INSERT INTO PERSON (NAME, GENDER) VALUES (:new.NAME, GENDER_ABBR);
   
-  SELECT MAX(ID) INTO P_ID FROM PERSON; 
+  SELECT ID INTO P_ID FROM LAST_PERSON_INSERTED_VIEW; 
   
   -- Map FATHER_ID to FATHER_OF table
   IF :new.FATHER_ID IS NOT NULL THEN
@@ -461,48 +482,10 @@ BEGIN
   END IF;
   
   -- Insert Birth
-  
-  -- First, map place
-  IF :new.PLACE_OF_BIRTH IS NOT NULL THEN
-    BEGIN
-      INSERT_PLACE_PROCEDURE(:new.PLACE_OF_BIRTH, PLACE_OF_BIRTH_ID);
-      INSERT INTO BIRTH (PERSON_ID, PLACE_ID) VALUES (P_ID, PLACE_OF_BIRTH_ID);
-    END;
-  END IF;
-  
-  -- Now, insert date
-  IF :new.DATE_OF_BIRTH IS NOT NULL THEN
-    BEGIN
-      -- This select does nothing except throw the exception if there is
-      -- no birth record yet. Update won't throw it for some reason.
-      SELECT PERSON_ID INTO P_ID FROM BIRTH WHERE PERSON_ID=P_ID;
-      UPDATE BIRTH SET "DATE"=:new.DATE_OF_BIRTH WHERE PERSON_ID=P_ID;
-    EXCEPTION WHEN NO_DATA_FOUND THEN
-      INSERT INTO BIRTH (PERSON_ID, "DATE") VALUES (P_ID, :new.DATE_OF_BIRTH);
-    END;
-  END IF;
+  INSERT_OR_UPDATE_BIRTH(P_ID, :new.PLACE_OF_BIRTH, :new.DATE_OF_BIRTH);
   
   -- Insert Death
-  
-  -- First, map place
-  IF :new.PLACE_OF_DEATH IS NOT NULL THEN
-    BEGIN
-      INSERT_PLACE_PROCEDURE(:new.PLACE_OF_DEATH, PLACE_OF_DEATH_ID);
-      INSERT INTO BIRTH (PERSON_ID, PLACE_ID) VALUES (P_ID, PLACE_OF_DEATH_ID);
-    END;
-  END IF;
-  
-  -- Now, insert date
-  IF :new.DATE_OF_DEATH IS NOT NULL THEN
-    BEGIN
-      -- This select does nothing except throw the exception if there is
-      -- no death record yet. Update won't throw it for some reason.
-      SELECT PERSON_ID INTO P_ID FROM DEATH WHERE PERSON_ID=P_ID;
-      UPDATE DEATH SET "DATE"=:new.DATE_OF_DEATH WHERE PERSON_ID=P_ID;
-    EXCEPTION WHEN NO_DATA_FOUND THEN
-      INSERT INTO DEATH (PERSON_ID, "DATE") VALUES (P_ID, :new.DATE_OF_DEATH);
-    END;
-  END IF;
+  INSERT_OR_UPDATE_DEATH(P_ID, :new.PLACE_OF_DEATH, :new.DATE_OF_DEATH);
   
 END;
 /
@@ -516,6 +499,8 @@ INSTEAD OF UPDATE ON PERSON_VIEW
 DECLARE
   GENDER_ABBR CHAR(1);
   DUMMY NUMBER;
+  PLACE_OF_BIRTH_ID NUMBER;
+  PLACE_OF_DEATH_ID NUMBER;
 BEGIN
   IF :new.ID IS NOT NULL THEN
   
@@ -549,6 +534,12 @@ BEGIN
        END;
     END IF;
     
+    -- Update Birth
+    INSERT_OR_UPDATE_BIRTH(:new.ID, :new.PLACE_OF_BIRTH, :new.DATE_OF_BIRTH);
+    
+    -- Update Death
+    INSERT_OR_UPDATE_DEATH(:new.ID, :new.PLACE_OF_DEATH, :new.DATE_OF_DEATH);
+    
   END IF;
 END;
 /
@@ -568,6 +559,80 @@ BEGIN
 END;
 /
 ALTER TRIGGER "PLACE_SEQ_TRIGGER" ENABLE;
+--------------------------------------------------------
+--  DDL for Procedure INSERT_OR_UPDATE_BIRTH
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE PROCEDURE "INSERT_OR_UPDATE_BIRTH" 
+(
+  P_ID IN NUMBER 
+, PLACE_OF_BIRTH IN VARCHAR2 
+, DATE_OF_BIRTH IN DATE 
+) AS 
+  PLACE_OF_BIRTH_ID NUMBER;
+  DUMMY NUMBER;
+BEGIN
+   -- First, map place
+  IF PLACE_OF_BIRTH IS NOT NULL THEN
+    BEGIN
+      INSERT_PLACE_PROCEDURE(PLACE_OF_BIRTH, PLACE_OF_BIRTH_ID);
+      SELECT PERSON_ID INTO DUMMY FROM BIRTH WHERE PERSON_ID=P_ID;
+      UPDATE BIRTH SET PLACE_ID=PLACE_OF_BIRTH_ID WHERE PERSON_ID=P_ID;
+    EXCEPTION WHEN NO_DATA_FOUND THEN
+      INSERT INTO BIRTH (PERSON_ID, PLACE_ID) VALUES (P_ID, PLACE_OF_BIRTH_ID);
+    END;
+  END IF;
+  
+  -- Now, insert date
+  IF DATE_OF_BIRTH IS NOT NULL THEN
+    BEGIN
+      SELECT PERSON_ID INTO DUMMY FROM BIRTH WHERE PERSON_ID=P_ID;
+      UPDATE BIRTH SET "DATE"=DATE_OF_BIRTH WHERE PERSON_ID=P_ID;
+    EXCEPTION WHEN NO_DATA_FOUND THEN
+      INSERT INTO BIRTH (PERSON_ID, "DATE") VALUES (P_ID, DATE_OF_BIRTH);
+    END;
+  END IF;
+END INSERT_OR_UPDATE_BIRTH;
+
+/
+--------------------------------------------------------
+--  DDL for Procedure INSERT_OR_UPDATE_DEATH
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE PROCEDURE "INSERT_OR_UPDATE_DEATH" 
+(
+  P_ID IN NUMBER 
+, PLACE_OF_DEATH IN VARCHAR2 
+, DATE_OF_DEATH IN DATE 
+) AS 
+  PLACE_OF_DEATH_ID NUMBER;
+  DUMMY NUMBER;
+BEGIN
+   -- First, map place
+  IF PLACE_OF_DEATH IS NOT NULL THEN
+    BEGIN
+      INSERT_PLACE_PROCEDURE(PLACE_OF_DEATH, PLACE_OF_DEATH_ID);
+      SELECT PERSON_ID INTO DUMMY FROM DEATH WHERE PERSON_ID=P_ID;
+      UPDATE DEATH SET PLACE_ID=PLACE_OF_DEATH_ID WHERE PERSON_ID=P_ID;
+    EXCEPTION WHEN NO_DATA_FOUND THEN
+      INSERT INTO DEATH (PERSON_ID, PLACE_ID) VALUES (P_ID, PLACE_OF_DEATH_ID);
+    END;
+  END IF;
+  
+  -- Now, insert date
+  IF DATE_OF_DEATH IS NOT NULL THEN
+    BEGIN
+      SELECT PERSON_ID INTO DUMMY FROM DEATH WHERE PERSON_ID=P_ID;
+      UPDATE DEATH SET "DATE"=DATE_OF_DEATH WHERE PERSON_ID=P_ID;
+    EXCEPTION WHEN NO_DATA_FOUND THEN
+      INSERT INTO DEATH (PERSON_ID, "DATE") VALUES (P_ID, DATE_OF_DEATH);
+    END;
+  END IF;
+END INSERT_OR_UPDATE_DEATH;
+
+/
 --------------------------------------------------------
 --  DDL for Procedure INSERT_PLACE_PROCEDURE
 --------------------------------------------------------
