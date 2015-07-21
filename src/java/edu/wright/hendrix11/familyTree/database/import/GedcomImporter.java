@@ -1,5 +1,5 @@
 
-package edu.wright.hendrix11.familyTree.database;
+package edu.wright.hendrix11.familyTree.database.imports;
 
 import edu.wright.hendrix11.familyTree.entity.Person;
 import edu.wright.hendrix11.familyTree.entity.PersonInfo;
