@@ -12,7 +12,7 @@ import java.util.Scanner;
 *
 * @author Joe Hendrix
 */
-public abstract class Importer extends Database
+public abstract class Importer
 {
     private static final String[] tableNames = {"", ""};
     
