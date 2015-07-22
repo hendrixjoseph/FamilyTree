@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
-public class ColumnMethodMap extends Database
+public class ColumnMethodMap extends DatabaseQuery
 {
     private List<String> columns;
     private HashMap<String, List<Method>> getters;
