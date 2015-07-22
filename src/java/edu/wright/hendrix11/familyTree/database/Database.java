@@ -135,6 +135,14 @@ public abstract class Database
         con = DriverManager.getConnection(url, user, pass);
     }
     
+    private static Connection getConnection() throws SQLException
+    {
+        if(con == null)
+            openConnection()
+            
+        return con;
+    }
+    
     /**
      *
      * @param rs
@@ -167,7 +175,7 @@ public abstract class Database
      */
     protected Statement createStatement() throws SQLException
     {
-        return con.createStatement();
+        return getConnection().createStatement();
     }
     
     /**
