@@ -1,21 +1,4 @@
 "ID","FATHER_ID","FATHER_NAME","MOTHER_ID","MOTHER_NAME","NAME","GENDER","PLACE_OF_BIRTH","DATE_OF_BIRTH","PLACE_OF_DEATH","DATE_OF_DEATH"
-2,122,"Thomas Thoroman",123,"Sarah","Samuel Thoroman","Male","Washington, Pennsylvania",23-MAY-1795,"Ohio",12-DEC-1881
-165,122,"Thomas Thoroman",123,"Sarah","Johnny Jr","Male","",,"",
-3,125,"Kevin",124,"Jenny","Cynthiann McDonald Reynolds","Female","",,"",
-122,163,"John",164,"Jenny","Thomas Thoroman","Male","",,"",
-162,,"",3,"Cynthiann McDonald Reynolds","Susan","Female","",,"",
-161,2,"Samuel Thoroman",3,"Cynthiann McDonald Reynolds","George","Male","",,"",
 1,2,"Samuel Thoroman",3,"Cynthiann McDonald Reynolds","William Z Thoroman","Male","Ohio",04-MAR-1827,"Jacksonville, Ohio",29-JAN-1900
-141,2,"Samuel Thoroman",3,"Cynthiann McDonald Reynolds","Mark","Male","",,"",
-123,,"",,"","Sarah","Female","",,"",
-163,,"",,"","John","Male","",,"",
-127,,"",,"","John","Male","",,"",
-167,,"",,"","The Other Woman","Female","",,"",
-164,,"",,"","Jenny","Female","",,"",
-126,,"",,"","John","Male","",,"",
-142,2,"Samuel Thoroman",,"","John","Male","",,"",
-128,1,"William Z Thoroman",,"","John","Male","",,"",
-129,1,"William Z Thoroman",,"","James","Male","",,"",
-125,126,"John",,"","Kevin","Male","",,"",
-166,122,"Thomas Thoroman",,"","Benny","Male","",,"",
-124,127,"John",,"","Jenny","Female","",,"",
+2,,"",,"","Samuel Thoroman","Male","Washington, Pennsylvania",23-MAY-1795,"Ohio",12-DEC-1881
+3,,"",,"","Cynthiann McDonald Reynolds","Female","",,"",

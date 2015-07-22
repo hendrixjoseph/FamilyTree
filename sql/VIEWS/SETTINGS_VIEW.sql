@@ -1,0 +1,14 @@
+--------------------------------------------------------
+--  DDL for View SETTINGS_VIEW
+--------------------------------------------------------
+
+  CREATE OR REPLACE VIEW "SETTINGS_VIEW" ("THEME", "DEFAULT_PERSON", "DEFAULT_PERSON_TYPE") AS 
+  SELECT 
+    THEME,
+    DEFAULT_PERSON,
+    DEFAULT_PERSON_TYPE.DEFAULT_PERSON_TYPE AS DEFAULT_PERSON_TYPE
+FROM 
+    SETTINGS,
+    DEFAULT_PERSON_TYPE
+WHERE
+    DEFAULT_PERSON_TYPE.ID = SETTINGS.DEFAULT_PERSON_TYPE;

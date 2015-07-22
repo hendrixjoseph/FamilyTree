@@ -1,0 +1,8 @@
+--------------------------------------------------------
+--  Ref Constraints for Table SETTINGS
+--------------------------------------------------------
+
+  ALTER TABLE "SETTINGS" ADD CONSTRAINT "DEFAULT_PERSON_FK" FOREIGN KEY ("DEFAULT_PERSON")
+	  REFERENCES "PERSON" ("ID") ON DELETE SET NULL ENABLE;
+  ALTER TABLE "SETTINGS" ADD CONSTRAINT "DEFAULT_PERSON_TYPE_FK" FOREIGN KEY ("DEFAULT_PERSON")
+	  REFERENCES "DEFAULT_PERSON_TYPE" ("ID") ON DELETE SET NULL ENABLE;
