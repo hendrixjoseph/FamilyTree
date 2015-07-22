@@ -53,6 +53,23 @@ public abstract class DatabaseQuery extends Database
         return columnMethodMap;
     }
     
+    public HashMap<String, String> getColumnValuesMap(Object object)
+    {
+        HashMap<String, String> map = new HashMap<String, String>();
+        
+        List<String> columns = columnMethodMap.getColumns();
+        
+        for(String column : columns)
+        {
+            String value = columnMethodMap.get(column, object);
+            
+            if(value != null)
+                map.put(column,value);
+        }
+        
+        return map;
+    }
+    
     /**
      *
      * @param key
