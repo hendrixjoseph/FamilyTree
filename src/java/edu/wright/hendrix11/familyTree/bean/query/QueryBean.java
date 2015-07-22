@@ -7,7 +7,22 @@ import javax.faces.event.ActionEvent;
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
-public interface QueryBean
+public abstract class QueryBean
 {
-    public void commit(ActionEvent actionEvent);
+    public abstract void commit(ActionEvent actionEvent);
+    
+    /**
+     *
+     * @return
+     */
+    public String getAction()
+    {
+        StringBuilder sb = new StringBuilder();
+        
+        sb.append("index?personId=");
+        sb.append(relatedPerson.getId());
+        sb.append("&amp;faces-redirect=true");
+        
+        return sb.toString();
+    }
 }
