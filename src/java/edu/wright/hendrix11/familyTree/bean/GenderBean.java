@@ -13,7 +13,7 @@ import javax.faces.bean.RequestScoped;
 * @author Joe Hendrix
 */
 @ManagedBean
-@RequestScoped
+@ApplicationScoped
 public class GenderBean
 {
     private HashMap<String, String> genders;
