@@ -9,7 +9,7 @@ import java.io.PrintStream;
 *
 * @author Joe Hendrix
 */
-public abstract class Exporter extends Database
+public abstract class Exporter
 {
     private static final String[] tableNames = {"", ""};
     
