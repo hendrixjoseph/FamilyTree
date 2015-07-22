@@ -26,7 +26,17 @@
                 </p:submenu>
             </p:submenu>
             <p:submenu label="Edit">            
-                    <p:menuitem value="Edit individual" update="@([id$=editDialog_form])" actionListener="{personQueryBean.setNoInsertJustUpdate}" oncomplete="PF('editDialog').show()" />           
+                    <p:menuitem value="Edit individual" update="@([id$=editDialog_form])" actionListener="{personQueryBean.setNoInsertJustUpdate}" oncomplete="PF('editDialog').show()" />
+                    <p:submenu label="Detach..."> 
+                      <p:menuitem value="Father" />
+                      <p:menuitem value="Mother" />
+                      <p:submenu value="Spouse" />
+                        <p:menuitem value="Spouse 1" />
+                      </p:submenu>
+                      <p:submenu value="Child" />
+                        <p:menuitem value="Child 1" />
+                      </p:submenu>
+                    </p:submenu>
             </p:submenu>
             <p:submenu label="Search">
 
