@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" 
+      xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:head>
+        <title>Places</title>
+    </h:head>
+    <h:body>
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="50">
+                <ui:include src="/WEB-INF/resource/template/menuTemplate.xhtml" />
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="50">
+                <ui:include src="/WEB-INF/resource/template/footerTemplate.xhtml" />
+            </p:layoutUnit>
+            
+            <p:layoutUnit position="center">
+              <p:dataTable var="place" value="#{placesBean.values}">
+                <c:forEach items="#{placesBean.prettyNames}" var="column">
+                  <p:column headerText="#{column}">
+                    <p:outputLabel value="test" />
+                  </p:column>
+                </c:forEach>
+              </p:dataTable>
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+</html>
