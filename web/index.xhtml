@@ -21,9 +21,6 @@
             </p:layoutUnit>
 
             <p:layoutUnit position="south" size="200">
-                <h:form>
-                    <p:commandButton value="Edit person" update="@([id$=editDialog_form])" actionListener="#{personQueryBean.setNoInsertJustUpdate}" oncomplete="PF('editDialog').show()" />
-                </h:form>
                 <ui:include src="/WEB-INF/resource/template/footerTemplate.xhtml" />
             </p:layoutUnit>
 
