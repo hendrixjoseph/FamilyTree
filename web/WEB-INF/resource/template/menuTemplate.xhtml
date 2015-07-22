@@ -46,8 +46,19 @@
             </p:submenu>
             <p:submenu label="Help">
                 <p:menuitem value="Javadoc" url="#" />
-                <p:menuitem value="About" url="#" />
+                <p:menuitem value="About" onclick="PF('aboutDialog').show()" />
             </p:submenu>
         </p:menubar>
     </h:form>
+    
+    <!-- About Dialog -->
+    <p:dialog header="About" modal="true" widgetVar="aboutDialog" id="aboutDialog">
+      <p:outputLabel value="Family Tree Database" />
+      <p:outoutLabel value="Technologies used:" />
+      <p:outputLabel value="Created for CS7700 Advanced Database Systems" />
+      <p:outputLabel value="Wright State University" />
+      <p:outputLabel value="College of" />
+      <p:outputLabel value="Department of" />
+      <p:link style="float: right" href="mailto:hendrix.11@wright.edu" value="Joseph Hendrix" />
+    </p:dialog>
 </ui:component>
