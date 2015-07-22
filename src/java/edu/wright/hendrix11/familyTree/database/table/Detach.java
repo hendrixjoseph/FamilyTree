@@ -2,14 +2,23 @@ package edu.wright.hendrix11.familyTree.database.table;
 
 public class Detach
 {
+  private DetachParent detachParent;
+  
   public void detachFather(Person child)
   {
-  
+    detachParent = new DetachFather();
+    detachParent(child);
   }
   
   public void detachMother(Person child)
   {
+    detachParent = new DetachMother();
+    detachParent(child);
+  }
   
+  private void detachParent(Person child)
+  {
+    detachParent.delete(child);
   }
   
   public void detachSpouse(Person person, Person spouse)
