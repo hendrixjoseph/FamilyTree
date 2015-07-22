@@ -12,7 +12,7 @@ import java.util.List;
 *
 * @author Joe Hendrix <hendrix.11@wright.edu>
 */
-public class GenderTable extends Database implements SelectAllData<Gender>
+public class GenderTable extends DatabaseQuery implements SelectAllData<Gender>
 {
     public GenderTable()
     {
