@@ -45,19 +45,6 @@ public abstract class DatabaseQuery extends Database
         this.tableName = tableName;
         columnMethodMap = new ColumnMethodMap(tableName, clazz);
     }
-    
-    /**
-     *
-     * @param url
-     * @param user
-     * @param pass
-     */
-    public static void setProperities(String url, String user, String pass)
-    {
-        Database.url = url;
-        Database.user = user;
-        Database.pass = pass;
-    }
 
     /**
      *
