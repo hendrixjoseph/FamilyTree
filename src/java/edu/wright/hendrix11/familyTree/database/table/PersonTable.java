@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
-public class PersonTable extends Database implements SelectData<Person, Integer>, 
+public class PersonTable extends DatabaseQuery implements SelectData<Person, Integer>, 
                                                     SelectAllData<Person>,
                                                     InsertData<Person>, 
                                                     UpdateData<Person>, 
