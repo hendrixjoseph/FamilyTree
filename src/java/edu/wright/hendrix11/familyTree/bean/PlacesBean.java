@@ -15,6 +15,7 @@ public class PlacesBean
 {
     String[] columns = {};
     String[] prettyNames = {};
+    List<String> values;
 
     /**
      *
@@ -28,6 +29,11 @@ public class PlacesBean
     public String[] getPrettyNames()
     {
       return prettyNames;
+    }
+    
+    public List<String> getValues()
+    {
+        return values;
     }
     
   }
