@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
-public class MarriageTable extends Database implements SelectData<List<Marriage>, Integer>, 
+public class MarriageTable extends DatabaseQuery implements SelectData<List<Marriage>, Integer>, 
                                                        InsertData<Marriage>
 {
     
