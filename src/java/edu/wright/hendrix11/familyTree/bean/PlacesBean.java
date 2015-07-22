@@ -14,9 +14,10 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class PlacesBean
 {
-    String[] columns = {};
-    String[] prettyNames = {};
-    List<String> values;
+    private static final String[] columns = {"ID","NAME"};
+    private static final String[] prettyNames = {"Id","Name"};
+    private List<Place> values;
+    private PlacesTable placesTable;
 
     /**
      *
@@ -24,7 +25,9 @@ public class PlacesBean
     @PostConstruct
     public void initialize()
     {
-    
+        placesTable = new PlacesTable();
+        
+        HashMap<String, String> map = placesTable.getColumnValuesMap(place);
     }
     
     public String[] getPrettyNames()
@@ -32,7 +35,7 @@ public class PlacesBean
       return prettyNames;
     }
     
-    public List<String> getValues()
+    public List<Place> getValues()
     {
         return values;
     }
