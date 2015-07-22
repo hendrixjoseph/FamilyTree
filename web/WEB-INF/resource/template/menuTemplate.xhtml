@@ -24,16 +24,17 @@
                     <p:menuitem value="XML" url="#" />
                     <p:menuitem value="GEDCOM" url="#" />
                 </p:submenu>
+                <p:menuitem value="Settings" url="#" />
             </p:submenu>
             <p:submenu label="Edit">            
                     <p:menuitem value="Edit individual" update="@([id$=editDialog_form])" actionListener="{personQueryBean.setNoInsertJustUpdate}" oncomplete="PF('editDialog').show()" />
                     <p:submenu label="Detach..."> 
                       <p:menuitem value="Father" />
                       <p:menuitem value="Mother" />
-                      <p:submenu value="Spouse" />
+                      <p:submenu label="Spouse">
                         <p:menuitem value="Spouse 1" />
                       </p:submenu>
-                      <p:submenu value="Child" />
+                      <p:submenu label="Child">
                         <p:menuitem value="Child 1" />
                       </p:submenu>
                     </p:submenu>
@@ -60,15 +61,4 @@
             </p:submenu>
         </p:menubar>
     </h:form>
-    
-    <!-- About Dialog -->
-    <p:dialog header="About" modal="true" widgetVar="aboutDialog" id="aboutDialog">
-      <p:outputLabel value="Family Tree Database" />
-      <p:outoutLabel value="Technologies used:" />
-      <p:outputLabel value="Created for CS7700 Advanced Database Systems" />
-      <p:outputLabel value="Wright State University" />
-      <p:outputLabel value="College of" />
-      <p:outputLabel value="Department of" />
-      <p:link style="float: right" href="mailto:hendrix.11@wright.edu" value="Joseph Hendrix" />
-    </p:dialog>
 </ui:component>

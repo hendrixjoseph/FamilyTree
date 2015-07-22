@@ -38,5 +38,24 @@
         <!-- Dialogs -->
         <ui:include src="/WEB-INF/resource/template/editPersonDialogs.xhtml" />
         
+        <!-- About Dialog -->
+        <p:dialog header="About" modal="true" widgetVar="aboutDialog" id="aboutDialog">
+            <p>
+                <p:outputLabel value="Family Tree Database" />
+            </p>
+            <p>
+                <p:outputLabel value="Technologies used:" />
+            </p>
+            <p>
+                <p:outputLabel value="Created for CS7700 Advanced Database Systems" /><br />
+                <p:outputLabel value="Wright State University" /><br />
+                <p:outputLabel value="College of" /><br />
+                <p:outputLabel value="Department of" />
+            </p>
+            <p>
+                <p:link href="mailto:hendrix.11@wright.edu" value="Joseph Hendrix" />
+            </p>
+        </p:dialog>
+        
     </h:body>
 </html>
