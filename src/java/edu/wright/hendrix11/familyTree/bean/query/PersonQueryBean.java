@@ -18,7 +18,7 @@ import javax.faces.event.ActionEvent;
  */
 @ManagedBean
 @ViewScoped
-public class PersonQueryBean implements Serializable, QueryBean
+public class PersonQueryBean extends QueryBean implements Serializable
 {   
     int personType;
         
@@ -139,21 +139,6 @@ public class PersonQueryBean implements Serializable, QueryBean
     private void setGenderNotSelected()
     {
         personToInsert.setGender("notSelected");
-    }
-    
-    /**
-     *
-     * @return
-     */
-    public String getAction()
-    {
-        StringBuilder sb = new StringBuilder();
-        
-        sb.append("index?personId=");
-        sb.append(relatedPerson.getId());
-        sb.append("&amp;faces-redirect=true");
-        
-        return sb.toString();
     }
     
     /**
