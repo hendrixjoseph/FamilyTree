@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
-public class SpouseChildTable extends Database implements SelectData<HashMap<Person, List<SpouseChildMap>>, Integer>
+public class SpouseChildTable extends DatabaseQuery implements SelectData<HashMap<Person, List<SpouseChildMap>>, Integer>
 {    
 
     /**
