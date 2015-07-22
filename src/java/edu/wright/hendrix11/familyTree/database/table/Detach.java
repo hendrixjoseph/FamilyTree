@@ -1,5 +1,10 @@
 package edu.wright.hendrix11.familyTree.database.table;
 
+import edu.wright.hendrix11.familyTree.database.ColumnMethodMap;
+import edu.wright.hendrix11.familyTree.database.DatabaseQuery;
+import edu.wright.hendrix11.familyTree.database.interfaces.DeleteData;
+import edu.wright.hendrix11.familyTree.entity.Person;
+
 public class Detach
 {
   private DetachParent detachParent;
@@ -33,7 +38,7 @@ public class Detach
   
   private class DetachFather extends DetachParent
   {
-    public DetachFather
+    public DetachFather()
     {
       super("FATHER");
     }
@@ -41,7 +46,7 @@ public class Detach
   
   private class DetachMother extends DetachParent
   {
-    public DetachMother
+    public DetachMother()
     {
       super("MOTHER");
     }
@@ -49,7 +54,7 @@ public class Detach
   
   private abstract class DetachParent extends DatabaseQuery implements DeleteData<Person>
   {
-    public DetachFather(String parentType)
+    public DetachParent(String parentType)
     {
         super(parentType + "_OF", DetachEntity.class);
 
@@ -60,6 +65,7 @@ public class Detach
         columnMethodMap.setPrimaryKey("CHILD_ID");
     }
   
+    @Override
     public boolean delete(Person p)
     {
       if(p != null && p.getId() != null)
@@ -79,6 +85,7 @@ public class Detach
       
       return false;
     }
+  }
   
   private class DetachEntity
   {

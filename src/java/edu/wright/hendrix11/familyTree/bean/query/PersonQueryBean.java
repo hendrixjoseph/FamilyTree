@@ -236,6 +236,12 @@ public class PersonQueryBean extends QueryBean implements Serializable
     {
         personType = NO_INSERT_UPDATE_RELATED_PERSON;
     }
+    
+    @Override
+    public String getAction()
+    {
+        return getAction(relatedPerson);
+    }
        
     /**
      *

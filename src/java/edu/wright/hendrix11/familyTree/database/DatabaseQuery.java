@@ -1,11 +1,9 @@
 
 package edu.wright.hendrix11.familyTree.database;
 
-import java.io.*;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Properties;
 import java.util.Date;
 import java.util.List;
 
@@ -118,10 +116,9 @@ public abstract class DatabaseQuery extends Database
      */
     protected ResultSet select(String query) throws SQLException
     {
-        //openConnection();
-        statement = createStatement();
-        return statement.executeQuery(query);
+        return executeQuery(query);
     }
+    
     
     /**
      *

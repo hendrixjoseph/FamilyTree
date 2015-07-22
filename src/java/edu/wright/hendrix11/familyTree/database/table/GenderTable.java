@@ -1,7 +1,7 @@
 package edu.wright.hendrix11.familyTree.database.table;
 
 import edu.wright.hendrix11.familyTree.database.ColumnMethodMap;
-import edu.wright.hendrix11.familyTree.database.Database;
+import edu.wright.hendrix11.familyTree.database.DatabaseQuery;
 import edu.wright.hendrix11.familyTree.database.interfaces.SelectAllData;
 import edu.wright.hendrix11.familyTree.entity.Gender;
 import java.sql.ResultSet;

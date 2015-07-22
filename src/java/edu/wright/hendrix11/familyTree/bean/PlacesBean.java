@@ -1,5 +1,6 @@
 package edu.wright.hendrix11.familyTree.bean;
 
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;

@@ -2,7 +2,7 @@
 package edu.wright.hendrix11.familyTree.database.table;
 
 import edu.wright.hendrix11.familyTree.database.ColumnMethodMap;
-import edu.wright.hendrix11.familyTree.database.Database;
+import edu.wright.hendrix11.familyTree.database.DatabaseQuery;
 import edu.wright.hendrix11.familyTree.database.interfaces.*;
 import edu.wright.hendrix11.familyTree.entity.Marriage;
 import edu.wright.hendrix11.familyTree.entity.Person;
@@ -12,8 +12,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

@@ -3,11 +3,7 @@ package edu.wright.hendrix11.familyTree.database;
 
 import java.io.*;
 import java.sql.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Properties;
-import java.util.Date;
-import java.util.List;
 
 /**
  *
@@ -138,7 +134,7 @@ public abstract class Database
     private static Connection getConnection() throws SQLException
     {
         if(con == null)
-            openConnection()
+            openConnection();
             
         return con;
     }
@@ -176,6 +172,12 @@ public abstract class Database
     protected Statement createStatement() throws SQLException
     {
         return getConnection().createStatement();
+    }
+    
+    protected ResultSet executeQuery(String query) throws SQLException
+    {
+        statement = createStatement();
+        return statement.executeQuery(query);
     }
     
     /**

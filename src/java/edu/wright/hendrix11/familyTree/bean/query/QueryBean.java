@@ -1,6 +1,7 @@
 
 package edu.wright.hendrix11.familyTree.bean.query;
 
+import edu.wright.hendrix11.familyTree.entity.Person;
 import javax.faces.event.ActionEvent;
 
 /**
@@ -13,16 +14,19 @@ public abstract class QueryBean
     
     /**
      *
+     * @param person
      * @return
      */
-    public String getAction()
+    protected String getAction(Person person)
     {
         StringBuilder sb = new StringBuilder();
         
         sb.append("index?personId=");
-        sb.append(relatedPerson.getId());
+        sb.append(person.getId());
         sb.append("&amp;faces-redirect=true");
         
         return sb.toString();
     }
+    
+    public abstract String getAction();
 }
