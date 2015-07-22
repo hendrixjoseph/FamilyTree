@@ -1,4 +1,4 @@
-
+package edu.wright.hendrix11.familyTree.entity;
 
 import java.util.Date;
 
