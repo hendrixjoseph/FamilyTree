@@ -21,7 +21,7 @@ public abstract class Database
     
     private static String propertiesFile;    
     
-    private Connection con;
+    private static Connection con;
     private Statement statement;
     
     private ColumnMethodMap columnMethodMap;
@@ -41,10 +41,6 @@ public abstract class Database
      */
     public Database()
     {
-        if(url == null || user == null || pass == null)
-        {
-            setProperties("database.properties");
-        }
     }
     
     /**
@@ -150,11 +146,16 @@ public abstract class Database
      *
      * @throws SQLException
      */
-    protected void openConnection() throws SQLException
-    {
-            // Load Oracle JDBC Driver
-            DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
-            con = DriverManager.getConnection(url, user, pass);
+    public static void openConnection() throws SQLException
+    {        
+        if(url == null || user == null || pass == null)
+        {
+            setProperties("database.properties");
+        }
+        
+        // Load Oracle JDBC Driver
+        DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+        con = DriverManager.getConnection(url, user, pass);
     }
     
     /**
@@ -162,19 +163,23 @@ public abstract class Database
      * @param rs
      * @throws SQLException
      */
-    protected void closeConnection(ResultSet rs) throws SQLException
+    protected void closeStatement(ResultSet rs) throws SQLException
     {
         rs.close();
-        closeConnection();
+        closeStatement();
+    }
+    
+    protected void closeStatement() throws SQLException
+    {
+        statement.close();
     }
     
     /**
      *
      * @throws SQLException
      */
-    protected void closeConnection() throws SQLException
+    public static void closeConnection() throws SQLException
     {
-        statement.close();
         con.close();
     }
     
@@ -251,7 +256,7 @@ public abstract class Database
      */
     protected ResultSet select(String query) throws SQLException
     {
-        openConnection();
+        //openConnection();
         statement = createStatement();
         return statement.executeQuery(query);
     }
@@ -263,11 +268,11 @@ public abstract class Database
      */
     protected void executeUpdate(String query) throws SQLException
     {
-        openConnection();
+        //openConnection();
         statement = createStatement();
         statement.executeUpdate(query);
         statement.close();
-        closeConnection();
+        //closeConnection();
     }
     
     /**
@@ -379,6 +384,8 @@ public abstract class Database
      */
     protected String generateValue(String string)
     {
+        string = string.replaceAll("'", "''");
+        
         return "'" + string + "'";
     }
     

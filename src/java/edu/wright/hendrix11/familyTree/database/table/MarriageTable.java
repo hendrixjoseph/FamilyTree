@@ -1,6 +1,8 @@
 
-package edu.wright.hendrix11.familyTree.database;
+package edu.wright.hendrix11.familyTree.database.table;
 
+import edu.wright.hendrix11.familyTree.database.ColumnMethodMap;
+import edu.wright.hendrix11.familyTree.database.Database;
 import edu.wright.hendrix11.familyTree.database.interfaces.InsertData;
 import edu.wright.hendrix11.familyTree.database.interfaces.SelectData;
 import edu.wright.hendrix11.familyTree.entity.Marriage;
@@ -13,11 +15,11 @@ import java.util.List;
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
-public class MarriageData extends Database implements SelectData<List<Marriage>, Integer>, 
-                                                      InsertData<Marriage>
+public class MarriageTable extends Database implements SelectData<List<Marriage>, Integer>, 
+                                                       InsertData<Marriage>
 {
     
-    public MarriageData()
+    public MarriageTable()
     {
         super("MARRIAGE_VIEW",Marriage.class);
         
@@ -67,6 +69,8 @@ public class MarriageData extends Database implements SelectData<List<Marriage>,
                 
                 marriages.add(marriage);
             }
+            
+            closeStatement(rs);
         }
         catch (SQLException ex)
         {

@@ -78,4 +78,15 @@ public class Marriage
         else if(p2.getGender().equals("Female"))
             wife = p2;
     }
+    
+    @Override
+    public String toString()
+    {
+        StringBuilder sb = new StringBuilder();
+        
+        sb.append("Husband: " ).append(husband.exists() ? husband.getName() : "(null)").append("\n");
+        sb.append("Wife: " ).append(wife.exists() ? wife.getName() : "(null)").append("\n");
+        
+        return sb.toString();
+    }
 }

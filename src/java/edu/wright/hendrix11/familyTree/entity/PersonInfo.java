@@ -11,38 +11,37 @@ package edu.wright.hendrix11.familyTree.entity;
  */
 public class PersonInfo
 {
-    private Person person;
-    private String placeOfBurial;
-    private String ssn;
-    private String note;
-
-    public String getPlaceOfBurial()
+    private String type;
+    private String description;
+    
+    public PersonInfo()
     {
-        return placeOfBurial;
+        type = null;
+        description = null;
+    }
+    
+    public String getType()
+    {
+        return type;
     }
 
-    public void setPlaceOfBurial(String placeOfBurial)
+    public void setType(String type)
     {
-        this.placeOfBurial = placeOfBurial;
+        this.type = type;
     }
 
-    public String getSsn()
+    public String getDescription()
     {
-        return ssn;
+        return description;
     }
 
-    public void setSsn(String ssn)
+    public void setDescription(String description)
     {
-        this.ssn = ssn;
+        this.description = description;
     }
 
-    public String getNote()
+    public boolean isSet()
     {
-        return note;
-    }
-
-    public void setNote(String note)
-    {
-        this.note = note;
+        return (description != null && type != null);
     }
 }

@@ -1,5 +1,7 @@
-package edu.wright.hendrix11.familyTree.database;
+package edu.wright.hendrix11.familyTree.database.table;
 
+import edu.wright.hendrix11.familyTree.database.ColumnMethodMap;
+import edu.wright.hendrix11.familyTree.database.Database;
 import edu.wright.hendrix11.familyTree.database.interfaces.SelectAllData;
 import edu.wright.hendrix11.familyTree.entity.Gender;
 import java.sql.ResultSet;
@@ -10,9 +12,9 @@ import java.util.List;
 *
 * @author Joe Hendrix <hendrix.11@wright.edu>
 */
-public class GenderData extends Database implements SelectAllData<Gender>
+public class GenderTable extends Database implements SelectAllData<Gender>
 {
-    public GenderData()
+    public GenderTable()
     {
         super("GENDER", Gender.class);
 
@@ -37,7 +39,7 @@ public class GenderData extends Database implements SelectAllData<Gender>
                 genders.add(gender);
             }
             
-            closeConnection(rs);
+            closeStatement(rs);
         }
         catch(Exception e)
         {

@@ -26,6 +26,8 @@ public class Person
     private HashMap<Person, List<SpouseChildMap>> spouseChildMap;
     
     private List<Person> childrenNoSpouse;
+    
+    private HashMap<String, PersonInfo> personInfo;
 
     /**
      *
@@ -33,6 +35,8 @@ public class Person
     public Person()
     {
         // No arg constructor
+        childrenNoSpouse = new ArrayList<Person>();
+        spouseChildMap = new HashMap<Person, List<SpouseChildMap>>();
     }
     
     /**
@@ -60,58 +64,6 @@ public class Person
         this(name);
         
         this.id = id;
-    }
-    
-    /**
-     *
-     * @param id
-     * @param fatherId
-     * @param father
-     * @param motherId
-     * @param mother
-     * @param name
-     * @param gender
-     * @param dateOfBirth
-     * @param placeOfBirth
-     * @param dateOfDeath
-     * @param placeOfDeath
-     */
-    public Person(Integer id, Integer fatherId, String father, Integer motherId, String mother, String name, String gender, Date dateOfBirth, String placeOfBirth, Date dateOfDeath, String placeOfDeath)
-    {
-        this(   id, 
-                father!=null?new Person(fatherId, father):null, 
-                mother!=null?new Person(motherId, mother):null,
-                name, 
-                gender,
-                dateOfBirth, 
-                placeOfBirth, 
-                dateOfDeath, 
-                placeOfDeath);
-    }
-
-    /**
-     *
-     * @param id
-     * @param father
-     * @param mother
-     * @param name
-     * @param gender
-     * @param dateOfBirth
-     * @param placeOfBirth
-     * @param dateOfDeath
-     * @param placeOfDeath
-     */
-    public Person(Integer id, Person father, Person mother, String name, String gender, Date dateOfBirth, String placeOfBirth, Date dateOfDeath, String placeOfDeath)
-    {        
-        this.id = id;
-        this.father = father;
-        this.mother = mother;
-        this.name = name;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-        this.placeOfBirth = placeOfBirth;
-        this.dateOfDeath = dateOfDeath;
-        this.placeOfDeath = placeOfDeath;
     }
     
     /**
@@ -228,6 +180,20 @@ public class Person
     public HashMap<Person, List<SpouseChildMap>> getSpouseChildMap()
     {
         return spouseChildMap;
+    }
+    
+    public List<Person> getChildren(Person spouse)
+    {
+        List<SpouseChildMap> mapList = getSpouseChildMap().get(spouse);
+        
+        List<Person> children = new ArrayList<Person>();
+        
+        for(SpouseChildMap map : mapList)
+        {
+            children.add(map.getChild());
+        }
+        
+        return children;
     }
 
     /**
@@ -371,6 +337,38 @@ public class Person
         
         return exists;
     }
+
+    public HashMap<String, PersonInfo> getPersonInfo()
+    {
+        return personInfo;
+    }
+
+    public void setPersonInfo(HashMap<String, PersonInfo> personInfo)
+    {
+        this.personInfo = personInfo;
+    }
+    
+    public void addChild(Person child, Person spouse)
+    {
+        if(spouse == null)
+            this.childrenNoSpouse.add(child);
+        else
+        {
+            List<SpouseChildMap> map = this.spouseChildMap.get(spouse);
+            
+            if(map == null)
+            {
+                map = new ArrayList<SpouseChildMap>();
+            }
+            
+            SpouseChildMap spouseChildMap = new SpouseChildMap();
+            spouseChildMap.setPeople(this, spouse, child);
+            
+            map.add(spouseChildMap);
+            
+            this.spouseChildMap.put(spouse, map);
+        }
+    }
     
     @Override
     public boolean equals(Object o)
@@ -395,7 +393,9 @@ public class Person
     public int hashCode()
     {
         int hash = 5;
-        hash = 53 * hash + this.id;
+        if(id != null)
+            hash = 53 * hash + this.id;
+        
         hash = 53 * hash + Objects.hashCode(this.name);
         return hash;
     }
@@ -446,5 +446,13 @@ public class Person
 //        private String placeOfDeath;
         
         return sb.toString();
+    }
+
+    public void addInfo(PersonInfo personInfo)
+    {
+        if(this.personInfo == null)
+            this.personInfo = new HashMap<String, PersonInfo>();
+        
+        this.personInfo.put(personInfo.getType(), personInfo);
     }
 }

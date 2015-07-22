@@ -24,6 +24,7 @@
                 <h:form>
                     <p:commandButton value="Edit person" update="@([id$=editDialog_form])" actionListener="#{personQueryBean.setNoInsertJustUpdate}" oncomplete="PF('editDialog').show()" />
                 </h:form>
+                <ui:include src="/WEB-INF/resource/template/footerTemplate.xhtml" />
             </p:layoutUnit>
 
             <!-- ui:define name="east">East</ui:define -->
@@ -38,46 +39,7 @@
         </p:layout>
 
         <!-- Dialogs -->
-        <ui:include src="/WEB-INF/resource/template/editPersonDialog.xhtml">
-            <ui:param name="header" value="Add Child to just #{individualBean.person.name}" />
-            <ui:param name="widgetVar" value="addChildSingleParentDialog" />
-            <ui:param name="person" value="#{personQueryBean.personToInsert}" />
-            <ui:param name="isNewPerson" value="#{true}" />
-        </ui:include>
-
-        <ui:include src="/WEB-INF/resource/template/editPersonDialog.xhtml">
-            <ui:param name="header" value="Add Child to #{individualBean.person.name} and spouse " />
-            <ui:param name="widgetVar" value="addChildDialog" />
-            <ui:param name="person" value="#{personQueryBean.personToInsert}" />
-            <ui:param name="isNewPerson" value="#{true}" />
-        </ui:include>
-
-        <ui:include src="/WEB-INF/resource/template/editPersonDialog.xhtml">
-            <ui:param name="header" value="Add Spouse to #{individualBean.person.name}" />
-            <ui:param name="widgetVar" value="addSpouseDialog" />
-            <ui:param name="person" value="#{personQueryBean.personToInsert}" />
-            <ui:param name="isNewPerson" value="#{true}" />
-        </ui:include>
-
-        <ui:include src="/WEB-INF/resource/template/editPersonDialog.xhtml">
-            <ui:param name="header" value="Add father to #{individualBean.person.name}" />
-            <ui:param name="widgetVar" value="addFatherDialog" />
-            <ui:param name="person" value="#{personQueryBean.personToInsert}" />
-            <ui:param name="isNewPerson" value="#{true}" />
-        </ui:include>
-
-        <ui:include src="/WEB-INF/resource/template/editPersonDialog.xhtml">
-            <ui:param name="header" value="Add mother to #{individualBean.person.name}" />
-            <ui:param name="widgetVar" value="addMotherDialog" />
-            <ui:param name="person" value="#{personQueryBean.personToInsert}" />
-            <ui:param name="isNewPerson" value="#{true}" />
-        </ui:include>
-
-        <ui:include src="/WEB-INF/resource/template/editPersonDialog.xhtml">
-            <ui:param name="header" value="Edit Individual: #{individualBean.person.name}" />
-            <ui:param name="widgetVar" value="editDialog" />
-            <ui:param name="person" value="#{personQueryBean.relatedPerson}" />
-            <ui:param name="isNewPerson" value="#{false}" />
-        </ui:include>
+        <ui:include src="/WEB-INF/resource/template/editPersonDialogs.xhtml" />
+        
     </h:body>
 </html>

@@ -1,8 +1,8 @@
 
 package edu.wright.hendrix11.familyTree.bean.query;
 
-import edu.wright.hendrix11.familyTree.database.MarriageData;
-import edu.wright.hendrix11.familyTree.database.PersonData;
+import edu.wright.hendrix11.familyTree.database.table.MarriageTable;
+import edu.wright.hendrix11.familyTree.database.table.PersonTable;
 import edu.wright.hendrix11.familyTree.entity.Marriage;
 import edu.wright.hendrix11.familyTree.entity.Person;
 import java.io.Serializable;
@@ -36,7 +36,7 @@ public class PersonQueryBean implements Serializable, QueryBean
     
     private Person spouseToRelated;
     
-    private PersonData personData;
+    private PersonTable personTable;
     
     /**
      *
@@ -45,7 +45,7 @@ public class PersonQueryBean implements Serializable, QueryBean
     public void initialize()
     {
         personToInsert = new Person();
-        personData = new PersonData();
+        personTable = new PersonTable();
     }
     
     /**
@@ -100,12 +100,12 @@ public class PersonQueryBean implements Serializable, QueryBean
             }
         }
 
-        personToInsert = personData.insert(personToInsert);
+        personToInsert = personTable.insert(personToInsert);
     }
     
     private void insertParent()
     {
-        personToInsert = personData.insert(personToInsert);
+        personToInsert = personTable.insert(personToInsert);
 
         if(personType == FATHER)
         {
@@ -116,15 +116,15 @@ public class PersonQueryBean implements Serializable, QueryBean
             relatedPerson.setMother(personToInsert);
         }
         
-        personData.update(relatedPerson);
+        personTable.update(relatedPerson);
     }
     
     private void insertSpouse()
     {
-        MarriageData md = new MarriageData();
+        MarriageTable md = new MarriageTable();
         Marriage m = new Marriage();
         
-        personToInsert = personData.insert(personToInsert);
+        personToInsert = personTable.insert(personToInsert);
         
         m.setCouple(personToInsert, relatedPerson);
         
@@ -133,7 +133,12 @@ public class PersonQueryBean implements Serializable, QueryBean
     
     private void updateRelatedPerson()
     {
-        personData.update(relatedPerson);
+        personTable.update(relatedPerson);
+    }
+    
+    private void setGenderNotSelected()
+    {
+        personToInsert.setGender("notSelected");
     }
     
     /**
@@ -228,15 +233,7 @@ public class PersonQueryBean implements Serializable, QueryBean
     public void setPersonAsChildWithNoSpouse(ActionEvent actionEvent)
     {
         personType = CHILD_WITH_NO_SPOUSE;
-    }
-    
-    /**
-     *
-     * @param actionEvent
-     */
-    public void setPersonAsChildWithSpouse(ActionEvent actionEvent)
-    {
-        personType = CHILD_WITH_SPOUSE;
+        setGenderNotSelected();
     }
     
     /**
@@ -247,6 +244,7 @@ public class PersonQueryBean implements Serializable, QueryBean
     {
         personType = CHILD_WITH_SPOUSE;
         this.spouseToRelated = spouse;
+        setGenderNotSelected();
     }
     
     public void setNoInsertJustUpdate(ActionEvent actionEvent)

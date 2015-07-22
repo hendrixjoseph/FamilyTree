@@ -227,7 +227,7 @@ public class ColumnMethodMap extends Database
                     break;
             }
         }
-
+            
         return value;
     }
 
@@ -285,6 +285,10 @@ public class ColumnMethodMap extends Database
                     {
                         returnObject = setter.invoke(returnObject);
                     }
+                    
+                    // We use the same result set everytime we enter this
+                    // method, so don't close it!
+                    //closeStatement(rs);
                 }
                 catch(SQLException sqle)
                 {
@@ -320,7 +324,7 @@ public class ColumnMethodMap extends Database
      * @param column
      * @param methods
      */
-    protected void putGetter(String column, String methods)
+    public void putGetter(String column, String methods)
     {
         put(column, methods, getters);
     }
@@ -330,7 +334,7 @@ public class ColumnMethodMap extends Database
      * @param column
      * @param methods
      */
-    protected void putSetter(String column, String methods)
+    public void putSetter(String column, String methods)
     {
         put(column, methods, setters);
     }
@@ -399,7 +403,7 @@ public class ColumnMethodMap extends Database
             for(int i = 1; i - 1 < rsmd.getColumnCount(); i++)
                 columns.add(rsmd.getColumnName(i));
 
-            closeConnection(rs);
+            closeStatement(rs);
         }
         catch (SQLException ex)
         {

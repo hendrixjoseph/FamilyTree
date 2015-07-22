@@ -14,38 +14,40 @@
             overflow:visible !important;
         }
     </style>
-    <p:menubar>
-        <p:submenu label="File">
-            <p:menuitem value="Import" url="#" />
-            <p:submenu label="Export">
-                <p:menuitem value="SQL" url="#" />
-                <p:menuitem value="CSV" url="#" />
-                <p:menuitem value="XML" url="#" />
-                <p:menuitem value="GEDCOM" url="#" />
+    <h:form>
+        <p:menubar>
+            <p:submenu label="File">
+                <p:menuitem value="Import" url="#" />
+                <p:submenu label="Export">
+                    <p:menuitem value="SQL" url="#" />
+                    <p:menuitem value="CSV" url="#" />
+                    <p:menuitem value="XML" url="#" />
+                    <p:menuitem value="GEDCOM" url="#" />
+                </p:submenu>
             </p:submenu>
-        </p:submenu>
-        <p:submenu label="Edit">
-            <p:menuitem value="Edit individual" update="@([id$=editDialog_form])" actionListener="#{personQueryBean.setNoInsertJustUpdate}" oncomplete="PF('editDialog').show()" />
-        </p:submenu>
-        <p:submenu label="Search">
-
-        </p:submenu>
-        <p:submenu label="View">
-
-        </p:submenu>
-        <p:submenu label="Theme">
-
-        </p:submenu>
-        <p:submenu label="Database">
-            <p:submenu label="Detect duplicate">
-                <p:menuitem value="Individuals" url="#" />
-                <p:menuitem value="Sources" url="#" />
+            <p:submenu label="Edit">            
+                    <p:menuitem value="Edit individual" update="@([id$=editDialog_form])" actionListener="{personQueryBean.setNoInsertJustUpdate}" oncomplete="PF('editDialog').show()" />           
             </p:submenu>
-            <p:menuitem value="View Schema" url="#" />
-        </p:submenu>
-        <p:submenu label="Help">
-            <p:menuitem value="Javadoc" url="#" />
-            <p:menuitem value="About" url="#" />
-        </p:submenu>
-    </p:menubar>                
+            <p:submenu label="Search">
+
+            </p:submenu>
+            <p:submenu label="View">
+
+            </p:submenu>
+            <p:submenu label="Theme">
+
+            </p:submenu>
+            <p:submenu label="Database">
+                <p:submenu label="Detect duplicate">
+                    <p:menuitem value="Individuals" url="#" />
+                    <p:menuitem value="Sources" url="#" />
+                </p:submenu>
+                <p:menuitem value="View Schema" url="#" />
+            </p:submenu>
+            <p:submenu label="Help">
+                <p:menuitem value="Javadoc" url="#" />
+                <p:menuitem value="About" url="#" />
+            </p:submenu>
+        </p:menubar>
+    </h:form>
 </ui:component>

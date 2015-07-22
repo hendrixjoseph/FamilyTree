@@ -9,13 +9,9 @@
     <p:tabView style="height: 90%">
                 <c:forEach  items="#{individualBean.person.spouseChildMap.keySet()}" var="spouse">
                     <p:tab title="#{spouse.name}">
-                        <c:forEach items="#{individualBean.person.spouseChildMap.get(spouse)}" var="child">
-                            <p>
-                                <p:link value="#{child.child.name}">
-                                    <f:param name="personId" value="#{child.child.id}" />
-                                </p:link> 
-                            </p>
-                        </c:forEach>
+                        <ui:include src="childTableTemplate.xhtml">
+                            <ui:param name="children" value="#{individualBean.person.getChildren(spouse)}" />
+                        </ui:include>
                         <p>
                             <h:form>
                                 <p:commandButton value="Add child" actionListener="#{personQueryBean.setPersonAsChildWithSpouse(spouse)}" oncomplete="PF('addChildDialog').show()"/>
@@ -29,13 +25,9 @@
                     </p:tab>
                 </c:forEach>
                       <p:tab title="Children with unknown spouse" rendered="#{individualBean.person.childrenNoSpouse.size() > 0}">
-                        <c:forEach items="#{individualBean.person.childrenNoSpouse}" var="child">
-                        <p>
-                            <p:link value="#{child.name}">
-                                <f:param name="personId" value="#{child.id}" />
-                            </p:link> 
-                        </p>
-                    </c:forEach>
+                        <ui:include src="childTableTemplate.xhtml">
+                            <ui:param name="children" value="#{individualBean.person.childrenNoSpouse}" />
+                        </ui:include>
                       </p:tab>
                 <p:tab title="Add spouse or children">
 

@@ -1,6 +1,9 @@
 
 package edu.wright.hendrix11.familyTree.database.export;
 
+import edu.wright.hendrix11.familyTree.database.Database;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 
 /**
 *
@@ -12,7 +15,7 @@ public abstract class Exporter extends Database
     
     protected PrintStream out;
     
-    public Exporter(String fileName)
+    public Exporter(String fileName) throws FileNotFoundException
     {
         this(new PrintStream(fileName));
     }

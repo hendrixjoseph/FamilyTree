@@ -1,21 +1,25 @@
 
-package edu.wright.hendrix11.familyTree.database;
+package edu.wright.hendrix11.familyTree.database.table;
 
+import edu.wright.hendrix11.familyTree.database.ColumnMethodMap;
+import edu.wright.hendrix11.familyTree.database.Database;
 import edu.wright.hendrix11.familyTree.database.interfaces.*;
 import edu.wright.hendrix11.familyTree.entity.Marriage;
 import edu.wright.hendrix11.familyTree.entity.Person;
 import edu.wright.hendrix11.familyTree.entity.SpouseChildMap;
 import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
-public class PersonData extends Database implements SelectData<Person, Integer>, 
+public class PersonTable extends Database implements SelectData<Person, Integer>, 
                                                     SelectAllData<Person>,
                                                     InsertData<Person>, 
                                                     UpdateData<Person>, 
@@ -25,7 +29,7 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
     /**
      *
      */
-    public PersonData()
+    public PersonTable()
     {
         super("PERSON_VIEW", Person.class);
  
@@ -42,8 +46,6 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
         
         columnMethodMap.putGetter("MOTHER_NAME","getMother().getName()");
         columnMethodMap.putSetter("MOTHER_NAME","getMother().setName()");
-        
-        columnMethodMap.setPrimaryKey("ID");
     }
     
     /**
@@ -78,7 +80,7 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
                 this.setFields(person, rs);
             }
 
-            closeConnection(rs);
+            this.closeStatement(rs);
         }
         catch(Exception e)
         {
@@ -87,40 +89,64 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
         
         if(includeSpouseChildMap)
         {
-            SpouseChildData mapData = new SpouseChildData();
+            SpouseChildTable mapData = new SpouseChildTable();
             
             HashMap<Person, List<SpouseChildMap>> map = mapData.select(id);
             
-            MarriageData marriageData = new MarriageData();
-            
-            List<Marriage> marriages = marriageData.select(id);
-            
-            for(Marriage marriage : marriages)
-            {
-                List<SpouseChildMap> spouseList = new ArrayList<SpouseChildMap>();
-                SpouseChildMap spouseMap = new SpouseChildMap();
-                Person spouse = new Person();
-                
-                if(marriage.getHusband().getId().equals(id))
-                {
-                    spouse = marriage.getWife();
-                }
-                else if(marriage.getWife().getId().equals(id))
-                {
-                    spouse = marriage.getHusband();
-                }
-                
-                if(map.get(spouse) == null)
-                {
-                    spouseList.add(spouseMap);
-                    map.put(spouse, spouseList);
-                }
-            }
+            addSpousesWithNoChildren(map, id);           
+
+            addChildData(map);
             
             person.setSpouseChildMap(map);
         }
                     
         return person;
+    }
+    
+    private void addChildData(HashMap<Person, List<SpouseChildMap>> map)
+    {
+        for(Person person : map.keySet())
+        {
+            List<SpouseChildMap> list = map.get(person);
+            
+            for(SpouseChildMap spouseChildMap : list)
+            {
+                Person child = spouseChildMap.getChild();
+                
+                child = select(child.getId(), false);
+                
+                spouseChildMap.setChild(child);
+            }
+        }
+    }
+    
+    private void addSpousesWithNoChildren(HashMap<Person, List<SpouseChildMap>> map, Integer id)
+    {
+        MarriageTable marriageTable = new MarriageTable();
+        
+        List<Marriage> marriages = marriageTable.select(id);
+
+        for(Marriage marriage : marriages)
+        {
+            List<SpouseChildMap> spouseList = new ArrayList<SpouseChildMap>();
+            SpouseChildMap spouseMap = new SpouseChildMap();
+            Person spouse = new Person();
+
+            if(marriage.getHusband().getId().equals(id))
+            {
+                spouse = marriage.getWife();
+            }
+            else if(marriage.getWife().getId().equals(id))
+            {
+                spouse = marriage.getHusband();
+            }
+
+            if(map.get(spouse) == null)
+            {
+                spouseList.add(spouseMap);
+                map.put(spouse, spouseList);
+            }
+        }
     }
     
     /**
@@ -143,7 +169,7 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
                 persons.add(person);
             }
             
-            closeConnection(rs);
+            closeStatement(rs);
         }
         catch(Exception e)
         {
@@ -168,7 +194,7 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
                 this.setFields(person, rs);
             }
 
-            closeConnection(rs);
+            closeStatement(rs);
         }
         catch(Exception e)
         {
@@ -212,17 +238,17 @@ public class PersonData extends Database implements SelectData<Person, Integer>,
     @Override
     public Person insert(Person p)
     {
-        String query = generateInsertQuery(p);
-        
+        String query = generateInsertQuery(p);        
+              
         try
-        {        
+        {
             executeUpdate(query);
-            
             return selectLastInserted();
         }
-        catch(Exception e)
+        catch (SQLException ex)
         {
-            e.printStackTrace();
+            System.err.println(query);
+            ex.printStackTrace();
         }
         
         return null;

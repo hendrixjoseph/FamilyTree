@@ -1,6 +1,8 @@
 
-package edu.wright.hendrix11.familyTree.database;
+package edu.wright.hendrix11.familyTree.database.table;
 
+import edu.wright.hendrix11.familyTree.database.ColumnMethodMap;
+import edu.wright.hendrix11.familyTree.database.Database;
 import edu.wright.hendrix11.familyTree.database.interfaces.SelectData;
 import edu.wright.hendrix11.familyTree.entity.Person;
 import edu.wright.hendrix11.familyTree.entity.SpouseChildMap;
@@ -14,13 +16,13 @@ import java.util.List;
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
-public class SpouseChildData extends Database implements SelectData<HashMap<Person, List<SpouseChildMap>>, Integer>
+public class SpouseChildTable extends Database implements SelectData<HashMap<Person, List<SpouseChildMap>>, Integer>
 {    
 
     /**
      *
      */
-    public SpouseChildData()
+    public SpouseChildTable()
     {
         super("CHILDREN_VIEW",SpouseChildMap.class);
         
@@ -43,8 +45,6 @@ public class SpouseChildData extends Database implements SelectData<HashMap<Pers
         
         columnMethodMap.putGetter("CHILD","getChild().getName()");
         columnMethodMap.putSetter("CHILD","getChild().setName()");
-        
-        columnMethodMap.setPrimaryKey("ID");
     }
 
     /**
@@ -72,8 +72,7 @@ public class SpouseChildData extends Database implements SelectData<HashMap<Pers
                 if(!spouse.exists())
                     spouse = null;
                     
-                List<SpouseChildMap> childList = map.get(spouse);
-                    
+                List<SpouseChildMap> childList = map.get(spouse);                    
                 
                 if(childList == null)
                 {
@@ -83,6 +82,8 @@ public class SpouseChildData extends Database implements SelectData<HashMap<Pers
                 
                 childList.add(spouseChildMap);
             }
+            
+            closeStatement(rs);
         }
         catch (SQLException ex)
         {

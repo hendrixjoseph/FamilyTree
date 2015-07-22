@@ -4,7 +4,8 @@
               xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
               xmlns:h="http://java.sun.com/jsf/html"
               xmlns:p="http://primefaces.org/ui"
-              xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+              xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:form id="#{widgetVar}_form">
         <p:dialog header="#{header}" modal="true" widgetVar="#{widgetVar}" id="#{widgetVar}">
             <p>
@@ -19,7 +20,10 @@
                     <p:inputText value="#{person.name}" maxlength="#{inputLength}" size="#{inputLength}" />
 
                     <p:outputLabel value="Gender:" />
-                    <p:inputText id="gender" value="#{person.gender}" />
+                    <p:selectOneMenu id="gender" value="#{person.gender}" style="width:125px">
+                        <f:selectItem itemLabel="Select One" itemValue="notSelected" />
+                        <f:selectItems value="#{genderBean.genders}" />
+                    </p:selectOneMenu>
 
                     <p:outputLabel value="Place of birth:" />
                     <p:inputText value="#{person.placeOfBirth}" maxlength="#{inputLength}" size="#{inputLength}" />

@@ -6,7 +6,7 @@ import javax.faces.bean.RequestScoped;
 import javax.annotation.PostConstruct;
 
 import edu.wright.hendrix11.familyTree.entity.Person;
-import edu.wright.hendrix11.familyTree.database.PersonData;
+import edu.wright.hendrix11.familyTree.database.table.PersonTable;
 import java.io.Serializable;
 import javax.faces.bean.ViewScoped;
 
@@ -15,13 +15,12 @@ import javax.faces.bean.ViewScoped;
  * @author Joe Hendrix
  */
 @ManagedBean
-//@RequestScoped
 @ViewScoped
 public class IndividualBean implements Serializable
 {
     private Person person; 
     
-    private PersonData personData;
+    private PersonTable personTable;
        
     /**
      *
@@ -36,8 +35,8 @@ public class IndividualBean implements Serializable
     @PostConstruct
     public void initialize()
     {
-        personData = new PersonData();
-        person = personData.select(1);
+        personTable = new PersonTable();
+        person = personTable.select(1);
     }
     
     /**
@@ -64,7 +63,7 @@ public class IndividualBean implements Serializable
      */
     public void setPersonId(Integer id)
     {
-        person = personData.select(id);
+        person = personTable.select(id);
     }
     
     /**
@@ -73,6 +72,6 @@ public class IndividualBean implements Serializable
      */
     public void setPersonId(int id)
     {
-        person = personData.select(id);
+        person = personTable.select(id);
     }
 }

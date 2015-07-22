@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:f="http://java.sun.com/jsf/core"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:h="http://java.sun.com/jsf/html"
+              xmlns:p="http://primefaces.org/ui"
+              xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <p:dataTable var="child" value="#{children}">
+        <p:column headerText="Name">
+            <p:link value="#{child.name}">
+                <f:param name="personId" value="#{child.id}" />
+            </p:link>
+        </p:column>
+
+        <p:column headerText="Gender">
+            <p:outputLabel value="#{child.gender}" />
+        </p:column>
+
+        <p:column headerText="Place of Birth">
+            <p:outputLabel value="#{child.placeOfBirth}"/>
+        </p:column>
+
+        <p:column headerText="Date of Birth">
+            <p:outputLabel value="#{child.dateOfBirth}">
+                <f:convertDateTime pattern="MMM dd, yyyy" />
+            </p:outputLabel>
+        </p:column>
+
+        <p:column headerText="Place of Death">
+            <p:outputLabel value="#{child.placeOfDeath}" />
+        </p:column>
+
+        <p:column headerText="Date of Death">
+            <p:outputLabel value="#{child.dateOfDeath}">
+                <f:convertDateTime pattern="MMM dd, yyyy" />
+            </p:outputLabel>
+        </p:column>
+    </p:dataTable>
+</ui:component>

@@ -1,5 +1,8 @@
 package edu.wright.hendrix11.familyTree.database.export;
 
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+
 
 /**
 *
@@ -7,9 +10,9 @@ package edu.wright.hendrix11.familyTree.database.export;
 */
 public class XmlExporter extends Exporter
 {
-    public XmlExporter(String fileName)
+    public XmlExporter(String fileName) throws FileNotFoundException
     {
-        this(new PrintStream(fileName));
+        super(fileName);
     }
     
     public XmlExporter(PrintStream out)
