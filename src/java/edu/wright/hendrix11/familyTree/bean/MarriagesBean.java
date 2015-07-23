@@ -1,6 +1,6 @@
 package edu.wright.hendrix11.familyTree.bean;
 
-import edu.wright.hendrix11.familyTree.database.table.PlaceTable;
+import edu.wright.hendrix11.familyTree.database.table.MarriageTable;
 import edu.wright.hendrix11.familyTree.entity.Place;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -12,10 +12,10 @@ import javax.faces.bean.ViewScoped;
 */
 @ManagedBean
 @ViewScoped
-public class PlacesBean extends DataBean<Place>
+public class MarriagesBean extends DataBean<Place>
 {
-    private static final String[] columns = {"ID","NAME"};
-    private static final String[] prettyNames = {"Id","Name"};
+    private static final String[] columns = {"HUSBAND_ID","HUSBAND_NAME","WIFE_ID","WIFE_NAME","PLACE","ANNIVERSARY"};
+    private static final String[] prettyNames = {"Husband Id","Husband Name","Wife Id","Wife Name","Place","Anniversary Date"};
 
     /**
      *
@@ -23,7 +23,7 @@ public class PlacesBean extends DataBean<Place>
     @PostConstruct
     public void initialize()
     {
-        table = new PlaceTable();
+        table = new MarriageTable();
         
         super.initialize(table);
     }

@@ -27,6 +27,21 @@ public class SettingsBean
       settingsTable = new SettingsTable();
       settings = settingsTable.select();
     }
+
+    public Settings getSettings()
+    {
+        return settings;
+    }
+
+    public void setSettings(Settings settings)
+    {
+        this.settings = settings;
+    }
+    
+    public void commit()
+    {
+        settingsTable.update(settings);
+    }
     
     
 }

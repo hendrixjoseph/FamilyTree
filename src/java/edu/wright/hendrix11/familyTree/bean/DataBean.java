@@ -5,12 +5,16 @@
  */
 package edu.wright.hendrix11.familyTree.bean;
 
-import edu.wright.hendrix11.familyTree.bean.DataBean.DataBeanHelper;
 import edu.wright.hendrix11.familyTree.database.DatabaseQuery;
 import edu.wright.hendrix11.familyTree.database.interfaces.SelectAllData;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,19 +22,16 @@ import java.util.List;
  * @param <O>
  * @param <P>
  */
-public abstract class DataBean<O,P extends DataBeanHelper>
+public abstract class DataBean<O>
 {
     protected HashMap<String, String> prettyNameToColumnMap;
-    protected List<P> values;
+    protected List<DataBeanHelper> values;
     protected DatabaseQuery table;
+    protected DataBeanHelper helper;
     
     public abstract String[] getPrettyNames();
     
-    public abstract List<P> getValues();
-    
     protected abstract String[] getColumns();
-    
-    protected abstract P getNew();
     
     protected void initialize(DatabaseQuery table)
     {
@@ -41,12 +42,11 @@ public abstract class DataBean<O,P extends DataBeanHelper>
         else
             throw new NullPointerException(table.getClass().getName() + " is not an instance of " + SelectAllData.class.getName());
         
-        values = new ArrayList<P>();
-        
+        values = new ArrayList<DataBeanHelper>();        
         
         for(O item : list)
         {
-            P value = getNew();
+            DataBeanHelper value = new DataBeanHelper();
             value.setObject(item);
             values.add(value);
         }
@@ -64,12 +64,63 @@ public abstract class DataBean<O,P extends DataBeanHelper>
         }
     }
     
-    public abstract class DataBeanHelper
+    public List<DataBeanHelper> getValues()
     {
-        public abstract O getObject();
-
-        public abstract void setObject(O o);
+        return values;
+    }
+    
+    public class DataBeanHelper
+    {
+        private O o;
         
-        public abstract String getValue(String prettyName);
+        public O getObject()
+        {
+            return o;
+        }
+
+        public void setObject(O o)
+        {
+            this.o = o;
+        }
+        
+        public String getValue(String prettyName)
+        {
+            String column = prettyNameToColumnMap.get(prettyName);
+            
+            String value = table.getColumnMethodMap().get(column, o);
+            
+            if(value == null)
+                value = "";
+            else if(value.startsWith("TO_DATE('"))
+            {
+                DateFormat inFormat = new SimpleDateFormat("MM dd YYYY");
+                DateFormat outFormat = new SimpleDateFormat("MMM dd YYYY");
+                
+                // Example:
+                // TO_DATE('07 20 2015', 'MM dd YYYY')
+                
+                int start = "TO_DATE('".length() + 1;
+                int end = value.indexOf("', 'MM dd YYYY')");
+                
+                value = value.substring(start, end);
+                
+                try
+                {
+                    value = outFormat.format(inFormat.parse(value));
+                }
+                catch (ParseException ex)
+                {
+                    value = "Unparsable date";
+                }
+            }
+            else
+            {
+                int end = value.lastIndexOf("'");
+                
+                value = value.substring(1, end);
+            }
+            
+            return value;
+        }
     }
 }

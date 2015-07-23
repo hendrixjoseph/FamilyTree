@@ -29,25 +29,21 @@ public class PlaceTable extends DatabaseQuery implements SelectAllData<Place>,
     {
         List<Place> places = new ArrayList<Place>();
     
-        try
+        List<Object> objects = super.selectAllObjects();
+        
+        for(Object object : objects)
         {
-            ResultSet rs = select("SELECT * FROM " + tableName);
-            
-            while(rs.next())
-            {
-                Place place = new Place();
-                this.setFields(place, rs);
-                places.add(place);
-            }
-            
-            closeStatement(rs);
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
+            if(object instanceof Place)
+                places.add((Place)object);
         }
         
         return places;
+    }
+    
+    @Override
+    protected Object getNew()
+    {
+        return new Place();
     }
 
     @Override

@@ -4,6 +4,7 @@ package edu.wright.hendrix11.familyTree.database.table;
 import edu.wright.hendrix11.familyTree.database.ColumnMethodMap;
 import edu.wright.hendrix11.familyTree.database.DatabaseQuery;
 import edu.wright.hendrix11.familyTree.database.interfaces.InsertData;
+import edu.wright.hendrix11.familyTree.database.interfaces.SelectAllData;
 import edu.wright.hendrix11.familyTree.database.interfaces.SelectData;
 import edu.wright.hendrix11.familyTree.entity.Marriage;
 import java.sql.ResultSet;
@@ -16,6 +17,7 @@ import java.util.List;
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
 public class MarriageTable extends DatabaseQuery implements SelectData<List<Marriage>, Integer>, 
+                                                            SelectAllData<Marriage>,
                                                             InsertData<Marriage>
 {
     
@@ -79,6 +81,22 @@ public class MarriageTable extends DatabaseQuery implements SelectData<List<Marr
         
         return marriages;
     }
+    
+    @Override
+    public List<Marriage> selectAll()
+    {
+        List<Object> objects = super.selectAllObjects();
+        
+        List<Marriage> marriages = new ArrayList<Marriage>();
+        
+        for(Object object : objects)
+        {
+            if(object instanceof Marriage)
+                marriages.add((Marriage)object);
+        }
+        
+        return marriages;
+    }
 
     @Override
     public Marriage insert(Marriage marriage)
@@ -99,4 +117,9 @@ public class MarriageTable extends DatabaseQuery implements SelectData<List<Marr
         return null;
     }
     
+    @Override
+    protected Object getNew()
+    {
+        return new Marriage();
+    }    
 }

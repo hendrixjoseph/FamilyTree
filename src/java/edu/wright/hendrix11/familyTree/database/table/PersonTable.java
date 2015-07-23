@@ -154,27 +154,23 @@ public class PersonTable extends DatabaseQuery implements SelectData<Person, Int
     @Override
     public List<Person> selectAll()
     {
+        List<Object> objects = super.selectAllObjects();
+        
         List<Person> persons = new ArrayList<Person>();
         
-        try
-        {        
-            ResultSet rs = select("SELECT * FROM " + tableName);
-            
-            while(rs.next()) 
-            {
-                Person person = new Person();
-                this.setFields(person, rs);
-                persons.add(person);
-            }
-            
-            closeStatement(rs);
-        }
-        catch(Exception e)
+        for(Object object : objects)
         {
-            e.printStackTrace();
+            if(object instanceof Person)
+                persons.add((Person)object);
         }
         
         return persons;
+    }
+    
+    @Override
+    protected Object getNew()
+    {
+        return new Person();
     }
     
     private Person selectLastInserted()
@@ -183,7 +179,7 @@ public class PersonTable extends DatabaseQuery implements SelectData<Person, Int
         
         try
         {
-            ResultSet rs = select("SELECT * FROM LAST_PERSON_INSERTED_VIEW");
+            ResultSet rs = executeQuery("SELECT * FROM LAST_PERSON_INSERTED_VIEW");
             
             person = new Person();
             

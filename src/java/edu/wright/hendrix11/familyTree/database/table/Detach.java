@@ -85,6 +85,12 @@ public class Detach
       
       return false;
     }
+    
+    @Override
+    protected Object getNew()
+    {
+        return null;
+    }
   }
   
   private class DetachEntity

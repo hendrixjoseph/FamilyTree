@@ -30,7 +30,7 @@
                     <p:menuitem value="XML" url="#" />
                     <p:menuitem value="GEDCOM" url="#" />
                 </p:submenu>
-                <p:menuitem value="Settings" url="#" />
+                <p:menuitem value="Settings" onclick="PF('settingsDialog').show()" />
             </p:submenu>
             <p:submenu label="Edit">            
                 <p:menuitem value="Edit individual" update="@([id$=editDialog_form])" actionListener="{personQueryBean.setNoInsertJustUpdate}" oncomplete="PF('editDialog').show()" rendered="#{individualView}" />
@@ -49,8 +49,11 @@
 
             </p:submenu>
             <p:submenu label="View">
-                <p:menuitem value="Individual" url="faces/index.xhtml" rendered="#{!individualView}" /> 
-                <p:menuitem value="Places" url="faces/places.xhtml" rendered="#{!placesView}" />
+                <p:menuitem value="Individual" url="index.xhtml" rendered="#{!individualView}" /> 
+                <p:menuitem value="Places" url="places.xhtml" rendered="#{!placesView}" />
+                <p:menuitem value="Children" url="children.xhtml" rendered="#{!childrenView}" />
+                <p:menuitem value="Marriages" url="marriages.xhtml" rendered="#{!marraigeView}" />
+                <p:menuitem value="Index of Individuals" url="persons.xhtml" rendered="#{!personsView}" />
             </p:submenu>
             
             <p:submenu label="Database">

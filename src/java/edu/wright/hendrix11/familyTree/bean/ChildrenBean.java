@@ -5,10 +5,9 @@
  */
 package edu.wright.hendrix11.familyTree.bean;
 
-import edu.wright.hendrix11.familyTree.bean.ChildrenBean.ChildrenBeanHelper;
 import edu.wright.hendrix11.familyTree.database.table.SpouseChildTable;
-import java.util.ArrayList;
-import java.util.List;
+import edu.wright.hendrix11.familyTree.entity.SpouseChildMap;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -18,11 +17,12 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @ViewScoped
-public class ChildrenBean extends DataBean<SpouseChildTable,ChildrenBeanHelper>
+public class ChildrenBean extends DataBean<SpouseChildMap>
 {
     private static final String[] columns = {"ID","NAME","SPOUSE_ID","SPOUSE","CHILD_ID","CHILD"};
     private static final String[] prettyNames = {"Id","Name","Spouse Id","Spouse Name","Child Id","Child Name"};
 
+    @PostConstruct
     public void initialize()
     {
         table = new SpouseChildTable();
@@ -40,39 +40,5 @@ public class ChildrenBean extends DataBean<SpouseChildTable,ChildrenBeanHelper>
     public String[] getColumns()
     {
         return columns;
-    }
-
-    @Override
-    public List<ChildrenBeanHelper> getValues()
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    protected ChildrenBeanHelper getNew()
-    {
-        return new ChildrenBeanHelper();
-    }
-    
-    public class ChildrenBeanHelper extends DataBeanHelper
-    {
-
-        @Override
-        public SpouseChildTable getObject()
-        {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-        @Override
-        public void setObject(SpouseChildTable o)
-        {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-        @Override
-        public String getValue(String prettyName)
-        {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-        
     }
 }

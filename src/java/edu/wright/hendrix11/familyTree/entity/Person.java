@@ -1,6 +1,7 @@
 
 package edu.wright.hendrix11.familyTree.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -11,7 +12,7 @@ import java.util.Objects;
  *
  * @author Joe Hendrix
  */
-public class Person
+public class Person implements Serializable
 {
     private Integer id;
     private Person father;

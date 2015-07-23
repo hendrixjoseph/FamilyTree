@@ -4,6 +4,7 @@ package edu.wright.hendrix11.familyTree.database;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -94,7 +95,7 @@ public abstract class DatabaseQuery extends Database
             throw new NullPointerException("Either primaryKey is not set or key value given is null!");
         }
 
-        return select(query);
+        return executeQuery(query);
     }
     
     protected ResultSet selectWithKeys(List<Object> keys) throws SQLException
@@ -123,18 +124,34 @@ public abstract class DatabaseQuery extends Database
                 query.append(" AND ");
         }
 
-        return select(query.toString());
+        return executeQuery(query.toString());
     }
     
-    /**
-     *
-     * @param query
-     * @return
-     * @throws SQLException
-     */
-    protected ResultSet select(String query) throws SQLException
+    protected abstract Object getNew();
+    
+    protected List<Object> selectAllObjects()
     {
-        return executeQuery(query);
+        List<Object> objects = new ArrayList<Object>();
+    
+        try
+        {
+            ResultSet rs = executeQuery("SELECT * FROM " + tableName);
+            
+            while(rs.next())
+            {
+                Object object = getNew();
+                this.setFields(object, rs);
+                objects.add(object);
+            }
+            
+            closeStatement(rs);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        
+        return objects;
     }
     
     protected boolean deleteObject(String tableName, Object o, String key, String value)
@@ -309,7 +326,7 @@ public abstract class DatabaseQuery extends Database
      * @param string
      * @return
      */
-    protected String generateValue(String string)
+    public static String generateValue(String string)
     {
         string = string.replaceAll("'", "''");
         
@@ -321,7 +338,7 @@ public abstract class DatabaseQuery extends Database
      * @param i
      * @return
      */
-    protected String generateValue(Integer i)
+    public static String generateValue(Integer i)
     {
         return generateValue(Integer.toString(i));
     }
@@ -331,7 +348,7 @@ public abstract class DatabaseQuery extends Database
      * @param date
      * @return
      */
-    protected String generateValue(Date date)
+    public static String generateValue(Date date)
     {
         DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
         
@@ -348,7 +365,7 @@ public abstract class DatabaseQuery extends Database
      * @param object
      * @return
      */
-    protected String generateValue(Object object)
+    public static String generateValue(Object object)
     {
         if(object instanceof String)
             return generateValue((String)object);

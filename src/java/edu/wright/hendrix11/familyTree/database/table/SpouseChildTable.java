@@ -3,6 +3,7 @@ package edu.wright.hendrix11.familyTree.database.table;
 
 import edu.wright.hendrix11.familyTree.database.ColumnMethodMap;
 import edu.wright.hendrix11.familyTree.database.DatabaseQuery;
+import edu.wright.hendrix11.familyTree.database.interfaces.SelectAllData;
 import edu.wright.hendrix11.familyTree.database.interfaces.SelectData;
 import edu.wright.hendrix11.familyTree.entity.Person;
 import edu.wright.hendrix11.familyTree.entity.SpouseChildMap;
@@ -16,7 +17,8 @@ import java.util.List;
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
-public class SpouseChildTable extends DatabaseQuery implements SelectData<HashMap<Person, List<SpouseChildMap>>, Integer>
+public class SpouseChildTable extends DatabaseQuery implements SelectData<HashMap<Person, List<SpouseChildMap>>, Integer>,
+                                                               SelectAllData<SpouseChildMap>
 {    
 
     /**
@@ -91,5 +93,27 @@ public class SpouseChildTable extends DatabaseQuery implements SelectData<HashMa
         }
         
         return map;
-    }    
+    }   
+    
+    @Override
+    public List<SpouseChildMap> selectAll()
+    {
+        List<Object> objects = super.selectAllObjects();
+        
+        List<SpouseChildMap> map = new ArrayList<SpouseChildMap>();
+        
+        for(Object object : objects)
+        {
+            if(object instanceof SpouseChildMap)
+                map.add((SpouseChildMap)object);
+        }
+        
+        return map;
+    }
+    
+    @Override
+    protected Object getNew()
+    {
+        return new SpouseChildMap();
+    }
 }

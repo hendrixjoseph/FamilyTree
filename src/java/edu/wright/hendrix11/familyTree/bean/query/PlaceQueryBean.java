@@ -1,7 +1,7 @@
 
 package edu.wright.hendrix11.familyTree.bean.query;
 
-import edu.wright.hendrix11.familyTree.bean.PlacesBean.Places;
+import edu.wright.hendrix11.familyTree.bean.DataBean.DataBeanHelper;
 import edu.wright.hendrix11.familyTree.database.table.PlaceTable;
 import edu.wright.hendrix11.familyTree.entity.Place;
 import javax.annotation.PostConstruct;
@@ -48,9 +48,12 @@ public class PlaceQueryBean extends QueryBean
         this.place = place;
     }
     
-    public void setPlace(Places place)
+    public void setPlace(DataBeanHelper helper)
     {
-        this.place = place.getObject();
+        Object object = helper.getObject();
+        
+        if(object instanceof Place)
+            this.place = (Place)object;
     }
 
     public Place getPlace()

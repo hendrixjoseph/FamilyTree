@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
-public class ColumnMethodMap extends DatabaseQuery
+public class ColumnMethodMap extends Database
 {
     private List<String> columns;
     private HashMap<String, List<Method>> getters;
@@ -211,7 +211,7 @@ public class ColumnMethodMap extends DatabaseQuery
                 {
                     if(i == getterList.size() - 1)
                     {
-                        value = generateValue(getter.invoke(returnObject));
+                        value = DatabaseQuery.generateValue(getter.invoke(returnObject));
                     }
                     else
                     {
@@ -275,6 +275,12 @@ public class ColumnMethodMap extends DatabaseQuery
                                 
                                 setter.invoke(returnObject, ch);
                             }
+                        }
+                        else if(name.equalsIgnoreCase("boolean"))
+                        {
+                            String s = rs.getString(column);
+                            
+                            setter.invoke(returnObject, s.equals("true"));
                         }
                         else if(name.equals("String"))
                             setter.invoke(returnObject, rs.getString(column));
@@ -397,7 +403,7 @@ public class ColumnMethodMap extends DatabaseQuery
         {
             String query = "SELECT * FROM " + tableName;
 
-            ResultSet rs = select(query);
+            ResultSet rs = executeQuery(query);
             ResultSetMetaData rsmd = rs.getMetaData();
 
             for(int i = 1; i - 1 < rsmd.getColumnCount(); i++)

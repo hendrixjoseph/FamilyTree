@@ -28,24 +28,20 @@ public class GenderTable extends DatabaseQuery implements SelectAllData<Gender>
     {
         List<Gender> genders = new ArrayList<Gender>();
     
-        try
+        List<Object> objects = super.selectAllObjects();
+        
+        for(Object object : objects)
         {
-            ResultSet rs = select("SELECT * FROM " + tableName);
-            
-            while(rs.next())
-            {
-                Gender gender = new Gender();
-                this.setFields(gender, rs);
-                genders.add(gender);
-            }
-            
-            closeStatement(rs);
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
+            if(object instanceof Gender)
+                genders.add((Gender)object);
         }
         
         return genders;
+    }
+    
+    @Override
+    protected Object getNew()
+    {
+        return new Gender();
     }
 }

@@ -1,13 +1,14 @@
 
 package edu.wright.hendrix11.familyTree.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
-public class Marriage
+public class Marriage implements Serializable
 {
     Person husband;
     Person wife;
