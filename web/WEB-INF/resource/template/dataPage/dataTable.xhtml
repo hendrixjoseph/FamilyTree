@@ -8,7 +8,12 @@
     <p:dataTable var="value" value="#{dataBean.values}">
       <c:forEach items="#{dataBean.prettyNames}" var="column">
         <p:column headerText="#{column}">
-            <p:outputLabel value="#{value.getValue(column)}" />
+            <c:if test="#{dataBean.isLinkColumn(column)}">
+                <p:link href="#{value.getLink(column)}"  value="#{value.getValue(column)}"/>
+            </c:if>
+            <c:if test="#{!dataBean.isLinkColumn(column)}">
+                <p:outputLabel value="#{value.getValue(column)}" />
+            </c:if>
         </p:column>
       </c:forEach>
         <p:column headerText="Edit" rendered="#{editButton != null}">

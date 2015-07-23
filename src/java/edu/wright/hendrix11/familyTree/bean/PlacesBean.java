@@ -39,4 +39,10 @@ public class PlacesBean extends DataBean<Place>
     {
         return columns;
     }
+    
+//    @Override
+//    protected String processLink(String column, String value)
+//    {
+//        return "";
+//    }
 }

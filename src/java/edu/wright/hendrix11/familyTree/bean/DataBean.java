@@ -20,14 +20,12 @@ import java.util.logging.Logger;
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  * @param <O>
- * @param <P>
  */
 public abstract class DataBean<O>
 {
     protected HashMap<String, String> prettyNameToColumnMap;
     protected List<DataBeanHelper> values;
     protected DatabaseQuery table;
-    protected DataBeanHelper helper;
     
     public abstract String[] getPrettyNames();
     
@@ -66,7 +64,44 @@ public abstract class DataBean<O>
     
     public List<DataBeanHelper> getValues()
     {
-        return values;
+        return values.subList(0, Math.min(10, values.size()));
+    }
+    
+    protected String[] getLinkColumns()
+    {
+        return new String[0];
+    }
+    
+    public boolean isLinkColumn(String column)
+    {
+        for(String linkColumn : getLinkColumns())
+        {
+            if(linkColumn.equals(column))
+                return true;
+        }
+        
+        return false;
+    }
+    
+    private String process(DataBeanHelper helper, String prettyName)
+    {
+        String link = "";
+        
+        if(helper != null && prettyName != null)
+            link = processLink(helper, prettyName);
+        
+        return link;
+    }
+    
+    protected String processLink(DataBeanHelper helper, String prettyName)
+    {
+        return "";
+    }
+    
+    protected String linkToPerson(Integer id)
+    {
+        // <a href="index.xhtml" class="ui-link ui-widget">William Zenos Thoroman</a>
+        return "index.xhtml?personId=" + id;
     }
     
     public class DataBeanHelper
@@ -83,6 +118,11 @@ public abstract class DataBean<O>
             this.o = o;
         }
         
+        public String getLink(String prettyName)
+        {
+            return process(this, prettyName);
+        }
+        
         public String getValue(String prettyName)
         {
             String column = prettyNameToColumnMap.get(prettyName);
@@ -91,6 +131,8 @@ public abstract class DataBean<O>
             
             if(value == null)
                 value = "";
+            else if(value == "")
+                value = prettyName + " " + column + " " + o.getClass().getSimpleName();
             else if(value.startsWith("TO_DATE('"))
             {
                 DateFormat inFormat = new SimpleDateFormat("MM dd YYYY");

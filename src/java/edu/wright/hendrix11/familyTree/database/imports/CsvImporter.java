@@ -10,7 +10,6 @@ import java.util.Scanner;
 */
 public class CsvImporter extends Importer
 {
-
     public CsvImporter(String fileName) throws FileNotFoundException
     {
         super(fileName);
@@ -19,13 +18,7 @@ public class CsvImporter extends Importer
     public CsvImporter(Scanner in)
     {
         super(in);
-    }
-    
-    @Override
-    protected void initializeTables()
-    {
-        
-    }    
+    } 
     
     @Override
     public void processData()

@@ -65,7 +65,7 @@ public abstract class DatabaseQuery extends Database
         {
             String value = columnMethodMap.get(column, object);
             
-            if(value != null)
+            if(value != null && !value.isEmpty())
                 map.put(column,value);
         }
         
@@ -137,6 +137,8 @@ public abstract class DatabaseQuery extends Database
         {
             ResultSet rs = executeQuery("SELECT * FROM " + tableName);
             
+            System.err.println("SELECT * FROM " + tableName);
+            
             while(rs.next())
             {
                 Object object = getNew();
@@ -156,7 +158,7 @@ public abstract class DatabaseQuery extends Database
     
     protected boolean deleteObject(String tableName, Object o, String key, String value)
     {
-        if(o != null && key != null && value != null)
+        if(o != null && key != null && value != null && !value.isEmpty())
         {
             String query = "DELETE FROM " + tableName + " WHERE " + key + "=" + value;
             
@@ -213,7 +215,7 @@ public abstract class DatabaseQuery extends Database
             {
                 String value = columnMethodMap.get(column,object);
                 
-                if(value != null)
+                if(value != null && !value.isEmpty())
                     query.append(column).append("=").append(value).append(",");
             }
         }
@@ -229,6 +231,8 @@ public abstract class DatabaseQuery extends Database
     protected Object updateObject(Object o)
     {
         String query = generateUpdateQuery(o);
+        
+        System.out.println(query);
         
         try
         {
@@ -280,7 +284,7 @@ public abstract class DatabaseQuery extends Database
         {
             String value = columnMethodMap.get(column,object);
             
-            if(value != null)
+            if(value != null && !value.isEmpty())
             {
                 columnPart.append(column).append(",");
                 valuePart.append(value).append(",");

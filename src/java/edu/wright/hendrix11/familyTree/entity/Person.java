@@ -85,6 +85,16 @@ public class Person implements Serializable
         return hasParent(father);
     }
     
+    public boolean hasParent()
+    {
+        return hasFather() || hasMother();
+    }
+    
+    public boolean hasParents()
+    {
+        return hasFather() && hasMother();
+    }
+    
     private boolean hasParent(Person parent)
     {
         if(parent == null || !parent.exists())

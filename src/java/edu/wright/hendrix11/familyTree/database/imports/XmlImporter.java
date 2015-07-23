@@ -21,12 +21,6 @@ public class XmlImporter extends Importer
     }
     
     @Override
-    protected void initializeTables()
-    {
-        
-    }
-    
-    @Override
     public void processData()
     {
     

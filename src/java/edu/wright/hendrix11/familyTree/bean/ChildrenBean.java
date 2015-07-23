@@ -21,7 +21,12 @@ public class ChildrenBean extends DataBean<SpouseChildMap>
 {
     private static final String[] columns = {"ID","NAME","SPOUSE_ID","SPOUSE","CHILD_ID","CHILD"};
     private static final String[] prettyNames = {"Id","Name","Spouse Id","Spouse Name","Child Id","Child Name"};
-
+    private static final String[] linkColumns = {"Name","Spouse Name","Child Name"};
+    
+    private static final int NAME = 0;
+    private static final int SPOUSE_NAME = 1;
+    private static final int CHILD_NAME = 2;
+    
     @PostConstruct
     public void initialize()
     {
@@ -40,5 +45,26 @@ public class ChildrenBean extends DataBean<SpouseChildMap>
     public String[] getColumns()
     {
         return columns;
+    }
+    
+    @Override
+    protected String[] getLinkColumns()
+    {
+        return linkColumns;
+    }
+        
+    @Override
+    protected String processLink(DataBeanHelper helper, String prettyName)
+    {
+        SpouseChildMap spouseChildMap = helper.getObject();
+        
+        if(prettyName.equals(linkColumns[NAME]))
+            return linkToPerson(spouseChildMap.getPerson().getId());
+        else if(prettyName.equals(linkColumns[SPOUSE_NAME]))
+            return linkToPerson(spouseChildMap.getSpouse().getId());
+        else if(prettyName.equals(linkColumns[CHILD_NAME]))
+            return linkToPerson(spouseChildMap.getChild().getId());
+        
+        return "";
     }
 }

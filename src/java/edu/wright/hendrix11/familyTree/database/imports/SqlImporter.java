@@ -20,12 +20,6 @@ public class SqlImporter extends Importer
     }
     
     @Override
-    protected void initializeTables()
-    {
-        
-    }
-    
-    @Override
     public void processData()
     {
     

@@ -199,9 +199,13 @@ public class ColumnMethodMap extends Database
 
         Object returnObject = object;
 
-        String value = null;
+        String value = "";
 
-        if(getterList != null)
+        if(getterList == null)
+        {
+            return null;
+        }
+        else
         {                
             for(int i = 0; i < getterList.size(); i++)
             {

@@ -2,20 +2,18 @@
 package edu.wright.hendrix11.familyTree.database.imports;
 
 import edu.wright.hendrix11.familyTree.database.Database;
-import edu.wright.hendrix11.familyTree.database.table.MarriageTable;
-import edu.wright.hendrix11.familyTree.database.table.PersonTable;
-import edu.wright.hendrix11.familyTree.database.table.SpouseChildTable;
 import edu.wright.hendrix11.familyTree.entity.Marriage;
 import edu.wright.hendrix11.familyTree.entity.Person;
-import edu.wright.hendrix11.familyTree.entity.PersonInfo;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -26,30 +24,49 @@ public class GedcomImporter extends Importer
 {
     private static final DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
     
+    private static final String INDI_LINE = "0 @I";
+    
+    private static final String NAME_LINE = "1 NAME ";
+    private static final String GENDER_LINE = "1 SEX ";
+    private static final String BIRTH_LINE = "1 BIRT";
+    private static final String DEATH_LINE = "1 DEAT";
+    private static final String DATE_LINE = "2 DATE ";
+    private static final String PLAC_LINE = "2 PLAC ";
+    
+    private static final String FAM_LINE = "0 @F";
+    
+    private static final String HUSB_LINE = "1 HUSB";
+    private static final String WIFE_LINE = "1 WIFE";
+    private static final String CHIL_LINE = "1 CHIL";
+    private static final String MARR_LINE = "1 MARR";
+    
     private static PrintStream out;
     
-    private HashMap<String, Person> entry = new HashMap<String, Person>();
+    private boolean insertPersonMode;
+    private boolean insertFamilyMode;
+    private boolean insertMarriageMode;
+    private boolean insertBirthMode;
+    private boolean insertDeathMode;
     
-    private PersonTable personTable;
-    private MarriageTable marriageTable;
-    private SpouseChildTable spouseChildTable;
+    private HashMap<String, Person> entry;
+    private HashMap<Person, String> reverseEntry;
 
     public GedcomImporter(String fileName) throws FileNotFoundException
     {
         super(fileName);
+        initializeEntry();
     }
 
     public GedcomImporter(Scanner in)
     {
         super(in);
+        initializeEntry();
     }
     
-    @Override
-    protected void initializeTables()
+    private void initializeEntry()
     {
-        personTable = new PersonTable();
-        marriageTable = new MarriageTable();
-        spouseChildTable = new SpouseChildTable();
+        entry = new HashMap<String, Person>();
+        reverseEntry = new HashMap<Person, String>();
     }
     
     /**
@@ -58,30 +75,231 @@ public class GedcomImporter extends Importer
      */
     @Override
     protected void processData()
-    {        
+    {
+        setAllModes(false);
+        
         String nextLine = "";
         nextLine = getNextLine(nextLine);
         
         // Get to the first person
-        while(hasNext(!nextLine.startsWith("0 @I")))
+        while(hasNext(!nextLine.startsWith(INDI_LINE)))
         {
             nextLine = getNextLine(nextLine);
         }
-
+        
+        Person person = new Person();
+        
+        Person husband = new Person();
+        Person wife = new Person();
+        List<Person> children = new ArrayList<Person>();
+        Marriage marriage = new Marriage();
+        
+        String gedcomid = "";
+        
         while(in.hasNext())
         {               
-            if(nextLine.startsWith("0 @I"))
-            {                
-                nextLine = gatherPeople(nextLine);
-                
-            }
-            else if(!nextLine.startsWith("0 @I"))
+            if(nextLine.startsWith(INDI_LINE))
             {
-                nextLine = gatherFamilies(nextLine);
+                if(insertPersonMode)
+                {
+                    insertPerson(gedcomid, person);
+                }
                 
-                nextLine = getNextLine(nextLine);
-            } 
+                this.setInsertPersonMode(true);
+                
+                person = new Person();
+                gedcomid = getId(nextLine);
+            }
+            else if(nextLine.startsWith(FAM_LINE))
+            {
+                if(insertFamilyMode)
+                    insertFamily(marriage, husband, wife, children);
+                
+                this.setInsertFamilyMode(true);
+                
+                husband = new Person();
+                wife = new Person();
+                children = new ArrayList<Person>();
+            }
+            
+            if(insertPersonMode)
+                processPerson(person, nextLine);
+            else if(insertFamilyMode)
+                processFamily(marriage, husband, wife, children, nextLine);
+            
+            nextLine = in.nextLine();
         }
+        
+        if(insertPersonMode)
+        {
+            insertPerson(gedcomid, person);
+        }
+        else if(insertFamilyMode)
+        {
+            insertFamily(marriage, husband, wife, children);
+        }
+    }
+    
+    private void insertFamily(Marriage marriage, Person husband, Person wife, List<Person> children)
+    {
+        for(Person child : children)
+        {
+            if(husband.exists())
+                child.setFather(husband);
+            
+            if(wife.exists())
+                child.setMother(wife);
+            
+            String gedcomid = reverseEntry.get(child);
+            child = personTable.update(child);
+            setEntry(child, gedcomid);
+            
+            //System.out.println(gedcomid + " " +  child.getName() + " updated.");
+            
+            if(child.hasParents())
+            {
+                marriageTable.insert(marriage);
+            }
+        }
+    }
+    
+    private void processFamily(Marriage marriage, Person husband, Person wife, List<Person> children, String nextLine)
+    {
+        if(nextLine.startsWith(HUSB_LINE))
+        {
+            String husbandId = getId(nextLine);
+            husband = entry.get(husbandId);
+            marriage.setHusband(husband);
+        }
+        else if(nextLine.startsWith(WIFE_LINE))
+        {
+            String wifeId = getId(nextLine);
+            wife = entry.get(wifeId);
+            marriage.setWife(wife);
+        }
+        else if(nextLine.startsWith(CHIL_LINE))
+        {
+            String childId = getId(nextLine);
+            Person child = entry.get(childId);
+            children.add(child);
+        }
+        else if(nextLine.startsWith(MARR_LINE))
+        {
+            this.setInsertMarriageMode(true);            
+        }
+        else if(nextLine.startsWith(DATE_LINE))
+        {
+            Date date = parseDate(nextLine);
+            
+            if(date != null)
+            {
+                if(insertMarriageMode)
+                {
+                    marriage.setAnniversary(date);
+                }
+            }
+        }
+        else if(nextLine.startsWith(PLAC_LINE))
+        {
+            String plac = parsePlac(nextLine);
+            
+            if(insertMarriageMode)
+            {
+                marriage.setPlace(plac);
+            }
+            
+            setSubModes(false);
+        }
+        else
+        {
+            // Discard pile
+            out.println(nextLine);
+        }
+    }
+    
+    private void insertPerson(String gedcomid, Person person)
+    {
+        person = personTable.insert(person);
+        setEntry(person, gedcomid);
+        System.out.println(gedcomid + " " + person.getName() + " inserted.");
+    }
+    
+    private void processPerson(Person person, String nextLine)
+    {
+        if(nextLine.startsWith(NAME_LINE))
+        {
+            String name = nextLine.substring(NAME_LINE.length()).replaceAll("/", "");
+            
+            person.setName(name);
+        }
+        else if(nextLine.startsWith(GENDER_LINE))
+        {
+            String gender = nextLine.substring(GENDER_LINE.length());
+            
+            if(gender.equals("M"))
+                person.setGender("Male");
+            else if(gender.equals("F"))
+                person.setGender("Female");
+        }
+        else if(nextLine.startsWith(BIRTH_LINE))
+        {
+            this.setInsertBirthMode(true);
+        }
+        else if(nextLine.startsWith(DEATH_LINE))
+        {
+            this.setInsertDeathMode(true);
+        }
+        else if(nextLine.startsWith(DATE_LINE))
+        {
+            Date date = parseDate(nextLine);
+            
+            if(date != null)
+            {
+                if(insertBirthMode)
+                {
+                    person.setDateOfBirth(date);
+                }
+                else if(insertDeathMode)
+                {
+                    person.setDateOfDeath(date);
+                }
+            }
+        }
+        else if(nextLine.startsWith(PLAC_LINE))
+        {
+            String plac = parsePlac(nextLine);
+            
+            if(insertBirthMode)
+            {
+                person.setPlaceOfBirth(plac);
+            }
+            else if(insertDeathMode)
+            {
+                person.setPlaceOfDeath(plac);
+            }
+            
+            setSubModes(false);
+        }
+        else
+        {
+            setSubModes(false);
+            // Discard pile...
+            out.println(nextLine);
+        }
+    }
+    
+    private void setAllModes(boolean mode)
+    {
+        insertPersonMode = mode;
+        insertFamilyMode = mode;
+        setSubModes(mode);
+    }
+    
+    private void setSubModes(boolean mode)
+    {
+        insertBirthMode = mode;
+        insertDeathMode = mode;
+        insertMarriageMode = mode;
     }
     
     private boolean hasNext(boolean condition)
@@ -97,272 +315,6 @@ public class GedcomImporter extends Importer
         return nextLine;
     }
     
-    private String gatherPeople(String nextLine)
-    {
-        String gedcomid = getId(nextLine);
-
-        Person person = new Person();
-
-        nextLine = getNextLine(nextLine);
-
-        while(hasNext(!nextLine.startsWith("0 @I") && !nextLine.endsWith("@ FAM")))
-        {  
-            String change = nextLine;
-
-            PersonInfo personInfo = new PersonInfo();
-
-            nextLine = processPerson(person, nextLine);
-            nextLine = processPersonInfo(personInfo, nextLine);
-
-            if(personInfo.isSet())
-                person.addInfo(personInfo);
-
-            if(change.equals(nextLine))
-            {
-                nextLine = getNextLine(nextLine);                        
-            }
-        }
-        
-        person = personTable.insert(person);
-        
-        out.println(person.getName() + " inserted with gedcom id " + gedcomid + " and database id " + person.getId());
-        
-        entry.put(gedcomid, person);
-        
-        return nextLine;
-    }
-    
-    private String gatherFamilies(String nextLine)
-    {
-        if(nextLine.endsWith("FAM"))
-        {
-            nextLine = getNextLine(nextLine);
-
-            Marriage marriage = new Marriage();
-
-            nextLine = processFamily(nextLine, marriage);
-            
-            if(marriage.isSet())
-                marriageTable.insert(marriage);
-        }
-        
-        return nextLine;
-    }
-    
-    private String processFamily(String nextLine, Marriage marriage)
-    {
-        while(hasNext(!nextLine.endsWith("FAM")))
-        {                        
-            if(nextLine.startsWith("1 HUSB"))
-            {
-                String id = getId(nextLine);
-                Person husband = entry.get(id);
-                marriage.setHusband(husband);
-            }
-            else if(nextLine.startsWith("1 WIFE"))
-            {
-                String id = getId(nextLine);
-                Person wife = entry.get(id);
-                marriage.setWife(wife);
-            }
-            else if(nextLine.startsWith("1 CHIL"))
-            {
-                String id = getId(nextLine);
-                Person child = entry.get(id);
-                Person husband = marriage.getHusband();
-                Person wife = marriage.getWife();
-
-                husband.addChild(child, wife);
-                wife.addChild(child, husband);
-                
-                child.setFather(husband);
-                child.setMother(wife);
-                
-                System.out.println(child.toString());
-                System.out.println();
-                child = personTable.update(child);
-                System.out.println(child.toString());
-            }
-            else if(nextLine.startsWith("1 MARR"))
-            {
-                nextLine = getNextLine(nextLine);
-                String change = nextLine;
-
-                if(nextLine.startsWith("2 DATE"))
-                {
-                    Date date = parseDate(nextLine);
-
-                    if(date != null)
-                        marriage.setAnniversary(date);
-
-                    nextLine = getNextLine(nextLine);
-                }
-
-                if(nextLine.startsWith("2 PLAC"))
-                {
-                    nextLine = parsePlac(nextLine);
-                    marriage.setPlace(nextLine);
-                    nextLine = getNextLine(nextLine);
-                }
-                
-                if(change.equals(nextLine))
-                    nextLine = getNextLine(nextLine);
-            }
-            
-            nextLine = getNextLine(nextLine);
-        }
-        
-        return nextLine;
-    }
-    
-    private String processPersonInfo(PersonInfo personInfo, String nextLine)
-    {
-        int start;
-        int end;
-        
-        if(nextLine.startsWith("1 BURI"))
-        {
-            nextLine = getNextLine(nextLine);
-            
-            while(hasNext(nextLine.startsWith("2 PLAC")))
-            {
-                nextLine = parsePlac(nextLine);                
-
-                personInfo.setType("Place of Burial");
-                personInfo.setDescription(nextLine);
-                
-                nextLine = getNextLine(nextLine);
-            }
-        }
-        else if(nextLine.startsWith("1 SSN"))
-        {
-            nextLine = getNextLine(nextLine);
-            
-            while(hasNext(nextLine.startsWith("2 PLAC")))
-            {
-                nextLine = parsePlac(nextLine);                
-
-                personInfo.setType("SSN");
-                personInfo.setDescription(nextLine);
-                
-                nextLine = getNextLine(nextLine);
-            }
-        }
-        else if(nextLine.startsWith("1 NOTE"))
-        {
-            nextLine = getNextLine(nextLine);
-            
-            if(nextLine.startsWith("0 @N"))
-                nextLine = getNextLine(nextLine);
-            
-            StringBuilder sb = new StringBuilder();
-            
-            while(hasNext(nextLine.startsWith("1 CON")))
-            {
-                start = "1 CONC ".length();
-                
-                if(nextLine.length() >= start)
-                {
-                    nextLine = nextLine.substring(start);
-                    sb.append(nextLine);
-                }
-                else
-                {
-                    sb.append("\n");
-                }
-                
-                nextLine = getNextLine(nextLine);
-            }
-            
-            personInfo.setType("Note");
-            personInfo.setDescription(sb.toString());
-        }
-        else if(nextLine.startsWith("1 ALIA"))
-        {
-            start = nextLine.indexOf("/") + 1;
-            end = nextLine.lastIndexOf("/");
-            
-            nextLine = nextLine.substring(start, end);
-            
-            personInfo.setType("Alias");
-            personInfo.setDescription(nextLine);
-            
-            nextLine = getNextLine(nextLine);
-        }
-        
-        return nextLine;
-    }
-    
-    private String processPerson(Person person, String nextLine)
-    {        
-        int start;
-        
-        if(nextLine.contains("NAME"))
-        {
-            start = "1 NAME ".length();
-            String name = nextLine.substring(start);
-            person.setName(name.replace("/", ""));
-            nextLine = getNextLine(nextLine);
-        }
-        else if(nextLine.contains("SEX"))
-        {
-            if(nextLine.endsWith("M"))
-                person.setGender("Male");
-            else if(nextLine.endsWith("F"))
-                person.setGender("Female");
-            
-            nextLine = getNextLine(nextLine);
-        }
-        else if(nextLine.contains("BIRT"))
-        {
-            nextLine = getNextLine(nextLine);
-
-            while(hasNext(nextLine.contains("DATE") || nextLine.contains("PLAC")))
-            {
-                if(nextLine.contains("DATE"))
-                {
-                    Date date = parseDate(nextLine);
-                    
-                    if(date != null)
-                        person.setDateOfBirth(date);
-                }
-
-                if(nextLine.contains("PLAC"))
-                {
-                    nextLine = parsePlac(nextLine);
-                    person.setPlaceOfBirth(nextLine); 
-                }
-                
-                nextLine = getNextLine(nextLine);
-            }
-        }
-        else if(nextLine.contains("DEAT"))
-        {
-            nextLine = getNextLine(nextLine);
-
-            while(hasNext(nextLine.contains("DATE") || nextLine.contains("PLAC")))
-            {
-                if(nextLine.contains("DATE"))
-                {
-                    Date date = parseDate(nextLine);
-                    
-                    if(date != null)
-                        person.setDateOfDeath(date);
-                }
-
-                if(nextLine.contains("PLAC"))
-                {
-                    nextLine = parsePlac(nextLine);   
-                    person.setPlaceOfDeath(nextLine); 
-                }
-                
-                nextLine = getNextLine(nextLine);
-            }
-        }
-        
-        return nextLine;
-    }
-    
     private String getId(String line)
     {
         int start = line.indexOf("@") + 1;
@@ -372,16 +324,12 @@ public class GedcomImporter extends Importer
     
     private String parsePlac(String nextLine)
     {
-        int start = "2 PLAC ".length();
-        nextLine = nextLine.substring(start);
-        
-        return nextLine;
+        return nextLine.substring(PLAC_LINE.length());
     }
     
     private Date parseDate(String line)
     {
-        int start = "2 DATE ".length();
-        line = line.substring(start);
+        line = line.substring(DATE_LINE.length());
         
         Date date = null;
 
@@ -396,6 +344,44 @@ public class GedcomImporter extends Importer
         
         return date;
     }
+
+    private void setInsertPersonMode(boolean insertPersonMode)
+    {
+        setAllModes(false);
+        this.insertPersonMode = insertPersonMode;
+    }
+
+    private void setInsertFamilyMode(boolean insertFamilyMode)
+    {
+        setAllModes(false);
+        this.insertFamilyMode = insertFamilyMode;
+    }
+
+    private void setInsertBirthMode(boolean insertBirthMode)
+    {
+        setSubModes(false);
+        this.insertBirthMode = insertBirthMode;
+    }
+
+    private void setInsertDeathMode(boolean insertDeathMode)
+    {
+        setSubModes(false);
+        this.insertDeathMode = insertDeathMode;
+    }
+
+    private void setInsertMarriageMode(boolean insertMarriageMode)
+    {
+        setSubModes(false);
+        this.insertMarriageMode = insertMarriageMode;
+    }
+    
+    private void setEntry(Person person, String gedcomid)
+    {
+        entry.put(gedcomid, person);
+        reverseEntry.put(person, gedcomid);
+    }
+    
+    
 
     /**
      *
