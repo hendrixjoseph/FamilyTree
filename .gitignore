@@ -9,3 +9,4 @@ sql/Generated*.*
 !web/
 !documentation/
 !test/
+!jdoc.bat
