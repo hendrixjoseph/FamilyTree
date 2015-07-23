@@ -3,7 +3,8 @@
 <ui:component xmlns="http://www.w3.org/1999/xhtml"
               xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
               xmlns:h="http://java.sun.com/jsf/html"
-              xmlns:p="http://primefaces.org/ui">
+              xmlns:p="http://primefaces.org/ui"
+              xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <style type="text/css">
         .ui-layout-north {
             z-index:20 !important;
@@ -14,10 +15,15 @@
             overflow:visible !important;
         }
     </style>
+    
     <h:form>
         <p:menubar>
             <p:submenu label="File">
-                <p:menuitem value="Import" url="#" />
+                <p:submenu label="Import">
+                    <p:menuitem>
+                        <p:fileUpload label="Upload file" mode="simple" allowTypes="/(\.|\/)(sql|csv|xml|ged)$/" fileUploadListener="#{importBean.upload()}" auto="true" />
+                    </p:menuitem>
+                </p:submenu>
                 <p:submenu label="Export">
                     <p:menuitem value="SQL" url="#" />
                     <p:menuitem value="CSV" url="#" />
@@ -27,8 +33,8 @@
                 <p:menuitem value="Settings" url="#" />
             </p:submenu>
             <p:submenu label="Edit">            
-                    <p:menuitem value="Edit individual" update="@([id$=editDialog_form])" actionListener="{personQueryBean.setNoInsertJustUpdate}" oncomplete="PF('editDialog').show()" />
-                    <p:submenu label="Detach..."> 
+                <p:menuitem value="Edit individual" update="@([id$=editDialog_form])" actionListener="{personQueryBean.setNoInsertJustUpdate}" oncomplete="PF('editDialog').show()" rendered="#{individualView}" />
+                <p:submenu label="Detach..." rendered="#{individualView}"> 
                       <p:menuitem value="Father" />
                       <p:menuitem value="Mother" />
                       <p:submenu label="Spouse">
@@ -43,11 +49,10 @@
 
             </p:submenu>
             <p:submenu label="View">
-
+                <p:menuitem value="Individual" url="faces/index.xhtml" rendered="#{!individualView}" /> 
+                <p:menuitem value="Places" url="faces/places.xhtml" rendered="#{!placesView}" />
             </p:submenu>
-            <p:submenu label="Theme">
-
-            </p:submenu>
+            
             <p:submenu label="Database">
                 <p:submenu label="Detect duplicate">
                     <p:menuitem value="Individuals" url="#" />

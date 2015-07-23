@@ -79,6 +79,11 @@ public class Marriage
             wife = p2;
     }
     
+    public boolean isSet()
+    {
+        return husband.exists() && wife.exists();
+    }
+    
     @Override
     public String toString()
     {

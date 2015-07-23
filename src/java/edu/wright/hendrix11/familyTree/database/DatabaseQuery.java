@@ -5,6 +5,7 @@ import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -136,6 +137,40 @@ public abstract class DatabaseQuery extends Database
         return executeQuery(query);
     }
     
+    protected boolean deleteObject(String tableName, Object o, String key, String value)
+    {
+        if(o != null && key != null && value != null)
+        {
+            String query = "DELETE FROM " + tableName + " WHERE " + key + "=" + value;
+            
+            try
+            {        
+                executeUpdate(query);
+                
+                return true;
+            }
+            catch(Exception e)
+            {
+                System.err.println(query);
+                e.printStackTrace();
+            }
+        }
+        
+        return false;
+    }
+    
+    protected boolean deleteObject(Object o)
+    {
+        String id = this.columnMethodMap.getPrimaryKeyValue(o);
+        String key = this.columnMethodMap.getPrimaryKey().get(0);
+        
+        return deleteObject(o, key, id);
+    }
+    
+    protected boolean deleteObject(Object o, String key, String value)
+    {
+        return deleteObject(tableName, o, key, value);
+    }
     
     /**
      *
@@ -172,6 +207,36 @@ public abstract class DatabaseQuery extends Database
         query.append("=").append(columnMethodMap.getPrimaryKeyValue(object));
         
         return query.toString();
+    }
+    
+    protected Object updateObject(Object o)
+    {
+        String query = generateUpdateQuery(o);
+        
+        try
+        {
+            Object key = columnMethodMap.getPrimaryKeyValue(o);
+            
+            executeUpdate(query);
+            
+            ResultSet rs = selectWithKey(key);
+            
+            if(rs.next()) 
+            {
+                this.setFields(o, rs);
+            }
+
+            this.closeStatement(rs);
+            
+            return o;
+        }
+        catch(Exception e)
+        {
+            System.err.println(query);
+            e.printStackTrace();
+        }
+        
+        return null;
     }
       
     /**

@@ -1,11 +1,11 @@
-package theme;
+package edu.wright.hendrix11.familyTree.bean;
 
 
+import edu.wright.hendrix11.theme.ThemeParser;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 
 /**
  *
@@ -13,7 +13,7 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @ApplicationScoped
-public class ThemeChoices
+public class ThemesBean
 {
     private List<String> themes;// = {"No themes loaded"};
     
@@ -32,19 +32,7 @@ public class ThemeChoices
         
         ThemeParser themeParser = new ThemeParser(jarName);
         
-        if(themeParser.getThemes().size() > 0)
-        {
-            themes = themeParser.getThemes();
-            
-            String defaultTheme = getDefaultTheme();
-            
-            if(themes.contains(defaultTheme))
-            {
-                themes.remove(defaultTheme);
-            }
-            
-            themes.add(0, defaultTheme);
-        }
+        themes = themeParser.getThemes();
     }
     
     public List<String> getThemes()

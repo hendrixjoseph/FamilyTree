@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:h="http://java.sun.com/jsf/html"
+              xmlns:p="http://primefaces.org/ui"
+              xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+   <p:dialog header="About" modal="true" widgetVar="aboutDialog" id="aboutDialog">
+        <p>
+            <p:outputLabel value="Family Tree Database" />
+        </p>
+        <p>
+            <p:outputLabel value="Technologies used:" />
+            <ul>
+                  <li>
+                          <p:outputLabel value="Java Libaries" />
+                          <ul>
+                                <li><p:link value="JSF 2.2" href="https://javaserverfaces.java.net/2.2/download.html" /></li>
+                                <li><p:link value="JSTL API 1.2" href="http://central.maven.org/maven2/javax/servlet/jsp/jstl/jstl-api/1.2/" /></li>
+                                <li><p:link value="PrimeFaces 5.0" href="http://primefaces.org/downloads" /></li>
+                                <li><p:link value="ojdb7.jar" href="http://www.oracle.com/technetwork/database/features/jdbc/jdbc-drivers-12c-download-1958347.html" /></li>
+                                <li><p:link value="JDK 1.8" href="http://www.oracle.com/technetwork/java/javase/overview/index.html" /></li>
+                                <li><p:link value="Apache Tomcat 8.0.15.0" href="https://tomcat.apache.org/download-80.cgi" /></li>
+                          </ul>
+                  </li>
+                  <li>
+                          <p:outputLabel value="Java Test Libaries" />
+                          <ul>
+                                <li><p:link value="JUnit 4.10" href="http://junit.org/" /></li>
+                          </ul>
+                  </li>
+                  <li>
+                          <p:outputLabel value="Development Tools Used" />
+                          <ul>
+                                <li><p:link value="GitHub for Windows 2.14.5" href="https://windows.github.com/" /></li>
+                                <li><p:link value="ForkHub for GitHub" href="https://play.google.com/store/apps/details?id=jp.forkhub" /></li>
+                                <li><p:link value="NetBeans IDE 8.0.2" href="https://netbeans.org/downloads/index.html" /></li>
+                                <li><p:link value="Oracle SQL Developer 4.1.0.19" href="http://www.oracle.com/technetwork/developer-tools/sql-developer/overview/index-097090.html" /></li>
+                                <li><p:link value="Notepad++ v6.7.8.2" href="https://notepad-plus-plus.org/" /></li>
+                          </ul>
+                  </li>
+                    <li>
+                          <p:outputLabel value="Database" />
+                          <ul>
+                                <li><p:link value="Oracle Database 11g Express Edition" href="http://www.oracle.com/technetwork/database/database-technologies/express-edition/overview/index.html" /></li>
+                         </ul>
+                  </li>
+            </ul>
+        </p>
+        <p>
+            <p:outputLabel value="Created for CS7700 Advanced Database Systems" /><br />
+            <p:link href="http://www.wright.edu/" value="Wright State University" /><br />
+            <p:link href="http://cecs.wright.edu/" value="College of Engineering &amp; Computer Science " /><br />
+            <p:link href="http://cse.wright.edu/" value="Department of Computer Science &amp; Engineering" />
+        </p>
+        <p>
+            <p:link href="mailto:hendrix.11@wright.edu" value="Joseph Hendrix" />
+        </p>
+    </p:dialog>
+</ui:component>

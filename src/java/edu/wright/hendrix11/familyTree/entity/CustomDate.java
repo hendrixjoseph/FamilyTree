@@ -52,3 +52,4 @@ public class CustomDate extends Date
     {
         this.dayKnown = dayKnown;
     }
+}

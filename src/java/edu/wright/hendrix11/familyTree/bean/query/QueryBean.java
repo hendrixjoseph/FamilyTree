@@ -23,9 +23,14 @@ public abstract class QueryBean
         
         sb.append("index?personId=");
         sb.append(person.getId());
-        sb.append("&amp;faces-redirect=true");
+        sb.append("&amp;").append(getRedirectAction());
         
         return sb.toString();
+    }
+    
+    protected String getRedirectAction()
+    {
+        return "faces-redirect=true";
     }
     
     public abstract String getAction();

@@ -210,22 +210,12 @@ public class PersonTable extends DatabaseQuery implements SelectData<Person, Int
     @Override
     public Person update(Person p)
     {
-        String query = generateUpdateQuery(p);
+        Object o = updateObject(p);
         
-        try
-        {
-            int id = p.getId();
-            
-            executeUpdate(query);
-            
-            return select(id);
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-        
-        return null;
+        if(o instanceof Person)
+            return (Person)o;
+        else
+            return null;
     }
 
     /**
@@ -271,22 +261,6 @@ public class PersonTable extends DatabaseQuery implements SelectData<Person, Int
     @Override
     public boolean delete(Person p)
     {
-        if(p != null && p.getId() != null)
-        {
-            String query = "DELETE FROM " + tableName + " WHERE ID=" + p.getId();
-            
-            try
-            {        
-                executeUpdate(query);
-                
-                return true;
-            }
-            catch(Exception e)
-            {
-                e.printStackTrace();
-            }
-        }
-        
-        return false;
+        return super.deleteObject(p);
     }    
 }

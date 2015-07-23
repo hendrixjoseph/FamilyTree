@@ -73,10 +73,11 @@ public class GedcomImporter extends Importer
             if(nextLine.startsWith("0 @I"))
             {                
                 nextLine = gatherPeople(nextLine);
+                
             }
             else if(!nextLine.startsWith("0 @I"))
             {
-                
+                nextLine = gatherFamilies(nextLine);
                 
                 nextLine = getNextLine(nextLine);
             } 
@@ -141,7 +142,8 @@ public class GedcomImporter extends Importer
 
             nextLine = processFamily(nextLine, marriage);
             
-            marriageTable.insert(marriage);
+            if(marriage.isSet())
+                marriageTable.insert(marriage);
         }
         
         return nextLine;
@@ -176,7 +178,10 @@ public class GedcomImporter extends Importer
                 child.setFather(husband);
                 child.setMother(wife);
                 
-                personTable.update(child);
+                System.out.println(child.toString());
+                System.out.println();
+                child = personTable.update(child);
+                System.out.println(child.toString());
             }
             else if(nextLine.startsWith("1 MARR"))
             {
@@ -203,6 +208,8 @@ public class GedcomImporter extends Importer
                 if(change.equals(nextLine))
                     nextLine = getNextLine(nextLine);
             }
+            
+            nextLine = getNextLine(nextLine);
         }
         
         return nextLine;
