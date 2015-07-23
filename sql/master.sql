@@ -1,16 +1,56 @@
 --------------------------------------------------------
---  File created - Wednesday-July-22-2015   
+--  File created - Thursday-July-23-2015   
 --------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Type CUSTOM_DATE
+--------------------------------------------------------
+
+  CREATE OR REPLACE TYPE "CUSTOM_DATE" AS OBJECT 
+( 
+    DATE_OF DATE,
+    ABOUT NUMBER,
+    YEAR_KNOWN NUMBER,
+    MONTH_KNOWN NUMBER,
+    DAY_KNOWN NUMBER,
+    MEMBER FUNCTION IS_ABOUT RETURN BOOLEAN,
+    MEMBER FUNCTION IS_YEAR_KNOWN RETURN BOOLEAN,
+    MEMBER FUNCTION IS_MONTH_KNOWN RETURN BOOLEAN,
+    MEMBER FUNCTION IS_DAY_KNOWN RETURN BOOLEAN
+);
+/
+CREATE OR REPLACE TYPE BODY "CUSTOM_DATE" AS 
+   MEMBER FUNCTION IS_ABOUT RETURN BOOLEAN IS
+   BEGIN
+      RETURN ABOUT = 1;
+   END IS_ABOUT;
+   
+   MEMBER FUNCTION IS_YEAR_KNOWN RETURN BOOLEAN IS
+   BEGIN
+      RETURN YEAR_KNOWN = 1;
+   END IS_YEAR_KNOWN;
+   
+   MEMBER FUNCTION IS_MONTH_KNOWN RETURN BOOLEAN IS
+   BEGIN
+      RETURN MONTH_KNOWN = 1;
+   END IS_MONTH_KNOWN;
+   
+   MEMBER FUNCTION IS_DAY_KNOWN RETURN BOOLEAN IS
+   BEGIN
+      RETURN DAY_KNOWN = 1;
+   END IS_DAY_KNOWN;
+END;
+
+/
 --------------------------------------------------------
 --  DDL for Sequence PLACE_SEQUENCE
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "PLACE_SEQUENCE"  MINVALUE 1 MAXVALUE 99999999 INCREMENT BY 1 START WITH 181 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "PLACE_SEQUENCE"  MINVALUE 1 MAXVALUE 99999999 INCREMENT BY 1 START WITH 261 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SEQUENCE_PERSON
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "SEQUENCE_PERSON"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 6481 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "SEQUENCE_PERSON"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 13041 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Table BIRTH
 --------------------------------------------------------
@@ -19,6 +59,23 @@
    (	"PERSON_ID" NUMBER, 
 	"PLACE_ID" NUMBER, 
 	"DATE" DATE
+   ) ;
+--------------------------------------------------------
+--  DDL for Table BOOLEAN
+--------------------------------------------------------
+
+  CREATE TABLE "BOOLEAN" 
+   (	"ID" NUMBER, 
+	"VALUE" VARCHAR2(5)
+   ) ;
+--------------------------------------------------------
+--  DDL for Table BURIAL
+--------------------------------------------------------
+
+  CREATE TABLE "BURIAL" 
+   (	"PERSON_ID" NUMBER, 
+	"ON_DATE" DATE, 
+	"PLACE_ID" NUMBER
    ) ;
 --------------------------------------------------------
 --  DDL for Table DEATH
@@ -112,7 +169,8 @@
   CREATE TABLE "SETTINGS" 
    (	"THEME" VARCHAR2(20), 
 	"DEFAULT_PERSON" NUMBER, 
-	"DEFAULT_PERSON_TYPE" NUMBER
+	"DEFAULT_PERSON_TYPE" NUMBER, 
+	"VIEW_WELCOME_PAGE" NUMBER
    ) ;
 --------------------------------------------------------
 --  DDL for Table SOURCE
@@ -247,192 +305,33 @@ AND     P.ID = DEATH.PERSON_ID (+)
 AND     BIRTH.PLACE_ID = B_PLACE.ID (+)
 AND     DEATH.PLACE_ID = D_PLACE.ID (+);
 --------------------------------------------------------
+--  DDL for View PERSON_VIEW_NULL
+--------------------------------------------------------
+
+  CREATE OR REPLACE VIEW "PERSON_VIEW_NULL" ("ID", "FATHER_ID", "FATHER_NAME", "MOTHER_ID", "MOTHER_NAME", "NAME", "GENDER", "PLACE_OF_BIRTH", "DATE_OF_BIRTH", "PLACE_OF_DEATH", "DATE_OF_DEATH") AS 
+  SELECT 
+    "ID","FATHER_ID","FATHER_NAME","MOTHER_ID","MOTHER_NAME","NAME","GENDER","PLACE_OF_BIRTH","DATE_OF_BIRTH","PLACE_OF_DEATH","DATE_OF_DEATH"
+FROM 
+    PERSON_VIEW
+WHERE
+    FATHER_ID IS NULL;
+--------------------------------------------------------
 --  DDL for View SETTINGS_VIEW
 --------------------------------------------------------
 
-  CREATE OR REPLACE VIEW "SETTINGS_VIEW" ("THEME", "DEFAULT_PERSON", "DEFAULT_PERSON_TYPE") AS 
+  CREATE OR REPLACE VIEW "SETTINGS_VIEW" ("THEME", "DEFAULT_PERSON", "DEFAULT_PERSON_TYPE", "VIEW_WELCOME_PAGE") AS 
   SELECT 
     THEME,
     DEFAULT_PERSON,
-    DEFAULT_PERSON_TYPE.DEFAULT_PERSON_TYPE AS DEFAULT_PERSON_TYPE
+    DEFAULT_PERSON_TYPE.DEFAULT_PERSON_TYPE AS DEFAULT_PERSON_TYPE,
+    BOOLEAN.VALUE AS VIEW_WELCOME_PAGE
 FROM 
     SETTINGS,
-    DEFAULT_PERSON_TYPE
+    DEFAULT_PERSON_TYPE,
+    BOOLEAN
 WHERE
-    DEFAULT_PERSON_TYPE.ID = SETTINGS.DEFAULT_PERSON_TYPE;
-REM INSERTING into BIRTH
-SET DEFINE OFF;
-Insert into BIRTH (PERSON_ID,PLACE_ID,"DATE") values (1,1,to_date('04-MAR-1827','DD-MON-YYYY'));
-Insert into BIRTH (PERSON_ID,PLACE_ID,"DATE") values (2,2,to_date('23-MAY-1795','DD-MON-YYYY'));
-REM INSERTING into DEATH
-SET DEFINE OFF;
-Insert into DEATH (PERSON_ID,PLACE_ID,"DATE") values (1,3,to_date('29-JAN-1900','DD-MON-YYYY'));
-Insert into DEATH (PERSON_ID,PLACE_ID,"DATE") values (2,1,to_date('12-DEC-1881','DD-MON-YYYY'));
-REM INSERTING into DEFAULT_PERSON_TYPE
-SET DEFINE OFF;
-Insert into DEFAULT_PERSON_TYPE (ID,DEFAULT_PERSON_TYPE) values (1,'Same person');
-Insert into DEFAULT_PERSON_TYPE (ID,DEFAULT_PERSON_TYPE) values (2,'Last viewed person');
-Insert into DEFAULT_PERSON_TYPE (ID,DEFAULT_PERSON_TYPE) values (3,'Last edited person');
-REM INSERTING into FATHER_OF
-SET DEFINE OFF;
-Insert into FATHER_OF (FATHER_ID,CHILD_ID) values (2,1);
-REM INSERTING into GENDER
-SET DEFINE OFF;
-Insert into GENDER (ABBR,FULL_WORD) values ('M','Male');
-Insert into GENDER (ABBR,FULL_WORD) values ('F','Female');
-Insert into GENDER (ABBR,FULL_WORD) values ('O','Other');
-Insert into GENDER (ABBR,FULL_WORD) values ('U','Unknown');
-REM INSERTING into MARRIAGE
-SET DEFINE OFF;
-Insert into MARRIAGE (HUSBAND,WIFE,PLACE,ANNIVERSARY) values (2,3,42,to_date('20-JUL-2015','DD-MON-YYYY'));
-REM INSERTING into MOTHER_OF
-SET DEFINE OFF;
-Insert into MOTHER_OF (MOTHER_ID,CHILD_ID) values (3,1);
-REM INSERTING into PERSON
-SET DEFINE OFF;
-Insert into PERSON (ID,NAME,GENDER) values (1,'William Z Thoroman','M');
-Insert into PERSON (ID,NAME,GENDER) values (2,'Samuel Thoroman','M');
-Insert into PERSON (ID,NAME,GENDER) values (3,'Cynthiann McDonald Reynolds','F');
-REM INSERTING into PERSON_INFO
-SET DEFINE OFF;
-REM INSERTING into PERSON_INFO_TYPE
-SET DEFINE OFF;
-REM INSERTING into PLACE
-SET DEFINE OFF;
-Insert into PLACE (ID,NAME) values (1,'Ohio');
-Insert into PLACE (ID,NAME) values (2,'Washington, Pennsylvania');
-Insert into PLACE (ID,NAME) values (3,'Jacksonville, Ohio');
-Insert into PLACE (ID,NAME) values (42,'Alaska');
-Insert into PLACE (ID,NAME) values (43,'Ann Arbor, Michigan');
-Insert into PLACE (ID,NAME) values (44,'Dayton, Ohio');
-Insert into PLACE (ID,NAME) values (45,'Roane County, Tennessee');
-Insert into PLACE (ID,NAME) values (46,'Miami County, Ohio');
-Insert into PLACE (ID,NAME) values (47,'Tennessee');
-Insert into PLACE (ID,NAME) values (48,'Pottsville, Pennsylvania');
-Insert into PLACE (ID,NAME) values (49,'Washington,Pennsylvania');
-Insert into PLACE (ID,NAME) values (50,'Pennsylvania');
-Insert into PLACE (ID,NAME) values (51,'Sandusky,Ohio');
-Insert into PLACE (ID,NAME) values (52,'Greene,Pennsylvania');
-Insert into PLACE (ID,NAME) values (53,'Westmoreland,Pennsylvania');
-Insert into PLACE (ID,NAME) values (54,'Fayette,Pennsylvania');
-Insert into PLACE (ID,NAME) values (55,'Adams,Ohio');
-Insert into PLACE (ID,NAME) values (56,'Adams, Ohio');
-Insert into PLACE (ID,NAME) values (57,'Brown, Ohio');
-Insert into PLACE (ID,NAME) values (58,'Sprigg Twp,Adams,Ohio');
-Insert into PLACE (ID,NAME) values (59,'Bentonville,Adams,Ohio');
-Insert into PLACE (ID,NAME) values (60,'Kentucky');
-Insert into PLACE (ID,NAME) values (61,'Indiana');
-Insert into PLACE (ID,NAME) values (62,'Vigo,Vigo,Indiana');
-Insert into PLACE (ID,NAME) values (63,'Mason,Kentucky');
-Insert into PLACE (ID,NAME) values (64,'Missouri');
-Insert into PLACE (ID,NAME) values (65,'Virginia');
-Insert into PLACE (ID,NAME) values (66,'Morton,Putnam,Indiana');
-Insert into PLACE (ID,NAME) values (67,'Jacksonville,Adams,Ohio');
-Insert into PLACE (ID,NAME) values (68,'Lewis,Kentucky');
-Insert into PLACE (ID,NAME) values (69,'Scioto,Ohio');
-Insert into PLACE (ID,NAME) values (70,'Vanceburg,Lewis,Kentucky');
-Insert into PLACE (ID,NAME) values (71,'Smythe,Virginia');
-Insert into PLACE (ID,NAME) values (72,'Boyd,Kentucky');
-Insert into PLACE (ID,NAME) values (73,'Burtonsville,Lewis,Kentucky');
-Insert into PLACE (ID,NAME) values (74,'Winchester,Clark,Kentucky');
-Insert into PLACE (ID,NAME) values (75,'Lexington,Fayette,Kentucky');
-Insert into PLACE (ID,NAME) values (76,'College Corner,Indiana');
-Insert into PLACE (ID,NAME) values (77,'Cincinnati,Ohio');
-Insert into PLACE (ID,NAME) values (78,'Deleware');
-Insert into PLACE (ID,NAME) values (79,'Tiffin Twp,Adams,Ohio');
-Insert into PLACE (ID,NAME) values (81,'Hospice, Dayton, OH');
-Insert into PLACE (ID,NAME) values (82,'Mexico City, Mexico');
-Insert into PLACE (ID,NAME) values (83,'Laura, Miami, OH 45337');
-Insert into PLACE (ID,NAME) values (84,'New Lebanon, Montgomery, OH 45345');
-Insert into PLACE (ID,NAME) values (85,'West Virginia');
-Insert into PLACE (ID,NAME) values (86,'Dayton, Montgomery, OH 45403');
-Insert into PLACE (ID,NAME) values (87,'Dayton, Montgomery, OH 45409');
-Insert into PLACE (ID,NAME) values (88,'Xenia, Greene County, Ohio 45385');
-Insert into PLACE (ID,NAME) values (89,'Miami Valley Hospital, Dayton, Ohio');
-Insert into PLACE (ID,NAME) values (90,'Montgomery County, Ohio');
-Insert into PLACE (ID,NAME) values (91,'Perry County, Ohio');
-Insert into PLACE (ID,NAME) values (92,'Troy, Ohio');
-Insert into PLACE (ID,NAME) values (93,'Dayton, Montgomery, OH 45407');
-Insert into PLACE (ID,NAME) values (94,'Arizona');
-Insert into PLACE (ID,NAME) values (95,'25 Aug 1881');
-Insert into PLACE (ID,NAME) values (96,'Dayton, Montgomery, OH 45429');
-Insert into PLACE (ID,NAME) values (97,'Dayton, Montgomery, OH 45410');
-Insert into PLACE (ID,NAME) values (98,'Randolph,Indiana');
-Insert into PLACE (ID,NAME) values (99,'Xenia, Ohio');
-Insert into PLACE (ID,NAME) values (100,'Bradenton,Florida');
-Insert into PLACE (ID,NAME) values (101,'California');
-Insert into PLACE (ID,NAME) values (102,'Summit Hill,Ross,Ohio');
-Insert into PLACE (ID,NAME) values (103,'Cedarville,Ohio');
-Insert into PLACE (ID,NAME) values (104,'Chillicothe,Ohio');
-Insert into PLACE (ID,NAME) values (105,'Huntington Twp,Ross,Ohio');
-Insert into PLACE (ID,NAME) values (106,'Xenia,Greene,Ohio');
-Insert into PLACE (ID,NAME) values (107,'Coventry,Somerset,Maryland');
-Insert into PLACE (ID,NAME) values (108,'Des Moines,Polk,Iowa');
-Insert into PLACE (ID,NAME) values (109,'Bedford,Pennsylvania');
-Insert into PLACE (ID,NAME) values (110,'Sterling,Whiteside,Illinois');
-Insert into PLACE (ID,NAME) values (111,'Brown,Ohio');
-Insert into PLACE (ID,NAME) values (112,'Madison,Iowa');
-Insert into PLACE (ID,NAME) values (113,'Wisconsin');
-Insert into PLACE (ID,NAME) values (114,'Mount Carmel,Illinois');
-Insert into PLACE (ID,NAME) values (115,'Almena,Norton,Kansas');
-Insert into PLACE (ID,NAME) values (116,'Paxton,Ford,Illinois');
-Insert into PLACE (ID,NAME) values (117,'Parlee,Indiana');
-Insert into PLACE (ID,NAME) values (118,'Clinton Falls,Putnam,Indiana');
-Insert into PLACE (ID,NAME) values (119,'Dallas,Missouri');
-Insert into PLACE (ID,NAME) values (120,'Montgomery,Kentucky');
-Insert into PLACE (ID,NAME) values (121,'Antlers,,Oklahoma');
-Insert into PLACE (ID,NAME) values (122,'Indianapolis,Indiana');
-Insert into PLACE (ID,NAME) values (123,'Putnam,Indiana');
-Insert into PLACE (ID,NAME) values (124,'Saline City,Clay,Indiana');
-Insert into PLACE (ID,NAME) values (125,'Cortez,Montezuma,Colorado');
-Insert into PLACE (ID,NAME) values (126,'Kansas City,Missouri');
-Insert into PLACE (ID,NAME) values (127,'Jancsenville,Adams,Ohio');
-Insert into PLACE (ID,NAME) values (128,'Chicago,Illinois');
-Insert into PLACE (ID,NAME) values (129,'Versailles,Illinois');
-Insert into PLACE (ID,NAME) values (130,'Chicago,Cook,Illinois');
-Insert into PLACE (ID,NAME) values (131,'Edwardsville,Kansas');
-Insert into PLACE (ID,NAME) values (132,'Edwardsville,Wyandotte,Kansas');
-Insert into PLACE (ID,NAME) values (133,'Springfield,Ohio');
-Insert into PLACE (ID,NAME) values (134,'Bunnell,Florida');
-Insert into PLACE (ID,NAME) values (135,'West Portsmouth,Ohio');
-Insert into PLACE (ID,NAME) values (136,'Bracken,Kentucky');
-Insert into PLACE (ID,NAME) values (137,'Maysville,Mason,Kentucky');
-Insert into PLACE (ID,NAME) values (138,'Saltlick,Lewis,Kentucky');
-Insert into PLACE (ID,NAME) values (139,'Esculapia Sprgs,Lewis,Kentucky');
-Insert into PLACE (ID,NAME) values (140,'Portsmouth,Scioto,Ohio');
-Insert into PLACE (ID,NAME) values (141,'Smyth,Virginia');
-Insert into PLACE (ID,NAME) values (142,'Columbus,,Ohio');
-Insert into PLACE (ID,NAME) values (143,'Columbus,Franklin,Ohio');
-Insert into PLACE (ID,NAME) values (144,'Dover,Kent,Delaware');
-Insert into PLACE (ID,NAME) values (145,'Levy,Florida');
-Insert into PLACE (ID,NAME) values (146,'Springfield,Clark,Ohio');
-Insert into PLACE (ID,NAME) values (147,'Blum,Ohio');
-Insert into PLACE (ID,NAME) values (148,'Portsmouth,Ohio');
-Insert into PLACE (ID,NAME) values (149,'Lawrence,Ohio');
-Insert into PLACE (ID,NAME) values (150,'Stricklett,Lewis,Kentucky');
-Insert into PLACE (ID,NAME) values (151,'Newbern,Pulaski,Virginia');
-Insert into PLACE (ID,NAME) values (152,'Chattanooga,Tennessee');
-Insert into PLACE (ID,NAME) values (153,'Flemingsburg,Fleming,Kentucky');
-Insert into PLACE (ID,NAME) values (154,'Cincinnati,Hamilton,Ohio');
-Insert into PLACE (ID,NAME) values (155,'Elizabethtown,Hardin,Kentucky');
-Insert into PLACE (ID,NAME) values (156,'Flemingsburg,Kentucky');
-Insert into PLACE (ID,NAME) values (157,'Williamsburg,Ohio');
-Insert into PLACE (ID,NAME) values (158,'Nashtown,Lewis,Kentucky');
-Insert into PLACE (ID,NAME) values (159,'Paris, Kentucky');
-Insert into PLACE (ID,NAME) values (160,'Ludlow,Kentucky');
-Insert into PLACE (ID,NAME) values (161,'Covington,Kentucky');
-Insert into PLACE (ID,NAME) values (162,'Baltimore, Maryland');
-Insert into PLACE (ID,NAME) values (163,'Centerville, Appanoose, Iowa');
-Insert into PLACE (ID,NAME) values (164,'Knox, Indiana');
-Insert into PLACE (ID,NAME) values (165,'Fristoe Bridge,Adams,Ohio');
-Insert into PLACE (ID,NAME) values (166,'Cooks Mill,Cole,Illinois');
-Insert into PLACE (ID,NAME) values (167,'Lancaster, Pennsylvania');
-Insert into PLACE (ID,NAME) values (168,'Treber Inn');
-REM INSERTING into SETTINGS
-SET DEFINE OFF;
-Insert into SETTINGS (THEME,DEFAULT_PERSON,DEFAULT_PERSON_TYPE) values (null,null,1);
-REM INSERTING into SOURCE
-SET DEFINE OFF;
+    DEFAULT_PERSON_TYPE.ID = SETTINGS.DEFAULT_PERSON_TYPE
+AND BOOLEAN.ID = SETTINGS.VIEW_WELCOME_PAGE;
 --------------------------------------------------------
 --  DDL for Index DEFAULT_PERSON_TYPE_PK
 --------------------------------------------------------
@@ -444,12 +343,6 @@ SET DEFINE OFF;
 --------------------------------------------------------
 
   CREATE UNIQUE INDEX "FATHER_OF_PK" ON "FATHER_OF" ("CHILD_ID") 
-  ;
---------------------------------------------------------
---  DDL for Index SOURCE_PK
---------------------------------------------------------
-
-  CREATE UNIQUE INDEX "SOURCE_PK" ON "SOURCE" ("ID") 
   ;
 --------------------------------------------------------
 --  DDL for Index MARRIAGE_PK
@@ -464,16 +357,34 @@ SET DEFINE OFF;
   CREATE UNIQUE INDEX "BIRTHS_PK" ON "BIRTH" ("PERSON_ID") 
   ;
 --------------------------------------------------------
+--  DDL for Index PERSON_INFO_TYPE_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "PERSON_INFO_TYPE_PK" ON "PERSON_INFO_TYPE" ("ID") 
+  ;
+--------------------------------------------------------
+--  DDL for Index BOOLEAN_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "BOOLEAN_PK" ON "BOOLEAN" ("ID") 
+  ;
+--------------------------------------------------------
+--  DDL for Index SOURCE_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "SOURCE_PK" ON "SOURCE" ("ID") 
+  ;
+--------------------------------------------------------
 --  DDL for Index GENDERS_PK
 --------------------------------------------------------
 
   CREATE UNIQUE INDEX "GENDERS_PK" ON "GENDER" ("ABBR") 
   ;
 --------------------------------------------------------
---  DDL for Index PERSON_INFO_TYPE_PK
+--  DDL for Index BURIAL_PK
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "PERSON_INFO_TYPE_PK" ON "PERSON_INFO_TYPE" ("ID") 
+  CREATE UNIQUE INDEX "BURIAL_PK" ON "BURIAL" ("PERSON_ID") 
   ;
 --------------------------------------------------------
 --  DDL for Index PLACE_NAME_UK
@@ -505,6 +416,20 @@ SET DEFINE OFF;
 
   CREATE UNIQUE INDEX "PERSON_PK" ON "PERSON" ("ID") 
   ;
+--------------------------------------------------------
+--  Constraints for Table BURIAL
+--------------------------------------------------------
+
+  ALTER TABLE "BURIAL" ADD CONSTRAINT "BURIAL_PK" PRIMARY KEY ("PERSON_ID") ENABLE;
+  ALTER TABLE "BURIAL" MODIFY ("PERSON_ID" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table BOOLEAN
+--------------------------------------------------------
+
+  ALTER TABLE "BOOLEAN" MODIFY ("VALUE" NOT NULL ENABLE);
+  ALTER TABLE "BOOLEAN" ADD CONSTRAINT "BOOLEAN_PK" PRIMARY KEY ("ID") ENABLE;
+  ALTER TABLE "BOOLEAN" ADD CONSTRAINT "BOOLEAN_CHK1" CHECK ("ID"=0 OR "ID"=1) ENABLE;
+  ALTER TABLE "BOOLEAN" MODIFY ("ID" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table PERSON_INFO_TYPE
 --------------------------------------------------------
@@ -602,6 +527,14 @@ SET DEFINE OFF;
   ALTER TABLE "BIRTH" ADD CONSTRAINT "BIRTH_PLACE_FK" FOREIGN KEY ("PLACE_ID")
 	  REFERENCES "PLACE" ("ID") ENABLE;
 --------------------------------------------------------
+--  Ref Constraints for Table BURIAL
+--------------------------------------------------------
+
+  ALTER TABLE "BURIAL" ADD CONSTRAINT "BURIAL_PERSON_FK" FOREIGN KEY ("PERSON_ID")
+	  REFERENCES "PERSON" ("ID") ON DELETE CASCADE ENABLE;
+  ALTER TABLE "BURIAL" ADD CONSTRAINT "BURIAL_PLACE_FK" FOREIGN KEY ("PLACE_ID")
+	  REFERENCES "PLACE" ("ID") ON DELETE SET NULL ENABLE;
+--------------------------------------------------------
 --  Ref Constraints for Table DEATH
 --------------------------------------------------------
 
@@ -657,6 +590,8 @@ SET DEFINE OFF;
 	  REFERENCES "PERSON" ("ID") ON DELETE SET NULL ENABLE;
   ALTER TABLE "SETTINGS" ADD CONSTRAINT "DEFAULT_PERSON_TYPE_FK" FOREIGN KEY ("DEFAULT_PERSON")
 	  REFERENCES "DEFAULT_PERSON_TYPE" ("ID") ON DELETE SET NULL ENABLE;
+  ALTER TABLE "SETTINGS" ADD CONSTRAINT "VIEW_WELCOME_PAGE_FK" FOREIGN KEY ("VIEW_WELCOME_PAGE")
+	  REFERENCES "BOOLEAN" ("ID") ENABLE;
 --------------------------------------------------------
 --  DDL for Trigger MARRIAGE_VIEW_INSERT_TRIGGER
 --------------------------------------------------------
