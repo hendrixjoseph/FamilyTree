@@ -1,5 +1,5 @@
 --------------------------------------------------------
---  File created - Thursday-July-23-2015   
+--  File created - Friday-July-24-2015   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Type CUSTOM_DATE
@@ -45,12 +45,46 @@ END;
 --  DDL for Sequence PLACE_SEQUENCE
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "PLACE_SEQUENCE"  MINVALUE 1 MAXVALUE 99999999 INCREMENT BY 1 START WITH 261 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "PLACE_SEQUENCE"  MINVALUE 1 MAXVALUE 99999999 INCREMENT BY 1 START WITH 301 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SEQUENCE_PERSON
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "SEQUENCE_PERSON"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 13041 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "SEQUENCE_PERSON"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 9491 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Table BOOLEAN
+--------------------------------------------------------
+
+  CREATE TABLE "BOOLEAN" 
+   (	"ID" NUMBER, 
+	"VALUE" VARCHAR2(5)
+   ) ;
+--------------------------------------------------------
+--  DDL for Table DEFAULT_PERSON_TYPE
+--------------------------------------------------------
+
+  CREATE TABLE "DEFAULT_PERSON_TYPE" 
+   (	"ID" NUMBER, 
+	"DEFAULT_PERSON_TYPE" VARCHAR2(20)
+   ) ;
+--------------------------------------------------------
+--  DDL for Table GENDER
+--------------------------------------------------------
+
+  CREATE TABLE "GENDER" 
+   (	"ABBR" CHAR(1), 
+	"FULL_WORD" VARCHAR2(20)
+   ) ;
+--------------------------------------------------------
+--  DDL for Table SETTINGS
+--------------------------------------------------------
+
+  CREATE TABLE "SETTINGS" 
+   (	"THEME" VARCHAR2(20), 
+	"DEFAULT_PERSON" NUMBER, 
+	"DEFAULT_PERSON_TYPE" NUMBER, 
+	"VIEW_WELCOME_PAGE" NUMBER
+   ) ;
 --------------------------------------------------------
 --  DDL for Table BIRTH
 --------------------------------------------------------
@@ -59,14 +93,6 @@ END;
    (	"PERSON_ID" NUMBER, 
 	"PLACE_ID" NUMBER, 
 	"DATE" DATE
-   ) ;
---------------------------------------------------------
---  DDL for Table BOOLEAN
---------------------------------------------------------
-
-  CREATE TABLE "BOOLEAN" 
-   (	"ID" NUMBER, 
-	"VALUE" VARCHAR2(5)
    ) ;
 --------------------------------------------------------
 --  DDL for Table BURIAL
@@ -87,28 +113,12 @@ END;
 	"DATE" DATE
    ) ;
 --------------------------------------------------------
---  DDL for Table DEFAULT_PERSON_TYPE
---------------------------------------------------------
-
-  CREATE TABLE "DEFAULT_PERSON_TYPE" 
-   (	"ID" NUMBER, 
-	"DEFAULT_PERSON_TYPE" VARCHAR2(20)
-   ) ;
---------------------------------------------------------
 --  DDL for Table FATHER_OF
 --------------------------------------------------------
 
   CREATE TABLE "FATHER_OF" 
    (	"FATHER_ID" NUMBER, 
 	"CHILD_ID" NUMBER
-   ) ;
---------------------------------------------------------
---  DDL for Table GENDER
---------------------------------------------------------
-
-  CREATE TABLE "GENDER" 
-   (	"ABBR" CHAR(1), 
-	"FULL_WORD" VARCHAR2(20)
    ) ;
 --------------------------------------------------------
 --  DDL for Table MARRIAGE
@@ -163,16 +173,6 @@ END;
 	"NAME" VARCHAR2(100)
    ) ;
 --------------------------------------------------------
---  DDL for Table SETTINGS
---------------------------------------------------------
-
-  CREATE TABLE "SETTINGS" 
-   (	"THEME" VARCHAR2(20), 
-	"DEFAULT_PERSON" NUMBER, 
-	"DEFAULT_PERSON_TYPE" NUMBER, 
-	"VIEW_WELCOME_PAGE" NUMBER
-   ) ;
---------------------------------------------------------
 --  DDL for Table SOURCE
 --------------------------------------------------------
 
@@ -181,31 +181,6 @@ END;
 	"CITATION" VARCHAR2(50), 
 	"TITLE" VARCHAR2(20)
    ) ;
---------------------------------------------------------
---  DDL for View CHILDREN_VIEW
---------------------------------------------------------
-
-  CREATE OR REPLACE VIEW "CHILDREN_VIEW" ("ID", "NAME", "SPOUSE_ID", "SPOUSE", "CHILD_ID", "CHILD") AS 
-  SELECT 
-    P.ID,
-	  P.NAME,
-    SPOUSE.ID AS SPOUSE_ID,
-    SPOUSE.NAME AS SPOUSE,
-    CHILD.ID AS CHILD_ID,
-    CHILD.NAME AS CHILD
-FROM 
-    PERSON_VIEW CHILD
-INNER JOIN 
-    PERSON_VIEW P
-ON
-    CHILD.FATHER_ID = P.ID OR CHILD.MOTHER_ID = P.ID
-LEFT OUTER JOIN
-    PERSON_VIEW SPOUSE
-ON
-    (CHILD.FATHER_ID = SPOUSE.ID OR CHILD.MOTHER_ID = SPOUSE.ID) AND
-    P.ID <> SPOUSE.ID
-ORDER BY
-    P.NAME, SPOUSE.NAME;
 --------------------------------------------------------
 --  DDL for View DEFAULT_PERSON_VIEW
 --------------------------------------------------------
@@ -232,6 +207,48 @@ FROM
   PERSON_VIEW
 WHERE
   ID = (SELECT MAX(ID) FROM PERSON_VIEW);
+--------------------------------------------------------
+--  DDL for View SETTINGS_VIEW
+--------------------------------------------------------
+
+  CREATE OR REPLACE VIEW "SETTINGS_VIEW" ("THEME", "DEFAULT_PERSON", "DEFAULT_PERSON_TYPE", "VIEW_WELCOME_PAGE") AS 
+  SELECT 
+    THEME,
+    DEFAULT_PERSON,
+    DEFAULT_PERSON_TYPE.DEFAULT_PERSON_TYPE AS DEFAULT_PERSON_TYPE,
+    BOOLEAN.VALUE AS VIEW_WELCOME_PAGE
+FROM 
+    SETTINGS,
+    DEFAULT_PERSON_TYPE,
+    BOOLEAN
+WHERE
+    DEFAULT_PERSON_TYPE.ID = SETTINGS.DEFAULT_PERSON_TYPE
+AND BOOLEAN.ID = SETTINGS.VIEW_WELCOME_PAGE;
+--------------------------------------------------------
+--  DDL for View CHILDREN_VIEW
+--------------------------------------------------------
+
+  CREATE OR REPLACE VIEW "CHILDREN_VIEW" ("ID", "NAME", "SPOUSE_ID", "SPOUSE", "CHILD_ID", "CHILD") AS 
+  SELECT 
+    P.ID,
+	  P.NAME,
+    SPOUSE.ID AS SPOUSE_ID,
+    SPOUSE.NAME AS SPOUSE,
+    CHILD.ID AS CHILD_ID,
+    CHILD.NAME AS CHILD
+FROM 
+    PERSON_VIEW CHILD
+INNER JOIN 
+    PERSON_VIEW P
+ON
+    CHILD.FATHER_ID = P.ID OR CHILD.MOTHER_ID = P.ID
+LEFT OUTER JOIN
+    PERSON_VIEW SPOUSE
+ON
+    (CHILD.FATHER_ID = SPOUSE.ID OR CHILD.MOTHER_ID = SPOUSE.ID) AND
+    P.ID <> SPOUSE.ID
+ORDER BY
+    P.NAME, SPOUSE.NAME;
 --------------------------------------------------------
 --  DDL for View MARRIAGE_VIEW
 --------------------------------------------------------
@@ -315,23 +332,33 @@ FROM
     PERSON_VIEW
 WHERE
     FATHER_ID IS NULL;
---------------------------------------------------------
---  DDL for View SETTINGS_VIEW
---------------------------------------------------------
-
-  CREATE OR REPLACE VIEW "SETTINGS_VIEW" ("THEME", "DEFAULT_PERSON", "DEFAULT_PERSON_TYPE", "VIEW_WELCOME_PAGE") AS 
-  SELECT 
-    THEME,
-    DEFAULT_PERSON,
-    DEFAULT_PERSON_TYPE.DEFAULT_PERSON_TYPE AS DEFAULT_PERSON_TYPE,
-    BOOLEAN.VALUE AS VIEW_WELCOME_PAGE
-FROM 
-    SETTINGS,
-    DEFAULT_PERSON_TYPE,
-    BOOLEAN
-WHERE
-    DEFAULT_PERSON_TYPE.ID = SETTINGS.DEFAULT_PERSON_TYPE
-AND BOOLEAN.ID = SETTINGS.VIEW_WELCOME_PAGE;
+REM INSERTING into BOOLEAN
+SET DEFINE OFF;
+Insert into BOOLEAN (ID,VALUE) values (0,'false');
+Insert into BOOLEAN (ID,VALUE) values (1,'true');
+REM INSERTING into DEFAULT_PERSON_TYPE
+SET DEFINE OFF;
+Insert into DEFAULT_PERSON_TYPE (ID,DEFAULT_PERSON_TYPE) values (1,'Same person');
+Insert into DEFAULT_PERSON_TYPE (ID,DEFAULT_PERSON_TYPE) values (2,'Last viewed person');
+Insert into DEFAULT_PERSON_TYPE (ID,DEFAULT_PERSON_TYPE) values (3,'Last edited person');
+REM INSERTING into GENDER
+SET DEFINE OFF;
+Insert into GENDER (ABBR,FULL_WORD) values ('M','Male');
+Insert into GENDER (ABBR,FULL_WORD) values ('F','Female');
+Insert into GENDER (ABBR,FULL_WORD) values ('O','Other');
+Insert into GENDER (ABBR,FULL_WORD) values ('U','Unknown');
+REM INSERTING into SETTINGS
+SET DEFINE OFF;
+Insert into SETTINGS (THEME,DEFAULT_PERSON,DEFAULT_PERSON_TYPE,VIEW_WELCOME_PAGE) values (null,null,1,1);
+REM INSERTING into DEFAULT_PERSON_VIEW
+SET DEFINE OFF;
+Insert into DEFAULT_PERSON_VIEW (ID,FATHER_ID,FATHER_NAME,MOTHER_ID,MOTHER_NAME,NAME,GENDER,PLACE_OF_BIRTH,DATE_OF_BIRTH,PLACE_OF_DEATH,DATE_OF_DEATH) values (7851,7852,'David Morgan Hendrix',7853,'Deborah Lee Hunter','Joseph David Hendrix','Male','Ann Arbor, Michigan',to_date('25-FEB-1984','DD-MON-YYYY'),null,null);
+REM INSERTING into LAST_PERSON_INSERTED_VIEW
+SET DEFINE OFF;
+Insert into LAST_PERSON_INSERTED_VIEW (ID,FATHER_ID,FATHER_NAME,MOTHER_ID,MOTHER_NAME,NAME,GENDER,PLACE_OF_BIRTH,DATE_OF_BIRTH,PLACE_OF_DEATH,DATE_OF_DEATH) values (9485,null,null,null,null,'Suzanne','Female',null,null,null,null);
+REM INSERTING into SETTINGS_VIEW
+SET DEFINE OFF;
+Insert into SETTINGS_VIEW (THEME,DEFAULT_PERSON,DEFAULT_PERSON_TYPE,VIEW_WELCOME_PAGE) values (null,null,'Same person','true');
 --------------------------------------------------------
 --  DDL for Index DEFAULT_PERSON_TYPE_PK
 --------------------------------------------------------
@@ -600,9 +627,12 @@ AND BOOLEAN.ID = SETTINGS.VIEW_WELCOME_PAGE;
 INSTEAD OF INSERT ON MARRIAGE_VIEW 
 DECLARE
   PLACE_ID NUMBER;
-BEGIN
+  DUMMY NUMBER;
+BEGIN 
+  SELECT HUSBAND INTO DUMMY FROM MARRIAGE WHERE HUSBAND=:new.HUSBAND_ID AND WIFE=:new.WIFE_ID;
+EXCEPTION WHEN NO_DATA_FOUND THEN
   -- Insert the couple
-  INSERT INTO MARRIAGE (HUSBAND, WIFE) VALUES (:new.HUSBAND_ID, :new.WIFE_ID);
+  INSERT INTO MARRIAGE (HUSBAND, WIFE) VALUES (:new.HUSBAND_ID, :new.WIFE_ID); 
   
   -- Insert (well, now update) the date
   IF :new.ANNIVERSARY IS NOT NULL THEN

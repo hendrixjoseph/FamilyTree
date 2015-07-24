@@ -3,10 +3,12 @@ package edu.wright.hendrix11.familyTree.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  *
@@ -24,9 +26,11 @@ public class Person implements Serializable
     private Date dateOfDeath;
     private String placeOfDeath;
     
-    private HashMap<Person, List<SpouseChildMap>> spouseChildMap;
+    private HashMap<Person, List<Person>> spouseChildMap;
     
     private List<Person> childrenNoSpouse;
+    
+    private List<Person> spouses;
     
     private HashMap<String, PersonInfo> personInfo;
 
@@ -37,7 +41,8 @@ public class Person implements Serializable
     {
         // No arg constructor
         childrenNoSpouse = new ArrayList<Person>();
-        spouseChildMap = new HashMap<Person, List<SpouseChildMap>>();
+        spouseChildMap = new HashMap<Person, List<Person>>();
+        //spouseChildMap = new HashMap<Person, List<SpouseChildMap>>();
     }
     
     /**
@@ -188,23 +193,19 @@ public class Person implements Serializable
      *
      * @return
      */
-    public HashMap<Person, List<SpouseChildMap>> getSpouseChildMap()
+    public HashMap<Person, List<Person>> getSpouseChildMap()
     {
         return spouseChildMap;
     }
     
+    public HashMap<Person, List<SpouseChildMap>> getSpouseChildMapOld()
+    {
+        return null;
+    }
+    
     public List<Person> getChildren(Person spouse)
     {
-        List<SpouseChildMap> mapList = getSpouseChildMap().get(spouse);
-        
-        List<Person> children = new ArrayList<Person>();
-        
-        for(SpouseChildMap map : mapList)
-        {
-            children.add(map.getChild());
-        }
-        
-        return children;
+        return getSpouseChildMap().get(spouse);
     }
 
     /**
@@ -313,21 +314,33 @@ public class Person implements Serializable
      *
      * @param spouseChildMap
      */
-    public void setSpouseChildMap(HashMap<Person, List<SpouseChildMap>> spouseChildMap)
+    public void setSpouseChildMap(HashMap<Person, List<Person>> spouseChildMap)
     {
-        List<SpouseChildMap> noSpouseList = spouseChildMap.get(null);
+        List<Person> noSpouseList = spouseChildMap.get(null);
         
         childrenNoSpouse = new ArrayList<Person>();
         
         if(noSpouseList != null)
         {
-            for(SpouseChildMap map : noSpouseList)
-            {
-                childrenNoSpouse.add(map.getChild());
-            }
+            childrenNoSpouse.addAll(noSpouseList);
+            
+//            for(SpouseChildMap map : noSpouseList)
+//            {
+//                childrenNoSpouse.add(map.getChild());
+//            }
         }
         
         spouseChildMap.remove(null);
+        
+//        spouses = new ArrayList<Person>();
+        
+//        Collection<List<SpouseChildMap>> values = spouseChildMap.values();
+//        Set<Person> keySet = spouseChildMap.keySet();
+//        
+//        for(Person spouse : )
+//        {
+//            
+//        }
             
         this.spouseChildMap = spouseChildMap;
     }
@@ -349,6 +362,11 @@ public class Person implements Serializable
         return exists;
     }
 
+    public List<Person> getSpouses()
+    {
+        return spouses;
+    }
+
     public HashMap<String, PersonInfo> getPersonInfo()
     {
         return personInfo;
@@ -365,17 +383,17 @@ public class Person implements Serializable
             this.childrenNoSpouse.add(child);
         else
         {
-            List<SpouseChildMap> map = this.spouseChildMap.get(spouse);
+            List<Person> map = this.spouseChildMap.get(spouse);
             
             if(map == null)
             {
-                map = new ArrayList<SpouseChildMap>();
+                map = new ArrayList<Person>();
             }
             
-            SpouseChildMap spouseChildMap = new SpouseChildMap();
-            spouseChildMap.setPeople(this, spouse, child);
+//            SpouseChildMap spouseChildMap = new SpouseChildMap();
+//            spouseChildMap.setPeople(this, spouse, child);
             
-            map.add(spouseChildMap);
+            map.add(child);
             
             this.spouseChildMap.put(spouse, map);
         }
@@ -388,13 +406,12 @@ public class Person implements Serializable
         {
             Person p = (Person)o;
             
-            if(this.id != p.id)
-                return false;
+            if(p.id != null && this.id != null)
+            {
+                return Objects.equals(this.id, p.id);
+            }
             
-            if(!this.name.equals(p.name))
-                return false;
-            
-            return true;
+            return p.getName().equals(this.getName());
         }
         else
             return false;
@@ -403,12 +420,10 @@ public class Person implements Serializable
     @Override
     public int hashCode()
     {
-        int hash = 5;
-        if(id != null)
-            hash = 53 * hash + this.id;
-        
-        hash = 53 * hash + Objects.hashCode(this.name);
-        return hash;
+        if(id == null)
+            return 0;
+        else
+            return id;
     }
     
     @Override

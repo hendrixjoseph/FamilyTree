@@ -85,6 +85,24 @@ public class Marriage implements Serializable
         return husband.exists() && wife.exists();
     }
     
+    public boolean hasHusband()
+    {
+        return hasSpouse(husband);
+    }
+    
+    public boolean hasWife()
+    {
+        return hasSpouse(wife);
+    }
+    
+    private boolean hasSpouse(Person spouse)
+    {
+        if(spouse == null)
+            return false;
+        else
+            return spouse.exists();
+    }
+    
     @Override
     public String toString()
     {

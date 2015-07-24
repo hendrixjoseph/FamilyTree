@@ -17,7 +17,7 @@ import java.util.List;
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
-public class SpouseChildTable extends DatabaseQuery implements SelectData<HashMap<Person, List<SpouseChildMap>>, Integer>,
+public class SpouseChildTable extends DatabaseQuery implements SelectData<HashMap<Person, List<Person>>, Integer>,
                                                                SelectAllData<SpouseChildMap>
 {    
 
@@ -55,7 +55,48 @@ public class SpouseChildTable extends DatabaseQuery implements SelectData<HashMa
      * @return
      */
     @Override
-    public HashMap<Person, List<SpouseChildMap>> select(Integer id)
+    public HashMap<Person, List<Person>> select(Integer id)
+    {
+        HashMap<Person, List<Person>> map = new HashMap<Person, List<Person>>();
+        
+        try        
+        {
+            ResultSet rs = selectWithKey(id);
+            
+            while(rs.next())
+            {
+                SpouseChildMap spouseChildMap = new SpouseChildMap();
+                
+                this.setFields(spouseChildMap, rs);
+                
+                Person spouse = spouseChildMap.getSpouse();
+                
+                if(!spouse.exists())
+                    spouse = null;
+                    
+                List<Person> childList = map.get(spouse);                    
+                
+                if(childList == null)
+                {
+                    childList = new ArrayList<Person>();
+                }
+                
+                childList.add(spouseChildMap.getChild());
+                
+                map.put(spouse, childList);
+            }
+            
+            closeStatement(rs);
+        }
+        catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+        
+        return map;
+    }   
+    
+    public HashMap<Person, List<SpouseChildMap>> selectOld(Integer id)
     {
         HashMap<Person, List<SpouseChildMap>> map = new HashMap<Person, List<SpouseChildMap>>();
         
@@ -79,10 +120,11 @@ public class SpouseChildTable extends DatabaseQuery implements SelectData<HashMa
                 if(childList == null)
                 {
                     childList = new ArrayList<SpouseChildMap>();
-                    map.put(spouse, childList);
                 }
                 
                 childList.add(spouseChildMap);
+                
+                map.put(spouse, childList);
             }
             
             closeStatement(rs);

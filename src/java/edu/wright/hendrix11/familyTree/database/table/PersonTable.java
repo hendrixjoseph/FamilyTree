@@ -87,38 +87,82 @@ public class PersonTable extends DatabaseQuery implements SelectData<Person, Int
         
         if(includeSpouseChildMap)
         {
-            SpouseChildTable mapData = new SpouseChildTable();
-            
-            HashMap<Person, List<SpouseChildMap>> map = mapData.select(id);
-            
-            addSpousesWithNoChildren(map, id);           
-
-            addChildData(map);
-            
-            person.setSpouseChildMap(map);
+            setSpouseChildMap(person, id);
         }
                     
         return person;
     }
     
-    private void addChildData(HashMap<Person, List<SpouseChildMap>> map)
+    private void setSpouseChildMap(Person person, Integer id)
     {
-        for(Person person : map.keySet())
-        {
-            List<SpouseChildMap> list = map.get(person);
+        SpouseChildTable mapData = new SpouseChildTable();
             
-            for(SpouseChildMap spouseChildMap : list)
+        HashMap<Person, List<Person>> map = mapData.select(id);
+
+        addSpousesWithNoChildren(map, id);           
+
+        addChildData(map);
+
+        person.setSpouseChildMap(map);   
+    }
+    
+    public Person selectDefault()
+    {
+        Person person = new Person();
+        person.setFather(new Person());
+        person.setMother(new Person());
+        
+        try
+        {
+            ResultSet rs = this.executeQuery("SELECT * FROM DEFAULT_PERSON_VIEW");
+            
+            if(rs.next()) 
             {
-                Person child = spouseChildMap.getChild();
-                
-                child = select(child.getId(), false);
-                
-                spouseChildMap.setChild(child);
+                this.setFields(person, rs);
             }
+
+            this.closeStatement(rs);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        
+        int id = person.getId();
+        
+        SpouseChildTable mapTable = new SpouseChildTable();
+
+        HashMap<Person, List<Person>> map = mapTable.select(id);
+
+        addSpousesWithNoChildren(map, id);           
+
+        addChildData(map);
+
+        person.setSpouseChildMap(map);
+                    
+        return person;
+    }
+    
+    private void addChildData(HashMap<Person, List<Person>> map)
+    {
+        for(Person spouse : map.keySet())
+        {
+            List<Person> childList = map.get(spouse);
+            
+            List<Person> newList = new ArrayList<Person>();
+            
+            for(Person child : childList)
+            { 
+                newList.add(select(child.getId(), false));
+            }
+            
+            childList.removeAll(childList);
+            
+            childList.addAll(newList);
         }
     }
     
-    private void addSpousesWithNoChildren(HashMap<Person, List<SpouseChildMap>> map, Integer id)
+    private void addSpousesWithNoChildren(HashMap<Person, List<Person>> map, Integer id)
     {
         MarriageTable marriageTable = new MarriageTable();
         
@@ -126,7 +170,7 @@ public class PersonTable extends DatabaseQuery implements SelectData<Person, Int
 
         for(Marriage marriage : marriages)
         {
-            List<SpouseChildMap> spouseList = new ArrayList<SpouseChildMap>();
+            List<Person> spouseList = new ArrayList<Person>();
             SpouseChildMap spouseMap = new SpouseChildMap();
             Person spouse = new Person();
 
@@ -141,7 +185,7 @@ public class PersonTable extends DatabaseQuery implements SelectData<Person, Int
 
             if(map.get(spouse) == null)
             {
-                spouseList.add(spouseMap);
+                spouseList.add(spouse);
                 map.put(spouse, spouseList);
             }
         }
@@ -161,7 +205,9 @@ public class PersonTable extends DatabaseQuery implements SelectData<Person, Int
         for(Object object : objects)
         {
             if(object instanceof Person)
+            {
                 persons.add((Person)object);
+            }
         }
         
         return persons;

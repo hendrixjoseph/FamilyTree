@@ -1,6 +1,7 @@
 
 package edu.wright.hendrix11.familyTree.database;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.ResultSet;
@@ -10,6 +11,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 /**
@@ -244,8 +247,15 @@ public class ColumnMethodMap extends Database
     public void set(String column, Object object, ResultSet rs)
     {
         List<Method> setterList = setters.get(column);
+        
+//        if(column.contains("NAME") || column.contains("ID"))
+//        {
+//            System.out.println(column);
+//            System.out.println(setterList);
+//        }
 
         Object returnObject = object;
+        Object prevReturnObject = object;
 
         if(setterList != null)
         {
@@ -254,9 +264,9 @@ public class ColumnMethodMap extends Database
                 Method setter = setterList.get(i);            
 
                 try
-                {  
+                {                      
                     if(i == setterList.size() - 1)
-                    {
+                    {                           
                         Class c = setter.getParameterTypes()[0];
                         String name = c.getSimpleName();
 
@@ -287,7 +297,9 @@ public class ColumnMethodMap extends Database
                             setter.invoke(returnObject, s.equals("true"));
                         }
                         else if(name.equals("String"))
+                        {
                             setter.invoke(returnObject, rs.getString(column));
+                        }
                         else if(name.equals("Date"))
                             setter.invoke(returnObject, rs.getDate(column));                        
                     }
@@ -313,9 +325,50 @@ public class ColumnMethodMap extends Database
                     ex.printStackTrace();
                     returnObject = null;
                 }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
 
                 if(returnObject == null)
+                {
+                    Class<?> returnType = setter.getReturnType();
+                    
+                    System.err.println("Error - cannot set column " + column + "!");
+                    System.err.println("Setter list: " + setterList);
+                    System.err.print("Current method " + setter.getName() + "() returned null");
+                    System.err.println(" on object of class "+ prevReturnObject.getClass().getSimpleName() + "!");
+                    System.err.println("It should have returned a(n) " + returnType.getSimpleName() + "!");
+                    
+                    try
+                    {
+                        String setterName = setter.getName().replaceFirst("g", "s");
+                        
+                        Constructor<?> constructor = returnType.getConstructor();
+                        System.err.println("Set it with constructor " + constructor.getName());
+                        Object newInstance = constructor.newInstance();
+                        Method method = prevReturnObject.getClass().getMethod(setterName, returnType);
+                        System.err.println("Then set it with " + setterName + "()");
+                        method.invoke(prevReturnObject, newInstance);
+                        System.err.println("Just like that!");
+                        returnObject = prevReturnObject;
+                        
+                        System.err.println("A brand shiny new " + newInstance.getClass().getName() + "!");
+                        System.err.println("Added to " + returnObject.getClass().getName());
+                        i--;
+                    }
+                    catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex)
+                    {
+                        // Oh well
+                    }
+                    
+                    //throw new NullPointerException();
                     break;
+                }
+                else
+                {
+                    prevReturnObject = returnObject;
+                }
             }
         }
     }

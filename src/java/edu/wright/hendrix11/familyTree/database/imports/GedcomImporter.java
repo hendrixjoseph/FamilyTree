@@ -113,7 +113,7 @@ public class GedcomImporter extends Importer
             else if(nextLine.startsWith(FAM_LINE))
             {
                 if(insertFamilyMode)
-                    insertFamily(marriage, husband, wife, children);
+                    insertFamily(marriage, children);
                 
                 this.setInsertFamilyMode(true);
                 
@@ -125,7 +125,7 @@ public class GedcomImporter extends Importer
             if(insertPersonMode)
                 processPerson(person, nextLine);
             else if(insertFamilyMode)
-                processFamily(marriage, husband, wife, children, nextLine);
+                processFamily(marriage, children, nextLine);
             
             nextLine = in.nextLine();
         }
@@ -136,45 +136,45 @@ public class GedcomImporter extends Importer
         }
         else if(insertFamilyMode)
         {
-            insertFamily(marriage, husband, wife, children);
+            insertFamily(marriage, children);
         }
     }
     
-    private void insertFamily(Marriage marriage, Person husband, Person wife, List<Person> children)
+    private void insertFamily(Marriage marriage, List<Person> children)
     {
         for(Person child : children)
         {
-            if(husband.exists())
-                child.setFather(husband);
+            if(marriage.hasHusband())
+                child.setFather(marriage.getHusband());
             
-            if(wife.exists())
-                child.setMother(wife);
+            if(marriage.hasWife())
+                child.setMother(marriage.getWife());
             
             String gedcomid = reverseEntry.get(child);
             child = personTable.update(child);
             setEntry(child, gedcomid);
-            
+                        
             //System.out.println(gedcomid + " " +  child.getName() + " updated.");
             
             if(child.hasParents())
-            {
+            {                
                 marriageTable.insert(marriage);
             }
         }
     }
     
-    private void processFamily(Marriage marriage, Person husband, Person wife, List<Person> children, String nextLine)
+    private void processFamily(Marriage marriage, List<Person> children, String nextLine)
     {
         if(nextLine.startsWith(HUSB_LINE))
         {
             String husbandId = getId(nextLine);
-            husband = entry.get(husbandId);
+            Person husband = entry.get(husbandId);
             marriage.setHusband(husband);
         }
         else if(nextLine.startsWith(WIFE_LINE))
         {
             String wifeId = getId(nextLine);
-            wife = entry.get(wifeId);
+            Person wife = entry.get(wifeId);
             marriage.setWife(wife);
         }
         else if(nextLine.startsWith(CHIL_LINE))

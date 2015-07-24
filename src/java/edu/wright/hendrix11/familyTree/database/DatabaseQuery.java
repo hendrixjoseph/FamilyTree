@@ -137,8 +137,6 @@ public abstract class DatabaseQuery extends Database
         {
             ResultSet rs = executeQuery("SELECT * FROM " + tableName);
             
-            System.err.println("SELECT * FROM " + tableName);
-            
             while(rs.next())
             {
                 Object object = getNew();

@@ -35,7 +35,7 @@ public class IndividualBean implements Serializable
     public void initialize()
     {
         personTable = new PersonTable();
-        person = personTable.select(1);
+        person = personTable.selectDefault();
     }
     
     /**
