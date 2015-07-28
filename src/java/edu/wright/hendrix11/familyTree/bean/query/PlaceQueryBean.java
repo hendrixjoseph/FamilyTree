@@ -20,34 +20,57 @@ public class PlaceQueryBean extends QueryBean
     private Place place;
     private PlaceTable placeTable;
 
+    /**
+     *
+     */
     @PostConstruct
     public void initialize()
     {
         placeTable = new PlaceTable();
     }
     
+    /**
+     *
+     * @param actionEvent
+     */
     @Override
     public void commit(ActionEvent actionEvent)
     {
         placeTable.update(place);
     }
     
+    /**
+     *
+     * @param actionEvent
+     */
     public void delete(ActionEvent actionEvent)
     {
         placeTable.delete(place);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getAction()
     {
         return "places?" + getRedirectAction();
     }
     
+    /**
+     *
+     * @param place
+     */
     public void setPlace(Place place)
     {
         this.place = place;
     }
     
+    /**
+     *
+     * @param helper
+     */
     public void setPlace(DataBeanHelper helper)
     {        
         Object object = helper.getObject();
@@ -56,6 +79,10 @@ public class PlaceQueryBean extends QueryBean
             this.place = (Place)object;
     }
 
+    /**
+     *
+     * @return
+     */
     public Place getPlace()
     {
         

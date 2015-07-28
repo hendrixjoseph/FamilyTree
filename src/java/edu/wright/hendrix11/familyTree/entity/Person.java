@@ -88,11 +88,19 @@ public class Person implements Serializable
         return hasParent(father);
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean hasParent()
     {
         return hasFather() || hasMother();
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean hasParents()
     {
         return hasFather() && hasMother();
@@ -196,11 +204,20 @@ public class Person implements Serializable
         return spouseChildMap;
     }
     
+    /**
+     *
+     * @return
+     */
     public HashMap<Person, List<SpouseChildMap>> getSpouseChildMapOld()
     {
         return null;
     }
     
+    /**
+     *
+     * @param spouse
+     * @return
+     */
     public List<Person> getChildren(Person spouse)
     {
         return getSpouseChildMap().get(spouse);
@@ -360,21 +377,38 @@ public class Person implements Serializable
         return exists;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Person> getSpouses()
     {
         return spouses;
     }
 
+    /**
+     *
+     * @return
+     */
     public HashMap<String, PersonInfo> getPersonInfo()
     {
         return personInfo;
     }
 
+    /**
+     *
+     * @param personInfo
+     */
     public void setPersonInfo(HashMap<String, PersonInfo> personInfo)
     {
         this.personInfo = personInfo;
     }
     
+    /**
+     *
+     * @param child
+     * @param spouse
+     */
     public void addChild(Person child, Person spouse)
     {
         if(spouse == null)
@@ -472,6 +506,10 @@ public class Person implements Serializable
         return sb.toString();
     }
 
+    /**
+     *
+     * @param personInfo
+     */
     public void addInfo(PersonInfo personInfo)
     {
         if(this.personInfo == null)

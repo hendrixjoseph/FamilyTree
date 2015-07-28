@@ -9,16 +9,29 @@ import java.util.Scanner;
 */
 public class SqlImporter extends Importer
 {
+
+    /**
+     *
+     * @param fileName
+     * @throws FileNotFoundException
+     */
     public SqlImporter(String fileName) throws FileNotFoundException
     {
         super(fileName);
     }
 
+    /**
+     *
+     * @param in
+     */
     public SqlImporter(Scanner in)
     {
         super(in);
     }
     
+    /**
+     *
+     */
     @Override
     public void processData()
     {

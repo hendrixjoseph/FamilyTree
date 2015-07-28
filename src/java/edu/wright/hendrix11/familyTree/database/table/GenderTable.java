@@ -14,6 +14,10 @@ import java.util.List;
 */
 public class GenderTable extends DatabaseQuery implements SelectAllData<Gender>
 {
+
+    /**
+     *
+     */
     public GenderTable()
     {
         super("GENDER", Gender.class);
@@ -39,6 +43,10 @@ public class GenderTable extends DatabaseQuery implements SelectAllData<Gender>
         return genders;
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     protected Object getNew()
     {

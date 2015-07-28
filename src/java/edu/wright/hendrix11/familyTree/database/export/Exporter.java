@@ -13,17 +13,32 @@ public abstract class Exporter
 {
     private static final String[] tableNames = {"", ""};
     
+    /**
+     *
+     */
     protected PrintStream out;
     
+    /**
+     *
+     * @param fileName
+     * @throws FileNotFoundException
+     */
     public Exporter(String fileName) throws FileNotFoundException
     {
         this(new PrintStream(fileName));
     }
     
+    /**
+     *
+     * @param out
+     */
     public Exporter(PrintStream out)
     {
         this.out = out;
     }
     
+    /**
+     *
+     */
     public abstract void export();
 }

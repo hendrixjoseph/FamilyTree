@@ -19,6 +19,10 @@ public class PlaceTable extends DatabaseQuery implements SelectAllData<Place>,
                                                          UpdateData<Place>,
                                                          DeleteData<Place>
 {
+
+    /**
+     *
+     */
     public PlaceTable()
     {
         super("PLACE", Place.class);
@@ -40,6 +44,10 @@ public class PlaceTable extends DatabaseQuery implements SelectAllData<Place>,
         return places;
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     protected Object getNew()
     {

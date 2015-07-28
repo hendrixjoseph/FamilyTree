@@ -96,6 +96,11 @@ public class SpouseChildTable extends DatabaseQuery implements SelectData<HashMa
         return map;
     }   
     
+    /**
+     *
+     * @param id
+     * @return
+     */
     public HashMap<Person, List<SpouseChildMap>> selectOld(Integer id)
     {
         HashMap<Person, List<SpouseChildMap>> map = new HashMap<Person, List<SpouseChildMap>>();
@@ -153,6 +158,10 @@ public class SpouseChildTable extends DatabaseQuery implements SelectData<HashMa
         return map;
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     protected Object getNew()
     {

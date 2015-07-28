@@ -13,16 +13,27 @@ public class ImportBean
 {     
     private UploadedFile file;
  
+    /**
+     *
+     * @return
+     */
     public UploadedFile getFile() 
     {
         return file;
     }
  
+    /**
+     *
+     * @param file
+     */
     public void setFile(UploadedFile file) 
     {
         this.file = file;
     }
      
+    /**
+     *
+     */
     public void upload()
     {
         if(file != null) 

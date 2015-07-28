@@ -10,16 +10,29 @@ import java.io.PrintStream;
 */
 public class XmlExporter extends Exporter
 {
+
+    /**
+     *
+     * @param fileName
+     * @throws FileNotFoundException
+     */
     public XmlExporter(String fileName) throws FileNotFoundException
     {
         super(fileName);
     }
     
+    /**
+     *
+     * @param out
+     */
     public XmlExporter(PrintStream out)
     {
         super(out);
     }
     
+    /**
+     *
+     */
     @Override
     public void export()
     {

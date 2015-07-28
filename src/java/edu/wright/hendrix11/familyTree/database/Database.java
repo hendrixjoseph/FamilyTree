@@ -150,6 +150,10 @@ public abstract class Database
         closeStatement();
     }
     
+    /**
+     *
+     * @throws SQLException
+     */
     protected void closeStatement() throws SQLException
     {
         statement.close();
@@ -174,6 +178,12 @@ public abstract class Database
         return getConnection().createStatement();
     }
     
+    /**
+     *
+     * @param query
+     * @return
+     * @throws SQLException
+     */
     protected ResultSet executeQuery(String query) throws SQLException
     {
         statement = createStatement();

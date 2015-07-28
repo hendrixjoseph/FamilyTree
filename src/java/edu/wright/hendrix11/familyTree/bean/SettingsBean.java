@@ -28,16 +28,27 @@ public class SettingsBean
       settings = settingsTable.select();
     }
 
+    /**
+     *
+     * @return
+     */
     public Settings getSettings()
     {
         return settings;
     }
 
+    /**
+     *
+     * @param settings
+     */
     public void setSettings(Settings settings)
     {
         this.settings = settings;
     }
     
+    /**
+     *
+     */
     public void commit()
     {
         settingsTable.update(settings);

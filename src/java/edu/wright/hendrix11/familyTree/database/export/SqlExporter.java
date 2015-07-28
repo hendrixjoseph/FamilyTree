@@ -10,16 +10,29 @@ import java.io.PrintStream;
 */
 public class SqlExporter extends Exporter
 {
+
+    /**
+     *
+     * @param fileName
+     * @throws FileNotFoundException
+     */
     public SqlExporter(String fileName) throws FileNotFoundException
     {
         super(fileName);
     }
     
+    /**
+     *
+     * @param out
+     */
     public SqlExporter(PrintStream out)
     {
         super(out);
     }
     
+    /**
+     *
+     */
     @Override
     public void export()
     {

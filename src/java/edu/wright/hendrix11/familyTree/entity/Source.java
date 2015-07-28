@@ -14,30 +14,53 @@ public class Source
     int id;
     String citation;
 
+    /**
+     *
+     */
     public Source()
     {
     }
 
+    /**
+     *
+     * @param citation
+     */
     public Source(String citation)
     {
         this.citation = citation;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getId()
     {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(int id)
     {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCitation()
     {
         return citation;
     }
 
+    /**
+     *
+     * @param citation
+     */
     public void setCitation(String citation)
     {
         this.citation = citation;

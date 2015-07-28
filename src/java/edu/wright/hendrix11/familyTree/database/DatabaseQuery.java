@@ -55,6 +55,11 @@ public abstract class DatabaseQuery extends Database
         return columnMethodMap;
     }
     
+    /**
+     *
+     * @param object
+     * @return
+     */
     public HashMap<String, String> getColumnValuesMap(Object object)
     {
         HashMap<String, String> map = new HashMap<String, String>();
@@ -85,6 +90,13 @@ public abstract class DatabaseQuery extends Database
         return selectWithKey(primaryKey, key);
     }
     
+    /**
+     *
+     * @param primaryKey
+     * @param key
+     * @return
+     * @throws SQLException
+     */
     protected ResultSet selectWithKey(String primaryKey, Object key) throws SQLException
     {        
         String query = "SELECT * FROM " + tableName + " WHERE " + primaryKey + "=" + key;
@@ -98,6 +110,12 @@ public abstract class DatabaseQuery extends Database
         return executeQuery(query);
     }
     
+    /**
+     *
+     * @param keys
+     * @return
+     * @throws SQLException
+     */
     protected ResultSet selectWithKeys(List<Object> keys) throws SQLException
     {
         List<String> primaryKey = columnMethodMap.getPrimaryKey();
@@ -127,8 +145,16 @@ public abstract class DatabaseQuery extends Database
         return executeQuery(query.toString());
     }
     
+    /**
+     *
+     * @return
+     */
     protected abstract Object getNew();
     
+    /**
+     *
+     * @return
+     */
     protected List<Object> selectAllObjects()
     {
         List<Object> objects = new ArrayList<Object>();
@@ -154,6 +180,14 @@ public abstract class DatabaseQuery extends Database
         return objects;
     }
     
+    /**
+     *
+     * @param tableName
+     * @param o
+     * @param key
+     * @param value
+     * @return
+     */
     protected boolean deleteObject(String tableName, Object o, String key, String value)
     {
         if(o != null && key != null && value != null && !value.isEmpty())
@@ -176,6 +210,11 @@ public abstract class DatabaseQuery extends Database
         return false;
     }
     
+    /**
+     *
+     * @param o
+     * @return
+     */
     protected boolean deleteObject(Object o)
     {
         String id = this.columnMethodMap.getPrimaryKeyValue(o);
@@ -184,6 +223,13 @@ public abstract class DatabaseQuery extends Database
         return deleteObject(o, key, id);
     }
     
+    /**
+     *
+     * @param o
+     * @param key
+     * @param value
+     * @return
+     */
     protected boolean deleteObject(Object o, String key, String value)
     {
         return deleteObject(tableName, o, key, value);
@@ -226,6 +272,11 @@ public abstract class DatabaseQuery extends Database
         return query.toString();
     }
     
+    /**
+     *
+     * @param o
+     * @return
+     */
     protected Object updateObject(Object o)
     {
         String query = generateUpdateQuery(o);

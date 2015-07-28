@@ -10,16 +10,29 @@ import java.util.Scanner;
 */
 public class XmlImporter extends Importer
 {
+
+    /**
+     *
+     * @param fileName
+     * @throws FileNotFoundException
+     */
     public XmlImporter(String fileName) throws FileNotFoundException
     {
         super(fileName);
     }
 
+    /**
+     *
+     * @param in
+     */
     public XmlImporter(Scanner in)
     {
         super(in);
     }
     
+    /**
+     *
+     */
     @Override
     public void processData()
     {

@@ -10,16 +10,29 @@ import java.io.PrintStream;
 */
 public class CsvExporter extends Exporter
 {
+
+    /**
+     *
+     * @param fileName
+     * @throws FileNotFoundException
+     */
     public CsvExporter(String fileName) throws FileNotFoundException
     {
         super(fileName);
     }
     
+    /**
+     *
+     * @param out
+     */
     public CsvExporter(PrintStream out)
     {
         super(out);
     }
     
+    /**
+     *
+     */
     @Override
     public void export()
     {

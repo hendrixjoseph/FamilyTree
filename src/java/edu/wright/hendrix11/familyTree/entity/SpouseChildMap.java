@@ -81,6 +81,12 @@ public class SpouseChildMap
         this.child = child;
     }
     
+    /**
+     *
+     * @param person
+     * @param spouse
+     * @param child
+     */
     public void setPeople(Person person, Person spouse, Person child)
     {
         this.person = person;

@@ -106,6 +106,10 @@ public class PersonTable extends DatabaseQuery implements SelectData<Person, Int
         person.setSpouseChildMap(map);   
     }
     
+    /**
+     *
+     * @return
+     */
     public Person selectDefault()
     {
         Person person = new Person();
@@ -210,6 +214,10 @@ public class PersonTable extends DatabaseQuery implements SelectData<Person, Int
         return persons;
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     protected Object getNew()
     {

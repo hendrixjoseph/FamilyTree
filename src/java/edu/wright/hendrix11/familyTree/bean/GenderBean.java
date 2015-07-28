@@ -33,6 +33,10 @@ public class GenderBean
             genders.put(gender.getFullWord(), gender.getFullWord());
     }
     
+    /**
+     *
+     * @return
+     */
     public HashMap<String, String> getGenders()
     {
         return genders;

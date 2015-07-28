@@ -10,6 +10,11 @@ import javax.faces.event.ActionEvent;
  */
 public abstract class QueryBean
 {
+
+    /**
+     *
+     * @param actionEvent
+     */
     public abstract void commit(ActionEvent actionEvent);
     
     /**
@@ -28,10 +33,18 @@ public abstract class QueryBean
         return sb.toString();
     }
     
+    /**
+     *
+     * @return
+     */
     protected String getRedirectAction()
     {
         return "faces-redirect=true";
     }
     
+    /**
+     *
+     * @return
+     */
     public abstract String getAction();
 }

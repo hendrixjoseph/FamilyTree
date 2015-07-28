@@ -5,17 +5,29 @@ import edu.wright.hendrix11.familyTree.database.DatabaseQuery;
 import edu.wright.hendrix11.familyTree.database.interfaces.DeleteData;
 import edu.wright.hendrix11.familyTree.entity.Person;
 
+/**
+ *
+ * @author Joe
+ */
 public class Detach
 {
   private DetachParent detachParent;
   
-  public void detachFather(Person child)
+    /**
+     *
+     * @param child
+     */
+    public void detachFather(Person child)
   {
     detachParent = new DetachFather();
     detachParent(child);
   }
   
-  public void detachMother(Person child)
+    /**
+     *
+     * @param child
+     */
+    public void detachMother(Person child)
   {
     detachParent = new DetachMother();
     detachParent(child);
@@ -26,12 +38,22 @@ public class Detach
     detachParent.delete(child);
   }
   
-  public void detachSpouse(Person person, Person spouse)
+    /**
+     *
+     * @param person
+     * @param spouse
+     */
+    public void detachSpouse(Person person, Person spouse)
   {
   
   }
   
-  public void detachChild(Person person, Person child)
+    /**
+     *
+     * @param person
+     * @param child
+     */
+    public void detachChild(Person person, Person child)
   {
   
   }

@@ -18,12 +18,20 @@ import java.util.logging.Logger;
 */
 public class SettingsTable extends DatabaseQuery implements UpdateData<Settings>
 {
-  public SettingsTable()
+
+    /**
+     *
+     */
+    public SettingsTable()
   {
     super("SETTINGS_VIEW", Settings.class);
   }
   
-  public Settings select()
+    /**
+     *
+     * @return
+     */
+    public Settings select()
   {
         Settings settings = new Settings();
      
@@ -46,7 +54,11 @@ public class SettingsTable extends DatabaseQuery implements UpdateData<Settings>
         return settings;
   }
   
-  @Override
+    /**
+     *
+     * @return
+     */
+    @Override
   protected Object getNew()
   {
       return null;

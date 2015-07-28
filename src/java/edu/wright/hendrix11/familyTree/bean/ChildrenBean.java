@@ -27,6 +27,9 @@ public class ChildrenBean extends DataBean<SpouseChildMap>
     private static final int SPOUSE_NAME = 1;
     private static final int CHILD_NAME = 2;
     
+    /**
+     *
+     */
     @PostConstruct
     public void initialize()
     {
@@ -35,24 +38,42 @@ public class ChildrenBean extends DataBean<SpouseChildMap>
         super.initialize(table);
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     public String[] getPrettyNames()
     {
         return prettyNames;
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     public String[] getColumns()
     {
         return columns;
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     protected String[] getLinkColumns()
     {
         return linkColumns;
     }
         
+    /**
+     *
+     * @param helper
+     * @param prettyName
+     * @return
+     */
     @Override
     protected String processLink(DataBeanHelper helper, String prettyName)
     {

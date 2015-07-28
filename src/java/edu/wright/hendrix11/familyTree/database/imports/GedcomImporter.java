@@ -51,12 +51,21 @@ public class GedcomImporter extends Importer
     private HashMap<String, Person> entry;
     private HashMap<Person, String> reverseEntry;
 
+    /**
+     *
+     * @param fileName
+     * @throws FileNotFoundException
+     */
     public GedcomImporter(String fileName) throws FileNotFoundException
     {
         super(fileName);
         initializeEntry();
     }
 
+    /**
+     *
+     * @param in
+     */
     public GedcomImporter(Scanner in)
     {
         super(in);
@@ -394,6 +403,10 @@ public class GedcomImporter extends Importer
      */
     private static final String propertyFile = "C:\\Program Files\\Apache Software Foundation\\Apache Tomcat 8.0.15\\bin\\database.properties";
     
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args)
     {
         Database.setProperties(propertyFile);

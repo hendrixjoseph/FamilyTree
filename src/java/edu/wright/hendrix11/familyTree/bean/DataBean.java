@@ -21,14 +21,38 @@ import java.util.List;
  */
 public abstract class DataBean<O>
 {
+
+    /**
+     *
+     */
     protected HashMap<String, String> prettyNameToColumnMap;
+
+    /**
+     *
+     */
     protected List<DataBeanHelper> values;
+
+    /**
+     *
+     */
     protected DatabaseQuery table;
     
+    /**
+     *
+     * @return
+     */
     public abstract String[] getPrettyNames();
     
+    /**
+     *
+     * @return
+     */
     protected abstract String[] getColumns();
     
+    /**
+     *
+     * @param table
+     */
     protected void initialize(DatabaseQuery table)
     {
         List<O> list;
@@ -50,6 +74,9 @@ public abstract class DataBean<O>
         setPrettyNameToColumnMap();
     }
     
+    /**
+     *
+     */
     protected void setPrettyNameToColumnMap()
     {
         prettyNameToColumnMap = new HashMap<String, String>();
@@ -60,16 +87,29 @@ public abstract class DataBean<O>
         }
     }
     
+    /**
+     *
+     * @return
+     */
     public List<DataBeanHelper> getValues()
     {
         return values.subList(0, Math.min(10, values.size()));
     }
     
+    /**
+     *
+     * @return
+     */
     protected String[] getLinkColumns()
     {
         return new String[0];
     }
     
+    /**
+     *
+     * @param column
+     * @return
+     */
     public boolean isLinkColumn(String column)
     {
         for(String linkColumn : getLinkColumns())
@@ -91,36 +131,68 @@ public abstract class DataBean<O>
         return link;
     }
     
+    /**
+     *
+     * @param helper
+     * @param prettyName
+     * @return
+     */
     protected String processLink(DataBeanHelper helper, String prettyName)
     {
         return "";
     }
     
+    /**
+     *
+     * @param id
+     * @return
+     */
     protected String linkToPerson(Integer id)
     {
         // <a href="index.xhtml" class="ui-link ui-widget">William Zenos Thoroman</a>
         return "index.xhtml?personId=" + id;
     }
     
+    /**
+     *
+     */
     public class DataBeanHelper
     {
         private O o;
         
+        /**
+         *
+         * @return
+         */
         public O getObject()
         {
             return o;
         }
 
+        /**
+         *
+         * @param o
+         */
         public void setObject(O o)
         {
             this.o = o;
         }
         
+        /**
+         *
+         * @param prettyName
+         * @return
+         */
         public String getLink(String prettyName)
         {
             return process(this, prettyName);
         }
         
+        /**
+         *
+         * @param prettyName
+         * @return
+         */
         public String getValue(String prettyName)
         {
             String column = prettyNameToColumnMap.get(prettyName);

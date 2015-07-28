@@ -19,22 +19,50 @@ import java.util.Scanner;
 */
 public abstract class Importer
 {    
+
+    /**
+     *
+     */
     protected Scanner in;
     
+    /**
+     *
+     */
     protected PersonTable personTable;
+
+    /**
+     *
+     */
     protected MarriageTable marriageTable;
+
+    /**
+     *
+     */
     protected SpouseChildTable spouseChildTable;
     
+    /**
+     *
+     * @param fileName
+     * @throws FileNotFoundException
+     */
     public Importer(String fileName) throws FileNotFoundException
     {        
         this(new Scanner(new File(fileName)));
     }
     
+    /**
+     *
+     * @param in
+     */
     public Importer(Scanner in)
     {
         this.in = in;     
     }
     
+    /**
+     *
+     * @throws SQLException
+     */
     public void importData() throws SQLException
     {
         Database.openConnection();
@@ -48,5 +76,8 @@ public abstract class Importer
         Database.closeConnection();
     }
     
+    /**
+     *
+     */
     protected abstract void processData();
 }

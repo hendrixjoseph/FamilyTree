@@ -20,6 +20,9 @@ public class DetachQueryBean extends QueryBean implements Serializable
     @ManagedProperty(value="#{individualBean.person}")
     private Person person;
     
+    /**
+     *
+     */
     @PostConstruct
     public void initialize()
     {
@@ -36,6 +39,10 @@ public class DetachQueryBean extends QueryBean implements Serializable
     
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     public String getAction()
     {

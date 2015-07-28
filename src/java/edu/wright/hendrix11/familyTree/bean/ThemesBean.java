@@ -19,6 +19,9 @@ public class ThemesBean
     
     private String currentTheme;
     
+    /**
+     *
+     */
     @PostConstruct
     public void initialize()
     {
@@ -35,16 +38,28 @@ public class ThemesBean
         themes = themeParser.getThemes();
     }
     
+    /**
+     *
+     * @return
+     */
     public List<String> getThemes()
     {
         return themes;
     }
     
+    /**
+     *
+     * @param theme
+     */
     public void setCurrentTheme(String theme)
     {
       currentTheme = theme;
     }
     
+    /**
+     *
+     * @return
+     */
     public String getCurrentTheme()
     {
       return currentTheme;

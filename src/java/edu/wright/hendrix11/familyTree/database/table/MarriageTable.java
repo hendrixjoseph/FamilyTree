@@ -21,6 +21,9 @@ public class MarriageTable extends DatabaseQuery implements SelectData<List<Marr
                                                             InsertData<Marriage>
 {
     
+    /**
+     *
+     */
     public MarriageTable()
     {
         super("MARRIAGE_VIEW",Marriage.class);
@@ -117,6 +120,10 @@ public class MarriageTable extends DatabaseQuery implements SelectData<List<Marr
         return null;
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     protected Object getNew()
     {

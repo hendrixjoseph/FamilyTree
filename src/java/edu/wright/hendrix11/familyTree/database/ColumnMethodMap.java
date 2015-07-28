@@ -118,6 +118,10 @@ public class ColumnMethodMap extends Database
         this.primaryKey.add(primaryKey);
     }
     
+    /**
+     *
+     * @param primaryKey
+     */
     public void setPrimaryKey(List<String> primaryKey)
     {
         this.primaryKey = primaryKey;
@@ -153,6 +157,11 @@ public class ColumnMethodMap extends Database
         return get(primaryKey.get(0), object);
     }
     
+    /**
+     *
+     * @param object
+     * @return
+     */
     public List<String> getPrimaryKeyValues(Object object)
     {
         if(object == null)

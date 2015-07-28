@@ -28,12 +28,20 @@ public class MarriagesBean extends DataBean<Place>
         super.initialize(table);
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     public String[] getPrettyNames()
     {
       return prettyNames;
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     protected String[] getColumns()
     {

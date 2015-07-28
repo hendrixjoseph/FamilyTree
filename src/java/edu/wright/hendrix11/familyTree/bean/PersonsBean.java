@@ -23,6 +23,9 @@ public class PersonsBean extends DataBean<Person>
     private static final int MOTHER_NAME = 1;
     private static final int NAME = 2;
     
+    /**
+     *
+     */
     @PostConstruct
     public void initialize()
     {
@@ -31,24 +34,42 @@ public class PersonsBean extends DataBean<Person>
         super.initialize(table);
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     public String[] getPrettyNames()
     {
         return prettyNames;
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     public String[] getColumns()
     {
         return columns;
     }
     
-   @Override
+    /**
+     *
+     * @return
+     */
+    @Override
     protected String[] getLinkColumns()
     {
         return linkColumns;
     }
         
+    /**
+     *
+     * @param helper
+     * @param prettyName
+     * @return
+     */
     @Override
     protected String processLink(DataBeanHelper helper, String prettyName)
     {

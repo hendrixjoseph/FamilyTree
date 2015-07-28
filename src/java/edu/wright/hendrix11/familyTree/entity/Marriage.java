@@ -15,52 +15,92 @@ public class Marriage implements Serializable
     String place;
     Date anniversary;
     
+    /**
+     *
+     */
     public Marriage()
     {
         husband = new Person();
         wife = new Person();
     }
 
+    /**
+     *
+     * @return
+     */
     public Person getHusband()
     {
         return husband;
     }
 
+    /**
+     *
+     * @param husband
+     */
     public void setHusband(Person husband)
     {
         this.husband = husband;
     }
 
+    /**
+     *
+     * @return
+     */
     public Person getWife()
     {
         return wife;
     }
 
+    /**
+     *
+     * @param wife
+     */
     public void setWife(Person wife)
     {
         this.wife = wife;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPlace()
     {
         return place;
     }
 
+    /**
+     *
+     * @param place
+     */
     public void setPlace(String place)
     {
         this.place = place;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getAnniversary()
     {
         return anniversary;
     }
 
+    /**
+     *
+     * @param anniversary
+     */
     public void setAnniversary(Date anniversary)
     {
         this.anniversary = anniversary;
     }
     
+    /**
+     *
+     * @param p1
+     * @param p2
+     */
     public void setCouple(Person p1, Person p2)
     {
         // Supreme court is going to hate this...
@@ -80,16 +120,28 @@ public class Marriage implements Serializable
             wife = p2;
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean isSet()
     {
         return husband.exists() && wife.exists();
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean hasHusband()
     {
         return hasSpouse(husband);
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean hasWife()
     {
         return hasSpouse(wife);
