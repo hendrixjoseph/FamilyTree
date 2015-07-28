@@ -198,6 +198,9 @@ public class ColumnMethodMap extends Database
      */
     public String get(String column, Object object)
     {
+        if(object == null)
+            return "";
+        
         List<Method> getterList = getters.get(column);
 
         Object returnObject = object;

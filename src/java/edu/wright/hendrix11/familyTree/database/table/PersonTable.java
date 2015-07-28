@@ -170,8 +170,6 @@ public class PersonTable extends DatabaseQuery implements SelectData<Person, Int
 
         for(Marriage marriage : marriages)
         {
-            List<Person> spouseList = new ArrayList<Person>();
-            SpouseChildMap spouseMap = new SpouseChildMap();
             Person spouse = new Person();
 
             if(marriage.getHusband().getId().equals(id))
@@ -185,8 +183,7 @@ public class PersonTable extends DatabaseQuery implements SelectData<Person, Int
 
             if(map.get(spouse) == null)
             {
-                spouseList.add(spouse);
-                map.put(spouse, spouseList);
+                map.put(spouse, new ArrayList<Person>());
             }
         }
     }
@@ -268,7 +265,7 @@ public class PersonTable extends DatabaseQuery implements SelectData<Person, Int
     @Override
     public Person insert(Person p)
     {
-        String query = generateInsertQuery(p);        
+        String query = generateInsertQuery(p);     
               
         try
         {

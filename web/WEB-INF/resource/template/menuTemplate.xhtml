@@ -19,11 +19,12 @@
     <h:form>
         <p:menubar>
             <p:submenu label="File">
-                <p:submenu label="Import">
+                <p:menuitem value="Import" url="#" />
+                <!-- p:submenu label="Import">
                     <p:menuitem>
-                        <p:fileUpload label="Upload file" mode="simple" allowTypes="/(\.|\/)(sql|csv|xml|ged)$/" fileUploadListener="#{importBean.upload()}" auto="true" />
+                        <p:fileUpload label="Upload file" mode="simple" allowTypes="/(\.|\/)(sql|csv|xml|ged)$/" auto="true" />
                     </p:menuitem>
-                </p:submenu>
+                </p:submenu -->
                 <p:submenu label="Export">
                     <p:menuitem value="SQL" url="#" />
                     <p:menuitem value="CSV" url="#" />

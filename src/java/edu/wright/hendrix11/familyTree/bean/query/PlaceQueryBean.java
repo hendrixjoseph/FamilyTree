@@ -49,7 +49,7 @@ public class PlaceQueryBean extends QueryBean
     }
     
     public void setPlace(DataBeanHelper helper)
-    {
+    {        
         Object object = helper.getObject();
         
         if(object instanceof Place)

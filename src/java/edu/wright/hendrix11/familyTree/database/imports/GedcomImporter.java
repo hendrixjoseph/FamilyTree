@@ -79,7 +79,6 @@ public class GedcomImporter extends Importer
         setAllModes(false);
         
         String nextLine = "";
-        nextLine = getNextLine(nextLine);
         
         // Get to the first person
         while(hasNext(!nextLine.startsWith(INDI_LINE)))
@@ -89,15 +88,13 @@ public class GedcomImporter extends Importer
         
         Person person = new Person();
         
-        Person husband = new Person();
-        Person wife = new Person();
         List<Person> children = new ArrayList<Person>();
         Marriage marriage = new Marriage();
         
         String gedcomid = "";
         
         while(in.hasNext())
-        {               
+        {                          
             if(nextLine.startsWith(INDI_LINE))
             {
                 if(insertPersonMode)
@@ -117,8 +114,6 @@ public class GedcomImporter extends Importer
                 
                 this.setInsertFamilyMode(true);
                 
-                husband = new Person();
-                wife = new Person();
                 children = new ArrayList<Person>();
             }
             
@@ -219,6 +214,7 @@ public class GedcomImporter extends Importer
     
     private void insertPerson(String gedcomid, Person person)
     {
+        System.out.println("Attempting to insert " + person.getName());
         person = personTable.insert(person);
         setEntry(person, gedcomid);
         System.out.println(gedcomid + " " + person.getName() + " inserted.");

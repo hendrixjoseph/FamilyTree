@@ -17,10 +17,10 @@
         </p:column>
       </c:forEach>
         <p:column headerText="Edit" rendered="#{editButton != null}">
-            <p:commandButton value="#{editButton}" update="@([id$=#{editDialog}_form])" actionListener="#{queryBean.setObject(value)}" oncomplete="PF('#{editDialog}').show()" />
+            <p:commandButton value="#{editButton}" update="@([id$=#{editDialog}_form])" actionListener="#{queryBean.setPlace(value)}" oncomplete="PF('#{editDialog}').show()" />
         </p:column>
         <p:column headerText="Delete" rendered="#{deleteButton != null}">
-            <p:commandButton value="#{deleteButton}" update="@([id$=#{deleteDialog}_form])" actionListener="#{queryBean.setObject(value)}" oncomplete="PF('#{deleteDialog}').show()" />
+            <p:commandButton value="#{deleteButton}" update="@([id$=#{deleteDialog}_form])" actionListener="#{queryBean.setPlace(value)}" oncomplete="PF('#{deleteDialog}').show()" />
         </p:column>
     </p:dataTable>
  </ui:component>

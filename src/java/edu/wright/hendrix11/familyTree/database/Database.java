@@ -187,9 +187,9 @@ public abstract class Database
      */
     protected void executeUpdate(String query) throws SQLException
     {
-        //openConnection();
+        //openConnection();        
         statement = createStatement();
-        statement.executeUpdate(query);
+        statement.executeUpdate(query);        
         statement.close();
         //closeConnection();
     }
