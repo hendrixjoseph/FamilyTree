@@ -1,12 +1,14 @@
 # First, ignore everything
-*
-# Now, whitelist everything
-!.gitignore
-!README.md
-!sql/
+install_ojdbc7.bat
+ojdbc7.jar
+target/
 sql/Generated*.*
-!src/
-!web/
-!documentation/
-!test/
-!jdoc.bat
+# Now, whitelist everything
+# !.gitignore
+# !README.md
+# !sql/
+# !src/
+# !web/
+# !documentation/
+# !test/
+# !jdoc.bat
