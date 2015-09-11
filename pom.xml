@@ -1,15 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    
     <groupId>edu.wright.hendrix11</groupId>
     <artifactId>familyTree</artifactId>
     <packaging>war</packaging>
     <version>1.0</version>
+    
     <name>Family Tree</name>
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    
+    <organization>
+        <name>Wright State Department of Computer Science and Engineering</name>
+        <url>https://engineering-computer-science.wright.edu/computer-science-and-engineeringu</url>
+    </organization>
+    
+        <developers>
+            <developer>
+            <name>Joseph Hendrix</name>
+            <email>hendrix.11@wright.edu</email>
+            <roles>
+                <role>sole developer</role>
+            </roles>
+        </developer>
+   </developers>
 
     <dependencies>
         <dependency>
@@ -112,6 +129,37 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>2.10</version>
+            </plugin>
+        	<plugin>
+                <groupId>com.samaxes.maven</groupId>
+                <artifactId>minify-maven-plugin</artifactId>
+                <version>1.7.4</version>
+                <executions>
+                    <execution>
+                        <id>default-minify</id>
+                        <phase>package</phase>
+                        <configuration>
+                            <skipMinify>${sparta.debug}</skipMinify>
+                            <skipMerge>true</skipMerge>
+                            <nosuffix>true</nosuffix>
+                            <cssSourceDir>
+                                resources/css
+                            </cssSourceDir>
+                            <cssSourceIncludes>
+                                <cssSourceInclude>*.css</cssSourceInclude>
+                            </cssSourceIncludes>
+                            <jsSourceDir>
+                                resources/javascript
+                            </jsSourceDir>
+                            <jsSourceIncludes>
+                                <jsSourceInclude>*.js</jsSourceInclude>
+                            </jsSourceIncludes>
+                        </configuration>
+                        <goals>
+                            <goal>minify</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             
         </plugins>
