@@ -1,13 +1,3 @@
-# First, ignore everything
 ojdbc7.jar
 target/
 sql/Generated*.*
-# Now, whitelist everything
-# !.gitignore
-# !README.md
-# !sql/
-# !src/
-# !web/
-# !documentation/
-# !test/
-# !jdoc.bat
