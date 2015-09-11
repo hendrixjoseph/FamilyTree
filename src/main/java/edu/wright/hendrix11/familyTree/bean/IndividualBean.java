@@ -1,20 +1,20 @@
 package edu.wright.hendrix11.familyTree.bean;
 
-import javax.faces.bean.ManagedBean;
 
 import javax.annotation.PostConstruct;
 
 import edu.wright.hendrix11.familyTree.entity.Person;
 import edu.wright.hendrix11.familyTree.database.table.PersonTable;
 import java.io.Serializable;
-import javax.faces.bean.ViewScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 
 /**
  *
  * @author Joe Hendrix
  */
-@ManagedBean
-@ViewScoped
+@Named
+@SessionScoped
 public class IndividualBean implements Serializable
 {
     private Person person; 

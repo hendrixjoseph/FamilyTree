@@ -1,5 +1,4 @@
 # First, ignore everything
-install_ojdbc7.bat
 ojdbc7.jar
 target/
 sql/Generated*.*
