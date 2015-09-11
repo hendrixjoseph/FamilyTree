@@ -18,15 +18,15 @@
         <url>https://engineering-computer-science.wright.edu/computer-science-and-engineeringu</url>
     </organization>
     
-        <developers>
-            <developer>
+    <developers>
+        <developer>
             <name>Joseph Hendrix</name>
             <email>hendrix.11@wright.edu</email>
             <roles>
                 <role>sole developer</role>
             </roles>
         </developer>
-   </developers>
+    </developers>
 
     <dependencies>
         <dependency>
@@ -62,7 +62,7 @@
             <artifactId>javax.faces-api</artifactId>
             <version>2.2</version>
         </dependency -->
-            <dependency>
+        <dependency>
             <groupId>javax.servlet.jsp.jstl</groupId>
             <artifactId>jstl-api</artifactId>
             <version>1.2</version>
@@ -130,7 +130,7 @@
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>2.10</version>
             </plugin>
-        	<plugin>
+            <!-- plugin> Currently no css / javascript to minify...
                 <groupId>com.samaxes.maven</groupId>
                 <artifactId>minify-maven-plugin</artifactId>
                 <version>1.7.4</version>
@@ -160,7 +160,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin -->
             
         </plugins>
         <resources>
