@@ -39,4 +39,31 @@
                 <netbeans.deploy>true</netbeans.deploy>
             </properties>
         </action>
+        <action>
+            <actionName>debug</actionName>
+            <packagings>
+                <packaging>war</packaging>
+                <packaging>ear</packaging>
+                <packaging>ejb</packaging>
+            </packagings>
+            <goals>
+                <goal>clean</goal>
+                <goal>package</goal>
+            </goals>
+            <properties>
+                <netbeans.deploy.debugmode>true</netbeans.deploy.debugmode>
+                <netbeans.deploy>true</netbeans.deploy>
+            </properties>
+        </action>
+        <action>
+            <actionName>CUSTOM-Just run / deploy</actionName>
+            <displayName>Just run / deploy</displayName>
+            <goals>
+                <goal>--version</goal>
+            </goals>
+            <properties>
+                <netbeans.deploy>true</netbeans.deploy>
+                <skipTests>true</skipTests>
+            </properties>
+        </action>
     </actions>
