@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    
+
     <groupId>edu.wright.hendrix11</groupId>
     <artifactId>familyTree</artifactId>
     <packaging>war</packaging>
     <version>1.0</version>
-    
+
     <name>Family Tree</name>
-    
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    
+
     <organization>
         <name>Wright State Department of Computer Science and Engineering</name>
-        <url>https://engineering-computer-science.wright.edu/computer-science-and-engineeringu</url>
+        <url>https://engineering-computer-science.wright.edu/computer-science-and-engineering</url>
     </organization>
-    
+
     <developers>
         <developer>
             <name>Joseph Hendrix</name>
@@ -33,19 +33,16 @@
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>eclipselink</artifactId>
             <version>2.5.2</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
             <version>2.5.2</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
             <version>7.0</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.sun.faces</groupId>
@@ -73,7 +70,7 @@
             <artifactId>primefaces</artifactId>
             <version>5.2</version>
         </dependency>
-                
+
         <!-- Install this dependency into the local
              repo with the following command line statement:
              mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=12.1.0.1 -Dpackaging=jar -Dfile=ojdbc7.jar -DgeneratePom=true
@@ -84,7 +81,7 @@
             <version>12.1.0.1</version>
         </dependency>
 
-		
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -93,7 +90,7 @@
         </dependency>
 
     </dependencies>
-    
+
     <build>
         <plugins>
             <plugin>
@@ -161,7 +158,7 @@
                     </execution>
                 </executions>
             </plugin -->
-            
+
         </plugins>
         <resources>
             <resource>
