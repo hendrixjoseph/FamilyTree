@@ -82,4 +82,17 @@
                 <exec.classpathScope>${classPathScope}</exec.classpathScope>
             </properties>
         </action>
+        <action>
+            <actionName>CUSTOM-install ojdbc7</actionName>
+            <displayName>install ojdbc7</displayName>
+            <goals>
+                <goal>install:install-file</goal>
+                <goal>-DgroupId=com.oracle</goal>
+                <goal>-DartifactId=ojdbc7</goal>
+                <goal>-Dversion=12.1.0.1</goal>
+                <goal>-Dpackaging=jar</goal>
+                <goal>-Dfile=ojdbc7.jar</goal>
+                <goal>-DgeneratePom=true</goal>
+            </goals>
+        </action>
 </actions>
