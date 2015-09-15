@@ -50,8 +50,8 @@ public class PersonView implements Serializable
     @Column(name = "ID")
     @Id
     private int id;
-    @Column(name = "FATHER_ID")
-    private int fatherId;
+//    @Column(name = "FATHER_ID")
+//    private int fatherId;
     @Size(max = 100)
     @Column(name = "FATHER_NAME")
     private String fatherName;
@@ -97,15 +97,15 @@ public class PersonView implements Serializable
         this.id = id;
     }
 
-    public int getFatherId()
-    {
-        return fatherId;
-    }
-
-    public void setFatherId(int fatherId)
-    {
-        this.fatherId = fatherId;
-    }
+//    public int getFatherId()
+//    {
+//        return fatherId;
+//    }
+//
+//    public void setFatherId(int fatherId)
+//    {
+//        this.fatherId = fatherId;
+//    }
 
     public String getFatherName()
     {

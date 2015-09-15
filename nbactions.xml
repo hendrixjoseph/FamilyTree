@@ -87,12 +87,21 @@
             <displayName>install ojdbc7</displayName>
             <goals>
                 <goal>install:install-file</goal>
-                <goal>-DgroupId=com.oracle</goal>
-                <goal>-DartifactId=ojdbc7</goal>
-                <goal>-Dversion=12.1.0.1</goal>
-                <goal>-Dpackaging=jar</goal>
                 <goal>-Dfile=ojdbc7.jar</goal>
-                <goal>-DgeneratePom=true</goal>
+                <goal>-DpomFile=ojdbc7.pom</goal>
+                
+                
+                
+                
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-site</actionName>
+            <displayName>site</displayName>
+            <goals>
+                <goal>site:site</goal>
+                
+                
             </goals>
         </action>
 </actions>
