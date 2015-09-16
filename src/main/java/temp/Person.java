@@ -4,11 +4,15 @@ package temp;
 @Table(name = "PERSON_VIEW")
 public class Person
 {
-
   @Id
   private int id;
   
+  @ManyToOne(fetch=FetchType.LAZY)
+  @JoinColumn(name="FATHER_ID")
   private Person father;
+  
+  @ManyToOne(fetch=FetchType.LAZY)
+  @JoinColumn(name="MOTHER_ID")
   private Person mother;
   
   private String name;
