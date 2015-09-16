@@ -1,4 +1,3 @@
-
 package edu.wright.hendrix11.familyTree.entity;
 
 import java.io.Serializable;
@@ -7,6 +6,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -14,23 +20,41 @@ import java.util.Objects;
  */
 public class Person implements Serializable
 {
-    private Integer id;
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    private int id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FATHER_ID")
     private Person father;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MOTHER_ID")
     private Person mother;
-    private String name = "";
+
+    private String name;
     private String gender;
+
+    @Column(name = "DATE_OF_BIRTH")
+    @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
+
+    @Column(name = "PLACE_OF_BIRTH")
     private String placeOfBirth;
+
+    @Column(name = "DATE_OF_DEATH")
+    @Temporal(TemporalType.DATE)
     private Date dateOfDeath;
+
+    @Column(name = "PLACE_OF_DEATH")
     private String placeOfDeath;
-    
+
     private HashMap<Person, List<Person>> spouseChildMap;
-    
+
     private List<Person> childrenNoSpouse;
-    
+
     private List<Person> spouses;
-    
-    private HashMap<String, PersonInfo> personInfo;
 
     /**
      *
@@ -38,11 +62,8 @@ public class Person implements Serializable
     public Person()
     {
         // No arg constructor
-        childrenNoSpouse = new ArrayList<Person>();
-        spouseChildMap = new HashMap<Person, List<Person>>();
-        //spouseChildMap = new HashMap<Person, List<SpouseChildMap>>();
     }
-    
+
     /**
      *
      * @param name
@@ -51,25 +72,7 @@ public class Person implements Serializable
     {
         this.name = name;
     }
-    
-//    public Person(int id, String name)
-//    {
-//        this(Integer.valueOf(id), name);
-//    }
-    
-    /**
-     *
-     * @param id
-     * @param name
-     */
-        
-    public Person(Integer id, String name)
-    {
-        this(name);
-        
-        this.id = id;
-    }
-    
+
     /**
      *
      * @return
@@ -78,7 +81,7 @@ public class Person implements Serializable
     {
         return hasParent(mother);
     }
-    
+
     /**
      *
      * @return
@@ -87,7 +90,7 @@ public class Person implements Serializable
     {
         return hasParent(father);
     }
-    
+
     /**
      *
      * @return
@@ -96,7 +99,7 @@ public class Person implements Serializable
     {
         return hasFather() || hasMother();
     }
-    
+
     /**
      *
      * @return
@@ -105,15 +108,19 @@ public class Person implements Serializable
     {
         return hasFather() && hasMother();
     }
-    
+
     private boolean hasParent(Person parent)
     {
-        if(parent == null || !parent.exists())
+        if (parent == null || !parent.exists())
+        {
             return false;
+        }
         else
+        {
             return true;
+        }
     }
-    
+
     /**
      *
      * @return
@@ -203,7 +210,7 @@ public class Person implements Serializable
     {
         return spouseChildMap;
     }
-    
+
     /**
      *
      * @return
@@ -212,7 +219,7 @@ public class Person implements Serializable
     {
         return null;
     }
-    
+
     /**
      *
      * @param spouse
@@ -263,12 +270,10 @@ public class Person implements Serializable
 //    {
 //        setDateOfBirth(dateOfBirth.getTime());
 //    }
-
     /**
      *
      * @param dateOfBirth
      */
-    
     public void setDateOfBirth(Date dateOfBirth)
     {
         this.dateOfBirth = dateOfBirth;
@@ -287,12 +292,10 @@ public class Person implements Serializable
 //    {
 //        setDateOfDeath(dateOfDeath.getTime());
 //    }
-
     /**
      *
      * @param dateOfDeath
      */
-    
     public void setDateOfDeath(Date dateOfDeath)
     {
         this.dateOfDeath = dateOfDeath;
@@ -332,34 +335,32 @@ public class Person implements Serializable
     public void setSpouseChildMap(HashMap<Person, List<Person>> spouseChildMap)
     {
         List<Person> noSpouseList = spouseChildMap.get(null);
-        
+
         childrenNoSpouse = new ArrayList<Person>();
-        
-        if(noSpouseList != null)
+
+        if (noSpouseList != null)
         {
             childrenNoSpouse.addAll(noSpouseList);
-            
+
 //            for(SpouseChildMap map : noSpouseList)
 //            {
 //                childrenNoSpouse.add(map.getChild());
 //            }
         }
-        
+
         spouseChildMap.remove(null);
-        
+
 //        spouses = new ArrayList<Person>();
-        
 //        Collection<List<SpouseChildMap>> values = spouseChildMap.values();
 //        Set<Person> keySet = spouseChildMap.keySet();
-//        
+//
 //        for(Person spouse : )
 //        {
-//            
+//
 //        }
-            
         this.spouseChildMap = spouseChildMap;
     }
-    
+
     /**
      *
      * @return
@@ -367,13 +368,12 @@ public class Person implements Serializable
     public boolean exists()
     {
         boolean exists = false;
-        
-        if(id != null)
+
+        if (name != null && !name.isEmpty())
+        {
             exists = true;
-        
-        if(name != null && !name.isEmpty())
-            exists = true;
-        
+        }
+
         return exists;
     }
 
@@ -388,92 +388,74 @@ public class Person implements Serializable
 
     /**
      *
-     * @return
-     */
-    public HashMap<String, PersonInfo> getPersonInfo()
-    {
-        return personInfo;
-    }
-
-    /**
-     *
-     * @param personInfo
-     */
-    public void setPersonInfo(HashMap<String, PersonInfo> personInfo)
-    {
-        this.personInfo = personInfo;
-    }
-    
-    /**
-     *
      * @param child
      * @param spouse
      */
     public void addChild(Person child, Person spouse)
     {
-        if(spouse == null)
+        if (spouse == null)
+        {
             this.childrenNoSpouse.add(child);
+        }
         else
         {
             List<Person> map = this.spouseChildMap.get(spouse);
-            
-            if(map == null)
+
+            if (map == null)
             {
                 map = new ArrayList<Person>();
             }
-            
+
 //            SpouseChildMap spouseChildMap = new SpouseChildMap();
 //            spouseChildMap.setPeople(this, spouse, child);
-            
             map.add(child);
-            
+
             this.spouseChildMap.put(spouse, map);
         }
     }
-    
-    @Override
+
+    //@Override
     public boolean equals(Object o)
     {
-        if(o instanceof Person)
+        if (o instanceof Person)
         {
-            Person p = (Person)o;
-            
-            if(p.id != null && this.id != null)
+            Person p = (Person) o;
+
+            //if (p.id != null && this.id != null)
             {
                 return Objects.equals(this.id, p.id);
             }
-            
-            return p.getName().equals(this.getName());
+
+            //return p.getName().equals(this.getName());
         }
         else
+        {
             return false;
+        }
     }
 
     @Override
     public int hashCode()
     {
-        if(id == null)
-            return 0;
-        else
-            return id;
+        return id;
     }
-    
+
     @Override
     public String toString()
     {
         return toString("");
     }
-    
+
     /**
      *
      * @param tabs
      * @return
      */
     public String toString(String tabs)
-    {            
+    {
         StringBuilder sb = new StringBuilder();
-        
-        if(exists())
+
+        if (exists())
         {
             sb.append(tabs).append("id:\t").append(id).append("\n");
             sb.append(tabs).append("name:\t").append(name).append("\n");
@@ -481,40 +463,35 @@ public class Person implements Serializable
 
             sb.append(tabs).append("father:\t");
 
-            if(father != null && father.exists())
+            if (father != null && father.exists())
+            {
                 sb.append(father.getId()).append(" ").append(father.getName()).append("\n");
+            }
             else
+            {
                 sb.append("(null)").append("\n");
+            }
 
             sb.append(tabs).append("mother:\t");
 
-            if(mother != null && mother.exists())
+            if (mother != null && mother.exists())
+            {
                 sb.append(mother.getId()).append(" ").append(mother.getName());
+            }
             else
+            {
                 sb.append("(null)");
+            }
         }
         else
         {
             sb.append(tabs).append("(null)");
         }
-        
+
 //        private Date dateOfBirth;
 //        private String placeOfBirth;
 //        private Date dateOfDeath;
 //        private String placeOfDeath;
-        
         return sb.toString();
-    }
-
-    /**
-     *
-     * @param personInfo
-     */
-    public void addInfo(PersonInfo personInfo)
-    {
-        if(this.personInfo == null)
-            this.personInfo = new HashMap<String, PersonInfo>();
-        
-        this.personInfo.put(personInfo.getType(), personInfo);
     }
 }
