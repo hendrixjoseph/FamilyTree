@@ -54,10 +54,13 @@ Once this project is downloaded, there are two steps required before it can be b
 <property name="javax.persistence.jdbc.password" value="${dbpassword}" />
 ```
 
-   The variables (e.g. ${dbdriver}) are "filtered" by Maven. I have these values in my `settings.xml` in my local `.m2` directory. I'm not going to publish what my username and password are. You need to either change the values here in the [`persistence.xml`](src/main/resources/META-INF/persistence.xml) or set the properties in the `settings.xml`:
+   The variables (e.g. ${dbdriver}) are "filtered" by Maven. I have these values in my [`settings.xml`](settings.xml) in my local `.m2` directory. I'm not going to publish what my username and password are. You need to either change the values here in the [`persistence.xml`](src/main/resources/META-INF/persistence.xml) or set the properties in the `settings.xml`:
 
 ```xml
-tbd
+<dbdriver>oracle.jdbc.OracleDriver</dbdriver>
+<dbuser>user</dbuser>
+<dbpassword>password</dbpassword>
+<dburl>jdbc:oracle:thin:@localhost:1521:XE</dburl>
 ```
 
 ## Tools
@@ -66,16 +69,17 @@ In addition to the dependencies listed in the [pom.xml](pom.xml), I am using the
 
 ### Server and Database
 
-* GlassFish
+* [GlassFish 4.1](https://glassfish.java.net/)
 * [Oracle Database 11g Express Edition](http://www.oracle.com/technetwork/database/database-technologies/express-edition/overview/index.html)
  
 ### Development Tools
 
 * [ForkHub for GitHub](https://play.google.com/store/apps/details?id=jp.forkhub) ([on GitHub](https://github.com/jonan/ForkHub))
-* [NetBeans IDE 8.0.2](https://netbeans.org/downloads/index.html)
+* [NetBeans IDE 8.0.2](https://netbeans.org)
 * [Oracle SQL Developer 4.1.0.19](http://www.oracle.com/technetwork/developer-tools/sql-developer/overview/index-097090.html)
-* [Notepad++ v6.7.8.2](https://notepad-plus-plus.org/)
-* TortoiseGit
+* [Notepad++ v6.7.8.2](https://notepad-plus-plus.org)
+* [TortoiseGit 1.8.15.0](https://tortoisegit.org)
+* [Maven 3.3.3](https://maven.apache.org)
 
 ## License
 
