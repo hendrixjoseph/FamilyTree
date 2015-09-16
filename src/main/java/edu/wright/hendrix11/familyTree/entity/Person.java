@@ -86,6 +86,9 @@ public class Person implements Serializable
 
     @Transient
     private List<Person> spouses;
+    
+    @OneToMany(mappedBy = "father", fetch = FetchType.LAZY)
+    private List<Person> children;
 
 
     /**
