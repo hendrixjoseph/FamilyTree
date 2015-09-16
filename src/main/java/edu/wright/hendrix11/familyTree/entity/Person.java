@@ -87,7 +87,8 @@ public class Person implements Serializable
     @Transient
     private List<Person> spouses;
     
-    @OneToMany(mappedBy = "father", fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinTable(name="CHILDREN_VIEW", joinColumns={@JoinColumn(name="ID", referencedColumnName="ID")}, inverseJoinColumns={@JoinColumn(name="CHILD_ID", referencedColumnName="ID")})
     private List<Person> children;
 
 
