@@ -1,18 +1,18 @@
-/* 
+/*
  *  The MIT License (MIT)
- *  
+ *
  *  Copyright (c) 2015 Joseph Hendrix
- *  
+ *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  *  copies of the Software, and to permit persons to whom the Software is
  *  furnished to do so, subject to the following conditions:
- *  
+ *
  *  The above copyright notice and this permission notice shall be included in all
  *  copies or substantial portions of the Software.
- *  
+ *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -34,7 +34,10 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -90,7 +93,7 @@ public class Person implements Serializable
         joinColumns={@JoinColumn(name="FATHER_ID", referencedColumnName="ID")},
         inverseJoinColumns={@JoinColumn(name="MOTHER_ID", referencedColumnName="ID")})
     private List<Person> spouses;
-    
+
     @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(name="CHILDREN_VIEW", joinColumns={@JoinColumn(name="ID", referencedColumnName="ID")}, inverseJoinColumns={@JoinColumn(name="CHILD_ID", referencedColumnName="ID")})
     private List<Person> children;
