@@ -4,7 +4,7 @@ FamilyTree is a simple web application using JavaServerFaces, Java EE, and a SQL
 
 ## Readme Table of Contents
 
-* [Contents of Repository](README.md#user-content-contents) 
+* [Contents of Repository](README.md#user-content-contents-of-repository) 
  * [Configuration files](README.md#user-content-configuration-files)
  * [Source code](README.md#user-content-source-code)
  * [SQL](README.md#user-content-sql)
