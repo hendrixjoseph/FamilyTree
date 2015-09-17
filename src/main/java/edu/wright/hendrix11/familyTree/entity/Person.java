@@ -84,12 +84,6 @@ public class Person implements Serializable
     @Column(name = "PLACE_OF_DEATH")
     private String placeOfDeath;
 
-    @Transient
-    private HashMap<Person, List<Person>> spouseChildMap;
-
-    @Transient
-    private List<Person> childrenNoSpouse;
-
     @ManyToMany
     @JoinTable(
         name="SPOUSE_VIEW",
@@ -160,14 +154,7 @@ public class Person implements Serializable
 
     private boolean hasParent(Person parent)
     {
-        if (parent == null || !parent.exists())
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+        return !(parent == null || !parent.exists())
     }
 
     /**
@@ -253,30 +240,22 @@ public class Person implements Serializable
 
     /**
      *
-     * @return
-     */
-    public HashMap<Person, List<Person>> getSpouseChildMap()
-    {
-        return spouseChildMap;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public HashMap<Person, List<SpouseChildMap>> getSpouseChildMapOld()
-    {
-        return null;
-    }
-
-    /**
-     *
      * @param spouse
      * @return
      */
     public List<Person> getChildren(Person spouse)
     {
-        return getSpouseChildMap().get(spouse);
+        List<Person> childrenOfSpouse = new ArrayList<>();
+        
+        for(Person child : children)
+        {
+            if(child.getFather().equals(spouse) || child.getMother().equals(spouse))
+            {
+                childrenOfSpouse.add(child);
+            }
+        }
+        
+        return childrenOfSpouse;
     }
 
     /**
@@ -315,10 +294,6 @@ public class Person implements Serializable
         this.gender = gender;
     }
 
-//    public void setDateOfBirth(Calendar dateOfBirth)
-//    {
-//        setDateOfBirth(dateOfBirth.getTime());
-//    }
     /**
      *
      * @param dateOfBirth
@@ -337,10 +312,6 @@ public class Person implements Serializable
         this.placeOfBirth = placeOfBirth;
     }
 
-//    public void setDateOfDeath(Calendar dateOfDeath)
-//    {
-//        setDateOfDeath(dateOfDeath.getTime());
-//    }
     /**
      *
      * @param dateOfDeath
@@ -374,40 +345,17 @@ public class Person implements Serializable
      */
     public List<Person> getChildrenNoSpouse()
     {
-        return childrenNoSpouse;
-    }
-
-    /**
-     *
-     * @param spouseChildMap
-     */
-    public void setSpouseChildMap(HashMap<Person, List<Person>> spouseChildMap)
-    {
-        List<Person> noSpouseList = spouseChildMap.get(null);
-
-        childrenNoSpouse = new ArrayList<Person>();
-
-        if (noSpouseList != null)
+        List<Person> childrenNoSpouse = new ArrayList<>();
+        
+        for(Person child : children)
         {
-            childrenNoSpouse.addAll(noSpouseList);
-
-//            for(SpouseChildMap map : noSpouseList)
-//            {
-//                childrenNoSpouse.add(map.getChild());
-//            }
+            if(!child.hasFather() || !child.hasMother())
+            {
+                childrenNoSpouse.add(child);
+            }
         }
-
-        spouseChildMap.remove(null);
-
-//        spouses = new ArrayList<Person>();
-//        Collection<List<SpouseChildMap>> values = spouseChildMap.values();
-//        Set<Person> keySet = spouseChildMap.keySet();
-//
-//        for(Person spouse : )
-//        {
-//
-//        }
-        this.spouseChildMap = spouseChildMap;
+        
+        return childrenNoSpouse;
     }
 
     /**
@@ -416,14 +364,7 @@ public class Person implements Serializable
      */
     public boolean exists()
     {
-        boolean exists = false;
-
-        if (name != null && !name.isEmpty())
-        {
-            exists = true;
-        }
-
-        return exists;
+        return  name != null && !name.isEmpty();
     }
 
     public List<Person> getChildren()
@@ -436,8 +377,6 @@ public class Person implements Serializable
         this.children = children;
     }
 
-
-
     /**
      *
      * @return
@@ -445,34 +384,6 @@ public class Person implements Serializable
     public List<Person> getSpouses()
     {
         return spouses;
-    }
-
-    /**
-     *
-     * @param child
-     * @param spouse
-     */
-    public void addChild(Person child, Person spouse)
-    {
-        if (spouse == null)
-        {
-            this.childrenNoSpouse.add(child);
-        }
-        else
-        {
-            List<Person> map = this.spouseChildMap.get(spouse);
-
-            if (map == null)
-            {
-                map = new ArrayList<Person>();
-            }
-
-//            SpouseChildMap spouseChildMap = new SpouseChildMap();
-//            spouseChildMap.setPeople(this, spouse, child);
-            map.add(child);
-
-            this.spouseChildMap.put(spouse, map);
-        }
     }
 
     //@Override
