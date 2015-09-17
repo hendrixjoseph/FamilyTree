@@ -30,9 +30,12 @@ package edu.wright.hendrix11.familyTree.entity;
 *
 * @author Joe Hendrix
 */
+@Entity
 public class Gender 
 {
     private char abbr;
+    
+    @Column(name = "FULL_WORD")
     private String fullWord;
 
     /**
