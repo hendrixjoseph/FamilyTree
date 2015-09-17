@@ -35,7 +35,6 @@ import java.util.Date;
  */
 @Entity
 @IdClass(MarriagePK.class)
-@Table(name = "MARRIAGE_VIEW")
 public class Marriage implements Serializable
 {
     @Id
