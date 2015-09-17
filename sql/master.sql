@@ -1,5 +1,5 @@
 --------------------------------------------------------
---  File created - Friday-July-24-2015   
+--  File created - Wednesday-September-16-2015   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Type CUSTOM_DATE
@@ -45,12 +45,12 @@ END;
 --  DDL for Sequence PLACE_SEQUENCE
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "PLACE_SEQUENCE"  MINVALUE 1 MAXVALUE 99999999 INCREMENT BY 1 START WITH 301 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "PLACE_SEQUENCE"  MINVALUE 1 MAXVALUE 99999999 INCREMENT BY 1 START WITH 504 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SEQUENCE_PERSON
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "SEQUENCE_PERSON"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 9491 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "SEQUENCE_PERSON"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 11150 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Table BOOLEAN
 --------------------------------------------------------
@@ -58,14 +58,6 @@ END;
   CREATE TABLE "BOOLEAN" 
    (	"ID" NUMBER, 
 	"VALUE" VARCHAR2(5)
-   ) ;
---------------------------------------------------------
---  DDL for Table DEFAULT_PERSON_TYPE
---------------------------------------------------------
-
-  CREATE TABLE "DEFAULT_PERSON_TYPE" 
-   (	"ID" NUMBER, 
-	"DEFAULT_PERSON_TYPE" VARCHAR2(20)
    ) ;
 --------------------------------------------------------
 --  DDL for Table GENDER
@@ -111,6 +103,14 @@ END;
    (	"PERSON_ID" NUMBER, 
 	"PLACE_ID" NUMBER, 
 	"DATE" DATE
+   ) ;
+--------------------------------------------------------
+--  DDL for Table DEFAULT_PERSON_TYPE
+--------------------------------------------------------
+
+  CREATE TABLE "DEFAULT_PERSON_TYPE" 
+   (	"ID" NUMBER, 
+	"DEFAULT_PERSON_TYPE" VARCHAR2(20)
    ) ;
 --------------------------------------------------------
 --  DDL for Table FATHER_OF
@@ -182,6 +182,31 @@ END;
 	"TITLE" VARCHAR2(20)
    ) ;
 --------------------------------------------------------
+--  DDL for View CHILDREN_VIEW
+--------------------------------------------------------
+
+  CREATE OR REPLACE VIEW "CHILDREN_VIEW" ("ID", "NAME", "SPOUSE_ID", "SPOUSE", "CHILD_ID", "CHILD") AS 
+  SELECT 
+    P.ID,
+	  P.NAME,
+    SPOUSE.ID AS SPOUSE_ID,
+    SPOUSE.NAME AS SPOUSE,
+    CHILD.ID AS CHILD_ID,
+    CHILD.NAME AS CHILD
+FROM 
+    PERSON_VIEW CHILD
+INNER JOIN 
+    PERSON_VIEW P
+ON
+    CHILD.FATHER_ID = P.ID OR CHILD.MOTHER_ID = P.ID
+LEFT OUTER JOIN
+    PERSON_VIEW SPOUSE
+ON
+    (CHILD.FATHER_ID = SPOUSE.ID OR CHILD.MOTHER_ID = SPOUSE.ID) AND
+    P.ID <> SPOUSE.ID
+ORDER BY
+    P.NAME, SPOUSE.NAME;
+--------------------------------------------------------
 --  DDL for View DEFAULT_PERSON_VIEW
 --------------------------------------------------------
 
@@ -207,48 +232,6 @@ FROM
   PERSON_VIEW
 WHERE
   ID = (SELECT MAX(ID) FROM PERSON_VIEW);
---------------------------------------------------------
---  DDL for View SETTINGS_VIEW
---------------------------------------------------------
-
-  CREATE OR REPLACE VIEW "SETTINGS_VIEW" ("THEME", "DEFAULT_PERSON", "DEFAULT_PERSON_TYPE", "VIEW_WELCOME_PAGE") AS 
-  SELECT 
-    THEME,
-    DEFAULT_PERSON,
-    DEFAULT_PERSON_TYPE.DEFAULT_PERSON_TYPE AS DEFAULT_PERSON_TYPE,
-    BOOLEAN.VALUE AS VIEW_WELCOME_PAGE
-FROM 
-    SETTINGS,
-    DEFAULT_PERSON_TYPE,
-    BOOLEAN
-WHERE
-    DEFAULT_PERSON_TYPE.ID = SETTINGS.DEFAULT_PERSON_TYPE
-AND BOOLEAN.ID = SETTINGS.VIEW_WELCOME_PAGE;
---------------------------------------------------------
---  DDL for View CHILDREN_VIEW
---------------------------------------------------------
-
-  CREATE OR REPLACE VIEW "CHILDREN_VIEW" ("ID", "NAME", "SPOUSE_ID", "SPOUSE", "CHILD_ID", "CHILD") AS 
-  SELECT 
-    P.ID,
-	  P.NAME,
-    SPOUSE.ID AS SPOUSE_ID,
-    SPOUSE.NAME AS SPOUSE,
-    CHILD.ID AS CHILD_ID,
-    CHILD.NAME AS CHILD
-FROM 
-    PERSON_VIEW CHILD
-INNER JOIN 
-    PERSON_VIEW P
-ON
-    CHILD.FATHER_ID = P.ID OR CHILD.MOTHER_ID = P.ID
-LEFT OUTER JOIN
-    PERSON_VIEW SPOUSE
-ON
-    (CHILD.FATHER_ID = SPOUSE.ID OR CHILD.MOTHER_ID = SPOUSE.ID) AND
-    P.ID <> SPOUSE.ID
-ORDER BY
-    P.NAME, SPOUSE.NAME;
 --------------------------------------------------------
 --  DDL for View MARRIAGE_VIEW
 --------------------------------------------------------
@@ -332,15 +315,64 @@ FROM
     PERSON_VIEW
 WHERE
     FATHER_ID IS NULL;
+--------------------------------------------------------
+--  DDL for View SETTINGS_VIEW
+--------------------------------------------------------
+
+  CREATE OR REPLACE VIEW "SETTINGS_VIEW" ("THEME", "DEFAULT_PERSON", "DEFAULT_PERSON_TYPE", "VIEW_WELCOME_PAGE") AS 
+  SELECT 
+    THEME,
+    DEFAULT_PERSON,
+    DEFAULT_PERSON_TYPE.DEFAULT_PERSON_TYPE AS DEFAULT_PERSON_TYPE,
+    BOOLEAN.VALUE AS VIEW_WELCOME_PAGE
+FROM 
+    SETTINGS,
+    DEFAULT_PERSON_TYPE,
+    BOOLEAN
+WHERE
+    DEFAULT_PERSON_TYPE.ID = SETTINGS.DEFAULT_PERSON_TYPE
+AND BOOLEAN.ID = SETTINGS.VIEW_WELCOME_PAGE;
+--------------------------------------------------------
+--  DDL for View SPOUSE_VIEW
+--------------------------------------------------------
+
+  CREATE OR REPLACE VIEW "SPOUSE_VIEW" ("ID", "NAME", "SPOUSE_ID", "SPOUSE") AS 
+  SELECT DISTINCT
+    P.ID,
+	  P.NAME,
+    SPOUSE.ID AS SPOUSE_ID,
+    SPOUSE.NAME AS SPOUSE
+FROM 
+    PERSON_VIEW CHILD
+INNER JOIN 
+    PERSON_VIEW P
+ON
+    CHILD.FATHER_ID = P.ID OR CHILD.MOTHER_ID = P.ID
+LEFT OUTER JOIN
+    PERSON_VIEW SPOUSE
+ON
+    (CHILD.FATHER_ID = SPOUSE.ID OR CHILD.MOTHER_ID = SPOUSE.ID) AND
+    P.ID <> SPOUSE.ID
+UNION
+SELECT     
+    P.HUSBAND_ID AS ID,
+	  P.HUSBAND_NAME AS NAME,
+    P.WIFE_ID AS SPOUSE_ID,
+    P.WIFE_NAME AS SPOUSE
+FROM
+MARRIAGE_VIEW P
+UNION
+SELECT     
+    P.WIFE_ID AS ID,
+	  P.WIFE_NAME AS NAME,
+    P.HUSBAND_ID AS SPOUSE_ID,
+    P.HUSBAND_NAME AS SPOUSE
+FROM
+MARRIAGE_VIEW P;
 REM INSERTING into BOOLEAN
 SET DEFINE OFF;
 Insert into BOOLEAN (ID,VALUE) values (0,'false');
 Insert into BOOLEAN (ID,VALUE) values (1,'true');
-REM INSERTING into DEFAULT_PERSON_TYPE
-SET DEFINE OFF;
-Insert into DEFAULT_PERSON_TYPE (ID,DEFAULT_PERSON_TYPE) values (1,'Same person');
-Insert into DEFAULT_PERSON_TYPE (ID,DEFAULT_PERSON_TYPE) values (2,'Last viewed person');
-Insert into DEFAULT_PERSON_TYPE (ID,DEFAULT_PERSON_TYPE) values (3,'Last edited person');
 REM INSERTING into GENDER
 SET DEFINE OFF;
 Insert into GENDER (ABBR,FULL_WORD) values ('M','Male');
@@ -350,15 +382,8 @@ Insert into GENDER (ABBR,FULL_WORD) values ('U','Unknown');
 REM INSERTING into SETTINGS
 SET DEFINE OFF;
 Insert into SETTINGS (THEME,DEFAULT_PERSON,DEFAULT_PERSON_TYPE,VIEW_WELCOME_PAGE) values (null,null,1,1);
-REM INSERTING into DEFAULT_PERSON_VIEW
+REM INSERTING into CHILDREN_VIEW
 SET DEFINE OFF;
-Insert into DEFAULT_PERSON_VIEW (ID,FATHER_ID,FATHER_NAME,MOTHER_ID,MOTHER_NAME,NAME,GENDER,PLACE_OF_BIRTH,DATE_OF_BIRTH,PLACE_OF_DEATH,DATE_OF_DEATH) values (7851,7852,'David Morgan Hendrix',7853,'Deborah Lee Hunter','Joseph David Hendrix','Male','Ann Arbor, Michigan',to_date('25-FEB-1984','DD-MON-YYYY'),null,null);
-REM INSERTING into LAST_PERSON_INSERTED_VIEW
-SET DEFINE OFF;
-Insert into LAST_PERSON_INSERTED_VIEW (ID,FATHER_ID,FATHER_NAME,MOTHER_ID,MOTHER_NAME,NAME,GENDER,PLACE_OF_BIRTH,DATE_OF_BIRTH,PLACE_OF_DEATH,DATE_OF_DEATH) values (9485,null,null,null,null,'Suzanne','Female',null,null,null,null);
-REM INSERTING into SETTINGS_VIEW
-SET DEFINE OFF;
-Insert into SETTINGS_VIEW (THEME,DEFAULT_PERSON,DEFAULT_PERSON_TYPE,VIEW_WELCOME_PAGE) values (null,null,'Same person','true');
 --------------------------------------------------------
 --  DDL for Index DEFAULT_PERSON_TYPE_PK
 --------------------------------------------------------
@@ -552,7 +577,7 @@ Insert into SETTINGS_VIEW (THEME,DEFAULT_PERSON,DEFAULT_PERSON_TYPE,VIEW_WELCOME
   ALTER TABLE "BIRTH" ADD CONSTRAINT "BIRTH_PERSON_FK" FOREIGN KEY ("PERSON_ID")
 	  REFERENCES "PERSON" ("ID") ON DELETE CASCADE ENABLE;
   ALTER TABLE "BIRTH" ADD CONSTRAINT "BIRTH_PLACE_FK" FOREIGN KEY ("PLACE_ID")
-	  REFERENCES "PLACE" ("ID") ENABLE;
+	  REFERENCES "PLACE" ("ID") ON DELETE SET NULL ENABLE;
 --------------------------------------------------------
 --  Ref Constraints for Table BURIAL
 --------------------------------------------------------
@@ -568,7 +593,7 @@ Insert into SETTINGS_VIEW (THEME,DEFAULT_PERSON,DEFAULT_PERSON_TYPE,VIEW_WELCOME
   ALTER TABLE "DEATH" ADD CONSTRAINT "DEATH_PERSON_FK" FOREIGN KEY ("PERSON_ID")
 	  REFERENCES "PERSON" ("ID") ON DELETE CASCADE ENABLE;
   ALTER TABLE "DEATH" ADD CONSTRAINT "DEATH_PLACE_FK" FOREIGN KEY ("PLACE_ID")
-	  REFERENCES "PLACE" ("ID") ENABLE;
+	  REFERENCES "PLACE" ("ID") ON DELETE SET NULL ENABLE;
 --------------------------------------------------------
 --  Ref Constraints for Table FATHER_OF
 --------------------------------------------------------
