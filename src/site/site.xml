@@ -32,9 +32,15 @@
   <body>
     <menu ref="modules" />
 	<menu ref="reports" />
-	<menu name="Documentation">
-		<item name="References" href="documentation/references.md" />
-		<item name="CS7700 Documents" href="documentation/cs7700/" />
+	<menu name="Other Documentation">
+		<item name="Schema" href="documentation/schema.md" />
+		<item name="CS7700 Documents" collapse="true">
+			<item name="Final Report" href="documentation/cs7700/Hendrix_CS7700_Final_Report.docx" />
+			<item name="Project Presentation" href="documentation/cs7700/Hendrix_CS7700_Project_Presentation.pptx" />
+			<item name="Project Proposal" href="documentation/cs7700/ Hendrix_CS7700_Project_Proposal.docx" />
+			<item name="User Manual" href="documentation/cs7700/Hendrix_CS7700_User_Manual.docx" />
+			<item name="Informal Proposal" href="documentation/cs7700/informal_proposal.md" />
+		</item>
 	</menu>
 	<footer>Copyright &copy; 2015 Joseph Hendrix</footer>
   </body>
