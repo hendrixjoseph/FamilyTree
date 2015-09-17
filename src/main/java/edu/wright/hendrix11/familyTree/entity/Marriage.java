@@ -33,11 +33,18 @@ import java.util.Date;
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
+@Entity
+@Table(name = "MARRIAGE_VIEW")
 public class Marriage implements Serializable
 {
+    
     Person husband;
+    
     Person wife;
+    
     String place;
+    
+    @Temporal(TemporalType.DATE)
     Date anniversary;
     
     /**
