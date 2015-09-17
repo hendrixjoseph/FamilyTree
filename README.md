@@ -88,6 +88,7 @@ In addition to the [dependencies](http://hendrixjoseph.github.io/FamilyTree/depe
 ### Development Tools
 
 * [ForkHub for GitHub](https://play.google.com/store/apps/details?id=jp.forkhub) ([on GitHub](https://github.com/jonan/ForkHub))
+* [SGit](https://play.google.com/store/apps/details?id=me.sheimi.sgit) ([on GitHub](https://github.com/sheimi/SGit))
 * [NetBeans IDE 8.0.2](https://netbeans.org)
  * [NetBeans License Changer Plugin](http://plugins.netbeans.org/plugin/17960/license-changer)
 * [Oracle SQL Developer 4.1.0.19](http://www.oracle.com/technetwork/developer-tools/sql-developer/overview/index-097090.html)
