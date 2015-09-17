@@ -32,6 +32,7 @@ import java.io.Serializable;
 *
 * @author Joe Hendrix
 */
+@Entity
 public class Place implements Serializable
 {
     private int id;
