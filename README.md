@@ -81,6 +81,8 @@ In addition to the dependencies listed in the [pom.xml](pom.xml), I am using the
 * [TortoiseGit 1.8.15.0](https://tortoisegit.org)
 * [Maven 3.3.3](https://maven.apache.org)
 
+Tested in [Firefox 39.0](https://www.mozilla.org/en-US/)
+
 ## License
 
 This project is for personal academic purposes. I don't care what you do with it, as long as I get credit. Therefore I am using the [the MIT License](LICENSE.md).
