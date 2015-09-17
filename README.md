@@ -2,7 +2,20 @@
 
 FamilyTree is a simple web application using JavaServerFaces, Java EE, and a SQL database to load, display, edit, and examine a family tree. It was initially created as a project for CS7700 Advanced Database Systems at Wright State, and is currently being used for CS7720 Data Mining at the same school.
 
-## Contents
+## Readme Table of Contents
+
+* [Contents of Repository](README.md#user-content-contents) 
+ * [Configuration files](README.md#user-content-configuration-files)
+ * [Source code](README.md#user-content-source-code)
+ * [SQL](README.md#user-content-sql)
+ * [Directory structure](README.md#user-content-directory-structure)
+* [Setup](README.md#user-content-setup)
+* [Tools](README.md#user-content-tools)
+ * [Server and Database](README.md#user-content-server-and-database)
+ * [Development Tools](README.md#user-content-development-tools)
+* [License](README.md#user-content-license)
+
+## Contents of Repository
 
 ### Configuration files
 
