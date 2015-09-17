@@ -34,6 +34,7 @@
 	<menu ref="reports" />
 	<menu name="Other Documentation">
 		<item name="Schema" href="documentation/schema.md" />
+		<item name="Screenshots" href="documentation/screenshots.md" />
 		<item name="CS7700 Documents" collapse="true">
 			<item name="Final Report" href="documentation/cs7700/Hendrix_CS7700_Final_Report.docx" />
 			<item name="Project Presentation" href="documentation/cs7700/Hendrix_CS7700_Project_Presentation.pptx" />
