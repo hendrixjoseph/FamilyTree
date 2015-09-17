@@ -98,7 +98,10 @@ public class Person implements Serializable
     private List<Person> spouses;
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinTable(name="CHILDREN_VIEW", joinColumns={@JoinColumn(name="ID", referencedColumnName="ID")}, inverseJoinColumns={@JoinColumn(name="CHILD_ID", referencedColumnName="ID")})
+    @JoinTable(
+        name="CHILDREN_VIEW", 
+        joinColumns={@JoinColumn(name="ID", referencedColumnName="ID")}, 
+        inverseJoinColumns={@JoinColumn(name="CHILD_ID", referencedColumnName="ID")})
     private List<Person> children;
 
 
