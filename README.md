@@ -76,6 +76,7 @@ In addition to the dependencies listed in the [pom.xml](pom.xml), I am using the
 
 * [ForkHub for GitHub](https://play.google.com/store/apps/details?id=jp.forkhub) ([on GitHub](https://github.com/jonan/ForkHub))
 * [NetBeans IDE 8.0.2](https://netbeans.org)
+ * [NetBeans License Changer Plugin](http://plugins.netbeans.org/plugin/17960/license-changer)
 * [Oracle SQL Developer 4.1.0.19](http://www.oracle.com/technetwork/developer-tools/sql-developer/overview/index-097090.html)
 * [Notepad++ v6.7.8.2](https://notepad-plus-plus.org)
 * [TortoiseGit 1.8.15.0](https://tortoisegit.org)
