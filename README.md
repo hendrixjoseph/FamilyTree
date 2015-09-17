@@ -65,7 +65,7 @@ Once this project is downloaded, there are two steps required before it can be b
 
 ## Tools
 
-In addition to the dependencies listed in the [pom.xml](pom.xml), I am using the following:
+In addition to the [dependencies](http://hendrixjoseph.github.io/FamilyTree/dependencies.html) listed in the [pom.xml](pom.xml), I am using the following:
 
 ### Server and Database
 
