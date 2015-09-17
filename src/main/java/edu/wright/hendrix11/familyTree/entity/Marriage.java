@@ -34,18 +34,28 @@ import java.util.Date;
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
 @Entity
+@IdClass(MarriagePK.class)
 @Table(name = "MARRIAGE_VIEW")
 public class Marriage implements Serializable
 {
+    @Id
+    private int husbandId;
     
-    Person husband;
+    @Id
+    private int wifeId;
     
-    Person wife;
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="HUSBAND")
+    private Person husband;
     
-    String place;
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="WIFE")
+    private Person wife;
+    
+    private String place;
     
     @Temporal(TemporalType.DATE)
-    Date anniversary;
+    private Date anniversary;
     
     /**
      *
@@ -196,5 +206,35 @@ public class Marriage implements Serializable
         sb.append("Wife: " ).append(wife.exists() ? wife.getName() : "(null)").append("\n");
         
         return sb.toString();
+    }
+    
+    public class MarriagePK
+    {
+        private int husbandId;
+        private int wifeId;
+        
+        public MarriagePK(int husbandId, int wifeId)
+        {
+            this.husbandId = husbandId;
+            this.wifeId = wifeId;
+        }
+
+        public boolean equals(Object object)
+        {
+            if (object instanceof MarriagePK)
+            {
+                MarriagePK pk = (MarriagePK)object;
+                return husbandId == pk.husbandId && wifeId == pk.wifeId;
+            } 
+            else 
+            {
+                return false;
+            }
+        }
+
+        public int hashCode() 
+        {
+            return husbandId + wifeId;
+        }
     }
 }
