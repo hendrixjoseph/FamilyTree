@@ -13,10 +13,13 @@ package edu.wright.hendrix11.familyTree.database.table;
 
 import edu.wright.hendrix11.familyTree.database.ColumnMethodMap;
 import edu.wright.hendrix11.familyTree.database.DatabaseQuery;
-import edu.wright.hendrix11.familyTree.database.interfaces.*;
+import edu.wright.hendrix11.familyTree.database.interfaces.DeleteData;
+import edu.wright.hendrix11.familyTree.database.interfaces.InsertData;
+import edu.wright.hendrix11.familyTree.database.interfaces.SelectAllData;
+import edu.wright.hendrix11.familyTree.database.interfaces.SelectData;
+import edu.wright.hendrix11.familyTree.database.interfaces.UpdateData;
 import edu.wright.hendrix11.familyTree.entity.Marriage;
 import edu.wright.hendrix11.familyTree.entity.PersonView;
-import edu.wright.hendrix11.familyTree.entity.SpouseChildMap;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;

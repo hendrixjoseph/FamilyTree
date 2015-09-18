@@ -11,11 +11,10 @@
  */
 package edu.wright.hendrix11.familyTree.bean;
 
-import javax.annotation.PostConstruct;
-
-import edu.wright.hendrix11.familyTree.entity.PersonView;
 import edu.wright.hendrix11.familyTree.database.table.PersonTable;
+import edu.wright.hendrix11.familyTree.entity.PersonView;
 import java.io.Serializable;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 

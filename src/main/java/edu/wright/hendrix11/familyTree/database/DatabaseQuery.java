@@ -11,7 +11,8 @@
  */
 package edu.wright.hendrix11.familyTree.database;
 
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

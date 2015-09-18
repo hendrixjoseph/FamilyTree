@@ -16,7 +16,6 @@ import edu.wright.hendrix11.familyTree.database.interfaces.DeleteData;
 import edu.wright.hendrix11.familyTree.database.interfaces.SelectAllData;
 import edu.wright.hendrix11.familyTree.database.interfaces.UpdateData;
 import edu.wright.hendrix11.familyTree.entity.Place;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
