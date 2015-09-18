@@ -75,13 +75,13 @@ public class Person
     @JoinTable(name="FATHER_OF",
         joinColumns=@JoinColumn(name="CHILD_ID"),
         inverseJoinColumns=@JoinColumn(name="FATHER_ID"))
-    private PersonView father;
+    private Person father;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinTable(name="MOTHER_OF",
             joinColumns=@JoinColumn(name="CHILD_ID"),
             inverseJoinColumns=@JoinColumn(name="MOTHER_ID"))
-    private PersonView mother;
+    private Person mother;
 
     public int getId()
     {
@@ -93,25 +93,23 @@ public class Person
         this.id = id;
     }
 
-    public PersonView getFather()
+    public Person getFather()
     {
         return father;
     }
 
-    public void setFather(PersonView father)
+    public void setFather(Person father)
     {
         this.father = father;
     }
 
-    public PersonView getMother()
+    public Person getMother()
     {
         return mother;
     }
 
-    public void setMother(PersonView mother)
+    public void setMother(Person mother)
     {
         this.mother = mother;
     }
-
-
 }
