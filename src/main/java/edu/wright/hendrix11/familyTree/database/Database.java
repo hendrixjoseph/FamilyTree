@@ -36,24 +36,11 @@ public abstract class Database
     private static String propertiesFile;
 
     private static Connection con;
-    private Statement statement;
-
-    /**
-     *
-     */
-    protected String tableName;
 
     /**
      *
      */
     public static final String DATE_FORMAT = "MM dd YYYY";
-
-    /**
-     *
-     */
-    public Database()
-    {
-    }
 
     /**
      *
@@ -161,6 +148,27 @@ public abstract class Database
 
     /**
      *
+     * @throws SQLException
+     */
+    public static void closeConnection() throws SQLException
+    {
+        con.close();
+    }
+    private Statement statement;
+    /**
+     *
+     */
+    protected String tableName;
+
+    /**
+     *
+     */
+    public Database()
+    {
+    }
+
+    /**
+     *
      * @param rs
      * @throws SQLException
      */
@@ -177,15 +185,6 @@ public abstract class Database
     protected void closeStatement() throws SQLException
     {
         statement.close();
-    }
-
-    /**
-     *
-     * @throws SQLException
-     */
-    public static void closeConnection() throws SQLException
-    {
-        con.close();
     }
 
     /**

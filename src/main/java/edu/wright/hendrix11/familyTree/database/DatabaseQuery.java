@@ -27,17 +27,82 @@ import java.util.List;
 public abstract class DatabaseQuery extends Database
 {
 
-    private ColumnMethodMap columnMethodMap;
-
-    /**
-     *
-     */
-    protected String tableName;
 
     /**
      *
      */
     public static final String DATE_FORMAT = "MM dd YYYY";
+
+    /**
+     *
+     * @param string
+     * @return
+     */
+    public static String generateValue(String string)
+    {
+        string = string.replaceAll("'", "''");
+        
+        return "'" + string + "'";
+    }
+
+    /**
+     *
+     * @param i
+     * @return
+     */
+    public static String generateValue(Integer i)
+    {
+        return generateValue(Integer.toString(i));
+    }
+
+    /**
+     *
+     * @param date
+     * @return
+     */
+    public static String generateValue(Date date)
+    {
+        DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+        
+        StringBuilder toDate = new StringBuilder();
+        
+        toDate.append("TO_DATE('").append(dateFormat.format(date));
+        toDate.append("', '").append(DATE_FORMAT).append("')");
+        
+        return toDate.toString();
+    }
+
+    /**
+     *
+     * @param object
+     * @return
+     */
+    public static String generateValue(Object object)
+    {
+        if (object instanceof String)
+        {
+            return generateValue((String) object);
+        }
+        else if (object instanceof Date)
+        {
+            return generateValue((Date) object);
+        }
+        else if (object instanceof Integer)
+        {
+            return generateValue((Integer) object);
+        }
+        else if (object == null)
+        {
+            return null;
+        }
+        
+        return "'Object'";
+    }
+    private ColumnMethodMap columnMethodMap;
+    /**
+     *
+     */
+    protected String tableName;
 
     /**
      *
@@ -72,8 +137,7 @@ public abstract class DatabaseQuery extends Database
      * @param object
      * @return
      */
-    public HashMap<String, String> getColumnValuesMap(Object object)
-    {
+    public HashMap<String, String> getColumnValuesMap(Object object) {
         HashMap<String, String> map = new HashMap<String, String>();
 
         List<String> columns = columnMethodMap.getColumns();
@@ -390,71 +454,5 @@ public abstract class DatabaseQuery extends Database
         {
             columnMethodMap.set(column, object, rs);
         }
-    }
-
-    /**
-     *
-     * @param string
-     * @return
-     */
-    public static String generateValue(String string)
-    {
-        string = string.replaceAll("'", "''");
-
-        return "'" + string + "'";
-    }
-
-    /**
-     *
-     * @param i
-     * @return
-     */
-    public static String generateValue(Integer i)
-    {
-        return generateValue(Integer.toString(i));
-    }
-
-    /**
-     *
-     * @param date
-     * @return
-     */
-    public static String generateValue(Date date)
-    {
-        DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
-
-        StringBuilder toDate = new StringBuilder();
-
-        toDate.append("TO_DATE('").append(dateFormat.format(date));
-        toDate.append("', '").append(DATE_FORMAT).append("')");
-
-        return toDate.toString();
-    }
-
-    /**
-     *
-     * @param object
-     * @return
-     */
-    public static String generateValue(Object object)
-    {
-        if (object instanceof String)
-        {
-            return generateValue((String) object);
-        }
-        else if (object instanceof Date)
-        {
-            return generateValue((Date) object);
-        }
-        else if (object instanceof Integer)
-        {
-            return generateValue((Integer) object);
-        }
-        else if (object == null)
-        {
-            return null;
-        }
-
-        return "'Object'";
     }
 }

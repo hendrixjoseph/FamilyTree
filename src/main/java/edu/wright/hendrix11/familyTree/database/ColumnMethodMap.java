@@ -28,6 +28,14 @@ import java.util.regex.Pattern;
  */
 public class ColumnMethodMap extends Database
 {
+    /**
+     *
+     */
+    public static final int GETTER = 1;
+    /**
+     *
+     */
+    public static final int SETTER = 2;
 
     private List<String> columns;
     private HashMap<String, List<Method>> getters;
@@ -37,15 +45,6 @@ public class ColumnMethodMap extends Database
 
     private Class clazz;
 
-    /**
-     *
-     */
-    public static final int GETTER = 1;
-
-    /**
-     *
-     */
-    public static final int SETTER = 2;
 
     /**
      *

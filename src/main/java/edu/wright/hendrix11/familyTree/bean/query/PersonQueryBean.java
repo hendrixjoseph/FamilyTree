@@ -31,7 +31,6 @@ import javax.faces.event.ActionEvent;
 public class PersonQueryBean extends QueryBean implements Serializable
 {
 
-    int personType;
 
     private static final int FATHER = 0;
     private static final int MOTHER = 1;
@@ -39,6 +38,7 @@ public class PersonQueryBean extends QueryBean implements Serializable
     private static final int CHILD_WITH_NO_SPOUSE = 3;
     private static final int CHILD_WITH_SPOUSE = 4;
     private static final int NO_INSERT_UPDATE_RELATED_PERSON = 5;
+    int personType;
 
     private PersonView personToInsert;
 

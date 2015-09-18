@@ -32,8 +32,6 @@ public class PersonTest
 
     private static EntityManagerFactory emf;
 
-    private EntityManager em;
-
     @BeforeClass
     public static void setUpClass()
     {
@@ -45,6 +43,8 @@ public class PersonTest
     {
         emf.close();
     }
+
+    private EntityManager em;
 
     @Before
     public void setUp()
@@ -70,8 +70,9 @@ public class PersonTest
         sb.append("\n\tGENDER:\t").append(person.getGender().getFullWord());
         sb.append("\n\tFATHER:\t").append(person.getFather().getName());
         sb.append("\n\tMOTHER:\t").append(person.getMother().getName());
-
+        
         
         LOG.log(Level.INFO, sb.toString());
     }
+
 }

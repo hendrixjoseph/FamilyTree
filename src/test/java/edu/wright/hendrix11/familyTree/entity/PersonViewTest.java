@@ -28,8 +28,6 @@ public class PersonViewTest
 {
     private static EntityManagerFactory emf;
 
-    private EntityManager em;
-
     @BeforeClass
     public static void setUpClass()
     {
@@ -41,6 +39,8 @@ public class PersonViewTest
     {
         emf.close();
     }
+
+    private EntityManager em;
 
     @Before
     public void setUp()
@@ -75,5 +75,6 @@ public class PersonViewTest
             System.out.println(child.getName());
         }
     }
+
 
 }
