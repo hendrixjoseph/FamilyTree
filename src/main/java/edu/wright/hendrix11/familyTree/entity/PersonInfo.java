@@ -1,13 +1,13 @@
-/* 
+/*
  *  The MIT License (MIT)
- * 
+ *
  *  View the full license at:
  *  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
- *  
+ *
  *  Copyright (c) 2015 Joseph Hendrix
- *  
+ *
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- *  
+ *
  */
 package edu.wright.hendrix11.familyTree.entity;
 
@@ -17,9 +17,10 @@ package edu.wright.hendrix11.familyTree.entity;
  */
 public class PersonInfo
 {
+
     private String type;
     private String description;
-    
+
     /**
      *
      */
@@ -28,7 +29,7 @@ public class PersonInfo
         type = null;
         description = null;
     }
-    
+
     /**
      *
      * @return

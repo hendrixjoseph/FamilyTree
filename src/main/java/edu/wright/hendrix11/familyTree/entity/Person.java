@@ -1,13 +1,13 @@
-/* 
+/*
  *  The MIT License (MIT)
- * 
+ *
  *  View the full license at:
  *  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
- *  
+ *
  *  Copyright (c) 2015 Joseph Hendrix
- *  
+ *
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- *  
+ *
  */
 package edu.wright.hendrix11.familyTree.entity;
 
@@ -27,8 +27,27 @@ import javax.persistence.Table;
 @Table(name = "PERSON")
 public class Person
 {
+
     @Id
     private int id;
+
+    private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "GENDER")
+    private Gender gender;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinTable(name = "FATHER_OF",
+            joinColumns = @JoinColumn(name = "CHILD_ID"),
+            inverseJoinColumns = @JoinColumn(name = "FATHER_ID"))
+    private Person father;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinTable(name = "MOTHER_OF",
+            joinColumns = @JoinColumn(name = "CHILD_ID"),
+            inverseJoinColumns = @JoinColumn(name = "MOTHER_ID"))
+    private Person mother;
 
     public String getName()
     {
@@ -49,24 +68,6 @@ public class Person
     {
         this.gender = gender;
     }
-
-    private String name;
-
-    @ManyToOne
-    @JoinColumn(name="GENDER")
-    private Gender gender;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinTable(name="FATHER_OF",
-        joinColumns=@JoinColumn(name="CHILD_ID"),
-        inverseJoinColumns=@JoinColumn(name="FATHER_ID"))
-    private Person father;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinTable(name="MOTHER_OF",
-            joinColumns=@JoinColumn(name="CHILD_ID"),
-            inverseJoinColumns=@JoinColumn(name="MOTHER_ID"))
-    private Person mother;
 
     public int getId()
     {

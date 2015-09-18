@@ -1,13 +1,13 @@
-/* 
+/*
  *  The MIT License (MIT)
- * 
+ *
  *  View the full license at:
  *  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
- *  
+ *
  *  Copyright (c) 2015 Joseph Hendrix
- *  
+ *
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- *  
+ *
  */
 package edu.wright.hendrix11.familyTree.bean.query;
 
@@ -27,6 +27,7 @@ import javax.faces.event.ActionEvent;
 @ViewScoped
 public class PlaceQueryBean extends QueryBean
 {
+
     private Place place;
     private PlaceTable placeTable;
 
@@ -38,7 +39,7 @@ public class PlaceQueryBean extends QueryBean
     {
         placeTable = new PlaceTable();
     }
-    
+
     /**
      *
      * @param actionEvent
@@ -48,7 +49,7 @@ public class PlaceQueryBean extends QueryBean
     {
         placeTable.update(place);
     }
-    
+
     /**
      *
      * @param actionEvent
@@ -67,7 +68,7 @@ public class PlaceQueryBean extends QueryBean
     {
         return "places?" + getRedirectAction();
     }
-    
+
     /**
      *
      * @param place
@@ -76,17 +77,19 @@ public class PlaceQueryBean extends QueryBean
     {
         this.place = place;
     }
-    
+
     /**
      *
      * @param helper
      */
     public void setPlace(DataBeanHelper helper)
-    {        
+    {
         Object object = helper.getObject();
-        
-        if(object instanceof Place)
-            this.place = (Place)object;
+
+        if (object instanceof Place)
+        {
+            this.place = (Place) object;
+        }
     }
 
     /**
@@ -95,7 +98,7 @@ public class PlaceQueryBean extends QueryBean
      */
     public Place getPlace()
     {
-        
+
         return place;
     }
 }

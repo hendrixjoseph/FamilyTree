@@ -1,13 +1,13 @@
-/* 
+/*
  *  The MIT License (MIT)
- * 
+ *
  *  View the full license at:
  *  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
- *  
+ *
  *  Copyright (c) 2015 Joseph Hendrix
- *  
+ *
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- *  
+ *
  */
 package edu.wright.hendrix11.familyTree.database.table;
 
@@ -28,35 +28,35 @@ import java.util.List;
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
 public class SpouseChildTable extends DatabaseQuery implements SelectData<HashMap<PersonView, List<PersonView>>, Integer>,
-                                                               SelectAllData<SpouseChildMap>
-{    
+        SelectAllData<SpouseChildMap>
+{
 
     /**
      *
      */
     public SpouseChildTable()
     {
-        super("CHILDREN_VIEW",SpouseChildMap.class);
-        
+        super("CHILDREN_VIEW", SpouseChildMap.class);
+
         ColumnMethodMap columnMethodMap = this.getColumnMethodMap();
-        
-        columnMethodMap.putGetter("ID","getPerson().getId()");
-        columnMethodMap.putSetter("ID","getPerson().setId()");
-        
-        columnMethodMap.putGetter("NAME","getPerson().getName()");
-        columnMethodMap.putSetter("NAME","getPerson().setName()");
-        
-        columnMethodMap.putGetter("SPOUSE_ID","getSpouse().getId()");
-        columnMethodMap.putSetter("SPOUSE_ID","getSpouse().setId()");
-        
-        columnMethodMap.putGetter("SPOUSE","getSpouse().getName()");
-        columnMethodMap.putSetter("SPOUSE","getSpouse().setName()");
-        
-        columnMethodMap.putGetter("CHILD_ID","getChild().getId()");
-        columnMethodMap.putSetter("CHILD_ID","getChild().setId()");
-        
-        columnMethodMap.putGetter("CHILD","getChild().getName()");
-        columnMethodMap.putSetter("CHILD","getChild().setName()");
+
+        columnMethodMap.putGetter("ID", "getPerson().getId()");
+        columnMethodMap.putSetter("ID", "getPerson().setId()");
+
+        columnMethodMap.putGetter("NAME", "getPerson().getName()");
+        columnMethodMap.putSetter("NAME", "getPerson().setName()");
+
+        columnMethodMap.putGetter("SPOUSE_ID", "getSpouse().getId()");
+        columnMethodMap.putSetter("SPOUSE_ID", "getSpouse().setId()");
+
+        columnMethodMap.putGetter("SPOUSE", "getSpouse().getName()");
+        columnMethodMap.putSetter("SPOUSE", "getSpouse().setName()");
+
+        columnMethodMap.putGetter("CHILD_ID", "getChild().getId()");
+        columnMethodMap.putSetter("CHILD_ID", "getChild().setId()");
+
+        columnMethodMap.putGetter("CHILD", "getChild().getName()");
+        columnMethodMap.putSetter("CHILD", "getChild().setName()");
     }
 
     /**
@@ -68,44 +68,46 @@ public class SpouseChildTable extends DatabaseQuery implements SelectData<HashMa
     public HashMap<PersonView, List<PersonView>> select(Integer id)
     {
         HashMap<PersonView, List<PersonView>> map = new HashMap<PersonView, List<PersonView>>();
-        
-        try        
+
+        try
         {
             ResultSet rs = selectWithKey(id);
-            
-            while(rs.next())
+
+            while (rs.next())
             {
                 SpouseChildMap spouseChildMap = new SpouseChildMap();
-                
+
                 this.setFields(spouseChildMap, rs);
-                
+
                 PersonView spouse = spouseChildMap.getSpouse();
-                
-                if(!spouse.exists())
+
+                if (!spouse.exists())
+                {
                     spouse = null;
-                    
-                List<PersonView> childList = map.get(spouse);                    
-                
-                if(childList == null)
+                }
+
+                List<PersonView> childList = map.get(spouse);
+
+                if (childList == null)
                 {
                     childList = new ArrayList<PersonView>();
                 }
-                
+
                 childList.add(spouseChildMap.getChild());
-                
+
                 map.put(spouse, childList);
             }
-            
+
             closeStatement(rs);
         }
         catch (SQLException ex)
         {
             ex.printStackTrace();
         }
-        
+
         return map;
-    }   
-    
+    }
+
     /**
      *
      * @param id
@@ -114,60 +116,64 @@ public class SpouseChildTable extends DatabaseQuery implements SelectData<HashMa
     public HashMap<PersonView, List<SpouseChildMap>> selectOld(Integer id)
     {
         HashMap<PersonView, List<SpouseChildMap>> map = new HashMap<PersonView, List<SpouseChildMap>>();
-        
-        try        
+
+        try
         {
             ResultSet rs = selectWithKey(id);
-            
-            while(rs.next())
+
+            while (rs.next())
             {
                 SpouseChildMap spouseChildMap = new SpouseChildMap();
-                
+
                 this.setFields(spouseChildMap, rs);
-                
+
                 PersonView spouse = spouseChildMap.getSpouse();
-                
-                if(!spouse.exists())
+
+                if (!spouse.exists())
+                {
                     spouse = null;
-                    
-                List<SpouseChildMap> childList = map.get(spouse);                    
-                
-                if(childList == null)
+                }
+
+                List<SpouseChildMap> childList = map.get(spouse);
+
+                if (childList == null)
                 {
                     childList = new ArrayList<SpouseChildMap>();
                 }
-                
+
                 childList.add(spouseChildMap);
-                
+
                 map.put(spouse, childList);
             }
-            
+
             closeStatement(rs);
         }
         catch (SQLException ex)
         {
             ex.printStackTrace();
         }
-        
+
         return map;
-    }   
-    
+    }
+
     @Override
     public List<SpouseChildMap> selectAll()
     {
         List<Object> objects = super.selectAllObjects();
-        
+
         List<SpouseChildMap> map = new ArrayList<SpouseChildMap>();
-        
-        for(Object object : objects)
+
+        for (Object object : objects)
         {
-            if(object instanceof SpouseChildMap)
-                map.add((SpouseChildMap)object);
+            if (object instanceof SpouseChildMap)
+            {
+                map.add((SpouseChildMap) object);
+            }
         }
-        
+
         return map;
     }
-    
+
     /**
      *
      * @return

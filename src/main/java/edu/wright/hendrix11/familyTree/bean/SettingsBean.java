@@ -1,13 +1,13 @@
-/* 
+/*
  *  The MIT License (MIT)
- * 
+ *
  *  View the full license at:
  *  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
- *  
+ *
  *  Copyright (c) 2015 Joseph Hendrix
- *  
+ *
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- *  
+ *
  */
 package edu.wright.hendrix11.familyTree.bean;
 
@@ -17,26 +17,26 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-
 /**
-*
-* @author Joe Hendrix
-*/
+ *
+ * @author Joe Hendrix
+ */
 @ManagedBean
 @SessionScoped
 public class SettingsBean
 {
-  private Settings settings;
-  private SettingsTable settingsTable;
-  
-      /**
+
+    private Settings settings;
+    private SettingsTable settingsTable;
+
+    /**
      *
      */
     @PostConstruct
     public void initialize()
     {
-      settingsTable = new SettingsTable();
-      settings = settingsTable.select();
+        settingsTable = new SettingsTable();
+        settings = settingsTable.select();
     }
 
     /**
@@ -56,7 +56,7 @@ public class SettingsBean
     {
         this.settings = settings;
     }
-    
+
     /**
      *
      */
@@ -64,6 +64,5 @@ public class SettingsBean
     {
         settingsTable.update(settings);
     }
-    
-    
+
 }

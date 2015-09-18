@@ -1,13 +1,13 @@
-/* 
+/*
  *  The MIT License (MIT)
- * 
+ *
  *  View the full license at:
  *  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
- *  
+ *
  *  Copyright (c) 2015 Joseph Hendrix
- *  
+ *
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- *  
+ *
  */
 package edu.wright.hendrix11.familyTree.entity;
 
@@ -141,26 +141,33 @@ public class Marriage implements Serializable
 
     /**
      *
-     * //@param p1
-     * //@param p2
+     * //@param p1 //@param p2
      */
     public void setCouple(PersonView p1, PersonView p2)
     {
         // Supreme court is going to hate this...
-        if(p1.getGender().equals(p2.getGender()))
+        if (p1.getGender().equals(p2.getGender()))
         {
             return;
         }
 
-        if(p1.getGender().equals("Male"))
+        if (p1.getGender().equals("Male"))
+        {
             husband = p1;
-        else if(p1.getGender().equals("Female"))
+        }
+        else if (p1.getGender().equals("Female"))
+        {
             wife = p1;
+        }
 
-        if(p2.getGender().equals("Male"))
+        if (p2.getGender().equals("Male"))
+        {
             husband = p2;
-        else if(p2.getGender().equals("Female"))
+        }
+        else if (p2.getGender().equals("Female"))
+        {
             wife = p2;
+        }
     }
 
     /**
@@ -192,10 +199,14 @@ public class Marriage implements Serializable
 
     private boolean hasSpouse(PersonView spouse)
     {
-        if(spouse == null)
+        if (spouse == null)
+        {
             return false;
+        }
         else
+        {
             return spouse.exists();
+        }
     }
 
     public int getHusbandId()
@@ -223,14 +234,15 @@ public class Marriage implements Serializable
     {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("Husband: " ).append(husband.exists() ? husband.getName() : "(null)").append("\n");
-        sb.append("Wife: " ).append(wife.exists() ? wife.getName() : "(null)").append("\n");
+        sb.append("Husband: ").append(husband.exists() ? husband.getName() : "(null)").append("\n");
+        sb.append("Wife: ").append(wife.exists() ? wife.getName() : "(null)").append("\n");
 
         return sb.toString();
     }
 
     public class MarriagePK implements Serializable
     {
+
         private int husbandId;
         private int wifeId;
 
@@ -265,7 +277,7 @@ public class Marriage implements Serializable
         {
             if (object instanceof MarriagePK)
             {
-                MarriagePK pk = (MarriagePK)object;
+                MarriagePK pk = (MarriagePK) object;
                 return husbandId == pk.husbandId && wifeId == pk.wifeId;
             }
             else

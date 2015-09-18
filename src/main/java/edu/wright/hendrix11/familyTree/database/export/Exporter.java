@@ -1,13 +1,13 @@
-/* 
+/*
  *  The MIT License (MIT)
- * 
+ *
  *  View the full license at:
  *  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
- *  
+ *
  *  Copyright (c) 2015 Joseph Hendrix
- *  
+ *
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- *  
+ *
  */
 package edu.wright.hendrix11.familyTree.database.export;
 
@@ -16,18 +16,22 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
 /**
-*
-* @author Joe Hendrix
-*/
+ *
+ * @author Joe Hendrix
+ */
 public abstract class Exporter
 {
-    private static final String[] tableNames = {"", ""};
-    
+
+    private static final String[] tableNames =
+    {
+        "", ""
+    };
+
     /**
      *
      */
     protected PrintStream out;
-    
+
     /**
      *
      * @param fileName
@@ -37,7 +41,7 @@ public abstract class Exporter
     {
         this(new PrintStream(fileName));
     }
-    
+
     /**
      *
      * @param out
@@ -46,7 +50,7 @@ public abstract class Exporter
     {
         this.out = out;
     }
-    
+
     /**
      *
      */

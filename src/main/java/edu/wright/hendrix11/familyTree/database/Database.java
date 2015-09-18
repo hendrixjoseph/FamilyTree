@@ -1,13 +1,13 @@
-/* 
+/*
  *  The MIT License (MIT)
- * 
+ *
  *  View the full license at:
  *  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
- *  
+ *
  *  Copyright (c) 2015 Joseph Hendrix
- *  
+ *
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- *  
+ *
  */
 package edu.wright.hendrix11.familyTree.database;
 
@@ -21,32 +21,33 @@ import java.util.Properties;
  */
 public abstract class Database
 {
+
     private static String url = null;
     private static String user = null;
     private static String pass = null;
-    
-    private static String propertiesFile;    
-    
+
+    private static String propertiesFile;
+
     private static Connection con;
     private Statement statement;
-    
+
     /**
      *
      */
     protected String tableName;
-    
+
     /**
      *
      */
-    public static final String DATE_FORMAT = "MM dd YYYY";    
-    
+    public static final String DATE_FORMAT = "MM dd YYYY";
+
     /**
      *
      */
     public Database()
     {
     }
-        
+
     /**
      *
      * @param url
@@ -59,7 +60,7 @@ public abstract class Database
         Database.user = user;
         Database.pass = pass;
     }
-    
+
     /**
      *
      * @param propertiesFile
@@ -69,7 +70,7 @@ public abstract class Database
         Database.propertiesFile = propertiesFile;
         setProperties();
     }
-    
+
     /**
      *
      */
@@ -80,75 +81,77 @@ public abstract class Database
             Properties prop = new Properties();
             InputStream input = new FileInputStream(propertiesFile);
             prop.load(input);
-            
+
             url = prop.getProperty("database");
             user = prop.getProperty("dbuser");
             pass = prop.getProperty("dbpassword");
-            
+
             input.close();
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             System.out.println("Failed to load database properties.");
             System.out.println("Does file " + propertiesFile + " exist?");
             e.printStackTrace();
         }
     }
-    
+
     /**
      *
      */
     public static void writeProperties()
     {
-        if(url == null || user == null || pass == null)
+        if (url == null || user == null || pass == null)
         {
             System.out.println("Either url, user, or pass is null.");
             throw new NullPointerException();
         }
-        
+
         try
         {
             Properties prop = new Properties();
             OutputStream output = new FileOutputStream(propertiesFile);
-            
+
             prop.setProperty("database", url);
             prop.setProperty("dbuser", user);
             prop.setProperty("dbpassword", pass);
-        
+
             prop.store(output, null);
-            
+
             output.close();
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             e.printStackTrace();
         }
     }
-    
+
     /**
      *
      * @throws SQLException
      */
     public static void openConnection() throws SQLException
-    {        
-        if(url == null || user == null || pass == null)
+    {
+        if (url == null || user == null || pass == null)
         {
             setProperties("database.properties");
         }
-        
+
         // Load Oracle JDBC Driver
         DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
         con = DriverManager.getConnection(url, user, pass);
     }
-    
+
     private static Connection getConnection() throws SQLException
     {
-        if(con == null)
+        if (con == null)
+        {
             openConnection();
-            
+        }
+
         return con;
     }
-    
+
     /**
      *
      * @param rs
@@ -159,7 +162,7 @@ public abstract class Database
         rs.close();
         closeStatement();
     }
-    
+
     /**
      *
      * @throws SQLException
@@ -168,7 +171,7 @@ public abstract class Database
     {
         statement.close();
     }
-    
+
     /**
      *
      * @throws SQLException
@@ -177,17 +180,16 @@ public abstract class Database
     {
         con.close();
     }
-    
+
     /**
      *
-     * @return
-     * @throws SQLException
+     * @return @throws SQLException
      */
     protected Statement createStatement() throws SQLException
     {
         return getConnection().createStatement();
     }
-    
+
     /**
      *
      * @param query
@@ -199,7 +201,7 @@ public abstract class Database
         statement = createStatement();
         return statement.executeQuery(query);
     }
-    
+
     /**
      *
      * @param query
@@ -207,9 +209,9 @@ public abstract class Database
      */
     protected void executeUpdate(String query) throws SQLException
     {
-        //openConnection();        
+        //openConnection();
         statement = createStatement();
-        statement.executeUpdate(query);        
+        statement.executeUpdate(query);
         statement.close();
         //closeConnection();
     }

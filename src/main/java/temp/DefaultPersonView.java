@@ -1,13 +1,13 @@
-/* 
+/*
  *  The MIT License (MIT)
- * 
+ *
  *  View the full license at:
  *  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
- *  
+ *
  *  Copyright (c) 2015 Joseph Hendrix
- *  
+ *
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- *  
+ *
  */
 package temp;
 
@@ -33,11 +33,12 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "DEFAULT_PERSON_VIEW")
 @NamedQueries(
-{
-    @NamedQuery(name = "DefaultPersonView.findAll", query = "SELECT d FROM DefaultPersonView d")
-})
+        {
+            @NamedQuery(name = "DefaultPersonView.findAll", query = "SELECT d FROM DefaultPersonView d")
+        })
 public class DefaultPersonView implements Serializable
 {
+
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
     @NotNull

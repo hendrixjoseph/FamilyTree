@@ -1,13 +1,13 @@
-/* 
+/*
  *  The MIT License (MIT)
- * 
+ *
  *  View the full license at:
  *  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
- *  
+ *
  *  Copyright (c) 2015 Joseph Hendrix
- *  
+ *
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- *  
+ *
  */
 package edu.wright.hendrix11.familyTree.database;
 
@@ -31,6 +31,7 @@ import java.util.regex.Pattern;
  */
 public class ColumnMethodMap extends Database
 {
+
     private List<String> columns;
     private HashMap<String, List<Method>> getters;
     private HashMap<String, List<Method>> setters;
@@ -73,26 +74,30 @@ public class ColumnMethodMap extends Database
 
         HashMap<String, Method> methods = new HashMap<String, Method>();
 
-        for(Method m : clazz.getMethods())
+        for (Method m : clazz.getMethods())
         {
             methods.put(m.getName().toUpperCase(), m);
         }
 
         columns = computeColumns(tableName);
 
-        for(String column : columns)
+        for (String column : columns)
         {
             String name = column.replaceAll("_", "").toUpperCase();
             String getterName = "GET" + name;
             String setterName = "SET" + name;
 
-            if(methods.get(getterName) != null)
+            if (methods.get(getterName) != null)
+            {
                 put(column, methods.get(getterName), getters);
+            }
 
-            if(methods.get(setterName) != null)
+            if (methods.get(setterName) != null)
+            {
                 put(column, methods.get(setterName), setters);
+            }
         }
-        
+
         // Default primary key
         this.setPrimaryKey("ID");
     }
@@ -112,9 +117,11 @@ public class ColumnMethodMap extends Database
      */
     public List<String> getPrimaryKey()
     {
-        if(primaryKey == null)
+        if (primaryKey == null)
+        {
             primaryKey = new ArrayList<String>();
-            
+        }
+
         return primaryKey;
     }
 
@@ -127,7 +134,7 @@ public class ColumnMethodMap extends Database
         this.primaryKey = new ArrayList<String>();
         this.primaryKey.add(primaryKey);
     }
-    
+
     /**
      *
      * @param primaryKey
@@ -136,16 +143,16 @@ public class ColumnMethodMap extends Database
     {
         this.primaryKey = primaryKey;
     }
-    
+
     private void primaryKeyNull()
     {
-        if(primaryKey == null)
+        if (primaryKey == null)
         {
-            throw new NullPointerException("Primary key not set for object of class " 
-                    + clazz.getName() + "!" +
-                    "\nSet it using method setPrimaryKey(String key) or" + 
-                    "\nmethod setPrimaryKey(List<String> key)" +
-                    "\nin class ColumnMethodMap!");
+            throw new NullPointerException("Primary key not set for object of class "
+                    + clazz.getName() + "!"
+                    + "\nSet it using method setPrimaryKey(String key) or"
+                    + "\nmethod setPrimaryKey(List<String> key)"
+                    + "\nin class ColumnMethodMap!");
         }
     }
 
@@ -155,18 +162,18 @@ public class ColumnMethodMap extends Database
      * @return
      */
     public String getPrimaryKeyValue(Object object)
-    {   
+    {
         primaryKeyNull();
-        
-        if(primaryKey.size() > 1)
+
+        if (primaryKey.size() > 1)
         {
-            throw new NullPointerException("Primary key is composite key, use " + 
-                    "public List<String> getPrimaryKeyValues(Object object) instead!");
+            throw new NullPointerException("Primary key is composite key, use "
+                    + "public List<String> getPrimaryKeyValues(Object object) instead!");
         }
 
         return get(primaryKey.get(0), object);
     }
-    
+
     /**
      *
      * @param object
@@ -174,20 +181,20 @@ public class ColumnMethodMap extends Database
      */
     public List<String> getPrimaryKeyValues(Object object)
     {
-        if(object == null)
+        if (object == null)
         {
             throw new NullPointerException("Cannot get primary from object of class " + clazz.getName() + " when object is null!");
         }
 
         primaryKeyNull();
-        
+
         List<String> values = new ArrayList<String>();
-        
-        for(String key : primaryKey)
+
+        for (String key : primaryKey)
         {
             values.add(get(key, object));
         }
-        
+
         return values;
     }
 
@@ -217,28 +224,30 @@ public class ColumnMethodMap extends Database
      */
     public String get(String column, Object object)
     {
-        if(object == null)
+        if (object == null)
+        {
             return "";
-        
+        }
+
         List<Method> getterList = getters.get(column);
 
         Object returnObject = object;
 
         String value = "";
 
-        if(getterList == null)
+        if (getterList == null)
         {
             return null;
         }
         else
-        {                
-            for(int i = 0; i < getterList.size(); i++)
+        {
+            for (int i = 0; i < getterList.size(); i++)
             {
                 Method getter = getterList.get(i);
 
                 try
                 {
-                    if(i == getterList.size() - 1)
+                    if (i == getterList.size() - 1)
                     {
                         value = DatabaseQuery.generateValue(getter.invoke(returnObject));
                     }
@@ -247,16 +256,18 @@ public class ColumnMethodMap extends Database
                         returnObject = getter.invoke(returnObject);
                     }
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     e.printStackTrace();
                 }
 
-                if(returnObject == null)
+                if (returnObject == null)
+                {
                     break;
+                }
             }
         }
-            
+
         return value;
     }
 
@@ -269,103 +280,108 @@ public class ColumnMethodMap extends Database
     public void set(String column, Object object, ResultSet rs)
     {
         List<Method> setterList = setters.get(column);
-        
+
 //        if(column.contains("NAME") || column.contains("ID"))
 //        {
 //            System.out.println(column);
 //            System.out.println(setterList);
 //        }
-
         Object returnObject = object;
         Object prevReturnObject = object;
 
-        if(setterList != null)
+        if (setterList != null)
         {
-            for(int i = 0; i < setterList.size(); i++)
+            for (int i = 0; i < setterList.size(); i++)
             {
-                Method setter = setterList.get(i);            
+                Method setter = setterList.get(i);
 
                 try
-                {                      
-                    if(i == setterList.size() - 1)
-                    {                           
+                {
+                    if (i == setterList.size() - 1)
+                    {
                         Class c = setter.getParameterTypes()[0];
                         String name = c.getSimpleName();
 
-                        if(name.equals("int") || name.equals("Integer"))
+                        if (name.equals("int") || name.equals("Integer"))
                         {
                             int x = rs.getInt(column);
 
                             // This is needed because rs.getInt()
                             // returns 0 when null.
-                            if(!rs.wasNull())
+                            if (!rs.wasNull())
+                            {
                                 setter.invoke(returnObject, x);
+                            }
                         }
-                        else if(name.equals("char") || name.equals("Character"))
+                        else if (name.equals("char") || name.equals("Character"))
                         {
                             String s = rs.getString(column);
-                            
-                            if(s != null && s.length() > 0)
+
+                            if (s != null && s.length() > 0)
                             {
                                 char ch = s.charAt(0);
-                                
+
                                 setter.invoke(returnObject, ch);
                             }
                         }
-                        else if(name.equalsIgnoreCase("boolean"))
+                        else if (name.equalsIgnoreCase("boolean"))
                         {
                             String s = rs.getString(column);
-                            
+
                             setter.invoke(returnObject, s.equals("true"));
                         }
-                        else if(name.equals("String"))
+                        else if (name.equals("String"))
                         {
                             setter.invoke(returnObject, rs.getString(column));
                         }
-                        else if(name.equals("Date"))
-                            setter.invoke(returnObject, rs.getDate(column));                        
+                        else if (name.equals("Date"))
+                        {
+                            setter.invoke(returnObject, rs.getDate(column));
+                        }
                     }
                     else
                     {
                         returnObject = setter.invoke(returnObject);
                     }
-                    
+
                     // We use the same result set everytime we enter this
                     // method, so don't close it!
                     //closeStatement(rs);
                 }
-                catch(SQLException sqle)
+                catch (SQLException sqle)
                 {
-                    if(!sqle.getMessage().contains("Invalid column name"))
+                    if (!sqle.getMessage().contains("Invalid column name"))
+                    {
                         sqle.printStackTrace();
+                    }
                 }
                 catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException ex)
                 {
                     System.err.println("Exception when setting from column "
-                        + column + " using setter list " +
-                        setterList.toString() + "!");
+                            + column + " using setter list "
+                            + setterList.toString() + "!");
                     ex.printStackTrace();
                     returnObject = null;
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     e.printStackTrace();
                 }
 
-                if(returnObject == null)
+                if (returnObject == null)
                 {
                     Class<?> returnType = setter.getReturnType();
-                    
+
                     System.err.println("Error - cannot set column " + column + "!");
                     System.err.println("Setter list: " + setterList);
                     System.err.print("Current method " + setter.getName() + "() returned null");
-                    System.err.println(" on object of class "+ prevReturnObject.getClass().getSimpleName() + "!");
+                    System.err.println(" on object of class " + prevReturnObject.getClass().getSimpleName() + "!");
                     System.err.println("It should have returned a(n) " + returnType.getSimpleName() + "!");
-                    
+
                     try
                     {
                         String setterName = setter.getName().replaceFirst("g", "s");
-                        
+
                         Constructor<?> constructor = returnType.getConstructor();
                         System.err.println("Set it with constructor " + constructor.getName());
                         Object newInstance = constructor.newInstance();
@@ -374,7 +390,7 @@ public class ColumnMethodMap extends Database
                         method.invoke(prevReturnObject, newInstance);
                         System.err.println("Just like that!");
                         returnObject = prevReturnObject;
-                        
+
                         System.err.println("A brand shiny new " + newInstance.getClass().getName() + "!");
                         System.err.println("Added to " + returnObject.getClass().getName());
                         i--;
@@ -383,7 +399,7 @@ public class ColumnMethodMap extends Database
                     {
                         // Oh well
                     }
-                    
+
                     //throw new NullPointerException();
                     break;
                 }
@@ -426,7 +442,7 @@ public class ColumnMethodMap extends Database
 
     private void put(String column, String methods, HashMap<String, List<Method>> getterOrSetter)
     {
-        String methodList[] = methods.replaceAll(Pattern.quote("()"), "").split(Pattern.quote("."));            
+        String methodList[] = methods.replaceAll(Pattern.quote("()"), "").split(Pattern.quote("."));
 
         put(column, methodList, getterOrSetter);
     }
@@ -437,8 +453,8 @@ public class ColumnMethodMap extends Database
 
         Method[] methodArray = clazz.getMethods();
 
-        for(String methodName : methodNames)
-        {                
+        for (String methodName : methodNames)
+        {
             Method method = getMethod(methodArray, methodName);
 
             methodList.add(method);
@@ -451,21 +467,23 @@ public class ColumnMethodMap extends Database
 
     private Method getMethod(Method[] methods, String methodName)
     {
-        for(Method method : methods)
+        for (Method method : methods)
         {
-            if(method.getName().equals(methodName))
+            if (method.getName().equals(methodName))
+            {
                 return method;
+            }
         }
 
-        throw new NullPointerException("Method " + methodName + 
-                " does not exist in class " + methods[0].getDeclaringClass().getName()  +"!");
+        throw new NullPointerException("Method " + methodName
+                + " does not exist in class " + methods[0].getDeclaringClass().getName() + "!");
     }
 
     private void put(String column, Method method, HashMap<String, List<Method>> getterOrSetter)
     {
         List<Method> methods = getterOrSetter.get(column);
 
-        if(methods == null)
+        if (methods == null)
         {
             methods = new ArrayList<Method>();
             getterOrSetter.put(column, methods);
@@ -485,8 +503,10 @@ public class ColumnMethodMap extends Database
             ResultSet rs = executeQuery(query);
             ResultSetMetaData rsmd = rs.getMetaData();
 
-            for(int i = 1; i - 1 < rsmd.getColumnCount(); i++)
+            for (int i = 1; i - 1 < rsmd.getColumnCount(); i++)
+            {
                 columns.add(rsmd.getColumnName(i));
+            }
 
             closeStatement(rs);
         }

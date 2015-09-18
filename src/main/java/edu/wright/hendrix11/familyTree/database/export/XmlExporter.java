@@ -1,24 +1,23 @@
-/* 
+/*
  *  The MIT License (MIT)
- * 
+ *
  *  View the full license at:
  *  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
- *  
+ *
  *  Copyright (c) 2015 Joseph Hendrix
- *  
+ *
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- *  
+ *
  */
 package edu.wright.hendrix11.familyTree.database.export;
 
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
-
 /**
-*
-* @author Joe Hendrix
-*/
+ *
+ * @author Joe Hendrix
+ */
 public class XmlExporter extends Exporter
 {
 
@@ -31,7 +30,7 @@ public class XmlExporter extends Exporter
     {
         super(fileName);
     }
-    
+
     /**
      *
      * @param out
@@ -40,13 +39,13 @@ public class XmlExporter extends Exporter
     {
         super(out);
     }
-    
+
     /**
      *
      */
     @Override
     public void export()
     {
-    
+
     }
 }

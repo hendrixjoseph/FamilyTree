@@ -1,16 +1,15 @@
-/* 
+/*
  *  The MIT License (MIT)
- * 
+ *
  *  View the full license at:
  *  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
- *  
+ *
  *  Copyright (c) 2015 Joseph Hendrix
- *  
+ *
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- *  
+ *
  */
 package edu.wright.hendrix11.familyTree.bean;
-
 
 import edu.wright.hendrix11.theme.ThemeParser;
 import java.util.List;
@@ -26,10 +25,11 @@ import javax.faces.bean.ManagedBean;
 @ApplicationScoped
 public class ThemesBean
 {
+
     private List<String> themes;// = {"No themes loaded"};
-    
+
     private String currentTheme;
-    
+
     /**
      *
      */
@@ -37,18 +37,18 @@ public class ThemesBean
     public void initialize()
     {
         String path = this.getClass().getResource("").getPath();
-        
+
         int index = path.indexOf("WEB-INF/") + "WEB-INF/".length();
         path = path.substring(0, index);
         path = path + "lib/";
-        
+
         String jarName = path + "all-themes-1.0.10.jar";
-        
+
         ThemeParser themeParser = new ThemeParser(jarName);
-        
+
         themes = themeParser.getThemes();
     }
-    
+
     /**
      *
      * @return
@@ -57,22 +57,22 @@ public class ThemesBean
     {
         return themes;
     }
-    
+
     /**
      *
      * @param theme
      */
     public void setCurrentTheme(String theme)
     {
-      currentTheme = theme;
+        currentTheme = theme;
     }
-    
+
     /**
      *
      * @return
      */
     public String getCurrentTheme()
     {
-      return currentTheme;
+        return currentTheme;
     }
 }

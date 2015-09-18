@@ -1,13 +1,13 @@
-/* 
+/*
  *  The MIT License (MIT)
- * 
+ *
  *  View the full license at:
  *  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
- *  
+ *
  *  Copyright (c) 2015 Joseph Hendrix
- *  
+ *
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- *  
+ *
  */
 package edu.wright.hendrix11.familyTree.entity;
 
@@ -39,6 +39,7 @@ import javax.persistence.Transient;
 @Table(name = "PERSON_VIEW")
 public class PersonView implements Serializable
 {
+
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -71,18 +72,29 @@ public class PersonView implements Serializable
 
     @ManyToMany
     @JoinTable(
-        name="SPOUSE_VIEW",
-        joinColumns={@JoinColumn(name="ID", referencedColumnName="ID")},
-        inverseJoinColumns={@JoinColumn(name="SPOUSE_ID", referencedColumnName="ID")})
+            name = "SPOUSE_VIEW",
+            joinColumns =
+            {
+                @JoinColumn(name = "ID", referencedColumnName = "ID")
+            },
+            inverseJoinColumns =
+            {
+                @JoinColumn(name = "SPOUSE_ID", referencedColumnName = "ID")
+            })
     private List<PersonView> spouses;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(
-        name="CHILDREN_VIEW",
-        joinColumns={@JoinColumn(name="ID", referencedColumnName="ID")},
-        inverseJoinColumns={@JoinColumn(name="CHILD_ID", referencedColumnName="ID")})
+            name = "CHILDREN_VIEW",
+            joinColumns =
+            {
+                @JoinColumn(name = "ID", referencedColumnName = "ID")
+            },
+            inverseJoinColumns =
+            {
+                @JoinColumn(name = "CHILD_ID", referencedColumnName = "ID")
+            })
     private List<PersonView> children;
-
 
     /**
      *
@@ -232,9 +244,9 @@ public class PersonView implements Serializable
     {
         List<PersonView> childrenOfSpouse = new ArrayList<>();
 
-        for(PersonView child : children)
+        for (PersonView child : children)
         {
-            if(child.getFather().equals(spouse) || child.getMother().equals(spouse))
+            if (child.getFather().equals(spouse) || child.getMother().equals(spouse))
             {
                 childrenOfSpouse.add(child);
             }
@@ -332,9 +344,9 @@ public class PersonView implements Serializable
     {
         List<PersonView> childrenNoSpouse = new ArrayList<>();
 
-        for(PersonView child : children)
+        for (PersonView child : children)
         {
-            if(!child.hasFather() || !child.hasMother())
+            if (!child.hasFather() || !child.hasMother())
             {
                 childrenNoSpouse.add(child);
             }
@@ -349,7 +361,7 @@ public class PersonView implements Serializable
      */
     public boolean exists()
     {
-        return  name != null && !name.isEmpty();
+        return name != null && !name.isEmpty();
     }
 
     public List<PersonView> getChildren()

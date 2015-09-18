@@ -1,13 +1,13 @@
-/* 
+/*
  *  The MIT License (MIT)
- * 
+ *
  *  View the full license at:
  *  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
- *  
+ *
  *  Copyright (c) 2015 Joseph Hendrix
- *  
+ *
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- *  
+ *
  */
 package edu.wright.hendrix11.familyTree.bean;
 
@@ -42,19 +42,19 @@ public abstract class DataBean<O>
      *
      */
     protected DatabaseQuery table;
-    
+
     /**
      *
      * @return
      */
     public abstract String[] getPrettyNames();
-    
+
     /**
      *
      * @return
      */
     protected abstract String[] getColumns();
-    
+
     /**
      *
      * @param table
@@ -62,37 +62,41 @@ public abstract class DataBean<O>
     protected void initialize(DatabaseQuery table)
     {
         List<O> list;
-        
-        if(table instanceof SelectAllData)
-            list = ((SelectAllData)table).selectAll();
+
+        if (table instanceof SelectAllData)
+        {
+            list = ((SelectAllData) table).selectAll();
+        }
         else
+        {
             throw new NullPointerException(table.getClass().getName() + " is not an instance of " + SelectAllData.class.getName());
-        
-        values = new ArrayList<DataBeanHelper>();        
-        
-        for(O item : list)
+        }
+
+        values = new ArrayList<DataBeanHelper>();
+
+        for (O item : list)
         {
             DataBeanHelper value = new DataBeanHelper();
             value.setObject(item);
             values.add(value);
         }
-        
+
         setPrettyNameToColumnMap();
     }
-    
+
     /**
      *
      */
     protected void setPrettyNameToColumnMap()
     {
         prettyNameToColumnMap = new HashMap<String, String>();
-        
-        for(int i = 0; i < getColumns().length; i++)
+
+        for (int i = 0; i < getColumns().length; i++)
         {
             prettyNameToColumnMap.put(getPrettyNames()[i], getColumns()[i]);
         }
     }
-    
+
     /**
      *
      * @return
@@ -101,7 +105,7 @@ public abstract class DataBean<O>
     {
         return values.subList(0, Math.min(10, values.size()));
     }
-    
+
     /**
      *
      * @return
@@ -110,7 +114,7 @@ public abstract class DataBean<O>
     {
         return new String[0];
     }
-    
+
     /**
      *
      * @param column
@@ -118,25 +122,29 @@ public abstract class DataBean<O>
      */
     public boolean isLinkColumn(String column)
     {
-        for(String linkColumn : getLinkColumns())
+        for (String linkColumn : getLinkColumns())
         {
-            if(linkColumn.equals(column))
+            if (linkColumn.equals(column))
+            {
                 return true;
+            }
         }
-        
+
         return false;
     }
-    
+
     private String process(DataBeanHelper helper, String prettyName)
     {
         String link = "";
-        
-        if(helper != null && prettyName != null)
+
+        if (helper != null && prettyName != null)
+        {
             link = processLink(helper, prettyName);
-        
+        }
+
         return link;
     }
-    
+
     /**
      *
      * @param helper
@@ -147,7 +155,7 @@ public abstract class DataBean<O>
     {
         return "";
     }
-    
+
     /**
      *
      * @param id
@@ -158,14 +166,15 @@ public abstract class DataBean<O>
         // <a href="index.xhtml" class="ui-link ui-widget">William Zenos Thoroman</a>
         return "index.xhtml?personId=" + id;
     }
-    
+
     /**
      *
      */
     public class DataBeanHelper
     {
+
         private O o;
-        
+
         /**
          *
          * @return
@@ -183,7 +192,7 @@ public abstract class DataBean<O>
         {
             this.o = o;
         }
-        
+
         /**
          *
          * @param prettyName
@@ -193,7 +202,7 @@ public abstract class DataBean<O>
         {
             return process(this, prettyName);
         }
-        
+
         /**
          *
          * @param prettyName
@@ -202,26 +211,29 @@ public abstract class DataBean<O>
         public String getValue(String prettyName)
         {
             String column = prettyNameToColumnMap.get(prettyName);
-            
+
             String value = table.getColumnMethodMap().get(column, o);
-            
-            if(value == null)
+
+            if (value == null)
+            {
                 value = "";
-            else if(value == "")
+            }
+            else if (value == "")
+            {
                 value = prettyName + " " + column + " " + o.getClass().getSimpleName();
-            else if(value.startsWith("TO_DATE('"))
+            }
+            else if (value.startsWith("TO_DATE('"))
             {
                 DateFormat inFormat = new SimpleDateFormat("MM dd YYYY");
                 DateFormat outFormat = new SimpleDateFormat("MMM dd YYYY");
-                
+
                 // Example:
                 // TO_DATE('07 20 2015', 'MM dd YYYY')
-                
                 int start = "TO_DATE('".length() + 1;
                 int end = value.indexOf("', 'MM dd YYYY')");
-                
+
                 value = value.substring(start, end);
-                
+
                 try
                 {
                     value = outFormat.format(inFormat.parse(value));
@@ -234,10 +246,10 @@ public abstract class DataBean<O>
             else
             {
                 int end = value.lastIndexOf("'");
-                
+
                 value = value.substring(1, end);
             }
-            
+
             return value;
         }
     }

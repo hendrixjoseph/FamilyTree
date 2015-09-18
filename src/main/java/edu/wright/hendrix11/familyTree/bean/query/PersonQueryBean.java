@@ -1,13 +1,13 @@
-/* 
+/*
  *  The MIT License (MIT)
- * 
+ *
  *  View the full license at:
  *  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
- *  
+ *
  *  Copyright (c) 2015 Joseph Hendrix
- *  
+ *
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- *  
+ *
  */
 package edu.wright.hendrix11.familyTree.bean.query;
 
@@ -29,25 +29,26 @@ import javax.faces.event.ActionEvent;
 @ManagedBean
 @ViewScoped
 public class PersonQueryBean extends QueryBean implements Serializable
-{   
+{
+
     int personType;
-        
+
     private static final int FATHER = 0;
     private static final int MOTHER = 1;
     private static final int SPOUSE = 2;
     private static final int CHILD_WITH_NO_SPOUSE = 3;
     private static final int CHILD_WITH_SPOUSE = 4;
     private static final int NO_INSERT_UPDATE_RELATED_PERSON = 5;
-    
+
     private PersonView personToInsert;
-    
-    @ManagedProperty(value="#{individualBean.person}")
+
+    @ManagedProperty(value = "#{individualBean.person}")
     private PersonView relatedPerson;
-    
+
     private PersonView spouseToRelated;
-    
+
     private PersonTable personTable;
-    
+
     /**
      *
      */
@@ -57,53 +58,53 @@ public class PersonQueryBean extends QueryBean implements Serializable
         personToInsert = new PersonView();
         personTable = new PersonTable();
     }
-    
+
     /**
      *
      * @param actionEvent
      */
     @Override
     public void commit(ActionEvent actionEvent)
-    {   
-        if(personType == NO_INSERT_UPDATE_RELATED_PERSON)
+    {
+        if (personType == NO_INSERT_UPDATE_RELATED_PERSON)
         {
             updateRelatedPerson();
         }
-        else if(personType == CHILD_WITH_NO_SPOUSE || personType == CHILD_WITH_SPOUSE)
+        else if (personType == CHILD_WITH_NO_SPOUSE || personType == CHILD_WITH_SPOUSE)
         {
             insertChild();
         }
-        else if(personType == FATHER || personType == MOTHER)
+        else if (personType == FATHER || personType == MOTHER)
         {
             insertParent();
         }
-        else if(personType == SPOUSE)
+        else if (personType == SPOUSE)
         {
             insertSpouse();
         }
     }
-    
+
     private void insertChild()
     {
-        if(personType == CHILD_WITH_NO_SPOUSE)
+        if (personType == CHILD_WITH_NO_SPOUSE)
         {
-            if(relatedPerson.getGender().equals("Male"))
+            if (relatedPerson.getGender().equals("Male"))
             {
                 personToInsert.setFather(relatedPerson);
             }
-            else if(relatedPerson.getGender().equals("Female"))
+            else if (relatedPerson.getGender().equals("Female"))
             {
                 personToInsert.setMother(relatedPerson);
             }
         }
-        else if(personType == CHILD_WITH_SPOUSE)
+        else if (personType == CHILD_WITH_SPOUSE)
         {
-            if(relatedPerson.getGender().equals("Male"))
+            if (relatedPerson.getGender().equals("Male"))
             {
                 personToInsert.setFather(relatedPerson);
                 personToInsert.setMother(spouseToRelated);
             }
-            else if(relatedPerson.getGender().equals("Female"))
+            else if (relatedPerson.getGender().equals("Female"))
             {
                 personToInsert.setMother(relatedPerson);
                 personToInsert.setFather(spouseToRelated);
@@ -112,45 +113,45 @@ public class PersonQueryBean extends QueryBean implements Serializable
 
         personToInsert = personTable.insert(personToInsert);
     }
-    
+
     private void insertParent()
     {
         personToInsert = personTable.insert(personToInsert);
 
-        if(personType == FATHER)
+        if (personType == FATHER)
         {
             relatedPerson.setFather(personToInsert);
         }
-        else if(personType == MOTHER)
+        else if (personType == MOTHER)
         {
             relatedPerson.setMother(personToInsert);
         }
-        
+
         personTable.update(relatedPerson);
     }
-    
+
     private void insertSpouse()
     {
         MarriageTable md = new MarriageTable();
         Marriage m = new Marriage();
-        
+
         personToInsert = personTable.insert(personToInsert);
-        
+
         m.setCouple(personToInsert, relatedPerson);
-        
+
         md.insert(m);
     }
-    
+
     private void updateRelatedPerson()
     {
         personTable.update(relatedPerson);
     }
-    
+
     private void setGenderNotSelected()
     {
         personToInsert.setGender("notSelected");
     }
-    
+
     /**
      *
      * @return
@@ -186,7 +187,7 @@ public class PersonQueryBean extends QueryBean implements Serializable
     {
         this.relatedPerson = relatedPerson;
     }
-    
+
     /**
      *
      * @param actionEvent
@@ -196,7 +197,7 @@ public class PersonQueryBean extends QueryBean implements Serializable
         personType = FATHER;
         personToInsert.setGender("Male");
     }
-    
+
     /**
      *
      * @param actionEvent
@@ -206,7 +207,7 @@ public class PersonQueryBean extends QueryBean implements Serializable
         personType = MOTHER;
         personToInsert.setGender("Female");
     }
-    
+
     /**
      *
      * @param actionEvent
@@ -214,13 +215,17 @@ public class PersonQueryBean extends QueryBean implements Serializable
     public void setPersonAsSpouse(ActionEvent actionEvent)
     {
         personType = SPOUSE;
-        
-        if(relatedPerson.getGender().equals("Male"))
+
+        if (relatedPerson.getGender().equals("Male"))
+        {
             personToInsert.setGender("Female");
-        else if(relatedPerson.getGender().equals("Female"))
+        }
+        else if (relatedPerson.getGender().equals("Female"))
+        {
             personToInsert.setGender("Male");
+        }
     }
-    
+
     /**
      *
      * @param actionEvent
@@ -230,7 +235,7 @@ public class PersonQueryBean extends QueryBean implements Serializable
         personType = CHILD_WITH_NO_SPOUSE;
         setGenderNotSelected();
     }
-    
+
     /**
      *
      * @param spouse
@@ -241,7 +246,7 @@ public class PersonQueryBean extends QueryBean implements Serializable
         this.spouseToRelated = spouse;
         setGenderNotSelected();
     }
-    
+
     /**
      *
      * @param actionEvent
@@ -250,7 +255,7 @@ public class PersonQueryBean extends QueryBean implements Serializable
     {
         personType = NO_INSERT_UPDATE_RELATED_PERSON;
     }
-    
+
     /**
      *
      * @return
@@ -260,7 +265,7 @@ public class PersonQueryBean extends QueryBean implements Serializable
     {
         return getAction(relatedPerson);
     }
-       
+
     /**
      *
      * @param actionEvent
@@ -269,25 +274,28 @@ public class PersonQueryBean extends QueryBean implements Serializable
     {
         System.err.println("public void buttonNoAction(ActionEvent actionEvent) called");
     }
-    
+
     @Override
     public String toString()
     {
         StringBuilder sb = new StringBuilder();
-        
-        String[] personType = {"Father",
-                               "Mother",
-                               "Spouse",
-                               "Child w/o spouse",
-                               "Child w/ spouse",
-                               "No insert - update related person instead"};
-        
+
+        String[] personType =
+        {
+            "Father",
+            "Mother",
+            "Spouse",
+            "Child w/o spouse",
+            "Child w/ spouse",
+            "No insert - update related person instead"
+        };
+
         sb.append("\n\tpersonToInsert is\n");
-            sb.append("\t\ttype:\t").append(personType[this.personType]).append("\n");
-            sb.append(personToInsert != null ? personToInsert.toString("\t\t") : "\t\t(null)");
+        sb.append("\t\ttype:\t").append(personType[this.personType]).append("\n");
+        sb.append(personToInsert != null ? personToInsert.toString("\t\t") : "\t\t(null)");
         sb.append("\n\trelatedPerson is\n");
-            sb.append(relatedPerson != null ? relatedPerson.toString("\t\t") : "\t\t(null)");
-        
+        sb.append(relatedPerson != null ? relatedPerson.toString("\t\t") : "\t\t(null)");
+
         return sb.toString();
     }
 }

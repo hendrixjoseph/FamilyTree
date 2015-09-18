@@ -1,13 +1,13 @@
-/* 
+/*
  *  The MIT License (MIT)
- * 
+ *
  *  View the full license at:
  *  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
- *  
+ *
  *  Copyright (c) 2015 Joseph Hendrix
- *  
+ *
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- *  
+ *
  */
 package edu.wright.hendrix11.familyTree.bean;
 
@@ -25,14 +25,24 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class ChildrenBean extends DataBean<SpouseChildMap>
 {
-    private static final String[] columns = {"ID","NAME","SPOUSE_ID","SPOUSE","CHILD_ID","CHILD"};
-    private static final String[] prettyNames = {"Id","Name","Spouse Id","Spouse Name","Child Id","Child Name"};
-    private static final String[] linkColumns = {"Name","Spouse Name","Child Name"};
-    
+
+    private static final String[] columns =
+    {
+        "ID", "NAME", "SPOUSE_ID", "SPOUSE", "CHILD_ID", "CHILD"
+    };
+    private static final String[] prettyNames =
+    {
+        "Id", "Name", "Spouse Id", "Spouse Name", "Child Id", "Child Name"
+    };
+    private static final String[] linkColumns =
+    {
+        "Name", "Spouse Name", "Child Name"
+    };
+
     private static final int NAME = 0;
     private static final int SPOUSE_NAME = 1;
     private static final int CHILD_NAME = 2;
-    
+
     /**
      *
      */
@@ -40,10 +50,10 @@ public class ChildrenBean extends DataBean<SpouseChildMap>
     public void initialize()
     {
         table = new SpouseChildTable();
-        
+
         super.initialize(table);
     }
-    
+
     /**
      *
      * @return
@@ -53,7 +63,7 @@ public class ChildrenBean extends DataBean<SpouseChildMap>
     {
         return prettyNames;
     }
-    
+
     /**
      *
      * @return
@@ -63,7 +73,7 @@ public class ChildrenBean extends DataBean<SpouseChildMap>
     {
         return columns;
     }
-    
+
     /**
      *
      * @return
@@ -73,7 +83,7 @@ public class ChildrenBean extends DataBean<SpouseChildMap>
     {
         return linkColumns;
     }
-        
+
     /**
      *
      * @param helper
@@ -84,14 +94,20 @@ public class ChildrenBean extends DataBean<SpouseChildMap>
     protected String processLink(DataBeanHelper helper, String prettyName)
     {
         SpouseChildMap spouseChildMap = helper.getObject();
-        
-        if(prettyName.equals(linkColumns[NAME]))
+
+        if (prettyName.equals(linkColumns[NAME]))
+        {
             return linkToPerson(spouseChildMap.getPerson().getId());
-        else if(prettyName.equals(linkColumns[SPOUSE_NAME]))
+        }
+        else if (prettyName.equals(linkColumns[SPOUSE_NAME]))
+        {
             return linkToPerson(spouseChildMap.getSpouse().getId());
-        else if(prettyName.equals(linkColumns[CHILD_NAME]))
+        }
+        else if (prettyName.equals(linkColumns[CHILD_NAME]))
+        {
             return linkToPerson(spouseChildMap.getChild().getId());
-        
+        }
+
         return "";
     }
 }

@@ -1,13 +1,13 @@
-/* 
+/*
  *  The MIT License (MIT)
- * 
+ *
  *  View the full license at:
  *  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
- *  
+ *
  *  Copyright (c) 2015 Joseph Hendrix
- *  
+ *
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- *  
+ *
  */
 package edu.wright.hendrix11.familyTree.database.table;
 
@@ -28,10 +28,10 @@ import java.util.List;
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
 public class PersonTable extends DatabaseQuery implements SelectData<PersonView, Integer>,
-                                                    SelectAllData<PersonView>,
-                                                    InsertData<PersonView>,
-                                                    UpdateData<PersonView>,
-                                                    DeleteData<PersonView>
+        SelectAllData<PersonView>,
+        InsertData<PersonView>,
+        UpdateData<PersonView>,
+        DeleteData<PersonView>
 {
 
     /**
@@ -43,17 +43,17 @@ public class PersonTable extends DatabaseQuery implements SelectData<PersonView,
 
         ColumnMethodMap columnMethodMap = this.getColumnMethodMap();
 
-        columnMethodMap.putGetter("FATHER_ID","getFather().getId()");
-        columnMethodMap.putSetter("FATHER_ID","getFather().setId()");
+        columnMethodMap.putGetter("FATHER_ID", "getFather().getId()");
+        columnMethodMap.putSetter("FATHER_ID", "getFather().setId()");
 
-        columnMethodMap.putGetter("FATHER_NAME","getFather().getName()");
-        columnMethodMap.putSetter("FATHER_NAME","getFather().setName()");
+        columnMethodMap.putGetter("FATHER_NAME", "getFather().getName()");
+        columnMethodMap.putSetter("FATHER_NAME", "getFather().setName()");
 
-        columnMethodMap.putGetter("MOTHER_ID","getMother().getId()");
-        columnMethodMap.putSetter("MOTHER_ID","getMother().setId()");
+        columnMethodMap.putGetter("MOTHER_ID", "getMother().getId()");
+        columnMethodMap.putSetter("MOTHER_ID", "getMother().setId()");
 
-        columnMethodMap.putGetter("MOTHER_NAME","getMother().getName()");
-        columnMethodMap.putSetter("MOTHER_NAME","getMother().setName()");
+        columnMethodMap.putGetter("MOTHER_NAME", "getMother().getName()");
+        columnMethodMap.putSetter("MOTHER_NAME", "getMother().setName()");
     }
 
     /**
@@ -83,19 +83,19 @@ public class PersonTable extends DatabaseQuery implements SelectData<PersonView,
         {
             ResultSet rs = selectWithKey(id);
 
-            if(rs.next())
+            if (rs.next())
             {
                 this.setFields(person, rs);
             }
 
             this.closeStatement(rs);
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             e.printStackTrace();
         }
 
-        if(includeSpouseChildMap)
+        if (includeSpouseChildMap)
         {
             setSpouseChildMap(person, id);
         }
@@ -130,14 +130,14 @@ public class PersonTable extends DatabaseQuery implements SelectData<PersonView,
         {
             ResultSet rs = this.executeQuery("SELECT * FROM DEFAULT_PERSON_VIEW");
 
-            if(rs.next())
+            if (rs.next())
             {
                 this.setFields(person, rs);
             }
 
             this.closeStatement(rs);
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             e.printStackTrace();
         }
@@ -153,19 +153,18 @@ public class PersonTable extends DatabaseQuery implements SelectData<PersonView,
         addChildData(map);
 
         //person.setSpouseChildMap(map);
-
         return person;
     }
 
     private void addChildData(HashMap<PersonView, List<PersonView>> map)
     {
-        for(PersonView spouse : map.keySet())
+        for (PersonView spouse : map.keySet())
         {
             List<PersonView> childList = map.get(spouse);
 
             List<PersonView> newList = new ArrayList<PersonView>();
 
-            for(PersonView child : childList)
+            for (PersonView child : childList)
             {
                 newList.add(select(child.getId(), false));
             }
@@ -182,20 +181,20 @@ public class PersonTable extends DatabaseQuery implements SelectData<PersonView,
 
         List<Marriage> marriages = marriageTable.select(id);
 
-        for(Marriage marriage : marriages)
+        for (Marriage marriage : marriages)
         {
             PersonView spouse = new PersonView();
 
-            if(marriage.getHusband().getId().equals(id))
+            if (marriage.getHusband().getId().equals(id))
             {
                 spouse = marriage.getWife();
             }
-            else if(marriage.getWife().getId().equals(id))
+            else if (marriage.getWife().getId().equals(id))
             {
                 spouse = marriage.getHusband();
             }
 
-            if(map.get(spouse) == null)
+            if (map.get(spouse) == null)
             {
                 map.put(spouse, new ArrayList<PersonView>());
             }
@@ -213,11 +212,11 @@ public class PersonTable extends DatabaseQuery implements SelectData<PersonView,
 
         List<PersonView> persons = new ArrayList<PersonView>();
 
-        for(Object object : objects)
+        for (Object object : objects)
         {
-            if(object instanceof PersonView)
+            if (object instanceof PersonView)
             {
-                persons.add((PersonView)object);
+                persons.add((PersonView) object);
             }
         }
 
@@ -244,14 +243,14 @@ public class PersonTable extends DatabaseQuery implements SelectData<PersonView,
 
             person = new PersonView();
 
-            if(rs.next())
+            if (rs.next())
             {
                 this.setFields(person, rs);
             }
 
             closeStatement(rs);
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             e.printStackTrace();
         }
@@ -269,10 +268,14 @@ public class PersonTable extends DatabaseQuery implements SelectData<PersonView,
     {
         Object o = updateObject(p);
 
-        if(o instanceof PersonView)
-            return (PersonView)o;
+        if (o instanceof PersonView)
+        {
+            return (PersonView) o;
+        }
         else
+        {
             return null;
+        }
     }
 
     /**

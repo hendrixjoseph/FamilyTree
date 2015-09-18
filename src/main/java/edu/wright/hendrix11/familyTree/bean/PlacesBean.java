@@ -1,13 +1,13 @@
-/* 
+/*
  *  The MIT License (MIT)
- * 
+ *
  *  View the full license at:
  *  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
- *  
+ *
  *  Copyright (c) 2015 Joseph Hendrix
- *  
+ *
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- *  
+ *
  */
 package edu.wright.hendrix11.familyTree.bean;
 
@@ -18,15 +18,22 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 /**
-*
-* @author Joe Hendrix
-*/
+ *
+ * @author Joe Hendrix
+ */
 @ManagedBean
 @ViewScoped
 public class PlacesBean extends DataBean<Place>
 {
-    private static final String[] columns = {"ID","NAME"};
-    private static final String[] prettyNames = {"Id","Name"};
+
+    private static final String[] columns =
+    {
+        "ID", "NAME"
+    };
+    private static final String[] prettyNames =
+    {
+        "Id", "Name"
+    };
 
     /**
      *
@@ -35,10 +42,10 @@ public class PlacesBean extends DataBean<Place>
     public void initialize()
     {
         table = new PlaceTable();
-        
+
         super.initialize(table);
     }
-    
+
     /**
      *
      * @return
@@ -46,9 +53,9 @@ public class PlacesBean extends DataBean<Place>
     @Override
     public String[] getPrettyNames()
     {
-      return prettyNames;
+        return prettyNames;
     }
-    
+
     /**
      *
      * @return
@@ -58,7 +65,7 @@ public class PlacesBean extends DataBean<Place>
     {
         return columns;
     }
-    
+
 //    @Override
 //    protected String processLink(String column, String value)
 //    {

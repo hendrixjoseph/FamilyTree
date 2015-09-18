@@ -1,16 +1,15 @@
-/* 
+/*
  *  The MIT License (MIT)
- * 
+ *
  *  View the full license at:
  *  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
- *  
+ *
  *  Copyright (c) 2015 Joseph Hendrix
- *  
+ *
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- *  
+ *
  */
 package edu.wright.hendrix11.familyTree.bean;
-
 
 import javax.annotation.PostConstruct;
 
@@ -28,17 +27,18 @@ import javax.inject.Named;
 @SessionScoped
 public class IndividualBean implements Serializable
 {
-    private PersonView person; 
-    
+
+    private PersonView person;
+
     private PersonTable personTable;
-       
+
     /**
      *
      */
     public IndividualBean()
     {
     }
-    
+
     /**
      *
      */
@@ -48,13 +48,13 @@ public class IndividualBean implements Serializable
         personTable = new PersonTable();
         person = personTable.selectDefault();
     }
-    
+
     /**
      *
      * @return
      */
     public PersonView getPerson()
-    {   
+    {
         return person;
     }
 
@@ -75,7 +75,7 @@ public class IndividualBean implements Serializable
     {
         person = personTable.select(id);
     }
-    
+
     /**
      *
      * @param id
