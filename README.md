@@ -13,6 +13,9 @@ FamilyTree is a simple web application using JavaServerFaces, Java EE, and a SQL
 * [Tools](README.md#user-content-tools)
  * [Server and Database](README.md#user-content-server-and-database)
  * [Development Tools](README.md#user-content-development-tools)
+   * [Desktop Tools](README.md#user-content-desktop-tools)
+    * [NetBeans Plugins](README.md#user-content-netbeans-plugins)
+    * [Android Tools](README.md#user-content-android-tools)
 * [License](README.md#user-content-license)
 
 ## Contents of Repository
@@ -87,14 +90,22 @@ In addition to the [dependencies](http://hendrixjoseph.github.io/FamilyTree/depe
  
 ### Development Tools
 
-* [ForkHub for GitHub](https://play.google.com/store/apps/details?id=jp.forkhub) ([on GitHub](https://github.com/jonan/ForkHub))
-* [SGit](https://play.google.com/store/apps/details?id=me.sheimi.sgit) ([on GitHub](https://github.com/sheimi/SGit))
+#### Desktop Tools
+
 * [NetBeans IDE 8.0.2](https://netbeans.org)
- * [NetBeans License Changer Plugin](http://plugins.netbeans.org/plugin/17960/license-changer)
 * [Oracle SQL Developer 4.1.0.19](http://www.oracle.com/technetwork/developer-tools/sql-developer/overview/index-097090.html)
 * [Notepad++ v6.7.8.2](https://notepad-plus-plus.org)
 * [TortoiseGit 1.8.15.0](https://tortoisegit.org)
 * [Maven 3.3.3](https://maven.apache.org)
+
+#### NetBeans Plugins
+
+* [NetBeans License Changer Plugin](http://plugins.netbeans.org/plugin/17960/license-changer)
+
+#### Android Tools
+
+* [ForkHub for GitHub](https://play.google.com/store/apps/details?id=jp.forkhub) ([on GitHub](https://github.com/jonan/ForkHub))
+* [SGit](https://play.google.com/store/apps/details?id=me.sheimi.sgit) ([on GitHub](https://github.com/sheimi/SGit))
 
 Tested in [Firefox 39.0](https://www.mozilla.org/en-US/)
 
