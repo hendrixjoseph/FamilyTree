@@ -93,8 +93,8 @@ public class Person implements Serializable
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(
-        name="CHILDREN_VIEW", 
-        joinColumns={@JoinColumn(name="ID", referencedColumnName="ID")}, 
+        name="CHILDREN_VIEW",
+        joinColumns={@JoinColumn(name="ID", referencedColumnName="ID")},
         inverseJoinColumns={@JoinColumn(name="CHILD_ID", referencedColumnName="ID")})
     private List<Person> children;
 
@@ -154,7 +154,7 @@ public class Person implements Serializable
 
     private boolean hasParent(Person parent)
     {
-        return !(parent == null || !parent.exists())
+        return !(parent == null || !parent.exists());
     }
 
     /**
@@ -246,7 +246,7 @@ public class Person implements Serializable
     public List<Person> getChildren(Person spouse)
     {
         List<Person> childrenOfSpouse = new ArrayList<>();
-        
+
         for(Person child : children)
         {
             if(child.getFather().equals(spouse) || child.getMother().equals(spouse))
@@ -254,7 +254,7 @@ public class Person implements Serializable
                 childrenOfSpouse.add(child);
             }
         }
-        
+
         return childrenOfSpouse;
     }
 
@@ -346,7 +346,7 @@ public class Person implements Serializable
     public List<Person> getChildrenNoSpouse()
     {
         List<Person> childrenNoSpouse = new ArrayList<>();
-        
+
         for(Person child : children)
         {
             if(!child.hasFather() || !child.hasMother())
@@ -354,7 +354,7 @@ public class Person implements Serializable
                 childrenNoSpouse.add(child);
             }
         }
-        
+
         return childrenNoSpouse;
     }
 
