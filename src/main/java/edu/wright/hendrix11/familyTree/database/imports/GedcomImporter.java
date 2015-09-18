@@ -28,7 +28,7 @@ package edu.wright.hendrix11.familyTree.database.imports;
 
 import edu.wright.hendrix11.familyTree.database.Database;
 import edu.wright.hendrix11.familyTree.entity.Marriage;
-import edu.wright.hendrix11.familyTree.entity.Person;
+import edu.wright.hendrix11.familyTree.entity.PersonView;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.sql.SQLException;
@@ -73,8 +73,8 @@ public class GedcomImporter extends Importer
     private boolean insertBirthMode;
     private boolean insertDeathMode;
     
-    private HashMap<String, Person> entry;
-    private HashMap<Person, String> reverseEntry;
+    private HashMap<String, PersonView> entry;
+    private HashMap<PersonView, String> reverseEntry;
 
     /**
      *
@@ -99,8 +99,8 @@ public class GedcomImporter extends Importer
     
     private void initializeEntry()
     {
-        entry = new HashMap<String, Person>();
-        reverseEntry = new HashMap<Person, String>();
+        entry = new HashMap<String, PersonView>();
+        reverseEntry = new HashMap<PersonView, String>();
     }
     
     /**
@@ -120,9 +120,9 @@ public class GedcomImporter extends Importer
             nextLine = getNextLine(nextLine);
         }
         
-        Person person = new Person();
+        PersonView person = new PersonView();
         
-        List<Person> children = new ArrayList<Person>();
+        List<PersonView> children = new ArrayList<PersonView>();
         Marriage marriage = new Marriage();
         
         String gedcomid = "";
@@ -138,7 +138,7 @@ public class GedcomImporter extends Importer
                 
                 this.setInsertPersonMode(true);
                 
-                person = new Person();
+                person = new PersonView();
                 gedcomid = getId(nextLine);
             }
             else if(nextLine.startsWith(FAM_LINE))
@@ -148,7 +148,7 @@ public class GedcomImporter extends Importer
                 
                 this.setInsertFamilyMode(true);
                 
-                children = new ArrayList<Person>();
+                children = new ArrayList<PersonView>();
             }
             
             if(insertPersonMode)
@@ -169,9 +169,9 @@ public class GedcomImporter extends Importer
         }
     }
     
-    private void insertFamily(Marriage marriage, List<Person> children)
+    private void insertFamily(Marriage marriage, List<PersonView> children)
     {
-        for(Person child : children)
+        for(PersonView child : children)
         {
             if(marriage.hasHusband())
                 child.setFather(marriage.getHusband());
@@ -192,24 +192,24 @@ public class GedcomImporter extends Importer
         }
     }
     
-    private void processFamily(Marriage marriage, List<Person> children, String nextLine)
+    private void processFamily(Marriage marriage, List<PersonView> children, String nextLine)
     {
         if(nextLine.startsWith(HUSB_LINE))
         {
             String husbandId = getId(nextLine);
-            Person husband = entry.get(husbandId);
+            PersonView husband = entry.get(husbandId);
             marriage.setHusband(husband);
         }
         else if(nextLine.startsWith(WIFE_LINE))
         {
             String wifeId = getId(nextLine);
-            Person wife = entry.get(wifeId);
+            PersonView wife = entry.get(wifeId);
             marriage.setWife(wife);
         }
         else if(nextLine.startsWith(CHIL_LINE))
         {
             String childId = getId(nextLine);
-            Person child = entry.get(childId);
+            PersonView child = entry.get(childId);
             children.add(child);
         }
         else if(nextLine.startsWith(MARR_LINE))
@@ -246,7 +246,7 @@ public class GedcomImporter extends Importer
         }
     }
     
-    private void insertPerson(String gedcomid, Person person)
+    private void insertPerson(String gedcomid, PersonView person)
     {
         System.out.println("Attempting to insert " + person.getName());
         person = personTable.insert(person);
@@ -254,7 +254,7 @@ public class GedcomImporter extends Importer
         System.out.println(gedcomid + " " + person.getName() + " inserted.");
     }
     
-    private void processPerson(Person person, String nextLine)
+    private void processPerson(PersonView person, String nextLine)
     {
         if(nextLine.startsWith(NAME_LINE))
         {
@@ -405,7 +405,7 @@ public class GedcomImporter extends Importer
         this.insertMarriageMode = insertMarriageMode;
     }
     
-    private void setEntry(Person person, String gedcomid)
+    private void setEntry(PersonView person, String gedcomid)
     {
         entry.put(gedcomid, person);
         reverseEntry.put(person, gedcomid);
@@ -417,7 +417,7 @@ public class GedcomImporter extends Importer
      *
      * @return
      */
-    public HashMap<String, Person> getEntry()
+    public HashMap<String, PersonView> getEntry()
     {
         return entry;
     }
@@ -456,7 +456,7 @@ public class GedcomImporter extends Importer
             GedcomImporter importer = new GedcomImporter(path + file);
             importer.importData();
             
-            HashMap<String, Person> entry = importer.getEntry();
+            HashMap<String, PersonView> entry = importer.getEntry();
         
             System.out.println(entry.size() + " people loaded.");
         }

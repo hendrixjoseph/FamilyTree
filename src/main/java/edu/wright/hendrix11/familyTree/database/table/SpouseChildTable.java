@@ -30,7 +30,7 @@ import edu.wright.hendrix11.familyTree.database.ColumnMethodMap;
 import edu.wright.hendrix11.familyTree.database.DatabaseQuery;
 import edu.wright.hendrix11.familyTree.database.interfaces.SelectAllData;
 import edu.wright.hendrix11.familyTree.database.interfaces.SelectData;
-import edu.wright.hendrix11.familyTree.entity.Person;
+import edu.wright.hendrix11.familyTree.entity.PersonView;
 import edu.wright.hendrix11.familyTree.entity.SpouseChildMap;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -42,7 +42,7 @@ import java.util.List;
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
-public class SpouseChildTable extends DatabaseQuery implements SelectData<HashMap<Person, List<Person>>, Integer>,
+public class SpouseChildTable extends DatabaseQuery implements SelectData<HashMap<PersonView, List<PersonView>>, Integer>,
                                                                SelectAllData<SpouseChildMap>
 {    
 
@@ -80,9 +80,9 @@ public class SpouseChildTable extends DatabaseQuery implements SelectData<HashMa
      * @return
      */
     @Override
-    public HashMap<Person, List<Person>> select(Integer id)
+    public HashMap<PersonView, List<PersonView>> select(Integer id)
     {
-        HashMap<Person, List<Person>> map = new HashMap<Person, List<Person>>();
+        HashMap<PersonView, List<PersonView>> map = new HashMap<PersonView, List<PersonView>>();
         
         try        
         {
@@ -94,16 +94,16 @@ public class SpouseChildTable extends DatabaseQuery implements SelectData<HashMa
                 
                 this.setFields(spouseChildMap, rs);
                 
-                Person spouse = spouseChildMap.getSpouse();
+                PersonView spouse = spouseChildMap.getSpouse();
                 
                 if(!spouse.exists())
                     spouse = null;
                     
-                List<Person> childList = map.get(spouse);                    
+                List<PersonView> childList = map.get(spouse);                    
                 
                 if(childList == null)
                 {
-                    childList = new ArrayList<Person>();
+                    childList = new ArrayList<PersonView>();
                 }
                 
                 childList.add(spouseChildMap.getChild());
@@ -126,9 +126,9 @@ public class SpouseChildTable extends DatabaseQuery implements SelectData<HashMa
      * @param id
      * @return
      */
-    public HashMap<Person, List<SpouseChildMap>> selectOld(Integer id)
+    public HashMap<PersonView, List<SpouseChildMap>> selectOld(Integer id)
     {
-        HashMap<Person, List<SpouseChildMap>> map = new HashMap<Person, List<SpouseChildMap>>();
+        HashMap<PersonView, List<SpouseChildMap>> map = new HashMap<PersonView, List<SpouseChildMap>>();
         
         try        
         {
@@ -140,7 +140,7 @@ public class SpouseChildTable extends DatabaseQuery implements SelectData<HashMa
                 
                 this.setFields(spouseChildMap, rs);
                 
-                Person spouse = spouseChildMap.getSpouse();
+                PersonView spouse = spouseChildMap.getSpouse();
                 
                 if(!spouse.exists())
                     spouse = null;

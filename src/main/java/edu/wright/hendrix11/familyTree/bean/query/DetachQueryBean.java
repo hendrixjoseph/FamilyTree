@@ -26,7 +26,7 @@
  */
 package edu.wright.hendrix11.familyTree.bean.query;
 
-import edu.wright.hendrix11.familyTree.entity.Person;
+import edu.wright.hendrix11.familyTree.entity.PersonView;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -44,7 +44,7 @@ import javax.faces.event.ActionEvent;
 public class DetachQueryBean extends QueryBean implements Serializable
 {   
     @ManagedProperty(value="#{individualBean.person}")
-    private Person person;
+    private PersonView person;
     
     /**
      *

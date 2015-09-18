@@ -26,8 +26,6 @@
  */
 package edu.wright.hendrix11.familyTree.entity;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -36,16 +34,13 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
-public class PersonTest
+public class PersonViewTest
 {
-    private static final Logger LOG = Logger.getLogger(PersonTest.class.getName());
-
     private static EntityManagerFactory emf;
 
     private EntityManager em;
@@ -77,17 +72,23 @@ public class PersonTest
     @Test
     public void test()
     {
-        Person person = em.find(Person.class, 9512);
+        PersonView person = em.find(PersonView.class, 9512);
 
-        StringBuilder sb = new StringBuilder();
+        System.out.println(person.getId());
+        System.out.println(person.getName());
+        System.out.println(person.getGender());
+        System.out.println(person.getFather().getName());
+        System.out.println(person.getMother().getName());
 
-        sb.append("\n\tID:\t").append(person.getId());
-        sb.append("\n\tNAME:\t").append(person.getName());
-        sb.append("\n\tGENDER:\t").append(person.getGender().getFullWord());
-        sb.append("\n\tFATHER:\t").append(person.getFather().getName());
-        sb.append("\n\tMOTHER:\t").append(person.getMother().getName());
+        for(PersonView spouse : person.getSpouses())
+        {
+            System.out.println(spouse.getName());
+        }
 
-        
-        LOG.log(Level.INFO, sb.toString());
+        for(PersonView child : person.getChildren())
+        {
+            System.out.println(child.getName());
+        }
     }
+
 }

@@ -28,6 +28,7 @@ package edu.wright.hendrix11.familyTree.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
 *
@@ -36,6 +37,7 @@ import javax.persistence.Entity;
 @Entity
 public class Gender
 {
+    @Id
     private char abbr;
 
     @Column(name = "FULL_WORD")

@@ -33,7 +33,7 @@ package edu.wright.hendrix11.familyTree.entity;
 public class Settings
 {
   String theme;
-  Person defaultPerson;
+  PersonView defaultPerson;
   String defaultPersonType;
   boolean viewWelcomePage;
 
@@ -59,7 +59,7 @@ public class Settings
      *
      * @return
      */
-    public Person getDefaultPerson()
+    public PersonView getDefaultPerson()
     {
         return defaultPerson;
     }
@@ -68,7 +68,7 @@ public class Settings
      *
      * @param defaultPerson
      */
-    public void setDefaultPerson(Person defaultPerson)
+    public void setDefaultPerson(PersonView defaultPerson)
     {
         this.defaultPerson = defaultPerson;
     }

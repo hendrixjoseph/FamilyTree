@@ -29,7 +29,7 @@ package edu.wright.hendrix11.familyTree.bean;
 
 import javax.annotation.PostConstruct;
 
-import edu.wright.hendrix11.familyTree.entity.Person;
+import edu.wright.hendrix11.familyTree.entity.PersonView;
 import edu.wright.hendrix11.familyTree.database.table.PersonTable;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
@@ -43,7 +43,7 @@ import javax.inject.Named;
 @SessionScoped
 public class IndividualBean implements Serializable
 {
-    private Person person; 
+    private PersonView person; 
     
     private PersonTable personTable;
        
@@ -68,7 +68,7 @@ public class IndividualBean implements Serializable
      *
      * @return
      */
-    public Person getPerson()
+    public PersonView getPerson()
     {   
         return person;
     }

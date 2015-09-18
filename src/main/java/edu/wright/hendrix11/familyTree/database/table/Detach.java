@@ -29,7 +29,7 @@ package edu.wright.hendrix11.familyTree.database.table;
 import edu.wright.hendrix11.familyTree.database.ColumnMethodMap;
 import edu.wright.hendrix11.familyTree.database.DatabaseQuery;
 import edu.wright.hendrix11.familyTree.database.interfaces.DeleteData;
-import edu.wright.hendrix11.familyTree.entity.Person;
+import edu.wright.hendrix11.familyTree.entity.PersonView;
 
 /**
  *
@@ -43,7 +43,7 @@ public class Detach
      *
      * @param child
      */
-    public void detachFather(Person child)
+    public void detachFather(PersonView child)
   {
     detachParent = new DetachFather();
     detachParent(child);
@@ -53,13 +53,13 @@ public class Detach
      *
      * @param child
      */
-    public void detachMother(Person child)
+    public void detachMother(PersonView child)
   {
     detachParent = new DetachMother();
     detachParent(child);
   }
   
-  private void detachParent(Person child)
+  private void detachParent(PersonView child)
   {
     detachParent.delete(child);
   }
@@ -69,7 +69,7 @@ public class Detach
      * @param person
      * @param spouse
      */
-    public void detachSpouse(Person person, Person spouse)
+    public void detachSpouse(PersonView person, PersonView spouse)
   {
   
   }
@@ -79,7 +79,7 @@ public class Detach
      * @param person
      * @param child
      */
-    public void detachChild(Person person, Person child)
+    public void detachChild(PersonView person, PersonView child)
   {
   
   }
@@ -100,7 +100,7 @@ public class Detach
     }
   }
   
-  private abstract class DetachParent extends DatabaseQuery implements DeleteData<Person>
+  private abstract class DetachParent extends DatabaseQuery implements DeleteData<PersonView>
   {
     public DetachParent(String parentType)
     {
@@ -114,7 +114,7 @@ public class Detach
     }
   
     @Override
-    public boolean delete(Person p)
+    public boolean delete(PersonView p)
     {
       if(p != null && p.getId() != null)
       {

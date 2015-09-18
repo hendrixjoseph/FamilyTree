@@ -27,7 +27,7 @@
 package edu.wright.hendrix11.familyTree.bean;
 
 import edu.wright.hendrix11.familyTree.database.table.PersonTable;
-import edu.wright.hendrix11.familyTree.entity.Person;
+import edu.wright.hendrix11.familyTree.entity.PersonView;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -38,7 +38,7 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @ViewScoped
-public class PersonsBean extends DataBean<Person>
+public class PersonsBean extends DataBean<PersonView>
 {
     private static final String[] columns = {"ID","FATHER_NAME","MOTHER_NAME","NAME","GENDER","PLACE_OF_BIRTH","DATE_OF_BIRTH","PLACE_OF_DEATH","DATE_OF_DEATH"};
     private static final String[] prettyNames = {"Id","Father Name","Mother Name","Name","Gender","Place of Birth","Date of Birth","Place of Death","Date of Death"};
@@ -98,7 +98,7 @@ public class PersonsBean extends DataBean<Person>
     @Override
     protected String processLink(DataBeanHelper helper, String prettyName)
     {
-        Person person = helper.getObject();
+        PersonView person = helper.getObject();
         
         if(prettyName.equals(linkColumns[FATHER_NAME]))
         {

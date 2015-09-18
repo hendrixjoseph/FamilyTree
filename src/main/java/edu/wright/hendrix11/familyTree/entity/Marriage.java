@@ -29,6 +29,7 @@ package edu.wright.hendrix11.familyTree.entity;
 import edu.wright.hendrix11.familyTree.entity.Marriage.MarriagePK;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -37,32 +38,39 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 /**
  *
- * @author Joe Hendrix <hendrix.11@wright.edu>
+ * //@author Joe Hendrix <hendrix.11//@wright.edu>
  */
-@Entity
-@IdClass(MarriagePK.class)
+//@Entity
+//@IdClass(MarriagePK.class)
 public class Marriage implements Serializable
 {
-    @Id
+    //private static final long serialVersionUID = 1L;
+
+    //@Id
+    //@Column(name="HUSBAND")
     private int husbandId;
 
-    @Id
+    //@Id
+    //@Column(name="WIFE")
     private int wifeId;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="HUSBAND")
-    private Person husband;
+//    //@ManyToOne(fetch=FetchType.LAZY)
+//    //@JoinColumn(name="HUSBAND")
+    //@Transient
+    private PersonView husband;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="WIFE")
-    private Person wife;
+//    //@ManyToOne(fetch=FetchType.LAZY)
+//    //@JoinColumn(name="WIFE")
+    //@Transient
+    private PersonView wife;
 
     private String place;
 
-    @Temporal(TemporalType.DATE)
+    //@Temporal(TemporalType.DATE)
     private Date anniversary;
 
     /**
@@ -70,49 +78,49 @@ public class Marriage implements Serializable
      */
     public Marriage()
     {
-        husband = new Person();
-        wife = new Person();
+        husband = new PersonView();
+        wife = new PersonView();
     }
 
     /**
      *
-     * @return
+     * //@return
      */
-    public Person getHusband()
+    public PersonView getHusband()
     {
         return husband;
     }
 
     /**
      *
-     * @param husband
+     * //@param husband
      */
-    public void setHusband(Person husband)
+    public void setHusband(PersonView husband)
     {
         this.husband = husband;
     }
 
     /**
      *
-     * @return
+     * //@return
      */
-    public Person getWife()
+    public PersonView getWife()
     {
         return wife;
     }
 
     /**
      *
-     * @param wife
+     * //@param wife
      */
-    public void setWife(Person wife)
+    public void setWife(PersonView wife)
     {
         this.wife = wife;
     }
 
     /**
      *
-     * @return
+     * //@return
      */
     public String getPlace()
     {
@@ -121,7 +129,7 @@ public class Marriage implements Serializable
 
     /**
      *
-     * @param place
+     * //@param place
      */
     public void setPlace(String place)
     {
@@ -130,7 +138,7 @@ public class Marriage implements Serializable
 
     /**
      *
-     * @return
+     * //@return
      */
     public Date getAnniversary()
     {
@@ -139,7 +147,7 @@ public class Marriage implements Serializable
 
     /**
      *
-     * @param anniversary
+     * //@param anniversary
      */
     public void setAnniversary(Date anniversary)
     {
@@ -148,10 +156,10 @@ public class Marriage implements Serializable
 
     /**
      *
-     * @param p1
-     * @param p2
+     * //@param p1
+     * //@param p2
      */
-    public void setCouple(Person p1, Person p2)
+    public void setCouple(PersonView p1, PersonView p2)
     {
         // Supreme court is going to hate this...
         if(p1.getGender().equals(p2.getGender()))
@@ -172,7 +180,7 @@ public class Marriage implements Serializable
 
     /**
      *
-     * @return
+     * //@return
      */
     public boolean isSet()
     {
@@ -181,7 +189,7 @@ public class Marriage implements Serializable
 
     /**
      *
-     * @return
+     * //@return
      */
     public boolean hasHusband()
     {
@@ -190,14 +198,14 @@ public class Marriage implements Serializable
 
     /**
      *
-     * @return
+     * //@return
      */
     public boolean hasWife()
     {
         return hasSpouse(wife);
     }
 
-    private boolean hasSpouse(Person spouse)
+    private boolean hasSpouse(PersonView spouse)
     {
         if(spouse == null)
             return false;
@@ -205,7 +213,27 @@ public class Marriage implements Serializable
             return spouse.exists();
     }
 
-    @Override
+    public int getHusbandId()
+    {
+        return husbandId;
+    }
+
+    public void setHusbandId(int husbandId)
+    {
+        this.husbandId = husbandId;
+    }
+
+    public int getWifeId()
+    {
+        return wifeId;
+    }
+
+    public void setWifeId(int wifeId)
+    {
+        this.wifeId = wifeId;
+    }
+
+    //@Override
     public String toString()
     {
         StringBuilder sb = new StringBuilder();
@@ -216,7 +244,7 @@ public class Marriage implements Serializable
         return sb.toString();
     }
 
-    public class MarriagePK
+    public class MarriagePK implements Serializable
     {
         private int husbandId;
         private int wifeId;
@@ -227,6 +255,27 @@ public class Marriage implements Serializable
             this.wifeId = wifeId;
         }
 
+        public int getHusbandId()
+        {
+            return husbandId;
+        }
+
+        public void setHusbandId(int husbandId)
+        {
+            this.husbandId = husbandId;
+        }
+
+        public int getWifeId()
+        {
+            return wifeId;
+        }
+
+        public void setWifeId(int wifeId)
+        {
+            this.wifeId = wifeId;
+        }
+
+        //@Override
         public boolean equals(Object object)
         {
             if (object instanceof MarriagePK)
@@ -240,6 +289,7 @@ public class Marriage implements Serializable
             }
         }
 
+        //@Override
         public int hashCode()
         {
             return husbandId + wifeId;

@@ -1,18 +1,18 @@
-/* 
+/*
  *  The MIT License (MIT)
- *  
+ *
  *  Copyright (c) 2015 Joseph Hendrix
- *  
+ *
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  *  copies of the Software, and to permit persons to whom the Software is
  *  furnished to do so, subject to the following conditions:
- *  
+ *
  *  The above copyright notice and this permission notice shall be included in all
  *  copies or substantial portions of the Software.
- *  
+ *
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,9 +20,9 @@
  *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  *  SOFTWARE.
- *  
+ *
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- *  
+ *
  */
 package edu.wright.hendrix11.familyTree.database.table;
 
@@ -30,7 +30,7 @@ import edu.wright.hendrix11.familyTree.database.ColumnMethodMap;
 import edu.wright.hendrix11.familyTree.database.DatabaseQuery;
 import edu.wright.hendrix11.familyTree.database.interfaces.*;
 import edu.wright.hendrix11.familyTree.entity.Marriage;
-import edu.wright.hendrix11.familyTree.entity.Person;
+import edu.wright.hendrix11.familyTree.entity.PersonView;
 import edu.wright.hendrix11.familyTree.entity.SpouseChildMap;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -42,11 +42,11 @@ import java.util.List;
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
-public class PersonTable extends DatabaseQuery implements SelectData<Person, Integer>, 
-                                                    SelectAllData<Person>,
-                                                    InsertData<Person>, 
-                                                    UpdateData<Person>, 
-                                                    DeleteData<Person>
+public class PersonTable extends DatabaseQuery implements SelectData<PersonView, Integer>,
+                                                    SelectAllData<PersonView>,
+                                                    InsertData<PersonView>,
+                                                    UpdateData<PersonView>,
+                                                    DeleteData<PersonView>
 {
 
     /**
@@ -54,51 +54,51 @@ public class PersonTable extends DatabaseQuery implements SelectData<Person, Int
      */
     public PersonTable()
     {
-        super("PERSON_VIEW", Person.class);
- 
+        super("PERSON_VIEW", PersonView.class);
+
         ColumnMethodMap columnMethodMap = this.getColumnMethodMap();
-        
+
         columnMethodMap.putGetter("FATHER_ID","getFather().getId()");
         columnMethodMap.putSetter("FATHER_ID","getFather().setId()");
-        
+
         columnMethodMap.putGetter("FATHER_NAME","getFather().getName()");
         columnMethodMap.putSetter("FATHER_NAME","getFather().setName()");
-        
+
         columnMethodMap.putGetter("MOTHER_ID","getMother().getId()");
         columnMethodMap.putSetter("MOTHER_ID","getMother().setId()");
-        
+
         columnMethodMap.putGetter("MOTHER_NAME","getMother().getName()");
         columnMethodMap.putSetter("MOTHER_NAME","getMother().setName()");
     }
-    
+
     /**
      *
      * @param id
      * @return
      */
     @Override
-    public Person select(Integer id)
+    public PersonView select(Integer id)
     {
         return select(id, true);
     }
-    
+
     /**
      *
      * @param id
      * @param includeSpouseChildMap
      * @return
      */
-    public Person select(Integer id, boolean includeSpouseChildMap)
+    public PersonView select(Integer id, boolean includeSpouseChildMap)
     {
-        Person person = new Person();
-        person.setFather(new Person());
-        person.setMother(new Person());
-        
+        PersonView person = new PersonView();
+        person.setFather(new PersonView());
+        person.setMother(new PersonView());
+
         try
         {
             ResultSet rs = selectWithKey(id);
-            
-            if(rs.next()) 
+
+            if(rs.next())
             {
                 this.setFields(person, rs);
             }
@@ -108,44 +108,44 @@ public class PersonTable extends DatabaseQuery implements SelectData<Person, Int
         catch(Exception e)
         {
             e.printStackTrace();
-        }            
-        
+        }
+
         if(includeSpouseChildMap)
         {
             setSpouseChildMap(person, id);
         }
-                    
+
         return person;
     }
-    
-    private void setSpouseChildMap(Person person, Integer id)
+
+    private void setSpouseChildMap(PersonView person, Integer id)
     {
         SpouseChildTable mapData = new SpouseChildTable();
-            
-        HashMap<Person, List<Person>> map = mapData.select(id);
 
-        addSpousesWithNoChildren(map, id);           
+        HashMap<PersonView, List<PersonView>> map = mapData.select(id);
+
+        addSpousesWithNoChildren(map, id);
 
         addChildData(map);
 
-        person.setSpouseChildMap(map);   
+        //person.setSpouseChildMap(map);
     }
-    
+
     /**
      *
      * @return
      */
-    public Person selectDefault()
+    public PersonView selectDefault()
     {
-        Person person = new Person();
-        person.setFather(new Person());
-        person.setMother(new Person());
-        
+        PersonView person = new PersonView();
+        person.setFather(new PersonView());
+        person.setMother(new PersonView());
+
         try
         {
             ResultSet rs = this.executeQuery("SELECT * FROM DEFAULT_PERSON_VIEW");
-            
-            if(rs.next()) 
+
+            if(rs.next())
             {
                 this.setFields(person, rs);
             }
@@ -156,50 +156,50 @@ public class PersonTable extends DatabaseQuery implements SelectData<Person, Int
         {
             e.printStackTrace();
         }
-        
+
         int id = person.getId();
-        
+
         SpouseChildTable mapTable = new SpouseChildTable();
 
-        HashMap<Person, List<Person>> map = mapTable.select(id);
+        HashMap<PersonView, List<PersonView>> map = mapTable.select(id);
 
-        addSpousesWithNoChildren(map, id);           
+        addSpousesWithNoChildren(map, id);
 
         addChildData(map);
 
-        person.setSpouseChildMap(map);
-                    
+        //person.setSpouseChildMap(map);
+
         return person;
     }
-    
-    private void addChildData(HashMap<Person, List<Person>> map)
+
+    private void addChildData(HashMap<PersonView, List<PersonView>> map)
     {
-        for(Person spouse : map.keySet())
+        for(PersonView spouse : map.keySet())
         {
-            List<Person> childList = map.get(spouse);
-            
-            List<Person> newList = new ArrayList<Person>();
-            
-            for(Person child : childList)
-            { 
+            List<PersonView> childList = map.get(spouse);
+
+            List<PersonView> newList = new ArrayList<PersonView>();
+
+            for(PersonView child : childList)
+            {
                 newList.add(select(child.getId(), false));
             }
-            
+
             childList.removeAll(childList);
-            
+
             childList.addAll(newList);
         }
     }
-    
-    private void addSpousesWithNoChildren(HashMap<Person, List<Person>> map, Integer id)
+
+    private void addSpousesWithNoChildren(HashMap<PersonView, List<PersonView>> map, Integer id)
     {
         MarriageTable marriageTable = new MarriageTable();
-        
+
         List<Marriage> marriages = marriageTable.select(id);
 
         for(Marriage marriage : marriages)
         {
-            Person spouse = new Person();
+            PersonView spouse = new PersonView();
 
             if(marriage.getHusband().getId().equals(id))
             {
@@ -212,33 +212,33 @@ public class PersonTable extends DatabaseQuery implements SelectData<Person, Int
 
             if(map.get(spouse) == null)
             {
-                map.put(spouse, new ArrayList<Person>());
+                map.put(spouse, new ArrayList<PersonView>());
             }
         }
     }
-    
+
     /**
      *
      * @return
      */
     @Override
-    public List<Person> selectAll()
+    public List<PersonView> selectAll()
     {
         List<Object> objects = super.selectAllObjects();
-        
-        List<Person> persons = new ArrayList<Person>();
-        
+
+        List<PersonView> persons = new ArrayList<PersonView>();
+
         for(Object object : objects)
         {
-            if(object instanceof Person)
+            if(object instanceof PersonView)
             {
-                persons.add((Person)object);
+                persons.add((PersonView)object);
             }
         }
-        
+
         return persons;
     }
-    
+
     /**
      *
      * @return
@@ -246,20 +246,20 @@ public class PersonTable extends DatabaseQuery implements SelectData<Person, Int
     @Override
     protected Object getNew()
     {
-        return new Person();
+        return new PersonView();
     }
-    
-    private Person selectLastInserted()
+
+    private PersonView selectLastInserted()
     {
-        Person person = null;
-        
+        PersonView person = null;
+
         try
         {
             ResultSet rs = executeQuery("SELECT * FROM LAST_PERSON_INSERTED_VIEW");
-            
-            person = new Person();
-            
-            if(rs.next()) 
+
+            person = new PersonView();
+
+            if(rs.next())
             {
                 this.setFields(person, rs);
             }
@@ -270,7 +270,7 @@ public class PersonTable extends DatabaseQuery implements SelectData<Person, Int
         {
             e.printStackTrace();
         }
-        
+
         return person;
     }
 
@@ -280,12 +280,12 @@ public class PersonTable extends DatabaseQuery implements SelectData<Person, Int
      * @return
      */
     @Override
-    public Person update(Person p)
+    public PersonView update(PersonView p)
     {
         Object o = updateObject(p);
-        
-        if(o instanceof Person)
-            return (Person)o;
+
+        if(o instanceof PersonView)
+            return (PersonView)o;
         else
             return null;
     }
@@ -296,10 +296,10 @@ public class PersonTable extends DatabaseQuery implements SelectData<Person, Int
      * @return
      */
     @Override
-    public Person insert(Person p)
+    public PersonView insert(PersonView p)
     {
-        String query = generateInsertQuery(p);     
-              
+        String query = generateInsertQuery(p);
+
         try
         {
             executeUpdate(query);
@@ -310,17 +310,17 @@ public class PersonTable extends DatabaseQuery implements SelectData<Person, Int
             System.err.println(query);
             ex.printStackTrace();
         }
-        
+
         return null;
     }
-    
+
     /**
      *
      * @param p
      * @param childId
      * @return
      */
-    public Person insert(Person p, int childId)
+    public PersonView insert(PersonView p, int childId)
     {
         return insert(p);
     }
@@ -331,8 +331,8 @@ public class PersonTable extends DatabaseQuery implements SelectData<Person, Int
      * @return
      */
     @Override
-    public boolean delete(Person p)
+    public boolean delete(PersonView p)
     {
         return super.deleteObject(p);
-    }    
+    }
 }

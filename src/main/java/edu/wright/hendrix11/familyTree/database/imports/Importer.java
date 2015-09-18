@@ -30,7 +30,7 @@ import edu.wright.hendrix11.familyTree.database.Database;
 import edu.wright.hendrix11.familyTree.database.table.MarriageTable;
 import edu.wright.hendrix11.familyTree.database.table.PersonTable;
 import edu.wright.hendrix11.familyTree.database.table.SpouseChildTable;
-import edu.wright.hendrix11.familyTree.entity.Person;
+import edu.wright.hendrix11.familyTree.entity.PersonView;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;

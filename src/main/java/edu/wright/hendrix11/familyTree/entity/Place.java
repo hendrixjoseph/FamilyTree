@@ -28,6 +28,7 @@ package edu.wright.hendrix11.familyTree.entity;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
 *
@@ -36,6 +37,7 @@ import javax.persistence.Entity;
 @Entity
 public class Place implements Serializable
 {
+    @Id
     private int id;
     private String name;
 

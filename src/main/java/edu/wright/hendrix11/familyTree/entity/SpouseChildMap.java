@@ -32,16 +32,16 @@ package edu.wright.hendrix11.familyTree.entity;
  */
 public class SpouseChildMap
 {
-    Person person;
-    Person spouse;
-    Person child;
+    PersonView person;
+    PersonView spouse;
+    PersonView child;
     
     /**
      *
      */
     public SpouseChildMap()
     {
-        person = new Person();
+        person = new PersonView();
         spouse = null;
         child = null;
     }
@@ -50,7 +50,7 @@ public class SpouseChildMap
      *
      * @return
      */
-    public Person getPerson()
+    public PersonView getPerson()
     {
         return person;
     }
@@ -59,7 +59,7 @@ public class SpouseChildMap
      *
      * @param person
      */
-    public void setPerson(Person person)
+    public void setPerson(PersonView person)
     {
         this.person = person;
     }
@@ -68,10 +68,10 @@ public class SpouseChildMap
      *
      * @return
      */
-    public Person getSpouse()
+    public PersonView getSpouse()
     {
         if(spouse == null)
-            spouse = new Person();
+            spouse = new PersonView();
         
         return spouse;
     }
@@ -80,7 +80,7 @@ public class SpouseChildMap
      *
      * @param spouse
      */
-    public void setSpouse(Person spouse)
+    public void setSpouse(PersonView spouse)
     {
         this.spouse = spouse;
     }
@@ -89,10 +89,10 @@ public class SpouseChildMap
      *
      * @return
      */
-    public Person getChild()
+    public PersonView getChild()
     {
         if(child == null)
-            child = new Person();
+            child = new PersonView();
             
         return child;
     }
@@ -101,7 +101,7 @@ public class SpouseChildMap
      *
      * @param child
      */
-    public void setChild(Person child)
+    public void setChild(PersonView child)
     {
         this.child = child;
     }
@@ -112,7 +112,7 @@ public class SpouseChildMap
      * @param spouse
      * @param child
      */
-    public void setPeople(Person person, Person spouse, Person child)
+    public void setPeople(PersonView person, PersonView spouse, PersonView child)
     {
         this.person = person;
         this.spouse = spouse;

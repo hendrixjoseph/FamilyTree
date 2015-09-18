@@ -29,7 +29,7 @@ package edu.wright.hendrix11.familyTree.bean.query;
 import edu.wright.hendrix11.familyTree.database.table.MarriageTable;
 import edu.wright.hendrix11.familyTree.database.table.PersonTable;
 import edu.wright.hendrix11.familyTree.entity.Marriage;
-import edu.wright.hendrix11.familyTree.entity.Person;
+import edu.wright.hendrix11.familyTree.entity.PersonView;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -54,12 +54,12 @@ public class PersonQueryBean extends QueryBean implements Serializable
     private static final int CHILD_WITH_SPOUSE = 4;
     private static final int NO_INSERT_UPDATE_RELATED_PERSON = 5;
     
-    private Person personToInsert;
+    private PersonView personToInsert;
     
     @ManagedProperty(value="#{individualBean.person}")
-    private Person relatedPerson;
+    private PersonView relatedPerson;
     
-    private Person spouseToRelated;
+    private PersonView spouseToRelated;
     
     private PersonTable personTable;
     
@@ -69,7 +69,7 @@ public class PersonQueryBean extends QueryBean implements Serializable
     @PostConstruct
     public void initialize()
     {
-        personToInsert = new Person();
+        personToInsert = new PersonView();
         personTable = new PersonTable();
     }
     
@@ -170,7 +170,7 @@ public class PersonQueryBean extends QueryBean implements Serializable
      *
      * @return
      */
-    public Person getPersonToInsert()
+    public PersonView getPersonToInsert()
     {
         return personToInsert;
     }
@@ -179,7 +179,7 @@ public class PersonQueryBean extends QueryBean implements Serializable
      *
      * @param personToInsert
      */
-    public void setPersonToInsert(Person personToInsert)
+    public void setPersonToInsert(PersonView personToInsert)
     {
         this.personToInsert = personToInsert;
     }
@@ -188,7 +188,7 @@ public class PersonQueryBean extends QueryBean implements Serializable
      *
      * @return
      */
-    public Person getRelatedPerson()
+    public PersonView getRelatedPerson()
     {
         return relatedPerson;
     }
@@ -197,7 +197,7 @@ public class PersonQueryBean extends QueryBean implements Serializable
      *
      * @param relatedPerson
      */
-    public void setRelatedPerson(Person relatedPerson)
+    public void setRelatedPerson(PersonView relatedPerson)
     {
         this.relatedPerson = relatedPerson;
     }
@@ -250,7 +250,7 @@ public class PersonQueryBean extends QueryBean implements Serializable
      *
      * @param spouse
      */
-    public void setPersonAsChildWithSpouse(Person spouse)
+    public void setPersonAsChildWithSpouse(PersonView spouse)
     {
         personType = CHILD_WITH_SPOUSE;
         this.spouseToRelated = spouse;
