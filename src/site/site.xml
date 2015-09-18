@@ -31,7 +31,9 @@
     xsi:schemaLocation="http://maven.apache.org/DECORATION/1.6.0 http://maven.apache.org/xsd/decoration-1.6.0.xsd">
   <body>
     <menu ref="modules" />
-	<menu ref="reports" />
+	<menu ref="reports">
+		<item name="Test" />
+	</menu>
 	<menu name="Other Documentation">
 		<item name="Schema" href="documentation/schema.md" />
 		<item name="Screenshots" href="documentation/screenshots.md" />
@@ -42,7 +44,7 @@
 			<item name="User Manual" href="documentation/cs7700/Hendrix_CS7700_User_Manual.docx" />
 			<item name="Informal Proposal" href="documentation/cs7700/informal_proposal.md" />
 		</item>
-		<item name="Emails with Mike Owens" collapse="true">
+		<item name="Emails with Mike Owens">
 			<item name="something beautiful i wrote last night" href="documentation/Mike_Owens/something_beautiful_i_wrote_last_night.md" />
 			<item name="too many joins" href="documentation/Mike_Owens/too_many_joins.md" />
 			<item name="your oracle sql magic" href="documentation/Mike_Owens/your_oracle_sql_magic.md" />
