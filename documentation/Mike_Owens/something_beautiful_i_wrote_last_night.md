@@ -1,3 +1,8 @@
+---
+layout: email
+title: something beautiful i wrote last night
+---
+
 From: Hendrix, Joseph D (TS)<br />
 Sent: Wednesday, July 08, 2015 4:04 PM<br />
 To: Owens, Michael (TS)<br />

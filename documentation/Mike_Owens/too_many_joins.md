@@ -1,3 +1,8 @@
+---
+layout: email
+title: too many joins?
+---
+
 From: Hendrix, Joseph D (TS)<br />
 Sent: Thursday, July 02, 2015 9:37 AM<br />
 To: Owens, Michael (TS)<br />

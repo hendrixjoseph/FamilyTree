@@ -6,6 +6,6 @@ edu.wright.hendrix11.familyTree.database.imports
 edu.wright.hendrix11.familyTree.database.interfaces
 edu.wright.hendrix11.familyTree.database.table
 edu.wright.hendrix11.familyTree.entity
+edu.wright.hendrix11.familyTree.entity.event
 edu.wright.hendrix11.theme
-temp.exceptions
 temp

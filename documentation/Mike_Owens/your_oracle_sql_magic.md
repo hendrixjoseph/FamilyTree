@@ -1,3 +1,8 @@
+---
+layout: email
+title: your oracle sql magic
+---
+
 Bring you tables loaded on the NGC and we can look at it further.
 
 >From: Hendrix, Joseph D (TS)<br />
