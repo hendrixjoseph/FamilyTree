@@ -8,7 +8,7 @@
     <version>2.0</version>
 
     <name>Family Tree</name>
-    <description>{% include about.md %}</description>
+    <description>{% capture about %}{% include about.md %}{% endcapture %}{{ about | markdownify }}</description>
     <inceptionYear>2015</inceptionYear>
     <url>https://github.com/hendrixjoseph/FamilyTree</url>
 
