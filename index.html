@@ -133,7 +133,7 @@
       <div id="contentBox">
         <div class="section">
 <h2><a name="About_Family_Tree"></a>About Family Tree</h2><a name="About_Family_Tree"></a>
-<p>{% include about.md %}</p></div>
+<p>{% capture about %}{% include about.md %}{% endcapture %}{{ about | markdownify }}</p></div>
       </div>
     </div>
     <div class="clear">
