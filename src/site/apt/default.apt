@@ -1,0 +1,8 @@
+            ------
+            \{% if page.title %\}\{\{ page.title \}\} – \{% endif %\}
+            ------
+            Joseph Hendrix
+            ------
+             Date
+
+  \{\{content \}\}

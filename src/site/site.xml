@@ -1,55 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  The MIT License (MIT)
- 
+
+ View the full license at:
+ https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
+
  Copyright (c) 2015 Joseph Hendrix
- 
- Permission is hereby granted, free of charge, to any person obtaining a copy
- of this software and associated documentation files (the "Software"), to deal
- in the Software without restriction, including without limitation the rights
- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the following conditions:
- 
- The above copyright notice and this permission notice shall be included in all
- copies or substantial portions of the Software.
- 
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- SOFTWARE.
- 
+
  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- 
+
 -->
 
 <project xmlns="http://maven.apache.org/DECORATION/1.6.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/DECORATION/1.6.0 http://maven.apache.org/xsd/decoration-1.6.0.xsd">
-  <body>
-    <menu ref="modules" />
-	<menu ref="reports">
-		<item name="Test" />
-	</menu>
-	<menu name="Other Documentation">
-		<item name="Schema" href="documentation/schema.md" />
-		<item name="Screenshots" href="documentation/screenshots.md" />
-		<item name="CS7700 Documents" collapse="true">
-			<item name="Final Report" href="documentation/cs7700/Hendrix_CS7700_Final_Report.docx" />
-			<item name="Project Presentation" href="documentation/cs7700/Hendrix_CS7700_Project_Presentation.pptx" />
-			<item name="Project Proposal" href="documentation/cs7700/ Hendrix_CS7700_Project_Proposal.docx" />
-			<item name="User Manual" href="documentation/cs7700/Hendrix_CS7700_User_Manual.docx" />
-			<item name="Informal Proposal" href="documentation/cs7700/informal_proposal.md" />
-		</item>
-		<item name="Emails with Mike Owens">
-			<item name="something beautiful i wrote last night" href="documentation/Mike_Owens/something_beautiful_i_wrote_last_night.md" />
-			<item name="too many joins" href="documentation/Mike_Owens/too_many_joins.md" />
-			<item name="your oracle sql magic" href="documentation/Mike_Owens/your_oracle_sql_magic.md" />
-		</item>
-	</menu>
-	<footer>Copyright &copy; 2015 Joseph Hendrix</footer>
-  </body>
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/DECORATION/1.6.0 http://maven.apache.org/xsd/decoration-1.6.0.xsd">
+    <body>
+        <menu ref="modules" />
+        <menu ref="reports" />
+        <menu name="Other Documentation">
+            <item name="Schema" href="documentation/schema.md" />
+            <item name="Screenshots" href="documentation/screenshots.md" />
+            <item name="CS7700 Documents" collapse="false">
+                <item name="Final Report" href="documentation/cs7700/Hendrix_CS7700_Final_Report.docx" />
+                <item name="Project Presentation" href="documentation/cs7700/Hendrix_CS7700_Project_Presentation.pptx" />
+                <item name="Project Proposal" href="documentation/cs7700/ Hendrix_CS7700_Project_Proposal.docx" />
+                <item name="User Manual" href="documentation/cs7700/Hendrix_CS7700_User_Manual.docx" />
+                <item name="Informal Proposal" href="documentation/cs7700/informal_proposal.md" />
+            </item>
+            <item name="Emails with Mike Owens">
+                <item name="something beautiful i wrote last night" href="documentation/Mike_Owens/something_beautiful_i_wrote_last_night.md" />
+                <item name="too many joins" href="documentation/Mike_Owens/too_many_joins.md" />
+                <item name="your oracle sql magic" href="documentation/Mike_Owens/your_oracle_sql_magic.md" />
+            </item>
+        </menu>
+        <footer>Copyright &copy; 2015 Joseph Hendrix</footer>
+    </body>
 </project>

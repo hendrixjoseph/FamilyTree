@@ -1,3 +1,7 @@
+---
+layout: email
+title: Informal Project Proposal
+---
 
 #informal project proposal
 

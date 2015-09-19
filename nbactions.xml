@@ -67,43 +67,35 @@
         </properties>
     </action>
     <action>
-            <actionName>run.single.main</actionName>
-            <packagings>
-                <packaging>*</packaging>
-            </packagings>
-            <goals>
-                <goal>clean</goal>
-                <goal>process-classes</goal>
-                <goal>org.codehaus.mojo:exec-maven-plugin:1.2.1:exec</goal>
-            </goals>
-            <properties>
-                <exec.args>-classpath %classpath ${packageClassName}</exec.args>
-                <exec.executable>java</exec.executable>
-                <exec.classpathScope>${classPathScope}</exec.classpathScope>
-            </properties>
-        </action>
-        <action>
-            <actionName>CUSTOM-install ojdbc7</actionName>
-            <displayName>install ojdbc7</displayName>
-            <goals>
-                <goal>install:install-file</goal>
-                <goal>-Dfile=ojdbc7.jar</goal>
-                <goal>-DpomFile=ojdbc7.pom</goal>
-                
-                
-                
-                
-            </goals>
-        </action>
-        <action>
-            <actionName>CUSTOM-site</actionName>
-            <displayName>site</displayName>
-            <goals>
-                <goal>site:site</goal>
-                
-                
-                
-                
-            </goals>
-        </action>
+        <actionName>run.single.main</actionName>
+        <packagings>
+            <packaging>*</packaging>
+        </packagings>
+        <goals>
+            <goal>clean</goal>
+            <goal>process-classes</goal>
+            <goal>org.codehaus.mojo:exec-maven-plugin:1.2.1:exec</goal>
+        </goals>
+        <properties>
+            <exec.args>-classpath %classpath ${packageClassName}</exec.args>
+            <exec.executable>java</exec.executable>
+            <exec.classpathScope>${classPathScope}</exec.classpathScope>
+        </properties>
+    </action>
+    <action>
+        <actionName>CUSTOM-install ojdbc7</actionName>
+        <displayName>install ojdbc7</displayName>
+        <goals>
+            <goal>install:install-file</goal>
+            <goal>-Dfile=ojdbc7.jar</goal>
+            <goal>-DpomFile=ojdbc7.pom</goal>
+        </goals>
+    </action>
+    <action>
+        <actionName>CUSTOM-site</actionName>
+        <displayName>site</displayName>
+        <goals>
+            <goal>site:site</goal>
+        </goals>
+    </action>
 </actions>
