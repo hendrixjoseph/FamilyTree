@@ -5,11 +5,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Family Tree &#x2013; {% if page.title %}{{ page.title }} – {% endif %}</title>
     <style type="text/css" media="all">
-      @import url("../css/maven-base.css");
-      @import url("../css/maven-theme.css");
-      @import url("../css/site.css");
+      {% include css.html %} 
     </style>
-    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/{{ site.baseurl }}/css/print.css" type="text/css" media="print" />
       <meta name="author" content="Joseph Hendrix" />
     <meta name="Date-Revision-yyyymmdd" content="20150919" />
     <meta http-equiv="Content-Language" content="en" />
@@ -45,51 +43,51 @@
                                 <h5>Project Documentation</h5>
                   <ul>
                                                                                                                                                                                                   <li class="collapsed">
-                          <a href="project-info.html" title="Project Information">Project Information</a>
+                          <a href="{{ site.baseurl }}/{{ site.baseurl }}/project-info.html" title="Project Information">Project Information</a>
                   </li>
                                                                     <li class="collapsed">
-                          <a href="project-reports.html" title="Project Reports">Project Reports</a>
+                          <a href="{{ site.baseurl }}/{{ site.baseurl }}/project-reports.html" title="Project Reports">Project Reports</a>
                   </li>
           </ul>
                        <h5>Other Documentation</h5>
                   <ul>
                   <li class="none">
-                          <a href="documentation/schema.md" title="Schema">Schema</a>
+                          <a href="{{ site.baseurl }}/{{ site.baseurl }}/documentation/schema.html" title="Schema">Schema</a>
             </li>
                   <li class="none">
-                          <a href="documentation/screenshots.md" title="Screenshots">Screenshots</a>
+                          <a href="{{ site.baseurl }}/{{ site.baseurl }}/documentation/screenshots.html" title="Screenshots">Screenshots</a>
             </li>
                                                                                                                                       <li class="expanded">
-                          <a href="" title="CS7700 Documents">CS7700 Documents</a>
+                          <a href="{{ site.baseurl }}/{{ site.baseurl }}/" title="CS7700 Documents">CS7700 Documents</a>
                     <ul>
                       <li class="none">
-                          <a href="documentation/cs7700/Hendrix_CS7700_Final_Report.docx" title="Final Report">Final Report</a>
+                          <a href="{{ site.baseurl }}/{{ site.baseurl }}/documentation/cs7700/Hendrix_CS7700_Final_Report.docx" title="Final Report">Final Report</a>
             </li>
                       <li class="none">
-                          <a href="documentation/cs7700/Hendrix_CS7700_Project_Presentation.pptx" title="Project Presentation">Project Presentation</a>
+                          <a href="{{ site.baseurl }}/{{ site.baseurl }}/documentation/cs7700/Hendrix_CS7700_Project_Presentation.pptx" title="Project Presentation">Project Presentation</a>
             </li>
                       <li class="none">
-                          <a href="documentation/cs7700/ Hendrix_CS7700_Project_Proposal.docx" title="Project Proposal">Project Proposal</a>
+                          <a href="{{ site.baseurl }}/{{ site.baseurl }}/documentation/cs7700/ Hendrix_CS7700_Project_Proposal.docx" title="Project Proposal">Project Proposal</a>
             </li>
                       <li class="none">
-                          <a href="documentation/cs7700/Hendrix_CS7700_User_Manual.docx" title="User Manual">User Manual</a>
+                          <a href="{{ site.baseurl }}/{{ site.baseurl }}/documentation/cs7700/Hendrix_CS7700_User_Manual.docx" title="User Manual">User Manual</a>
             </li>
                       <li class="none">
-                          <a href="documentation/cs7700/informal_proposal.md" title="Informal Proposal">Informal Proposal</a>
+                          <a href="{{ site.baseurl }}/documentation/cs7700/informal_proposal.html" title="Informal Proposal">Informal Proposal</a>
             </li>
               </ul>
         </li>
                                                                                                   <li class="expanded">
-                          <a href="" title="Emails with Mike Owens">Emails with Mike Owens</a>
+                          <a href="{{ site.baseurl }}/" title="Emails with Mike Owens">Emails with Mike Owens</a>
                     <ul>
                       <li class="none">
-                          <a href="documentation/Mike_Owens/something_beautiful_i_wrote_last_night.md" title="something beautiful i wrote last night">something beautiful i wrote last night</a>
+                          <a href="{{ site.baseurl }}/documentation/Mike_Owens/something_beautiful_i_wrote_last_night.html" title="something beautiful i wrote last night">something beautiful i wrote last night</a>
             </li>
                       <li class="none">
-                          <a href="documentation/Mike_Owens/too_many_joins.md" title="too many joins">too many joins</a>
+                          <a href="{{ site.baseurl }}/documentation/Mike_Owens/too_many_joins.html" title="too many joins">too many joins</a>
             </li>
                       <li class="none">
-                          <a href="documentation/Mike_Owens/your_oracle_sql_magic.md" title="your oracle sql magic">your oracle sql magic</a>
+                          <a href="{{ site.baseurl }}/documentation/Mike_Owens/your_oracle_sql_magic.html" title="your oracle sql magic">your oracle sql magic</a>
             </li>
               </ul>
         </li>
