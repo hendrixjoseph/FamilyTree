@@ -31,7 +31,7 @@ public class Birth implements Event
     private Person person;
     
     @OneToMany
-    private Place place;
+    private String place;
 
     @Temporal(TemporalType.DATE)
     private Date date;
@@ -39,37 +39,37 @@ public class Birth implements Event
     @Override
     public Person getPerson()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return person;
     }
 
     @Override
     public void setPerson(Person person)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.person = person;
     }
 
     @Override
-    public Place getPlace()
+    public String getPlace()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return place;
     }
 
     @Override
-    public void setPlace(Place place)
+    public void setPlace(String place)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.place = place
     }
 
     @Override
     public Date getDate()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return date;
     }
 
     @Override
     public void setDate(Date date)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.date = date; 
     }
 
 }

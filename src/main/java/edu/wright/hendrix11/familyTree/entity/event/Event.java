@@ -26,9 +26,9 @@ public interface Event
 
     public void setPerson(Person person);
 
-    public Place getPlace();
+    public String getPlace();
 
-    public void setPlace(Place place);
+    public void setPlace(String place);
 
     public Date getDate();
 
