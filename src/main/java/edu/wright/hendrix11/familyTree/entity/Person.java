@@ -49,6 +49,24 @@ public class Person
             inverseJoinColumns = @JoinColumn(name = "MOTHER_ID"))
     private Person mother;
 
+    @ManyToMany
+    @JoinTable(
+        name="SPOUSE_VIEW",
+        joinColumns={@JoinColumn(name="ID", referencedColumnName="ID")},
+        inverseJoinColumns={@JoinColumn(name="SPOUSE_ID", referencedColumnName="ID")})
+    private List<Person> spouses;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name="CHILDREN_VIEW", 
+        joinColumns={@JoinColumn(name="ID", referencedColumnName="ID")}, 
+        inverseJoinColumns={@JoinColumn(name="CHILD_ID", referencedColumnName="ID")})
+    private List<Person> children;
+
+private Birth birth;
+
+private Death death;
+
     public String getName()
     {
         return name;
