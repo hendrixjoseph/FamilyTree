@@ -40,15 +40,15 @@
             <p:outputLabel value="Gender:" />
             <p:outputLabel value="#{individualBean.person.gender}" />
             <p:outputLabel value="Place of birth:" />
-            <p:outputLabel value="#{individualBean.person.placeOfBirth}" />
+            <p:outputLabel value="#{individualBean.person.birth.place}" />
             <p:outputLabel value="Date of birth:" />
-            <p:outputLabel value="#{individualBean.person.dateOfBirth}">
+            <p:outputLabel value="#{individualBean.person.birth.date}">
                     <f:convertDateTime pattern="MMM dd, yyyy" />
             </p:outputLabel>
             <p:outputLabel value="Place of death:" />
-            <p:outputLabel value="#{individualBean.person.placeOfDeath}" />
+            <p:outputLabel value="#{individualBean.person.death.place}" />
             <p:outputLabel value="Date of death:" />
-            <p:outputLabel value="#{individualBean.person.dateOfDeath}">
+            <p:outputLabel value="#{individualBean.person.death.date}">
                     <f:convertDateTime pattern="MMM dd, yyyy" />
             </p:outputLabel>
     </p:panelGrid>

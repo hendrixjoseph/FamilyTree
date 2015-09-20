@@ -27,16 +27,9 @@ import javax.inject.Named;
 public class IndividualBean implements Serializable
 {
 
-    private PersonView person;
+    private Person person;
 
-    private PersonTable personTable;
-
-    /**
-     *
-     */
-    public IndividualBean()
-    {
-    }
+EntityManager em;
 
     /**
      *
@@ -44,8 +37,7 @@ public class IndividualBean implements Serializable
     @PostConstruct
     public void initialize()
     {
-        personTable = new PersonTable();
-        person = personTable.selectDefault();
+        
     }
 
     /**
@@ -66,14 +58,6 @@ public class IndividualBean implements Serializable
         return person.getId();
     }
 
-    /**
-     *
-     * @param id
-     */
-    public void setPersonId(Integer id)
-    {
-        person = personTable.select(id);
-    }
 
     /**
      *
@@ -81,6 +65,6 @@ public class IndividualBean implements Serializable
      */
     public void setPersonId(int id)
     {
-        person = personTable.select(id);
+        person = em;
     }
 }

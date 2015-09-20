@@ -116,4 +116,45 @@ private Death death;
     {
         this.mother = mother;
     }
+
+/**
+     *
+     * @return
+     */
+    public boolean hasMother()
+    {
+        return hasParent(mother);
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean hasFather()
+    {
+        return hasParent(father);
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean hasParent()
+    {
+        return hasFather() || hasMother();
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean hasParents()
+    {
+        return hasFather() && hasMother();
+    }
+
+    private boolean hasParent(Person parent)
+    {
+        return !(parent == null || !parent.exists());
+    }
 }

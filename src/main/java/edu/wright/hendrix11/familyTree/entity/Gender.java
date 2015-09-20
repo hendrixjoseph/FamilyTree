@@ -64,4 +64,9 @@ public class Gender
     {
         this.fullWord = fullWord;
     }
+
+public String toString()
+{
+return fullWord;
+}
 }
