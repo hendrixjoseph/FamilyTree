@@ -27,13 +27,32 @@ import javax.persistence.TemporalType;
 @Entity
 public class Birth implements Event
 {
+    @Id
+    @Column(name = "PERSON_ID")
+    private int id;
+    
+    @OneToOne
+    @PrimaryKeyJoinColumn
     private Person person;
 
-    @OneToMany
+    @ManyToOne
+    @JoinColumn(name="PLACE_ID")
     private String place;
 
     @Temporal(TemporalType.DATE)
     private Date date;
+    
+    @Override
+    public int getId()
+    {
+        return id;
+    }
+
+    @Override
+    public void setId(int id)
+    {
+        this.id = id;
+    }
 
     @Override
     public Person getPerson()
