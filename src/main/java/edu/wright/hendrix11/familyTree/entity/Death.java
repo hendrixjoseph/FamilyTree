@@ -38,7 +38,7 @@ public class Death implements Event
 
     @ManyToOne
     @JoinColumn(name="PLACE_ID")
-    private String place;
+    private Place place;
 
     @Temporal(TemporalType.DATE)
     private Date date;
@@ -68,13 +68,13 @@ public class Death implements Event
     }
 
     @Override
-    public String getPlace()
+    public Place getPlace()
     {
         return place;
     }
 
     @Override
-    public void setPlace(String place)
+    public void setPlace(Place place)
     {
         this.place = place;
     }
