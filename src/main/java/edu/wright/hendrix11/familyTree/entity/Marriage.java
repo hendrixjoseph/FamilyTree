@@ -14,6 +14,15 @@ package edu.wright.hendrix11.familyTree.entity;
 import edu.wright.hendrix11.familyTree.entity.Marriage.MarriagePK;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -26,23 +35,23 @@ public class Marriage implements Serializable
     //private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name="HUSBAND")
+    @Column(name = "HUSBAND")
     private int husbandId;
 
     @Id
-    @Column(name="WIFE")
+    @Column(name = "WIFE")
     private int wifeId;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="HUSBAND")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "HUSBAND")
     private Person husband;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="WIFE")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "WIFE")
     private Person wife;
 
-	@ManyToOne
-	@JoinColumn(name="PLACE")
+    @ManyToOne
+    @JoinColumn(name = "PLACE")
     private Place place;
 
     @Temporal(TemporalType.DATE)
@@ -157,7 +166,7 @@ public class Marriage implements Serializable
      */
     public boolean isSet()
     {
-        return husband.exists() && wife.exists();
+        return husband != null && wife != null;
     }
 
     /**
@@ -180,14 +189,7 @@ public class Marriage implements Serializable
 
     private boolean hasSpouse(Person spouse)
     {
-        if (spouse == null)
-        {
-            return false;
-        }
-        else
-        {
-            return spouse.exists();
-        }
+        return spouse != null;
     }
 
     public class MarriagePK implements Serializable
