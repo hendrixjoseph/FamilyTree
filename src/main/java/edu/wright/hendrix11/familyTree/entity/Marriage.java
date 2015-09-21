@@ -36,12 +36,12 @@ public class Marriage implements Serializable
 //    //@ManyToOne(fetch=FetchType.LAZY)
 //    //@JoinColumn(name="HUSBAND")
     //@Transient
-    private PersonView husband;
+    private Person husband;
 
 //    //@ManyToOne(fetch=FetchType.LAZY)
 //    //@JoinColumn(name="WIFE")
     //@Transient
-    private PersonView wife;
+    private Person wife;
 
     private String place;
 
@@ -53,15 +53,13 @@ public class Marriage implements Serializable
      */
     public Marriage()
     {
-        husband = new PersonView();
-        wife = new PersonView();
     }
 
     /**
      *
      * //@return
      */
-    public PersonView getHusband()
+    public Person getHusband()
     {
         return husband;
     }
@@ -70,7 +68,7 @@ public class Marriage implements Serializable
      *
      * //@param husband
      */
-    public void setHusband(PersonView husband)
+    public void setHusband(Person husband)
     {
         this.husband = husband;
     }
@@ -79,7 +77,7 @@ public class Marriage implements Serializable
      *
      * //@return
      */
-    public PersonView getWife()
+    public Person getWife()
     {
         return wife;
     }
@@ -88,7 +86,7 @@ public class Marriage implements Serializable
      *
      * //@param wife
      */
-    public void setWife(PersonView wife)
+    public void setWife(Person wife)
     {
         this.wife = wife;
     }
@@ -197,26 +195,6 @@ public class Marriage implements Serializable
         {
             return spouse.exists();
         }
-    }
-
-    public int getHusbandId()
-    {
-        return husbandId;
-    }
-
-    public void setHusbandId(int husbandId)
-    {
-        this.husbandId = husbandId;
-    }
-
-    public int getWifeId()
-    {
-        return wifeId;
-    }
-
-    public void setWifeId(int wifeId)
-    {
-        this.wifeId = wifeId;
     }
 
     //@Override
