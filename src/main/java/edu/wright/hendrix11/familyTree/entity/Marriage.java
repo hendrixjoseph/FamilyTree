@@ -17,47 +17,40 @@ import java.util.Date;
 
 /**
  *
- * //@author Joe Hendrix <hendrix.11//@wright.edu>
+ * @author Joe Hendrix <hendrix.11@wright.edu>
  */
-//@Entity
-//@IdClass(MarriagePK.class)
+@Entity
+@IdClass(MarriagePK.class)
 public class Marriage implements Serializable
 {
     //private static final long serialVersionUID = 1L;
 
-    //@Id
-    //@Column(name="HUSBAND")
+    @Id
+    @Column(name="HUSBAND")
     private int husbandId;
 
-    //@Id
-    //@Column(name="WIFE")
+    @Id
+    @Column(name="WIFE")
     private int wifeId;
 
-//    //@ManyToOne(fetch=FetchType.LAZY)
-//    //@JoinColumn(name="HUSBAND")
-    //@Transient
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="HUSBAND")
     private Person husband;
 
-//    //@ManyToOne(fetch=FetchType.LAZY)
-//    //@JoinColumn(name="WIFE")
-    //@Transient
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="WIFE")
     private Person wife;
 
-    private String place;
+	@ManyToOne
+	@JoinColumn(name="PLACE")
+    private Place place;
 
-    //@Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
     private Date anniversary;
 
     /**
      *
-     */
-    public Marriage()
-    {
-    }
-
-    /**
-     *
-     * //@return
+     * @return
      */
     public Person getHusband()
     {
@@ -66,7 +59,7 @@ public class Marriage implements Serializable
 
     /**
      *
-     * //@param husband
+     * @param husband
      */
     public void setHusband(Person husband)
     {
@@ -75,7 +68,7 @@ public class Marriage implements Serializable
 
     /**
      *
-     * //@return
+     * @return
      */
     public Person getWife()
     {
@@ -84,7 +77,7 @@ public class Marriage implements Serializable
 
     /**
      *
-     * //@param wife
+     * @param wife
      */
     public void setWife(Person wife)
     {
@@ -93,25 +86,25 @@ public class Marriage implements Serializable
 
     /**
      *
-     * //@return
+     * @return
      */
-    public String getPlace()
+    public Place getPlace()
     {
         return place;
     }
 
     /**
      *
-     * //@param place
+     * @param place
      */
-    public void setPlace(String place)
+    public void setPlace(Place place)
     {
         this.place = place;
     }
 
     /**
      *
-     * //@return
+     * @return
      */
     public Date getAnniversary()
     {
@@ -120,7 +113,7 @@ public class Marriage implements Serializable
 
     /**
      *
-     * //@param anniversary
+     * @param anniversary
      */
     public void setAnniversary(Date anniversary)
     {
@@ -129,9 +122,9 @@ public class Marriage implements Serializable
 
     /**
      *
-     * //@param p1 //@param p2
+     * @param p1 @param p2
      */
-    public void setCouple(PersonView p1, PersonView p2)
+    public void setCouple(Person p1, Person p2)
     {
         // Supreme court is going to hate this...
         if (p1.getGender().equals(p2.getGender()))
@@ -160,7 +153,7 @@ public class Marriage implements Serializable
 
     /**
      *
-     * //@return
+     * @return
      */
     public boolean isSet()
     {
@@ -169,7 +162,7 @@ public class Marriage implements Serializable
 
     /**
      *
-     * //@return
+     * @return
      */
     public boolean hasHusband()
     {
@@ -178,14 +171,14 @@ public class Marriage implements Serializable
 
     /**
      *
-     * //@return
+     * @return
      */
     public boolean hasWife()
     {
         return hasSpouse(wife);
     }
 
-    private boolean hasSpouse(PersonView spouse)
+    private boolean hasSpouse(Person spouse)
     {
         if (spouse == null)
         {
@@ -195,17 +188,6 @@ public class Marriage implements Serializable
         {
             return spouse.exists();
         }
-    }
-
-    //@Override
-    public String toString()
-    {
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("Husband: ").append(husband.exists() ? husband.getName() : "(null)").append("\n");
-        sb.append("Wife: ").append(wife.exists() ? wife.getName() : "(null)").append("\n");
-
-        return sb.toString();
     }
 
     public class MarriagePK implements Serializable
@@ -240,7 +222,7 @@ public class Marriage implements Serializable
             this.wifeId = wifeId;
         }
 
-        //@Override
+        @Override
         public boolean equals(Object object)
         {
             if (object instanceof MarriagePK)
@@ -254,7 +236,7 @@ public class Marriage implements Serializable
             }
         }
 
-        //@Override
+        @Override
         public int hashCode()
         {
             return husbandId + wifeId;
