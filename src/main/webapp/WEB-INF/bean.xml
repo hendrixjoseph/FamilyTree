@@ -1,16 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
- The MIT License (MIT)
-
- View the full license at:
- https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
- 
- Copyright (c) 2015 Joseph Hendrix
- 
- Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- 
--->
-
 <beans xmlns="http://xmlns.jcp.org/xml/ns/javaee"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
