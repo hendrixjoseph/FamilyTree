@@ -11,12 +11,12 @@
  */
 package edu.wright.hendrix11.familyTree.bean;
 
-import edu.wright.hendrix11.familyTree.database.table.PersonTable;
-import edu.wright.hendrix11.familyTree.entity.PersonView;
+import edu.wright.hendrix11.familyTree.entity.Person;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
 
 /**
  *
@@ -27,9 +27,11 @@ import javax.inject.Named;
 public class IndividualBean implements Serializable
 {
 
+    private static final long serialVersionUID = 1L;
+
     private Person person;
 
-EntityManager em;
+    EntityManager em;
 
     /**
      *
@@ -37,14 +39,14 @@ EntityManager em;
     @PostConstruct
     public void initialize()
     {
-        
+
     }
 
     /**
      *
      * @return
      */
-    public PersonView getPerson()
+    public Person getPerson()
     {
         return person;
     }
@@ -58,13 +60,12 @@ EntityManager em;
         return person.getId();
     }
 
-
     /**
      *
      * @param id
      */
     public void setPersonId(int id)
     {
-        person = em;
+        person = em.find(Person.class, id);
     }
 }
