@@ -5,26 +5,41 @@
             ------
              2015-07-08
 
-  From: Hendrix, Joseph D (TS)
-  Sent: Wednesday, July 08, 2015 4:04 PM
-  To: Owens, Michael (TS)
-  Subject: RE: something beautiful i wrote last night
+*----------+--------------+
+| From:    | Hendrix, Joseph D (TS) |
+*----------+--------------+
+| Sent:    | Wednesday, July 08, 2015 4:04 PM   | 
+*----------+--------------+
+| To:      | Owens, Michael (TS)   | 
+*----------+--------------+
+| Subject: | RE: something beautiful i wrote last night   | 
+*----------+--------------+
 
   Legally, in the United States, you can be married to only one person at a time. However, you can legally have multiple spouses as long as a previous marriage was dissolved or divorced, or if the spouse has died. People don’t always follow the law, so they might be illegally married to multiple people at the same time. Also, historically, polygamy has been practiced by probably every culture in the world during some time. This probably hasn’t happened anytime recent in my family tree, however.
 
   Currently in my database, a "spouse" is simply the other parent. It is entirely possible to have children through extramarital affairs with multiple partners.
 
-  From: Owens, Michael (TS)
-  Sent: Wednesday, July 08, 2015 3:46 PM
-  To: Hendrix, Joseph D (TS)
-  Subject: RE: something beautiful i wrote last night
+*----------+--------------+
+| From:    | Owens, Michael (TS) |
+*----------+--------------+
+| Sent:    | Wednesday, July 08, 2015 3:46 PM   | 
+*----------+--------------+
+| To:      | Hendrix, Joseph D (TS)   | 
+*----------+--------------+
+| Subject: | RE: something beautiful i wrote last night   | 
+*----------+--------------+
 
   Technically you can only be married to one person
-
-  From: Hendrix, Joseph D (TS) 
-  Sent: Wednesday, July 08, 2015 3:31 PM
-  To: Owens, Michael (TS)
-  Subject: RE: something beautiful i wrote last night
+  
+*----------+--------------+
+| From:    | Hendrix, Joseph D (TS) |
+*----------+--------------+
+| Sent:    | Wednesday, July 08, 2015 3:31 PM   | 
+*----------+--------------+
+| To:      | Owens, Michael (TS)   | 
+*----------+--------------+
+| Subject: | RE: something beautiful i wrote last night   | 
+*----------+--------------+
 
   I might do the `FIRST_NAME, LAST_NAME` columns later. Haven’t decided yet.
 
@@ -32,10 +47,15 @@
 
   `MOTHER_ID` and `FATHER_ID` might be null a lot of times.
 
-  From: Owens, Michael (TS)
-  Sent: Wednesday, July 08, 2015 3:29 PM
-  To: Hendrix, Joseph D (TS)
-  Subject: RE: something beautiful i wrote last night
+*----------+--------------+
+| From:    | Owens, Michael (TS) |
+*----------+--------------+
+| Sent:    | Wednesday, July 08, 2015 3:29 PM   | 
+*----------+--------------+
+| To:      | Hendrix, Joseph D (TS)   | 
+*----------+--------------+
+| Subject: | RE: something beautiful i wrote last night   | 
+*----------+--------------+
 
   Why not have a person_table like this
 +-----+
@@ -49,10 +69,15 @@
   FATHER_ID
 +-----+
 
-  From: Hendrix, Joseph D (TS)
-  Sent: Wednesday, July 08, 2015 3:12 PM
-  To: Owens, Michael (TS)
-  Subject: RE: something beautiful i wrote last night
+*----------+--------------+
+| From:    | Hendrix, Joseph D (TS) |
+*----------+--------------+
+| Sent:    | Wednesday, July 08, 2015 3:12 PM   | 
+*----------+--------------+
+| To:      | Owens, Michael (TS)   | 
+*----------+--------------+
+| Subject: | RE: something beautiful i wrote last night   | 
+*----------+--------------+
 
   You can look at everything I’ve done with the database here - https:/>/>github.com/>hendrixjoseph/>FamilyTree/>tree/>master/>sql 
 
@@ -72,10 +97,15 @@
 
   "master.sql" is everything above in one file, except that the table data is in INSERTs rather than csv.
 
-  From: Owens, Michael (TS) 
-  Sent: Wednesday, July 08, 2015 2:47 PM
-  To: Hendrix, Joseph D (TS)
-  Subject: RE: something beautiful i wrote last night
+*----------+--------------+
+| From:    | Owens, Michael (TS) |
+*----------+--------------+
+| Sent:    | Wednesday, July 08, 2015 2:47 PM   | 
+*----------+--------------+
+| To:      | Hendrix, Joseph D (TS)   | 
+*----------+--------------+
+| Subject: | RE: something beautiful i wrote last night   | 
+*----------+--------------+
 
   All many tables  do you have?
   How many tables are used in your example yesterday.
@@ -84,10 +114,15 @@
 
   With sample output of the headers and a few rows of data from each table.
 
-  From: Hendrix, Joseph D (TS)
-  Sent: Wednesday, July 08, 2015 1:50 PM
-  To: Owens, Michael (TS)
-  Subject: something beautiful i wrote last night
+*----------+--------------+
+| From:    | Hendrix, Joseph D (TS) |
+*----------+--------------+
+| Sent:    | Wednesday, July 08, 2015 1:50 PM   | 
+*----------+--------------+
+| To:      | Owens, Michael (TS)   | 
+*----------+--------------+
+| Subject: | something beautiful i wrote last night   | 
+*----------+--------------+
 
 +-----+
   CREATE OR REPLACE TRIGGER "PERSON_VIEW_INSERT_TRIGGER"
