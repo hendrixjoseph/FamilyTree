@@ -19,15 +19,15 @@
         <menu ref="reports" />
         <menu name="CS7720 Documents"></menu>
         <menu name="CS7700 Documents">
-         <item name="Final Report" href="documentation/cs7700/Hendrix_CS7700_Final_Report.docx" />
-         <item name="Project Presentation" href="documentation/cs7700/Hendrix_CS7700_Project_Presentation.pptx" />
-         <item name="Project Proposal" href="documentation/cs7700/ Hendrix_CS7700_Project_Proposal.docx" />
-         <item name="User Manual" href="documentation/cs7700/Hendrix_CS7700_User_Manual.docx" />
-         <item name="Informal Proposal" href="documentation/cs7700/informal_proposal.html" />
+            <item name="Final Report" href="documentation/cs7700/Hendrix_CS7700_Final_Report.docx" />
+            <item name="Project Presentation" href="documentation/cs7700/Hendrix_CS7700_Project_Presentation.pptx" />
+            <item name="Project Proposal" href="documentation/cs7700/ Hendrix_CS7700_Project_Proposal.docx" />
+            <item name="User Manual" href="documentation/cs7700/Hendrix_CS7700_User_Manual.docx" />
+            <item name="Informal Proposal" href="documentation/cs7700/informal_proposal.html" />
         </menu>
         <menu name="Other Documentation">
-         <item name="Schema" href="documentation/schema.html" />
-         <item name="Screenshots" href="documentation/screenshots.html" />
+            <item name="Schema" href="documentation/schema.html" />
+            <item name="Screenshots" href="documentation/screenshots.html" />
         </menu>
         <menu name="Emails with Mike Owens">
             <item name="something beautiful i wrote last night" href="documentation/Mike_Owens/something_beautiful_i_wrote_last_night.html" />

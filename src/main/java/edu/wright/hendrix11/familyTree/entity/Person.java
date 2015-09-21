@@ -20,6 +20,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -78,9 +79,54 @@ public class Person
             })
     private List<Person> children;
 
+    @OneToOne
+    @JoinColumn(name = "PERSON_ID")
     private Birth birth;
-
+    
+    @OneToOne
+    @JoinColumn(name = "PERSON_ID")
     private Death death;
+
+    public List<Person> getSpouses()
+    {
+        return spouses;
+    }
+
+    public void setSpouses(List<Person> spouses)
+    {
+        this.spouses = spouses;
+    }
+
+    public List<Person> getChildren()
+    {
+        return children;
+    }
+
+    public void setChildren(List<Person> children)
+    {
+        this.children = children;
+    }
+
+    public Birth getBirth()
+    {
+        return birth;
+    }
+
+    public void setBirth(Birth birth)
+    {
+        this.birth = birth;
+    }
+
+    public Death getDeath()
+    {
+        return death;
+    }
+
+    public void setDeath(Death death)
+    {
+        this.death = death;
+    }
+
 
     public String getName()
     {
