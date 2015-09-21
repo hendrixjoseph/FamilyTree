@@ -11,12 +11,15 @@
  */
 package edu.wright.hendrix11.familyTree.entity;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -51,21 +54,33 @@ public class Person
 
     @ManyToMany
     @JoinTable(
-        name="SPOUSE_VIEW",
-        joinColumns={@JoinColumn(name="ID", referencedColumnName="ID")},
-        inverseJoinColumns={@JoinColumn(name="SPOUSE_ID", referencedColumnName="ID")})
+            name = "SPOUSE_VIEW",
+            joinColumns =
+            {
+                @JoinColumn(name = "ID", referencedColumnName = "ID")
+            },
+            inverseJoinColumns =
+            {
+                @JoinColumn(name = "SPOUSE_ID", referencedColumnName = "ID")
+            })
     private List<Person> spouses;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(
-        name="CHILDREN_VIEW", 
-        joinColumns={@JoinColumn(name="ID", referencedColumnName="ID")}, 
-        inverseJoinColumns={@JoinColumn(name="CHILD_ID", referencedColumnName="ID")})
+            name = "CHILDREN_VIEW",
+            joinColumns =
+            {
+                @JoinColumn(name = "ID", referencedColumnName = "ID")
+            },
+            inverseJoinColumns =
+            {
+                @JoinColumn(name = "CHILD_ID", referencedColumnName = "ID")
+            })
     private List<Person> children;
 
-private Birth birth;
+    private Birth birth;
 
-private Death death;
+    private Death death;
 
     public String getName()
     {
@@ -117,7 +132,7 @@ private Death death;
         this.mother = mother;
     }
 
-/**
+    /**
      *
      * @return
      */
@@ -155,6 +170,6 @@ private Death death;
 
     private boolean hasParent(Person parent)
     {
-        return !(parent == null || !parent.exists());
+        return !(parent == null);
     }
 }

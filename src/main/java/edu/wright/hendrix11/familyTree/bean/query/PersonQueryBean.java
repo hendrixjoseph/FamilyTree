@@ -11,8 +11,6 @@
  */
 package edu.wright.hendrix11.familyTree.bean.query;
 
-import edu.wright.hendrix11.familyTree.database.table.MarriageTable;
-import edu.wright.hendrix11.familyTree.database.table.PersonTable;
 import edu.wright.hendrix11.familyTree.entity.Marriage;
 import edu.wright.hendrix11.familyTree.entity.PersonView;
 import java.io.Serializable;
@@ -47,8 +45,6 @@ public class PersonQueryBean extends QueryBean implements Serializable
 
     private PersonView spouseToRelated;
 
-    private PersonTable personTable;
-
     /**
      *
      */
@@ -56,7 +52,6 @@ public class PersonQueryBean extends QueryBean implements Serializable
     public void initialize()
     {
         personToInsert = new PersonView();
-        personTable = new PersonTable();
     }
 
     /**
@@ -111,12 +106,12 @@ public class PersonQueryBean extends QueryBean implements Serializable
             }
         }
 
-        personToInsert = personTable.insert(personToInsert);
+//        personToInsert = personTable.insert(personToInsert);
     }
 
     private void insertParent()
     {
-        personToInsert = personTable.insert(personToInsert);
+//        personToInsert = personTable.insert(personToInsert);
 
         if (personType == FATHER)
         {
@@ -127,24 +122,24 @@ public class PersonQueryBean extends QueryBean implements Serializable
             relatedPerson.setMother(personToInsert);
         }
 
-        personTable.update(relatedPerson);
+//        personTable.update(relatedPerson);
     }
 
     private void insertSpouse()
     {
-        MarriageTable md = new MarriageTable();
+//        MarriageTable md = new MarriageTable();
         Marriage m = new Marriage();
 
-        personToInsert = personTable.insert(personToInsert);
+//        personToInsert = personTable.insert(personToInsert);
 
         m.setCouple(personToInsert, relatedPerson);
 
-        md.insert(m);
+//        md.insert(m);
     }
 
     private void updateRelatedPerson()
     {
-        personTable.update(relatedPerson);
+//        personTable.update(relatedPerson);
     }
 
     private void setGenderNotSelected()

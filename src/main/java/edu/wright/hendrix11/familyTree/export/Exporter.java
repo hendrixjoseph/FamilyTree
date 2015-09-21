@@ -9,7 +9,7 @@
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
  *
  */
-package edu.wright.hendrix11.familyTree.database.export;
+package edu.wright.hendrix11.familyTree.export;
 
 import java.io.FileNotFoundException;
 import java.io.PrintStream;

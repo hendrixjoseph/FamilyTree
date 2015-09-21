@@ -9,16 +9,16 @@
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
  *
  */
-package edu.wright.hendrix11.familyTree.database.imports;
+package edu.wright.hendrix11.familyTree.export;
 
 import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.PrintStream;
 
 /**
  *
  * @author Joe Hendrix
  */
-public class XmlImporter extends Importer
+public class XmlExporter extends Exporter
 {
 
     /**
@@ -26,25 +26,25 @@ public class XmlImporter extends Importer
      * @param fileName
      * @throws FileNotFoundException
      */
-    public XmlImporter(String fileName) throws FileNotFoundException
+    public XmlExporter(String fileName) throws FileNotFoundException
     {
         super(fileName);
     }
 
     /**
      *
-     * @param in
+     * @param out
      */
-    public XmlImporter(Scanner in)
+    public XmlExporter(PrintStream out)
     {
-        super(in);
+        super(out);
     }
 
     /**
      *
      */
     @Override
-    public void processData()
+    public void export()
     {
 
     }

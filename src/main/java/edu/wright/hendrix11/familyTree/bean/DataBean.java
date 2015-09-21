@@ -11,8 +11,6 @@
  */
 package edu.wright.hendrix11.familyTree.bean;
 
-import edu.wright.hendrix11.familyTree.database.DatabaseQuery;
-import edu.wright.hendrix11.familyTree.database.interfaces.SelectAllData;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

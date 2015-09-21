@@ -9,12 +9,8 @@
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
  *
  */
-package edu.wright.hendrix11.familyTree.database.imports;
+package edu.wright.hendrix11.familyTree.imports;
 
-import edu.wright.hendrix11.familyTree.database.Database;
-import edu.wright.hendrix11.familyTree.database.table.MarriageTable;
-import edu.wright.hendrix11.familyTree.database.table.PersonTable;
-import edu.wright.hendrix11.familyTree.database.table.SpouseChildTable;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
@@ -31,21 +27,6 @@ public abstract class Importer
      *
      */
     protected Scanner in;
-
-    /**
-     *
-     */
-    protected PersonTable personTable;
-
-    /**
-     *
-     */
-    protected MarriageTable marriageTable;
-
-    /**
-     *
-     */
-    protected SpouseChildTable spouseChildTable;
 
     /**
      *
@@ -72,15 +53,7 @@ public abstract class Importer
      */
     public void importData() throws SQLException
     {
-        Database.openConnection();
-
-        personTable = new PersonTable();
-        marriageTable = new MarriageTable();
-        spouseChildTable = new SpouseChildTable();
-
         processData();
-
-        Database.closeConnection();
     }
 
     /**

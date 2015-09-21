@@ -11,8 +11,6 @@
  */
 package edu.wright.hendrix11.familyTree.bean;
 
-import edu.wright.hendrix11.familyTree.database.table.SpouseChildTable;
-import edu.wright.hendrix11.familyTree.entity.SpouseChildMap;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;

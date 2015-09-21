@@ -29,7 +29,7 @@ import javax.persistence.TemporalType;
 public class Burial implements Event
 {
     private Person person;
-    
+
     @OneToMany
     private String place;
 
@@ -57,7 +57,7 @@ public class Burial implements Event
     @Override
     public void setPlace(String place)
     {
-        this.place = place
+        this.place = place;
     }
 
     @Override
@@ -69,7 +69,7 @@ public class Burial implements Event
     @Override
     public void setDate(Date date)
     {
-        this.date = date; 
+        this.date = date;
     }
 
 }

@@ -9,20 +9,14 @@
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
  *
  */
-package edu.wright.hendrix11.familyTree.database.interfaces;
+package edu.wright.hendrix11.familyTree.entity;
 
 /**
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>
- * @param <T>
  */
-public interface InsertData<T>
+public class Place
 {
-
-    /**
-     *
-     * @param t
-     * @return
-     */
-    public T insert(T t);
+    int id;
+    String name;
 }

@@ -9,9 +9,8 @@
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
  *
  */
-package edu.wright.hendrix11.familyTree.database.imports;
+package edu.wright.hendrix11.familyTree.imports;
 
-import edu.wright.hendrix11.familyTree.database.Database;
 import edu.wright.hendrix11.familyTree.entity.Marriage;
 import edu.wright.hendrix11.familyTree.entity.PersonView;
 import java.io.FileNotFoundException;
@@ -64,13 +63,11 @@ public class GedcomImporter extends Importer
      */
     public static void main(String[] args)
     {
-        Database.setProperties(propertyFile);
-        
         String path = "C:\\Users\\Joe\\Documents\\";
         String file = "hendrixfamily.fte.GED";
-        
+
         String outFile = "outFile.txt";
-        
+
         try
         {
             out = new PrintStream(path + outFile);
@@ -80,21 +77,21 @@ public class GedcomImporter extends Importer
             ex.printStackTrace();
             out = System.out;
         }
-        
+
         try
         {
             GedcomImporter importer = new GedcomImporter(path + file);
             importer.importData();
-            
+
             HashMap<String, PersonView> entry = importer.getEntry();
-            
+
             System.out.println(entry.size() + " people loaded.");
         }
         catch (FileNotFoundException | SQLException ex)
         {
             ex.printStackTrace();
         }
-        
+
         out.close();
     }
 
@@ -221,13 +218,13 @@ public class GedcomImporter extends Importer
             }
 
             String gedcomid = reverseEntry.get(child);
-            child = personTable.update(child);
+//            child = personTable.update(child);
             setEntry(child, gedcomid);
 
             //System.out.println(gedcomid + " " +  child.getName() + " updated.");
             if (child.hasParents())
             {
-                marriageTable.insert(marriage);
+//                marriageTable.insert(marriage);
             }
         }
     }
@@ -289,7 +286,7 @@ public class GedcomImporter extends Importer
     private void insertPerson(String gedcomid, PersonView person)
     {
         System.out.println("Attempting to insert " + person.getName());
-        person = personTable.insert(person);
+//        person = personTable.insert(person);
         setEntry(person, gedcomid);
         System.out.println(gedcomid + " " + person.getName() + " inserted.");
     }

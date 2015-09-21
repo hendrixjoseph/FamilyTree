@@ -12,7 +12,6 @@
 package edu.wright.hendrix11.familyTree.bean.query;
 
 import edu.wright.hendrix11.familyTree.bean.DataBean.DataBeanHelper;
-import edu.wright.hendrix11.familyTree.database.table.PlaceTable;
 import edu.wright.hendrix11.familyTree.entity.Place;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -29,7 +28,6 @@ public class PlaceQueryBean extends QueryBean
 {
 
     private Place place;
-    private PlaceTable placeTable;
 
     /**
      *
@@ -37,7 +35,6 @@ public class PlaceQueryBean extends QueryBean
     @PostConstruct
     public void initialize()
     {
-        placeTable = new PlaceTable();
     }
 
     /**
@@ -47,7 +44,7 @@ public class PlaceQueryBean extends QueryBean
     @Override
     public void commit(ActionEvent actionEvent)
     {
-        placeTable.update(place);
+//        placeTable.update(place);
     }
 
     /**
@@ -56,7 +53,7 @@ public class PlaceQueryBean extends QueryBean
      */
     public void delete(ActionEvent actionEvent)
     {
-        placeTable.delete(place);
+//        placeTable.delete(place);
     }
 
     /**

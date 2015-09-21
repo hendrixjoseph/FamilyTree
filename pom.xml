@@ -8,7 +8,7 @@
     <version>2.0</version>
 
     <name>Family Tree</name>
-    <description>{% capture about %}{% include about.md %}{% endcapture %}{{ about | markdownify }}</description>
+    <description>{{ content }}</description>
     <inceptionYear>2015</inceptionYear>
     <url>https://github.com/hendrixjoseph/FamilyTree</url>
 
@@ -132,6 +132,15 @@
                     <failOnError>
                         false
                     </failOnError>
+                    <excludeDefaultDirectories>true</excludeDefaultDirectories>
+                    <filesets>
+                        <fileset>
+                            <directory>target/</directory>
+                            <excludes>
+                                <exclude>site/</exclude>
+                            </excludes>
+                        </fileset>
+                    </filesets>
                 </configuration>
             </plugin>
             <plugin>

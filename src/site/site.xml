@@ -28,7 +28,7 @@
                 <item name="Informal Proposal" href="documentation/cs7700/informal_proposal.html" />
             </item>
             <item name="Emails with Mike Owens">
-                <item name="something beautiful i wrote last night" href="documentation/Mike_Owens/something_beautiful_i_wrote_last_night.html" />
+                <item name="something beautiful i wrote last night" href="{{ site.siteurl }}/documentation/Mike_Owens/something_beautiful_i_wrote_last_night.html" />
                 <item name="too many joins" href="documentation/Mike_Owens/too_many_joins.html" />
                 <item name="your oracle sql magic" href="documentation/Mike_Owens/your_oracle_sql_magic.html" />
             </item>

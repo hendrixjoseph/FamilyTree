@@ -12,7 +12,6 @@
 package edu.wright.hendrix11.familyTree.entity.event;
 
 import edu.wright.hendrix11.familyTree.entity.Person;
-import edu.wright.hendrix11.familyTree.entity.Place;
 import java.util.Date;
 
 /**
