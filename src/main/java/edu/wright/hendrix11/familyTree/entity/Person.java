@@ -87,6 +87,10 @@ public class Person
     @OneToOne
     @PrimaryKeyJoinColumn
     private Death death;
+    
+    @OneToOne
+    @PrimaryKeyJoinColumn
+    private Burial burial;
 
     /**
      *
@@ -149,6 +153,24 @@ public class Person
     public Death getDeath()
     {
         return death;
+    }
+
+    /**
+     *
+     * @param burial
+     */
+    public void setBurial(Burial burial)
+    {
+        this.burial = burial;
+    }
+    
+    /**
+     *
+     * @return
+     */
+    public Burial getBurial()
+    {
+        return burial;
     }
 
     /**
