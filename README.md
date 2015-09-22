@@ -1,3 +1,10 @@
+<!-- 
+  When copying contents to index.md, do the following:
+  Remove: README.md
+  Remove: user-content-
+  Replace: ]\(([^:http:#]) with ](https://github.com/hendrixjoseph/FamilyTree/blob/master/\1
+-->
+
 # FamilyTree
 
 FamilyTree is a simple web application using JavaServerFaces, Java EE, and a SQL database to load, display, edit, and examine a family tree. It was initially created as a project for CS7700 Advanced Database Systems at Wright State, and is currently being used for CS7720 Data Mining at the same school.
