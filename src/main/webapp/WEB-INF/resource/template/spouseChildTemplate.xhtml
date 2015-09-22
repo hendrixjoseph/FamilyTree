@@ -19,7 +19,7 @@
               xmlns:p="http://primefaces.org/ui"
               xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <p:tabView style="height: 90%">
-                <c:forEach  items="#{individualBean.person.spouseChildMap.keySet()}" var="spouse">
+                <c:forEach  items="#{individualBean.person.spouses}" var="spouse">
                     <p:tab title="#{spouse.name}">
                         <ui:include src="childTableTemplate.xhtml">
                             <ui:param name="children" value="#{individualBean.person.getChildren(spouse)}" />
