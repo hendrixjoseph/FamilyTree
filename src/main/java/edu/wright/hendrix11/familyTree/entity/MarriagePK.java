@@ -17,33 +17,33 @@ package edu.wright.hendrix11.familyTree.entity;
  */
 public class MarriagePK
 {
-    private int husbandId;
-    private int wifeId;
+    private int husband;
+    private int wife;
 
-    public MarriagePK(int husbandId, int wifeId, final Marriage outer)
+    public MarriagePK(int husband, int wife)
     {
-        this.husbandId = husbandId;
-        this.wifeId = wifeId;
+        this.husband = husband;
+        this.wife = wife;
     }
 
-    public int getHusbandId()
+    public int getHusband()
     {
-        return husbandId;
+        return husband;
     }
 
-    public void setHusbandId(int husbandId)
+    public void setHusband(int husband)
     {
-        this.husbandId = husbandId;
+        this.husband = husband;
     }
 
     public int getWifeId()
     {
-        return wifeId;
+        return wife;
     }
 
     public void setWifeId(int wifeId)
     {
-        this.wifeId = wifeId;
+        this.wife = wifeId;
     }
 
     @Override
@@ -52,7 +52,7 @@ public class MarriagePK
         if (object instanceof MarriagePK)
         {
             MarriagePK pk = (MarriagePK) object;
-            return husbandId == pk.husbandId && wifeId == pk.wifeId;
+            return husband == pk.husband && wife == pk.wife;
         }
         else
         {
@@ -63,7 +63,7 @@ public class MarriagePK
     @Override
     public int hashCode()
     {
-        return husbandId + wifeId;
+        return husband + wife;
     }
 
 }
