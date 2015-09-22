@@ -30,9 +30,9 @@
             <item name="Screenshots" href="documentation/screenshots.html" />
         </menu>
         <menu name="Emails with Mike Owens">
-            <item name="something beautiful i wrote last night" href="documentation/Mike_Owens/something_beautiful_i_wrote_last_night.html" />
-            <item name="too many joins" href="documentation/Mike_Owens/too_many_joins.html" />
-            <item name="your oracle sql magic" href="documentation/Mike_Owens/your_oracle_sql_magic.html" />
+            <item name="2015-07-08" href="documentation/Mike_Owens/something_beautiful_i_wrote_last_night.html" />
+            <item name="2015-07-06" href="documentation/Mike_Owens/your_oracle_sql_magic.html" />
+            <item name="2015-07-02" href="documentation/Mike_Owens/too_many_joins.html" />
         </menu>
         <footer>Copyright &copy; 2015 Joseph Hendrix</footer>
     </body>
