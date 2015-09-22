@@ -80,12 +80,10 @@ public class Person
             })
     private List<Person> children;
 
-    @OneToOne
-    @PrimaryKeyJoinColumn
+    @OneToOne(mappedby="PERSON_ID")
     private Birth birth;
 
-    @OneToOne
-    @PrimaryKeyJoinColumn
+    @OneToOne(mappedby="PERSON_ID")
     private Death death;
 
     /**
