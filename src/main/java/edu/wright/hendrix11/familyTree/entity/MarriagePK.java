@@ -20,27 +20,48 @@ public class MarriagePK
     private int husband;
     private int wife;
 
+    /**
+     *
+     * @param husband
+     * @param wife
+     */
     public MarriagePK(int husband, int wife)
     {
         this.husband = husband;
         this.wife = wife;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getHusband()
     {
         return husband;
     }
 
+    /**
+     *
+     * @param husband
+     */
     public void setHusband(int husband)
     {
         this.husband = husband;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getWifeId()
     {
         return wife;
     }
 
+    /**
+     *
+     * @param wifeId
+     */
     public void setWifeId(int wifeId)
     {
         this.wife = wifeId;

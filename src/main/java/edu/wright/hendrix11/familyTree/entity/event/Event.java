@@ -21,15 +21,40 @@ import java.util.Date;
  */
 public interface Event
 {
+
+    /**
+     *
+     * @return
+     */
     public Person getPerson();
 
+    /**
+     *
+     * @param person
+     */
     public void setPerson(Person person);
 
+    /**
+     *
+     * @return
+     */
     public Place getPlace();
 
+    /**
+     *
+     * @param place
+     */
     public void setPlace(Place place);
 
+    /**
+     *
+     * @return
+     */
     public Date getDate();
 
+    /**
+     *
+     * @param date
+     */
     public void setDate(Date date);
 }

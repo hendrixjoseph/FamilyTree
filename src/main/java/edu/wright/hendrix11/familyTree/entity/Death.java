@@ -45,36 +45,60 @@ public class Death implements Event
     @Column(name="ANNIVERSARY")
     private Date date;
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Person getPerson()
     {
         return person;
     }
 
+    /**
+     *
+     * @param person
+     */
     @Override
     public void setPerson(Person person)
     {
         this.person = person;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Place getPlace()
     {
         return place;
     }
 
+    /**
+     *
+     * @param place
+     */
     @Override
     public void setPlace(Place place)
     {
         this.place = place;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Date getDate()
     {
         return date;
     }
 
+    /**
+     *
+     * @param date
+     */
     @Override
     public void setDate(Date date)
     {

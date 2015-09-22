@@ -362,11 +362,19 @@ public class PersonView implements Serializable
         return name != null && !name.isEmpty();
     }
 
+    /**
+     *
+     * @return
+     */
     public List<PersonView> getChildren()
     {
         return children;
     }
 
+    /**
+     *
+     * @param children
+     */
     public void setChildren(List<PersonView> children)
     {
         this.children = children;

@@ -30,11 +30,18 @@ public class ThemeParser
     private String jarName;
     private List<String> themes;
 
+    /**
+     *
+     */
     public ThemeParser()
     {
         this("all-themes-1.0.10.jar");
     }
 
+    /**
+     *
+     * @param jarName
+     */
     public ThemeParser(String jarName)
     {
         jarFile = openJarFile(jarName);
@@ -42,6 +49,10 @@ public class ThemeParser
         init();
     }
 
+    /**
+     *
+     * @param jarFile
+     */
     public ThemeParser(JarFile jarFile)
     {
         this.jarFile = jarFile;
@@ -68,26 +79,45 @@ public class ThemeParser
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public List<String> getThemes()
     {
         return themes;
     }
 
+    /**
+     *
+     * @param themes
+     */
     public void setThemes(List<String> themes)
     {
         this.themes = themes;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getJarName()
     {
         return jarName;
     }
 
+    /**
+     *
+     */
     public void outputThemes()
     {
         outputThemes(System.out);
     }
 
+    /**
+     *
+     * @param out
+     */
     public void outputThemes(PrintStream out)
     {
         for (String theme : themes)

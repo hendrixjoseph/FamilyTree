@@ -88,92 +88,163 @@ public class Person
     @PrimaryKeyJoinColumn
     private Death death;
 
+    /**
+     *
+     * @return
+     */
     public List<Person> getSpouses()
     {
         return spouses;
     }
 
+    /**
+     *
+     * @param spouses
+     */
     public void setSpouses(List<Person> spouses)
     {
         this.spouses = spouses;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Person> getChildren()
     {
         return children;
     }
 
+    /**
+     *
+     * @param children
+     */
     public void setChildren(List<Person> children)
     {
         this.children = children;
     }
 
+    /**
+     *
+     * @return
+     */
     public Birth getBirth()
     {
         return birth;
     }
 
+    /**
+     *
+     * @param birth
+     */
     public void setBirth(Birth birth)
     {
         this.birth = birth;
     }
 
+    /**
+     *
+     * @return
+     */
     public Death getDeath()
     {
         return death;
     }
 
+    /**
+     *
+     * @param death
+     */
     public void setDeath(Death death)
     {
         this.death = death;
     }
 
-
+    /**
+     *
+     * @return
+     */
     public String getName()
     {
         return name;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name)
     {
         this.name = name;
     }
 
+    /**
+     *
+     * @return
+     */
     public Gender getGender()
     {
         return gender;
     }
 
+    /**
+     *
+     * @param gender
+     */
     public void setGender(Gender gender)
     {
         this.gender = gender;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getId()
     {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(int id)
     {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public Person getFather()
     {
         return father;
     }
 
+    /**
+     *
+     * @param father
+     */
     public void setFather(Person father)
     {
         this.father = father;
     }
 
+    /**
+     *
+     * @return
+     */
     public Person getMother()
     {
         return mother;
     }
 
+    /**
+     *
+     * @param mother
+     */
     public void setMother(Person mother)
     {
         this.mother = mother;
