@@ -39,7 +39,8 @@ public class IndividualBean implements Serializable
     @PostConstruct
     public void initialize()
     {
-
+        // This is ugly - we'll use injection later
+        em = Persistence.createEntityManagerFactory("edu.wright.hendrix11.familyTree").createEntityManager();
     }
 
     /**
@@ -55,7 +56,7 @@ public class IndividualBean implements Serializable
      *
      * @return
      */
-    public Integer getPersonId()
+    public int getPersonId()
     {
         return person.getId();
     }
