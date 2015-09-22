@@ -118,6 +118,25 @@ public class Person
     {
         return children;
     }
+    
+    /**
+     *
+     * @return
+     */
+    public List<Person> getChildren(Person spouse)
+    {
+        List<Person> childrenOfSpouse = new ArrayList<>();
+        
+        for(Person child : children)
+        {
+            if(child.hasFather() && child.getFather().equals(spouse))
+                childrenOfSpouse.add(child);
+            else if(child.hasMother() && child.getMother().equals(spouse))
+                childrenOfSpouse.add(child);
+        }
+        
+        return children;
+    }
 
     /**
      *
