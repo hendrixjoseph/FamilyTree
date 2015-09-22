@@ -7,10 +7,15 @@
 
   Bring you tables loaded on the NGC and we can look at it further.
 
-  From: Hendrix, Joseph D (TS)
-  Sent: Monday, July 06, 2015 3:43 PM
-  To: Owens, Michael (TS)
-  Subject: RE: your oracle sql magic
+*----------+--------------+
+| From: | Hendrix, Joseph D (TS) |
+*----------+--------------+
+| Sent: | Monday, July 06, 2015 3:43 PM |
+*----------+--------------+
+| To: | Owens, Michael (TS) |
+*----------+--------------+
+| Subject: | RE: your oracle sql magic |
+*----------+--------------+
 
   Ok I think I misunderstood you when you asked "So person, spouse, and sibling is all contain in the "one" person table…. Is that correct?"
 
@@ -18,10 +23,15 @@
 
   The PERSON_VIEW view, however, has a MOTHER and FATHER column for each entry.
 
-  From: Owens, Michael (TS)
-  Sent: Monday, July 06, 2015 3:30 PM
-  To: Hendrix, Joseph D (TS)
-  Subject: RE: your oracle sql magic
+*----------+--------------+
+| From: | Owens, Michael (TS) |
+*----------+--------------+
+| Sent: | Monday, July 06, 2015 3:30 PM |
+*----------+--------------+
+| To: | Hendrix, Joseph D (TS) |
+*----------+--------------+
+| Subject: | RE: your oracle sql magic |
+*----------+--------------+
 
   What about this:
 
@@ -50,78 +60,129 @@
   and        a.id=i.id(+)
 +-----+
 
-  From: Hendrix, Joseph D (TS)
-  Sent: Monday, July 06, 2015 3:20 PM
-  To: Owens, Michael (TS)
-  Subject: RE: your oracle sql magic
+*----------+--------------+
+| From: | Hendrix, Joseph D (TS) |
+*----------+--------------+
+| Sent: | Monday, July 06, 2015 3:20 PM |
+*----------+--------------+
+| To: | Owens, Michael (TS) |
+*----------+--------------+
+| Subject: | RE: your oracle sql magic |
+*----------+--------------+
 
   Yes. Person, spouse, and child are all in the PERSON table.
 
-  From: Owens, Michael (TS)
-  Sent: Monday, July 06, 2015 3:19 PM
-  To: Hendrix, Joseph D (TS)
-  Subject: RE: your oracle sql magic
+*----------+--------------+
+| From: | Owens, Michael (TS) |
+*----------+--------------+
+| Sent: | Monday, July 06, 2015 3:19 PM |
+*----------+--------------+
+| To: | Hendrix, Joseph D (TS) |
+*----------+--------------+
+| Subject: | RE: your oracle sql magic |
+*----------+--------------+
 
   So person, spouse, and sibling is all contain in the "one" person table…. Is that correct?
 
-  From: Hendrix, Joseph D (TS)
-  Sent: Monday, July 06, 2015 3:14 PM
-  To: Owens, Michael (TS)
-  Subject: RE: your oracle sql magic
+*----------+--------------+
+| From: | Hendrix, Joseph D (TS) |
+*----------+--------------+
+| Sent: | Monday, July 06, 2015 3:14 PM |
+*----------+--------------+
+| To: | Owens, Michael (TS) |
+*----------+--------------+
+| Subject: | RE: your oracle sql magic |
+*----------+--------------+
 
   * PERSON
+  
   * FATHER_OF
+  
   * MOTHER_OF
+  
   * BIRTH
+  
   * DEATH
+  
   * GENDER
+  
   * PLACE
 
-  From: Owens, Michael (TS)
-  Sent: Monday, July 06, 2015 3:13 PM
-  To: Hendrix, Joseph D (TS)
-  Subject: RE: your oracle sql magic
+*----------+--------------+
+| From: | Owens, Michael (TS) |
+*----------+--------------+
+| Sent: | Monday, July 06, 2015 3:13 PM |
+*----------+--------------+
+| To: | Hendrix, Joseph D (TS) |
+*----------+--------------+
+| Subject: | RE: your oracle sql magic |
+*----------+--------------+
 
-  I think I know what mean/>and want to do.
+  I think I know what mean and want to do.
 
   What the name of you tables being used:
 
-  From: Hendrix, Joseph D (TS)
-  Sent: Monday, July 06, 2015 3:11 PM
-  To: Owens, Michael (TS)
-  Subject: RE: your oracle sql magic
+*----------+--------------+
+| From: | Hendrix, Joseph D (TS) |
+*----------+--------------+
+| Sent: | Monday, July 06, 2015 3:11 PM |
+*----------+--------------+
+| To: | Owens, Michael (TS) |
+*----------+--------------+
+| Subject: | RE: your oracle sql magic |
+*----------+--------------+
 
   Ok, I think I know what you mean.
 
   I’ll have to do that tonight and ask you again tomorrow.
 
-  From: Owens, Michael (TS) 
-  Sent: Monday, July 06, 2015 3:10 PM
-  To: Hendrix, Joseph D (TS)
-  Subject: RE: your oracle sql magic
+*----------+--------------+
+| From: | Owens, Michael (TS)  |
+*----------+--------------+
+| Sent: | Monday, July 06, 2015 3:10 PM |
+*----------+--------------+
+| To: | Hendrix, Joseph D (TS) |
+*----------+--------------+
+| Subject: | RE: your oracle sql magic |
+*----------+--------------+
 
   There should be an easier way, put usually I export to spreadsheet.
 
-  From: Hendrix, Joseph D (TS)
-  Sent: Monday, July 06, 2015 3:08 PM
-  To: Owens, Michael (TS)
-  Subject: RE: your oracle sql magic
+*----------+--------------+
+| From: | Hendrix, Joseph D (TS) |
+*----------+--------------+
+| Sent: | Monday, July 06, 2015 3:08 PM |
+*----------+--------------+
+| To: | Owens, Michael (TS) |
+*----------+--------------+
+| Subject: | RE: your oracle sql magic |
+*----------+--------------+
 
   It’s all at home.
 
   How do I do that, anyhow? (Preferable in sqldeveloper)
 
-  From: Owens, Michael (TS)
-  Sent: Monday, July 06, 2015 3:08 PM
-  To: Hendrix, Joseph D (TS)
-  Subject: RE: your oracle sql magic
+*----------+--------------+
+| From: | Owens, Michael (TS) |
+*----------+--------------+
+| Sent: | Monday, July 06, 2015 3:08 PM |
+*----------+--------------+
+| To: | Hendrix, Joseph D (TS) |
+*----------+--------------+
+| Subject: | RE: your oracle sql magic |
+*----------+--------------+
 
   Can you give me a sample dump of the data including headings?
 
-  From: Hendrix, Joseph D (TS) 
-  Sent: Monday, July 06, 2015 3:05 PM
-  To: Owens, Michael (TS)
-  Subject: RE: your oracle sql magic
+*----------+--------------+
+| From: | Hendrix, Joseph D (TS)  |
+*----------+--------------+
+| Sent: | Monday, July 06, 2015 3:05 PM |
+*----------+--------------+
+| To: | Owens, Michael (TS) |
+*----------+--------------+
+| Subject: | RE: your oracle sql magic |
+*----------+--------------+
 
 +-----+
   CREATE TABLE "JOE"."PERSON"
@@ -147,17 +208,27 @@
   Insert into JOE.PERSON (ID,NAME,GENDER) values (3,'Cynthiann McDonald Reynolds','F');
 +-----+
 
-  From: Owens, Michael (TS) 
-  Sent: Monday, July 06, 2015 3:01 PM
-  To: Hendrix, Joseph D (TS)
-  Subject: RE: your oracle sql magic
+*----------+--------------+
+| From: | Owens, Michael (TS)  |
+*----------+--------------+
+| Sent: | Monday, July 06, 2015 3:01 PM |
+*----------+--------------+
+| To: | Hendrix, Joseph D (TS) |
+*----------+--------------+
+| Subject: | RE: your oracle sql magic |
+*----------+--------------+
 
   Can you send me a sample of your person table
 
-  From: Hendrix, Joseph D (TS) 
-  Sent: Monday, July 06, 2015 2:25 PM
-  To: Owens, Michael (TS)
-  Subject: RE: your oracle sql magic
+*----------+--------------+
+| From: | Hendrix, Joseph D (TS)  |
+*----------+--------------+
+| Sent: | Monday, July 06, 2015 2:25 PM |
+*----------+--------------+
+| To: | Owens, Michael (TS) |
+*----------+--------------+
+| Subject: | RE: your oracle sql magic |
+*----------+--------------+
 
   This one:
 
@@ -186,27 +257,43 @@
 
   Gives me exactly what I need. It’s just ugly.
 
-  From: Owens, Michael (TS) 
-  Sent: Monday, July 06, 2015 2:23 PM
-  To: Hendrix, Joseph D (TS)
-  Subject: RE: your oracle sql magic
+*----------+--------------+
+| From: | Owens, Michael (TS)  |
+*----------+--------------+
+| Sent: | Monday, July 06, 2015 2:23 PM |
+*----------+--------------+
+| To: | Hendrix, Joseph D (TS) |
+*----------+--------------+
+| Subject: | RE: your oracle sql magic |
+*----------+--------------+
 
   So it never gives you an error it just does return the values/>records you expecting.
 
-  From: Hendrix, Joseph D (TS) 
-  Sent: Monday, July 06, 2015 2:21 PM
-  To: Owens, Michael (TS)
-  Subject: RE: your oracle sql magic
+*----------+--------------+
+| From: | Hendrix, Joseph D (TS)  |
+*----------+--------------+
+| Sent: | Monday, July 06, 2015 2:21 PM |
+*----------+--------------+
+| To: | Owens, Michael (TS) |
+*----------+--------------+
+| Subject: | RE: your oracle sql magic |
+*----------+--------------+
 
   Neither of these gives me an error. What I’m doing is trying to make a view that looks something like this:
 
-  id | name | Spouse id | spouse | Child id | child
----- | ---- | ---- | ---- | ---- | ---- 
-1 | Jim Bob | 2 | Suzy | 3 | Fred
-1 | Jim Bob | 2 | Suzy | 3 | Fred
-2 | Suzy | 1 | Jim Bob | 3 | Fred
-2 | Suzy | 1 | Jim Bob | 3 | Fred
-3 | Fred | null | null | 4 | John
+*---+---+---+---+---+---+
+| id | name | Spouse id | spouse | Child id | child
+*---+---+---+---+---+---+
+| 1 | Jim Bob | 2 | Suzy | 3 | Fred
+*---+---+---+---+---+---+
+| 1 | Jim Bob | 2 | Suzy | 3 | Fred
+*---+---+---+---+---+---+
+| 2 | Suzy | 1 | Jim Bob | 3 | Fred
+*---+---+---+---+---+---+
+| 2 | Suzy | 1 | Jim Bob | 3 | Fred
+*---+---+---+---+---+---+
+| 3 | Fred | null | null | 4 | John
+*---+---+---+---+---+---+
 
   Which is a view of a person, their spouse (if applicable) and their child.
 
@@ -237,12 +324,17 @@
 
   My schema currently looks like this:
 
-![schema1](https:/>/>cloud.githubusercontent.com/>assets/>12754677/>8515562/>fac25c28-2372-11e5-8f71-6af8a93eaddd.jpg)
+[https://cloud.githubusercontent.com/>assets/>12754677/>8515562/>fac25c28-2372-11e5-8f71-6af8a93eaddd.jpg] Schema 1
 
-  From: Owens, Michael (TS) 
-  Sent: Monday, July 06, 2015 2:12 PM
-  To: Hendrix, Joseph D (TS)
-  Subject: RE: your oracle sql magic
+*----------+--------------+
+| From: | Owens, Michael (TS)  |
+*----------+--------------+
+| Sent: | Monday, July 06, 2015 2:12 PM |
+*----------+--------------+
+| To: | Hendrix, Joseph D (TS) |
+*----------+--------------+
+| Subject: | RE: your oracle sql magic |
+*----------+--------------+
 
   Does the sql statement give you an error.  It’s probably something to do with the "or"  violates the join
 
@@ -250,14 +342,19 @@
 
   Your selecting against a view to determine a person father, spouse, children – where applicable???
 
-  From: Hendrix, Joseph D (TS) 
-  Sent: Monday, July 06, 2015 10:13 AM
-  To: Owens, Michael (TS)
-  Subject: your oracle sql magic
+*----------+--------------+
+| From: | Hendrix, Joseph D (TS)  |
+*----------+--------------+
+| Sent: | Monday, July 06, 2015 10:13 AM |
+*----------+--------------+
+| To: | Owens, Michael (TS) |
+*----------+--------------+
+| Subject: | your oracle sql magic |
+*----------+--------------+
 
   Mike,
 
-  I have a view /> select statement:
+  I have a view / select statement:
 
 +-----+
   SELECT
