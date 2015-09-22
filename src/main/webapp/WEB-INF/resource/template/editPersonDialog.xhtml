@@ -38,16 +38,16 @@
                     </p:selectOneMenu>
 
                     <p:outputLabel value="Place of birth:" />
-                    <p:inputText value="#{person.placeOfBirth}" maxlength="#{inputLength}" size="#{inputLength}" />
+                    <p:inputText value="#{person.birth.place}" maxlength="#{inputLength}" size="#{inputLength}" />
 
                     <p:outputLabel value="Date of birth:" />
-                    <p:calendar value="#{person.dateOfBirth}" pattern="MMM dd yyyy"/>
+                    <p:calendar value="#{person.birth.date}" pattern="MMM dd yyyy"/>
 
                     <p:outputLabel value="Place of death:" />
-                    <p:inputText value="#{person.placeOfDeath}" maxlength="#{inputLength}" size="#{inputLength}" />
+                    <p:inputText value="#{person.death.place}" maxlength="#{inputLength}" size="#{inputLength}" />
 
                     <p:outputLabel value="Date of death:" />
-                    <p:calendar value="#{person.dateOfDeath}" pattern="MMM dd yyyy" />
+                    <p:calendar value="#{person.death.date}" pattern="MMM dd yyyy" />
                 </p:panelGrid>
             </p>
             <p>
