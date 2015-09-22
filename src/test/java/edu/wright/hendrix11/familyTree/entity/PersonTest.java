@@ -1,13 +1,13 @@
-/* 
+/*
  *  The MIT License (MIT)
- * 
+ *
  *  View the full license at:
  *  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
- *  
+ *
  *  Copyright (c) 2015 Joseph Hendrix
- *  
+ *
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- *  
+ *
  */
 package edu.wright.hendrix11.familyTree.entity;
 
@@ -41,7 +41,8 @@ public class PersonTest
     @AfterClass
     public static void tearDownClass()
     {
-        emf.close();
+        if(emf != null)
+            emf.close();
     }
 
     private EntityManager em;
@@ -67,11 +68,24 @@ public class PersonTest
 
         sb.append("\n\tID:\t").append(person.getId());
         sb.append("\n\tNAME:\t").append(person.getName());
+        sb.append("\n\tBIRTH:\t").append(person.getBirth().getDate());
         sb.append("\n\tGENDER:\t").append(person.getGender().getFullWord());
         sb.append("\n\tFATHER:\t").append(person.getFather().getName());
         sb.append("\n\tMOTHER:\t").append(person.getMother().getName());
-        
-        
+
+        sb.append("\n\tSPOUSES:\t");
+
+        for(Person spouse : person.getSpouses())
+            sb.append(spouse.getName()).append(", ");
+
+        sb.append("\n\tCHILDREN:\t");
+
+        for(Person child : person.getChildren())
+            sb.append(child.getName()).append(", ");
+
+        // NullPointerException if it don't exist!
+//        sb.append("\n\tDEATH:\t").append(person.getDeath().getDate());
+
         LOG.log(Level.INFO, sb.toString());
     }
 

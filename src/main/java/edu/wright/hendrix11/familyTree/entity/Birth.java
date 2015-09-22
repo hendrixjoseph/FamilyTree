@@ -33,11 +33,8 @@ import javax.persistence.TemporalType;
 public class Birth implements Event
 {
     @Id
-    @Column(name = "PERSON_ID")
-    private int id;
-
     @OneToOne
-    @PrimaryKeyJoinColumn
+    @PrimaryKeyJoinColumn(name="PERSON_ID")
     private Person person;
 
     @ManyToOne
@@ -45,19 +42,8 @@ public class Birth implements Event
     private Place place;
 
     @Temporal(TemporalType.DATE)
+    @Column(name="ANNIVERSARY")
     private Date date;
-
-    @Override
-    public int getId()
-    {
-        return id;
-    }
-
-    @Override
-    public void setId(int id)
-    {
-        this.id = id;
-    }
 
     @Override
     public Person getPerson()

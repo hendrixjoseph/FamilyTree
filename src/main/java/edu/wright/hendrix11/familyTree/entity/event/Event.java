@@ -21,10 +21,6 @@ import java.util.Date;
  */
 public interface Event
 {
-    public int getId();
-    
-    public void setId(int id);
-
     public Person getPerson();
 
     public void setPerson(Person person);

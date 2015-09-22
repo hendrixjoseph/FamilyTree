@@ -21,6 +21,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 /**
@@ -80,11 +81,11 @@ public class Person
     private List<Person> children;
 
     @OneToOne
-    @JoinColumn(name = "PERSON_ID")
+    @PrimaryKeyJoinColumn
     private Birth birth;
-    
+
     @OneToOne
-    @JoinColumn(name = "PERSON_ID")
+    @PrimaryKeyJoinColumn
     private Death death;
 
     public List<Person> getSpouses()
