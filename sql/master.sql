@@ -1,5 +1,5 @@
 --------------------------------------------------------
---  File created - Wednesday-September-16-2015   
+--  File created - Monday-September-21-2015   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Type CUSTOM_DATE
@@ -68,6 +68,22 @@ END;
 	"FULL_WORD" VARCHAR2(20)
    ) ;
 --------------------------------------------------------
+--  DDL for Table DEFAULT_PERSON_TYPE
+--------------------------------------------------------
+
+  CREATE TABLE "DEFAULT_PERSON_TYPE" 
+   (	"ID" NUMBER, 
+	"DEFAULT_PERSON_TYPE" VARCHAR2(20)
+   ) ;
+--------------------------------------------------------
+--  DDL for Table PERSON_INFO_TYPE
+--------------------------------------------------------
+
+  CREATE TABLE "PERSON_INFO_TYPE" 
+   (	"ID" NUMBER, 
+	"TYPE" VARCHAR2(20)
+   ) ;
+--------------------------------------------------------
 --  DDL for Table SETTINGS
 --------------------------------------------------------
 
@@ -84,7 +100,7 @@ END;
   CREATE TABLE "BIRTH" 
    (	"PERSON_ID" NUMBER, 
 	"PLACE_ID" NUMBER, 
-	"DATE" DATE
+	"ANNIVERSARY" DATE
    ) ;
 --------------------------------------------------------
 --  DDL for Table BURIAL
@@ -92,7 +108,7 @@ END;
 
   CREATE TABLE "BURIAL" 
    (	"PERSON_ID" NUMBER, 
-	"ON_DATE" DATE, 
+	"ANNIVERARY" DATE, 
 	"PLACE_ID" NUMBER
    ) ;
 --------------------------------------------------------
@@ -102,15 +118,7 @@ END;
   CREATE TABLE "DEATH" 
    (	"PERSON_ID" NUMBER, 
 	"PLACE_ID" NUMBER, 
-	"DATE" DATE
-   ) ;
---------------------------------------------------------
---  DDL for Table DEFAULT_PERSON_TYPE
---------------------------------------------------------
-
-  CREATE TABLE "DEFAULT_PERSON_TYPE" 
-   (	"ID" NUMBER, 
-	"DEFAULT_PERSON_TYPE" VARCHAR2(20)
+	"ANNIVERSARY" DATE
    ) ;
 --------------------------------------------------------
 --  DDL for Table FATHER_OF
@@ -157,14 +165,6 @@ END;
 	"DESCRIPTION" BLOB
    ) ;
 --------------------------------------------------------
---  DDL for Table PERSON_INFO_TYPE
---------------------------------------------------------
-
-  CREATE TABLE "PERSON_INFO_TYPE" 
-   (	"ID" NUMBER, 
-	"TYPE" VARCHAR2(20)
-   ) ;
---------------------------------------------------------
 --  DDL for Table PLACE
 --------------------------------------------------------
 
@@ -185,42 +185,20 @@ END;
 --  DDL for View CHILDREN_VIEW
 --------------------------------------------------------
 
-  CREATE OR REPLACE VIEW "CHILDREN_VIEW" ("ID", "NAME", "SPOUSE_ID", "SPOUSE", "CHILD_ID", "CHILD") AS 
-  SELECT 
+  CREATE OR REPLACE VIEW "CHILDREN_VIEW" ("ID", "NAME", "CHILD_ID", "CHILD_NAME") AS 
+  SELECT DISTINCT
     P.ID,
-	  P.NAME,
-    SPOUSE.ID AS SPOUSE_ID,
-    SPOUSE.NAME AS SPOUSE,
-    CHILD.ID AS CHILD_ID,
-    CHILD.NAME AS CHILD
+    P.NAME,
+    CHILD.ID CHILD_ID,
+    CHILD.NAME CHILD_NAME
 FROM 
-    PERSON_VIEW CHILD
-INNER JOIN 
-    PERSON_VIEW P
-ON
-    CHILD.FATHER_ID = P.ID OR CHILD.MOTHER_ID = P.ID
-LEFT OUTER JOIN
-    PERSON_VIEW SPOUSE
-ON
-    (CHILD.FATHER_ID = SPOUSE.ID OR CHILD.MOTHER_ID = SPOUSE.ID) AND
-    P.ID <> SPOUSE.ID
-ORDER BY
-    P.NAME, SPOUSE.NAME;
---------------------------------------------------------
---  DDL for View DEFAULT_PERSON_VIEW
---------------------------------------------------------
-
-  CREATE OR REPLACE VIEW "DEFAULT_PERSON_VIEW" ("ID", "FATHER_ID", "FATHER_NAME", "MOTHER_ID", "MOTHER_NAME", "NAME", "GENDER", "PLACE_OF_BIRTH", "DATE_OF_BIRTH", "PLACE_OF_DEATH", "DATE_OF_DEATH") AS 
-  SELECT 
-    "ID","FATHER_ID","FATHER_NAME","MOTHER_ID","MOTHER_NAME","NAME","GENDER","PLACE_OF_BIRTH","DATE_OF_BIRTH","PLACE_OF_DEATH","DATE_OF_DEATH"
-FROM 
-  PERSON_VIEW
+    PERSON P,
+    PERSON CHILD,
+    FATHER_OF,
+    MOTHER_OF
 WHERE
-  ID = (CASE 
-          WHEN (SELECT DEFAULT_PERSON FROM SETTINGS) IS NOT NULL
-          THEN (SELECT DEFAULT_PERSON FROM SETTINGS)
-          ELSE (SELECT MIN(ID) FROM PERSON)
-       END);
+    (P.ID = FATHER_OF.FATHER_ID AND CHILD.ID = FATHER_OF.CHILD_ID) OR
+    (P.ID = MOTHER_OF.MOTHER_ID AND CHILD.ID = MOTHER_OF.CHILD_ID);
 --------------------------------------------------------
 --  DDL for View LAST_PERSON_INSERTED_VIEW
 --------------------------------------------------------
@@ -281,9 +259,9 @@ WHERE
     P.NAME,
     GENDER.FULL_WORD AS GENDER,
     B_PLACE.NAME AS PLACE_OF_BIRTH,
-    BIRTH."DATE" AS DATE_OF_BIRTH,
+    BIRTH.anniversary AS DATE_OF_BIRTH,
     D_PLACE.NAME AS PLACE_OF_DEATH,
-    DEATH."DATE" AS DATE_OF_DEATH
+    DEATH.anniversary AS DATE_OF_DEATH
 FROM
     PERSON P,
     PERSON DAD,
@@ -305,17 +283,6 @@ AND     P.ID = DEATH.PERSON_ID (+)
 AND     BIRTH.PLACE_ID = B_PLACE.ID (+)
 AND     DEATH.PLACE_ID = D_PLACE.ID (+);
 --------------------------------------------------------
---  DDL for View PERSON_VIEW_NULL
---------------------------------------------------------
-
-  CREATE OR REPLACE VIEW "PERSON_VIEW_NULL" ("ID", "FATHER_ID", "FATHER_NAME", "MOTHER_ID", "MOTHER_NAME", "NAME", "GENDER", "PLACE_OF_BIRTH", "DATE_OF_BIRTH", "PLACE_OF_DEATH", "DATE_OF_DEATH") AS 
-  SELECT 
-    "ID","FATHER_ID","FATHER_NAME","MOTHER_ID","MOTHER_NAME","NAME","GENDER","PLACE_OF_BIRTH","DATE_OF_BIRTH","PLACE_OF_DEATH","DATE_OF_DEATH"
-FROM 
-    PERSON_VIEW
-WHERE
-    FATHER_ID IS NULL;
---------------------------------------------------------
 --  DDL for View SETTINGS_VIEW
 --------------------------------------------------------
 
@@ -336,39 +303,32 @@ AND BOOLEAN.ID = SETTINGS.VIEW_WELCOME_PAGE;
 --  DDL for View SPOUSE_VIEW
 --------------------------------------------------------
 
-  CREATE OR REPLACE VIEW "SPOUSE_VIEW" ("ID", "NAME", "SPOUSE_ID", "SPOUSE") AS 
-  SELECT DISTINCT
+  CREATE OR REPLACE VIEW "SPOUSE_VIEW" ("ID", "NAME", "SPOUSE_ID", "SPOUSE_NAME") AS 
+  SELECT DISTINCT P.ID,
+  P.NAME,
+  SPOUSE.ID SPOUSE_ID,
+  SPOUSE.NAME SPOUSE_NAME
+FROM PERSON P,
+  PERSON SPOUSE,
+  MARRIAGE
+WHERE (P.ID    = MARRIAGE.HUSBAND OR P.ID = MARRIAGE.WIFE)
+AND (SPOUSE.ID = MARRIAGE.WIFE OR SPOUSE.ID = MARRIAGE.HUSBAND)
+AND (P.ID <> SPOUSE.ID)
+UNION SELECT DISTINCT
     P.ID,
-	  P.NAME,
-    SPOUSE.ID AS SPOUSE_ID,
-    SPOUSE.NAME AS SPOUSE
+    P.NAME,
+    SPOUSE.ID SPOUSE_ID,
+    SPOUSE.NAME SPOUSE_NAME
 FROM 
-    PERSON_VIEW CHILD
-INNER JOIN 
-    PERSON_VIEW P
-ON
-    CHILD.FATHER_ID = P.ID OR CHILD.MOTHER_ID = P.ID
-LEFT OUTER JOIN
-    PERSON_VIEW SPOUSE
-ON
-    (CHILD.FATHER_ID = SPOUSE.ID OR CHILD.MOTHER_ID = SPOUSE.ID) AND
-    P.ID <> SPOUSE.ID
-UNION
-SELECT     
-    P.HUSBAND_ID AS ID,
-	  P.HUSBAND_NAME AS NAME,
-    P.WIFE_ID AS SPOUSE_ID,
-    P.WIFE_NAME AS SPOUSE
-FROM
-MARRIAGE_VIEW P
-UNION
-SELECT     
-    P.WIFE_ID AS ID,
-	  P.WIFE_NAME AS NAME,
-    P.HUSBAND_ID AS SPOUSE_ID,
-    P.HUSBAND_NAME AS SPOUSE
-FROM
-MARRIAGE_VIEW P;
+    PERSON P,
+    PERSON SPOUSE,
+    FATHER_OF,
+    MOTHER_OF
+WHERE
+    (P.ID = FATHER_OF.FATHER_ID OR P.ID = MOTHER_OF.MOTHER_ID) AND
+    (SPOUSE.ID = MOTHER_OF.MOTHER_ID OR SPOUSE.ID = FATHER_OF.FATHER_ID) AND
+    P.ID <> SPOUSE.ID AND
+    FATHER_OF.CHILD_ID = MOTHER_OF.CHILD_ID;
 REM INSERTING into BOOLEAN
 SET DEFINE OFF;
 Insert into BOOLEAN (ID,VALUE) values (0,'false');
@@ -379,6 +339,13 @@ Insert into GENDER (ABBR,FULL_WORD) values ('M','Male');
 Insert into GENDER (ABBR,FULL_WORD) values ('F','Female');
 Insert into GENDER (ABBR,FULL_WORD) values ('O','Other');
 Insert into GENDER (ABBR,FULL_WORD) values ('U','Unknown');
+REM INSERTING into DEFAULT_PERSON_TYPE
+SET DEFINE OFF;
+Insert into DEFAULT_PERSON_TYPE (ID,DEFAULT_PERSON_TYPE) values (1,'Same person');
+Insert into DEFAULT_PERSON_TYPE (ID,DEFAULT_PERSON_TYPE) values (2,'Last viewed person');
+Insert into DEFAULT_PERSON_TYPE (ID,DEFAULT_PERSON_TYPE) values (3,'Last edited person');
+REM INSERTING into PERSON_INFO_TYPE
+SET DEFINE OFF;
 REM INSERTING into SETTINGS
 SET DEFINE OFF;
 Insert into SETTINGS (THEME,DEFAULT_PERSON,DEFAULT_PERSON_TYPE,VIEW_WELCOME_PAGE) values (null,null,1,1);
@@ -686,113 +653,6 @@ BEGIN
 END;
 /
 ALTER TRIGGER "PERSON_SEQ_TRIGGER" ENABLE;
---------------------------------------------------------
---  DDL for Trigger PERSON_VIEW_DELETE_TRIGGER
---------------------------------------------------------
-
-  CREATE OR REPLACE TRIGGER "PERSON_VIEW_DELETE_TRIGGER" 
-INSTEAD OF DELETE ON PERSON_VIEW 
-BEGIN
-  DELETE FROM PERSON WHERE ID=:old.ID;
-END;
-/
-ALTER TRIGGER "PERSON_VIEW_DELETE_TRIGGER" ENABLE;
---------------------------------------------------------
---  DDL for Trigger PERSON_VIEW_INSERT_TRIGGER
---------------------------------------------------------
-
-  CREATE OR REPLACE TRIGGER "PERSON_VIEW_INSERT_TRIGGER" 
-INSTEAD OF INSERT ON PERSON_VIEW 
-DECLARE
-  GENDER_ABBR CHAR(1);
-  P_ID NUMBER;
-  PLACE_OF_BIRTH_ID NUMBER;
-  PLACE_OF_DEATH_ID NUMBER;
-BEGIN
-  -- Insert the person
-  IF :new.GENDER IS NOT NULL THEN
-    SELECT ABBR INTO GENDER_ABBR FROM GENDER WHERE GENDER.FULL_WORD=:new.GENDER;
-  ELSE
-    SELECT ABBR INTO GENDER_ABBR FROM GENDER WHERE GENDER.FULL_WORD='Unknown';
-  END IF;
-  
-  INSERT INTO PERSON (NAME, GENDER) VALUES (:new.NAME, GENDER_ABBR);
-  
-  SELECT ID INTO P_ID FROM LAST_PERSON_INSERTED_VIEW; 
-  
-  -- Map FATHER_ID to FATHER_OF table
-  IF :new.FATHER_ID IS NOT NULL THEN
-    INSERT INTO FATHER_OF (FATHER_ID, CHILD_ID) VALUES (:new.FATHER_ID, P_ID);
-  END IF;
-  
-  -- Map MOTHER_ID to MOTHER_OF table
-  IF :new.MOTHER_ID IS NOT NULL THEN
-    INSERT INTO MOTHER_OF (MOTHER_ID, CHILD_ID) VALUES (:new.MOTHER_ID, P_ID);
-  END IF;
-  
-  -- Insert Birth
-  INSERT_OR_UPDATE_BIRTH(P_ID, :new.PLACE_OF_BIRTH, :new.DATE_OF_BIRTH);
-  
-  -- Insert Death
-  INSERT_OR_UPDATE_DEATH(P_ID, :new.PLACE_OF_DEATH, :new.DATE_OF_DEATH);
-  
-END;
-/
-ALTER TRIGGER "PERSON_VIEW_INSERT_TRIGGER" ENABLE;
---------------------------------------------------------
---  DDL for Trigger PERSON_VIEW_UPDATE_TRIGGER
---------------------------------------------------------
-
-  CREATE OR REPLACE TRIGGER "PERSON_VIEW_UPDATE_TRIGGER" 
-INSTEAD OF UPDATE ON PERSON_VIEW
-DECLARE
-  GENDER_ABBR CHAR(1);
-  DUMMY NUMBER;
-  PLACE_OF_BIRTH_ID NUMBER;
-  PLACE_OF_DEATH_ID NUMBER;
-BEGIN
-  IF :new.ID IS NOT NULL THEN
-  
-    -- Update NAME and GENDER, which are required in the tables anyway
-    -- (NOT NULL constraints)
-    IF :new.NAME IS NOT NULL THEN
-      UPDATE PERSON SET NAME=:new.NAME WHERE ID=:new.ID;
-    END IF;
-    
-    IF :new.GENDER IS NOT NULL THEN
-      SELECT ABBR INTO GENDER_ABBR FROM GENDER WHERE GENDER.FULL_WORD=:new.GENDER;
-      UPDATE PERSON SET GENDER=GENDER_ABBR WHERE ID=:new.ID;
-    END IF;
-    
-    -- Insert / update parents
-    IF :new.FATHER_ID IS NOT NULL THEN
-       BEGIN
-          SELECT FATHER_ID INTO DUMMY FROM FATHER_OF WHERE CHILD_ID=:new.ID;
-          UPDATE FATHER_OF SET FATHER_ID=:new.FATHER_ID WHERE CHILD_ID=:new.ID;
-       EXCEPTION WHEN NO_DATA_FOUND THEN
-          INSERT INTO FATHER_OF (FATHER_ID, CHILD_ID) VALUES (:new.FATHER_ID, :new.ID);
-       END;
-    END IF;
-    
-    IF :new.MOTHER_ID IS NOT NULL THEN
-       BEGIN
-          SELECT MOTHER_ID INTO DUMMY FROM MOTHER_OF WHERE CHILD_ID=:new.ID;
-          UPDATE MOTHER_OF SET MOTHER_ID=:new.MOTHER_ID WHERE CHILD_ID=:new.ID;
-       EXCEPTION WHEN NO_DATA_FOUND THEN
-          INSERT INTO MOTHER_OF (MOTHER_ID, CHILD_ID) VALUES (:new.MOTHER_ID, :new.ID);
-       END;
-    END IF;
-    
-    -- Update Birth
-    INSERT_OR_UPDATE_BIRTH(:new.ID, :new.PLACE_OF_BIRTH, :new.DATE_OF_BIRTH);
-    
-    -- Update Death
-    INSERT_OR_UPDATE_DEATH(:new.ID, :new.PLACE_OF_DEATH, :new.DATE_OF_DEATH);
-    
-  END IF;
-END;
-/
-ALTER TRIGGER "PERSON_VIEW_UPDATE_TRIGGER" ENABLE;
 --------------------------------------------------------
 --  DDL for Trigger PLACE_SEQ_TRIGGER
 --------------------------------------------------------
