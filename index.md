@@ -8,25 +8,25 @@ FamilyTree is a simple web application using JavaServerFaces, Java EE, and a SQL
 
 ## Table of Contents
 
-* [Contents of Repository](#user-content-contents-of-repository) 
- * [Configuration files](#user-content-configuration-files)
- * [Source code](#user-content-source-code)
- * [SQL](#user-content-sql)
- * [Directory structure](#user-content-directory-structure)
-* [Setup](#user-content-setup)
-* [Tools](#user-content-tools)
- * [Server and Database](#user-content-server-and-database)
- * [Development Tools](#user-content-development-tools)
-   * [Desktop Tools](#user-content-desktop-tools)
-    * [NetBeans Plugins](#user-content-netbeans-plugins)
-    * [Android Tools](#user-content-android-tools)
-* [License](#user-content-license)
+* [Contents of Repository](#contents-of-repository) 
+ * [Configuration files](#configuration-files)
+ * [Source code](#source-code)
+ * [SQL](#sql)
+ * [Directory structure](#directory-structure)
+* [Setup](#setup)
+* [Tools](#tools)
+ * [Server and Database](#server-and-database)
+ * [Development Tools](#development-tools)
+   * [Desktop Tools](#desktop-tools)
+    * [NetBeans Plugins](#netbeans-plugins)
+    * [Android Tools](#android-tools)
+* [License](#license)
 
 ## Contents of Repository
 
 ### Configuration files
 
-This repository contains two NetBeans configuration files, namely [`nb-configuration.xml`](nb-configuration.xml) and [`nbactions.xml`](nbactions.xml). Also, it contains the standard Maven [`pom.xml`](pom.xml) and an extra [`ojdbc7.pom`](ojdbc7.pom) to install Oracle's JDBC driver into the local repository. Finally, it contains [`.gitignore`](.gitignore) so I don't accidently commit and push things I don't want onto GitHub.
+This repository contains two NetBeans configuration files, namely [`nb-configuration.xml`]https://github.com/hendrixjoseph/FamilyTree/blob/master/nb-configuration.xml) and [`nbactions.xml`]https://github.com/hendrixjoseph/FamilyTree/blob/master/nbactions.xml). Also, it contains the standard Maven [`pom.xml`](pom.xml) and an extra [`ojdbc7.pom`]https://github.com/hendrixjoseph/FamilyTree/blob/master/ojdbc7.pom) to install Oracle's JDBC driver into the local repository. Finally, it contains [`.gitignore`]https://github.com/hendrixjoseph/FamilyTree/blob/master/.gitignore) so I don't accidently commit and push things I don't want onto GitHub.
 
 ### Source code
 
@@ -43,7 +43,7 @@ The following types of files are not currently found in this project, but some m
 
 ### SQL
 
-All the necessary SQL statements to create the database (should be) is in [sql/master.sql](sql/master.sql). All the subdirectories in [sql/](sql/) contain pretty much the same material as master.sql, they are only in different directories for easier human viewing.
+All the necessary SQL statements to create the database (should be) is in [sql/master.sql]https://github.com/hendrixjoseph/FamilyTree/blob/master/sql/master.sql). All the subdirectories in [sql/]https://github.com/hendrixjoseph/FamilyTree/blob/master/sql/) contain pretty much the same material as master.sql, they are only in different directories for easier human viewing.
 
 ### Directory structure
 
@@ -63,25 +63,25 @@ Once this project is downloaded, there are two steps required before it can be b
    b. `mvn install:install-file -Dfile=ojdbc7.jar -DpomFile=ojdbc7.pom`<br />
    c. I've included the equivalent of option b as a Maven action in NetBeans. In NetBeans, under the Projects view, right-click your project, go to "Custom", and select "install ojdbc7".
 
-2. Setup your database configuration for [`persistence.xml`](src/main/resources/META-INF/persistence.xml).
+2. Setup your database configuration for [`persistence.xml`]https://github.com/hendrixjoseph/FamilyTree/blob/master/src/main/resources/META-INF/persistence.xml).
 
-   In my [`persistence.xml`](src/main/resources/META-INF/persistence.xml) you'll see the following:
+   In my [`persistence.xml`]https://github.com/hendrixjoseph/FamilyTree/blob/master/src/main/resources/META-INF/persistence.xml) you'll see the following:
 
-```xml
+{% highlight xml %}
 <property name="javax.persistence.jdbc.driver" value="${dbdriver}" />
 <property name="javax.persistence.jdbc.url" value="${dburl}" />
 <property name="javax.persistence.jdbc.user" value="${dbuser}" />
 <property name="javax.persistence.jdbc.password" value="${dbpassword}" />
-```
+{% endhighlight %}
 
-   The variables (e.g. ${dbdriver}) are "filtered" by Maven. I have these values in my [`settings.xml`](settings.xml) in my local `.m2` directory. I'm not going to publish what my username and password are. You need to either change the values here in the [`persistence.xml`](src/main/resources/META-INF/persistence.xml) or set the properties in the `settings.xml`:
+   The variables (e.g. ${dbdriver}) are "filtered" by Maven. I have these values in my [`settings.xml`]https://github.com/hendrixjoseph/FamilyTree/blob/master/settings.xml) in my local `.m2` directory. I'm not going to publish what my username and password are. You need to either change the values here in the [`persistence.xml`]https://github.com/hendrixjoseph/FamilyTree/blob/master/src/main/resources/META-INF/persistence.xml) or set the properties in the `settings.xml`:
 
-```xml
+{% highlight xml %}
 <dbdriver>oracle.jdbc.OracleDriver</dbdriver>
 <dbuser>user</dbuser>
 <dbpassword>password</dbpassword>
 <dburl>jdbc:oracle:thin:@localhost:1521:XE</dburl>
-```
+{% endhighlight %}
 
 ## Tools
 
@@ -110,12 +110,13 @@ In addition to the [dependencies](http://hendrixjoseph.github.io/FamilyTree/depe
 
 * [ForkHub for GitHub](https://play.google.com/store/apps/details?id=jp.forkhub) ([on GitHub](https://github.com/jonan/ForkHub))
 * [SGit](https://play.google.com/store/apps/details?id=me.sheimi.sgit) ([on GitHub](https://github.com/sheimi/SGit))
+* [Quoda](http://www.getquoda.com/)
 
 Tested in [Firefox 39.0](https://www.mozilla.org/en-US/)
 
 ## License
 
-This project is for personal academic purposes. I don't care what you do with it, as long as I get credit. Therefore I am using the [the MIT License](LICENSE.md).
+This project is for personal academic purposes. I don't care what you do with it, as long as I get credit. Therefore I am using the [the MIT License]https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md).
 
 ----------------------
 

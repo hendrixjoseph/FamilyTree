@@ -101,7 +101,9 @@
     </div>
     <div id="bodyColumn">
       <div id="contentBox">
-        <table border="1" class="bodyTable">
+        <div class="section">
+<h2><a name="something_beautiful_i_wrote_last_night"></a>something beautiful i wrote last night</h2>
+<table border="1" class="bodyTable">
 <tr class="a">
 <td align="left">From:</td>
 <td align="left">Hendrix, Joseph D (TS)</td></tr>
@@ -159,7 +161,17 @@
 <tr class="b">
 <td align="left">Subject:</td>
 <td align="left">RE: something beautiful i wrote last night</td></tr></table>
-<p>Why not have a person_table like this +-----+ PERSON_TABLE PERSON_KEY FIRST_NAME LAST_NAME GENDER SPOUSE_ID MOTHER_ID FATHER_ID +-----+</p>
+<p>Why not have a person_table like this</p>
+<div class="source">
+<pre>  PERSON_TABLE
+  PERSON_KEY
+  FIRST_NAME
+  LAST_NAME
+  GENDER
+  SPOUSE_ID
+  MOTHER_ID
+  FATHER_ID
+</pre></div>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td align="left">From:</td>
@@ -173,10 +185,37 @@
 <tr class="b">
 <td align="left">Subject:</td>
 <td align="left">RE: something beautiful i wrote last night</td></tr></table>
-<p>You can look at everything I&#x2019;ve done with the database here - https:/&gt;/&gt;github.com/&gt;hendrixjoseph/&gt;FamilyTree/&gt;tree/&gt;master/&gt;sql </p>
+<p>You can look at everything I&#x2019;ve done with the database here - <a class="externalLink" href="https://github.com/hendrixjoseph/FamilyTree/tree/master/sql">https://github.com/hendrixjoseph/FamilyTree/tree/master/sql</a></p>
 <p>It&#x2019;s just a file directory, so it should be easy to traverse.</p>
 <p>The directories are as follows:</p>
-<p>CONSTRAINTS Contains constraints such as primary key and not null. DATA_TABLE Contains the data in the tables in a csv file. Includes headers. DATA_VIEW Contains the data represented in the views in a csv file. Includes headers. INDEXES Index based on primary keys. Don&#x2019;t really know what this is. REF_CONSTRAINTS Foreign key constraints. SEQUENCES Sequences. TABLES CREATE TABLE sql command with columns. TRIGGERS Beautiful, beautiful triggers. VIEWS VIEWS sql command.</p>
+<table border="1" class="bodyTable">
+<tr class="a">
+<td align="left">CONSTRAINTS</td>
+<td align="left">Contains constraints such as primary key and not null.</td></tr>
+<tr class="b">
+<td align="left">DATA_TABLE</td>
+<td align="left">Contains the data in the tables in a csv file. Includes headers.</td></tr>
+<tr class="a">
+<td align="left">DATA_VIEW</td>
+<td align="left">Contains the data represented in the views in a csv file. Includes headers.</td></tr>
+<tr class="b">
+<td align="left">INDEXES</td>
+<td align="left">Index based on primary keys. Don&#x2019;t really know what this is.</td></tr>
+<tr class="a">
+<td align="left">REF_CONSTRAINTS</td>
+<td align="left">Foreign key constraints.</td></tr>
+<tr class="b">
+<td align="left">SEQUENCES</td>
+<td align="left">Sequences.</td></tr>
+<tr class="a">
+<td align="left">TABLES</td>
+<td align="left">CREATE TABLE sql command with columns.</td></tr>
+<tr class="b">
+<td align="left">TRIGGERS</td>
+<td align="left">Beautiful, beautiful triggers.</td></tr>
+<tr class="a">
+<td align="left">VIEWS</td>
+<td align="left">VIEWS sql command.</td></tr></table>
 <p>&quot;master.sql&quot; is everything above in one file, except that the table data is in INSERTs rather than csv.</p>
 <table border="1" class="bodyTable">
 <tr class="a">
@@ -281,7 +320,7 @@
   END;
   END IF;
   END;
-</pre></div>
+</pre></div></div>
       </div>
     </div>
     <div class="clear">
