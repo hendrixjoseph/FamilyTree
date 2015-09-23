@@ -12,9 +12,10 @@
 package edu.wright.hendrix11.familyTree.bean;
 
 import edu.wright.hendrix11.familyTree.entity.Gender;
+import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -25,8 +26,8 @@ import javax.persistence.Query;
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
 @Named
-@RequestScoped
-public class GenderBean
+@SessionScoped
+public class GenderBean implements Serializable
 {
 
     private List<Gender> genders;
