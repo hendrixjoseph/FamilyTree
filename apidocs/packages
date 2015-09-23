@@ -1,5 +1,6 @@
 edu.wright.hendrix11.familyTree.bean
 edu.wright.hendrix11.familyTree.entity
+edu.wright.hendrix11.familyTree.entity.compositeKey
 edu.wright.hendrix11.familyTree.entity.event
 edu.wright.hendrix11.familyTree.export
 edu.wright.hendrix11.familyTree.imports
