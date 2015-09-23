@@ -11,6 +11,7 @@
  */
 package edu.wright.hendrix11.familyTree.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -87,7 +88,7 @@ public class Person
     @OneToOne
     @PrimaryKeyJoinColumn
     private Death death;
-    
+
     @OneToOne
     @PrimaryKeyJoinColumn
     private Burial burial;
@@ -118,7 +119,7 @@ public class Person
     {
         return children;
     }
-    
+
     /**
      *
      * @return
@@ -126,7 +127,7 @@ public class Person
     public List<Person> getChildren(Person spouse)
     {
         List<Person> childrenOfSpouse = new ArrayList<>();
-        
+
         for(Person child : children)
         {
             if(child.hasFather() && child.getFather().equals(spouse))
@@ -134,7 +135,7 @@ public class Person
             else if(child.hasMother() && child.getMother().equals(spouse))
                 childrenOfSpouse.add(child);
         }
-        
+
         return children;
     }
 
@@ -145,13 +146,13 @@ public class Person
     public List<Person> getChildrenNoSpouse()
     {
         List<Person> childrenNoSpouse = new ArrayList<>();
-        
+
         for(Person child : children)
         {
             if(!child.hasFather() || !child.hasMother())
                 childrenNoSpouse.add(child);
         }
-        
+
         return children;
     }
 
@@ -199,7 +200,7 @@ public class Person
     {
         this.burial = burial;
     }
-    
+
     /**
      *
      * @return

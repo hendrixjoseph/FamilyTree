@@ -17,6 +17,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 
 /**
  *
