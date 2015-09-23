@@ -122,6 +122,7 @@ public class Person
 
     /**
      *
+     * @param spouse
      * @return
      */
     public List<Person> getChildren(Person spouse)
@@ -136,7 +137,7 @@ public class Person
                 childrenOfSpouse.add(child);
         }
 
-        return children;
+        return childrenOfSpouse;
     }
 
     /**
@@ -153,7 +154,7 @@ public class Person
                 childrenNoSpouse.add(child);
         }
 
-        return children;
+        return childrenNoSpouse;
     }
 
     /**

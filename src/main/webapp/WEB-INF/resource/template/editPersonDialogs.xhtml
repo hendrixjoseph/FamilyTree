@@ -4,58 +4,56 @@
 
  View the full license at:
  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
- 
+
  Copyright (c) 2015 Joseph Hendrix
- 
+
  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- 
+
 -->
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:component xmlns="http://www.w3.org/1999/xhtml"
-              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-              xmlns:h="http://java.sun.com/jsf/html"
-              xmlns:p="http://primefaces.org/ui"
-              xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
     <ui:include src="editPersonDialog.xhtml">
         <ui:param name="header" value="Add Child to just #{individualBean.person.name}" />
         <ui:param name="widgetVar" value="addChildSingleParentDialog" />
-        <ui:param name="person" value="#{personQueryBean.personToInsert}" />
+        <ui:param name="person" value="#{individualBean.person}" />
         <ui:param name="isNewPerson" value="#{true}" />
     </ui:include>
 
     <ui:include src="editPersonDialog.xhtml">
         <ui:param name="header" value="Add Child to #{individualBean.person.name} and spouse " />
         <ui:param name="widgetVar" value="addChildDialog" />
-        <ui:param name="person" value="#{personQueryBean.personToInsert}" />
+        <ui:param name="person" value="#{individualBean.person}" />
         <ui:param name="isNewPerson" value="#{true}" />
     </ui:include>
 
     <ui:include src="editPersonDialog.xhtml">
         <ui:param name="header" value="Add Spouse to #{individualBean.person.name}" />
         <ui:param name="widgetVar" value="addSpouseDialog" />
-        <ui:param name="person" value="#{personQueryBean.personToInsert}" />
+        <ui:param name="person" value="#{individualBean.person}" />
         <ui:param name="isNewPerson" value="#{true}" />
     </ui:include>
 
     <ui:include src="editPersonDialog.xhtml">
         <ui:param name="header" value="Add father to #{individualBean.person.name}" />
         <ui:param name="widgetVar" value="addFatherDialog" />
-        <ui:param name="person" value="#{personQueryBean.personToInsert}" />
+        <ui:param name="person" value="#{individualBean.person}" />
         <ui:param name="isNewPerson" value="#{true}" />
     </ui:include>
 
     <ui:include src="editPersonDialog.xhtml">
         <ui:param name="header" value="Add mother to #{individualBean.person.name}" />
         <ui:param name="widgetVar" value="addMotherDialog" />
-        <ui:param name="person" value="#{personQueryBean.personToInsert}" />
+        <ui:param name="person" value="#{individualBean.person}" />
         <ui:param name="isNewPerson" value="#{true}" />
     </ui:include>
 
     <ui:include src="editPersonDialog.xhtml">
         <ui:param name="header" value="Edit Individual: #{individualBean.person.name}" />
         <ui:param name="widgetVar" value="editDialog" />
-        <ui:param name="person" value="#{personQueryBean.relatedPerson}" />
+        <ui:param name="person" value="#{individualBean.person}" />
         <ui:param name="isNewPerson" value="#{false}" />
-    </ui:include>                  
+    </ui:include>
 </ui:component>

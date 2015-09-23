@@ -11,23 +11,25 @@
  */
 package edu.wright.hendrix11.familyTree.bean;
 
-import edu.wright.hendrix11.familyTree.entity.Person;
+import edu.wright.hendrix11.familyTree.entity.Gender;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
- * @author Joe Hendrix
+ * @author Joe Hendrix <hendrix.11@wright.edu>
  */
 @Named
 @RequestScoped
-public class IndividualBean
+public class GenderBean
 {
 
-    private Person person;
+    private List<Gender> genders;
 
     EntityManager em;
 
@@ -39,33 +41,20 @@ public class IndividualBean
     {
         // This is ugly - we'll use injection later
         em = Persistence.createEntityManagerFactory("edu.wright.hendrix11.familyTree").createEntityManager();
-        person = em.find(Person.class, 9510);
+
+        Query query = em.createQuery("SELECT e FROM Gender e");
+        genders = (List<Gender>) query.getResultList();
     }
 
-    /**
-     *
-     * @return
-     */
-    public Person getPerson()
+    public List<Gender> getGenders()
     {
-        return person;
+        return genders;
     }
 
-    /**
-     *
-     * @return
-     */
-    public int getPersonId()
+    public void setGenders(List<Gender> genders)
     {
-        return 1;//person.getId();
+        this.genders = genders;
     }
 
-    /**
-     *
-     * @param id
-     */
-    public void setPersonId(int id)
-    {
-        person = em.find(Person.class, id);
-    }
+
 }
