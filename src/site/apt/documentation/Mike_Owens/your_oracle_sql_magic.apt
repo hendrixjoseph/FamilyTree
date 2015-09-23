@@ -5,6 +5,8 @@
             ------
              2015-07-06
 
+your oracle sql magic
+
   Bring you tables loaded on the NGC and we can look at it further.
 
 *----------+--------------+
@@ -19,7 +21,7 @@
 
   Ok I think I misunderstood you when you asked "So person, spouse, and sibling is all contain in the "one" person table…. Is that correct?"
 
-  The entries for person, spouse, and child exist in the PERSON table, but there is no foreign key or any column in the PERSON table that holds a value for spouse or child. You can only tell if a person is a spouse or child by referencing the MOTHER_OF and/>or FATHER_OF tables.
+  The entries for person, spouse, and child exist in the PERSON table, but there is no foreign key or any column in the PERSON table that holds a value for spouse or child. You can only tell if a person is a spouse or child by referencing the MOTHER_OF and/or FATHER_OF tables.
 
   The PERSON_VIEW view, however, has a MOTHER and FATHER column for each entry.
 
@@ -94,19 +96,21 @@
 | Subject: | RE: your oracle sql magic |
 *----------+--------------+
 
-  * PERSON
-  
-  * FATHER_OF
-  
-  * MOTHER_OF
-  
-  * BIRTH
-  
-  * DEATH
-  
-  * GENDER
-  
-  * PLACE
+    * PERSON
+
+    * FATHER_OF
+
+    * MOTHER_OF
+
+    * BIRTH
+
+    * DEATH
+
+    * GENDER
+
+    * PLACE
+
+    []
 
 *----------+--------------+
 | From: | Owens, Michael (TS) |
@@ -300,20 +304,20 @@
   What didn’t work when I was trying to use the (+) was something like this:
 
 +-----+
-  SELECT 
+  SELECT
     P.ID,
     P.NAME,
     SPOUSE.ID AS SPOUSE_ID,
     SPOUSE.NAME AS SPOUSE,
     CHILD.ID AS CHILD_ID,
     CHILD.NAME AS CHILD
-  FROM 
+  FROM
     PERSON P,
     PERSON SPOUSE,
     PERSON CHILD,
     FATHER_OF,
     MOTHER_OF
-  WHERE  
+  WHERE
     (P.ID = FATHER_OF.FATHER_ID OR P.ID = MOTHER_OF.MOTHER_ID)
   AND (SPOUSE.ID = MOTHER_OF.MOTHER_ID OR SPOUSE.ID = FATHER_OF.FATHER_ID) (+)
   AND CHILD.ID = FATHER_OF.CHILD_ID
@@ -324,7 +328,7 @@
 
   My schema currently looks like this:
 
-[https://cloud.githubusercontent.com/>assets/>12754677/>8515562/>fac25c28-2372-11e5-8f71-6af8a93eaddd.jpg] Schema 1
+[https://cloud.githubusercontent.com/assets/12754677/8515562/fac25c28-2372-11e5-8f71-6af8a93eaddd.jpg] Schema 1
 
 *----------+--------------+
 | From: | Owens, Michael (TS)  |
@@ -384,20 +388,20 @@
   Another way I tried to make this view work:
 
 +-----+
-  SELECT 
+  SELECT
     P.ID,
     P.NAME,
     SPOUSE.ID AS SPOUSE_ID,
     SPOUSE.NAME AS SPOUSE,
     CHILD.ID AS CHILD_ID,
     CHILD.NAME AS CHILD
-  FROM 
+  FROM
     PERSON P,
     PERSON SPOUSE,
     PERSON CHILD,
     FATHER_OF,
     MOTHER_OF
-  WHERE (   
+  WHERE (
     P.ID = FATHER_OF.FATHER_ID
   AND SPOUSE.ID = MOTHER_OF.MOTHER_ID
   AND CHILD.ID = FATHER_OF.CHILD_ID

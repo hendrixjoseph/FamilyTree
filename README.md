@@ -1,8 +1,11 @@
 <!-- 
   When copying contents to index.md, do the following:
   Remove: README.md
+  Remove: Readme 
   Remove: user-content-
   Replace: ]\(([^:http:#]) with ](https://github.com/hendrixjoseph/FamilyTree/blob/master/\1
+  Replace: ```(.+) with {% highlight \1 %}
+  Replace: ```[^A-z] with {% endhighlight %}
 -->
 
 # FamilyTree
@@ -113,6 +116,7 @@ In addition to the [dependencies](http://hendrixjoseph.github.io/FamilyTree/depe
 
 * [ForkHub for GitHub](https://play.google.com/store/apps/details?id=jp.forkhub) ([on GitHub](https://github.com/jonan/ForkHub))
 * [SGit](https://play.google.com/store/apps/details?id=me.sheimi.sgit) ([on GitHub](https://github.com/sheimi/SGit))
+* [Quoda](http://www.getquoda.com/)
 
 Tested in [Firefox 39.0](https://www.mozilla.org/en-US/)
 

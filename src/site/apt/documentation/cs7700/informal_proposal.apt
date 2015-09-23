@@ -4,18 +4,20 @@
             Joseph Hendrix
             ------
              2015-05-28
-			 
+
+Informal Project Proposal
+
 *----------+--------------+
 | From: | {{{mailto:eric.saunders@wright.edu}Saunders, Eric}} |
 *----------+--------------+
 | Sent: | Thu 5/28/2015 10:00 PM |
 *----------+--------------+
-| To: | {{{mailto:hendrix.11@wright.edu}Hendrix, Joseph David}}; | 
+| To: | {{{mailto:hendrix.11@wright.edu}Hendrix, Joseph David}} |
 *----------+--------------+
 
   Joe,
 
-  Please submit your proposal document - you have been pre-approved. 
+  Please submit your proposal document - you have been pre-approved.
 
   Thanks,
 
@@ -29,16 +31,21 @@
 
   For my project I would like to do a family tree. A 0NF database might contain a table as follows:
 
-+-----+
-  Mother's Name
-  Father's Name
-  Person's Name
-  Date of Birth
-  Place of Birth
-  Date of Death
-  Place of Death
-  Children's Names
-+-----+
+    * Mother's Name
+
+    * Father's Name
+
+    * Person's Name
+
+    * Date of Birth
+
+    * Place of Birth
+
+    * Date of Death
+
+    * Place of Death
+
+    * Children's Names
 
   Obviously this table would be normalized and maybe even split into multiple tables.
 
@@ -46,15 +53,15 @@
 
   As far as implementation details, I plan on using the following:
 
-  * NetBeans IDE
-  
-  * Apache Tomcat
-  
-  * JSF possibly with PrimeFaces and PrimeFaces extension components
-  
-  * If need be, custom JSF components
-  
-  * Oracle Express with appropriate JDBC driver
+    * NetBeans IDE
+
+    * Apache Tomcat
+
+    * JSF possibly with PrimeFaces and PrimeFaces extension components
+
+    * If need be, custom JSF components
+
+    * Oracle Express with appropriate JDBC driver
 
   In the formal proposal I will include version numbers.
 

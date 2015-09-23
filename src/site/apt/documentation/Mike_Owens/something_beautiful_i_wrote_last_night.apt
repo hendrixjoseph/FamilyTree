@@ -5,14 +5,16 @@
             ------
              2015-07-08
 
+something beautiful i wrote last night
+
 *----------+--------------+
 | From:    | Hendrix, Joseph D (TS) |
 *----------+--------------+
-| Sent:    | Wednesday, July 08, 2015 4:04 PM   | 
+| Sent:    | Wednesday, July 08, 2015 4:04 PM   |
 *----------+--------------+
-| To:      | Owens, Michael (TS)   | 
+| To:      | Owens, Michael (TS)   |
 *----------+--------------+
-| Subject: | RE: something beautiful i wrote last night   | 
+| Subject: | RE: something beautiful i wrote last night   |
 *----------+--------------+
 
   Legally, in the United States, you can be married to only one person at a time. However, you can legally have multiple spouses as long as a previous marriage was dissolved or divorced, or if the spouse has died. People don’t always follow the law, so they might be illegally married to multiple people at the same time. Also, historically, polygamy has been practiced by probably every culture in the world during some time. This probably hasn’t happened anytime recent in my family tree, however.
@@ -22,23 +24,23 @@
 *----------+--------------+
 | From:    | Owens, Michael (TS) |
 *----------+--------------+
-| Sent:    | Wednesday, July 08, 2015 3:46 PM   | 
+| Sent:    | Wednesday, July 08, 2015 3:46 PM   |
 *----------+--------------+
-| To:      | Hendrix, Joseph D (TS)   | 
+| To:      | Hendrix, Joseph D (TS)   |
 *----------+--------------+
-| Subject: | RE: something beautiful i wrote last night   | 
+| Subject: | RE: something beautiful i wrote last night   |
 *----------+--------------+
 
   Technically you can only be married to one person
-  
+
 *----------+--------------+
 | From:    | Hendrix, Joseph D (TS) |
 *----------+--------------+
-| Sent:    | Wednesday, July 08, 2015 3:31 PM   | 
+| Sent:    | Wednesday, July 08, 2015 3:31 PM   |
 *----------+--------------+
-| To:      | Owens, Michael (TS)   | 
+| To:      | Owens, Michael (TS)   |
 *----------+--------------+
-| Subject: | RE: something beautiful i wrote last night   | 
+| Subject: | RE: something beautiful i wrote last night   |
 *----------+--------------+
 
   I might do the `FIRST_NAME, LAST_NAME` columns later. Haven’t decided yet.
@@ -50,14 +52,15 @@
 *----------+--------------+
 | From:    | Owens, Michael (TS) |
 *----------+--------------+
-| Sent:    | Wednesday, July 08, 2015 3:29 PM   | 
+| Sent:    | Wednesday, July 08, 2015 3:29 PM   |
 *----------+--------------+
-| To:      | Hendrix, Joseph D (TS)   | 
+| To:      | Hendrix, Joseph D (TS)   |
 *----------+--------------+
-| Subject: | RE: something beautiful i wrote last night   | 
+| Subject: | RE: something beautiful i wrote last night   |
 *----------+--------------+
 
   Why not have a person_table like this
+
 +-----+
   PERSON_TABLE
   PERSON_KEY
@@ -72,39 +75,49 @@
 *----------+--------------+
 | From:    | Hendrix, Joseph D (TS) |
 *----------+--------------+
-| Sent:    | Wednesday, July 08, 2015 3:12 PM   | 
+| Sent:    | Wednesday, July 08, 2015 3:12 PM   |
 *----------+--------------+
-| To:      | Owens, Michael (TS)   | 
+| To:      | Owens, Michael (TS)   |
 *----------+--------------+
-| Subject: | RE: something beautiful i wrote last night   | 
+| Subject: | RE: something beautiful i wrote last night   |
 *----------+--------------+
 
-  You can look at everything I’ve done with the database here - https:/>/>github.com/>hendrixjoseph/>FamilyTree/>tree/>master/>sql 
+  You can look at everything I’ve done with the database here - {{https://github.com/hendrixjoseph/FamilyTree/tree/master/sql}}
 
   It’s just a file directory, so it should be easy to traverse.
 
   The directories are as follows:
 
-  CONSTRAINTS	Contains constraints such as primary key and not null.
-  DATA_TABLE	Contains the data in the tables in a csv file. Includes headers.
-  DATA_VIEW	Contains the data represented in the views in a csv file. Includes headers.
-  INDEXES	Index based on primary keys. Don’t really know what this is.
-  REF_CONSTRAINTS	Foreign key constraints.
-  SEQUENCES	Sequences.
-  TABLES	CREATE TABLE sql command with columns.
-  TRIGGERS	Beautiful, beautiful triggers.
-  VIEWS	VIEWS sql command.
+*----------+--------------+
+| CONSTRAINTS | Contains constraints such as primary key and not null. |
+*----------+--------------+
+| DATA_TABLE | Contains the data in the tables in a csv file. Includes headers. |
+*----------+--------------+
+| DATA_VIEW | Contains the data represented in the views in a csv file. Includes headers. |
+*----------+--------------+
+| INDEXES | Index based on primary keys. Don’t really know what this is. |
+*----------+--------------+
+| REF_CONSTRAINTS | Foreign key constraints. |
+*----------+--------------+
+| SEQUENCES | Sequences. |
+*----------+--------------+
+| TABLES | CREATE TABLE sql command with columns. |
+*----------+--------------+
+| TRIGGERS | Beautiful, beautiful triggers. |
+*----------+--------------+
+| VIEWS | VIEWS sql command. |
+*----------+--------------+
 
   "master.sql" is everything above in one file, except that the table data is in INSERTs rather than csv.
 
 *----------+--------------+
 | From:    | Owens, Michael (TS) |
 *----------+--------------+
-| Sent:    | Wednesday, July 08, 2015 2:47 PM   | 
+| Sent:    | Wednesday, July 08, 2015 2:47 PM   |
 *----------+--------------+
-| To:      | Hendrix, Joseph D (TS)   | 
+| To:      | Hendrix, Joseph D (TS)   |
 *----------+--------------+
-| Subject: | RE: something beautiful i wrote last night   | 
+| Subject: | RE: something beautiful i wrote last night   |
 *----------+--------------+
 
   All many tables  do you have?
@@ -117,11 +130,11 @@
 *----------+--------------+
 | From:    | Hendrix, Joseph D (TS) |
 *----------+--------------+
-| Sent:    | Wednesday, July 08, 2015 1:50 PM   | 
+| Sent:    | Wednesday, July 08, 2015 1:50 PM   |
 *----------+--------------+
-| To:      | Owens, Michael (TS)   | 
+| To:      | Owens, Michael (TS)   |
 *----------+--------------+
-| Subject: | something beautiful i wrote last night   | 
+| Subject: | something beautiful i wrote last night   |
 *----------+--------------+
 
 +-----+

@@ -37,6 +37,7 @@
         </goals>
         <properties>
             <netbeans.deploy>true</netbeans.deploy>
+            <skipTests>true</skipTests>
         </properties>
     </action>
     <action>
@@ -53,6 +54,7 @@
         <properties>
             <netbeans.deploy.debugmode>true</netbeans.deploy.debugmode>
             <netbeans.deploy>true</netbeans.deploy>
+            <skipTests>true</skipTests>
         </properties>
     </action>
     <action>
