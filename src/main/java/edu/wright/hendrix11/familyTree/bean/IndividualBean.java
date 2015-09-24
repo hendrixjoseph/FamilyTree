@@ -12,8 +12,9 @@
 package edu.wright.hendrix11.familyTree.bean;
 
 import edu.wright.hendrix11.familyTree.entity.Person;
+import java.io.Serializable;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -23,8 +24,8 @@ import javax.persistence.Persistence;
  * @author Joe Hendrix
  */
 @Named
-@RequestScoped
-public class IndividualBean
+@ViewScoped
+public class IndividualBean implements Serializable
 {
 
     private Person person;

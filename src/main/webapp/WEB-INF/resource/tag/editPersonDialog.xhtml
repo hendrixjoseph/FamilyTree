@@ -12,7 +12,7 @@
 -->
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:component xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
               xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
               xmlns:h="http://java.sun.com/jsf/html"
               xmlns:p="http://primefaces.org/ui"
@@ -32,7 +32,7 @@
                     <p:inputText value="#{person.name}" maxlength="#{inputLength}" size="#{inputLength}" />
 
                     <p:outputLabel value="Gender:" />
-                    <p:selectOneMenu id="gender" value="#{person.gender}" style="width:125px">
+                    <p:selectOneMenu id="gender" value="Male" style="width:125px">
                         <f:selectItem itemLabel="Select One" itemValue="notSelected" />
                         <f:selectItems value="#{genderBean.genders}" />
                     </p:selectOneMenu>
@@ -56,5 +56,4 @@
             </p>
         </p:dialog>
     </h:form>
-</ui:component>
-
+</ui:composition>

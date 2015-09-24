@@ -13,8 +13,16 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:component xmlns="http://www.w3.org/1999/xhtml"
-              xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:hendrix11="http://hendrix11.wright.edu/facelets">
 
+    <hendrix11:editPersonDialog
+        header="Edit Individual: #{individualBean.person.name}"
+        widgetVar="editDialog"
+        person="#{individualBean.person}"
+        isNewPerson="#{false}" />
+
+    <!--
     <ui:include src="editPersonDialog.xhtml">
         <ui:param name="header" value="Add Child to just #{individualBean.person.name}" />
         <ui:param name="widgetVar" value="addChildSingleParentDialog" />
@@ -56,4 +64,5 @@
         <ui:param name="person" value="#{individualBean.person}" />
         <ui:param name="isNewPerson" value="#{false}" />
     </ui:include>
+    -->
 </ui:component>
