@@ -4,20 +4,21 @@
 
  View the full license at:
  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
- 
+
  Copyright (c) 2015 Joseph Hendrix
- 
+
  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- 
+
 -->
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en" 
-      xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:f="http://java.sun.com/jsf/core" 
-      xmlns:h="http://java.sun.com/jsf/html" 
-      xmlns:p="http://primefaces.org/ui" 
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:hendrix11="http://hendrix11.wright.edu/facelets">
 
     <f:metadata>
         <f:viewParam name="personId" value="#{individualBean.personId}" />
@@ -50,13 +51,18 @@
         </p:layout>
 
         <!-- Dialogs -->
-        <ui:include src="/WEB-INF/resource/template/editPersonDialogs.xhtml" />
-        
+        <hendrix11:editPersonDialog
+            header="Edit Individual: #{individualBean.person.name}"
+            widgetVar="editDialog"
+            person="#{individualBean.person}"
+            isNewPerson="#{false}" />
+        <!-- ui:include src="/WEB-INF/resource/template/editPersonDialogs.xhtml" / -->
+
         <!-- About Dialog -->
         <ui:include src="/WEB-INF/resource/template/aboutDialog.xhtml" />
-        
+
         <!-- Settings Dialog -->
         <ui:include src="/WEB-INF/resource/template/settingsDialog.xhtml" />
-        
+
     </h:body>
 </html>

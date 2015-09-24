@@ -52,6 +52,11 @@ public class IndividualBean implements Serializable
         return person;
     }
 
+    public void setPerson(Person person)
+    {
+        this.person = person;
+    }
+
     /**
      *
      * @return

@@ -17,6 +17,6 @@
     <namespace>http://hendrix11.wright.edu/facelets</namespace>
     <tag>
 	<tag-name>editPersonDialog</tag-name>
-	<source>resource/taq/editPersonDialog.xhtml</source>
+	<source>resource/tag/editPersonDialog.xhtml</source>
     </tag>
 </facelet-taglib>
