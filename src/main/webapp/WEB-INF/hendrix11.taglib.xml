@@ -16,7 +16,27 @@
 <facelet-taglib>
     <namespace>http://hendrix11.wright.edu/facelets</namespace>
     <tag>
-	<tag-name>editPersonDialog</tag-name>
-	<source>resource/tag/editPersonDialog.xhtml</source>
+        <tag-name>editPersonDialog</tag-name>
+        <source>resource/tag/editPersonDialog.xhtml</source>
+        <attribute>
+            <name>header</name>
+            <required>true</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <name>widgetVar</name>
+            <required>true</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <name>person</name>
+            <required>true</required>
+            <type>edu.wright.hendrix11.familyTree.entity.Person</type>
+        </attribute>
+        <attribute>
+            <name>isNewPerson</name>
+            <required>true</required>
+            <type>java.lang.Boolean</type>
+        </attribute>
     </tag>
 </facelet-taglib>

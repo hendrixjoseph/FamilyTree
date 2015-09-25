@@ -20,49 +20,36 @@
         header="Edit Individual: #{individualBean.person.name}"
         widgetVar="editDialog"
         person="#{individualBean.person}"
-        isNewPerson="#{false}" />
+        isNewPerson="false" />
 
-    <!--
-    <ui:include src="editPersonDialog.xhtml">
-        <ui:param name="header" value="Add Child to just #{individualBean.person.name}" />
-        <ui:param name="widgetVar" value="addChildSingleParentDialog" />
-        <ui:param name="person" value="#{individualBean.person}" />
-        <ui:param name="isNewPerson" value="#{true}" />
-    </ui:include>
+    <hendrix11:editPersonDialog
+        header="Add Child to just #{individualBean.person.name}"
+        widgetVar="addChildSingleParentDialog"
+        person="#{individualBean.person}"
+        isNewPerson="true" />
 
-    <ui:include src="editPersonDialog.xhtml">
-        <ui:param name="header" value="Add Child to #{individualBean.person.name} and spouse " />
-        <ui:param name="widgetVar" value="addChildDialog" />
-        <ui:param name="person" value="#{individualBean.person}" />
-        <ui:param name="isNewPerson" value="#{true}" />
-    </ui:include>
+    <hendrix11:editPersonDialog
+        header="Add Child to #{individualBean.person.name} and spouse"
+        widgetVar="addChildDialog"
+        person="#{individualBean.person}"
+        isNewPerson="true" />
 
-    <ui:include src="editPersonDialog.xhtml">
-        <ui:param name="header" value="Add Spouse to #{individualBean.person.name}" />
-        <ui:param name="widgetVar" value="addSpouseDialog" />
-        <ui:param name="person" value="#{individualBean.person}" />
-        <ui:param name="isNewPerson" value="#{true}" />
-    </ui:include>
+    <hendrix11:editPersonDialog
+        header="Add Spouse to #{individualBean.person.name}"
+        widgetVar="addSpouseDialog"
+        person="#{individualBean.person}"
+        isNewPerson="true" />
 
-    <ui:include src="editPersonDialog.xhtml">
-        <ui:param name="header" value="Add father to #{individualBean.person.name}" />
-        <ui:param name="widgetVar" value="addFatherDialog" />
-        <ui:param name="person" value="#{individualBean.person}" />
-        <ui:param name="isNewPerson" value="#{true}" />
-    </ui:include>
+    <hendrix11:editPersonDialog
+        header="Add father to #{individualBean.person.name}"
+        widgetVar="addFatherDialog"
+        person="#{individualBean.person}"
+        isNewPerson="true" />
 
-    <ui:include src="editPersonDialog.xhtml">
-        <ui:param name="header" value="Add mother to #{individualBean.person.name}" />
-        <ui:param name="widgetVar" value="addMotherDialog" />
-        <ui:param name="person" value="#{individualBean.person}" />
-        <ui:param name="isNewPerson" value="#{true}" />
-    </ui:include>
+    <hendrix11:editPersonDialog
+        header="Add mother to #{individualBean.person.name}"
+        widgetVar="addMotherDialog"
+        person="#{individualBean.person}"
+        isNewPerson="true" />
 
-    <ui:include src="editPersonDialog.xhtml">
-        <ui:param name="header" value="Edit Individual: #{individualBean.person.name}" />
-        <ui:param name="widgetVar" value="editDialog" />
-        <ui:param name="person" value="#{individualBean.person}" />
-        <ui:param name="isNewPerson" value="#{false}" />
-    </ui:include>
-    -->
 </ui:component>
