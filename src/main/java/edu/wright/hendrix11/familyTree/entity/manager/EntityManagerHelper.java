@@ -16,6 +16,7 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.enterprise.inject.Produces;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -25,7 +26,7 @@ import javax.persistence.Persistence;
  *
  * @author Joe Hendrix
  */
-@Stateful
+@Stateless
 public class EntityManagerHelper implements Serializable
 {
     private EntityManagerFactory emf;

@@ -32,7 +32,7 @@ public class IndividualBean implements Serializable
     private Person person;
 
     @Inject @EntityManagerInjector
-    EntityManager em;
+    private transient EntityManager em;
 
     /**
      *
