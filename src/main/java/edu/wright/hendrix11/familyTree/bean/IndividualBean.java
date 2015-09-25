@@ -39,8 +39,6 @@ public class IndividualBean implements Serializable
     @PostConstruct
     public void initialize()
     {
-        // This is ugly - we'll use injection later
-        //em = Persistence.createEntityManagerFactory("edu.wright.hendrix11.familyTree").createEntityManager();
         person = em.find(Person.class, 9510);
     }
 

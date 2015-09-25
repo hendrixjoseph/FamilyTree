@@ -41,9 +41,6 @@ public class GenderBean implements Serializable
     @PostConstruct
     public void initialize()
     {
-        // This is ugly - we'll use injection later
-//        em = Persistence.createEntityManagerFactory("edu.wright.hendrix11.familyTree").createEntityManager();
-
         Query query = em.createNamedQuery(Gender.FIND_ALL);
         genders = query.getResultList();
     }
@@ -57,6 +54,4 @@ public class GenderBean implements Serializable
     {
         this.genders = genders;
     }
-
-
 }

@@ -4,11 +4,11 @@
 
  View the full license at:
  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
- 
+
  Copyright (c) 2015 Joseph Hendrix
- 
+
  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- 
+
 -->
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -27,7 +27,7 @@
             overflow:visible !important;
         }
     </style>
-    
+
     <h:form>
         <p:menubar>
             <p:submenu label="File">
@@ -43,11 +43,11 @@
                     <p:menuitem value="XML" url="#" />
                     <p:menuitem value="GEDCOM" url="#" />
                 </p:submenu>
-                <p:menuitem value="Settings" onclick="PF('settingsDialog').show()" />
+                <p:menuitem value="Settings" url="#" />
             </p:submenu>
-            <p:submenu label="Edit">            
-                <p:menuitem value="Edit individual" update="@([id$=editDialog_form])" actionListener="{personQueryBean.setNoInsertJustUpdate}" oncomplete="PF('editDialog').show()" rendered="#{individualView}" />
-                <p:submenu label="Detach..." rendered="#{individualView}"> 
+            <p:submenu label="Edit">
+                <p:menuitem value="Edit individual" oncomplete="PF('editDialog').show()" rendered="#{individualView}" />
+                <p:submenu label="Detach..." rendered="#{individualView}">
                       <p:menuitem value="Father" />
                       <p:menuitem value="Mother" />
                       <p:submenu label="Spouse">
@@ -62,13 +62,13 @@
 
             </p:submenu>
             <p:submenu label="View">
-                <p:menuitem value="Individual" url="index.xhtml" rendered="#{!individualView}" /> 
+                <p:menuitem value="Individual" url="index.xhtml" rendered="#{!individualView}" />
                 <p:menuitem value="Places" url="places.xhtml" rendered="#{!placesView}" />
                 <p:menuitem value="Children" url="children.xhtml" rendered="#{!childrenView}" />
                 <p:menuitem value="Marriages" url="marriages.xhtml" rendered="#{!marraigeView}" />
                 <p:menuitem value="Index of Individuals" url="persons.xhtml" rendered="#{!personsView}" />
             </p:submenu>
-            
+
             <p:submenu label="Database">
                 <p:submenu label="Detect duplicate">
                     <p:menuitem value="Individuals" url="#" />

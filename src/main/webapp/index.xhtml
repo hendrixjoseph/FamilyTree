@@ -51,20 +51,13 @@
         </p:layout>
 
         <!-- Dialogs -->
-        <hendrix11:editPersonDialog
-            header="Edit Individual: #{individualBean.person.name}"
-            widgetVar="editDialog"
-            person="#{individualBean.person}"
-            isNewPerson="#{false}" />
-
-
-        <!-- ui:include src="/WEB-INF/resource/template/editPersonDialogs.xhtml" / -->
+        <ui:include src="/WEB-INF/resource/template/editPersonDialogs.xhtml" />
 
         <!-- About Dialog -->
         <ui:include src="/WEB-INF/resource/template/aboutDialog.xhtml" />
 
         <!-- Settings Dialog -->
-        <ui:include src="/WEB-INF/resource/template/settingsDialog.xhtml" />
+        <!-- ui:include src="/WEB-INF/resource/template/settingsDialog.xhtml" / -->
 
     </h:body>
 </html>
