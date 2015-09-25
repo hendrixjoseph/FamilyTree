@@ -12,15 +12,13 @@
 package edu.wright.hendrix11.familyTree.bean;
 
 import edu.wright.hendrix11.familyTree.entity.Gender;
-import edu.wright.hendrix11.familyTree.entity.manager.EntityManagerInjector;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
@@ -35,7 +33,7 @@ public class GenderBean implements Serializable
     private List<Gender> genders;
 
     @PersistenceContext(unitName="edu.wright.hendrix11.familyTree")
-    private EntityManager entityManager;
+    private EntityManager em;
 
     /**
      *

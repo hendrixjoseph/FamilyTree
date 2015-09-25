@@ -57,7 +57,7 @@ If any directory structure of this project does not match the standard Maven con
 
 ## Setup
 
-Once this project is downloaded, there are two steps required before it can be built by Maven.
+Once this project is downloaded, there is one step required before it can be built by Maven.
 
 1. Download and install `ojdbc7.jar`
 
@@ -68,26 +68,14 @@ Once this project is downloaded, there are two steps required before it can be b
    a. `mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=12.1.0.1 -Dpackaging=jar -Dfile=ojdbc7.jar -DgeneratePom=true`<br />
    b. `mvn install:install-file -Dfile=ojdbc7.jar -DpomFile=ojdbc7.pom`<br />
    c. I've included the equivalent of option b as a Maven action in NetBeans. In NetBeans, under the Projects view, right-click your project, go to "Custom", and select "install ojdbc7".
+   
+In order to run this project, a Java EE server and a SQL database need to be installed beforehand. I use [GlassFish 4.1](https://glassfish.java.net/) and [Oracle Database 11g Express Edition](http://www.oracle.com/technetwork/database/database-technologies/express-edition/overview/index.html). You will also need to setup a JDBC connection pool in your Java EE server. [I found this website helpful for setting it up in GlassFish.](https://computingat40s.wordpress.com/how-to-setup-a-jdbc-connection-in-glassfish/) The settings I used (other than username and password) are:
 
-2. Setup your database configuration for [`persistence.xml`](src/main/resources/META-INF/persistence.xml).
-
-   In my [`persistence.xml`](src/main/resources/META-INF/persistence.xml) you'll see the following:
-
-```xml
-<property name="javax.persistence.jdbc.driver" value="${dbdriver}" />
-<property name="javax.persistence.jdbc.url" value="${dburl}" />
-<property name="javax.persistence.jdbc.user" value="${dbuser}" />
-<property name="javax.persistence.jdbc.password" value="${dbpassword}" />
-```
-
-   The variables (e.g. ${dbdriver}) are "filtered" by Maven. I have these values in my [`settings.xml`](settings.xml) in my local `.m2` directory. I'm not going to publish what my username and password are. You need to either change the values here in the [`persistence.xml`](src/main/resources/META-INF/persistence.xml) or set the properties in the `settings.xml`:
-
-```xml
-<dbdriver>oracle.jdbc.OracleDriver</dbdriver>
-<dbuser>user</dbuser>
-<dbpassword>password</dbpassword>
-<dburl>jdbc:oracle:thin:@localhost:1521:XE</dburl>
-```
+Pool name:  | FamilyTreePool
+Resource type: | java.sql.Driver
+Database Driver Vendor:  | Oracle
+Initial and Minimum Pool Size: | Zero
+URL: | jdbc:oracle:thin:@localhost:1521:XE
 
 ## Tools
 
