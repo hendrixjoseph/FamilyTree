@@ -71,6 +71,8 @@ Once this project is downloaded, there is one step required before it can be bui
    
 In order to run this project, a Java EE server and a SQL database need to be installed beforehand. I use [GlassFish 4.1](https://glassfish.java.net/) and [Oracle Database 11g Express Edition](http://www.oracle.com/technetwork/database/database-technologies/express-edition/overview/index.html). You will also need to setup a JDBC connection pool in your Java EE server. [I found this website helpful for setting it up in GlassFish.](https://computingat40s.wordpress.com/how-to-setup-a-jdbc-connection-in-glassfish/) The settings I used (other than username and password) are:
 
+ | |
+--- | --- 
 Pool name:  | FamilyTreePool
 Resource type: | java.sql.Driver
 Database Driver Vendor:  | Oracle
