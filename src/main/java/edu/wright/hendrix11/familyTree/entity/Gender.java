@@ -20,8 +20,12 @@ import javax.persistence.Id;
  * @author Joe Hendrix
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = Gender.FIND_ALL, query = "SELECT g FROM Gender g")
+    })
 public class Gender
 {
+    public static final String FIND_ALL = "Gender.findAll";
 
     @Id
     private char abbr;
