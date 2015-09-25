@@ -31,8 +31,8 @@ public class IndividualBean implements Serializable
 
     private Person person;
 
-    @Inject @EntityManagerInjector
-    private transient EntityManager em;
+    @PersistenceContext(unitName="edu.wright.hendrix11.familyTree")
+    private EntityManager entityManager;
 
     /**
      *
