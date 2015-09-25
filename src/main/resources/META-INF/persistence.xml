@@ -4,11 +4,11 @@
 
  View the full license at:
  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
- 
+
  Copyright (c) 2015 Joseph Hendrix
- 
+
  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- 
+
 -->
 
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
@@ -19,6 +19,7 @@
             <property name="javax.persistence.jdbc.url" value="${dburl}" />
             <property name="javax.persistence.jdbc.user" value="${dbuser}" />
             <property name="javax.persistence.jdbc.password" value="${dbpassword}" />
+            <property name="eclipselink.weaving" value="static" />
         </properties>
     </persistence-unit>
 </persistence>
