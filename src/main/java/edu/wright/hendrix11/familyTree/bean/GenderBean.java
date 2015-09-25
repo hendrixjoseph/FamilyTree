@@ -34,8 +34,8 @@ public class GenderBean implements Serializable
 
     private List<Gender> genders;
 
-    @Inject @EntityManagerInjector
-    private transient EntityManager em;
+    @PersistenceContext(unitName="edu.wright.hendrix11.familyTree")
+    private EntityManager entityManager;
 
     /**
      *
