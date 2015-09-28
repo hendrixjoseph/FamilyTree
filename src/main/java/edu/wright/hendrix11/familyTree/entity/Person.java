@@ -81,15 +81,15 @@ public class Person
             })
     private List<Person> children;
 
-    @OneToOne
+    @OneToOne(cascade=ALL)
     @PrimaryKeyJoinColumn
     private Birth birth;
 
-    @OneToOne
+    @OneToOne(cascade=ALL)
     @PrimaryKeyJoinColumn
     private Death death;
 
-    @OneToOne
+    @OneToOne(cascade=ALL)
     @PrimaryKeyJoinColumn
     private Burial burial;
 
