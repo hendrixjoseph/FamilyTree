@@ -78,4 +78,11 @@ public class IndividualBean implements Serializable
     {
         em.getTransaction().commit();
     }
+    
+    public void insertPerson(Person person)
+    {
+        em.getTransaction().begin();
+        em.persist(person);
+        em.getTransaction().commit();
+    }
 }
