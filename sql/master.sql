@@ -1,6 +1,34 @@
 --------------------------------------------------------
---  File created - Monday-September-21-2015   
+--  File created - Monday-September-28-2015   
 --------------------------------------------------------
+DROP TABLE "BOOLEAN" cascade constraints;
+DROP TABLE "DEFAULT_PERSON_TYPE" cascade constraints;
+DROP TABLE "GENDER" cascade constraints;
+DROP TABLE "SETTINGS" cascade constraints;
+DROP TABLE "BIRTH" cascade constraints;
+DROP TABLE "BURIAL" cascade constraints;
+DROP TABLE "DEATH" cascade constraints;
+DROP TABLE "FATHER_OF" cascade constraints;
+DROP TABLE "MARRIAGE" cascade constraints;
+DROP TABLE "MOTHER_OF" cascade constraints;
+DROP TABLE "PERSON" cascade constraints;
+DROP TABLE "PERSON_INFO" cascade constraints;
+DROP TABLE "PERSON_INFO_TYPE" cascade constraints;
+DROP TABLE "PLACE" cascade constraints;
+DROP TABLE "SOURCE" cascade constraints;
+DROP SEQUENCE "PLACE_SEQUENCE";
+DROP SEQUENCE "SEQUENCE_PERSON";
+DROP VIEW "SETTINGS_VIEW";
+DROP VIEW "CHILDREN_VIEW";
+DROP VIEW "LAST_PERSON_INSERTED_VIEW";
+DROP VIEW "MARRIAGE_VIEW";
+DROP VIEW "PERSON_INFO_VIEW";
+DROP VIEW "PERSON_VIEW";
+DROP VIEW "SPOUSE_VIEW";
+DROP PROCEDURE "INSERT_OR_UPDATE_BIRTH";
+DROP PROCEDURE "INSERT_OR_UPDATE_DEATH";
+DROP PROCEDURE "INSERT_PLACE_PROCEDURE";
+DROP TYPE "CUSTOM_DATE";
 --------------------------------------------------------
 --  DDL for Type CUSTOM_DATE
 --------------------------------------------------------
@@ -60,14 +88,6 @@ END;
 	"VALUE" VARCHAR2(5)
    ) ;
 --------------------------------------------------------
---  DDL for Table GENDER
---------------------------------------------------------
-
-  CREATE TABLE "GENDER" 
-   (	"ABBR" CHAR(1), 
-	"FULL_WORD" VARCHAR2(20)
-   ) ;
---------------------------------------------------------
 --  DDL for Table DEFAULT_PERSON_TYPE
 --------------------------------------------------------
 
@@ -76,12 +96,12 @@ END;
 	"DEFAULT_PERSON_TYPE" VARCHAR2(20)
    ) ;
 --------------------------------------------------------
---  DDL for Table PERSON_INFO_TYPE
+--  DDL for Table GENDER
 --------------------------------------------------------
 
-  CREATE TABLE "PERSON_INFO_TYPE" 
-   (	"ID" NUMBER, 
-	"TYPE" VARCHAR2(20)
+  CREATE TABLE "GENDER" 
+   (	"ABBR" CHAR(1), 
+	"FULL_WORD" VARCHAR2(20)
    ) ;
 --------------------------------------------------------
 --  DDL for Table SETTINGS
@@ -108,7 +128,7 @@ END;
 
   CREATE TABLE "BURIAL" 
    (	"PERSON_ID" NUMBER, 
-	"ANNIVERARY" DATE, 
+	"ANNIVERSARY" DATE, 
 	"PLACE_ID" NUMBER
    ) ;
 --------------------------------------------------------
@@ -165,6 +185,14 @@ END;
 	"DESCRIPTION" BLOB
    ) ;
 --------------------------------------------------------
+--  DDL for Table PERSON_INFO_TYPE
+--------------------------------------------------------
+
+  CREATE TABLE "PERSON_INFO_TYPE" 
+   (	"ID" NUMBER, 
+	"TYPE" VARCHAR2(20)
+   ) ;
+--------------------------------------------------------
 --  DDL for Table PLACE
 --------------------------------------------------------
 
@@ -181,6 +209,23 @@ END;
 	"CITATION" VARCHAR2(50), 
 	"TITLE" VARCHAR2(20)
    ) ;
+--------------------------------------------------------
+--  DDL for View SETTINGS_VIEW
+--------------------------------------------------------
+
+  CREATE OR REPLACE VIEW "SETTINGS_VIEW" ("THEME", "DEFAULT_PERSON", "DEFAULT_PERSON_TYPE", "VIEW_WELCOME_PAGE") AS 
+  SELECT 
+    THEME,
+    DEFAULT_PERSON,
+    DEFAULT_PERSON_TYPE.DEFAULT_PERSON_TYPE AS DEFAULT_PERSON_TYPE,
+    BOOLEAN.VALUE AS VIEW_WELCOME_PAGE
+FROM 
+    SETTINGS,
+    DEFAULT_PERSON_TYPE,
+    BOOLEAN
+WHERE
+    DEFAULT_PERSON_TYPE.ID = SETTINGS.DEFAULT_PERSON_TYPE
+AND BOOLEAN.ID = SETTINGS.VIEW_WELCOME_PAGE;
 --------------------------------------------------------
 --  DDL for View CHILDREN_VIEW
 --------------------------------------------------------
@@ -283,23 +328,6 @@ AND     P.ID = DEATH.PERSON_ID (+)
 AND     BIRTH.PLACE_ID = B_PLACE.ID (+)
 AND     DEATH.PLACE_ID = D_PLACE.ID (+);
 --------------------------------------------------------
---  DDL for View SETTINGS_VIEW
---------------------------------------------------------
-
-  CREATE OR REPLACE VIEW "SETTINGS_VIEW" ("THEME", "DEFAULT_PERSON", "DEFAULT_PERSON_TYPE", "VIEW_WELCOME_PAGE") AS 
-  SELECT 
-    THEME,
-    DEFAULT_PERSON,
-    DEFAULT_PERSON_TYPE.DEFAULT_PERSON_TYPE AS DEFAULT_PERSON_TYPE,
-    BOOLEAN.VALUE AS VIEW_WELCOME_PAGE
-FROM 
-    SETTINGS,
-    DEFAULT_PERSON_TYPE,
-    BOOLEAN
-WHERE
-    DEFAULT_PERSON_TYPE.ID = SETTINGS.DEFAULT_PERSON_TYPE
-AND BOOLEAN.ID = SETTINGS.VIEW_WELCOME_PAGE;
---------------------------------------------------------
 --  DDL for View SPOUSE_VIEW
 --------------------------------------------------------
 
@@ -333,23 +361,21 @@ REM INSERTING into BOOLEAN
 SET DEFINE OFF;
 Insert into BOOLEAN (ID,VALUE) values (0,'false');
 Insert into BOOLEAN (ID,VALUE) values (1,'true');
+REM INSERTING into DEFAULT_PERSON_TYPE
+SET DEFINE OFF;
+Insert into DEFAULT_PERSON_TYPE (ID,DEFAULT_PERSON_TYPE) values (1,'Same person');
+Insert into DEFAULT_PERSON_TYPE (ID,DEFAULT_PERSON_TYPE) values (2,'Last viewed person');
+Insert into DEFAULT_PERSON_TYPE (ID,DEFAULT_PERSON_TYPE) values (3,'Last edited person');
 REM INSERTING into GENDER
 SET DEFINE OFF;
 Insert into GENDER (ABBR,FULL_WORD) values ('M','Male');
 Insert into GENDER (ABBR,FULL_WORD) values ('F','Female');
 Insert into GENDER (ABBR,FULL_WORD) values ('O','Other');
 Insert into GENDER (ABBR,FULL_WORD) values ('U','Unknown');
-REM INSERTING into DEFAULT_PERSON_TYPE
-SET DEFINE OFF;
-Insert into DEFAULT_PERSON_TYPE (ID,DEFAULT_PERSON_TYPE) values (1,'Same person');
-Insert into DEFAULT_PERSON_TYPE (ID,DEFAULT_PERSON_TYPE) values (2,'Last viewed person');
-Insert into DEFAULT_PERSON_TYPE (ID,DEFAULT_PERSON_TYPE) values (3,'Last edited person');
-REM INSERTING into PERSON_INFO_TYPE
-SET DEFINE OFF;
 REM INSERTING into SETTINGS
 SET DEFINE OFF;
 Insert into SETTINGS (THEME,DEFAULT_PERSON,DEFAULT_PERSON_TYPE,VIEW_WELCOME_PAGE) values (null,null,1,1);
-REM INSERTING into CHILDREN_VIEW
+REM INSERTING into SETTINGS_VIEW
 SET DEFINE OFF;
 --------------------------------------------------------
 --  DDL for Index DEFAULT_PERSON_TYPE_PK
