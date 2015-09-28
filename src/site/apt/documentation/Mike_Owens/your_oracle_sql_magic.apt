@@ -286,7 +286,7 @@ your oracle sql magic
   Neither of these gives me an error. What I’m doing is trying to make a view that looks something like this:
 
 *---+---+---+---+---+---+
-| id | name | Spouse id | spouse | Child id | child
+|| id || name || Spouse id || spouse || Child id || child
 *---+---+---+---+---+---+
 | 1 | Jim Bob | 2 | Suzy | 3 | Fred
 *---+---+---+---+---+---+
