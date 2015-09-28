@@ -73,4 +73,9 @@ public class IndividualBean implements Serializable
     {
         person = em.find(Person.class, id);
     }
+    
+    public void updatePerson()
+    {
+        em.getTransaction().commit();
+    }
 }
