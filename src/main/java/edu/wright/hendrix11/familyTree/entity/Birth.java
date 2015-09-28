@@ -37,7 +37,7 @@ public class Birth implements Event
     @PrimaryKeyJoinColumn(name="PERSON_ID")
     private Person person;
 
-    @ManyToOne
+    @ManyToOne(cascade=ALL)
     @JoinColumn(name="PLACE_ID")
     private Place place;
 
