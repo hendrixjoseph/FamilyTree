@@ -43,11 +43,11 @@ something beautiful i wrote last night
 | Subject: | RE: something beautiful i wrote last night   |
 *----------+--------------+
 
-  I might do the `FIRST_NAME, LAST_NAME` columns later. Haven’t decided yet.
+  I might do the <<<FIRST_NAME, LAST_NAME>>> columns later. Haven’t decided yet.
 
-  The problem with `SPOUSE_ID` is that there might either be no (null) spouses, or multiple spouses.
+  The problem with <<<SPOUSE_ID>>> is that there might either be no (null) spouses, or multiple spouses.
 
-  `MOTHER_ID` and `FATHER_ID` might be null a lot of times.
+  <<<MOTHER_ID>>> and <<<FATHER_ID>>> might be null a lot of times.
 
 *----------+--------------+
 | From:    | Owens, Michael (TS) |
