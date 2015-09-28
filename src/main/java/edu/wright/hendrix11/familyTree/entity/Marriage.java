@@ -39,7 +39,7 @@ public class Marriage
     @JoinColumn(name = "WIFE")
     private Person wife;
 
-    @ManyToOne
+    @ManyToOne(cascade=ALL)
     @JoinColumn(name = "PLACE")
     private Place place;
 
