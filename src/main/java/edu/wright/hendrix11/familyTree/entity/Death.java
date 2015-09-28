@@ -37,7 +37,7 @@ public class Death implements Event
     @JoinColumn(name="PERSON_ID")
     private Person person;
 
-    @ManyToOne
+    @ManyToOne(cascade=ALL)
     @JoinColumn(name="PLACE_ID")
     private Place place;
 
