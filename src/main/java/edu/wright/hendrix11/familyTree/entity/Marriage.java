@@ -12,6 +12,7 @@
 package edu.wright.hendrix11.familyTree.entity;
 
 import java.util.Date;
+import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;

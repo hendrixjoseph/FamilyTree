@@ -13,6 +13,7 @@ package edu.wright.hendrix11.familyTree.entity;
 
 import edu.wright.hendrix11.familyTree.entity.event.Event;
 import java.util.Date;
+import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
