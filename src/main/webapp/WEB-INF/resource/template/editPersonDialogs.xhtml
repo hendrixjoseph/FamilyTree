@@ -43,13 +43,13 @@
     <hendrix11:editPersonDialog
         header="Add father to #{individualBean.person.name}"
         widgetVar="addFatherDialog"
-        person="#{individualBean.person}"
+        person="#{individualBean.person.father}"
         isNewPerson="true" />
 
     <hendrix11:editPersonDialog
         header="Add mother to #{individualBean.person.name}"
         widgetVar="addMotherDialog"
-        person="#{individualBean.person}"
+        person="#{individualBean.person.mother}"
         isNewPerson="true" />
 
 </ui:component>

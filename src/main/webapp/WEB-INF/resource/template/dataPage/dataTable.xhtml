@@ -4,30 +4,30 @@
 
  View the full license at:
  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
- 
+
  Copyright (c) 2015 Joseph Hendrix
- 
+
  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- 
+
 -->
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:component xmlns="http://www.w3.org/1999/xhtml"
               xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
               xmlns:p="http://primefaces.org/ui"
-              xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">   
- 
+              xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
     <p:dataTable var="value" value="#{dataBean.values}">
-      <c:forEach items="#{dataBean.prettyNames}" var="column">
-        <p:column headerText="#{column}">
-            <c:if test="#{dataBean.isLinkColumn(column)}">
-                <p:link href="#{value.getLink(column)}"  value="#{value.getValue(column)}"/>
-            </c:if>
-            <c:if test="#{!dataBean.isLinkColumn(column)}">
-                <p:outputLabel value="#{value.getValue(column)}" />
-            </c:if>
-        </p:column>
-      </c:forEach>
+        <c:forEach items="#{dataBean.prettyNames}" var="column">
+            <p:column headerText="#{column}">
+                <c:if test="#{dataBean.isLinkColumn(column)}">
+                    <p:link href="#{value.getLink(column)}"  value="#{value.getValue(column)}"/>
+                </c:if>
+                <c:if test="#{!dataBean.isLinkColumn(column)}">
+                    <p:outputLabel value="#{value.getValue(column)}" />
+                </c:if>
+            </p:column>
+        </c:forEach>
         <p:column headerText="Edit" rendered="#{editButton != null}">
             <p:commandButton value="#{editButton}" update="@([id$=#{editDialog}_form])" actionListener="#{queryBean.setPlace(value)}" oncomplete="PF('#{editDialog}').show()" />
         </p:column>
@@ -35,4 +35,4 @@
             <p:commandButton value="#{deleteButton}" update="@([id$=#{deleteDialog}_form])" actionListener="#{queryBean.setPlace(value)}" oncomplete="PF('#{deleteDialog}').show()" />
         </p:column>
     </p:dataTable>
- </ui:component>
+</ui:component>
