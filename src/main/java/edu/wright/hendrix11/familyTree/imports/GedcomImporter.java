@@ -51,12 +51,7 @@ public class GedcomImporter extends Importer
     private static final String MARR_LINE = "1 MARR";
 
     private static PrintStream out;
-    /**
-     *
-     * @param args
-     */
-    private static final String propertyFile = "C:\\Program Files\\Apache Software Foundation\\Apache Tomcat 8.0.15\\bin\\database.properties";
-
+   
     /**
      *
      * @param args
