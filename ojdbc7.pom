@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.oracle</groupId>
-  <artifactId>ojdbc7</artifactId>
-  <version>12.1.0.1</version>
-  <url>http://www.oracle.com/technetwork/database/features/jdbc/jdbc-drivers-12c-download-1958347.html</url>
-  <name>Oracle Database 12.1.0.1 JDBC Driver</name>
-  <description>ojdbc7.jar is not (should not) be available from any public repository, or anywhere other than Oracle. Get the jar file from Oracle, then install it using this pom file and the following command: mvn install:install-file -Dfile=ojdbc7.jar -DpomFile=ojdbc7.pom</description>
-  <licenses>
-		<license>
-			<name>Oracle Technology Network Development and Distribution License</name>
-			<url>http://www.oracle.com/technetwork/licenses/distribution-license-152002.html</url>
-			<distribution>manual</distribution>
-		</license>
-	</licenses>
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.oracle</groupId>
+    <artifactId>ojdbc7</artifactId>
+    <version>12.1.0.1</version>
+    <url>http://www.oracle.com/technetwork/database/features/jdbc/jdbc-drivers-12c-download-1958347.html</url>
+    <name>Oracle Database 12.1.0.1 JDBC Driver</name>
+    <description>ojdbc7.jar is not (should not) be available from any public repository, or anywhere other than Oracle. Get the jar file from Oracle, then install it using this pom file and the following command: mvn install:install-file -Dfile=ojdbc7.jar -DpomFile=ojdbc7.pom</description>
+    <licenses>
+        <license>
+            <name>Oracle Technology Network Development and Distribution License</name>
+            <url>http://www.oracle.com/technetwork/licenses/distribution-license-152002.html</url>
+            <distribution>manual</distribution>
+        </license>
+    </licenses>
 </project>

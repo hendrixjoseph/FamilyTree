@@ -30,7 +30,7 @@ public class IndividualBean implements Serializable
 
     private Person person;
 
-    @PersistenceContext(unitName="edu.wright.hendrix11.familyTree")
+    @PersistenceContext(unitName = "edu.wright.hendrix11.familyTree")
     private EntityManager em;
 
     /**
@@ -73,12 +73,12 @@ public class IndividualBean implements Serializable
     {
         person = em.find(Person.class, id);
     }
-    
+
     public void updatePerson()
     {
         em.getTransaction().commit();
     }
-    
+
     public void insertPerson(Person person)
     {
         em.getTransaction().begin();

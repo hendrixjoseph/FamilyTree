@@ -23,8 +23,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
-
 /**
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>
@@ -32,17 +30,18 @@ import javax.persistence.TemporalType;
 @Entity
 public class Burial implements Event
 {
+
     @Id
     @OneToOne
-    @JoinColumn(name="PERSON_ID")
+    @JoinColumn(name = "PERSON_ID")
     private Person person;
 
-    @ManyToOne(cascade=ALL)
-    @JoinColumn(name="PLACE_ID")
+    @ManyToOne(cascade = ALL)
+    @JoinColumn(name = "PLACE_ID")
     private Place place;
 
     @Temporal(TemporalType.DATE)
-    @Column(name="ANNIVERSARY")
+    @Column(name = "ANNIVERSARY")
     private Date date;
 
     /**

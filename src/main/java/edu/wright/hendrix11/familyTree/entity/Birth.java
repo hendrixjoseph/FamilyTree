@@ -24,8 +24,6 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
-
 /**
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>
@@ -33,17 +31,18 @@ import javax.persistence.TemporalType;
 @Entity
 public class Birth implements Event
 {
+
     @Id
     @OneToOne
-    @PrimaryKeyJoinColumn(name="PERSON_ID")
+    @PrimaryKeyJoinColumn(name = "PERSON_ID")
     private Person person;
 
-    @ManyToOne(cascade=ALL)
-    @JoinColumn(name="PLACE_ID")
+    @ManyToOne(cascade = ALL)
+    @JoinColumn(name = "PLACE_ID")
     private Place place;
 
     @Temporal(TemporalType.DATE)
-    @Column(name="ANNIVERSARY")
+    @Column(name = "ANNIVERSARY")
     private Date date;
 
     /**

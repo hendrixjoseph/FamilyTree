@@ -32,7 +32,7 @@ public class GenderBean implements Serializable
 
     private List<Gender> genders;
 
-    @PersistenceContext(unitName="edu.wright.hendrix11.familyTree")
+    @PersistenceContext(unitName = "edu.wright.hendrix11.familyTree")
     private EntityManager em;
 
     /**

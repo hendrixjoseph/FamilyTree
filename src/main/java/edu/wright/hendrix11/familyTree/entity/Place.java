@@ -21,6 +21,7 @@ import javax.persistence.Id;
 @Entity
 public class Place
 {
+
     @Id
     int id;
 

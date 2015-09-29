@@ -28,6 +28,7 @@ import static org.junit.Assert.*;
  */
 public class GenderBeanTest
 {
+
     private static final Logger LOG = Logger.getLogger(GenderBeanTest.class.getName());
     public static GenderBean bean;
 
@@ -60,8 +61,10 @@ public class GenderBeanTest
 
         StringBuilder sb = new StringBuilder();
 
-        for(Gender gender : genders)
+        for (Gender gender : genders)
+        {
             sb.append("\n\t").append(gender.getAbbr()).append(":\t").append(gender);
+        }
 
         LOG.log(Level.INFO, sb.toString());
     }

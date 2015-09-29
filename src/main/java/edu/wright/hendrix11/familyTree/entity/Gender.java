@@ -22,11 +22,13 @@ import javax.persistence.NamedQuery;
  * @author Joe Hendrix
  */
 @Entity
-@NamedQueries({
-    @NamedQuery(name = Gender.FIND_ALL, query = "SELECT g FROM Gender g")
-    })
+@NamedQueries(
+        {
+            @NamedQuery(name = Gender.FIND_ALL, query = "SELECT g FROM Gender g")
+        })
 public class Gender
 {
+
     public static final String FIND_ALL = "Gender.findAll";
 
     @Id
@@ -71,8 +73,8 @@ public class Gender
         this.fullWord = fullWord;
     }
 
-public String toString()
-{
-return fullWord;
-}
+    public String toString()
+    {
+        return fullWord;
+    }
 }

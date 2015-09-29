@@ -26,6 +26,7 @@ import org.junit.Test;
  */
 public class IndividualBeanTest
 {
+
     private static final Logger LOG = Logger.getLogger(IndividualBeanTest.class.getName());
     public static IndividualBean bean;
 

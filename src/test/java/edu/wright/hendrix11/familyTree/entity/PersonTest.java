@@ -28,6 +28,7 @@ import org.junit.Test;
  */
 public class PersonTest
 {
+
     private static final Logger LOG = Logger.getLogger(PersonTest.class.getName());
 
     private static EntityManagerFactory emf;
@@ -41,8 +42,10 @@ public class PersonTest
     @AfterClass
     public static void tearDownClass()
     {
-        if(emf != null)
+        if (emf != null)
+        {
             emf.close();
+        }
     }
 
     private EntityManager em;
@@ -75,17 +78,20 @@ public class PersonTest
 
         sb.append("\n\tSPOUSES:\t");
 
-        for(Person spouse : person.getSpouses())
+        for (Person spouse : person.getSpouses())
+        {
             sb.append(spouse.getName()).append(", ");
+        }
 
         sb.append("\n\tCHILDREN:\t");
 
-        for(Person child : person.getChildren())
+        for (Person child : person.getChildren())
+        {
             sb.append(child.getName()).append(", ");
+        }
 
         // NullPointerException if it don't exist!
 //        sb.append("\n\tDEATH:\t").append(person.getDeath().getDate());
-
         LOG.log(Level.INFO, sb.toString());
     }
 

@@ -1,13 +1,13 @@
-/* 
+/*
  *  The MIT License (MIT)
- * 
+ *
  *  View the full license at:
  *  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
- *  
+ *
  *  Copyright (c) 2015 Joseph Hendrix
- *  
+ *
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- *  
+ *
  */
 package edu.wright.hendrix11.familyTree.entity;
 
@@ -26,6 +26,7 @@ import org.junit.Test;
  */
 public class PersonViewTest
 {
+
     private static EntityManagerFactory emf;
 
     @BeforeClass
@@ -65,16 +66,15 @@ public class PersonViewTest
         System.out.println(person.getFather().getName());
         System.out.println(person.getMother().getName());
 
-        for(PersonView spouse : person.getSpouses())
+        for (PersonView spouse : person.getSpouses())
         {
             System.out.println(spouse.getName());
         }
 
-        for(PersonView child : person.getChildren())
+        for (PersonView child : person.getChildren())
         {
             System.out.println(child.getName());
         }
     }
-
 
 }

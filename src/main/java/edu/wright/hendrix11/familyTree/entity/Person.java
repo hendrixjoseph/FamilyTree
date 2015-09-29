@@ -82,15 +82,15 @@ public class Person
             })
     private List<Person> children;
 
-    @OneToOne(cascade=ALL)
+    @OneToOne(cascade = ALL)
     @PrimaryKeyJoinColumn
     private Birth birth;
 
-    @OneToOne(cascade=ALL)
+    @OneToOne(cascade = ALL)
     @PrimaryKeyJoinColumn
     private Death death;
 
-    @OneToOne(cascade=ALL)
+    @OneToOne(cascade = ALL)
     @PrimaryKeyJoinColumn
     private Burial burial;
 
@@ -130,12 +130,16 @@ public class Person
     {
         List<Person> childrenOfSpouse = new ArrayList<>();
 
-        for(Person child : children)
+        for (Person child : children)
         {
-            if(child.hasFather() && child.getFather().equals(spouse))
+            if (child.hasFather() && child.getFather().equals(spouse))
+            {
                 childrenOfSpouse.add(child);
-            else if(child.hasMother() && child.getMother().equals(spouse))
+            }
+            else if (child.hasMother() && child.getMother().equals(spouse))
+            {
                 childrenOfSpouse.add(child);
+            }
         }
 
         return childrenOfSpouse;
@@ -149,10 +153,12 @@ public class Person
     {
         List<Person> childrenNoSpouse = new ArrayList<>();
 
-        for(Person child : children)
+        for (Person child : children)
         {
-            if(!child.hasFather() || !child.hasMother())
+            if (!child.hasFather() || !child.hasMother())
+            {
                 childrenNoSpouse.add(child);
+            }
         }
 
         return childrenNoSpouse;

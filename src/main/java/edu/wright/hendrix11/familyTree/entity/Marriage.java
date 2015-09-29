@@ -30,6 +30,7 @@ import javax.persistence.TemporalType;
 @IdClass(MarriagePK.class)
 public class Marriage
 {
+
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "HUSBAND")
@@ -40,7 +41,7 @@ public class Marriage
     @JoinColumn(name = "WIFE")
     private Person wife;
 
-    @ManyToOne(cascade=ALL)
+    @ManyToOne(cascade = ALL)
     @JoinColumn(name = "PLACE")
     private Place place;
 

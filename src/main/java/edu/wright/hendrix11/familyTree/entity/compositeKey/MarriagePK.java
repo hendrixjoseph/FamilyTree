@@ -17,6 +17,7 @@ package edu.wright.hendrix11.familyTree.entity;
  */
 public class MarriagePK
 {
+
     private int husband;
     private int wife;
 
