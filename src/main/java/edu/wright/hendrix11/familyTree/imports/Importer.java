@@ -27,6 +27,7 @@ public abstract class Importer
      *
      */
     protected Scanner in;
+    protected EntityManager em;
 
     /**
      *
