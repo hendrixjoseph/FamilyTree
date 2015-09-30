@@ -11,10 +11,8 @@
  */
 package edu.wright.hendrix11.familyTree.importer;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.sql.SQLException;
-import java.util.Scanner;
+import java.io.FileReader;
 import javax.persistence.EntityManager;
 
 /**
@@ -27,7 +25,7 @@ public abstract class Importer
     /**
      *
      */
-    protected Scanner in;
+    protected FileReader file;
     protected EntityManager em;
 
     /**
@@ -37,30 +35,12 @@ public abstract class Importer
      */
     public Importer(String fileName) throws FileNotFoundException
     {
-        this(new File(fileName));
+        this(new FileReader(fileName));
     }
 
-    public Importer(File file) throws FileNotFoundException
+    public Importer(FileReader file) throws FileNotFoundException
     {
-        this(new Scanner(file));
-    }
-
-    /**
-     *
-     * @param in
-     */
-    public Importer(Scanner in)
-    {
-        this.in = in;
-    }
-
-    /**
-     *
-     * @throws SQLException
-     */
-    public void importData() throws SQLException
-    {
-        processData();
+        this.file = file;
     }
 
     /**

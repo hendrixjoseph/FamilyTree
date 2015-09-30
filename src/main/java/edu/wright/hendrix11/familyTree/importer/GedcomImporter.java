@@ -14,8 +14,8 @@ package edu.wright.hendrix11.familyTree.importer;
 import edu.wright.hendrix11.familyTree.entity.Marriage;
 import edu.wright.hendrix11.familyTree.entity.Person;
 import java.io.FileNotFoundException;
-import java.io.PrintStream;
-import java.sql.SQLException;
+import java.io.IOException;
+import java.io.LineNumberReader;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,6 +24,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -32,7 +34,12 @@ import java.util.Scanner;
 public class GedcomImporter extends Importer
 {
 
+    private static final Logger LOG = Logger.getLogger(GedcomImporter.class.getName());
+
     private static final DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
+
+    // Just here to allow compilation til I'm done.
+    Scanner in;
 
     private static final String INDI_LINE = "0 @I";
 
@@ -50,40 +57,25 @@ public class GedcomImporter extends Importer
     private static final String CHIL_LINE = "1 CHIL";
     private static final String MARR_LINE = "1 MARR";
 
+    private enum Mode { NONE, PERSON, FAMILY, MARRIAGE }
+
     private boolean insertPersonMode;
     private boolean insertFamilyMode;
     private boolean insertMarriageMode;
     private boolean insertBirthMode;
     private boolean insertDeathMode;
 
-    private HashMap<String, Person> entry;
-    private HashMap<Person, String> reverseEntry;
+    private HashMap<String, Person> entry = new HashMap<>();
+    private HashMap<Person, String> reverseEntry = new HashMap<>();
 
-    /**
-     *
-     * @param fileName
-     * @throws FileNotFoundException
-     */
     public GedcomImporter(String fileName) throws FileNotFoundException
     {
         super(fileName);
-        initializeEntry();
     }
 
-    /**
-     *
-     * @param in
-     */
-    public GedcomImporter(Scanner in)
-    {
-        super(in);
-        initializeEntry();
-    }
 
-    private void initializeEntry()
     {
-        entry = new HashMap<>();
-        reverseEntry = new HashMap<>();
+        processData();
     }
 
     /**
@@ -92,6 +84,44 @@ public class GedcomImporter extends Importer
      */
     @Override
     protected void processData()
+    {
+        Mode mode = Mode.NONE;
+
+        try(LineNumberReader in = new LineNumberReader(file))
+        {
+            while(!in.readLine().contains(INDI_LINE))
+            {
+            }
+
+            String nextLine = in.readLine();
+
+            if(nextLine.contains(INDI_LINE))
+                mode = Mode.PERSON;
+
+
+            switch(mode) {
+                case PERSON:
+
+                    break;
+                case FAMILY:
+
+                    break;
+                case MARRIAGE:
+
+                    break;
+                default:
+                    // Do nothing
+            }
+        }
+        catch (IOException e)
+        {
+            LOG.log(Level.SEVERE, e.getClass().getName(), e);
+        }
+
+        LOG.log(Level.INFO, "Done!");
+    }
+
+    private void temp()
     {
         setAllModes(false);
 
@@ -234,7 +264,7 @@ public class GedcomImporter extends Importer
         else
         {
             // Discard pile
-            out.println(nextLine);
+//            out.println(nextLine);
         }
     }
 
@@ -310,7 +340,7 @@ public class GedcomImporter extends Importer
         {
             setSubModes(false);
             // Discard pile...
-            out.println(nextLine);
+//            out.println(nextLine);
         }
     }
 
