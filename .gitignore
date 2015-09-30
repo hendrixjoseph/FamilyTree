@@ -2,6 +2,7 @@ Thumbs.db
 ojdbc7.jar
 target/
 sql/Generated*.*
+hendrixfamily.fte.GED
 
 # These will all end up in the gh-pages branch as-is,
 # so there's no need to version them in the master

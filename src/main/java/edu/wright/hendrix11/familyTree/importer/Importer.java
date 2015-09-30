@@ -37,7 +37,12 @@ public abstract class Importer
      */
     public Importer(String fileName) throws FileNotFoundException
     {
-        this(new Scanner(new File(fileName)));
+        this(new File(fileName));
+    }
+
+    public Importer(File file) throws FileNotFoundException
+    {
+        this(new Scanner(file));
     }
 
     /**

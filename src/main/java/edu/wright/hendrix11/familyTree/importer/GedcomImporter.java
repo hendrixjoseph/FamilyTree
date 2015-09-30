@@ -50,46 +50,6 @@ public class GedcomImporter extends Importer
     private static final String CHIL_LINE = "1 CHIL";
     private static final String MARR_LINE = "1 MARR";
 
-    private static PrintStream out;
-
-    /**
-     *
-     * @param args
-     */
-    public static void main(String[] args)
-    {
-        String path = "C:\\Users\\Joe\\Documents\\";
-        String file = "hendrixfamily.fte.GED";
-
-        String outFile = "outFile.txt";
-
-        try
-        {
-            out = new PrintStream(path + outFile);
-        }
-        catch (FileNotFoundException ex)
-        {
-            ex.printStackTrace();
-            out = System.out;
-        }
-
-        try
-        {
-            GedcomImporter importer = new GedcomImporter(path + file);
-            importer.importData();
-
-            HashMap<String, Person> entry = importer.getEntry();
-
-            System.out.println(entry.size() + " people loaded.");
-        }
-        catch (FileNotFoundException | SQLException ex)
-        {
-            ex.printStackTrace();
-        }
-
-        out.close();
-    }
-
     private boolean insertPersonMode;
     private boolean insertFamilyMode;
     private boolean insertMarriageMode;
@@ -122,8 +82,8 @@ public class GedcomImporter extends Importer
 
     private void initializeEntry()
     {
-        entry = new HashMap<String, Person>();
-        reverseEntry = new HashMap<Person, String>();
+        entry = new HashMap<>();
+        reverseEntry = new HashMap<>();
     }
 
     /**
