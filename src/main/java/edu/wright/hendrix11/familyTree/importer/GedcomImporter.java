@@ -59,7 +59,7 @@ public class GedcomImporter extends Importer
 
     private enum Mode 
     { 
-        PERSON("0 @I"), FAMILY("0 @F"), MARRIAGE("1 MARR");
+        PERSON("0 @I"), FAMILY("0 @F"), MARRIAGE("1 MARR"), NONE("NONE");
         
         private final String string;
 
@@ -153,8 +153,6 @@ public class GedcomImporter extends Importer
     @Override
     protected void processData()
     {
-        Mode mode = Mode.NONE;
-
         try(LineNumberReader in = new LineNumberReader(file))
         {
             while(!in.readLine().contains(INDI_LINE))
@@ -162,10 +160,11 @@ public class GedcomImporter extends Importer
             }
 
             String nextLine;
+            Mode mode = Mode.NONE;
             
             while((nextLine = in.readLine()) != null)
             {
-                mode = Mode.getMode(nextLine);
+                mode = mode.getMode(nextLine);
     
                 switch(mode)
                 {
