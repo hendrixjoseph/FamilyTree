@@ -57,7 +57,76 @@ public class GedcomImporter extends Importer
     private static final String CHIL_LINE = "1 CHIL";
     private static final String MARR_LINE = "1 MARR";
 
-    private enum Mode { NONE, PERSON, FAMILY, MARRIAGE }
+    private enum Mode 
+    { 
+        PERSON("0 @I"), FAMILY("0 @F"), MARRIAGE("1 MARR");
+        
+        private final String string;
+
+        /**
+         * @param string
+         */
+        private Mode(final String string)
+        {
+            this.string = string;
+        }
+        
+        public static Mode getMode(String string)
+        {
+            for(Mode mode : Mode.values())
+            {
+                if(mode.contains(string))
+                    return mode;
+            }
+            
+            return this;
+        }
+        
+        private boolean contains(String string)
+        {
+            return string.contains(this.string);
+        }
+    }
+    
+    private enum LineType 
+    { 
+		NAME("1 NAME "),
+		GENDER("1 SEX "),
+		BIRTH("1 BIRT"),
+		DEATH("1 DEAT"),
+		DATE("2 DATE "),
+		PLACE("2 PLAC "),	
+		HUSB("1 HUSB"),
+		WIFE("1 WIFE"),
+		CHILD("1 CHIL"),
+		MARR("1 MARR");
+        
+        private final String string;
+
+        /**
+         * @param string
+         */
+        private LineType(final String string)
+        {
+            this.string = string;
+        }
+        
+        public LineType getLineType(String string)
+        {
+            for(LineType lineType : LineType.values())
+            {
+                if(lineType.contains(string))
+                    return lineType;
+            }
+            
+            return null;
+        }
+        
+        private boolean contains(String string)
+        {
+            return string.contains(this.string);
+        }
+    }
 
     private boolean insertPersonMode;
     private boolean insertFamilyMode;
@@ -72,7 +141,6 @@ public class GedcomImporter extends Importer
     {
         super(fileName);
     }
-
 
     {
         processData();
@@ -93,24 +161,26 @@ public class GedcomImporter extends Importer
             {
             }
 
-            String nextLine = in.readLine();
-
-            if(nextLine.contains(INDI_LINE))
-                mode = Mode.PERSON;
-
-
-            switch(mode) {
-                case PERSON:
-
-                    break;
-                case FAMILY:
-
-                    break;
-                case MARRIAGE:
-
-                    break;
-                default:
-                    // Do nothing
+            String nextLine;
+            
+            while((nextLine = in.readLine()) != null)
+            {
+                mode = Mode.getMode(nextLine);
+    
+                switch(mode)
+                {
+                    case PERSON:
+    
+                        break;
+                    case FAMILY:
+    
+                        break;
+                    case MARRIAGE:
+    
+                        break;
+                    default:
+                        // Do nothing
+                }
             }
         }
         catch (IOException e)
