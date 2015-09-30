@@ -57,10 +57,10 @@ public class GedcomImporter extends Importer
     private static final String CHIL_LINE = "1 CHIL";
     private static final String MARR_LINE = "1 MARR";
 
-    private enum Mode 
-    { 
+    private enum Mode
+    {
         PERSON("0 @I"), FAMILY("0 @F"), MARRIAGE("1 MARR"), NONE("NONE");
-        
+
         private final String string;
 
         /**
@@ -70,37 +70,37 @@ public class GedcomImporter extends Importer
         {
             this.string = string;
         }
-        
-        public static Mode getMode(String string)
+
+        public Mode getMode(String string)
         {
             for(Mode mode : Mode.values())
             {
                 if(mode.contains(string))
                     return mode;
             }
-            
+
             return this;
         }
-        
+
         private boolean contains(String string)
         {
             return string.contains(this.string);
         }
     }
-    
-    private enum LineType 
-    { 
+
+    private enum LineType
+    {
 		NAME("1 NAME "),
 		GENDER("1 SEX "),
 		BIRTH("1 BIRT"),
 		DEATH("1 DEAT"),
 		DATE("2 DATE "),
-		PLACE("2 PLAC "),	
+		PLACE("2 PLAC "),
 		HUSB("1 HUSB"),
 		WIFE("1 WIFE"),
 		CHILD("1 CHIL"),
 		MARR("1 MARR");
-        
+
         private final String string;
 
         /**
@@ -110,7 +110,7 @@ public class GedcomImporter extends Importer
         {
             this.string = string;
         }
-        
+
         public LineType getLineType(String string)
         {
             for(LineType lineType : LineType.values())
@@ -118,10 +118,10 @@ public class GedcomImporter extends Importer
                 if(lineType.contains(string))
                     return lineType;
             }
-            
+
             return null;
         }
-        
+
         private boolean contains(String string)
         {
             return string.contains(this.string);
@@ -161,21 +161,21 @@ public class GedcomImporter extends Importer
 
             String nextLine;
             Mode mode = Mode.NONE;
-            
+
             while((nextLine = in.readLine()) != null)
             {
                 mode = mode.getMode(nextLine);
-    
+
                 switch(mode)
                 {
                     case PERSON:
-    
+
                         break;
                     case FAMILY:
-    
+
                         break;
                     case MARRIAGE:
-    
+
                         break;
                     default:
                         // Do nothing
