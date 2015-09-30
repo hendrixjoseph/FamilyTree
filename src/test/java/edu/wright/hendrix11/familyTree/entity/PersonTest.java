@@ -20,6 +20,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -63,6 +64,7 @@ public class PersonTest
     }
 
     @Test
+//    @Ignore
     public void test()
     {
         Person person = em.find(Person.class, 9512);
