@@ -9,7 +9,7 @@
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
  *
  */
-package edu.wright.hendrix11.familyTree.export;
+package edu.wright.hendrix11.familyTree.exporter;
 
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
@@ -18,34 +18,40 @@ import java.io.PrintStream;
  *
  * @author Joe Hendrix
  */
-public class GedcomExporter extends Exporter
+public abstract class Exporter
 {
+
+    private static final String[] tableNames =
+    {
+        "", ""
+    };
+
+    /**
+     *
+     */
+    protected PrintStream out;
 
     /**
      *
      * @param fileName
      * @throws FileNotFoundException
      */
-    public GedcomExporter(String fileName) throws FileNotFoundException
+    public Exporter(String fileName) throws FileNotFoundException
     {
-        super(fileName);
+        this(new PrintStream(fileName));
     }
 
     /**
      *
      * @param out
      */
-    public GedcomExporter(PrintStream out)
+    public Exporter(PrintStream out)
     {
-        super(out);
+        this.out = out;
     }
 
     /**
      *
      */
-    @Override
-    public void export()
-    {
-
-    }
+    public abstract void export();
 }

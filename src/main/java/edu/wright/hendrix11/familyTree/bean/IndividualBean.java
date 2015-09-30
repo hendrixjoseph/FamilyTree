@@ -40,6 +40,7 @@ public class IndividualBean implements Serializable
     public void initialize()
     {
         person = em.find(Person.class, 9510);
+        person.setName("JOeeee");
     }
 
     /**

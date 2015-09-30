@@ -120,4 +120,19 @@ public class Marriage
         this.anniversary = anniversary;
     }
 
+    public boolean hasHusband()
+    {
+        return hasSpouse(husband);
+    }
+
+    public boolean hasWife()
+    {
+        return hasSpouse(wife);
+    }
+
+    private boolean hasSpouse(Person spouse)
+    {
+        return spouse != null;
+    }
+
 }

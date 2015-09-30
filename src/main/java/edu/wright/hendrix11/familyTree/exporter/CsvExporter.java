@@ -9,16 +9,16 @@
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
  *
  */
-package edu.wright.hendrix11.familyTree.imports;
+package edu.wright.hendrix11.familyTree.exporter;
 
 import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.PrintStream;
 
 /**
  *
  * @author Joe Hendrix
  */
-public class SqlImporter extends Importer
+public class CsvExporter extends Exporter
 {
 
     /**
@@ -26,25 +26,25 @@ public class SqlImporter extends Importer
      * @param fileName
      * @throws FileNotFoundException
      */
-    public SqlImporter(String fileName) throws FileNotFoundException
+    public CsvExporter(String fileName) throws FileNotFoundException
     {
         super(fileName);
     }
 
     /**
      *
-     * @param in
+     * @param out
      */
-    public SqlImporter(Scanner in)
+    public CsvExporter(PrintStream out)
     {
-        super(in);
+        super(out);
     }
 
     /**
      *
      */
     @Override
-    public void processData()
+    public void export()
     {
 
     }

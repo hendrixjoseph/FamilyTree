@@ -9,7 +9,7 @@
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
  *
  */
-package edu.wright.hendrix11.familyTree.imports;
+package edu.wright.hendrix11.familyTree.importer;
 
 import edu.wright.hendrix11.familyTree.entity.Marriage;
 import edu.wright.hendrix11.familyTree.entity.Person;
@@ -51,7 +51,7 @@ public class GedcomImporter extends Importer
     private static final String MARR_LINE = "1 MARR";
 
     private static PrintStream out;
-   
+
     /**
      *
      * @param args
@@ -266,7 +266,7 @@ public class GedcomImporter extends Importer
 
             if (insertMarriageMode)
             {
-                marriage.setPlace(plac);
+//                marriage.setPlace(plac);
             }
 
             setSubModes(false);
@@ -300,11 +300,11 @@ public class GedcomImporter extends Importer
 
             if (gender.equals("M"))
             {
-                person.setGender("Male");
+//                person.setGender("Male");
             }
             else if (gender.equals("F"))
             {
-                person.setGender("Female");
+//                person.setGender("Female");
             }
         }
         else if (nextLine.startsWith(BIRTH_LINE))
@@ -323,11 +323,11 @@ public class GedcomImporter extends Importer
             {
                 if (insertBirthMode)
                 {
-                    person.setDateOfBirth(date);
+//                    person.setDateOfBirth(date);
                 }
                 else if (insertDeathMode)
                 {
-                    person.setDateOfDeath(date);
+//                    person.setDateOfDeath(date);
                 }
             }
         }
@@ -337,11 +337,11 @@ public class GedcomImporter extends Importer
 
             if (insertBirthMode)
             {
-                person.setPlaceOfBirth(plac);
+//                person.setPlaceOfBirth(plac);
             }
             else if (insertDeathMode)
             {
-                person.setPlaceOfDeath(plac);
+//                person.setPlaceOfDeath(plac);
             }
 
             setSubModes(false);

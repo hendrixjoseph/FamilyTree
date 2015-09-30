@@ -9,7 +9,7 @@
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
  *
  */
-package edu.wright.hendrix11.familyTree.imports;
+package edu.wright.hendrix11.familyTree.importer;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -18,7 +18,7 @@ import java.util.Scanner;
  *
  * @author Joe Hendrix
  */
-public class CsvImporter extends Importer
+public class XmlImporter extends Importer
 {
 
     /**
@@ -26,7 +26,7 @@ public class CsvImporter extends Importer
      * @param fileName
      * @throws FileNotFoundException
      */
-    public CsvImporter(String fileName) throws FileNotFoundException
+    public XmlImporter(String fileName) throws FileNotFoundException
     {
         super(fileName);
     }
@@ -35,7 +35,7 @@ public class CsvImporter extends Importer
      *
      * @param in
      */
-    public CsvImporter(Scanner in)
+    public XmlImporter(Scanner in)
     {
         super(in);
     }

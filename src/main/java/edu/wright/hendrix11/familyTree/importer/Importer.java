@@ -9,12 +9,13 @@
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
  *
  */
-package edu.wright.hendrix11.familyTree.imports;
+package edu.wright.hendrix11.familyTree.importer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.util.Scanner;
+import javax.persistence.EntityManager;
 
 /**
  *
