@@ -14,6 +14,7 @@ package edu.wright.hendrix11.familyTree.importer;
 import edu.wright.hendrix11.familyTree.entity.Birth;
 import edu.wright.hendrix11.familyTree.entity.Death;
 import edu.wright.hendrix11.familyTree.entity.Gender;
+import edu.wright.hendrix11.familyTree.entity.Marriage;
 import edu.wright.hendrix11.familyTree.entity.Person;
 import edu.wright.hendrix11.familyTree.entity.Place;
 import edu.wright.hendrix11.familyTree.entity.event.Event;
@@ -23,8 +24,11 @@ import java.io.LineNumberReader;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -40,7 +44,7 @@ public class GedcomImporter extends Importer
     private static final DateFormat DATE_FORMAT = new SimpleDateFormat("dd MMM yyyy");
 
     private HashMap<String, Person> people = new HashMap<>();
-    private HashMap<Person, String> reverseEntry = new HashMap<>();
+    private List<Marriage> marriages = new ArrayList<>();
 
     private Mode inserting = Mode.NONE;
     private Mode personInfo = Mode.NONE;
@@ -100,6 +104,7 @@ public class GedcomImporter extends Importer
             case NAME:
                 info = info.replaceAll("/", "");
                 person.setName(info);
+                personInfo = personInfo.NONE;
                 break;
             case GENDER:
                 Gender gender = new Gender();
@@ -146,6 +151,7 @@ public class GedcomImporter extends Importer
             Person husband = null;
             Person wife = null;
             Person child = null;
+            Marriage marriage = null;
 
             while ((nextLine = in.readLine()) != null)
             {
@@ -163,6 +169,7 @@ public class GedcomImporter extends Importer
                         String id = split[1];
 
                         people.put(id, person);
+                        break;
                     case PERSON:
                         processPerson(person);
                         break;
@@ -170,6 +177,7 @@ public class GedcomImporter extends Importer
                         husband = null;
                         wife = null;
                         child = null;
+                        marriage = null;
                         break;
                     case FAMILY:
                         switch(familyInfo)
@@ -192,8 +200,18 @@ public class GedcomImporter extends Importer
                                 child.setFather(husband);
                                 child.setMother(wife);
                                 break;
-                            case MARR:
+                            case MARRIAGE:
+                                if(marriage == null)
+                                {
+                                    marriage = new Marriage();
+                                    marriage.setHusband(husband);
+                                    marriage.setWife(wife);
+                                }
 
+                                if(!marriages.contains(marriage))
+                                    marriages.add(marriage);
+
+                                processEvent(marriage);
                                 break;
                         }
                         break;
@@ -208,6 +226,11 @@ public class GedcomImporter extends Importer
         }
 
         LOG.log(Level.INFO, "Done! {0} people read in!", people.size());
+        LOG.log(Level.INFO, "Done! {0} marriages read in!", marriages.size());
+
+        for(Person person : people.values())
+            System.out.println(person.getName());
+
     }
 
     private enum Mode
@@ -226,7 +249,6 @@ public class GedcomImporter extends Importer
         HUSB("1 HUSB "),
         WIFE("1 WIFE "),
         CHILD("1 CHIL "),
-        MARR("1 MARR"),
         DATE("2 DATE "),
         PLACE("2 PLAC "),
         SOURCE("2 SOUR ");
@@ -286,12 +308,12 @@ public class GedcomImporter extends Importer
 
         public Mode getFamilyInfoType(String string)
         {
-            Mode modes[] = { HUSB, WIFE, CHILD, MARR };
+            Mode modes[] = { HUSB, WIFE, CHILD, MARRIAGE };
 
             Mode mode = getMode(modes, string);
 
-            if(this.equals(MARR) && mode.equals(NONE))
-                return MARR;
+            if(this.equals(MARRIAGE) && mode.equals(NONE))
+                return MARRIAGE;
             else
                 return mode;
         }
