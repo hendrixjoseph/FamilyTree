@@ -48,7 +48,6 @@ public class Death implements Event
      *
      * @return
      */
-    @Override
     public Person getPerson()
     {
         return person;
@@ -58,7 +57,6 @@ public class Death implements Event
      *
      * @param person
      */
-    @Override
     public void setPerson(Person person)
     {
         this.person = person;

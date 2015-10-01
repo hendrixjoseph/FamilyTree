@@ -28,7 +28,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @IdClass(MarriagePK.class)
-public class Marriage
+public class Marriage implements Event
 {
 
     @Id
@@ -46,7 +46,8 @@ public class Marriage
     private Place place;
 
     @Temporal(TemporalType.DATE)
-    private Date anniversary;
+    @Column(name = "ANNIVERSARY")
+    private Date date;
 
     /**
      *
@@ -88,6 +89,7 @@ public class Marriage
      *
      * @return
      */
+    @Override
     public Place getPlace()
     {
         return place;
@@ -97,6 +99,7 @@ public class Marriage
      *
      * @param place
      */
+    @Override
     public void setPlace(Place place)
     {
         this.place = place;
@@ -106,18 +109,20 @@ public class Marriage
      *
      * @return
      */
-    public Date getAnniversary()
+    @Override
+    public Date getDate()
     {
-        return anniversary;
+        return date;
     }
 
     /**
      *
-     * @param anniversary
+     * @param date
      */
-    public void setAnniversary(Date anniversary)
+    @Override
+    public void setDate(Date date)
     {
-        this.anniversary = anniversary;
+        this.date = date;
     }
 
     public boolean hasHusband()

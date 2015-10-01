@@ -26,18 +26,6 @@ public interface Event
      *
      * @return
      */
-    public Person getPerson();
-
-    /**
-     *
-     * @param person
-     */
-    public void setPerson(Person person);
-
-    /**
-     *
-     * @return
-     */
     public Place getPlace();
 
     /**

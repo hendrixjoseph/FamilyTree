@@ -49,7 +49,6 @@ public class Birth implements Event
      *
      * @return
      */
-    @Override
     public Person getPerson()
     {
         return person;
@@ -59,7 +58,6 @@ public class Birth implements Event
      *
      * @param person
      */
-    @Override
     public void setPerson(Person person)
     {
         this.person = person;
