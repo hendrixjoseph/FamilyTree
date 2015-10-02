@@ -31,6 +31,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.EntityManager;
 
 /**
  *
@@ -52,11 +53,6 @@ public class GedcomImporter extends Importer
     private Mode familyInfo = Mode.NONE;
 
     private String nextLine = "";
-
-
-    {
-        processData();
-    }
 
     public GedcomImporter(String fileName) throws FileNotFoundException
     {
@@ -107,10 +103,14 @@ public class GedcomImporter extends Importer
                 personInfo = personInfo.NONE;
                 break;
             case GENDER:
-                Gender gender = new Gender();
-                gender.setAbbr(info.charAt(0));
+                Gender gender = em.find(Gender.class, info.charAt(0));
                 person.setGender(gender);
                 personInfo = personInfo.NONE;
+
+                em.getTransaction().begin();
+                em.persist(person);
+                em.getTransaction().commit();
+
                 break;
             case BIRTH:
                 if (person.getBirth() == null)
@@ -134,12 +134,19 @@ public class GedcomImporter extends Importer
 
     }
 
+    @Override
+    public void processData(EntityManager em)
+    {
+        this.em = em;
+        processData();
+    }
+
     /**
      *
      *
      */
     @Override
-    protected void processData()
+    public void processData()
     {
         try (LineNumberReader in = new LineNumberReader(file))
         {
@@ -180,7 +187,7 @@ public class GedcomImporter extends Importer
                         marriage = null;
                         break;
                     case FAMILY:
-                        switch(familyInfo)
+                        switch (familyInfo)
                         {
                             case HUSB:
                                 split = nextLine.split("@");
@@ -201,15 +208,17 @@ public class GedcomImporter extends Importer
                                 child.setMother(wife);
                                 break;
                             case MARRIAGE:
-                                if(marriage == null)
+                                if (marriage == null)
                                 {
                                     marriage = new Marriage();
                                     marriage.setHusband(husband);
                                     marriage.setWife(wife);
                                 }
 
-                                if(!marriages.contains(marriage))
+                                if (!marriages.contains(marriage))
+                                {
                                     marriages.add(marriage);
+                                }
 
                                 processEvent(marriage);
                                 break;
@@ -228,8 +237,11 @@ public class GedcomImporter extends Importer
         LOG.log(Level.INFO, "Done! {0} people read in!", people.size());
         LOG.log(Level.INFO, "Done! {0} marriages read in!", marriages.size());
 
-        for(Person person : people.values())
+        for (Person person : people.values())
+        {
             System.out.println(person.getName());
+
+        }
 
     }
 
@@ -308,14 +320,21 @@ public class GedcomImporter extends Importer
 
         public Mode getFamilyInfoType(String string)
         {
-            Mode modes[] = { HUSB, WIFE, CHILD, MARRIAGE };
+            Mode modes[] =
+            {
+                HUSB, WIFE, CHILD, MARRIAGE
+            };
 
             Mode mode = getMode(modes, string);
 
-            if(this.equals(MARRIAGE) && mode.equals(NONE))
+            if (this.equals(MARRIAGE) && mode.equals(NONE))
+            {
                 return MARRIAGE;
+            }
             else
+            {
                 return mode;
+            }
         }
 
         public Mode getPersonInfoType(String string)

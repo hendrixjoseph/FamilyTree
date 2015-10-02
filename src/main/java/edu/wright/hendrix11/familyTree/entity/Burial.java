@@ -19,7 +19,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -33,7 +35,7 @@ public class Burial implements Event
 
     @Id
     @OneToOne
-    @JoinColumn(name = "PERSON_ID")
+    @JoinColumn(name="PERSON_ID")
     private Person person;
 
     @ManyToOne(cascade = ALL)

@@ -19,6 +19,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Temporal;
@@ -34,7 +35,7 @@ public class Birth implements Event
 
     @Id
     @OneToOne
-    @PrimaryKeyJoinColumn(name = "PERSON_ID")
+    @JoinColumn(name="PERSON_ID")
     private Person person;
 
     @ManyToOne(cascade = ALL)

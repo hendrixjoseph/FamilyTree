@@ -11,8 +11,13 @@
  */
 package edu.wright.hendrix11.familyTree.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.SEQUENCE;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -23,8 +28,12 @@ public class Place
 {
 
     @Id
+    @SequenceGenerator(name="PLACE_SEQUENCE", sequenceName="PLACE_SEQUENCE", allocationSize=1)
+    @GeneratedValue(strategy=SEQUENCE, generator="PLACE_SEQUENCE")
     int id;
 
+    @Column(unique=true)
+    @NotNull
     String name;
 
     /**

@@ -46,5 +46,7 @@ public abstract class Importer
     /**
      *
      */
-    protected abstract void processData();
+    public abstract void processData();
+
+    public abstract void processData(EntityManager em);
 }

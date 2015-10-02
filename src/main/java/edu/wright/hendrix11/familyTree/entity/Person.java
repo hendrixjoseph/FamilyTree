@@ -16,6 +16,8 @@ import java.util.List;
 import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.SEQUENCE;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -24,7 +26,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -36,21 +40,25 @@ public class Person
 {
 
     @Id
+    @SequenceGenerator(name="PERSON_SEQUENCE", sequenceName="PERSON_SEQUENCE", allocationSize=1)
+    @GeneratedValue(strategy=SEQUENCE, generator="PERSON_SEQUENCE")
     private int id;
 
+    @NotNull
     private String name;
 
     @ManyToOne
     @JoinColumn(name = "GENDER")
+    @NotNull
     private Gender gender;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = ALL)
     @JoinTable(name = "FATHER_OF",
             joinColumns = @JoinColumn(name = "CHILD_ID"),
             inverseJoinColumns = @JoinColumn(name = "FATHER_ID"))
     private Person father;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = ALL)
     @JoinTable(name = "MOTHER_OF",
             joinColumns = @JoinColumn(name = "CHILD_ID"),
             inverseJoinColumns = @JoinColumn(name = "MOTHER_ID"))
@@ -82,16 +90,13 @@ public class Person
             })
     private List<Person> children;
 
-    @OneToOne(cascade = ALL)
-    @PrimaryKeyJoinColumn
+    @OneToOne(cascade = ALL, mappedBy="person")
     private Birth birth;
 
-    @OneToOne(cascade = ALL)
-    @PrimaryKeyJoinColumn
+    @OneToOne(cascade = ALL, mappedBy="person")
     private Death death;
 
-    @OneToOne(cascade = ALL)
-    @PrimaryKeyJoinColumn
+    @OneToOne(cascade = ALL, mappedBy="person")
     private Burial burial;
 
     /**

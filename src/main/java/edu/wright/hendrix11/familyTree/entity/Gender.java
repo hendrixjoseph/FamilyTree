@@ -16,6 +16,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -35,6 +36,7 @@ public class Gender
     private char abbr;
 
     @Column(name = "FULL_WORD")
+    @NotNull
     private String fullWord;
 
     /**
