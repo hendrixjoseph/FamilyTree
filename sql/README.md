@@ -30,7 +30,7 @@ Just click "Next &gt;"
 
 ### Step 4
 
-![Seperate Directories Export Step 4](seperate_directories_export_step_1.jpg "Seperate Directories Export Step 4")
+![Seperate Directories Export Step 4](seperate_directories_export_step_4.jpg "Seperate Directories Export Step 4")
 
 ### Step 5
 
