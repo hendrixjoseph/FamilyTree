@@ -9,6 +9,7 @@
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
  *
  */
+
 package edu.wright.hendrix11.familyTree.importer;
 
 import edu.wright.hendrix11.familyTree.entity.Birth;
@@ -18,6 +19,7 @@ import edu.wright.hendrix11.familyTree.entity.Marriage;
 import edu.wright.hendrix11.familyTree.entity.Person;
 import edu.wright.hendrix11.familyTree.entity.Place;
 import edu.wright.hendrix11.familyTree.entity.event.Event;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.LineNumberReader;
@@ -25,7 +27,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -34,7 +35,6 @@ import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 
 /**
- *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
 public class GedcomImporter extends Importer
@@ -129,7 +129,7 @@ public class GedcomImporter extends Importer
                 processEvent(person.getDeath());
                 break;
             default:
-            // Do nothing
+                // Do nothing
         }
 
     }
@@ -225,7 +225,7 @@ public class GedcomImporter extends Importer
                         }
                         break;
                     default:
-                    // Do nothing
+                        // Do nothing
                 }
             }
         }
@@ -270,7 +270,7 @@ public class GedcomImporter extends Importer
         /**
          * @param string
          */
-        private Mode(final String string)
+        Mode(final String string)
         {
             this.string = string;
         }
@@ -283,10 +283,7 @@ public class GedcomImporter extends Importer
 
         public Mode getInserting(String string)
         {
-            Mode modes[] =
-            {
-                NEW_PERSON, NEW_FAMILY
-            };
+            Mode modes[] = {NEW_PERSON, NEW_FAMILY};
 
             Mode mode = getMode(modes, string);
 
@@ -310,20 +307,14 @@ public class GedcomImporter extends Importer
 
         public Mode getDatePlace(String string)
         {
-            Mode modes[] =
-            {
-                DATE, PLACE, SOURCE
-            };
+            Mode modes[] = {DATE, PLACE, SOURCE};
 
             return getMode(modes, string);
         }
 
         public Mode getFamilyInfoType(String string)
         {
-            Mode modes[] =
-            {
-                HUSB, WIFE, CHILD, MARRIAGE
-            };
+            Mode modes[] = {HUSB, WIFE, CHILD, MARRIAGE};
 
             Mode mode = getMode(modes, string);
 
@@ -339,10 +330,7 @@ public class GedcomImporter extends Importer
 
         public Mode getPersonInfoType(String string)
         {
-            Mode modes[] =
-            {
-                NAME, GENDER, BIRTH, DEATH
-            };
+            Mode modes[] = {NAME, GENDER, BIRTH, DEATH};
 
             if (this.equals(BIRTH) || this.equals(DEATH))
             {

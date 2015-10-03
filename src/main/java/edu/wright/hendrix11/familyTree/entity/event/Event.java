@@ -11,7 +11,6 @@
  */
 package edu.wright.hendrix11.familyTree.entity.event;
 
-import edu.wright.hendrix11.familyTree.entity.Person;
 import edu.wright.hendrix11.familyTree.entity.Place;
 import java.util.Date;
 
@@ -26,23 +25,23 @@ public interface Event
      *
      * @return
      */
-    public Place getPlace();
+    Place getPlace();
 
     /**
      *
      * @param place
      */
-    public void setPlace(Place place);
+    void setPlace(Place place);
 
     /**
      *
      * @return
      */
-    public Date getDate();
+    Date getDate();
 
     /**
      *
      * @param date
      */
-    public void setDate(Date date);
+    void setDate(Date date);
 }

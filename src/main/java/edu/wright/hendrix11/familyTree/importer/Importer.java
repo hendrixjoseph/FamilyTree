@@ -38,7 +38,7 @@ public abstract class Importer
         this(new FileReader(fileName));
     }
 
-    public Importer(FileReader file) throws FileNotFoundException
+    public Importer(FileReader file)
     {
         this.file = file;
     }

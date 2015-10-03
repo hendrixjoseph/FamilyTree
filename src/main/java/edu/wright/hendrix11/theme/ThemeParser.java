@@ -75,7 +75,7 @@ public class ThemeParser
         }
         else
         {
-            themes = new ArrayList<String>();
+            themes = new ArrayList<>();
         }
     }
 
@@ -133,7 +133,7 @@ public class ThemeParser
 
     private void initializeThemes(JarFile jarFile)
     {
-        themes = new ArrayList<String>();
+        themes = new ArrayList<>();
 
         Enumeration entries = jarFile.entries();
 
@@ -161,7 +161,7 @@ public class ThemeParser
                     }
                 }
             }
-        };
+        }
     }
 
     private JarFile openJarFile(String jarName)
