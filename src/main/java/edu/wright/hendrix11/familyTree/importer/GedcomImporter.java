@@ -100,12 +100,12 @@ public class GedcomImporter extends Importer
             case NAME:
                 info = info.replaceAll("/", "");
                 person.setName(info);
-                personInfo = personInfo.NONE;
+                personInfo = Mode.NONE;
                 break;
             case GENDER:
                 Gender gender = em.find(Gender.class, info.charAt(0));
                 person.setGender(gender);
-                personInfo = personInfo.NONE;
+                personInfo = Mode.NONE;
 
                 em.getTransaction().begin();
                 em.persist(person);
