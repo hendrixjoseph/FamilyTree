@@ -192,6 +192,9 @@ public class Person
      */
     public void setBirth(Birth birth)
     {
+    	   if(birth != null)
+    	       birth.setPerson(this);
+    	       
         this.birth = birth;
     }
 
@@ -210,6 +213,8 @@ public class Person
      */
     public void setBurial(Burial burial)
     {
+    	    	   if(burial != null)
+    	       burial.setPerson(this);
         this.burial = burial;
     }
 
@@ -228,6 +233,8 @@ public class Person
      */
     public void setDeath(Death death)
     {
+    	    	   if(death != null)
+    	       death.setPerson(this);
         this.death = death;
     }
 
@@ -305,7 +312,7 @@ public class Person
 
     /**
      *
-     * @return
+\     * @return
      */
     public Person getMother()
     {
