@@ -10,22 +10,24 @@
  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
 
 -->
-<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-  <persistence-unit name="edu.wright.hendrix11.familyTree" transaction-type="RESOURCE_LOCAL">
-    <class>edu.wright.hendrix11.familyTree.entity.Birth</class>
-    <class>edu.wright.hendrix11.familyTree.entity.Burial</class>
-    <class>edu.wright.hendrix11.familyTree.entity.Death</class>
-    <class>edu.wright.hendrix11.familyTree.entity.Gender</class>
-    <class>edu.wright.hendrix11.familyTree.entity.Marriage</class>
-    <class>edu.wright.hendrix11.familyTree.entity.Person</class>
-    <class>edu.wright.hendrix11.familyTree.entity.PersonView</class>
-    <class>edu.wright.hendrix11.familyTree.entity.Place</class>
-    <exclude-unlisted-classes>true</exclude-unlisted-classes>
-    <properties>
-      <property name="javax.persistence.jdbc.driver" value="${dbdriver}"/>
-      <property name="javax.persistence.jdbc.url" value="${dburl}"/>
-      <property name="javax.persistence.jdbc.user" value="${dbuser}"/>
-      <property name="javax.persistence.jdbc.password" value="${dbpassword}"/>
-    </properties>
-  </persistence-unit>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.1"
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+    <persistence-unit name="edu.wright.hendrix11.familyTree" transaction-type="RESOURCE_LOCAL">
+        <class>edu.wright.hendrix11.familyTree.entity.Birth</class>
+        <class>edu.wright.hendrix11.familyTree.entity.Burial</class>
+        <class>edu.wright.hendrix11.familyTree.entity.Death</class>
+        <class>edu.wright.hendrix11.familyTree.entity.Gender</class>
+        <class>edu.wright.hendrix11.familyTree.entity.Marriage</class>
+        <class>edu.wright.hendrix11.familyTree.entity.Person</class>
+        <class>edu.wright.hendrix11.familyTree.entity.PersonView</class>
+        <class>edu.wright.hendrix11.familyTree.entity.Place</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="${dbdriver}"/>
+            <property name="javax.persistence.jdbc.url" value="${dburl}"/>
+            <property name="javax.persistence.jdbc.user" value="${dbuser}"/>
+            <property name="javax.persistence.jdbc.password" value="${dbpassword}"/>
+        </properties>
+    </persistence-unit>
 </persistence>

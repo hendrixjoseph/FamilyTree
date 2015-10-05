@@ -9,28 +9,17 @@
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
  *
  */
+
 package edu.wright.hendrix11.familyTree.entity;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
- *
  * @author Joe Hendrix
  */
 @Entity
@@ -71,27 +60,15 @@ public class PersonView implements Serializable
     @ManyToMany
     @JoinTable(
             name = "SPOUSE_VIEW",
-            joinColumns =
-            {
-                @JoinColumn(name = "ID", referencedColumnName = "ID")
-            },
-            inverseJoinColumns =
-            {
-                @JoinColumn(name = "SPOUSE_ID", referencedColumnName = "ID")
-            })
+            joinColumns = {@JoinColumn(name = "ID", referencedColumnName = "ID")},
+            inverseJoinColumns = {@JoinColumn(name = "SPOUSE_ID", referencedColumnName = "ID")})
     private List<PersonView> spouses;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "CHILDREN_VIEW",
-            joinColumns =
-            {
-                @JoinColumn(name = "ID", referencedColumnName = "ID")
-            },
-            inverseJoinColumns =
-            {
-                @JoinColumn(name = "CHILD_ID", referencedColumnName = "ID")
-            })
+            joinColumns = {@JoinColumn(name = "ID", referencedColumnName = "ID")},
+            inverseJoinColumns = {@JoinColumn(name = "CHILD_ID", referencedColumnName = "ID")})
     private List<PersonView> children;
 
     /**
@@ -163,11 +140,29 @@ public class PersonView implements Serializable
 
     /**
      *
+     * @param id
+     */
+    public void setId(Integer id)
+    {
+        this.id = id;
+    }
+
+    /**
+     *
      * @return
      */
     public PersonView getFather()
     {
         return father;
+    }
+
+    /**
+     *
+     * @param father
+     */
+    public void setFather(PersonView father)
+    {
+        this.father = father;
     }
 
     /**
@@ -181,11 +176,29 @@ public class PersonView implements Serializable
 
     /**
      *
+     * @param mother
+     */
+    public void setMother(PersonView mother)
+    {
+        this.mother = mother;
+    }
+
+    /**
+     *
      * @return
      */
     public String getName()
     {
         return name;
+    }
+
+    /**
+     *
+     * @param name
+     */
+    public void setName(String name)
+    {
+        this.name = name;
     }
 
     /**
@@ -199,11 +212,29 @@ public class PersonView implements Serializable
 
     /**
      *
+     * @param gender
+     */
+    public void setGender(String gender)
+    {
+        this.gender = gender;
+    }
+
+    /**
+     *
      * @return
      */
     public Date getDateOfBirth()
     {
         return dateOfBirth;
+    }
+
+    /**
+     *
+     * @param dateOfBirth
+     */
+    public void setDateOfBirth(Date dateOfBirth)
+    {
+        this.dateOfBirth = dateOfBirth;
     }
 
     /**
@@ -217,6 +248,15 @@ public class PersonView implements Serializable
 
     /**
      *
+     * @param placeOfBirth
+     */
+    public void setPlaceOfBirth(String placeOfBirth)
+    {
+        this.placeOfBirth = placeOfBirth;
+    }
+
+    /**
+     *
      * @return
      */
     public Date getDateOfDeath()
@@ -226,11 +266,29 @@ public class PersonView implements Serializable
 
     /**
      *
+     * @param dateOfDeath
+     */
+    public void setDateOfDeath(Date dateOfDeath)
+    {
+        this.dateOfDeath = dateOfDeath;
+    }
+
+    /**
+     *
      * @return
      */
     public String getPlaceOfDeath()
     {
         return placeOfDeath;
+    }
+
+    /**
+     *
+     * @param placeOfDeath
+     */
+    public void setPlaceOfDeath(String placeOfDeath)
+    {
+        this.placeOfDeath = placeOfDeath;
     }
 
     /**
@@ -251,87 +309,6 @@ public class PersonView implements Serializable
         }
 
         return childrenOfSpouse;
-    }
-
-    /**
-     *
-     * @param father
-     */
-    public void setFather(PersonView father)
-    {
-        this.father = father;
-    }
-
-    /**
-     *
-     * @param mother
-     */
-    public void setMother(PersonView mother)
-    {
-        this.mother = mother;
-    }
-
-    /**
-     *
-     * @param name
-     */
-    public void setName(String name)
-    {
-        this.name = name;
-    }
-
-    /**
-     *
-     * @param gender
-     */
-    public void setGender(String gender)
-    {
-        this.gender = gender;
-    }
-
-    /**
-     *
-     * @param dateOfBirth
-     */
-    public void setDateOfBirth(Date dateOfBirth)
-    {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    /**
-     *
-     * @param placeOfBirth
-     */
-    public void setPlaceOfBirth(String placeOfBirth)
-    {
-        this.placeOfBirth = placeOfBirth;
-    }
-
-    /**
-     *
-     * @param dateOfDeath
-     */
-    public void setDateOfDeath(Date dateOfDeath)
-    {
-        this.dateOfDeath = dateOfDeath;
-    }
-
-    /**
-     *
-     * @param placeOfDeath
-     */
-    public void setPlaceOfDeath(String placeOfDeath)
-    {
-        this.placeOfDeath = placeOfDeath;
-    }
-
-    /**
-     *
-     * @param id
-     */
-    public void setId(Integer id)
-    {
-        this.id = id;
     }
 
     /**
@@ -389,6 +366,12 @@ public class PersonView implements Serializable
         return spouses;
     }
 
+    @Override
+    public int hashCode()
+    {
+        return id;
+    }
+
     //@Override
     public boolean equals(Object o)
     {
@@ -407,12 +390,6 @@ public class PersonView implements Serializable
         {
             return false;
         }
-    }
-
-    @Override
-    public int hashCode()
-    {
-        return id;
     }
 
     @Override
@@ -463,10 +440,10 @@ public class PersonView implements Serializable
             sb.append(tabs).append("(null)");
         }
 
-//        private Date dateOfBirth;
-//        private String placeOfBirth;
-//        private Date dateOfDeath;
-//        private String placeOfDeath;
+        //        private Date dateOfBirth;
+        //        private String placeOfBirth;
+        //        private Date dateOfDeath;
+        //        private String placeOfDeath;
         return sb.toString();
     }
 }

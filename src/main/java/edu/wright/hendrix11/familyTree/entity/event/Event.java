@@ -9,13 +9,14 @@
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
  *
  */
+
 package edu.wright.hendrix11.familyTree.entity.event;
 
 import edu.wright.hendrix11.familyTree.entity.Place;
+
 import java.util.Date;
 
 /**
- *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
 public interface Event

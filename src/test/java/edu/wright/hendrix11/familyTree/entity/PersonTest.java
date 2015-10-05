@@ -9,22 +9,18 @@
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
  *
  */
+
 package edu.wright.hendrix11.familyTree.entity;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.junit.*;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
 public class PersonTest
@@ -33,6 +29,7 @@ public class PersonTest
     private static final Logger LOG = Logger.getLogger(PersonTest.class.getName());
 
     private static EntityManagerFactory emf;
+    private EntityManager em;
 
     @BeforeClass
     public static void setUpClass()
@@ -49,8 +46,6 @@ public class PersonTest
         }
     }
 
-    private EntityManager em;
-
     @Before
     public void setUp()
     {
@@ -64,7 +59,7 @@ public class PersonTest
     }
 
     @Test
-//    @Ignore
+    //    @Ignore
     public void test()
     {
         Person person = em.find(Person.class, 9512);
@@ -93,7 +88,7 @@ public class PersonTest
         }
 
         // NullPointerException if it don't exist!
-//        sb.append("\n\tDEATH:\t").append(person.getDeath().getDate());
+        //        sb.append("\n\tDEATH:\t").append(person.getDeath().getDate());
         LOG.log(Level.INFO, sb.toString());
     }
 

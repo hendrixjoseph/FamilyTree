@@ -9,28 +9,18 @@
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
  *
  */
+
 package edu.wright.hendrix11.familyTree.entity;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+
 import static javax.persistence.CascadeType.ALL;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.SEQUENCE;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 /**
- *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
 @Entity
@@ -39,8 +29,8 @@ public class Person
 {
 
     @Id
-    @SequenceGenerator(name="PERSON_SEQUENCE", sequenceName="PERSON_SEQUENCE", allocationSize=1)
-    @GeneratedValue(strategy=SEQUENCE, generator="PERSON_SEQUENCE")
+    @SequenceGenerator(name = "PERSON_SEQUENCE", sequenceName = "PERSON_SEQUENCE", allocationSize = 1)
+    @GeneratedValue(strategy = SEQUENCE, generator = "PERSON_SEQUENCE")
     private int id;
 
     @NotNull
@@ -66,36 +56,24 @@ public class Person
     @ManyToMany
     @JoinTable(
             name = "SPOUSE_VIEW",
-            joinColumns =
-            {
-                @JoinColumn(name = "ID", referencedColumnName = "ID")
-            },
-            inverseJoinColumns =
-            {
-                @JoinColumn(name = "SPOUSE_ID", referencedColumnName = "ID")
-            })
+            joinColumns = {@JoinColumn(name = "ID", referencedColumnName = "ID")},
+            inverseJoinColumns = {@JoinColumn(name = "SPOUSE_ID", referencedColumnName = "ID")})
     private List<Person> spouses;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "CHILDREN_VIEW",
-            joinColumns =
-            {
-                @JoinColumn(name = "ID", referencedColumnName = "ID")
-            },
-            inverseJoinColumns =
-            {
-                @JoinColumn(name = "CHILD_ID", referencedColumnName = "ID")
-            })
+            joinColumns = {@JoinColumn(name = "ID", referencedColumnName = "ID")},
+            inverseJoinColumns = {@JoinColumn(name = "CHILD_ID", referencedColumnName = "ID")})
     private List<Person> children;
 
-    @OneToOne(cascade = ALL, mappedBy="person")
+    @OneToOne(cascade = ALL, mappedBy = "person")
     private Birth birth;
 
-    @OneToOne(cascade = ALL, mappedBy="person")
+    @OneToOne(cascade = ALL, mappedBy = "person")
     private Death death;
 
-    @OneToOne(cascade = ALL, mappedBy="person")
+    @OneToOne(cascade = ALL, mappedBy = "person")
     private Burial burial;
 
     /**
@@ -170,6 +148,23 @@ public class Person
 
     /**
      *
+     * @return
+     */
+    public List<Person> getChildrenNoSpouse()
+    {
+        List<Person> childrenNoSpouse = new ArrayList<>();
+
+        for (Person child : children)
+        {
+            if (!child.hasFather() || !child.hasMother())
+            {
+                childrenNoSpouse.add(child);
+            }
+        }
+
+        return childrenNoSpouse;
+    }    /**
+     *
      * @param children
      */
     public void setChildren(List<Person> children)
@@ -192,9 +187,9 @@ public class Person
      */
     public void setBirth(Birth birth)
     {
-    	   if(birth != null)
-    	       birth.setPerson(this);
-    	       
+        if (birth != null)
+            birth.setPerson(this);
+
         this.birth = birth;
     }
 
@@ -209,13 +204,13 @@ public class Person
 
     /**
      *
-     * @param burial
+     * @param death
      */
-    public void setBurial(Burial burial)
+    public void setDeath(Death death)
     {
-    	    	   if(burial != null)
-    	       burial.setPerson(this);
-        this.burial = burial;
+        if (death != null)
+            death.setPerson(this);
+        this.death = death;
     }
 
     /**
@@ -229,13 +224,13 @@ public class Person
 
     /**
      *
-     * @param death
+     * @param burial
      */
-    public void setDeath(Death death)
+    public void setBurial(Burial burial)
     {
-    	    	   if(death != null)
-    	       death.setPerson(this);
-        this.death = death;
+        if (burial != null)
+            burial.setPerson(this);
+        this.burial = burial;
     }
 
     /**
@@ -311,8 +306,7 @@ public class Person
     }
 
     /**
-     *
-\     * @return
+     * \     * @return
      */
     public Person getMother()
     {

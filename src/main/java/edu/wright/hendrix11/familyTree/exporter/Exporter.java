@@ -9,22 +9,19 @@
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
  *
  */
+
 package edu.wright.hendrix11.familyTree.exporter;
 
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
 /**
- *
  * @author Joe Hendrix
  */
 public abstract class Exporter
 {
 
-    private static final String[] tableNames =
-    {
-        "", ""
-    };
+    private static final String[] tableNames = {"", ""};
 
     /**
      *

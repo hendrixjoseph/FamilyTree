@@ -9,14 +9,14 @@
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
  *
  */
+
 package edu.wright.hendrix11.familyTree.importer;
 
+import javax.persistence.EntityManager;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import javax.persistence.EntityManager;
 
 /**
- *
  * @author Joe Hendrix
  */
 public abstract class Importer

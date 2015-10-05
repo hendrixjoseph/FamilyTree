@@ -11,7 +11,8 @@
 
 -->
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:component xmlns="http://www.w3.org/1999/xhtml"
               xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
               xmlns:p="http://primefaces.org/ui"
@@ -22,12 +23,14 @@
         <p:dialog header="#{header}" modal="true" widgetVar="#{deleteDialog}" id="#{deleteDialog}">
             <p>
                 <c:if test="#{places}">
-                    <ui:include src="deleteDialogContents/place.xhtml" />
+                    <ui:include src="deleteDialogContents/place.xhtml"/>
                 </c:if>
             </p>
+
             <p>
-                <p:commandButton value="Confirm" actionListener="#{queryBean.delete}" action="#{queryBean.getAction()}" ajax="false" />
-                <p:commandButton value="Cancel" oncomplete="PF('#{deleteDialog}').hide()" />
+                <p:commandButton value="Confirm" actionListener="#{queryBean.delete}" action="#{queryBean.getAction()}"
+                                 ajax="false"/>
+                <p:commandButton value="Cancel" oncomplete="PF('#{deleteDialog}').hide()"/>
             </p>
         </p:dialog>
     </h:form>

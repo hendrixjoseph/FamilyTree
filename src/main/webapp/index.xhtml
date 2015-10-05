@@ -11,53 +11,54 @@
 
 -->
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:hendrix11="http://hendrix11.wright.edu/facelets">
+        >
 
-    <f:metadata>
-        <f:viewParam name="personId" value="#{individualBean.personId}" />
-    </f:metadata>
+<f:metadata>
+    <f:viewParam name="personId" value="#{individualBean.personId}"/>
+</f:metadata>
 
-    <h:head>
-        <title>#{individualBean.person.name} details</title>
-    </h:head>
-    <h:body>
-        <p:layout fullPage="true">
-            <p:layoutUnit position="north" size="50">
-                <ui:include src="/WEB-INF/resource/template/menuTemplate.xhtml">
-                    <ui:param name="individualView" value="#{true}" />
-                </ui:include>
-            </p:layoutUnit>
+<h:head>
+    <title>#{individualBean.person.name} details</title>
+</h:head>
+<h:body>
+    <p:layout fullPage="true">
+        <p:layoutUnit position="north" size="50">
+            <ui:include src="/WEB-INF/resource/template/menuTemplate.xhtml">
+                <ui:param name="individualView" value="#{true}"/>
+            </ui:include>
+        </p:layoutUnit>
 
-            <p:layoutUnit position="south" size="200">
-                <ui:include src="/WEB-INF/resource/template/footerTemplate.xhtml" />
-            </p:layoutUnit>
+        <p:layoutUnit position="south" size="200">
+            <ui:include src="/WEB-INF/resource/template/footerTemplate.xhtml"/>
+        </p:layoutUnit>
 
-            <!-- ui:define name="east">East</ui:define -->
+        <!-- ui:define name="east">East</ui:define -->
 
-            <p:layoutUnit position="west" size="400">
-                <ui:include src="/WEB-INF/resource/template/personPanelTemplate.xhtml" />
-            </p:layoutUnit>
+        <p:layoutUnit position="west" size="400">
+            <ui:include src="/WEB-INF/resource/template/personPanelTemplate.xhtml"/>
+        </p:layoutUnit>
 
-            <p:layoutUnit position="center">
-                <ui:include src="/WEB-INF/resource/template/spouseChildTemplate.xhtml" />
-            </p:layoutUnit>
-        </p:layout>
+        <p:layoutUnit position="center">
+            <ui:include src="/WEB-INF/resource/template/spouseChildTemplate.xhtml"/>
+        </p:layoutUnit>
+    </p:layout>
 
-        <!-- Dialogs -->
-        <ui:include src="/WEB-INF/resource/template/editPersonDialogs.xhtml" />
+    <!-- Dialogs -->
+    <ui:include src="/WEB-INF/resource/template/editPersonDialogs.xhtml"/>
 
-        <!-- About Dialog -->
-        <ui:include src="/WEB-INF/resource/template/aboutDialog.xhtml" />
+    <!-- About Dialog -->
+    <ui:include src="/WEB-INF/resource/template/aboutDialog.xhtml"/>
 
-        <!-- Settings Dialog -->
-        <!-- ui:include src="/WEB-INF/resource/template/settingsDialog.xhtml" / -->
+    <!-- Settings Dialog -->
+    <!-- ui:include src="/WEB-INF/resource/template/settingsDialog.xhtml" / -->
 
-    </h:body>
+</h:body>
 </html>

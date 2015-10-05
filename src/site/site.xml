@@ -11,28 +11,28 @@
 
 -->
 
-<project xmlns="http://maven.apache.org/DECORATION/1.6.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/DECORATION/1.6.0"
          xsi:schemaLocation="http://maven.apache.org/DECORATION/1.6.0 http://maven.apache.org/xsd/decoration-1.6.0.xsd">
     <body>
-        <menu ref="modules" />
-        <menu ref="reports" />
+        <menu ref="modules"/>
+        <menu ref="reports"/>
         <menu name="CS7720 Documents"></menu>
         <menu name="CS7700 Documents">
-            <item name="Final Report" href="documentation/cs7700/Hendrix_CS7700_Final_Report.docx" />
-            <item name="Project Presentation" href="documentation/cs7700/Hendrix_CS7700_Project_Presentation.pptx" />
-            <item name="Project Proposal" href="documentation/cs7700/Hendrix_CS7700_Project_Proposal.docx" />
-            <item name="User Manual" href="documentation/cs7700/Hendrix_CS7700_User_Manual.docx" />
-            <item name="Informal Proposal" href="documentation/cs7700/informal_proposal.html" />
+            <item name="Final Report" href="documentation/cs7700/Hendrix_CS7700_Final_Report.docx"/>
+            <item name="Project Presentation" href="documentation/cs7700/Hendrix_CS7700_Project_Presentation.pptx"/>
+            <item name="Project Proposal" href="documentation/cs7700/Hendrix_CS7700_Project_Proposal.docx"/>
+            <item name="User Manual" href="documentation/cs7700/Hendrix_CS7700_User_Manual.docx"/>
+            <item name="Informal Proposal" href="documentation/cs7700/informal_proposal.html"/>
         </menu>
         <menu name="Other Documentation">
-            <item name="Schema" href="documentation/schema.html" />
-            <item name="Screenshots" href="documentation/screenshots.html" />
+            <item name="Schema" href="documentation/schema.html"/>
+            <item name="Screenshots" href="documentation/screenshots.html"/>
         </menu>
         <menu name="Emails with Mike Owens">
-            <item name="2015-07-08" href="documentation/Mike_Owens/something_beautiful_i_wrote_last_night.html" />
-            <item name="2015-07-06" href="documentation/Mike_Owens/your_oracle_sql_magic.html" />
-            <item name="2015-07-02" href="documentation/Mike_Owens/too_many_joins.html" />
+            <item name="2015-07-08" href="documentation/Mike_Owens/something_beautiful_i_wrote_last_night.html"/>
+            <item name="2015-07-06" href="documentation/Mike_Owens/your_oracle_sql_magic.html"/>
+            <item name="2015-07-02" href="documentation/Mike_Owens/too_many_joins.html"/>
         </menu>
         <footer>Copyright &copy; 2015 Joseph Hendrix</footer>
     </body>

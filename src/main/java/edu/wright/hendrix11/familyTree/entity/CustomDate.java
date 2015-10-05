@@ -9,12 +9,12 @@
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
  *
  */
+
 package edu.wright.hendrix11.familyTree.entity;
 
 import java.util.Date;
 
 /**
- *
  * @author Joseph Hendrix
  */
 public class CustomDate extends Date

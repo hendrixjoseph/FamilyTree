@@ -9,10 +9,10 @@
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
  *
  */
+
 package edu.wright.hendrix11.familyTree.entity.compositeKey;
 
 /**
- *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
 public class MarriagePK
@@ -69,6 +69,12 @@ public class MarriagePK
     }
 
     @Override
+    public int hashCode()
+    {
+        return husband + wife;
+    }
+
+    @Override
     public boolean equals(Object object)
     {
         if (object instanceof MarriagePK)
@@ -80,12 +86,6 @@ public class MarriagePK
         {
             return false;
         }
-    }
-
-    @Override
-    public int hashCode()
-    {
-        return husband + wife;
     }
 
 }

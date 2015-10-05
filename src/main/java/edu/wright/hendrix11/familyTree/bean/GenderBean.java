@@ -9,20 +9,21 @@
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
  *
  */
+
 package edu.wright.hendrix11.familyTree.bean;
 
 import edu.wright.hendrix11.familyTree.entity.Gender;
-import java.io.Serializable;
-import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.io.Serializable;
+import java.util.List;
 
 /**
- *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
 @Named

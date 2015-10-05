@@ -9,24 +9,17 @@
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
  *
  */
+
 package edu.wright.hendrix11.familyTree.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
- *
  * @author Joe Hendrix
  */
 @Entity
-@NamedQueries(
-        {
-            @NamedQuery(name = Gender.FIND_ALL, query = "SELECT g FROM Gender g")
-        })
+@NamedQueries({@NamedQuery(name = Gender.FIND_ALL, query = "SELECT g FROM Gender g")})
 public class Gender
 {
 

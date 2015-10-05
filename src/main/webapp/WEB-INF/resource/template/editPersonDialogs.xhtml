@@ -11,22 +11,23 @@
 
 -->
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:component xmlns="http://www.w3.org/1999/xhtml"
               xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
               xmlns:hendrix11="http://hendrix11.wright.edu/facelets">
 
     <hendrix11:editPersonDialog
-        header="Edit Individual: #{individualBean.person.name}"
-        widgetVar="editDialog"
-        person="#{individualBean.person}"
-        isNewPerson="false" />
+            header="Edit Individual: #{individualBean.person.name}"
+            widgetVar="editDialog"
+            person="#{individualBean.person}"
+            isNewPerson="false"/>
 
     <hendrix11:editPersonDialog
-        header="Add Child to just #{individualBean.person.name}"
-        widgetVar="addChildSingleParentDialog"
-        person="#{individualBean.person}"
-        isNewPerson="true" />
+            header="Add Child to just #{individualBean.person.name}"
+            widgetVar="addChildSingleParentDialog"
+            person="#{individualBean.person}"
+            isNewPerson="true"/>
 
     <!--
     <hendrix11:editPersonDialog

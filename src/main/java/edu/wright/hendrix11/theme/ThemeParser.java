@@ -9,6 +9,7 @@
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
  *
  */
+
 package edu.wright.hendrix11.theme;
 
 import java.io.File;
@@ -20,7 +21,6 @@ import java.util.List;
 import java.util.jar.JarFile;
 
 /**
- *
  * @author Joe Hendrix
  */
 public class ThemeParser

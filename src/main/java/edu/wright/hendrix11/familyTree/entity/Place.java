@@ -9,18 +9,15 @@
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
  *
  */
+
 package edu.wright.hendrix11.familyTree.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.SEQUENCE;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import static javax.persistence.GenerationType.SEQUENCE;
+
 /**
- *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
 @Entity
@@ -28,11 +25,11 @@ public class Place
 {
 
     @Id
-    @SequenceGenerator(name="PLACE_SEQUENCE", sequenceName="PLACE_SEQUENCE", allocationSize=1)
-    @GeneratedValue(strategy=SEQUENCE, generator="PLACE_SEQUENCE")
+    @SequenceGenerator(name = "PLACE_SEQUENCE", sequenceName = "PLACE_SEQUENCE", allocationSize = 1)
+    @GeneratedValue(strategy = SEQUENCE, generator = "PLACE_SEQUENCE")
     int id;
 
-    @Column(unique=true)
+    @Column(unique = true)
     @NotNull
     String name;
 

@@ -9,22 +9,17 @@
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
  *
  */
+
 package edu.wright.hendrix11.familyTree.entity;
 
 import edu.wright.hendrix11.familyTree.entity.event.Event;
+
+import javax.persistence.*;
 import java.util.Date;
+
 import static javax.persistence.CascadeType.ALL;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
- *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
 @Entity
@@ -33,7 +28,7 @@ public class Death implements Event
 
     @Id
     @OneToOne
-    @JoinColumn(name="PERSON_ID")
+    @JoinColumn(name = "PERSON_ID")
     private Person person;
 
     @ManyToOne(cascade = ALL)

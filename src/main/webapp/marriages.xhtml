@@ -11,11 +11,10 @@
 
 -->
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition template="/WEB-INF/resource/template/dataPage/main.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:define name="title">
         Marriages
@@ -23,13 +22,13 @@
 
     <ui:define name="menu">
         <ui:include src="/WEB-INF/resource/template/menuTemplate.xhtml">
-            <ui:param name="marraigeView" value="#{true}" />
+            <ui:param name="marraigeView" value="#{true}"/>
         </ui:include>
     </ui:define>
 
     <ui:define name="dataTable">
         <ui:include src="/WEB-INF/resource/template/dataPage/dataTable.xhtml">
-            <ui:param name="dataBean" value="#{marriagesBean}" />
+            <ui:param name="dataBean" value="#{marriagesBean}"/>
         </ui:include>
     </ui:define>
 
