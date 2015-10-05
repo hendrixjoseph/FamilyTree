@@ -102,10 +102,6 @@ public class GedcomImporter extends Importer
                 person.setGender(gender);
                 personInfo = Mode.NONE;
 
-                em.getTransaction().begin();
-                em.persist(person);
-                em.getTransaction().commit();
-
                 break;
             case BIRTH:
                 if (person.getBirth() == null)
@@ -224,13 +220,6 @@ public class GedcomImporter extends Importer
 
         LOG.log(Level.INFO, "Done! {0} people read in!", people.size());
         LOG.log(Level.INFO, "Done! {0} marriages read in!", marriages.size());
-
-        for (Person person : people.values())
-        {
-            System.out.println(person.getName());
-
-        }
-
     }
 
     @Override
@@ -238,6 +227,13 @@ public class GedcomImporter extends Importer
     {
         this.em = em;
         processData();
+
+        for(Person person : people.values())
+        {
+            em.getTransaction().begin();
+            em.persist(person);
+            em.getTransaction().commit();
+        }
     }
 
     private enum Mode

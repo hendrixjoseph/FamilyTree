@@ -26,6 +26,7 @@
             <item name="Informal Proposal" href="documentation/cs7700/informal_proposal.html"/>
         </menu>
         <menu name="Other Documentation">
+			<item name="ER Diagram" href="documentation/er_diagram.html"/>
             <item name="Schema" href="documentation/schema.html"/>
             <item name="Screenshots" href="documentation/screenshots.html"/>
         </menu>

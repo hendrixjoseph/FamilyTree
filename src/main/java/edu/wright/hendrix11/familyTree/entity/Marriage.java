@@ -12,6 +12,7 @@
 
 package edu.wright.hendrix11.familyTree.entity;
 
+import edu.wright.hendrix11.familyTree.entity.compositeKey.MarriagePK;
 import edu.wright.hendrix11.familyTree.entity.event.Event;
 
 import javax.persistence.*;
@@ -38,7 +39,7 @@ public class Marriage implements Event
     private Person wife;
 
     @ManyToOne(cascade = ALL)
-    @JoinColumn(name = "PLACE")
+    @JoinColumn(name = "PLACE_ID")
     private Place place;
 
     @Temporal(TemporalType.DATE)
