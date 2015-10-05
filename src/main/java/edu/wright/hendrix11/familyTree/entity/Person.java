@@ -148,23 +148,6 @@ public class Person
 
     /**
      *
-     * @return
-     */
-    public List<Person> getChildrenNoSpouse()
-    {
-        List<Person> childrenNoSpouse = new ArrayList<>();
-
-        for (Person child : children)
-        {
-            if (!child.hasFather() || !child.hasMother())
-            {
-                childrenNoSpouse.add(child);
-            }
-        }
-
-        return childrenNoSpouse;
-    }    /**
-     *
      * @param children
      */
     public void setChildren(List<Person> children)
