@@ -3,7 +3,7 @@
   Remove: README.md
   Remove: Readme 
   Remove: user-content-
-  Replace: ]\(([^:http:#]) with ](https://github.com/hendrixjoseph/FamilyTree/blob/master/\1
+  Replace: ]\(([^:http:#]) with ]\(https://github.com/hendrixjoseph/FamilyTree/blob/master/\1
   Replace: ```(.+) with {% highlight \1 %}
   Replace: ```[^A-z] with {% endhighlight %}
 -->

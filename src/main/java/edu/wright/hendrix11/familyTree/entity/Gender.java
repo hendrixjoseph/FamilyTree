@@ -13,7 +13,7 @@
 package edu.wright.hendrix11.familyTree.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 
 /**
  * @author Joe Hendrix

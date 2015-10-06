@@ -13,21 +13,13 @@
 package edu.wright.hendrix11.familyTree.importer;
 
 import edu.wright.hendrix11.familyTree.entity.*;
-import edu.wright.hendrix11.familyTree.entity.event.Event;
+import edu.wright.hendrix11.familyTree.entity.event.*;
 
-import javax.persistence.EntityManager;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.LineNumberReader;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.persistence.*;
+import java.io.*;
+import java.text.*;
+import java.util.*;
+import java.util.logging.*;
 
 /**
  * @author Joe Hendrix <hendrix.11@wright.edu>
@@ -228,7 +220,7 @@ public class GedcomImporter extends Importer
         this.em = em;
         processData();
 
-        for(Person person : people.values())
+        for (Person person : people.values())
         {
             em.getTransaction().begin();
             em.persist(person);

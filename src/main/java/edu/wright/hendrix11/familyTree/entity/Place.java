@@ -13,9 +13,9 @@
 package edu.wright.hendrix11.familyTree.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 
-import static javax.persistence.GenerationType.SEQUENCE;
+import static javax.persistence.GenerationType.*;
 
 /**
  * @author Joe Hendrix <hendrix.11@wright.edu>
@@ -29,7 +29,7 @@ public class Place
     @GeneratedValue(strategy = SEQUENCE, generator = "PLACE_SEQUENCE")
     int id;
 
-    @Column(unique = true)
+    @Column
     @NotNull
     String name;
 

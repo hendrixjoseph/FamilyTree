@@ -13,12 +13,11 @@
 package edu.wright.hendrix11.familyTree.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
+import javax.validation.constraints.*;
+import java.util.*;
 
-import static javax.persistence.CascadeType.ALL;
-import static javax.persistence.GenerationType.SEQUENCE;
+import static javax.persistence.CascadeType.*;
+import static javax.persistence.GenerationType.*;
 
 /**
  * @author Joe Hendrix <hendrix.11@wright.edu>
@@ -105,6 +104,15 @@ public class Person
 
     /**
      *
+     * @param children
+     */
+    public void setChildren(List<Person> children)
+    {
+        this.children = children;
+    }
+
+    /**
+     *
      * @param spouse
      * @return
      */
@@ -144,15 +152,6 @@ public class Person
         }
 
         return childrenNoSpouse;
-    }
-
-    /**
-     *
-     * @param children
-     */
-    public void setChildren(List<Person> children)
-    {
-        this.children = children;
     }
 
     /**

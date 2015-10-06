@@ -12,12 +12,12 @@
 
 package edu.wright.hendrix11.familyTree.entity;
 
-import edu.wright.hendrix11.familyTree.entity.event.Event;
+import edu.wright.hendrix11.familyTree.entity.event.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.*;
 
-import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.CascadeType.*;
 
 /**
  * @author Joe Hendrix <hendrix.11@wright.edu>
