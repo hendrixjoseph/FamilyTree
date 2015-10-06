@@ -19,7 +19,7 @@ import javax.validation.constraints.*;
  * @author Joe Hendrix
  */
 @Entity
-@NamedQueries({@NamedQuery(name = Gender.FIND_ALL, query = "SELECT g FROM Gender g")})
+@NamedQuery(name = Gender.FIND_ALL, query = "SELECT g FROM Gender g")
 public class Gender
 {
 
@@ -31,6 +31,16 @@ public class Gender
     @Column(name = "FULL_WORD")
     @NotNull
     private String fullWord;
+
+    public Gender()
+    {
+
+    }
+
+    public Gender(char abbr)
+    {
+        this.abbr = abbr;
+    }
 
     /**
      *

@@ -68,8 +68,30 @@ public class GedcomImporter extends Importer
                 event.setDate(processDate(info));
                 break;
             case PLACE:
-                Place place = new Place();
-                place.setName(info);
+                Place place;
+
+                if(em != null)
+                {
+                    TypedQuery<Place> placeQuery = em.createNamedQuery(Place.FIND_BY_NAME, Place.class);
+                    placeQuery.setParameter("name", info);
+                    List<Place> placeList = placeQuery.getResultList();
+
+                    if (placeList.isEmpty())
+                    {
+                        place = new Place();
+                        place.setName(info);
+                    }
+                    else
+                    {
+                        place = placeList.get(0);
+                    }
+                }
+                else
+                {
+                    place = new Place();
+                    place.setName(info);
+                }
+
                 event.setPlace(place);
                 break;
             case SOURCE:
@@ -87,11 +109,22 @@ public class GedcomImporter extends Importer
             case NAME:
                 info = info.replaceAll("/", "");
                 person.setName(info);
+
                 personInfo = Mode.NONE;
                 break;
             case GENDER:
-                Gender gender = em.find(Gender.class, info.charAt(0));
+                Gender gender;
+
+                if(em != null)
+                    gender = em.find(Gender.class, info.charAt(0));
+                else
+                    gender = new Gender(info.charAt(0));
+
                 person.setGender(gender);
+
+                if(em != null)
+                    em.persist(person);
+
                 personInfo = Mode.NONE;
 
                 break;
@@ -218,14 +251,16 @@ public class GedcomImporter extends Importer
     public void processData(EntityManager em)
     {
         this.em = em;
+        em.getTransaction().begin();
         processData();
+        em.getTransaction().commit();
 
-        for (Person person : people.values())
-        {
-            em.getTransaction().begin();
-            em.persist(person);
-            em.getTransaction().commit();
-        }
+//        for (Person person : people.values())
+//        {
+//            em.getTransaction().begin();
+//            em.persist(person);
+//            em.getTransaction().commit();
+//        }
     }
 
     private enum Mode

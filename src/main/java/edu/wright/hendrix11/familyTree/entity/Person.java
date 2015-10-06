@@ -40,13 +40,13 @@ public class Person
     @NotNull
     private Gender gender;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinTable(name = "FATHER_OF",
             joinColumns = @JoinColumn(name = "CHILD_ID"),
             inverseJoinColumns = @JoinColumn(name = "FATHER_ID"))
     private Person father;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinTable(name = "MOTHER_OF",
             joinColumns = @JoinColumn(name = "CHILD_ID"),
             inverseJoinColumns = @JoinColumn(name = "MOTHER_ID"))
