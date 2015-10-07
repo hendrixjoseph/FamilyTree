@@ -12,12 +12,20 @@
 
 package edu.wright.hendrix11.familyTree.entity;
 
-import edu.wright.hendrix11.familyTree.entity.event.*;
+import java.util.Date;
 
-import javax.persistence.*;
-import java.util.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-import static javax.persistence.CascadeType.*;
+import edu.wright.hendrix11.familyTree.entity.event.Event;
+
+import static javax.persistence.CascadeType.ALL;
 
 /**
  * @author Joe Hendrix <hendrix.11@wright.edu>

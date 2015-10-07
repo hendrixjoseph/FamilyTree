@@ -12,14 +12,17 @@
 
 package edu.wright.hendrix11.familyTree.bean;
 
-import edu.wright.hendrix11.familyTree.entity.*;
+import java.io.Serializable;
+import java.util.List;
 
-import javax.annotation.*;
-import javax.enterprise.context.*;
-import javax.inject.*;
-import javax.persistence.*;
-import java.io.*;
-import java.util.*;
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+import edu.wright.hendrix11.familyTree.entity.Gender;
 
 /**
  * @author Joe Hendrix <hendrix.11@wright.edu>

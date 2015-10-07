@@ -12,7 +12,7 @@
 
 package edu.wright.hendrix11.familyTree.entity;
 
-import java.util.*;
+import java.util.Date;
 
 /**
  * @author Joseph Hendrix

@@ -20,14 +20,14 @@
         <p:dialog header="#{header}" modal="true" widgetVar="#{deleteDialog}" id="#{deleteDialog}">
             <p>
                 <c:if test="#{places}">
-                    <ui:include src="deleteDialogContents/place.xhtml"/>
+                    <ui:include src="deleteDialogContents/place.xhtml" />
                 </c:if>
             </p>
 
             <p>
                 <p:commandButton value="Confirm" actionListener="#{queryBean.delete}" action="#{queryBean.getAction()}"
-                                 ajax="false"/>
-                <p:commandButton value="Cancel" oncomplete="PF('#{deleteDialog}').hide()"/>
+                                 ajax="false" />
+                <p:commandButton value="Cancel" oncomplete="PF('#{deleteDialog}').hide()" />
             </p>
         </p:dialog>
     </h:form>

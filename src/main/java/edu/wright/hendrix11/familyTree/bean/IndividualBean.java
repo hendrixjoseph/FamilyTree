@@ -12,13 +12,15 @@
 
 package edu.wright.hendrix11.familyTree.bean;
 
-import edu.wright.hendrix11.familyTree.entity.*;
+import java.io.Serializable;
 
-import javax.annotation.*;
-import javax.faces.view.*;
-import javax.inject.*;
-import javax.persistence.*;
-import java.io.*;
+import javax.annotation.PostConstruct;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import edu.wright.hendrix11.familyTree.entity.Person;
 
 /**
  * @author Joe Hendrix

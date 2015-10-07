@@ -24,10 +24,10 @@
         <class>edu.wright.hendrix11.familyTree.entity.Place</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
-            <property name="javax.persistence.jdbc.driver" value="${dbdriver}"/>
-            <property name="javax.persistence.jdbc.url" value="${dburl}"/>
-            <property name="javax.persistence.jdbc.user" value="${dbuser}"/>
-            <property name="javax.persistence.jdbc.password" value="${dbpassword}"/>
+            <property name="javax.persistence.jdbc.driver" value="${dbdriver}" />
+            <property name="javax.persistence.jdbc.url" value="${dburl}" />
+            <property name="javax.persistence.jdbc.user" value="${dbuser}" />
+            <property name="javax.persistence.jdbc.password" value="${dbpassword}" />
         </properties>
     </persistence-unit>
 </persistence>

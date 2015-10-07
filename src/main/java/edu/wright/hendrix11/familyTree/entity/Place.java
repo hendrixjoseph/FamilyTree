@@ -12,10 +12,14 @@
 
 package edu.wright.hendrix11.familyTree.entity;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 
-import static javax.persistence.GenerationType.*;
+import static javax.persistence.GenerationType.SEQUENCE;
 
 /**
  * @author Joe Hendrix <hendrix.11@wright.edu>

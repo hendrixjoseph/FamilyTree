@@ -12,13 +12,18 @@
 
 package edu.wright.hendrix11.familyTree.importer;
 
-import org.junit.*;
+import java.io.FileNotFoundException;
+import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.io.FileNotFoundException;
-import java.util.logging.Logger;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 /**
  * @author Joe Hendrix <hendrix.11@wright.edu>

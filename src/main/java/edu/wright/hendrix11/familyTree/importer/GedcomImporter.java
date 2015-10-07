@@ -12,14 +12,29 @@
 
 package edu.wright.hendrix11.familyTree.importer;
 
-import edu.wright.hendrix11.familyTree.entity.*;
-import edu.wright.hendrix11.familyTree.entity.event.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.LineNumberReader;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import javax.persistence.*;
-import java.io.*;
-import java.text.*;
-import java.util.*;
-import java.util.logging.*;
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+
+import edu.wright.hendrix11.familyTree.entity.Birth;
+import edu.wright.hendrix11.familyTree.entity.Death;
+import edu.wright.hendrix11.familyTree.entity.Gender;
+import edu.wright.hendrix11.familyTree.entity.Marriage;
+import edu.wright.hendrix11.familyTree.entity.Person;
+import edu.wright.hendrix11.familyTree.entity.Place;
+import edu.wright.hendrix11.familyTree.entity.event.Event;
 
 /**
  * @author Joe Hendrix <hendrix.11@wright.edu>
@@ -70,7 +85,7 @@ public class GedcomImporter extends Importer
             case PLACE:
                 Place place;
 
-                if(em != null)
+                if (em != null)
                 {
                     TypedQuery<Place> placeQuery = em.createNamedQuery(Place.FIND_BY_NAME, Place.class);
                     placeQuery.setParameter("name", info);
@@ -115,14 +130,14 @@ public class GedcomImporter extends Importer
             case GENDER:
                 Gender gender;
 
-                if(em != null)
+                if (em != null)
                     gender = em.find(Gender.class, info.charAt(0));
                 else
                     gender = new Gender(info.charAt(0));
 
                 person.setGender(gender);
 
-                if(em != null)
+                if (em != null)
                     em.persist(person);
 
                 personInfo = Mode.NONE;
@@ -255,12 +270,12 @@ public class GedcomImporter extends Importer
         processData();
         em.getTransaction().commit();
 
-//        for (Person person : people.values())
-//        {
-//            em.getTransaction().begin();
-//            em.persist(person);
-//            em.getTransaction().commit();
-//        }
+        //        for (Person person : people.values())
+        //        {
+        //            em.getTransaction().begin();
+        //            em.persist(person);
+        //            em.getTransaction().commit();
+        //        }
     }
 
     private enum Mode

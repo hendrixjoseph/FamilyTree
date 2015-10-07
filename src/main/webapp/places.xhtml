@@ -19,34 +19,34 @@
 
     <ui:define name="menu">
         <ui:include src="/WEB-INF/resource/template/menuTemplate.xhtml">
-            <ui:param name="placesView" value="#{true}"/>
+            <ui:param name="placesView" value="#{true}" />
         </ui:include>
     </ui:define>
 
     <ui:define name="dataTable">
         <ui:include src="/WEB-INF/resource/template/dataPage/dataTable.xhtml">
-            <ui:param name="dataBean" value="#{placesBean}"/>
-            <ui:param name="editDialog" value="editPlaceDialog"/>
-            <ui:param name="editButton" value="Edit place"/>
-            <ui:param name="deleteDialog" value="deletePlaceDialog"/>
-            <ui:param name="deleteButton" value="Delete place"/>
-            <ui:param name="queryBean" value="#{placeQueryBean}"/>
+            <ui:param name="dataBean" value="#{placesBean}" />
+            <ui:param name="editDialog" value="editPlaceDialog" />
+            <ui:param name="editButton" value="Edit place" />
+            <ui:param name="deleteDialog" value="deletePlaceDialog" />
+            <ui:param name="deleteButton" value="Delete place" />
+            <ui:param name="queryBean" value="#{placeQueryBean}" />
         </ui:include>
     </ui:define>
 
     <ui:define name="dialogs">
         <ui:include src="/WEB-INF/resource/template/dataPage/editDialog.xhtml">
-            <ui:param name="header" value="Edit place"/>
-            <ui:param name="editDialog" value="editPlaceDialog"/>
-            <ui:param name="queryBean" value="#{placeQueryBean}"/>
-            <ui:param name="places" value="#{true}"/>
+            <ui:param name="header" value="Edit place" />
+            <ui:param name="editDialog" value="editPlaceDialog" />
+            <ui:param name="queryBean" value="#{placeQueryBean}" />
+            <ui:param name="places" value="#{true}" />
         </ui:include>
 
         <ui:include src="/WEB-INF/resource/template/dataPage/deleteDialog.xhtml">
-            <ui:param name="header" value="Confirm delete place"/>
-            <ui:param name="deleteDialog" value="deletePlaceDialog"/>
-            <ui:param name="queryBean" value="#{placeQueryBean}"/>
-            <ui:param name="places" value="#{true}"/>
+            <ui:param name="header" value="Confirm delete place" />
+            <ui:param name="deleteDialog" value="deletePlaceDialog" />
+            <ui:param name="queryBean" value="#{placeQueryBean}" />
+            <ui:param name="places" value="#{true}" />
         </ui:include>
     </ui:define>
 </ui:composition>

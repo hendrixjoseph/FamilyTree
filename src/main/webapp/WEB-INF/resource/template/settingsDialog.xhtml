@@ -19,23 +19,23 @@
         <p:dialog header="Settings" modal="true" widgetVar="settingsDialog" id="settingsDialog">
             <p>
                 <p:panelGrid columns="2">
-                    <p:outputLabel value="Default person type"/>
-                    <p:inputText value="#{settingsBean.settings.defaultPersonType}"/>
+                    <p:outputLabel value="Default person type" />
+                    <p:inputText value="#{settingsBean.settings.defaultPersonType}" />
 
-                    <p:outputLabel value="Default person"/>
-                    <p:inputText value="#{settingsBean.settings.defaultPerson}"/>
+                    <p:outputLabel value="Default person" />
+                    <p:inputText value="#{settingsBean.settings.defaultPerson}" />
 
-                    <p:outputLabel value="View welcome page"/>
-                    <p:inputText value="#{settingsBean.settings.viewWelcomePage}"/>
+                    <p:outputLabel value="View welcome page" />
+                    <p:inputText value="#{settingsBean.settings.viewWelcomePage}" />
 
-                    <p:outputLabel value="Theme"/>
-                    <p:inputText value="#{settingsBean.settings.theme}"/>
+                    <p:outputLabel value="Theme" />
+                    <p:inputText value="#{settingsBean.settings.theme}" />
                 </p:panelGrid>
             </p>
 
             <p>
-                <p:commandButton value="Submit" actionListener="#{settingsBean.commit}"/>
-                <p:commandButton value="Cancel" oncomplete="PF('settingsDialog').hide()"/>
+                <p:commandButton value="Submit" actionListener="#{settingsBean.commit}" />
+                <p:commandButton value="Cancel" oncomplete="PF('settingsDialog').hide()" />
             </p>
         </p:dialog>
     </h:form>

@@ -12,8 +12,11 @@
 
 package edu.wright.hendrix11.familyTree.entity;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author Joe Hendrix

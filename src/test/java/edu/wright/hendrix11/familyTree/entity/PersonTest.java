@@ -12,13 +12,18 @@
 
 package edu.wright.hendrix11.familyTree.entity;
 
-import org.junit.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 /**
  * @author Joe Hendrix <hendrix.11@wright.edu>

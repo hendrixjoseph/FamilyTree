@@ -29,30 +29,30 @@
     <h:form>
         <p:menubar>
             <p:submenu label="File">
-                <p:menuitem value="Import" url="#"/>
+                <p:menuitem value="Import" url="#" />
                 <!-- p:submenu label="Import">
                     <p:menuitem>
                         <p:fileUpload label="Upload file" mode="simple" allowTypes="/(\.|\/)(sql|csv|xml|ged)$/" auto="true" />
                     </p:menuitem>
                 </p:submenu -->
                 <p:submenu label="Export">
-                    <p:menuitem value="SQL" url="#"/>
-                    <p:menuitem value="CSV" url="#"/>
-                    <p:menuitem value="XML" url="#"/>
-                    <p:menuitem value="GEDCOM" url="#"/>
+                    <p:menuitem value="SQL" url="#" />
+                    <p:menuitem value="CSV" url="#" />
+                    <p:menuitem value="XML" url="#" />
+                    <p:menuitem value="GEDCOM" url="#" />
                 </p:submenu>
-                <p:menuitem value="Settings" url="#"/>
+                <p:menuitem value="Settings" url="#" />
             </p:submenu>
             <p:submenu label="Edit">
-                <p:menuitem value="Edit individual" oncomplete="PF('editDialog').show()" rendered="#{individualView}"/>
+                <p:menuitem value="Edit individual" oncomplete="PF('editDialog').show()" rendered="#{individualView}" />
                 <p:submenu label="Detach..." rendered="#{individualView}">
-                    <p:menuitem value="Father"/>
-                    <p:menuitem value="Mother"/>
+                    <p:menuitem value="Father" />
+                    <p:menuitem value="Mother" />
                     <p:submenu label="Spouse">
-                        <p:menuitem value="Spouse 1"/>
+                        <p:menuitem value="Spouse 1" />
                     </p:submenu>
                     <p:submenu label="Child">
-                        <p:menuitem value="Child 1"/>
+                        <p:menuitem value="Child 1" />
                     </p:submenu>
                 </p:submenu>
             </p:submenu>
@@ -60,23 +60,23 @@
 
             </p:submenu>
             <p:submenu label="View">
-                <p:menuitem value="Individual" url="index.xhtml" rendered="#{!individualView}"/>
-                <p:menuitem value="Places" url="places.xhtml" rendered="#{!placesView}"/>
-                <p:menuitem value="Children" url="children.xhtml" rendered="#{!childrenView}"/>
-                <p:menuitem value="Marriages" url="marriages.xhtml" rendered="#{!marraigeView}"/>
-                <p:menuitem value="Index of Individuals" url="persons.xhtml" rendered="#{!personsView}"/>
+                <p:menuitem value="Individual" url="index.xhtml" rendered="#{!individualView}" />
+                <p:menuitem value="Places" url="places.xhtml" rendered="#{!placesView}" />
+                <p:menuitem value="Children" url="children.xhtml" rendered="#{!childrenView}" />
+                <p:menuitem value="Marriages" url="marriages.xhtml" rendered="#{!marraigeView}" />
+                <p:menuitem value="Index of Individuals" url="persons.xhtml" rendered="#{!personsView}" />
             </p:submenu>
 
             <p:submenu label="Database">
                 <p:submenu label="Detect duplicate">
-                    <p:menuitem value="Individuals" url="#"/>
-                    <p:menuitem value="Sources" url="#"/>
+                    <p:menuitem value="Individuals" url="#" />
+                    <p:menuitem value="Sources" url="#" />
                 </p:submenu>
-                <p:menuitem value="View Schema" url="#"/>
+                <p:menuitem value="View Schema" url="#" />
             </p:submenu>
             <p:submenu label="Help">
-                <p:menuitem value="Javadoc" url="javadoc/index.html"/>
-                <p:menuitem value="About" onclick="PF('aboutDialog').show()"/>
+                <p:menuitem value="Javadoc" url="javadoc/index.html" />
+                <p:menuitem value="About" onclick="PF('aboutDialog').show()" />
             </p:submenu>
         </p:menubar>
     </h:form>

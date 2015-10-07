@@ -12,9 +12,9 @@
 
 package edu.wright.hendrix11.familyTree.entity.event;
 
-import edu.wright.hendrix11.familyTree.entity.*;
+import java.util.Date;
 
-import java.util.*;
+import edu.wright.hendrix11.familyTree.entity.Place;
 
 /**
  * @author Joe Hendrix <hendrix.11@wright.edu>

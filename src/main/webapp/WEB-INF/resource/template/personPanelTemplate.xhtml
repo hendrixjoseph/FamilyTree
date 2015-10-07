@@ -19,37 +19,37 @@
         <f:facet name="header">
             #{individualBean.person.name}
         </f:facet>
-        <p:outputLabel value="Father:"/>
+        <p:outputLabel value="Father:" />
         <h:panelGroup id="debug">
             <p:link value="#{individualBean.person.father.name}" rendered="#{individualBean.person.hasFather()}">
-                <f:param name="personId" value="#{individualBean.person.father.id}"/>
+                <f:param name="personId" value="#{individualBean.person.father.id}" />
             </p:link>
             <h:form id="fatherForm" rendered="#{!individualBean.person.hasFather()}">
                 <p:commandButton value="Add father" update="@([id$=addFatherDialog_form])"
-                                 oncomplete="PF('addFatherDialog').show()"/>
+                                 oncomplete="PF('addFatherDialog').show()" />
             </h:form>
         </h:panelGroup>
-        <p:outputLabel value="Mother:"/>
+        <p:outputLabel value="Mother:" />
         <p:link value="#{individualBean.person.mother.name}" rendered="#{individualBean.person.hasMother()}">
-            <f:param name="personId" value="#{individualBean.person.mother.id}"/>
+            <f:param name="personId" value="#{individualBean.person.mother.id}" />
         </p:link>
         <h:form rendered="#{!individualBean.person.hasMother()}">
             <p:commandButton value="Add mother" update="@([id$=addMotherDialog_form])"
-                             oncomplete="PF('addMotherDialog').show()"/>
+                             oncomplete="PF('addMotherDialog').show()" />
         </h:form>
-        <p:outputLabel value="Gender:"/>
-        <p:outputLabel value="#{individualBean.person.gender}"/>
-        <p:outputLabel value="Place of birth:"/>
-        <p:outputLabel value="#{individualBean.person.birth.place}"/>
-        <p:outputLabel value="Date of birth:"/>
+        <p:outputLabel value="Gender:" />
+        <p:outputLabel value="#{individualBean.person.gender}" />
+        <p:outputLabel value="Place of birth:" />
+        <p:outputLabel value="#{individualBean.person.birth.place}" />
+        <p:outputLabel value="Date of birth:" />
         <p:outputLabel value="#{individualBean.person.birth.date}">
-            <f:convertDateTime pattern="MMM dd, yyyy"/>
+            <f:convertDateTime pattern="MMM dd, yyyy" />
         </p:outputLabel>
-        <p:outputLabel value="Place of death:"/>
-        <p:outputLabel value="#{individualBean.person.death.place}"/>
-        <p:outputLabel value="Date of death:"/>
+        <p:outputLabel value="Place of death:" />
+        <p:outputLabel value="#{individualBean.person.death.place}" />
+        <p:outputLabel value="Date of death:" />
         <p:outputLabel value="#{individualBean.person.death.date}">
-            <f:convertDateTime pattern="MMM dd, yyyy"/>
+            <f:convertDateTime pattern="MMM dd, yyyy" />
         </p:outputLabel>
     </p:panelGrid>
 </ui:component>

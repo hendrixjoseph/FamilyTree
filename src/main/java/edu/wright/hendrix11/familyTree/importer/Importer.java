@@ -12,8 +12,10 @@
 
 package edu.wright.hendrix11.familyTree.importer;
 
-import javax.persistence.*;
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
+import javax.persistence.EntityManager;
 
 /**
  * @author Joe Hendrix

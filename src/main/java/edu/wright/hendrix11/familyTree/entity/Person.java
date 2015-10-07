@@ -12,12 +12,25 @@
 
 package edu.wright.hendrix11.familyTree.entity;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import static javax.persistence.CascadeType.*;
-import static javax.persistence.GenerationType.*;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.GenerationType.SEQUENCE;
 
 /**
  * @author Joe Hendrix <hendrix.11@wright.edu>

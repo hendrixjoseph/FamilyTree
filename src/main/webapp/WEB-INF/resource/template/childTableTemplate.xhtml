@@ -17,31 +17,31 @@
     <p:dataTable var="child" value="#{children}">
         <p:column headerText="Name">
             <p:link value="#{child.name}">
-                <f:param name="personId" value="#{child.id}"/>
+                <f:param name="personId" value="#{child.id}" />
             </p:link>
         </p:column>
 
         <p:column headerText="Gender">
-            <p:outputLabel value="#{child.gender}"/>
+            <p:outputLabel value="#{child.gender}" />
         </p:column>
 
         <p:column headerText="Place of Birth">
-            <p:outputLabel value="#{child.birth.place}"/>
+            <p:outputLabel value="#{child.birth.place}" />
         </p:column>
 
         <p:column headerText="Date of Birth">
             <p:outputLabel value="#{child.birth.date}">
-                <f:convertDateTime pattern="MMM dd, yyyy"/>
+                <f:convertDateTime pattern="MMM dd, yyyy" />
             </p:outputLabel>
         </p:column>
 
         <p:column headerText="Place of Death">
-            <p:outputLabel value="#{child.death.place}"/>
+            <p:outputLabel value="#{child.death.place}" />
         </p:column>
 
         <p:column headerText="Date of Death">
             <p:outputLabel value="#{child.death.date}">
-                <f:convertDateTime pattern="MMM dd, yyyy"/>
+                <f:convertDateTime pattern="MMM dd, yyyy" />
             </p:outputLabel>
         </p:column>
     </p:dataTable>

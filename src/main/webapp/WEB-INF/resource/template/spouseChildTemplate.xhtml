@@ -20,25 +20,25 @@
         <c:forEach items="#{individualBean.person.spouses}" var="spouse">
             <p:tab title="#{spouse.name}">
                 <ui:include src="childTableTemplate.xhtml">
-                    <ui:param name="children" value="#{individualBean.person.getChildren(spouse)}"/>
+                    <ui:param name="children" value="#{individualBean.person.getChildren(spouse)}" />
                 </ui:include>
 
                 <p>
                     <h:form>
-                        <p:commandButton value="Add child" oncomplete="PF('addChildDialog').show()"/>
+                        <p:commandButton value="Add child" oncomplete="PF('addChildDialog').show()" />
                     </h:form>
                 </p>
 
                 <p>
                     <p:link value="View spouse's page">
-                        <f:param name="personId" value="#{spouse.id}"/>
+                        <f:param name="personId" value="#{spouse.id}" />
                     </p:link>
                 </p>
             </p:tab>
         </c:forEach>
         <p:tab title="Children with unknown spouse" rendered="#{individualBean.person.childrenNoSpouse.size() > 0}">
             <ui:include src="childTableTemplate.xhtml">
-                <ui:param name="children" value="#{individualBean.person.childrenNoSpouse}"/>
+                <ui:param name="children" value="#{individualBean.person.childrenNoSpouse}" />
             </ui:include>
         </p:tab>
         <p:tab title="Add spouse or children">
@@ -46,14 +46,14 @@
             <p>
                 <h:form>
                     <p:commandButton value="Add spouse" update="@([id$=addSpouseDialog_form])"
-                                     oncomplete="PF('addSpouseDialog').show();"/>
+                                     oncomplete="PF('addSpouseDialog').show();" />
                 </h:form>
             </p>
 
             <p>
                 <h:form>
                     <p:commandButton value="Add child" update="@([id$=addChildSingleParentDialog_form])"
-                                     oncomplete="PF('addChildSingleParentDialog').show();"/>
+                                     oncomplete="PF('addChildSingleParentDialog').show();" />
                 </h:form>
             </p>
         </p:tab>
