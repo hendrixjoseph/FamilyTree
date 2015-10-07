@@ -19,6 +19,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import edu.wright.hendrix11.familyTree.entity.Person;
 
@@ -51,15 +52,6 @@ public class IndividualBean implements Serializable
 
     /**
      *
-     * @return
-     */
-    public int getPersonId()
-    {
-        return 1;//person.getId();
-    }
-
-    /**
-     *
      * @param id
      */
     public void setPersonId(int id)
@@ -73,8 +65,8 @@ public class IndividualBean implements Serializable
     @PostConstruct
     public void initialize()
     {
-        person = em.find(Person.class, 9510);
-        person.setName("JOeeee");
+        TypedQuery<Person> personQuery = em.createNamedQuery(Person.FIND_FIRST, Person.class);
+        person = personQuery.getSingleResult();
     }
 
     public void insertPerson(Person person)

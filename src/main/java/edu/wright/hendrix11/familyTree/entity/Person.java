@@ -23,6 +23,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
@@ -36,9 +37,11 @@ import static javax.persistence.GenerationType.SEQUENCE;
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
 @Entity
+@NamedQuery(name = Person.FIND_FIRST, query = "SELECT p FROM Person p WHERE p.id=(SELECT MIN(p2.id) FROM Person p2)")
 @Table(name = "PERSON")
 public class Person
 {
+    public static final String FIND_FIRST = "Person.findFirst";
 
     @Id
     @SequenceGenerator(name = "PERSON_SEQUENCE", sequenceName = "PERSON_SEQUENCE", allocationSize = 1)

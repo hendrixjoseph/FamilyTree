@@ -18,11 +18,13 @@ import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -64,11 +66,23 @@ public class PersonTest
     }
 
     @Test
-    //    @Ignore
+    public void testFindFirst()
+    {
+        TypedQuery<Person> personQuery = em.createNamedQuery(Person.FIND_FIRST, Person.class);
+        Person person = personQuery.getSingleResult();
+
+        outputPerson(person);
+    }
+
+    @Test
+    @Ignore
     public void test()
     {
         Person person = em.find(Person.class, 9512);
+    }
 
+    public void outputPerson(Person person)
+    {
         StringBuilder sb = new StringBuilder();
 
         sb.append("\n\tID:\t").append(person.getId());
