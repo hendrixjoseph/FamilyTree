@@ -29,7 +29,7 @@ public class MarriagePK
     public MarriagePK(int husband, int wife)
     {
         this.husband = husband;
-        this.setWife(wife);
+        this.wife = wife;
     }
 
     /**
@@ -72,7 +72,7 @@ public class MarriagePK
         if (object instanceof MarriagePK)
         {
             MarriagePK pk = (MarriagePK) object;
-            return husband == pk.husband && getWife() == pk.getWife();
+            return husband == pk.getHusband() && wife == pk.getWife();
         }
         else
         {

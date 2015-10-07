@@ -12,8 +12,7 @@
 -->
 
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/DECORATION/1.6.0"
-         xsi:schemaLocation="http://maven.apache.org/xsd/decoration-1.6.0.xsd">
+         xmlns="http://maven.apache.org/DECORATION/1.6.0">
     <body>
         <menu ref="modules" />
         <menu ref="reports" />
