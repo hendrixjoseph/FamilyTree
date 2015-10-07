@@ -92,18 +92,41 @@ public class Person
      *
      * @return
      */
-    public List<Person> getSpouses()
+    public Birth getBirth()
     {
-        return spouses;
+        return birth;
     }
 
     /**
      *
-     * @param spouses
+     * @param birth
      */
-    public void setSpouses(List<Person> spouses)
+    public void setBirth(Birth birth)
     {
-        this.spouses = spouses;
+        if (birth != null)
+            birth.setPerson(this);
+
+        this.birth = birth;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Burial getBurial()
+    {
+        return burial;
+    }
+
+    /**
+     *
+     * @param burial
+     */
+    public void setBurial(Burial burial)
+    {
+        if (burial != null)
+            burial.setPerson(this);
+        this.burial = burial;
     }
 
     /**
@@ -135,11 +158,7 @@ public class Person
 
         for (Person child : children)
         {
-            if (child.hasFather() && child.getFather().equals(spouse))
-            {
-                childrenOfSpouse.add(child);
-            }
-            else if (child.hasMother() && child.getMother().equals(spouse))
+            if (child.hasFather() && child.getFather().equals(spouse) || child.hasMother() && child.getMother().equals(spouse))
             {
                 childrenOfSpouse.add(child);
             }
@@ -171,27 +190,6 @@ public class Person
      *
      * @return
      */
-    public Birth getBirth()
-    {
-        return birth;
-    }
-
-    /**
-     *
-     * @param birth
-     */
-    public void setBirth(Birth birth)
-    {
-        if (birth != null)
-            birth.setPerson(this);
-
-        this.birth = birth;
-    }
-
-    /**
-     *
-     * @return
-     */
     public Death getDeath()
     {
         return death;
@@ -212,38 +210,18 @@ public class Person
      *
      * @return
      */
-    public Burial getBurial()
+    public Person getFather()
     {
-        return burial;
+        return father;
     }
 
     /**
      *
-     * @param burial
+     * @param father
      */
-    public void setBurial(Burial burial)
+    public void setFather(Person father)
     {
-        if (burial != null)
-            burial.setPerson(this);
-        this.burial = burial;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getName()
-    {
-        return name;
-    }
-
-    /**
-     *
-     * @param name
-     */
-    public void setName(String name)
-    {
-        this.name = name;
+        this.father = father;
     }
 
     /**
@@ -283,24 +261,6 @@ public class Person
     }
 
     /**
-     *
-     * @return
-     */
-    public Person getFather()
-    {
-        return father;
-    }
-
-    /**
-     *
-     * @param father
-     */
-    public void setFather(Person father)
-    {
-        this.father = father;
-    }
-
-    /**
      * \     * @return
      */
     public Person getMother()
@@ -321,9 +281,36 @@ public class Person
      *
      * @return
      */
-    public boolean hasMother()
+    public String getName()
     {
-        return hasParent(mother);
+        return name;
+    }
+
+    /**
+     *
+     * @param name
+     */
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public List<Person> getSpouses()
+    {
+        return spouses;
+    }
+
+    /**
+     *
+     * @param spouses
+     */
+    public void setSpouses(List<Person> spouses)
+    {
+        this.spouses = spouses;
     }
 
     /**
@@ -339,9 +326,23 @@ public class Person
      *
      * @return
      */
+    public boolean hasMother()
+    {
+        return hasParent(mother);
+    }
+
+    /**
+     *
+     * @return
+     */
     public boolean hasParent()
     {
         return hasFather() || hasMother();
+    }
+
+    private boolean hasParent(Person parent)
+    {
+        return !(parent == null);
     }
 
     /**
@@ -351,10 +352,5 @@ public class Person
     public boolean hasParents()
     {
         return hasFather() && hasMother();
-    }
-
-    private boolean hasParent(Person parent)
-    {
-        return !(parent == null);
     }
 }

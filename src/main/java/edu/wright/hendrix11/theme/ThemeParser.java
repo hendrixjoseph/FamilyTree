@@ -60,23 +60,33 @@ public class ThemeParser
         init();
     }
 
-    private void init()
+    private void closeJarFile()
     {
-        init(jarFile);
+        closeJarFile(jarFile);
     }
 
-    private void init(JarFile jarFile)
+    private void closeJarFile(JarFile jarFile)
     {
         if (jarFile != null)
         {
-            initializeThemes();
+            try
+            {
+                jarFile.close();
+            }
+            catch (IOException ex)
+            {
+                ex.printStackTrace();
+            }
+        }
+    }
 
-            closeJarFile();
-        }
-        else
-        {
-            themes = new ArrayList<>();
-        }
+    /**
+     *
+     * @return
+     */
+    public String getJarName()
+    {
+        return jarName;
     }
 
     /**
@@ -97,32 +107,22 @@ public class ThemeParser
         this.themes = themes;
     }
 
-    /**
-     *
-     * @return
-     */
-    public String getJarName()
+    private void init()
     {
-        return jarName;
+        init(jarFile);
     }
 
-    /**
-     *
-     */
-    public void outputThemes()
+    private void init(JarFile jarFile)
     {
-        outputThemes(System.out);
-    }
-
-    /**
-     *
-     * @param out
-     */
-    public void outputThemes(PrintStream out)
-    {
-        for (String theme : themes)
+        if (jarFile != null)
         {
-            out.println(theme);
+            initializeThemes();
+
+            closeJarFile();
+        }
+        else
+        {
+            themes = new ArrayList<>();
         }
     }
 
@@ -148,7 +148,7 @@ public class ThemeParser
 
                 index = currentEntry.indexOf("/");
 
-                if (currentEntry.length() > 0)
+                if (!currentEntry.isEmpty())
                 {
                     if (index > -1)
                     {
@@ -190,23 +190,23 @@ public class ThemeParser
         return null;
     }
 
-    private void closeJarFile()
+    /**
+     *
+     */
+    public void outputThemes()
     {
-        closeJarFile(jarFile);
+        outputThemes(System.out);
     }
 
-    private void closeJarFile(JarFile jarFile)
+    /**
+     *
+     * @param out
+     */
+    public void outputThemes(PrintStream out)
     {
-        if (jarFile != null)
+        for (String theme : themes)
         {
-            try
-            {
-                jarFile.close();
-            }
-            catch (IOException ex)
-            {
-                ex.printStackTrace();
-            }
+            out.println(theme);
         }
     }
 }

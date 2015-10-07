@@ -37,16 +37,6 @@ public class IndividualBean implements Serializable
 
     /**
      *
-     */
-    @PostConstruct
-    public void initialize()
-    {
-        person = em.find(Person.class, 9510);
-        person.setName("JOeeee");
-    }
-
-    /**
-     *
      * @return
      */
     public Person getPerson()
@@ -77,15 +67,25 @@ public class IndividualBean implements Serializable
         person = em.find(Person.class, id);
     }
 
-    public void updatePerson()
+    /**
+     *
+     */
+    @PostConstruct
+    public void initialize()
     {
-        em.getTransaction().commit();
+        person = em.find(Person.class, 9510);
+        person.setName("JOeeee");
     }
 
     public void insertPerson(Person person)
     {
         em.getTransaction().begin();
         em.persist(person);
+        em.getTransaction().commit();
+    }
+
+    public void updatePerson()
+    {
         em.getTransaction().commit();
     }
 }

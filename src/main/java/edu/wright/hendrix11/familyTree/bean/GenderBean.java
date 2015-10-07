@@ -20,7 +20,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import edu.wright.hendrix11.familyTree.entity.Gender;
 
@@ -37,16 +37,6 @@ public class GenderBean implements Serializable
     @PersistenceContext(unitName = "edu.wright.hendrix11.familyTree")
     private EntityManager em;
 
-    /**
-     *
-     */
-    @PostConstruct
-    public void initialize()
-    {
-        Query query = em.createNamedQuery(Gender.FIND_ALL);
-        genders = query.getResultList();
-    }
-
     public List<Gender> getGenders()
     {
         return genders;
@@ -55,5 +45,15 @@ public class GenderBean implements Serializable
     public void setGenders(List<Gender> genders)
     {
         this.genders = genders;
+    }
+
+    /**
+     *
+     */
+    @PostConstruct
+    public void initialize()
+    {
+        TypedQuery<Gender> query = em.createNamedQuery(Gender.FIND_ALL, Gender.class);
+        genders = query.getResultList();
     }
 }

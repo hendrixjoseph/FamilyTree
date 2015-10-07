@@ -47,18 +47,18 @@ public class CustomDate extends Date
      *
      * @return
      */
-    public boolean isYearKnown()
+    public boolean isDayKnown()
     {
-        return yearKnown;
+        return dayKnown;
     }
 
     /**
      *
-     * @param yearKnown
+     * @param dayKnown
      */
-    public void setYearKnown(boolean yearKnown)
+    public void setDayKnown(boolean dayKnown)
     {
-        this.yearKnown = yearKnown;
+        this.dayKnown = dayKnown;
     }
 
     /**
@@ -83,17 +83,17 @@ public class CustomDate extends Date
      *
      * @return
      */
-    public boolean isDayKnown()
+    public boolean isYearKnown()
     {
-        return dayKnown;
+        return yearKnown;
     }
 
     /**
      *
-     * @param dayKnown
+     * @param yearKnown
      */
-    public void setDayKnown(boolean dayKnown)
+    public void setYearKnown(boolean yearKnown)
     {
-        this.dayKnown = dayKnown;
+        this.yearKnown = yearKnown;
     }
 }

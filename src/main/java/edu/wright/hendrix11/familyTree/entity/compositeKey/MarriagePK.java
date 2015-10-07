@@ -29,7 +29,7 @@ public class MarriagePK
     public MarriagePK(int husband, int wife)
     {
         this.husband = husband;
-        this.wife = wife;
+        this.setWife(wife);
     }
 
     /**
@@ -50,22 +50,14 @@ public class MarriagePK
         this.husband = husband;
     }
 
-    /**
-     *
-     * @return
-     */
-    public int getWifeId()
+    public int getWife()
     {
         return wife;
     }
 
-    /**
-     *
-     * @param wifeId
-     */
-    public void setWifeId(int wifeId)
+    public void setWife(int wife)
     {
-        this.wife = wifeId;
+        this.wife = wife;
     }
 
     @Override
@@ -80,12 +72,11 @@ public class MarriagePK
         if (object instanceof MarriagePK)
         {
             MarriagePK pk = (MarriagePK) object;
-            return husband == pk.husband && wife == pk.wife;
+            return husband == pk.husband && getWife() == pk.getWife();
         }
         else
         {
             return false;
         }
     }
-
 }

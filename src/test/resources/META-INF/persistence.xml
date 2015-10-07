@@ -20,7 +20,6 @@
         <class>edu.wright.hendrix11.familyTree.entity.Gender</class>
         <class>edu.wright.hendrix11.familyTree.entity.Marriage</class>
         <class>edu.wright.hendrix11.familyTree.entity.Person</class>
-        <class>edu.wright.hendrix11.familyTree.entity.PersonView</class>
         <class>edu.wright.hendrix11.familyTree.entity.Place</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>

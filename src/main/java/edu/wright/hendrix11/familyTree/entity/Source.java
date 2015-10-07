@@ -18,8 +18,8 @@ package edu.wright.hendrix11.familyTree.entity;
 public class Source
 {
 
-    int id;
-    String citation;
+    private int id;
+    private String citation;
 
     /**
      *
@@ -41,24 +41,6 @@ public class Source
      *
      * @return
      */
-    public int getId()
-    {
-        return id;
-    }
-
-    /**
-     *
-     * @param id
-     */
-    public void setId(int id)
-    {
-        this.id = id;
-    }
-
-    /**
-     *
-     * @return
-     */
     public String getCitation()
     {
         return citation;
@@ -71,5 +53,23 @@ public class Source
     public void setCitation(String citation)
     {
         this.citation = citation;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int getId()
+    {
+        return id;
+    }
+
+    /**
+     *
+     * @param id
+     */
+    public void setId(int id)
+    {
+        this.id = id;
     }
 }

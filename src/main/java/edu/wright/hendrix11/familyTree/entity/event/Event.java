@@ -26,18 +26,6 @@ public interface Event
      *
      * @return
      */
-    Place getPlace();
-
-    /**
-     *
-     * @param place
-     */
-    void setPlace(Place place);
-
-    /**
-     *
-     * @return
-     */
     Date getDate();
 
     /**
@@ -45,4 +33,16 @@ public interface Event
      * @param date
      */
     void setDate(Date date);
+
+    /**
+     *
+     * @return
+     */
+    Place getPlace();
+
+    /**
+     *
+     * @param place
+     */
+    void setPlace(Place place);
 }

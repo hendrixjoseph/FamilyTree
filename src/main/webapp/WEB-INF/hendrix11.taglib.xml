@@ -13,7 +13,10 @@
  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
 
 -->
-<facelet-taglib>
+<facelet-taglib xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns="http://java.sun.com/xml/ns/javaee"
+                xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd"
+                version="2.0">
     <namespace>http://hendrix11.wright.edu/facelets</namespace>
     <tag>
         <tag-name>editPersonDialog</tag-name>

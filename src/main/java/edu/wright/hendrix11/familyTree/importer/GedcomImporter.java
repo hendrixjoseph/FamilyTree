@@ -61,6 +61,119 @@ public class GedcomImporter extends Importer
         super(fileName);
     }
 
+    /**
+     *
+     *
+     */
+    @Override
+    public void processData()
+    {
+        try (LineNumberReader in = new LineNumberReader(file))
+        {
+            while (!in.readLine().startsWith(Mode.PERSON.toString()))
+            {
+            }
+
+            Person person = null;
+            Person husband = null;
+            Person wife = null;
+            Person child = null;
+            Marriage marriage = null;
+
+            while ((nextLine = in.readLine()) != null)
+            {
+                inserting = inserting.getInserting(nextLine);
+                personInfo = personInfo.getPersonInfoType(nextLine);
+                familyInfo = familyInfo.getFamilyInfoType(nextLine);
+                datePlace = datePlace.getDatePlace(nextLine);
+
+                switch (inserting)
+                {
+                    case NEW_PERSON:
+                        person = new Person();
+
+                        String[] split = nextLine.split("@");
+                        String id = split[1];
+
+                        people.put(id, person);
+                        break;
+                    case PERSON:
+                        processPerson(person);
+                        break;
+                    case NEW_FAMILY:
+                        husband = null;
+                        wife = null;
+                        child = null;
+                        marriage = null;
+                        break;
+                    case FAMILY:
+                        switch (familyInfo)
+                        {
+                            case HUSB:
+                                split = nextLine.split("@");
+                                id = split[1];
+                                husband = people.get(id);
+                                break;
+                            case WIFE:
+                                split = nextLine.split("@");
+                                id = split[1];
+                                wife = people.get(id);
+                                break;
+                            case CHILD:
+                                split = nextLine.split("@");
+                                id = split[1];
+                                child = people.get(id);
+
+                                child.setFather(husband);
+                                child.setMother(wife);
+                                break;
+                            case MARRIAGE:
+                                if (marriage == null)
+                                {
+                                    marriage = new Marriage();
+                                    marriage.setHusband(husband);
+                                    marriage.setWife(wife);
+                                }
+
+                                if (!marriages.contains(marriage))
+                                {
+                                    marriages.add(marriage);
+                                }
+
+                                processEvent(marriage);
+                                break;
+                        }
+                        break;
+                    default:
+                        // Do nothing
+                }
+            }
+        }
+        catch (IOException e)
+        {
+            LOG.log(Level.SEVERE, e.getClass().getName(), e);
+        }
+
+        LOG.log(Level.INFO, "Done! {0} people read in!", people.size());
+        LOG.log(Level.INFO, "Done! {0} marriages read in!", marriages.size());
+    }
+
+    @Override
+    public void processData(EntityManager em)
+    {
+        this.em = em;
+        em.getTransaction().begin();
+        processData();
+        em.getTransaction().commit();
+
+        //        for (Person person : people.values())
+        //        {
+        //            em.getTransaction().begin();
+        //            em.persist(person);
+        //            em.getTransaction().commit();
+        //        }
+    }
+
     private Date processDate(String string)
     {
         try
@@ -165,119 +278,6 @@ public class GedcomImporter extends Importer
 
     }
 
-    /**
-     *
-     *
-     */
-    @Override
-    public void processData()
-    {
-        try (LineNumberReader in = new LineNumberReader(file))
-        {
-            while (!in.readLine().startsWith(Mode.PERSON.toString()))
-            {
-            }
-
-            Person person = null;
-            Person husband = null;
-            Person wife = null;
-            Person child = null;
-            Marriage marriage = null;
-
-            while ((nextLine = in.readLine()) != null)
-            {
-                inserting = inserting.getInserting(nextLine);
-                personInfo = personInfo.getPersonInfoType(nextLine);
-                familyInfo = familyInfo.getFamilyInfoType(nextLine);
-                datePlace = datePlace.getDatePlace(nextLine);
-
-                switch (inserting)
-                {
-                    case NEW_PERSON:
-                        person = new Person();
-
-                        String split[] = nextLine.split("@");
-                        String id = split[1];
-
-                        people.put(id, person);
-                        break;
-                    case PERSON:
-                        processPerson(person);
-                        break;
-                    case NEW_FAMILY:
-                        husband = null;
-                        wife = null;
-                        child = null;
-                        marriage = null;
-                        break;
-                    case FAMILY:
-                        switch (familyInfo)
-                        {
-                            case HUSB:
-                                split = nextLine.split("@");
-                                id = split[1];
-                                husband = people.get(id);
-                                break;
-                            case WIFE:
-                                split = nextLine.split("@");
-                                id = split[1];
-                                wife = people.get(id);
-                                break;
-                            case CHILD:
-                                split = nextLine.split("@");
-                                id = split[1];
-                                child = people.get(id);
-
-                                child.setFather(husband);
-                                child.setMother(wife);
-                                break;
-                            case MARRIAGE:
-                                if (marriage == null)
-                                {
-                                    marriage = new Marriage();
-                                    marriage.setHusband(husband);
-                                    marriage.setWife(wife);
-                                }
-
-                                if (!marriages.contains(marriage))
-                                {
-                                    marriages.add(marriage);
-                                }
-
-                                processEvent(marriage);
-                                break;
-                        }
-                        break;
-                    default:
-                        // Do nothing
-                }
-            }
-        }
-        catch (IOException e)
-        {
-            LOG.log(Level.SEVERE, e.getClass().getName(), e);
-        }
-
-        LOG.log(Level.INFO, "Done! {0} people read in!", people.size());
-        LOG.log(Level.INFO, "Done! {0} marriages read in!", marriages.size());
-    }
-
-    @Override
-    public void processData(EntityManager em)
-    {
-        this.em = em;
-        em.getTransaction().begin();
-        processData();
-        em.getTransaction().commit();
-
-        //        for (Person person : people.values())
-        //        {
-        //            em.getTransaction().begin();
-        //            em.persist(person);
-        //            em.getTransaction().commit();
-        //        }
-    }
-
     private enum Mode
     {
 
@@ -308,50 +308,20 @@ public class GedcomImporter extends Importer
             this.string = string;
         }
 
-        @Override
-        public String toString()
-        {
-            return string;
-        }
-
-        public Mode getInserting(String string)
-        {
-            Mode modes[] = {NEW_PERSON, NEW_FAMILY};
-
-            Mode mode = getMode(modes, string);
-
-            if (this.equals(NEW_PERSON) && mode.equals(NONE))
-            {
-                return PERSON;
-            }
-            else if (this.equals(NEW_FAMILY) && mode.equals(NONE))
-            {
-                return FAMILY;
-            }
-            else if (mode.equals(NONE))
-            {
-                return this;
-            }
-            else
-            {
-                return mode;
-            }
-        }
-
         public Mode getDatePlace(String string)
         {
-            Mode modes[] = {DATE, PLACE, SOURCE};
+            Mode[] modes = {DATE, PLACE, SOURCE};
 
             return getMode(modes, string);
         }
 
         public Mode getFamilyInfoType(String string)
         {
-            Mode modes[] = {HUSB, WIFE, CHILD, MARRIAGE};
+            Mode[] modes = {HUSB, WIFE, CHILD, MARRIAGE};
 
             Mode mode = getMode(modes, string);
 
-            if (this.equals(MARRIAGE) && mode.equals(NONE))
+            if (this == MARRIAGE && mode == NONE)
             {
                 return MARRIAGE;
             }
@@ -361,29 +331,31 @@ public class GedcomImporter extends Importer
             }
         }
 
-        public Mode getPersonInfoType(String string)
+        public Mode getInserting(String string)
         {
-            Mode modes[] = {NAME, GENDER, BIRTH, DEATH};
+            Mode[] modes = {NEW_PERSON, NEW_FAMILY};
 
-            if (this.equals(BIRTH) || this.equals(DEATH))
-            {
-                if (string.startsWith("1"))
-                {
-                    return NONE;
-                }
-            }
-
-            return getNotNoneMode(modes, string);
-        }
-
-        private Mode getNotNoneMode(Mode modes[], String string)
-        {
             Mode mode = getMode(modes, string);
 
-            return !mode.equals(NONE) ? mode : this;
+            if (this == NEW_PERSON && mode == NONE)
+            {
+                return PERSON;
+            }
+            else if (this == NEW_FAMILY && mode == NONE)
+            {
+                return FAMILY;
+            }
+            else if (mode == NONE)
+            {
+                return this;
+            }
+            else
+            {
+                return mode;
+            }
         }
 
-        private Mode getMode(Mode modes[], String string)
+        private Mode getMode(Mode[] modes, String string)
         {
             for (Mode mode : modes)
             {
@@ -394,6 +366,28 @@ public class GedcomImporter extends Importer
             }
 
             return NONE;
+        }
+
+        private Mode getNotNoneMode(Mode[] modes, String string)
+        {
+            Mode mode = getMode(modes, string);
+
+            return mode != NONE ? mode : this;
+        }
+
+        public Mode getPersonInfoType(String string)
+        {
+            Mode[] modes = {NAME, GENDER, BIRTH, DEATH};
+
+            if (this == BIRTH || this == DEATH)
+            {
+                if (string.startsWith("1"))
+                {
+                    return NONE;
+                }
+            }
+
+            return getNotNoneMode(modes, string);
         }
 
         public boolean isStartOf(String string)
@@ -411,6 +405,12 @@ public class GedcomImporter extends Importer
             {
                 return "";
             }
+        }
+
+        @Override
+        public String toString()
+        {
+            return string;
         }
     }
 }

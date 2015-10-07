@@ -77,24 +77,6 @@ public class Marriage implements Event
      *
      * @return
      */
-    public Person getWife()
-    {
-        return wife;
-    }
-
-    /**
-     *
-     * @param wife
-     */
-    public void setWife(Person wife)
-    {
-        this.wife = wife;
-    }
-
-    /**
-     *
-     * @return
-     */
     @Override
     public Place getPlace()
     {
@@ -131,19 +113,37 @@ public class Marriage implements Event
         this.date = date;
     }
 
+    /**
+     *
+     * @return
+     */
+    public Person getWife()
+    {
+        return wife;
+    }
+
+    /**
+     *
+     * @param wife
+     */
+    public void setWife(Person wife)
+    {
+        this.wife = wife;
+    }
+
     public boolean hasHusband()
     {
         return hasSpouse(husband);
     }
 
-    public boolean hasWife()
-    {
-        return hasSpouse(wife);
-    }
-
     private boolean hasSpouse(Person spouse)
     {
         return spouse != null;
+    }
+
+    public boolean hasWife()
+    {
+        return hasSpouse(wife);
     }
 
 }
