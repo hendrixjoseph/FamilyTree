@@ -1,10 +1,10 @@
 "ID","FATHER_ID","FATHER_NAME","MOTHER_ID","MOTHER_NAME","NAME","GENDER","PLACE_OF_BIRTH","DATE_OF_BIRTH","PLACE_OF_DEATH","DATE_OF_DEATH"
-9510,9511,"David Morgan Hendrix",9512,"Deborah Lee Hunter","Joseph D Hendrix","Male","Ann Arbor, Michigan",25-FEB-1984,"",
-9511,10982,"Joe Hendrix",10953,"Mary Tarver","David Morgan Hendrix","Male","",04-FEB-1953,"",
-9513,9511,"David Morgan Hendrix",9512,"Deborah Lee Hunter","Ryan Morgan Hendrix","Male","Ann Arbor, Michigan",25-JUN-1982,"",
-9514,9511,"David Morgan Hendrix",9512,"Deborah Lee Hunter","Christopher Robert Hendrix","Male","Ann Arbor, Michigan",06-APR-1980,"",
-9515,9522,"Gilbert Hunter",9523,"Beverly Sara Anderson","Robert Don Hunter","Male","",27-JUN-1931,"Dayton, Ohio",15-JAN-2014
-9517,,"",,"","Luis Felipe Moreno","Male","Mexico City, Mexico",15-MAR-1959,"",
-9518,9517,"Luis Felipe Moreno",9512,"Deborah Lee Hunter","Luis Norman Moreno","Male","Dayton, Ohio",25-NOV-1992,"",
-9520,9515,"Robert Don Hunter",9516,"Nancy Lee Smith","Robert Hunter","Male","",,"",
-9521,9515,"Robert Don Hunter",9516,"Nancy Lee Smith","Jeffrey Alan Hunter","Male","",20-JUN-1959,"Laura, Miami, OH 45337",27-JUL-2004
+1,2,"David Morgan Hendrix",3,"Deborah Lee Hunter","Joseph David Hendrix","Male","Ann Arbor, Michigan",25-FEB-1984,"",
+2,1472,"Joe Hendrix",,"","David Morgan Hendrix","Male","",04-FEB-1953,"",
+4,2,"David Morgan Hendrix",3,"Deborah Lee Hunter","Ryan Morgan Hendrix","Male","Ann Arbor, Michigan",25-JUN-1982,"",
+5,2,"David Morgan Hendrix",3,"Deborah Lee Hunter","Christopher Robert Hendrix","Male","Ann Arbor, Michigan",06-APR-1980,"",
+6,13,"Gilbert Hunter",14,"Beverly Sara Anderson","Robert Don Hunter","Male","",27-JUN-1931,"",
+8,,"",,"","Luis Felipe Moreno","Male","Mexico City, Mexico",15-MAR-1959,"",
+9,8,"Luis Felipe Moreno",3,"Deborah Lee Hunter","Luis Norman Moreno","Male","Dayton, Ohio",25-NOV-1992,"",
+13,22,"Emory Hunter",23,"Amos Frances Miles","Gilbert Hunter","Male","Roane County, Tennessee",04-NOV-1907,"",
+12,6,"Robert Don Hunter",7,"Nancy Lee Smith","Jeffrey Alan Hunter","Male","",20-JUN-1959,"",
