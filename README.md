@@ -92,6 +92,7 @@ In addition to the [dependencies](http://hendrixjoseph.github.io/FamilyTree/depe
 
 #### Desktop Tools
 
+* [IntelliJ IDEA 14.1.5](https://www.jetbrains.com/idea) Ultimate Edition [Student License](https://www.jetbrains.com/student)
 * [NetBeans IDE 8.0.2](https://netbeans.org)
 * [Oracle SQL Developer 4.1.0.19](http://www.oracle.com/technetwork/developer-tools/sql-developer/overview/index-097090.html)
 * [Notepad++ v6.7.8.2](https://notepad-plus-plus.org)
