@@ -2,8 +2,10 @@
 
 FOR /D %%D IN (*) DO (
 
-	IF NOT %%D==.git ( 
-		RD/S/Q %%D
+	IF NOT %%D==.git (
+		IF NOT %%D==_layouts (
+			RD/S/Q %%D
+		)
 	)
 )
 
