@@ -28,6 +28,7 @@ import static javax.persistence.GenerationType.SEQUENCE;
 @NamedQuery(name = Place.FIND_BY_NAME, query = "SELECT p FROM Place p WHERE p.name = :name")
 public class Place
 {
+
     public static final String FIND_BY_NAME = "Place.findByName";
 
     @Id
@@ -39,7 +40,6 @@ public class Place
     private String name;
 
     /**
-     *
      * @return
      */
     public int getId()
@@ -48,7 +48,6 @@ public class Place
     }
 
     /**
-     *
      * @param id
      */
     public void setId(int id)
@@ -57,7 +56,6 @@ public class Place
     }
 
     /**
-     *
      * @return
      */
     public String getName()
@@ -66,7 +64,6 @@ public class Place
     }
 
     /**
-     *
      * @param name
      */
     public void setName(String name)

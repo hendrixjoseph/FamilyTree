@@ -22,8 +22,8 @@ public class GedcomExporter extends Exporter
 {
 
     /**
-     *
      * @param fileName
+     *
      * @throws FileNotFoundException
      */
     public GedcomExporter(String fileName) throws FileNotFoundException
@@ -32,7 +32,6 @@ public class GedcomExporter extends Exporter
     }
 
     /**
-     *
      * @param out
      */
     public GedcomExporter(PrintStream out)

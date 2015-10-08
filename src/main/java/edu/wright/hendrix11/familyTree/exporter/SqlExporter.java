@@ -22,8 +22,8 @@ public class SqlExporter extends Exporter
 {
 
     /**
-     *
      * @param fileName
+     *
      * @throws FileNotFoundException
      */
     public SqlExporter(String fileName) throws FileNotFoundException
@@ -32,7 +32,6 @@ public class SqlExporter extends Exporter
     }
 
     /**
-     *
      * @param out
      */
     public SqlExporter(PrintStream out)

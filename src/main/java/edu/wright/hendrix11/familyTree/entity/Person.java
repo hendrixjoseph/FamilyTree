@@ -12,9 +12,6 @@
 
 package edu.wright.hendrix11.familyTree.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -30,6 +27,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.GenerationType.SEQUENCE;
 
@@ -41,33 +41,41 @@ import static javax.persistence.GenerationType.SEQUENCE;
 @Table(name = "PERSON")
 public class Person
 {
+
     public static final String FIND_FIRST = "Person.findFirst";
 
     @Id
     @SequenceGenerator(name = "PERSON_SEQUENCE", sequenceName = "PERSON_SEQUENCE", allocationSize = 1)
     @GeneratedValue(strategy = SEQUENCE, generator = "PERSON_SEQUENCE")
     private int id;
-
-    @NotNull
-    private String name;
-
+    @OneToOne(cascade = ALL, mappedBy = "person")
+    private Birth birth;
+    @OneToOne(cascade = ALL, mappedBy = "person")
+    private Burial burial;
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "CHILDREN_VIEW",
+            joinColumns = {@JoinColumn(name = "ID", referencedColumnName = "ID")},
+            inverseJoinColumns = {@JoinColumn(name = "CHILD_ID", referencedColumnName = "ID")})
+    private List<Person> children;
+    @OneToOne(cascade = ALL, mappedBy = "person")
+    private Death death;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinTable(name = "FATHER_OF",
+               joinColumns = @JoinColumn(name = "CHILD_ID"),
+               inverseJoinColumns = @JoinColumn(name = "FATHER_ID"))
+    private Person father;
     @ManyToOne
     @JoinColumn(name = "GENDER")
     @NotNull
     private Gender gender;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinTable(name = "FATHER_OF",
-            joinColumns = @JoinColumn(name = "CHILD_ID"),
-            inverseJoinColumns = @JoinColumn(name = "FATHER_ID"))
-    private Person father;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinTable(name = "MOTHER_OF",
-            joinColumns = @JoinColumn(name = "CHILD_ID"),
-            inverseJoinColumns = @JoinColumn(name = "MOTHER_ID"))
+               joinColumns = @JoinColumn(name = "CHILD_ID"),
+               inverseJoinColumns = @JoinColumn(name = "MOTHER_ID"))
     private Person mother;
-
+    @NotNull
+    private String name;
     @ManyToMany
     @JoinTable(
             name = "SPOUSE_VIEW",
@@ -75,24 +83,7 @@ public class Person
             inverseJoinColumns = {@JoinColumn(name = "SPOUSE_ID", referencedColumnName = "ID")})
     private List<Person> spouses;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "CHILDREN_VIEW",
-            joinColumns = {@JoinColumn(name = "ID", referencedColumnName = "ID")},
-            inverseJoinColumns = {@JoinColumn(name = "CHILD_ID", referencedColumnName = "ID")})
-    private List<Person> children;
-
-    @OneToOne(cascade = ALL, mappedBy = "person")
-    private Birth birth;
-
-    @OneToOne(cascade = ALL, mappedBy = "person")
-    private Death death;
-
-    @OneToOne(cascade = ALL, mappedBy = "person")
-    private Burial burial;
-
     /**
-     *
      * @return
      */
     public Birth getBirth()
@@ -101,19 +92,17 @@ public class Person
     }
 
     /**
-     *
      * @param birth
      */
     public void setBirth(Birth birth)
     {
-        if (birth != null)
+        if ( birth != null )
             birth.setPerson(this);
 
         this.birth = birth;
     }
 
     /**
-     *
      * @return
      */
     public Burial getBurial()
@@ -122,18 +111,16 @@ public class Person
     }
 
     /**
-     *
      * @param burial
      */
     public void setBurial(Burial burial)
     {
-        if (burial != null)
+        if ( burial != null )
             burial.setPerson(this);
         this.burial = burial;
     }
 
     /**
-     *
      * @return
      */
     public List<Person> getChildren()
@@ -142,7 +129,6 @@ public class Person
     }
 
     /**
-     *
      * @param children
      */
     public void setChildren(List<Person> children)
@@ -151,17 +137,17 @@ public class Person
     }
 
     /**
-     *
      * @param spouse
+     *
      * @return
      */
     public List<Person> getChildren(Person spouse)
     {
         List<Person> childrenOfSpouse = new ArrayList<>();
 
-        for (Person child : children)
+        for ( Person child : children )
         {
-            if (child.hasFather() && child.getFather().equals(spouse) || child.hasMother() && child.getMother().equals(spouse))
+            if ( child.hasFather() && child.getFather().equals(spouse) || child.hasMother() && child.getMother().equals(spouse) )
             {
                 childrenOfSpouse.add(child);
             }
@@ -171,16 +157,15 @@ public class Person
     }
 
     /**
-     *
      * @return
      */
     public List<Person> getChildrenNoSpouse()
     {
         List<Person> childrenNoSpouse = new ArrayList<>();
 
-        for (Person child : children)
+        for ( Person child : children )
         {
-            if (!child.hasFather() || !child.hasMother())
+            if ( !child.hasFather() || !child.hasMother() )
             {
                 childrenNoSpouse.add(child);
             }
@@ -190,7 +175,6 @@ public class Person
     }
 
     /**
-     *
      * @return
      */
     public Death getDeath()
@@ -199,18 +183,16 @@ public class Person
     }
 
     /**
-     *
      * @param death
      */
     public void setDeath(Death death)
     {
-        if (death != null)
+        if ( death != null )
             death.setPerson(this);
         this.death = death;
     }
 
     /**
-     *
      * @return
      */
     public Person getFather()
@@ -219,7 +201,6 @@ public class Person
     }
 
     /**
-     *
      * @param father
      */
     public void setFather(Person father)
@@ -228,7 +209,6 @@ public class Person
     }
 
     /**
-     *
      * @return
      */
     public Gender getGender()
@@ -237,7 +217,6 @@ public class Person
     }
 
     /**
-     *
      * @param gender
      */
     public void setGender(Gender gender)
@@ -246,7 +225,6 @@ public class Person
     }
 
     /**
-     *
      * @return
      */
     public int getId()
@@ -255,7 +233,6 @@ public class Person
     }
 
     /**
-     *
      * @param id
      */
     public void setId(int id)
@@ -272,7 +249,6 @@ public class Person
     }
 
     /**
-     *
      * @param mother
      */
     public void setMother(Person mother)
@@ -281,7 +257,6 @@ public class Person
     }
 
     /**
-     *
      * @return
      */
     public String getName()
@@ -290,7 +265,6 @@ public class Person
     }
 
     /**
-     *
      * @param name
      */
     public void setName(String name)
@@ -299,7 +273,6 @@ public class Person
     }
 
     /**
-     *
      * @return
      */
     public List<Person> getSpouses()
@@ -308,7 +281,6 @@ public class Person
     }
 
     /**
-     *
      * @param spouses
      */
     public void setSpouses(List<Person> spouses)
@@ -317,7 +289,6 @@ public class Person
     }
 
     /**
-     *
      * @return
      */
     public boolean hasFather()
@@ -326,7 +297,6 @@ public class Person
     }
 
     /**
-     *
      * @return
      */
     public boolean hasMother()
@@ -335,7 +305,6 @@ public class Person
     }
 
     /**
-     *
      * @return
      */
     public boolean hasParent()
@@ -343,17 +312,16 @@ public class Person
         return hasFather() || hasMother();
     }
 
-    private boolean hasParent(Person parent)
-    {
-        return !(parent == null);
-    }
-
     /**
-     *
      * @return
      */
     public boolean hasParents()
     {
         return hasFather() && hasMother();
+    }
+
+    private boolean hasParent(Person parent)
+    {
+        return !( parent == null );
     }
 }

@@ -11,8 +11,8 @@
 
 -->
 
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/DECORATION/1.6.0">
+<project
+        xmlns="http://maven.apache.org/DECORATION/1.6.0">
     <body>
         <menu ref="modules" />
         <menu ref="reports" />

@@ -39,7 +39,6 @@ public class ThemeParser
     }
 
     /**
-     *
      * @param jarName
      */
     public ThemeParser(String jarName)
@@ -50,7 +49,6 @@ public class ThemeParser
     }
 
     /**
-     *
      * @param jarFile
      */
     public ThemeParser(JarFile jarFile)
@@ -60,28 +58,7 @@ public class ThemeParser
         init();
     }
 
-    private void closeJarFile()
-    {
-        closeJarFile(jarFile);
-    }
-
-    private void closeJarFile(JarFile jarFile)
-    {
-        if (jarFile != null)
-        {
-            try
-            {
-                jarFile.close();
-            }
-            catch (IOException ex)
-            {
-                ex.printStackTrace();
-            }
-        }
-    }
-
     /**
-     *
      * @return
      */
     public String getJarName()
@@ -90,7 +67,6 @@ public class ThemeParser
     }
 
     /**
-     *
      * @return
      */
     public List<String> getThemes()
@@ -99,12 +75,50 @@ public class ThemeParser
     }
 
     /**
-     *
      * @param themes
      */
     public void setThemes(List<String> themes)
     {
         this.themes = themes;
+    }
+
+    /**
+     *
+     */
+    public void outputThemes()
+    {
+        outputThemes(System.out);
+    }
+
+    /**
+     * @param out
+     */
+    public void outputThemes(PrintStream out)
+    {
+        for ( String theme : themes )
+        {
+            out.println(theme);
+        }
+    }
+
+    private void closeJarFile()
+    {
+        closeJarFile(jarFile);
+    }
+
+    private void closeJarFile(JarFile jarFile)
+    {
+        if ( jarFile != null )
+        {
+            try
+            {
+                jarFile.close();
+            }
+            catch ( IOException ex )
+            {
+                ex.printStackTrace();
+            }
+        }
     }
 
     private void init()
@@ -114,7 +128,7 @@ public class ThemeParser
 
     private void init(JarFile jarFile)
     {
-        if (jarFile != null)
+        if ( jarFile != null )
         {
             initializeThemes();
 
@@ -137,25 +151,25 @@ public class ThemeParser
 
         Enumeration entries = jarFile.entries();
 
-        while (entries.hasMoreElements())
+        while ( entries.hasMoreElements() )
         {
             String currentEntry = entries.nextElement().toString();
 
-            if (currentEntry.contains("themes"))
+            if ( currentEntry.contains("themes") )
             {
                 int index = currentEntry.indexOf("themes/") + "themes/".length();
                 currentEntry = currentEntry.substring(index);
 
                 index = currentEntry.indexOf("/");
 
-                if (!currentEntry.isEmpty())
+                if ( !currentEntry.isEmpty() )
                 {
-                    if (index > -1)
+                    if ( index > -1 )
                     {
                         currentEntry = currentEntry.substring(0, index);
                     }
 
-                    if (!themes.contains(currentEntry))
+                    if ( !themes.contains(currentEntry) )
                     {
                         themes.add(currentEntry);
                     }
@@ -168,7 +182,7 @@ public class ThemeParser
     {
         try
         {
-            if (new File(jarName).isFile())
+            if ( new File(jarName).isFile() )
             {
                 return new JarFile(jarName);
             }
@@ -177,36 +191,16 @@ public class ThemeParser
 
             this.jarName = jarName;
 
-            if (new File(jarName).isFile())
+            if ( new File(jarName).isFile() )
             {
                 return new JarFile(jarName);
             }
         }
-        catch (IOException ex)
+        catch ( IOException ex )
         {
             ex.printStackTrace();
         }
 
         return null;
-    }
-
-    /**
-     *
-     */
-    public void outputThemes()
-    {
-        outputThemes(System.out);
-    }
-
-    /**
-     *
-     * @param out
-     */
-    public void outputThemes(PrintStream out)
-    {
-        for (String theme : themes)
-        {
-            out.println(theme);
-        }
     }
 }

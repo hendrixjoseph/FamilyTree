@@ -22,7 +22,6 @@ public class MarriagePK
     private int wife;
 
     /**
-     *
      * @param husband
      * @param wife
      */
@@ -33,7 +32,6 @@ public class MarriagePK
     }
 
     /**
-     *
      * @return
      */
     public int getHusband()
@@ -42,7 +40,6 @@ public class MarriagePK
     }
 
     /**
-     *
      * @param husband
      */
     public void setHusband(int husband)
@@ -69,7 +66,7 @@ public class MarriagePK
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof MarriagePK)
+        if ( object instanceof MarriagePK )
         {
             MarriagePK pk = (MarriagePK) object;
             return husband == pk.getHusband() && wife == pk.getWife();

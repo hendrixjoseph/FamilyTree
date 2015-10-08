@@ -12,8 +12,7 @@
 
 package edu.wright.hendrix11.familyTree.bean;
 
-import java.io.Serializable;
-import java.util.List;
+import edu.wright.hendrix11.familyTree.entity.Gender;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -22,7 +21,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import edu.wright.hendrix11.familyTree.entity.Gender;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author Joe Hendrix <hendrix.11@wright.edu>
@@ -32,20 +32,9 @@ import edu.wright.hendrix11.familyTree.entity.Gender;
 public class GenderBean implements Serializable
 {
 
-    private List<Gender> genders;
-
     @PersistenceContext(unitName = "edu.wright.hendrix11.familyTree")
     private EntityManager em;
-
-    public List<Gender> getGenders()
-    {
-        return genders;
-    }
-
-    public void setGenders(List<Gender> genders)
-    {
-        this.genders = genders;
-    }
+    private List<Gender> genders;
 
     /**
      *
@@ -55,5 +44,15 @@ public class GenderBean implements Serializable
     {
         TypedQuery<Gender> query = em.createNamedQuery(Gender.FIND_ALL, Gender.class);
         genders = query.getResultList();
+    }
+
+    public List<Gender> getGenders()
+    {
+        return genders;
+    }
+
+    public void setGenders(List<Gender> genders)
+    {
+        this.genders = genders;
     }
 }

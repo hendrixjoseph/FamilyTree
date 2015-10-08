@@ -12,24 +12,25 @@
 
 package edu.wright.hendrix11.familyTree.importer;
 
-import java.io.FileNotFoundException;
-import java.util.logging.Logger;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import java.io.FileNotFoundException;
+import java.util.logging.Logger;
+
 /**
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
 public class GedcomImporterTest
 {
+
     private static final Logger LOG = Logger.getLogger(GedcomImporterTest.class.getName());
 
     private static EntityManagerFactory emf;
@@ -44,7 +45,7 @@ public class GedcomImporterTest
     @AfterClass
     public static void tearDownClass()
     {
-        if (emf != null)
+        if ( emf != null )
         {
             emf.close();
         }
@@ -61,7 +62,6 @@ public class GedcomImporterTest
     {
         em.close();
     }
-
 
     @Test
     public void test() throws FileNotFoundException

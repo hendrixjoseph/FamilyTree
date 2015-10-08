@@ -12,9 +12,9 @@
 
 package edu.wright.hendrix11.familyTree.entity.event;
 
-import java.util.Date;
-
 import edu.wright.hendrix11.familyTree.entity.Place;
+
+import java.util.Date;
 
 /**
  * @author Joe Hendrix <hendrix.11@wright.edu>
@@ -23,25 +23,21 @@ public interface Event
 {
 
     /**
-     *
      * @return
      */
     Date getDate();
 
     /**
-     *
      * @param date
      */
     void setDate(Date date);
 
     /**
-     *
      * @return
      */
     Place getPlace();
 
     /**
-     *
      * @param place
      */
     void setPlace(Place place);

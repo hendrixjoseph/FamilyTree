@@ -22,8 +22,8 @@ public class CsvExporter extends Exporter
 {
 
     /**
-     *
      * @param fileName
+     *
      * @throws FileNotFoundException
      */
     public CsvExporter(String fileName) throws FileNotFoundException
@@ -32,7 +32,6 @@ public class CsvExporter extends Exporter
     }
 
     /**
-     *
      * @param out
      */
     public CsvExporter(PrintStream out)

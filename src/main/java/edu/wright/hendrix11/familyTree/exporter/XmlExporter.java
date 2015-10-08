@@ -22,8 +22,8 @@ public class XmlExporter extends Exporter
 {
 
     /**
-     *
      * @param fileName
+     *
      * @throws FileNotFoundException
      */
     public XmlExporter(String fileName) throws FileNotFoundException
@@ -32,7 +32,6 @@ public class XmlExporter extends Exporter
     }
 
     /**
-     *
      * @param out
      */
     public XmlExporter(PrintStream out)

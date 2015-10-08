@@ -12,7 +12,8 @@
 
 package edu.wright.hendrix11.familyTree.entity;
 
-import java.util.Date;
+import edu.wright.hendrix11.familyTree.entity.compositeKey.MarriagePK;
+import edu.wright.hendrix11.familyTree.entity.event.Event;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,8 +25,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import edu.wright.hendrix11.familyTree.entity.compositeKey.MarriagePK;
-import edu.wright.hendrix11.familyTree.entity.event.Event;
+import java.util.Date;
 
 import static javax.persistence.CascadeType.ALL;
 
@@ -37,26 +37,22 @@ import static javax.persistence.CascadeType.ALL;
 public class Marriage implements Event
 {
 
+    @Temporal(TemporalType.DATE)
+    @Column(name = "ANNIVERSARY")
+    private Date date;
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "HUSBAND")
     private Person husband;
-
+    @ManyToOne(cascade = ALL)
+    @JoinColumn(name = "PLACE_ID")
+    private Place place;
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "WIFE")
     private Person wife;
 
-    @ManyToOne(cascade = ALL)
-    @JoinColumn(name = "PLACE_ID")
-    private Place place;
-
-    @Temporal(TemporalType.DATE)
-    @Column(name = "ANNIVERSARY")
-    private Date date;
-
     /**
-     *
      * @return
      */
     public Person getHusband()
@@ -65,7 +61,6 @@ public class Marriage implements Event
     }
 
     /**
-     *
      * @param husband
      */
     public void setHusband(Person husband)
@@ -74,7 +69,6 @@ public class Marriage implements Event
     }
 
     /**
-     *
      * @return
      */
     @Override
@@ -84,7 +78,6 @@ public class Marriage implements Event
     }
 
     /**
-     *
      * @param place
      */
     @Override
@@ -94,7 +87,6 @@ public class Marriage implements Event
     }
 
     /**
-     *
      * @return
      */
     @Override
@@ -104,7 +96,6 @@ public class Marriage implements Event
     }
 
     /**
-     *
      * @param date
      */
     @Override
@@ -114,7 +105,6 @@ public class Marriage implements Event
     }
 
     /**
-     *
      * @return
      */
     public Person getWife()
@@ -123,7 +113,6 @@ public class Marriage implements Event
     }
 
     /**
-     *
      * @param wife
      */
     public void setWife(Person wife)
@@ -136,14 +125,14 @@ public class Marriage implements Event
         return hasSpouse(husband);
     }
 
-    private boolean hasSpouse(Person spouse)
-    {
-        return spouse != null;
-    }
-
     public boolean hasWife()
     {
         return hasSpouse(wife);
+    }
+
+    private boolean hasSpouse(Person spouse)
+    {
+        return spouse != null;
     }
 
 }

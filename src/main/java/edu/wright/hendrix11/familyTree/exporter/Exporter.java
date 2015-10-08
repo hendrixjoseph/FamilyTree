@@ -29,8 +29,8 @@ public abstract class Exporter
     protected PrintStream out;
 
     /**
-     *
      * @param fileName
+     *
      * @throws FileNotFoundException
      */
     public Exporter(String fileName) throws FileNotFoundException
@@ -39,7 +39,6 @@ public abstract class Exporter
     }
 
     /**
-     *
      * @param out
      */
     public Exporter(PrintStream out)

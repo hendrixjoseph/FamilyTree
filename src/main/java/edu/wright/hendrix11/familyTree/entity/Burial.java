@@ -12,7 +12,7 @@
 
 package edu.wright.hendrix11.familyTree.entity;
 
-import java.util.Date;
+import edu.wright.hendrix11.familyTree.entity.event.Event;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,7 +23,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import edu.wright.hendrix11.familyTree.entity.event.Event;
+import java.util.Date;
 
 import static javax.persistence.CascadeType.ALL;
 
@@ -34,21 +34,18 @@ import static javax.persistence.CascadeType.ALL;
 public class Burial implements Event
 {
 
+    @Temporal(TemporalType.DATE)
+    @Column(name = "ANNIVERSARY")
+    private Date date;
     @Id
     @OneToOne
     @JoinColumn(name = "PERSON_ID")
     private Person person;
-
     @ManyToOne(cascade = ALL)
     @JoinColumn(name = "PLACE_ID")
     private Place place;
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "ANNIVERSARY")
-    private Date date;
-
     /**
-     *
      * @return
      */
     public Person getPerson()
@@ -57,7 +54,6 @@ public class Burial implements Event
     }
 
     /**
-     *
      * @param person
      */
     public void setPerson(Person person)
@@ -66,7 +62,6 @@ public class Burial implements Event
     }
 
     /**
-     *
      * @return
      */
     @Override
@@ -76,7 +71,6 @@ public class Burial implements Event
     }
 
     /**
-     *
      * @param place
      */
     @Override
@@ -86,7 +80,6 @@ public class Burial implements Event
     }
 
     /**
-     *
      * @return
      */
     @Override
@@ -96,7 +89,6 @@ public class Burial implements Event
     }
 
     /**
-     *
      * @param date
      */
     @Override

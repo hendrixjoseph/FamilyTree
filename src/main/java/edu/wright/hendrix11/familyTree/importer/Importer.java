@@ -12,10 +12,10 @@
 
 package edu.wright.hendrix11.familyTree.importer;
 
+import javax.persistence.EntityManager;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-
-import javax.persistence.EntityManager;
 
 /**
  * @author Joe Hendrix
@@ -30,8 +30,8 @@ public abstract class Importer
     protected EntityManager em;
 
     /**
-     *
      * @param fileName
+     *
      * @throws FileNotFoundException
      */
     public Importer(String fileName) throws FileNotFoundException

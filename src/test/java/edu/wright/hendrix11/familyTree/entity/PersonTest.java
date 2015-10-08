@@ -12,20 +12,20 @@
 
 package edu.wright.hendrix11.familyTree.entity;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Joe Hendrix <hendrix.11@wright.edu>
@@ -47,7 +47,7 @@ public class PersonTest
     @AfterClass
     public static void tearDownClass()
     {
-        if (emf != null)
+        if ( emf != null )
         {
             emf.close();
         }
@@ -94,14 +94,14 @@ public class PersonTest
 
         sb.append("\n\tSPOUSES:\t");
 
-        for (Person spouse : person.getSpouses())
+        for ( Person spouse : person.getSpouses() )
         {
             sb.append(spouse.getName()).append(", ");
         }
 
         sb.append("\n\tCHILDREN:\t");
 
-        for (Person child : person.getChildren())
+        for ( Person child : person.getChildren() )
         {
             sb.append(child.getName()).append(", ");
         }

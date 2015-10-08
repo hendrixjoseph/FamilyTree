@@ -29,7 +29,6 @@ public class Source
     }
 
     /**
-     *
      * @param citation
      */
     public Source(String citation)
@@ -38,7 +37,6 @@ public class Source
     }
 
     /**
-     *
      * @return
      */
     public String getCitation()
@@ -47,7 +45,6 @@ public class Source
     }
 
     /**
-     *
      * @param citation
      */
     public void setCitation(String citation)
@@ -56,7 +53,6 @@ public class Source
     }
 
     /**
-     *
      * @return
      */
     public int getId()
@@ -65,7 +61,6 @@ public class Source
     }
 
     /**
-     *
      * @param id
      */
     public void setId(int id)

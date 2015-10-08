@@ -12,7 +12,7 @@
 
 package edu.wright.hendrix11.familyTree.bean;
 
-import java.io.Serializable;
+import edu.wright.hendrix11.familyTree.entity.Person;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -21,7 +21,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import edu.wright.hendrix11.familyTree.entity.Person;
+import java.io.Serializable;
 
 /**
  * @author Joe Hendrix
@@ -31,13 +31,21 @@ import edu.wright.hendrix11.familyTree.entity.Person;
 public class IndividualBean implements Serializable
 {
 
-    private Person person;
-
     @PersistenceContext(unitName = "edu.wright.hendrix11.familyTree")
     private EntityManager em;
+    private Person person;
 
     /**
      *
+     */
+    @PostConstruct
+    public void initialize()
+    {
+        TypedQuery<Person> personQuery = em.createNamedQuery(Person.FIND_FIRST, Person.class);
+        person = personQuery.getSingleResult();
+    }
+
+    /**
      * @return
      */
     public Person getPerson()
@@ -51,22 +59,11 @@ public class IndividualBean implements Serializable
     }
 
     /**
-     *
      * @param id
      */
     public void setPersonId(int id)
     {
         person = em.find(Person.class, id);
-    }
-
-    /**
-     *
-     */
-    @PostConstruct
-    public void initialize()
-    {
-        TypedQuery<Person> personQuery = em.createNamedQuery(Person.FIND_FIRST, Person.class);
-        person = personQuery.getSingleResult();
     }
 
     public void insertPerson(Person person)

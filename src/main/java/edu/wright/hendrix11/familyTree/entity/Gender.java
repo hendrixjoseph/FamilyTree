@@ -46,7 +46,6 @@ public class Gender
     }
 
     /**
-     *
      * @return
      */
     public char getAbbr()
@@ -55,7 +54,6 @@ public class Gender
     }
 
     /**
-     *
      * @param abbr
      */
     public void setAbbr(char abbr)
@@ -64,7 +62,6 @@ public class Gender
     }
 
     /**
-     *
      * @return
      */
     public String getFullWord()
@@ -73,7 +70,6 @@ public class Gender
     }
 
     /**
-     *
      * @param fullWord
      */
     public void setFullWord(String fullWord)

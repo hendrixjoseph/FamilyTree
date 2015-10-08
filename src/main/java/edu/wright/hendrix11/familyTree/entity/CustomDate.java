@@ -21,12 +21,11 @@ public class CustomDate extends Date
 {
 
     private boolean about;
-    private boolean yearKnown;
-    private boolean monthKnown;
     private boolean dayKnown;
+    private boolean monthKnown;
+    private boolean yearKnown;
 
     /**
-     *
      * @return
      */
     public boolean isAbout()
@@ -35,7 +34,6 @@ public class CustomDate extends Date
     }
 
     /**
-     *
      * @param about
      */
     public void setAbout(boolean about)
@@ -44,7 +42,6 @@ public class CustomDate extends Date
     }
 
     /**
-     *
      * @return
      */
     public boolean isDayKnown()
@@ -53,7 +50,6 @@ public class CustomDate extends Date
     }
 
     /**
-     *
      * @param dayKnown
      */
     public void setDayKnown(boolean dayKnown)
@@ -62,7 +58,6 @@ public class CustomDate extends Date
     }
 
     /**
-     *
      * @return
      */
     public boolean isMonthKnown()
@@ -71,7 +66,6 @@ public class CustomDate extends Date
     }
 
     /**
-     *
      * @param knowMonth
      */
     public void setMonthKnown(boolean knowMonth)
@@ -80,7 +74,6 @@ public class CustomDate extends Date
     }
 
     /**
-     *
      * @return
      */
     public boolean isYearKnown()
@@ -89,7 +82,6 @@ public class CustomDate extends Date
     }
 
     /**
-     *
      * @param yearKnown
      */
     public void setYearKnown(boolean yearKnown)

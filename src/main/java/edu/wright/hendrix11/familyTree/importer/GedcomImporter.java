@@ -12,6 +12,17 @@
 
 package edu.wright.hendrix11.familyTree.importer;
 
+import edu.wright.hendrix11.familyTree.entity.Birth;
+import edu.wright.hendrix11.familyTree.entity.Death;
+import edu.wright.hendrix11.familyTree.entity.Gender;
+import edu.wright.hendrix11.familyTree.entity.Marriage;
+import edu.wright.hendrix11.familyTree.entity.Person;
+import edu.wright.hendrix11.familyTree.entity.Place;
+import edu.wright.hendrix11.familyTree.entity.event.Event;
+
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.LineNumberReader;
@@ -25,17 +36,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-
-import edu.wright.hendrix11.familyTree.entity.Birth;
-import edu.wright.hendrix11.familyTree.entity.Death;
-import edu.wright.hendrix11.familyTree.entity.Gender;
-import edu.wright.hendrix11.familyTree.entity.Marriage;
-import edu.wright.hendrix11.familyTree.entity.Person;
-import edu.wright.hendrix11.familyTree.entity.Place;
-import edu.wright.hendrix11.familyTree.entity.event.Event;
-
 /**
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
@@ -45,16 +45,13 @@ public class GedcomImporter extends Importer
     private static final Logger LOG = Logger.getLogger(GedcomImporter.class.getName());
 
     private static final DateFormat DATE_FORMAT = new SimpleDateFormat("dd MMM yyyy");
-
-    private HashMap<String, Person> people = new HashMap<>();
-    private List<Marriage> marriages = new ArrayList<>();
-
-    private Mode inserting = Mode.NONE;
-    private Mode personInfo = Mode.NONE;
     private Mode datePlace = Mode.NONE;
     private Mode familyInfo = Mode.NONE;
-
+    private Mode inserting = Mode.NONE;
+    private List<Marriage> marriages = new ArrayList<>();
     private String nextLine = "";
+    private HashMap<String, Person> people = new HashMap<>();
+    private Mode personInfo = Mode.NONE;
 
     public GedcomImporter(String fileName) throws FileNotFoundException
     {
@@ -68,9 +65,9 @@ public class GedcomImporter extends Importer
     @Override
     public void processData()
     {
-        try (LineNumberReader in = new LineNumberReader(file))
+        try ( LineNumberReader in = new LineNumberReader(file) )
         {
-            while (!in.readLine().startsWith(Mode.PERSON.toString()))
+            while ( !in.readLine().startsWith(Mode.PERSON.toString()) )
             {
             }
 
@@ -80,14 +77,14 @@ public class GedcomImporter extends Importer
             Person child = null;
             Marriage marriage = null;
 
-            while ((nextLine = in.readLine()) != null)
+            while ( ( nextLine = in.readLine() ) != null )
             {
                 inserting = inserting.getInserting(nextLine);
                 personInfo = personInfo.getPersonInfoType(nextLine);
                 familyInfo = familyInfo.getFamilyInfoType(nextLine);
                 datePlace = datePlace.getDatePlace(nextLine);
 
-                switch (inserting)
+                switch ( inserting )
                 {
                     case NEW_PERSON:
                         person = new Person();
@@ -107,7 +104,7 @@ public class GedcomImporter extends Importer
                         marriage = null;
                         break;
                     case FAMILY:
-                        switch (familyInfo)
+                        switch ( familyInfo )
                         {
                             case HUSB:
                                 split = nextLine.split("@");
@@ -128,14 +125,14 @@ public class GedcomImporter extends Importer
                                 child.setMother(wife);
                                 break;
                             case MARRIAGE:
-                                if (marriage == null)
+                                if ( marriage == null )
                                 {
                                     marriage = new Marriage();
                                     marriage.setHusband(husband);
                                     marriage.setWife(wife);
                                 }
 
-                                if (!marriages.contains(marriage))
+                                if ( !marriages.contains(marriage) )
                                 {
                                     marriages.add(marriage);
                                 }
@@ -149,7 +146,7 @@ public class GedcomImporter extends Importer
                 }
             }
         }
-        catch (IOException e)
+        catch ( IOException e )
         {
             LOG.log(Level.SEVERE, e.getClass().getName(), e);
         }
@@ -180,7 +177,7 @@ public class GedcomImporter extends Importer
         {
             return DATE_FORMAT.parse(string);
         }
-        catch (ParseException ex)
+        catch ( ParseException ex )
         {
             return null;
         }
@@ -190,7 +187,7 @@ public class GedcomImporter extends Importer
     {
         String info = datePlace.restOf(nextLine);
 
-        switch (datePlace)
+        switch ( datePlace )
         {
             case DATE:
                 event.setDate(processDate(info));
@@ -198,13 +195,13 @@ public class GedcomImporter extends Importer
             case PLACE:
                 Place place;
 
-                if (em != null)
+                if ( em != null )
                 {
                     TypedQuery<Place> placeQuery = em.createNamedQuery(Place.FIND_BY_NAME, Place.class);
                     placeQuery.setParameter("name", info);
                     List<Place> placeList = placeQuery.getResultList();
 
-                    if (placeList.isEmpty())
+                    if ( placeList.isEmpty() )
                     {
                         place = new Place();
                         place.setName(info);
@@ -232,7 +229,7 @@ public class GedcomImporter extends Importer
     {
         String info = personInfo.restOf(nextLine);
 
-        switch (personInfo)
+        switch ( personInfo )
         {
             case NAME:
                 info = info.replaceAll("/", "");
@@ -243,21 +240,21 @@ public class GedcomImporter extends Importer
             case GENDER:
                 Gender gender;
 
-                if (em != null)
+                if ( em != null )
                     gender = em.find(Gender.class, info.charAt(0));
                 else
                     gender = new Gender(info.charAt(0));
 
                 person.setGender(gender);
 
-                if (em != null)
+                if ( em != null )
                     em.persist(person);
 
                 personInfo = Mode.NONE;
 
                 break;
             case BIRTH:
-                if (person.getBirth() == null)
+                if ( person.getBirth() == null )
                 {
                     person.setBirth(new Birth());
                 }
@@ -265,7 +262,7 @@ public class GedcomImporter extends Importer
                 processEvent(person.getBirth());
                 break;
             case DEATH:
-                if (person.getDeath() == null)
+                if ( person.getDeath() == null )
                 {
                     person.setDeath(new Death());
                 }
@@ -321,7 +318,7 @@ public class GedcomImporter extends Importer
 
             Mode mode = getMode(modes, string);
 
-            if (this == MARRIAGE && mode == NONE)
+            if ( this == MARRIAGE && mode == NONE )
             {
                 return MARRIAGE;
             }
@@ -337,15 +334,15 @@ public class GedcomImporter extends Importer
 
             Mode mode = getMode(modes, string);
 
-            if (this == NEW_PERSON && mode == NONE)
+            if ( this == NEW_PERSON && mode == NONE )
             {
                 return PERSON;
             }
-            else if (this == NEW_FAMILY && mode == NONE)
+            else if ( this == NEW_FAMILY && mode == NONE )
             {
                 return FAMILY;
             }
-            else if (mode == NONE)
+            else if ( mode == NONE )
             {
                 return this;
             }
@@ -355,33 +352,13 @@ public class GedcomImporter extends Importer
             }
         }
 
-        private Mode getMode(Mode[] modes, String string)
-        {
-            for (Mode mode : modes)
-            {
-                if (mode.isStartOf(string))
-                {
-                    return mode;
-                }
-            }
-
-            return NONE;
-        }
-
-        private Mode getNotNoneMode(Mode[] modes, String string)
-        {
-            Mode mode = getMode(modes, string);
-
-            return mode != NONE ? mode : this;
-        }
-
         public Mode getPersonInfoType(String string)
         {
             Mode[] modes = {NAME, GENDER, BIRTH, DEATH};
 
-            if (this == BIRTH || this == DEATH)
+            if ( this == BIRTH || this == DEATH )
             {
-                if (string.startsWith("1"))
+                if ( string.startsWith("1") )
                 {
                     return NONE;
                 }
@@ -397,7 +374,7 @@ public class GedcomImporter extends Importer
 
         public String restOf(String string)
         {
-            if (this.string.length() < string.length())
+            if ( this.string.length() < string.length() )
             {
                 return string.substring(this.string.length());
             }
@@ -405,6 +382,26 @@ public class GedcomImporter extends Importer
             {
                 return "";
             }
+        }
+
+        private Mode getMode(Mode[] modes, String string)
+        {
+            for ( Mode mode : modes )
+            {
+                if ( mode.isStartOf(string) )
+                {
+                    return mode;
+                }
+            }
+
+            return NONE;
+        }
+
+        private Mode getNotNoneMode(Mode[] modes, String string)
+        {
+            Mode mode = getMode(modes, string);
+
+            return mode != NONE ? mode : this;
         }
 
         @Override
