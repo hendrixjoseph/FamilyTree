@@ -48,11 +48,17 @@ public class IndividualBean implements Serializable
         person = personQuery.getSingleResult();
     }
 
+    /**
+     * @return
+     */
     public int getPersonId()
     {
         return person.getId();
     }
 
+    /**
+     * @param personId
+     */
     public void setPersonId(int personId)
     {
         person = em.find(Person.class, personId);
@@ -66,11 +72,17 @@ public class IndividualBean implements Serializable
         return person;
     }
 
+    /**
+     * @param person
+     */
     public void setPerson(Person person)
     {
         this.person = person;
     }
 
+    /**
+     * @param person
+     */
     public void insertPerson(Person person)
     {
         em.getTransaction().begin();
@@ -78,6 +90,9 @@ public class IndividualBean implements Serializable
         em.getTransaction().commit();
     }
 
+    /**
+     * 
+     */
     public void updatePerson()
     {
         em.getTransaction().commit();
