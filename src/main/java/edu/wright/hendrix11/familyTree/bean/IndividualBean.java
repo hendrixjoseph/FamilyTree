@@ -39,7 +39,6 @@ public class IndividualBean implements Serializable
     private Person person;
 
     /**
-
      *
      */
     @PostConstruct
