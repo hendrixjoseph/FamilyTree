@@ -22,6 +22,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import java.io.Serializable;
+import java.util.logging.Logger;
 
 /**
  * @author Joe Hendrix
@@ -31,11 +32,14 @@ import java.io.Serializable;
 public class IndividualBean implements Serializable
 {
 
+    private static final Logger LOG = Logger.getLogger(IndividualBean.class.getName());
+
     @PersistenceContext(unitName = "edu.wright.hendrix11.familyTree")
     private EntityManager em;
     private Person person;
 
     /**
+
      *
      */
     @PostConstruct
@@ -43,6 +47,16 @@ public class IndividualBean implements Serializable
     {
         TypedQuery<Person> personQuery = em.createNamedQuery(Person.FIND_FIRST, Person.class);
         person = personQuery.getSingleResult();
+    }
+
+    public int getPersonId()
+    {
+        return person.getId();
+    }
+
+    public void setPersonId(int personId)
+    {
+        person = em.find(Person.class, personId);
     }
 
     /**
@@ -56,14 +70,6 @@ public class IndividualBean implements Serializable
     public void setPerson(Person person)
     {
         this.person = person;
-    }
-
-    /**
-     * @param id
-     */
-    public void setPersonId(int id)
-    {
-        person = em.find(Person.class, id);
     }
 
     public void insertPerson(Person person)
