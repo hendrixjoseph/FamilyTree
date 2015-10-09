@@ -47,11 +47,19 @@ public class MarriagePK
         this.husband = husband;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getWife()
     {
         return wife;
     }
 
+    /**
+     *
+     * @param wife
+     */
     public void setWife(int wife)
     {
         this.wife = wife;

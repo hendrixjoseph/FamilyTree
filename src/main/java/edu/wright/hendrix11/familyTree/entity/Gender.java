@@ -26,6 +26,9 @@ import javax.validation.constraints.NotNull;
 public class Gender
 {
 
+    /**
+     *
+     */
     public static final String FIND_ALL = "Gender.findAll";
 
     @Id
@@ -35,11 +38,18 @@ public class Gender
     @NotNull
     private String fullWord;
 
+    /**
+     *
+     */
     public Gender()
     {
 
     }
 
+    /**
+     *
+     * @param abbr
+     */
     public Gender(char abbr)
     {
         this.abbr = abbr;

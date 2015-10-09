@@ -53,6 +53,11 @@ public class GedcomImporter extends Importer
     private HashMap<String, Person> people = new HashMap<>();
     private Mode personInfo = Mode.NONE;
 
+    /**
+     *
+     * @param fileName
+     * @throws FileNotFoundException
+     */
     public GedcomImporter(String fileName) throws FileNotFoundException
     {
         super(fileName);
@@ -155,6 +160,10 @@ public class GedcomImporter extends Importer
         LOG.log(Level.INFO, "Done! {0} marriages read in!", marriages.size());
     }
 
+    /**
+     *
+     * @param em
+     */
     @Override
     public void processData(EntityManager em)
     {

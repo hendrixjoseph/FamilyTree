@@ -42,6 +42,9 @@ import static javax.persistence.GenerationType.SEQUENCE;
 public class Person
 {
 
+    /**
+     *
+     */
     public static final String FIND_FIRST = "Person.findFirst";
 
     @Id
@@ -242,6 +245,7 @@ public class Person
 
     /**
      * \     * @return
+     * @return 
      */
     public Person getMother()
     {

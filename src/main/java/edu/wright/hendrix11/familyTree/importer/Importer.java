@@ -27,6 +27,10 @@ public abstract class Importer
      *
      */
     protected FileReader file;
+
+    /**
+     *
+     */
     protected EntityManager em;
 
     /**
@@ -39,6 +43,10 @@ public abstract class Importer
         this(new FileReader(fileName));
     }
 
+    /**
+     *
+     * @param file
+     */
     public Importer(FileReader file)
     {
         this.file = file;
@@ -49,5 +57,9 @@ public abstract class Importer
      */
     public abstract void processData();
 
+    /**
+     *
+     * @param em
+     */
     public abstract void processData(EntityManager em);
 }

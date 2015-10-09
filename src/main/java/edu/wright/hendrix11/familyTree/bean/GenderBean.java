@@ -46,11 +46,19 @@ public class GenderBean implements Serializable
         genders = query.getResultList();
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Gender> getGenders()
     {
         return genders;
     }
 
+    /**
+     *
+     * @param genders
+     */
     public void setGenders(List<Gender> genders)
     {
         this.genders = genders;

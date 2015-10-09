@@ -29,6 +29,9 @@ import static javax.persistence.GenerationType.SEQUENCE;
 public class Place
 {
 
+    /**
+     *
+     */
     public static final String FIND_BY_NAME = "Place.findByName";
 
     @Id

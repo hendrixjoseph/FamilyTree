@@ -120,11 +120,19 @@ public class Marriage implements Event
         this.wife = wife;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean hasHusband()
     {
         return hasSpouse(husband);
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean hasWife()
     {
         return hasSpouse(wife);
