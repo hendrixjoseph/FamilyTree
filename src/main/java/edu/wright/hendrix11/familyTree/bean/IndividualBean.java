@@ -22,6 +22,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import java.io.Serializable;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -91,10 +92,10 @@ public class IndividualBean implements Serializable
     }
 
     /**
-     * 
+     *
      */
     public void updatePerson()
     {
-        em.getTransaction().commit();
+        LOG.log(Level.SEVERE, "Trying to update person...");
     }
 }
