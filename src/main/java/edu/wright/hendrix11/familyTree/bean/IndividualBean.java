@@ -15,6 +15,7 @@ package edu.wright.hendrix11.familyTree.bean;
 import edu.wright.hendrix11.familyTree.entity.Person;
 
 import javax.annotation.PostConstruct;
+import javax.faces.event.ActionEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -94,8 +95,10 @@ public class IndividualBean implements Serializable
     /**
      *
      */
-    public void updatePerson()
+    public void updatePerson(ActionEvent actionEvent)
     {
         LOG.log(Level.SEVERE, "Trying to update person...");
+        System.err.println("Can you see me???");
+        int x = 6 / 0;
     }
 }
