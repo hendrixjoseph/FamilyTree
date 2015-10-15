@@ -23,6 +23,9 @@
         </title>
     </h:head>
     <h:body>
+     <f:view>
+      <ui:insert name="metadata"/>
+      
         <p:layout fullPage="true">
             <p:layoutUnit position="north" size="50">
                 <ui:insert name="menu">
@@ -48,5 +51,6 @@
 
         <ui:include src="/aboutDialog.xhtml" />
         <ui:include src="/settingsDialog.xhtml" />
+        </f:view>
     </h:body>
 </html>
