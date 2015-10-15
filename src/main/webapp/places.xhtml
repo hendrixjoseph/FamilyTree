@@ -10,9 +10,10 @@
  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
 
 -->
-<ui:composition template="/WEB-INF/resource/template/dataPage/main.xhtml"
+<ui:composition template="/WEB-INF/resource/template/main.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
+ 
     <ui:define name="title">
         Places
     </ui:define>
@@ -21,6 +22,21 @@
         <ui:include src="/WEB-INF/resource/template/menuTemplate.xhtml">
             <ui:param name="placesView" value="#{true}" />
         </ui:include>
+    </ui:define>
+    
+    <ui:define name="content">
+     <p:layoutUnit position="center">
+      <p:dataTable var="place" value="#{placeBean.places}">
+    
+      <p:column headerText="Id">
+        <h:outputText value="#{place.id}" />
+      </p:column>
+ 
+      <p:column headerText="Name">
+        <h:outputText value="#{place.name}" />
+      </p:column>
+      </p:dataTable>
+     </p:layoutUnit>
     </ui:define>
 
     <ui:define name="dataTable">
@@ -35,18 +51,6 @@
     </ui:define>
 
     <ui:define name="dialogs">
-        <ui:include src="/WEB-INF/resource/template/dataPage/editDialog.xhtml">
-            <ui:param name="header" value="Edit place" />
-            <ui:param name="editDialog" value="editPlaceDialog" />
-            <ui:param name="queryBean" value="#{placeQueryBean}" />
-            <ui:param name="places" value="#{true}" />
-        </ui:include>
 
-        <ui:include src="/WEB-INF/resource/template/dataPage/deleteDialog.xhtml">
-            <ui:param name="header" value="Confirm delete place" />
-            <ui:param name="deleteDialog" value="deletePlaceDialog" />
-            <ui:param name="queryBean" value="#{placeQueryBean}" />
-            <ui:param name="places" value="#{true}" />
-        </ui:include>
     </ui:define>
 </ui:composition>
