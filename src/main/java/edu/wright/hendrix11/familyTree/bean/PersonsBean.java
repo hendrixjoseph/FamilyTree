@@ -7,57 +7,61 @@
  *  Copyright (c) 2015 Joseph Hendrix
  *
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
- *
  */
 
 package edu.wright.hendrix11.familyTree.bean;
 
 import edu.wright.hendrix11.familyTree.entity.Person;
+import edu.wright.hendrix11.util.DataGatherer;
 
 import javax.annotation.PostConstruct;
-import javax.faces.event.ActionEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 
 import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
 
 /**
- * @author Joe Hendrix
+ * @author Joe Hendrix <hendrix.11@wright.edu>
  */
 @Named
 @ViewScoped
-public class InsertUpdatePersonBean implements Serializable
+public class PersonsBean implements Serializable
 {
-
-    private static final Logger LOG = Logger.getLogger(InsertUpdatePersonBean.class.getName());
-    
     @PersistenceContext(unitName = "edu.wright.hendrix11.familyTree")
     private EntityManager em;
-    private Person person;
-    private Date birthDate;
-    private Date deathDate;
-    private String birthPlace;
-    private String deathPlace;
-    
-    @Inject
-    private IndividualBean individualBean;
-    
+    private DataGatherer<Person> dataGatherer;
+    private List<Person> persons;
+
+    /**
+     *
+     */
     @PostConstruct
     public void initialize()
     {
+        dataGatherer = new DataGatherer<>(em, Person.class);
+        persons = dataGatherer.getItems(1);
     }
-    
-    public void insertPerson()
+
+    public int getPage()
     {
+        return dataGatherer.getPage();
     }
-    
-    public void updatePerson()
+
+    public void setPage(int page)
     {
+        persons = dataGatherer.getItems(page);
     }
-    
-  }
+
+    public List<Person> getPersons()
+    {
+        return persons;
+    }
+
+    public void setPersons(List<Person> persons)
+    {
+        this.persons = persons;
+    }
+}

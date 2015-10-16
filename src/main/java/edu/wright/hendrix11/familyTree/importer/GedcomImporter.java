@@ -54,8 +54,8 @@ public class GedcomImporter extends Importer
     private Mode personInfo = Mode.NONE;
 
     /**
-     *
      * @param fileName
+     *
      * @throws FileNotFoundException
      */
     public GedcomImporter(String fileName) throws FileNotFoundException
@@ -161,7 +161,6 @@ public class GedcomImporter extends Importer
     }
 
     /**
-     *
      * @param em
      */
     @Override

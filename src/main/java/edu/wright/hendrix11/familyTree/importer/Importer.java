@@ -44,7 +44,6 @@ public abstract class Importer
     }
 
     /**
-     *
      * @param file
      */
     public Importer(FileReader file)
@@ -58,7 +57,6 @@ public abstract class Importer
     public abstract void processData();
 
     /**
-     *
      * @param em
      */
     public abstract void processData(EntityManager em);

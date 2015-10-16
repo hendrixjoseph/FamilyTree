@@ -11,21 +11,20 @@
 
 -->
 <ui:composition template="/WEB-INF/resource/template/main.xhtml"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
 
     <ui:define name="metadata">
         <f:metadata>
             <f:viewParam name="personId" value="#{individualBean.personId}" />
         </f:metadata>
     </ui:define>
-    
-     <ui:define name="title">
-      #{individualBean.person.name} details
-     </ui:define>
+
+    <ui:define name="title">
+        #{individualBean.person.name} details
+    </ui:define>
 
     <ui:define name="menu">
         <ui:include src="/WEB-INF/resource/template/menuTemplate.xhtml">

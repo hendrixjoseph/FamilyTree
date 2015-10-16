@@ -48,7 +48,6 @@ public class MarriagePK
     }
 
     /**
-     *
      * @return
      */
     public int getWife()
@@ -57,7 +56,6 @@ public class MarriagePK
     }
 
     /**
-     *
      * @param wife
      */
     public void setWife(int wife)

@@ -13,13 +13,13 @@
 package edu.wright.hendrix11.familyTree.bean;
 
 import edu.wright.hendrix11.familyTree.entity.Place;
+import edu.wright.hendrix11.util.DataGatherer;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 
 import java.io.Serializable;
 import java.util.List;
@@ -28,12 +28,12 @@ import java.util.List;
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
 @Named
-@SessionScoped
+@ViewScoped
 public class PlaceBean implements Serializable
 {
-
     @PersistenceContext(unitName = "edu.wright.hendrix11.familyTree")
     private EntityManager em;
+    private DataGatherer<Place> dataGatherer;
     private List<Place> places;
 
     /**
@@ -42,12 +42,21 @@ public class PlaceBean implements Serializable
     @PostConstruct
     public void initialize()
     {
-        TypedQuery<Place> query = em.createNamedQuery(Place.FIND_ALL, Place.class);
-        places = query.getResultList();
+        dataGatherer = new DataGatherer<>(em, Place.class);
+        places = dataGatherer.getItems(1);
+    }
+
+    public int getPage()
+    {
+        return dataGatherer.getPage();
+    }
+
+    public void setPage(int page)
+    {
+        places = dataGatherer.getItems(page);
     }
 
     /**
-     *
      * @return
      */
     public List<Place> getPlaces()
@@ -56,7 +65,6 @@ public class PlaceBean implements Serializable
     }
 
     /**
-     *
      * @param places
      */
     public void setPlaces(List<Place> places)

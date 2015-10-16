@@ -47,7 +47,6 @@ public class GenderBean implements Serializable
     }
 
     /**
-     *
      * @return
      */
     public List<Gender> getGenders()
@@ -56,7 +55,6 @@ public class GenderBean implements Serializable
     }
 
     /**
-     *
      * @param genders
      */
     public void setGenders(List<Gender> genders)

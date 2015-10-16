@@ -15,7 +15,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <title>
@@ -23,34 +23,34 @@
         </title>
     </h:head>
     <h:body>
-     <f:view>
-      <ui:insert name="metadata"/>
-      
-        <p:layout fullPage="true">
-            <p:layoutUnit position="north" size="50">
-                <ui:insert name="menu">
-                    <ui:include src="/menuTemplate.xhtml" />
-                </ui:insert>
-            </p:layoutUnit>
-            
-            <ui:insert name="content">
-                <p:layoutUnit position="center">
-                    Content
+        <f:view>
+            <ui:insert name="metadata" />
+
+            <p:layout fullPage="true">
+                <p:layoutUnit position="north" size="50">
+                    <ui:insert name="menu">
+                        <ui:include src="menuTemplate.xhtml" />
+                    </ui:insert>
                 </p:layoutUnit>
+
+                <ui:insert name="content">
+                    <p:layoutUnit position="center">
+                        Content
+                    </p:layoutUnit>
+                </ui:insert>
+
+                <p:layoutUnit position="south" size="50">
+                    <ui:include src="footerTemplate.xhtml" />
+                </p:layoutUnit>
+
+            </p:layout>
+
+            <ui:insert name="dialogs">
+                Dialogs
             </ui:insert>
 
-            <p:layoutUnit position="south" size="50">
-                <ui:include src="../footerTemplate.xhtml" />
-            </p:layoutUnit>
-
-        </p:layout>
-
-        <ui:insert name="dialogs">
-            Dialogs
-        </ui:insert>
-
-        <ui:include src="/aboutDialog.xhtml" />
-        <ui:include src="/settingsDialog.xhtml" />
+            <ui:include src="aboutDialog.xhtml" />
+            <ui:include src="settingsDialog.xhtml" />
         </f:view>
     </h:body>
 </html>

@@ -15,7 +15,6 @@ package edu.wright.hendrix11.familyTree.bean;
 import edu.wright.hendrix11.familyTree.entity.Person;
 
 import javax.annotation.PostConstruct;
-import javax.faces.event.ActionEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -23,7 +22,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import java.io.Serializable;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -80,25 +78,5 @@ public class IndividualBean implements Serializable
     public void setPerson(Person person)
     {
         this.person = person;
-    }
-
-    /**
-     * @param person
-     */
-    public void insertPerson(Person person)
-    {
-        em.getTransaction().begin();
-        em.persist(person);
-        em.getTransaction().commit();
-    }
-
-    /**
-     *
-     */
-    public void updatePerson(ActionEvent actionEvent)
-    {
-        LOG.log(Level.SEVERE, "Trying to update person...");
-        System.err.println("Can you see me???");
-        int x = 6 / 0;
     }
 }

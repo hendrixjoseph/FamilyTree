@@ -20,6 +20,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -37,7 +38,12 @@ import static javax.persistence.GenerationType.SEQUENCE;
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
 @Entity
-@NamedQuery(name = Person.FIND_FIRST, query = "SELECT p FROM Person p WHERE p.id=(SELECT MIN(p2.id) FROM Person p2)")
+@NamedQueries({
+                      @NamedQuery(name = Person.FIND_FIRST,
+                                  query = "SELECT p FROM Person p WHERE p.id=(SELECT MIN(p2.id) FROM Person p2)"),
+                      @NamedQuery(name = Person.FIND_ALL,
+                                  query = "SELECT p FROM Person p")
+              })
 @Table(name = "PERSON")
 public class Person
 {
@@ -46,6 +52,7 @@ public class Person
      *
      */
     public static final String FIND_FIRST = "Person.findFirst";
+    public static final String FIND_ALL = "Person.findAll";
 
     @Id
     @SequenceGenerator(name = "PERSON_SEQUENCE", sequenceName = "PERSON_SEQUENCE", allocationSize = 1)
@@ -245,7 +252,8 @@ public class Person
 
     /**
      * \     * @return
-     * @return 
+     *
+     * @return
      */
     public Person getMother()
     {

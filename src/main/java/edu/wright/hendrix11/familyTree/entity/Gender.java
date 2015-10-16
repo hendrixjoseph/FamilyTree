@@ -47,7 +47,6 @@ public class Gender
     }
 
     /**
-     *
      * @param abbr
      */
     public Gender(char abbr)

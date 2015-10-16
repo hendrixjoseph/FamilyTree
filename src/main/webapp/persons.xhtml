@@ -10,9 +10,18 @@
  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
 
 -->
-<ui:composition template="/WEB-INF/resource/template/dataPage/main.xhtml"
+<ui:composition template="/WEB-INF/resource/template/main.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://java.sun.com/jsf/facelets">
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="metadata">
+        <f:metadata>
+            <f:viewParam name="page" value="#{personsBean.page}" />
+        </f:metadata>
+    </ui:define>
+
     <ui:define name="title">
         Index of Individuals
     </ui:define>
@@ -23,13 +32,25 @@
         </ui:include>
     </ui:define>
 
-    <ui:define name="dataTable">
-        <ui:include src="/WEB-INF/resource/template/dataPage/dataTable.xhtml">
-            <ui:param name="dataBean" value="#{personsBean}" />
-        </ui:include>
+    <ui:define name="content">
+        <p:layoutUnit position="center">
+            <p:dataTable var="person" value="#{personsBean.persons}">
+                <p:column headerText="Id">
+                    <p:outputLabel value="#{person.id}" />
+                </p:column>
+
+                <p:column headerText="Name">
+                    <p:outputLabel value="#{person.name}" />
+                </p:column>
+
+                <p:column headerText="Gender">
+                    <p:outputLabel value="#{person.gender}" />
+                </p:column>
+            </p:dataTable>
+        </p:layoutUnit>
     </ui:define>
 
     <ui:define name="dialogs">
-        <!-- no dialogs -->
+
     </ui:define>
 </ui:composition>

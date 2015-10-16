@@ -121,7 +121,6 @@ public class Marriage implements Event
     }
 
     /**
-     *
      * @return
      */
     public boolean hasHusband()
@@ -130,7 +129,6 @@ public class Marriage implements Event
     }
 
     /**
-     *
      * @return
      */
     public boolean hasWife()

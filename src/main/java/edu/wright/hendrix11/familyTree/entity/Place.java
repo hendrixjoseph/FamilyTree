@@ -16,6 +16,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
@@ -26,18 +27,17 @@ import static javax.persistence.GenerationType.SEQUENCE;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = Place.FIND_BY_NAME, query = "SELECT p FROM Place p WHERE p.name = :name"),
-    @NamedQuery(name = Place.FIND_ALL, query = "SELECT p FROM Place p")
-})
+                      @NamedQuery(name = Place.FIND_BY_NAME, query = "SELECT p FROM Place p WHERE p.name = :name"),
+                      @NamedQuery(name = Place.FIND_ALL, query = "SELECT p FROM Place p")
+              })
 public class Place
 {
 
+    public static final String FIND_ALL = "Place.findAll";
     /**
      *
      */
     public static final String FIND_BY_NAME = "Place.findByName";
-    public static final String FIND_ALL = "Place.findAll";
-
     @Id
     @SequenceGenerator(name = "PLACE_SEQUENCE", sequenceName = "PLACE_SEQUENCE", allocationSize = 1)
     @GeneratedValue(strategy = SEQUENCE, generator = "PLACE_SEQUENCE")

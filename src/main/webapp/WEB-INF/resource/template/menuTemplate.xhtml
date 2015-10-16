@@ -44,7 +44,8 @@
                 <p:menuitem value="Settings" url="#" />
             </p:submenu>
             <p:submenu label="Edit">
-                <p:menuitem value="Edit individual" oncomplete="PF('editDialog').show()" rendered="#{individualView}" />
+                <p:menuitem value="Edit individual" update="@(#editDialog_form)" oncomplete="PF('editDialog').show()"
+                            rendered="#{individualView}" />
                 <p:submenu label="Detach..." rendered="#{individualView}">
                     <p:menuitem value="Father" />
                     <p:menuitem value="Mother" />
