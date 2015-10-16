@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="My Scope" pattern="(file:*pom||file:*java||file:*ml)&amp;&amp;!*.iml&amp;&amp;!file:target//*&amp;&amp;!file:.idea//*" />
+</component>
