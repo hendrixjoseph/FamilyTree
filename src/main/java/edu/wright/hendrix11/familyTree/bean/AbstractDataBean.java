@@ -14,8 +14,6 @@ package edu.wright.hendrix11.familyTree.bean;
 
 import edu.wright.hendrix11.util.DataGatherer;
 
-import javax.persistence.EntityManager;
-
 import java.util.List;
 
 /**
@@ -23,6 +21,7 @@ import java.util.List;
  */
 public abstract class AbstractDataBean<E>
 {
+
     protected DataGatherer<E> dataGatherer;
     private List<E> entities;
 

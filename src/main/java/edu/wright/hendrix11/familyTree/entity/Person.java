@@ -48,12 +48,11 @@ import static javax.persistence.GenerationType.SEQUENCE;
 public class Person
 {
 
+    public static final String FIND_ALL = "Person.findAll";
     /**
      *
      */
     public static final String FIND_FIRST = "Person.findFirst";
-    public static final String FIND_ALL = "Person.findAll";
-
     @Id
     @SequenceGenerator(name = "PERSON_SEQUENCE", sequenceName = "PERSON_SEQUENCE", allocationSize = 1)
     @GeneratedValue(strategy = SEQUENCE, generator = "PERSON_SEQUENCE")

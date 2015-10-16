@@ -22,53 +22,26 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
 @Named
 @ViewScoped
-public class PlaceBean implements Serializable
+public class PlaceBean extends AbstractDataBean<Place> implements Serializable
 {
+
     @PersistenceContext(unitName = "edu.wright.hendrix11.familyTree")
     private EntityManager em;
-    private DataGatherer<Place> dataGatherer;
-    private List<Place> places;
 
     /**
      *
      */
+    @Override
     @PostConstruct
     public void initialize()
     {
         dataGatherer = new DataGatherer<>(em, Place.class);
-        places = dataGatherer.getItems(1);
-    }
-
-    public int getPage()
-    {
-        return dataGatherer.getPage();
-    }
-
-    public void setPage(int page)
-    {
-        places = dataGatherer.getItems(page);
-    }
-
-    /**
-     * @return
-     */
-    public List<Place> getPlaces()
-    {
-        return places;
-    }
-
-    /**
-     * @param places
-     */
-    public void setPlaces(List<Place> places)
-    {
-        this.places = places;
+        setPage(1);
     }
 }
