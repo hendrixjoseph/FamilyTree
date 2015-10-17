@@ -34,6 +34,7 @@ import static javax.persistence.CascadeType.ALL;
 public class Death implements Event
 {
 
+
     @Temporal(TemporalType.DATE)
     @Column(name = "ANNIVERSARY")
     private Date date;

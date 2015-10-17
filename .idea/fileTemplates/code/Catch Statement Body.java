@@ -1,0 +1,1 @@
+LOG.log(Level.SEVERE, ${EXCEPTION}.getClass().getName(), ${EXCEPTION});

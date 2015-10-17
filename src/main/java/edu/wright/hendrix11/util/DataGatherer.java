@@ -7,6 +7,7 @@
  *  Copyright (c) 2015 Joseph Hendrix
  *
  *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
+ *
  */
 
 package edu.wright.hendrix11.util;

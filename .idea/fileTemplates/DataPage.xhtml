@@ -1,15 +1,4 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!--
-  ~  The MIT License (MIT)
-  ~
-  ~  View the full license at:
-  ~  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
-  ~
-  ~  Copyright (c) 2015 Joseph Hendrix
-  ~
-  ~  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
-  ~
-  -->
 <ui:composition template="/WEB-INF/resource/template/main.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -18,33 +7,25 @@
 
     <ui:define name="metadata">
         <f:metadata>
-            <f:viewParam name="page" value="#{personsBean.page}" />
+            <f:viewParam name="page" value="#{${BEAN_NAME}.page}" />
         </f:metadata>
     </ui:define>
 
     <ui:define name="title">
-        Index of Individuals
+        Places
     </ui:define>
 
     <ui:define name="menu">
         <ui:include src="/WEB-INF/resource/template/menuTemplate.xhtml">
-            <ui:param name="personsView" value="#{true}" />
+            <ui:param name="placesView" value="#{true}" />
         </ui:include>
     </ui:define>
 
     <ui:define name="content">
         <p:layoutUnit position="center">
-            <p:dataTable var="person" value="#{personsBean.entities}">
+            <p:dataTable var="${VAR_NAME}" value="#{${BEAN_NAME}.entities}">
                 <p:column headerText="Id">
-                    <p:outputLabel value="#{person.id}" />
-                </p:column>
-
-                <p:column headerText="Name">
-                    <p:outputLabel value="#{person.name}" />
-                </p:column>
-
-                <p:column headerText="Gender">
-                    <p:outputLabel value="#{person.gender}" />
+                    <p:outputLabel value="#{${VAR_NAME}.id}" />
                 </p:column>
             </p:dataTable>
         </p:layoutUnit>

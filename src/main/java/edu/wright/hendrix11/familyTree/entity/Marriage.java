@@ -22,6 +22,7 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -34,8 +35,10 @@ import static javax.persistence.CascadeType.ALL;
  */
 @Entity
 @IdClass(MarriagePK.class)
+@NamedQuery(name = Marriage.FIND_ALL, query = "SELECT m FROM Marriage m")
 public class Marriage implements Event
 {
+    public static final String FIND_ALL = "Marriage.findAll";
 
     @Temporal(TemporalType.DATE)
     @Column(name = "ANNIVERSARY")

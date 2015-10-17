@@ -12,10 +12,12 @@
 
 package edu.wright.hendrix11.familyTree.entity.compositeKey;
 
+import java.io.Serializable;
+
 /**
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
-public class MarriagePK
+public class MarriagePK implements Serializable
 {
 
     private int husband;

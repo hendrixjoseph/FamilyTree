@@ -12,7 +12,7 @@
 
 package edu.wright.hendrix11.familyTree.bean;
 
-import edu.wright.hendrix11.familyTree.entity.Person;
+import edu.wright.hendrix11.familyTree.entity.Marriage;
 import edu.wright.hendrix11.util.DataGatherer;
 
 import javax.annotation.PostConstruct;
@@ -24,24 +24,20 @@ import javax.persistence.PersistenceContext;
 import java.io.Serializable;
 
 /**
- * @author Joe Hendrix <hendrix.11@wright.edu>
+ * @author Joe Hendrix
  */
 @Named
 @ViewScoped
-public class PersonsBean extends AbstractDataBean<Person> implements Serializable
+public class MarriageBean extends AbstractDataBean<Marriage> implements Serializable
 {
-
     @PersistenceContext(unitName = "edu.wright.hendrix11.familyTree")
     private EntityManager em;
 
-    /**
-     *
-     */
     @Override
     @PostConstruct
     public void initialize()
     {
-        dataGatherer = new DataGatherer<>(em, Person.class);
+        dataGatherer = new DataGatherer<>(em, Marriage.class);
         setPage(1);
     }
 }
