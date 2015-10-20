@@ -1,7 +1,6 @@
 #if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
 
 import edu.wright.hendrix11.familyTree.entity.${ENTITY_CLASS};
-import edu.wright.hendrix11.util.DataGatherer;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -23,7 +22,7 @@ public class ${NAME} extends AbstractDataBean<${ENTITY_CLASS}> implements Serial
     @PostConstruct
     public void initialize()
     {
-        dataGatherer = new DataGatherer<>(em, ${ENTITY_CLASS}.class);
+        initialize(em, ${ENTITY_CLASS}.class);
         setPage(1);
     }
 }
