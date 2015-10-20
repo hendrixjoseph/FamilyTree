@@ -1,5 +1,5 @@
 --------------------------------------------------------
---  File created - Tuesday-October-06-2015   
+--  File created - Monday-October-19-2015   
 --------------------------------------------------------
 DROP TABLE "BOOLEAN" cascade constraints;
 DROP TABLE "DEFAULT_PERSON_TYPE" cascade constraints;
@@ -20,7 +20,6 @@ DROP SEQUENCE "PERSON_SEQUENCE";
 DROP SEQUENCE "PLACE_SEQUENCE";
 DROP VIEW "SPOUSE_VIEW";
 DROP VIEW "CHILDREN_VIEW";
-DROP VIEW "PERSON_VIEW";
 DROP TYPE "CUSTOM_DATE";
 --------------------------------------------------------
 --  DDL for Type CUSTOM_DATE
@@ -71,7 +70,7 @@ END;
 --  DDL for Sequence PLACE_SEQUENCE
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "PLACE_SEQUENCE"  MINVALUE 1 MAXVALUE 99999999999 INCREMENT BY 1 START WITH 121 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "PLACE_SEQUENCE"  MINVALUE 1 MAXVALUE 99999999999 INCREMENT BY 1 START WITH 101 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Table BOOLEAN
 --------------------------------------------------------
@@ -250,43 +249,6 @@ FROM
 WHERE
     (P.ID = FATHER_OF.FATHER_ID AND CHILD.ID = FATHER_OF.CHILD_ID) OR
     (P.ID = MOTHER_OF.MOTHER_ID AND CHILD.ID = MOTHER_OF.CHILD_ID);
---------------------------------------------------------
---  DDL for View PERSON_VIEW
---------------------------------------------------------
-
-  CREATE OR REPLACE VIEW "PERSON_VIEW" ("ID", "FATHER_ID", "FATHER_NAME", "MOTHER_ID", "MOTHER_NAME", "NAME", "GENDER", "PLACE_OF_BIRTH", "DATE_OF_BIRTH", "PLACE_OF_DEATH", "DATE_OF_DEATH") AS 
-  SELECT
-    P.ID,
-    DAD.ID AS FATHER_ID,
-    DAD.NAME AS FATHER_NAME,
-    MOM.ID AS MOTHER_ID,
-    MOM.NAME AS MOTHER_NAME,
-    P.NAME,
-    GENDER.FULL_WORD AS GENDER,
-    B_PLACE.NAME AS PLACE_OF_BIRTH,
-    BIRTH.anniversary AS DATE_OF_BIRTH,
-    D_PLACE.NAME AS PLACE_OF_DEATH,
-    DEATH.anniversary AS DATE_OF_DEATH
-FROM
-    PERSON P,
-    PERSON DAD,
-    PERSON MOM,
-    MOTHER_OF,
-    FATHER_OF,
-    BIRTH,
-    DEATH,
-    PLACE B_PLACE,
-    PLACE D_PLACE,
-    GENDER
-WHERE   P.GENDER = GENDER.ABBR
-AND     FATHER_OF.FATHER_ID = DAD.ID (+)
-AND     MOTHER_OF.MOTHER_ID = MOM.ID (+)
-AND     P.ID = FATHER_OF.CHILD_ID (+)
-AND     P.ID = MOTHER_OF.CHILD_ID (+)
-AND     P.ID = BIRTH.PERSON_ID (+)
-AND     P.ID = DEATH.PERSON_ID (+)
-AND     BIRTH.PLACE_ID = B_PLACE.ID (+)
-AND     DEATH.PLACE_ID = D_PLACE.ID (+);
 REM INSERTING into BOOLEAN
 SET DEFINE OFF;
 Insert into BOOLEAN (ID,VALUE) values (0,'false');
@@ -391,19 +353,11 @@ SET DEFINE OFF;
   CREATE UNIQUE INDEX "PERSON_PK" ON "PERSON" ("ID") 
   ;
 --------------------------------------------------------
---  Constraints for Table PERSON_INFO
+--  Constraints for Table BURIAL
 --------------------------------------------------------
 
-  ALTER TABLE "PERSON_INFO" MODIFY ("DESCRIPTION" NOT NULL ENABLE);
-  ALTER TABLE "PERSON_INFO" MODIFY ("TYPE" NOT NULL ENABLE);
-  ALTER TABLE "PERSON_INFO" MODIFY ("PERSON_ID" NOT NULL ENABLE);
---------------------------------------------------------
---  Constraints for Table PERSON_INFO_TYPE
---------------------------------------------------------
-
-  ALTER TABLE "PERSON_INFO_TYPE" ADD CONSTRAINT "PERSON_INFO_TYPE_PK" PRIMARY KEY ("ID") ENABLE;
-  ALTER TABLE "PERSON_INFO_TYPE" MODIFY ("TYPE" NOT NULL ENABLE);
-  ALTER TABLE "PERSON_INFO_TYPE" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "BURIAL" ADD CONSTRAINT "BURIAL_PK" PRIMARY KEY ("PERSON_ID") ENABLE;
+  ALTER TABLE "BURIAL" MODIFY ("PERSON_ID" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table BOOLEAN
 --------------------------------------------------------
@@ -413,37 +367,30 @@ SET DEFINE OFF;
   ALTER TABLE "BOOLEAN" ADD CONSTRAINT "BOOLEAN_CHK1" CHECK ("ID"=0 OR "ID"=1) ENABLE;
   ALTER TABLE "BOOLEAN" MODIFY ("ID" NOT NULL ENABLE);
 --------------------------------------------------------
---  Constraints for Table FATHER_OF
+--  Constraints for Table PERSON_INFO_TYPE
 --------------------------------------------------------
 
-  ALTER TABLE "FATHER_OF" MODIFY ("FATHER_ID" NOT NULL ENABLE);
-  ALTER TABLE "FATHER_OF" ADD CONSTRAINT "FATHER_OF_PK" PRIMARY KEY ("CHILD_ID") ENABLE;
-  ALTER TABLE "FATHER_OF" MODIFY ("CHILD_ID" NOT NULL ENABLE);
---------------------------------------------------------
---  Constraints for Table MARRIAGE
---------------------------------------------------------
-
-  ALTER TABLE "MARRIAGE" ADD CONSTRAINT "MARRIAGE_PK" PRIMARY KEY ("HUSBAND", "WIFE") ENABLE;
-  ALTER TABLE "MARRIAGE" MODIFY ("WIFE" NOT NULL ENABLE);
-  ALTER TABLE "MARRIAGE" MODIFY ("HUSBAND" NOT NULL ENABLE);
---------------------------------------------------------
---  Constraints for Table SETTINGS
---------------------------------------------------------
-
-  ALTER TABLE "SETTINGS" MODIFY ("DEFAULT_PERSON_TYPE" NOT NULL ENABLE);
---------------------------------------------------------
---  Constraints for Table DEFAULT_PERSON_TYPE
---------------------------------------------------------
-
-  ALTER TABLE "DEFAULT_PERSON_TYPE" ADD CONSTRAINT "DEFAULT_PERSON_TYPE_PK" PRIMARY KEY ("ID") ENABLE;
-  ALTER TABLE "DEFAULT_PERSON_TYPE" MODIFY ("DEFAULT_PERSON_TYPE" NOT NULL ENABLE);
-  ALTER TABLE "DEFAULT_PERSON_TYPE" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "PERSON_INFO_TYPE" ADD CONSTRAINT "PERSON_INFO_TYPE_PK" PRIMARY KEY ("ID") ENABLE;
+  ALTER TABLE "PERSON_INFO_TYPE" MODIFY ("TYPE" NOT NULL ENABLE);
+  ALTER TABLE "PERSON_INFO_TYPE" MODIFY ("ID" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table BIRTH
 --------------------------------------------------------
 
   ALTER TABLE "BIRTH" ADD CONSTRAINT "BIRTH_PK" PRIMARY KEY ("PERSON_ID") ENABLE;
   ALTER TABLE "BIRTH" MODIFY ("PERSON_ID" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table PERSON_INFO
+--------------------------------------------------------
+
+  ALTER TABLE "PERSON_INFO" MODIFY ("DESCRIPTION" NOT NULL ENABLE);
+  ALTER TABLE "PERSON_INFO" MODIFY ("TYPE" NOT NULL ENABLE);
+  ALTER TABLE "PERSON_INFO" MODIFY ("PERSON_ID" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table SETTINGS
+--------------------------------------------------------
+
+  ALTER TABLE "SETTINGS" MODIFY ("DEFAULT_PERSON_TYPE" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table PLACE
 --------------------------------------------------------
@@ -453,37 +400,12 @@ SET DEFINE OFF;
   ALTER TABLE "PLACE" MODIFY ("NAME" NOT NULL ENABLE);
   ALTER TABLE "PLACE" MODIFY ("ID" NOT NULL ENABLE);
 --------------------------------------------------------
---  Constraints for Table MOTHER_OF
---------------------------------------------------------
-
-  ALTER TABLE "MOTHER_OF" ADD CONSTRAINT "MOTHER_OF_PK" PRIMARY KEY ("CHILD_ID") ENABLE;
-  ALTER TABLE "MOTHER_OF" MODIFY ("CHILD_ID" NOT NULL ENABLE);
-  ALTER TABLE "MOTHER_OF" MODIFY ("MOTHER_ID" NOT NULL ENABLE);
---------------------------------------------------------
 --  Constraints for Table GENDER
 --------------------------------------------------------
 
   ALTER TABLE "GENDER" ADD CONSTRAINT "GENDERS_PK" PRIMARY KEY ("ABBR") ENABLE;
   ALTER TABLE "GENDER" MODIFY ("FULL_WORD" NOT NULL ENABLE);
   ALTER TABLE "GENDER" MODIFY ("ABBR" NOT NULL ENABLE);
---------------------------------------------------------
---  Constraints for Table BURIAL
---------------------------------------------------------
-
-  ALTER TABLE "BURIAL" ADD CONSTRAINT "BURIAL_PK" PRIMARY KEY ("PERSON_ID") ENABLE;
-  ALTER TABLE "BURIAL" MODIFY ("PERSON_ID" NOT NULL ENABLE);
---------------------------------------------------------
---  Constraints for Table DEATH
---------------------------------------------------------
-
-  ALTER TABLE "DEATH" ADD CONSTRAINT "DEATH_PK" PRIMARY KEY ("PERSON_ID") ENABLE;
-  ALTER TABLE "DEATH" MODIFY ("PERSON_ID" NOT NULL ENABLE);
---------------------------------------------------------
---  Constraints for Table SOURCE
---------------------------------------------------------
-
-  ALTER TABLE "SOURCE" ADD CONSTRAINT "SOURCE_PK" PRIMARY KEY ("ID") ENABLE;
-  ALTER TABLE "SOURCE" MODIFY ("ID" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table PERSON
 --------------------------------------------------------
@@ -492,6 +414,46 @@ SET DEFINE OFF;
   ALTER TABLE "PERSON" ADD CONSTRAINT "PERSON_PK" PRIMARY KEY ("ID") ENABLE;
   ALTER TABLE "PERSON" MODIFY ("NAME" NOT NULL ENABLE);
   ALTER TABLE "PERSON" MODIFY ("ID" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table SOURCE
+--------------------------------------------------------
+
+  ALTER TABLE "SOURCE" ADD CONSTRAINT "SOURCE_PK" PRIMARY KEY ("ID") ENABLE;
+  ALTER TABLE "SOURCE" MODIFY ("ID" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table FATHER_OF
+--------------------------------------------------------
+
+  ALTER TABLE "FATHER_OF" MODIFY ("FATHER_ID" NOT NULL ENABLE);
+  ALTER TABLE "FATHER_OF" ADD CONSTRAINT "FATHER_OF_PK" PRIMARY KEY ("CHILD_ID") ENABLE;
+  ALTER TABLE "FATHER_OF" MODIFY ("CHILD_ID" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table DEATH
+--------------------------------------------------------
+
+  ALTER TABLE "DEATH" ADD CONSTRAINT "DEATH_PK" PRIMARY KEY ("PERSON_ID") ENABLE;
+  ALTER TABLE "DEATH" MODIFY ("PERSON_ID" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table DEFAULT_PERSON_TYPE
+--------------------------------------------------------
+
+  ALTER TABLE "DEFAULT_PERSON_TYPE" ADD CONSTRAINT "DEFAULT_PERSON_TYPE_PK" PRIMARY KEY ("ID") ENABLE;
+  ALTER TABLE "DEFAULT_PERSON_TYPE" MODIFY ("DEFAULT_PERSON_TYPE" NOT NULL ENABLE);
+  ALTER TABLE "DEFAULT_PERSON_TYPE" MODIFY ("ID" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table MARRIAGE
+--------------------------------------------------------
+
+  ALTER TABLE "MARRIAGE" ADD CONSTRAINT "MARRIAGE_PK" PRIMARY KEY ("HUSBAND", "WIFE") ENABLE;
+  ALTER TABLE "MARRIAGE" MODIFY ("WIFE" NOT NULL ENABLE);
+  ALTER TABLE "MARRIAGE" MODIFY ("HUSBAND" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table MOTHER_OF
+--------------------------------------------------------
+
+  ALTER TABLE "MOTHER_OF" ADD CONSTRAINT "MOTHER_OF_PK" PRIMARY KEY ("CHILD_ID") ENABLE;
+  ALTER TABLE "MOTHER_OF" MODIFY ("CHILD_ID" NOT NULL ENABLE);
+  ALTER TABLE "MOTHER_OF" MODIFY ("MOTHER_ID" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Ref Constraints for Table BIRTH
 --------------------------------------------------------
