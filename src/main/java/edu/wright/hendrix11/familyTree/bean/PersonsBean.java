@@ -13,7 +13,6 @@
 package edu.wright.hendrix11.familyTree.bean;
 
 import edu.wright.hendrix11.familyTree.entity.Person;
-import edu.wright.hendrix11.util.DataGatherer;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -24,7 +23,7 @@ import javax.persistence.PersistenceContext;
 import java.io.Serializable;
 
 /**
- * @author Joe Hendrix <hendrix.11@wright.edu>
+ * @author Joe Hendrix
  */
 @Named
 @ViewScoped
@@ -34,14 +33,11 @@ public class PersonsBean extends AbstractDataBean<Person> implements Serializabl
     @PersistenceContext(unitName = "edu.wright.hendrix11.familyTree")
     private EntityManager em;
 
-    /**
-     *
-     */
     @Override
     @PostConstruct
     public void initialize()
     {
-        dataGatherer = new DataGatherer<>(em, Person.class);
+        initialize(em, Person.class);
         setPage(1);
     }
 }

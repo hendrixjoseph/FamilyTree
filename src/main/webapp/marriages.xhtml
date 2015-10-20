@@ -10,6 +10,7 @@
   ~  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
   ~
   -->
+
 <ui:composition template="/WEB-INF/resource/template/main.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -18,7 +19,7 @@
 
     <ui:define name="metadata">
         <f:metadata>
-            <f:viewParam name="page" value="#{placeBean.page}" />
+            <f:viewParam name="page" value="#{marriageBean.page}" />
         </f:metadata>
     </ui:define>
 
@@ -28,19 +29,21 @@
 
     <ui:define name="menu">
         <ui:include src="/WEB-INF/resource/template/menuTemplate.xhtml">
-            <ui:param name="placesView" value="#{true}" />
+            <ui:param name="marriageViewView" value="#{true}" />
         </ui:include>
     </ui:define>
 
     <ui:define name="content">
         <p:layoutUnit position="center">
-            <p:dataTable var="place" value="#{placeBean.entities}">
-                <p:column headerText="Id">
-                    <p:outputLabel value="#{place.id}" />
+            <p:dataTable var="marriage" value="#{marriageBean.entities}">
+                <p:column headerText="Husband">
+                    <p:outputLabel value="#{marriage.husband}" />
                 </p:column>
-
-                <p:column headerText="Name">
-                    <p:link href="https://www.google.com/maps/place/#{place.name}" value="#{place.name}" />
+                <p:column headerText="Wife">
+                    <p:outputLabel value="#{marriage.wife}" />
+                </p:column>
+                <p:column headerText="Place">
+                    <p:outputLabel value="#{marriage.place}" />
                 </p:column>
             </p:dataTable>
         </p:layoutUnit>

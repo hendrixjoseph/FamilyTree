@@ -38,6 +38,7 @@ import static javax.persistence.CascadeType.ALL;
 @NamedQuery(name = Marriage.FIND_ALL, query = "SELECT m FROM Marriage m")
 public class Marriage implements Event
 {
+
     public static final String FIND_ALL = "Marriage.findAll";
 
     @Temporal(TemporalType.DATE)

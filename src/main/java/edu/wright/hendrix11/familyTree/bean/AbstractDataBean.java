@@ -12,7 +12,9 @@
 
 package edu.wright.hendrix11.familyTree.bean;
 
-import edu.wright.hendrix11.util.DataGatherer;
+import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import java.util.List;
 
@@ -22,22 +24,47 @@ import java.util.List;
 public abstract class AbstractDataBean<E>
 {
 
-    protected DataGatherer<E> dataGatherer;
-    private List<E> entities;
+    private static final int RECORDS_PER_PAGE = 50;
+
+    private EntityManager em;
+    private Class<E> clazz;
+    private String findAllQuery;
+    private int page;
+    //    private List<E> entities;
 
     /**
      *
      */
     public abstract void initialize();
 
+    public void initialize(EntityManager em, Class<E> clazz)
+    {
+        if ( !clazz.isAnnotationPresent(Entity.class) )
+        {
+            throw new IllegalArgumentException(clazz.getName() + " does not have an @Entity annotation!");
+        }
+
+        try
+        {
+            findAllQuery = clazz.getField("FIND_ALL").get(null).toString();
+
+            this.em = em;
+            this.clazz = clazz;
+        }
+        catch ( IllegalAccessException | NoSuchFieldException e )
+        {
+            throw new IllegalArgumentException(clazz.getName() + " does not have field \"public static final String FIND_ALL\"!");
+        }
+    }
+
     public int getPage()
     {
-        return dataGatherer.getPage();
+        return page;
     }
 
     public void setPage(int page)
     {
-        entities = dataGatherer.getItems(page);
+        this.page = page;
     }
 
     /**
@@ -45,14 +72,15 @@ public abstract class AbstractDataBean<E>
      */
     public List<E> getEntities()
     {
-        return entities;
+        TypedQuery<E> query = em.createNamedQuery(findAllQuery, clazz);
+        return query.setFirstResult(( page - 1 ) * RECORDS_PER_PAGE).setMaxResults(RECORDS_PER_PAGE).getResultList();
     }
 
     /**
      * @param entities
      */
-    public void setEntities(List<E> entities)
-    {
-        this.entities = entities;
-    }
+    //    public void setEntities(List<E> entities)
+    //    {
+    //        this.entities = entities;
+    //    }
 }

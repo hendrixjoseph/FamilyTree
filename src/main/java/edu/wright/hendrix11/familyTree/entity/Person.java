@@ -335,4 +335,10 @@ public class Person
     {
         return !( parent == null );
     }
+
+    @Override
+    public String toString()
+    {
+        return name;
+    }
 }

@@ -13,7 +13,6 @@
 package edu.wright.hendrix11.familyTree.bean;
 
 import edu.wright.hendrix11.familyTree.entity.Marriage;
-import edu.wright.hendrix11.util.DataGatherer;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -30,6 +29,7 @@ import java.io.Serializable;
 @ViewScoped
 public class MarriageBean extends AbstractDataBean<Marriage> implements Serializable
 {
+
     @PersistenceContext(unitName = "edu.wright.hendrix11.familyTree")
     private EntityManager em;
 
@@ -37,7 +37,7 @@ public class MarriageBean extends AbstractDataBean<Marriage> implements Serializ
     @PostConstruct
     public void initialize()
     {
-        dataGatherer = new DataGatherer<>(em, Marriage.class);
+        initialize(em, Marriage.class);
         setPage(1);
     }
 }
