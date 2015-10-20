@@ -37,7 +37,7 @@ public abstract class AbstractDataBean<E>
      */
     public abstract void initialize();
 
-    public void initialize(EntityManager em, Class<E> clazz)
+    protected void initialize(EntityManager em, Class<E> clazz)
     {
         if ( !clazz.isAnnotationPresent(Entity.class) )
         {
@@ -75,12 +75,4 @@ public abstract class AbstractDataBean<E>
         TypedQuery<E> query = em.createNamedQuery(findAllQuery, clazz);
         return query.setFirstResult(( page - 1 ) * RECORDS_PER_PAGE).setMaxResults(RECORDS_PER_PAGE).getResultList();
     }
-
-    /**
-     * @param entities
-     */
-    //    public void setEntities(List<E> entities)
-    //    {
-    //        this.entities = entities;
-    //    }
 }

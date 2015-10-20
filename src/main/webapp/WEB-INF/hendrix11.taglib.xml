@@ -39,4 +39,45 @@
             <type>java.lang.Boolean</type>
         </attribute>
     </tag>
+    <tag>
+        <tag-name>googleMapLink</tag-name>
+        <source>resource/tag/googleMapLink.xhtml</source>
+        <attribute>
+            <name>placeName</name>
+            <required>true</required>
+            <type>java.lang.String</type>
+        </attribute>
+    </tag>
+    <tag>
+        <tag-name>dateLabel</tag-name>
+        <source>resource/tag/dateLabel.xhtml</source>
+        <attribute>
+            <name>date</name>
+            <required>true</required>
+            <type>java.util.Date</type>
+        </attribute>
+    </tag>
+    <tag>
+        <tag-name>personLink</tag-name>
+        <source>resource/tag/personLink.xhtml</source>
+        <attribute>
+            <name>person</name>
+            <required>true</required>
+            <type>edu.wright.hendrix11.familyTree.entity.Person</type>
+        </attribute>
+        <attribute>
+            <name>rendered</name>
+            <required>false</required>
+            <type>java.lang.Boolean</type>
+        </attribute>
+    </tag>
+    <tag>
+        <tag-name>childTable</tag-name>
+        <source>resource/tag/childTable.xhtml</source>
+        <attribute>
+            <name>children</name>
+            <required>true</required>
+            <type>java.util.List</type>
+        </attribute>
+    </tag>
 </facelet-taglib>

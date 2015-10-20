@@ -14,7 +14,8 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:hendrix11="http://hendrix11.wright.edu/facelets">
 
     <ui:define name="metadata">
         <f:metadata>
@@ -40,21 +41,15 @@
                 </p:column>
 
                 <p:column headerText="Father">
-                    <p:link outcome="index" value="#{person.father}">
-                        <f:param name="personId" value="#{person.father.id}" />
-                    </p:link>
+                    <hendrix11:personLink person="#{person.father}" />
                 </p:column>
 
                 <p:column headerText="Mother">
-                    <p:link outcome="index" value="#{person.mother}">
-                        <f:param name="personId" value="#{person.mother.id}" />
-                    </p:link>
+                    <hendrix11:personLink person="#{person.mother}" />
                 </p:column>
 
                 <p:column headerText="Name">
-                    <p:link outcome="index" value="#{person.name}">
-                        <f:param name="personId" value="#{person.id}" />
-                    </p:link>
+                    <hendrix11:personLink person="#{person}" />
                 </p:column>
 
                 <p:column headerText="Gender">
@@ -66,23 +61,19 @@
                 </p:column>
 
                 <p:column headerText="Birth Place">
-                    <p:outputLabel value="#{person.birth.place}" />
+                    <hendrix11:googleMapLink placeName="#{person.birth.place}" />
                 </p:column>
 
                 <p:column headerText="Birthdate">
-                    <p:outputLabel value="#{person.birth.date}">
-                        <f:convertDateTime pattern="MMM dd yyyy" />
-                    </p:outputLabel>
+                    <hendrix11:dateLabel date="#{person.birth.date}" />
                 </p:column>
 
                 <p:column headerText="Death Place">
-                    <p:outputLabel value="#{person.death.place}" />
+                    <hendrix11:googleMapLink placeName="#{person.death.place}" />
                 </p:column>
 
                 <p:column headerText="Death Date">
-                    <p:outputLabel value="#{person.death.date}">
-                        <f:convertDateTime pattern="MMM dd yyyy" />
-                    </p:outputLabel>
+                    <hendrix11:dateLabel date="#{person.death.date}" />
                 </p:column>
             </p:dataTable>
         </p:layoutUnit>

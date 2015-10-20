@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~  The MIT License (MIT)
+  ~
+  ~  View the full license at:
+  ~  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
+  ~
+  ~  Copyright (c) 2015 Joseph Hendrix
+  ~
+  ~  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
+  ~
+  -->
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:hendrix11="http://hendrix11.wright.edu/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    <p:dataTable var="child" value="#{children}">
+        <p:column headerText="Name">
+            <hendrix11:personLink person="#{child}" />
+        </p:column>
+
+        <p:column headerText="Gender">
+            <p:outputLabel value="#{child.gender}" />
+        </p:column>
+
+        <p:column headerText="Place of Birth">
+            <hendrix11:googleMapLink placeName="#{child.birth.place}" />
+        </p:column>
+
+        <p:column headerText="Date of Birth">
+            <hendrix11:dateLabel date="#{child.birth.date}" />
+        </p:column>
+
+        <p:column headerText="Place of Death">
+            <hendrix11:googleMapLink placeName="#{child.death.place}" />
+        </p:column>
+
+        <p:column headerText="Date of Death">
+            <hendrix11:dateLabel date="#{child.death.date}" />
+        </p:column>
+    </p:dataTable>
+</ui:composition>

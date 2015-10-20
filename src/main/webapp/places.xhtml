@@ -14,7 +14,8 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:hendrix11="http://hendrix11.wright.edu/facelets">
 
     <ui:define name="metadata">
         <f:metadata>
@@ -40,7 +41,7 @@
                 </p:column>
 
                 <p:column headerText="Name">
-                    <p:link href="https://www.google.com/maps/place/#{place.name}" value="#{place.name}" />
+                    <hendrix11:googleMapLink placeName="#{place.name}" />
                 </p:column>
             </p:dataTable>
         </p:layoutUnit>

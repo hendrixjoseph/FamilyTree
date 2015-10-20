@@ -14,7 +14,8 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:p="http://primefaces.org/ui" xmlns:hendrix11="http://hendrix11.wright.edu/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:c="http://java.sun.com/jsp/jstl/core">
 
     <ui:define name="metadata">
         <f:metadata>
@@ -36,11 +37,77 @@
         <!-- ui:define name="east">East</ui:define -->
 
         <p:layoutUnit position="west" size="400">
-            <ui:include src="/WEB-INF/resource/template/personPanelTemplate.xhtml" />
+            <p:panelGrid columns="2" style="width: 100%;">
+                <f:facet name="header">
+                    #{individualBean.person.name}
+                </f:facet>
+                <p:outputLabel value="Father:" />
+                <hendrix11:personLink person="#{individualBean.person.father}"
+                                      rendered="#{individualBean.person.hasFather()}" />
+                <h:form id="fatherForm" rendered="#{!individualBean.person.hasFather()}">
+                    <p:commandButton value="Add father" update="@([id$=addFatherDialog_form])"
+                                     oncomplete="PF('addFatherDialog').show()" />
+                </h:form>
+                <p:outputLabel value="Mother:" />
+                <hendrix11:personLink person="#{individualBean.person.mother}"
+                                      rendered="#{individualBean.person.hasMother()}" />
+                <h:form rendered="#{!individualBean.person.hasMother()}">
+                    <p:commandButton value="Add mother" update="@([id$=addMotherDialog_form])"
+                                     oncomplete="PF('addMotherDialog').show()" />
+                </h:form>
+                <p:outputLabel value="Gender:" />
+                <p:outputLabel value="#{individualBean.person.gender}" />
+                <p:outputLabel value="Place of birth:" />
+                <hendrix11:googleMapLink placeName="#{individualBean.person.birth.place}" />
+                <p:outputLabel value="Date of birth:" />
+                <hendrix11:dateLabel date="#{individualBean.person.birth.date}" />
+                <p:outputLabel value="Place of death:" />
+                <hendrix11:googleMapLink placeName="#{individualBean.person.death.place}" />
+                <p:outputLabel value="Date of death:" />
+                <hendrix11:dateLabel date="#{individualBean.person.death.date}" />
+            </p:panelGrid>
         </p:layoutUnit>
 
         <p:layoutUnit position="center">
-            <ui:include src="/WEB-INF/resource/template/spouseChildTemplate.xhtml" />
+            <p:tabView style="height: 90%;">
+                <c:forEach items="#{individualBean.person.spouses}" var="spouse">
+                    <p:tab title="#{spouse.name}">
+                        <hendrix11:childTable children="#{individualBean.person.getChildren(spouse)}" />
+
+                        <p>
+                            <h:form>
+                                <p:commandButton value="Add child" oncomplete="PF('addChildDialog').show()" />
+                            </h:form>
+                        </p>
+
+                        <p>
+                            <p:link value="View spouse's page">
+                                <f:param name="personId" value="#{spouse.id}" />
+                            </p:link>
+                        </p>
+                    </p:tab>
+                </c:forEach>
+                <p:tab title="Children with unknown spouse"
+                       rendered="#{individualBean.person.childrenNoSpouse.size() > 0}">
+                    <hendrix11:childTable children="#{individualBean.person.childrenNoSpouse}" />
+                </p:tab>
+                <p:tab title="Add spouse or children">
+
+                    <p>
+                        <h:form>
+                            <p:commandButton value="Add spouse" update="@([id$=addSpouseDialog_form])"
+                                             oncomplete="PF('addSpouseDialog').show();" />
+                        </h:form>
+                    </p>
+
+                    <p>
+                        <h:form>
+                            <p:commandButton value="Add child" update="@([id$=addChildSingleParentDialog_form])"
+                                             oncomplete="PF('addChildSingleParentDialog').show();" />
+                        </h:form>
+                    </p>
+                </p:tab>
+            </p:tabView>
         </p:layoutUnit>
     </ui:define>
 
