@@ -67,6 +67,14 @@ public abstract class AbstractDataBean<E>
         this.page = page;
     }
 
+    public int getNumPages()
+    {
+        TypedQuery<E> query = em.createNamedQuery(findAllQuery, clazz);
+
+        double size = query.getResultList().size();
+        return (int)Math.ceil(size / RECORDS_PER_PAGE);
+    }
+
     /**
      * @return
      */

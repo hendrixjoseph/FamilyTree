@@ -35,7 +35,7 @@
 
     <ui:define name="content">
         <p:layoutUnit position="center">
-            <p:dataTable var="person" value="#{personsBean.entities}">
+            <p:dataTable var="person" value="#{personsBean.entities}" scrollable="true" scrollHeight="90%" styleClass="familyTree-dataTable">
                 <p:column headerText="Id">
                     <p:outputLabel value="#{person.id}" />
                 </p:column>
@@ -75,6 +75,10 @@
                 <p:column headerText="Death Date">
                     <hendrix11:dateLabel date="#{person.death.date}" />
                 </p:column>
+
+                <f:facet name="footer">
+                    <hendrix11:pageNav dataBean="#{personsBean}" outcome="persons" />
+                </f:facet>
             </p:dataTable>
         </p:layoutUnit>
     </ui:define>

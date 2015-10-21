@@ -80,4 +80,18 @@
             <type>java.util.List</type>
         </attribute>
     </tag>
+    <tag>
+        <tag-name>pageNav</tag-name>
+        <source>resource/tag/pageNav.xhtml</source>
+        <attribute>
+            <name>dataBean</name>
+            <required>true</required>
+            <type>edu.wright.hendrix11.familyTree.bean.AbstractDataBean</type>
+        </attribute>
+        <attribute>
+            <name>outcome</name>
+            <required>true</required>
+            <type>java.lang.String</type>
+        </attribute>
+    </tag>
 </facelet-taglib>
