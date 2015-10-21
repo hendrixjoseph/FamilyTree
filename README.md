@@ -32,7 +32,21 @@ FamilyTree is a simple web application using JavaServerFaces, Java EE, and a SQL
 
 ### Configuration files
 
-This repository contains two NetBeans configuration files, namely [`nb-configuration.xml`](nb-configuration.xml) and [`nbactions.xml`](nbactions.xml). Also, it contains the standard Maven [`pom.xml`](pom.xml) and an extra [`ojdbc7.pom`](ojdbc7.pom) to install Oracle's JDBC driver into the local repository. Finally, it contains [`.gitignore`](.gitignore) so I don't accidently commit and push things I don't want onto GitHub.
+#### NetBeans Configuration Files
+
+This repository contains two NetBeans configuration files, namely [`nb-configuration.xml`](nb-configuration.xml) and [`nbactions.xml`](nbactions.xml). 
+
+#### IntelliJ Configuration Files
+
+In addition to NetBeans configuration, it contains an IntelliJ configuration file [`familyTree.iml`](familyTree.iml) and configuration directory [`.idea/`](.idea/).
+
+#### Maven Configuration Files
+
+Also, it contains the standard Maven [`pom.xml`](pom.xml) and an extra [`ojdbc7.pom`](ojdbc7.pom) to install Oracle's JDBC driver into the local repository.
+
+#### Git Configuration File
+
+Finally, it contains [`.gitignore`](.gitignore) so I don't accidently commit and push things I don't want onto GitHub.
 
 ### Source code
 
