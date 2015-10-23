@@ -11,12 +11,11 @@
   ~
   -->
 
-<project
-        xmlns="http://maven.apache.org/DECORATION/1.6.0">
+<project xmlns="http://maven.apache.org/DECORATION/1.6.0">
     <body>
-           <links>
-       <item name="On GitHub" href="https://github.com/hendrixjoseph/FamilyTree" />
-      </links>
+        <links>
+            <item name="On GitHub" href="https://github.com/hendrixjoseph/FamilyTree" />
+        </links>
         <menu ref="modules" />
         <menu ref="reports" />
         <menu name="CS7720 Documents"></menu>
