@@ -212,6 +212,45 @@
                   </dependency>
                 </dependencies>
             </plugin>
+            <!-- VDL DOC -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.4.0</version>
+                <executions>
+                    <execution>
+                        <id>generate-vdldoc</id>
+                        <phase>site</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <executable>java</executable>
+                    <arguments>
+                        <argument>-jar</argument>
+                        <argument>${settings.localRepository}/org/omnifaces/vdldoc/2.1/vdldoc-2.1.jar</argument>
+                        <argument>-d</argument>
+                        <argument>${project.build.directory}/site/vdldoc</argument>
+                        <!-- argument>-facesconfig</argument>
+                        <argument>src/main/webapp/WEB-INF/faces-config.xml</argument -->
+                        <argument>-windowtitle</argument>
+                        <argument>${project.name} VDL Documentation</argument>
+                        <argument>-doctitle</argument>
+                        <argument>${project.name} VDL Documentation</argument>
+                        <argument>src/main/webapp/WEB-INF/hendrix11.taglib.xml
+                        </argument>
+                    </arguments>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.omnifaces</groupId>
+                        <artifactId>vdldoc</artifactId>
+                        <version>2.1</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
