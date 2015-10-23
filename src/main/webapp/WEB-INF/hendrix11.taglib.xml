@@ -86,7 +86,7 @@
         <attribute>
             <name>dataBean</name>
             <required>true</required>
-            <type>edu.wright.hendrix11.familyTree.bean.AbstractDataBean</type>
+            <type>edu.wright.hendrix11.familyTree.dataBean.AbstractDataBean</type>
         </attribute>
         <attribute>
             <name>outcome</name>

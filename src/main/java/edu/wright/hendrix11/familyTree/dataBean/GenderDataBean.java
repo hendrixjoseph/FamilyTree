@@ -10,30 +10,29 @@
  *
  */
 
-package edu.wright.hendrix11.familyTree.bean;
+package edu.wright.hendrix11.familyTree.dataBean;
 
-import edu.wright.hendrix11.familyTree.dataBean.GenderDataBean;
 import edu.wright.hendrix11.familyTree.entity.Gender;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-import java.io.Serializable;
-
-@Named
-@ViewScoped
-public class GenderBean extends AbstractBean<Gender> implements Serializable
+/**
+ * @author Joe Hendrix
+ */
+@Stateless
+public class GenderDataBean extends AbstractDataBean<Gender, Character>
 {
 
-    @EJB
-    GenderDataBean genderDataBean;
+    @PersistenceContext(unitName = "edu.wright.hendrix11.familyTree")
+    private EntityManager em;
 
     @Override
     @PostConstruct
     public void initialize()
     {
-        super.initialize(genderDataBean);
+        initialize(em, Gender.class);
     }
 }

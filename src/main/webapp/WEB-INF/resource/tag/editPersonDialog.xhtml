@@ -33,19 +33,19 @@
                     <p:outputLabel value="Gender:" />
                     <p:selectOneMenu id="gender" value="#{person.gender.fullWord}" style="width: 125px;">
                         <f:selectItem itemLabel="Select One" itemValue="notSelected" />
-                        <f:selectItems value="#{genderBean.genders}" />
+                        <f:selectItems value="#{genderBean.entities}" />
                     </p:selectOneMenu>
 
                     <p:outputLabel value="Place of birth:" />
                     <p:inputText value="#{person.birth.place}" maxlength="#{inputLength}"
-                                 size="#{inputLength}" />
+                                 size="#{inputLength}" converter="hendrix11.PlaceConverter" />
 
                     <p:outputLabel value="Date of birth:" />
                     <p:calendar value="#{person.birth.date}" pattern="MMM dd yyyy" />
 
                     <p:outputLabel value="Place of death:" />
                     <p:inputText value="#{person.death.place}" maxlength="#{inputLength}"
-                                 size="#{inputLength}" />
+                                 size="#{inputLength}" converter="hendrix11.PlaceConverter" />
 
                     <p:outputLabel value="Date of death:" />
                     <p:calendar value="#{person.death.date}" pattern="MMM dd yyyy" />
@@ -53,8 +53,7 @@
             </p>
 
             <p>
-                <p:commandButton value="Submit" actionListener="#{individualBean.updatePerson()}" immediate="true"
-                                 ajax="false" />
+                <p:commandButton value="Submit" actionListener="#{individualBean.updatePerson()}" />
                 <p:commandButton value="Cancel" oncomplete="PF('#{widgetVar}').hide()" />
             </p>
         </p:dialog>

@@ -12,28 +12,31 @@
 
 package edu.wright.hendrix11.familyTree.converter;
 
-import javax.faces.convert.Converter;
-import javax.faces.convert.FacesConverter;
+import edu.wright.hendrix11.familyTree.entity.Place;
+
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.convert.Converter;
+import javax.faces.convert.FacesConverter;
 
 /**
-* @author Joe Hendrix <hendrix.11@wright.edu>
-*/
+ * @author Joe Hendrix <hendrix.11@wright.edu>
+ */
 @FacesConverter(PlaceConverter.NAME)
 public class PlaceConverter implements Converter
 {
-  public static final String NAME = "hendrix11.PlaceConverter";
 
-  @Override
-	public Object getAsObject(FacesContext context, UIComponent component, String value)
-	{
-	   return new Place();
-	}
-	
-	@Override
-	public String getAsString(FacesContext context, UIComponent component, Object value) 
-	{
-	  return value.toString();
-	}
+    public static final String NAME = "hendrix11.PlaceConverter";
+
+    @Override
+    public Object getAsObject(FacesContext context, UIComponent component, String value)
+    {
+        return new Place();
+    }
+
+    @Override
+    public String getAsString(FacesContext context, UIComponent component, Object value)
+    {
+        return value.toString();
+    }
 }

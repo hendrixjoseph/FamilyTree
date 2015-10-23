@@ -12,13 +12,13 @@
 
 package edu.wright.hendrix11.familyTree.bean;
 
+import edu.wright.hendrix11.familyTree.dataBean.PlaceDataBean;
 import edu.wright.hendrix11.familyTree.entity.Place;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import java.io.Serializable;
 
@@ -27,17 +27,16 @@ import java.io.Serializable;
  */
 @Named
 @ViewScoped
-public class PlaceBean extends AbstractDataBean<Place> implements Serializable
+public class PlaceBean extends AbstractBean<Place> implements Serializable
 {
 
-    @PersistenceContext(unitName = "edu.wright.hendrix11.familyTree")
-    private EntityManager em;
+    @EJB
+    PlaceDataBean placeDataBean;
 
     @Override
     @PostConstruct
     public void initialize()
     {
-        initialize(em, Place.class);
-        setPage(1);
+        super.initialize(placeDataBean);
     }
 }

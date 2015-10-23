@@ -10,24 +10,20 @@
  *
  */
 
-package edu.wright.hendrix11.familyTree.bean;
+package edu.wright.hendrix11.familyTree.dataBean;
 
-import edu.wright.hendrix11.familyTree.entity.Person;
+import edu.wright.hendrix11.familyTree.entity.Place;
 
 import javax.annotation.PostConstruct;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import java.io.Serializable;
 
 /**
  * @author Joe Hendrix
  */
-@Named
-@ViewScoped
-public class PersonsBean extends AbstractDataBean<Person> implements Serializable
+@Stateless
+public class PlaceDataBean extends AbstractDataBean<Place, Integer>
 {
 
     @PersistenceContext(unitName = "edu.wright.hendrix11.familyTree")
@@ -37,7 +33,6 @@ public class PersonsBean extends AbstractDataBean<Person> implements Serializabl
     @PostConstruct
     public void initialize()
     {
-        initialize(em, Person.class);
-        setPage(1);
+        initialize(em, Place.class);
     }
 }

@@ -12,8 +12,8 @@
 
 package edu.wright.hendrix11.familyTree.bean;
 
-import edu.wright.hendrix11.familyTree.dataBean.GenderDataBean;
-import edu.wright.hendrix11.familyTree.entity.Gender;
+import edu.wright.hendrix11.familyTree.dataBean.PersonDataBean;
+import edu.wright.hendrix11.familyTree.entity.Person;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -24,16 +24,16 @@ import java.io.Serializable;
 
 @Named
 @ViewScoped
-public class GenderBean extends AbstractBean<Gender> implements Serializable
+public class PersonBean extends AbstractBean<Person> implements Serializable
 {
 
     @EJB
-    GenderDataBean genderDataBean;
+    PersonDataBean personDataBean;
 
     @Override
     @PostConstruct
     public void initialize()
     {
-        super.initialize(genderDataBean);
+        super.initialize(personDataBean);
     }
 }

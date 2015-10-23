@@ -19,7 +19,7 @@
 
     <ui:define name="metadata">
         <f:metadata>
-            <f:viewParam name="page" value="#{personsBean.page}" />
+            <f:viewParam name="page" value="#{personBean.page}" />
         </f:metadata>
     </ui:define>
 
@@ -35,7 +35,8 @@
 
     <ui:define name="content">
         <p:layoutUnit position="center">
-            <p:dataTable var="person" value="#{personsBean.entities}" scrollable="true" scrollHeight="90%" styleClass="familyTree-dataTable">
+            <p:dataTable var="person" value="#{personBean.entities}" scrollable="true" scrollHeight="90%"
+                         styleClass="familyTree-dataTable">
                 <p:column headerText="Id">
                     <p:outputLabel value="#{person.id}" />
                 </p:column>
@@ -77,7 +78,7 @@
                 </p:column>
 
                 <f:facet name="footer">
-                    <hendrix11:pageNav dataBean="#{personsBean}" outcome="persons" />
+                    <hendrix11:pageNav dataBean="#{personBean}" outcome="persons" />
                 </f:facet>
             </p:dataTable>
         </p:layoutUnit>

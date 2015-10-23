@@ -10,24 +10,21 @@
  *
  */
 
-package edu.wright.hendrix11.familyTree.bean;
+package edu.wright.hendrix11.familyTree.dataBean;
 
-import edu.wright.hendrix11.familyTree.entity.Marriage;
+import edu.wright.hendrix11.familyTree.entity.Person;
 
 import javax.annotation.PostConstruct;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import java.io.Serializable;
+import javax.persistence.TypedQuery;
 
 /**
  * @author Joe Hendrix
  */
-@Named
-@ViewScoped
-public class MarriageBean extends AbstractDataBean<Marriage> implements Serializable
+@Stateless
+public class PersonDataBean extends AbstractDataBean<Person, Integer>
 {
 
     @PersistenceContext(unitName = "edu.wright.hendrix11.familyTree")
@@ -37,7 +34,12 @@ public class MarriageBean extends AbstractDataBean<Marriage> implements Serializ
     @PostConstruct
     public void initialize()
     {
-        initialize(em, Marriage.class);
-        setPage(1);
+        initialize(em, Person.class);
+    }
+
+    public Person findFirst()
+    {
+        TypedQuery<Person> personQuery = em.createNamedQuery(Person.FIND_FIRST, Person.class);
+        return personQuery.getSingleResult();
     }
 }

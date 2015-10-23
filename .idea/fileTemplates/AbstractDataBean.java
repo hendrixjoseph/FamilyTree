@@ -1,19 +1,16 @@
 #if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "")package ${PACKAGE_NAME};#end
 
-import edu.wright.hendrix11.familyTree.entity.${ENTITY_CLASS};
+import edu.wright.hendrix11.familyTree.entity.${NAME};
 
 import javax.annotation.PostConstruct;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import java.io.Serializable;
+import javax.persistence.TypedQuery;
 
 #parse("File Header.java")
-@Named
-@ViewScoped
-public class ${NAME} extends AbstractDataBean<${ENTITY_CLASS}> implements Serializable
+@Stateless
+public class ${NAME}DataBean extends AbstractDataBean<${NAME},${ENTITY_KEY}>
 {
     @PersistenceContext(unitName = "edu.wright.hendrix11.familyTree")
     private EntityManager em;
@@ -22,7 +19,6 @@ public class ${NAME} extends AbstractDataBean<${ENTITY_CLASS}> implements Serial
     @PostConstruct
     public void initialize()
     {
-        initialize(em, ${ENTITY_CLASS}.class);
-        setPage(1);
+        initialize(em, ${NAME}.class);
     }
 }

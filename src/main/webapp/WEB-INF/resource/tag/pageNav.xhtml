@@ -19,9 +19,9 @@
             <p:outputLabel value="#{page}" />
         </c:if>
         <c:if test="#{page != dataBean.page}">
-        <p:link outcome="#{outcome}" value="#{page}">
-            <f:param name="page" value="#{page}" />
-        </p:link>
+            <p:link outcome="#{outcome}" value="#{page}">
+                <f:param name="page" value="#{page}" />
+            </p:link>
         </c:if>
         <c:if test="#{page != dataBean.numPages}"> | </c:if>
     </c:forEach>

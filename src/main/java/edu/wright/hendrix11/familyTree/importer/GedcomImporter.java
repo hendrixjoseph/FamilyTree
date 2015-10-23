@@ -170,13 +170,6 @@ public class GedcomImporter extends Importer
         em.getTransaction().begin();
         processData();
         em.getTransaction().commit();
-
-        //        for (Person person : people.values())
-        //        {
-        //            em.getTransaction().begin();
-        //            em.persist(person);
-        //            em.getTransaction().commit();
-        //        }
     }
 
     private Date processDate(String string)
