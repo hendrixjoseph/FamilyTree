@@ -238,6 +238,8 @@
                     <bottom>
                         <![CDATA[Copyright &copy; 2015 <a href="http://hendrixjoseph.github.io" target="_blank">Joseph Hendrix</a>]]></bottom>
                     <detectLinks>true</detectLinks>
+                    <doctitle>${project.name} API</doctitle>
+                    <windowtitle>${project.name} API</windowtitle>     
                 </configuration>
                 <reportSets>
                     <reportSet><!-- by default, id = "default" -->
