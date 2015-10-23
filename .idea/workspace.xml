@@ -6,30 +6,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e01fcdf7-fba9-4a15-b4e3-2d3aaec35e67" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/AbstractBean.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/GenderDataBean.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/PersonBean.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/PersonDataBean.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/PlaceDataBean.java" />
-      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\src\main\java\edu\wright\hendrix11\familyTree\bean\MarriageBean.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\src\main\java\edu\wright\hendrix11\familyTree\bean\PersonsBean.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\src\main\webapp\marriages.xhtml" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\Joe\Git\FamilyTree\src\main\java\edu\wright\hendrix11\familyTree\bean\AbstractDataBean.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/AbstractDataBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/fileTemplates/AbstractDataBean.java" afterPath="$PROJECT_DIR$/.idea/fileTemplates/AbstractDataBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/importer/GedcomImporter.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/importer/GedcomImporter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/GenderBean.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/GenderBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/IndividualBean.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/IndividualBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/PlaceBean.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/PlaceBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/converter/PlaceConverter.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/converter/PlaceConverter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/resource/tag/editPersonDialog.xhtml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/resource/tag/editPersonDialog.xhtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/familyTree.iml" afterPath="$PROJECT_DIR$/familyTree.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/hendrix11.taglib.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/hendrix11.taglib.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/resource/template/main.xhtml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/resource/template/main.xhtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/resource/tag/pageNav.xhtml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/resource/tag/pageNav.xhtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/persons.xhtml" afterPath="$PROJECT_DIR$/src/main/webapp/persons.xhtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/places.xhtml" afterPath="$PROJECT_DIR$/src/main/webapp/places.xhtml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="familyTree.iws" />
@@ -831,12 +807,19 @@
       <updated>1445386149448</updated>
       <workItem from="1445386149580" duration="7486000" />
       <workItem from="1445556707265" duration="9737000" />
-      <workItem from="1445569820205" duration="1099000" />
+      <workItem from="1445569820205" duration="1175000" />
     </task>
+    <task id="LOCAL-00001" summary="whole bunch of EJB nonsense just to update...">
+      <created>1445570986124</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1445570986124</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18322000" />
+    <option name="totallyTimeSpent" value="18398000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="100" y="23" width="1398" height="821" extended-state="0" />
@@ -885,6 +868,12 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="whole bunch of EJB nonsense just to update..." />
+    <option name="LAST_COMMIT_MESSAGE" value="whole bunch of EJB nonsense just to update..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
