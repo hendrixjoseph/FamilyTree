@@ -4,18 +4,18 @@
 'UTF-8'
 -protected
 -sourcepath
-'C:/Users/Joe/Documents/NetBeansProjects/FamilyTree/src/main/java'
+'C:/Users/Joe/Git/FamilyTree/src/main/java'
 -author
 -bottom
 'Copyright &copy; 2015 <a href="http://hendrixjoseph.github.io" target="_blank">Joseph Hendrix</a>'
 -charset
 'UTF-8'
 -d
-'C:/Users/Joe/Documents/NetBeansProjects/FamilyTree/target/site/apidocs'
+'C:/Users/Joe/Git/FamilyTree/target/site/apidocs'
 -docencoding
 'UTF-8'
 -doctitle
-'Family Tree 2.0 2.0 API'
+'Family Tree 2.0 API'
 -link
 'http://java.sun.com/javaee/javaserverfaces/apidocs'
 -link
@@ -23,8 +23,8 @@
 -link
 'http://junit.org/apidocs'
 -linkoffline
-'http://docs.oracle.com/javase/8/docs/api' 'C:/Users/Joe/Documents/NetBeansProjects/FamilyTree/target/javadoc-bundle-options'
+'http://docs.oracle.com/javase/8/docs/api' 'C:/Users/Joe/Git/FamilyTree/target/javadoc-bundle-options'
 -use
 -version
 -windowtitle
-'Family Tree 2.0 2.0 API'
+'Family Tree 2.0 API'
