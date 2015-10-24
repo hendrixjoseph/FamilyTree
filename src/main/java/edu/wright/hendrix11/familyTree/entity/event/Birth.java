@@ -10,9 +10,10 @@
  *
  */
 
-package edu.wright.hendrix11.familyTree.entity;
+package edu.wright.hendrix11.familyTree.entity.event;
 
-import edu.wright.hendrix11.familyTree.entity.event.Event;
+import edu.wright.hendrix11.familyTree.entity.Person;
+import edu.wright.hendrix11.familyTree.entity.place.Place;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,7 +32,7 @@ import static javax.persistence.CascadeType.ALL;
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
 @Entity
-public class Burial implements Event
+public class Birth implements Event
 {
 
     @Temporal(TemporalType.DATE)
@@ -96,5 +97,4 @@ public class Burial implements Event
     {
         this.date = date;
     }
-
 }

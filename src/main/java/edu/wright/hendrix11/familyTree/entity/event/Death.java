@@ -10,19 +10,17 @@
  *
  */
 
-package edu.wright.hendrix11.familyTree.entity;
+package edu.wright.hendrix11.familyTree.entity.event;
 
-import edu.wright.hendrix11.familyTree.entity.compositeKey.MarriagePK;
-import edu.wright.hendrix11.familyTree.entity.event.Event;
+import edu.wright.hendrix11.familyTree.entity.Person;
+import edu.wright.hendrix11.familyTree.entity.place.Place;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -34,42 +32,34 @@ import static javax.persistence.CascadeType.ALL;
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
 @Entity
-@IdClass(MarriagePK.class)
-@NamedQuery(name = Marriage.FIND_ALL, query = "SELECT m FROM Marriage m")
-public class Marriage implements Event
+public class Death implements Event
 {
-
-    public static final String FIND_ALL = "Marriage.findAll";
 
     @Temporal(TemporalType.DATE)
     @Column(name = "ANNIVERSARY")
     private Date date;
     @Id
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "HUSBAND")
-    private Person husband;
+    @OneToOne
+    @JoinColumn(name = "PERSON_ID")
+    private Person person;
     @ManyToOne(cascade = ALL)
     @JoinColumn(name = "PLACE_ID")
     private Place place;
-    @Id
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "WIFE")
-    private Person wife;
 
     /**
      * @return
      */
-    public Person getHusband()
+    public Person getPerson()
     {
-        return husband;
+        return person;
     }
 
     /**
-     * @param husband
+     * @param person
      */
-    public void setHusband(Person husband)
+    public void setPerson(Person person)
     {
-        this.husband = husband;
+        this.person = person;
     }
 
     /**
@@ -106,43 +96,6 @@ public class Marriage implements Event
     public void setDate(Date date)
     {
         this.date = date;
-    }
-
-    /**
-     * @return
-     */
-    public Person getWife()
-    {
-        return wife;
-    }
-
-    /**
-     * @param wife
-     */
-    public void setWife(Person wife)
-    {
-        this.wife = wife;
-    }
-
-    /**
-     * @return
-     */
-    public boolean hasHusband()
-    {
-        return hasSpouse(husband);
-    }
-
-    /**
-     * @return
-     */
-    public boolean hasWife()
-    {
-        return hasSpouse(wife);
-    }
-
-    private boolean hasSpouse(Person spouse)
-    {
-        return spouse != null;
     }
 
 }
