@@ -12,13 +12,13 @@
 
 package edu.wright.hendrix11.familyTree.importer;
 
-import edu.wright.hendrix11.familyTree.entity.Birth;
-import edu.wright.hendrix11.familyTree.entity.Death;
 import edu.wright.hendrix11.familyTree.entity.Gender;
-import edu.wright.hendrix11.familyTree.entity.Marriage;
 import edu.wright.hendrix11.familyTree.entity.Person;
-import edu.wright.hendrix11.familyTree.entity.Place;
+import edu.wright.hendrix11.familyTree.entity.event.Birth;
+import edu.wright.hendrix11.familyTree.entity.event.Death;
 import edu.wright.hendrix11.familyTree.entity.event.Event;
+import edu.wright.hendrix11.familyTree.entity.event.Marriage;
+import edu.wright.hendrix11.familyTree.entity.place.Place;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;

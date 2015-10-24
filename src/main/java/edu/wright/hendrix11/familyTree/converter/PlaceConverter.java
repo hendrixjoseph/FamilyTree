@@ -12,7 +12,7 @@
 
 package edu.wright.hendrix11.familyTree.converter;
 
-import edu.wright.hendrix11.familyTree.entity.Place;
+import edu.wright.hendrix11.familyTree.entity.place.Place;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;

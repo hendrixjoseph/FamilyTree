@@ -13,7 +13,7 @@
 package edu.wright.hendrix11.familyTree.bean;
 
 import edu.wright.hendrix11.familyTree.dataBean.PlaceDataBean;
-import edu.wright.hendrix11.familyTree.entity.Place;
+import edu.wright.hendrix11.familyTree.entity.place.Place;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;

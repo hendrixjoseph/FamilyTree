@@ -12,7 +12,7 @@
 
 package edu.wright.hendrix11.familyTree.entity.event;
 
-import edu.wright.hendrix11.familyTree.entity.Place;
+import edu.wright.hendrix11.familyTree.entity.place.Place;
 
 import java.util.Date;
 

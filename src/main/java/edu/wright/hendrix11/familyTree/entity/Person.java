@@ -12,6 +12,10 @@
 
 package edu.wright.hendrix11.familyTree.entity;
 
+import edu.wright.hendrix11.familyTree.entity.event.Birth;
+import edu.wright.hendrix11.familyTree.entity.event.Burial;
+import edu.wright.hendrix11.familyTree.entity.event.Death;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;

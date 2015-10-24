@@ -13,9 +13,9 @@
 package edu.wright.hendrix11.familyTree.bean;
 
 import edu.wright.hendrix11.familyTree.dataBean.PersonDataBean;
-import edu.wright.hendrix11.familyTree.entity.Birth;
-import edu.wright.hendrix11.familyTree.entity.Death;
 import edu.wright.hendrix11.familyTree.entity.Person;
+import edu.wright.hendrix11.familyTree.entity.event.Birth;
+import edu.wright.hendrix11.familyTree.entity.event.Death;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
