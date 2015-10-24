@@ -1,9 +1,10 @@
 --------------------------------------------------------
---  File created - Monday-October-19-2015   
+--  File created - Saturday-October-24-2015   
 --------------------------------------------------------
 DROP TABLE "BOOLEAN" cascade constraints;
 DROP TABLE "DEFAULT_PERSON_TYPE" cascade constraints;
 DROP TABLE "GENDER" cascade constraints;
+DROP TABLE "PLACE_TYPE" cascade constraints;
 DROP TABLE "PERSON_INFO_TYPE" cascade constraints;
 DROP TABLE "BIRTH" cascade constraints;
 DROP TABLE "BURIAL" cascade constraints;
@@ -14,12 +15,13 @@ DROP TABLE "MOTHER_OF" cascade constraints;
 DROP TABLE "PERSON" cascade constraints;
 DROP TABLE "PERSON_INFO" cascade constraints;
 DROP TABLE "PLACE" cascade constraints;
+DROP TABLE "REGION_OF" cascade constraints;
 DROP TABLE "SETTINGS" cascade constraints;
 DROP TABLE "SOURCE" cascade constraints;
 DROP SEQUENCE "PERSON_SEQUENCE";
 DROP SEQUENCE "PLACE_SEQUENCE";
-DROP VIEW "SPOUSE_VIEW";
 DROP VIEW "CHILDREN_VIEW";
+DROP VIEW "SPOUSE_VIEW";
 DROP TYPE "CUSTOM_DATE";
 --------------------------------------------------------
 --  DDL for Type CUSTOM_DATE
@@ -65,12 +67,12 @@ END;
 --  DDL for Sequence PERSON_SEQUENCE
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "PERSON_SEQUENCE"  MINVALUE 1 MAXVALUE 99999999999 INCREMENT BY 1 START WITH 1641 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "PERSON_SEQUENCE"  MINVALUE 1 MAXVALUE 99999999999 INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence PLACE_SEQUENCE
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "PLACE_SEQUENCE"  MINVALUE 1 MAXVALUE 99999999999 INCREMENT BY 1 START WITH 101 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "PLACE_SEQUENCE"  MINVALUE 1 MAXVALUE 99999999999 INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Table BOOLEAN
 --------------------------------------------------------
@@ -94,6 +96,14 @@ END;
   CREATE TABLE "GENDER" 
    (	"ABBR" CHAR(1), 
 	"FULL_WORD" VARCHAR2(20)
+   ) ;
+--------------------------------------------------------
+--  DDL for Table PLACE_TYPE
+--------------------------------------------------------
+
+  CREATE TABLE "PLACE_TYPE" 
+   (	"ID" NUMBER, 
+	"TYPE" VARCHAR2(8)
    ) ;
 --------------------------------------------------------
 --  DDL for Table PERSON_INFO_TYPE
@@ -180,7 +190,16 @@ END;
 
   CREATE TABLE "PLACE" 
    (	"ID" NUMBER, 
-	"NAME" VARCHAR2(100)
+	"NAME" VARCHAR2(100), 
+	"TYPE" NUMBER
+   ) ;
+--------------------------------------------------------
+--  DDL for Table REGION_OF
+--------------------------------------------------------
+
+  CREATE TABLE "REGION_OF" 
+   (	"REGION_ID" NUMBER, 
+	"PLACE_ID" NUMBER
    ) ;
 --------------------------------------------------------
 --  DDL for Table SETTINGS
@@ -201,6 +220,24 @@ END;
 	"CITATION" VARCHAR2(50), 
 	"TITLE" VARCHAR2(20)
    ) ;
+--------------------------------------------------------
+--  DDL for View CHILDREN_VIEW
+--------------------------------------------------------
+
+  CREATE OR REPLACE VIEW "CHILDREN_VIEW" ("ID", "NAME", "CHILD_ID", "CHILD_NAME") AS 
+  SELECT DISTINCT
+    P.ID,
+    P.NAME,
+    CHILD.ID CHILD_ID,
+    CHILD.NAME CHILD_NAME
+FROM 
+    PERSON P,
+    PERSON CHILD,
+    FATHER_OF,
+    MOTHER_OF
+WHERE
+    (P.ID = FATHER_OF.FATHER_ID AND CHILD.ID = FATHER_OF.CHILD_ID) OR
+    (P.ID = MOTHER_OF.MOTHER_ID AND CHILD.ID = MOTHER_OF.CHILD_ID);
 --------------------------------------------------------
 --  DDL for View SPOUSE_VIEW
 --------------------------------------------------------
@@ -231,24 +268,6 @@ WHERE
     (SPOUSE.ID = MOTHER_OF.MOTHER_ID OR SPOUSE.ID = FATHER_OF.FATHER_ID) AND
     P.ID <> SPOUSE.ID AND
     FATHER_OF.CHILD_ID = MOTHER_OF.CHILD_ID;
---------------------------------------------------------
---  DDL for View CHILDREN_VIEW
---------------------------------------------------------
-
-  CREATE OR REPLACE VIEW "CHILDREN_VIEW" ("ID", "NAME", "CHILD_ID", "CHILD_NAME") AS 
-  SELECT DISTINCT
-    P.ID,
-    P.NAME,
-    CHILD.ID CHILD_ID,
-    CHILD.NAME CHILD_NAME
-FROM 
-    PERSON P,
-    PERSON CHILD,
-    FATHER_OF,
-    MOTHER_OF
-WHERE
-    (P.ID = FATHER_OF.FATHER_ID AND CHILD.ID = FATHER_OF.CHILD_ID) OR
-    (P.ID = MOTHER_OF.MOTHER_ID AND CHILD.ID = MOTHER_OF.CHILD_ID);
 REM INSERTING into BOOLEAN
 SET DEFINE OFF;
 Insert into BOOLEAN (ID,VALUE) values (0,'false');
@@ -264,15 +283,33 @@ Insert into GENDER (ABBR,FULL_WORD) values ('M','Male');
 Insert into GENDER (ABBR,FULL_WORD) values ('F','Female');
 Insert into GENDER (ABBR,FULL_WORD) values ('O','Other');
 Insert into GENDER (ABBR,FULL_WORD) values ('U','Unknown');
+REM INSERTING into PLACE_TYPE
+SET DEFINE OFF;
+Insert into PLACE_TYPE (ID,TYPE) values (1,'country');
+Insert into PLACE_TYPE (ID,TYPE) values (2,'state');
+Insert into PLACE_TYPE (ID,TYPE) values (3,'county');
+Insert into PLACE_TYPE (ID,TYPE) values (4,'city');
 REM INSERTING into PERSON_INFO_TYPE
 SET DEFINE OFF;
-REM INSERTING into SPOUSE_VIEW
+REM INSERTING into CHILDREN_VIEW
 SET DEFINE OFF;
 --------------------------------------------------------
 --  DDL for Index DEFAULT_PERSON_TYPE_PK
 --------------------------------------------------------
 
   CREATE UNIQUE INDEX "DEFAULT_PERSON_TYPE_PK" ON "DEFAULT_PERSON_TYPE" ("ID") 
+  ;
+--------------------------------------------------------
+--  DDL for Index REGION_OF_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "REGION_OF_PK" ON "REGION_OF" ("PLACE_ID") 
+  ;
+--------------------------------------------------------
+--  DDL for Index PLACE_TYPE_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "PLACE_TYPE_PK" ON "PLACE_TYPE" ("ID") 
   ;
 --------------------------------------------------------
 --  DDL for Index FATHER_OF_PK
@@ -374,6 +411,13 @@ SET DEFINE OFF;
   ALTER TABLE "PERSON_INFO_TYPE" MODIFY ("TYPE" NOT NULL ENABLE);
   ALTER TABLE "PERSON_INFO_TYPE" MODIFY ("ID" NOT NULL ENABLE);
 --------------------------------------------------------
+--  Constraints for Table PLACE_TYPE
+--------------------------------------------------------
+
+  ALTER TABLE "PLACE_TYPE" MODIFY ("TYPE" NOT NULL ENABLE);
+  ALTER TABLE "PLACE_TYPE" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "PLACE_TYPE" ADD CONSTRAINT "PLACE_TYPE_PK" PRIMARY KEY ("ID") ENABLE;
+--------------------------------------------------------
 --  Constraints for Table BIRTH
 --------------------------------------------------------
 
@@ -395,6 +439,7 @@ SET DEFINE OFF;
 --  Constraints for Table PLACE
 --------------------------------------------------------
 
+  ALTER TABLE "PLACE" MODIFY ("TYPE" NOT NULL ENABLE);
   ALTER TABLE "PLACE" ADD CONSTRAINT "PLACE_NAME_UK" UNIQUE ("NAME") ENABLE;
   ALTER TABLE "PLACE" ADD CONSTRAINT "PLACE_PK" PRIMARY KEY ("ID") ENABLE;
   ALTER TABLE "PLACE" MODIFY ("NAME" NOT NULL ENABLE);
@@ -414,6 +459,13 @@ SET DEFINE OFF;
   ALTER TABLE "PERSON" ADD CONSTRAINT "PERSON_PK" PRIMARY KEY ("ID") ENABLE;
   ALTER TABLE "PERSON" MODIFY ("NAME" NOT NULL ENABLE);
   ALTER TABLE "PERSON" MODIFY ("ID" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table REGION_OF
+--------------------------------------------------------
+
+  ALTER TABLE "REGION_OF" ADD CONSTRAINT "REGION_OF_PK" PRIMARY KEY ("PLACE_ID") ENABLE;
+  ALTER TABLE "REGION_OF" MODIFY ("PLACE_ID" NOT NULL ENABLE);
+  ALTER TABLE "REGION_OF" MODIFY ("REGION_ID" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table SOURCE
 --------------------------------------------------------
@@ -519,6 +571,20 @@ SET DEFINE OFF;
   ALTER TABLE "PERSON_INFO" ADD CONSTRAINT "TYPE_FK1" FOREIGN KEY ("PERSON_ID")
 	  REFERENCES "PERSON_INFO_TYPE" ("ID") ON DELETE CASCADE ENABLE;
 --------------------------------------------------------
+--  Ref Constraints for Table PLACE
+--------------------------------------------------------
+
+  ALTER TABLE "PLACE" ADD CONSTRAINT "PLACE_TYPE_FK" FOREIGN KEY ("ID")
+	  REFERENCES "PLACE_TYPE" ("ID") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table REGION_OF
+--------------------------------------------------------
+
+  ALTER TABLE "REGION_OF" ADD CONSTRAINT "PLACE_FK" FOREIGN KEY ("PLACE_ID")
+	  REFERENCES "PLACE" ("ID") ENABLE;
+  ALTER TABLE "REGION_OF" ADD CONSTRAINT "REGION_FK" FOREIGN KEY ("REGION_ID")
+	  REFERENCES "PLACE" ("ID") ENABLE;
+--------------------------------------------------------
 --  Ref Constraints for Table SETTINGS
 --------------------------------------------------------
 
@@ -528,3 +594,62 @@ SET DEFINE OFF;
 	  REFERENCES "DEFAULT_PERSON_TYPE" ("ID") ON DELETE SET NULL ENABLE;
   ALTER TABLE "SETTINGS" ADD CONSTRAINT "VIEW_WELCOME_PAGE_FK" FOREIGN KEY ("VIEW_WELCOME_PAGE")
 	  REFERENCES "BOOLEAN" ("ID") ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger FATHER_OF_TRIGGER
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "FATHER_OF_TRIGGER" 
+BEFORE INSERT OR UPDATE OF FATHER_ID ON FATHER_OF 
+  FOR EACH ROW
+DECLARE
+  GENDER_ABBR CHAR(1);
+  WRONG_GENDER EXCEPTION;
+BEGIN
+  SELECT GENDER INTO GENDER_ABBR FROM PERSON WHERE PERSON.ID=:new.FATHER_ID;
+  
+  IF GENDER_ABBR <> 'M' THEN
+    RAISE WRONG_GENDER;
+  END IF;
+END;
+/
+ALTER TRIGGER "FATHER_OF_TRIGGER" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger MOTHER_OF_TRIGGER
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "MOTHER_OF_TRIGGER" 
+BEFORE INSERT OR UPDATE OF MOTHER_ID ON MOTHER_OF 
+  FOR EACH ROW
+DECLARE
+  GENDER_ABBR CHAR(1);
+  WRONG_GENDER EXCEPTION;
+BEGIN
+  SELECT GENDER INTO GENDER_ABBR FROM PERSON WHERE PERSON.ID=:new.MOTHER_ID;
+  
+  IF GENDER_ABBR <> 'F' THEN
+    RAISE WRONG_GENDER;
+  END IF;
+END;
+/
+ALTER TRIGGER "MOTHER_OF_TRIGGER" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger REGION_OF_TRIGGER
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "REGION_OF_TRIGGER" 
+BEFORE INSERT OR UPDATE OF PLACE_ID,REGION_ID ON REGION_OF
+FOR EACH ROW
+DECLARE
+  PLACE_LEVEL NUMBER;
+  REGION_LEVEL NUMBER;
+  REGION_EXCEPTION EXCEPTION;
+BEGIN
+  SELECT TYPE INTO PLACE_LEVEL FROM PLACE WHERE ID=:new.PLACE_ID;
+  SELECT TYPE INTO REGION_LEVEL FROM PLACE WHERE ID=:new.REGION_ID;
+  
+  IF PLACE_LEVEL < REGION_LEVEL THEN
+    RAISE REGION_EXCEPTION;
+  END IF;
+END;
+/
+ALTER TRIGGER "REGION_OF_TRIGGER" ENABLE;

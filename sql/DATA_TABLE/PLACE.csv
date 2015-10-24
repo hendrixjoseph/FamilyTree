@@ -1,10 +1,5 @@
-"ID","NAME"
-1,"Ann Arbor, Michigan"
-2,"Ohio"
-3,"Mexico City, Mexico"
-4,"Dayton, Ohio"
-5,"Roane County, Tennessee"
-6,"West Virginia"
-7,"Miami County, Ohio"
-8,"Perry County, Ohio"
-9,"Tennessee"
+"ID","NAME","TYPE"
+2,"Montomery County",3
+3,"Ohio",2
+4,"USA",1
+1,"Dayton",4
