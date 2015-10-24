@@ -28,10 +28,15 @@ public class PlaceConverter implements Converter
 
     public static final String NAME = "hendrix11.PlaceConverter";
 
+    public Place getAsPlace(String value)
+    {
+        return (Place)getAsObject(null, null, value);
+    }
+
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value)
     {
-        return new Place();
+        return null;
     }
 
     @Override

@@ -12,12 +12,14 @@
 
 package edu.wright.hendrix11.familyTree.importer;
 
+import edu.wright.hendrix11.familyTree.converter.PlaceConverter;
 import edu.wright.hendrix11.familyTree.entity.Gender;
 import edu.wright.hendrix11.familyTree.entity.Person;
 import edu.wright.hendrix11.familyTree.entity.event.Birth;
 import edu.wright.hendrix11.familyTree.entity.event.Death;
 import edu.wright.hendrix11.familyTree.entity.event.Event;
 import edu.wright.hendrix11.familyTree.entity.event.Marriage;
+import edu.wright.hendrix11.familyTree.entity.place.City;
 import edu.wright.hendrix11.familyTree.entity.place.Place;
 
 import javax.persistence.EntityManager;
@@ -45,6 +47,8 @@ public class GedcomImporter extends Importer
     private static final Logger LOG = Logger.getLogger(GedcomImporter.class.getName());
 
     private static final DateFormat DATE_FORMAT = new SimpleDateFormat("dd MMM yyyy");
+    private static final PlaceConverter placeConverter = new PlaceConverter();
+
     private Mode datePlace = Mode.NONE;
     private Mode familyInfo = Mode.NONE;
     private Mode inserting = Mode.NONE;
@@ -198,14 +202,14 @@ public class GedcomImporter extends Importer
 
                 if ( em != null )
                 {
-                    TypedQuery<Place> placeQuery = em.createNamedQuery(Place.FIND_BY_NAME, Place.class);
+                    //TODO
+                    TypedQuery<Place> placeQuery = em.createNamedQuery(City.FIND_BY_NAME, Place.class);
                     placeQuery.setParameter("name", info);
                     List<Place> placeList = placeQuery.getResultList();
 
                     if ( placeList.isEmpty() )
                     {
-                        place = new Place();
-                        place.setName(info);
+                        place = placeConverter.getAsPlace(info);
                     }
                     else
                     {
@@ -214,8 +218,7 @@ public class GedcomImporter extends Importer
                 }
                 else
                 {
-                    place = new Place();
-                    place.setName(info);
+                    place = placeConverter.getAsPlace(info);
                 }
 
                 event.setPlace(place);
