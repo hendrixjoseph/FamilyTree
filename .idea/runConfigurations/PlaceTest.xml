@@ -23,6 +23,9 @@
     </option>
     <envs />
     <patterns />
-    <method />
+    <method>
+      <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="clean" />
+      <option name="Make" enabled="true" />
+    </method>
   </configuration>
 </component>
