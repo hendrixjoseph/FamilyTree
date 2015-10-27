@@ -65,18 +65,21 @@ public abstract class Place
 
     public abstract String getLink();
 
-    protected String getLink(Place[] places)
+    protected String toString(Place[] places)
     {
         boolean first = true;
         StringBuilder sb = new StringBuilder();
 
         for ( Place place : places )
         {
-            if ( !first )
-                sb.append(", ");
+            if(place != null)
+            {
+                if ( !first )
+                    sb.append(", ");
 
-            sb.append(place.getName());
-            first = false;
+                sb.append(place.getName());
+                first = false;
+            }
         }
 
         return sb.toString();

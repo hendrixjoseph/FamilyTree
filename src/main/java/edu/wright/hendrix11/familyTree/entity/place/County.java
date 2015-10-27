@@ -14,6 +14,10 @@ package edu.wright.hendrix11.familyTree.entity.place;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
@@ -29,9 +33,50 @@ public class County extends Place
     public static final String FIND_ALL = "County.findAll";
     public static final String FIND_BY_NAME = "County.findByName";
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinTable(name = "REGION_VIEW",
+               joinColumns = @JoinColumn(name = "PLACE_ID"),
+               inverseJoinColumns = @JoinColumn(name = "REGION_ID"))
+    private State state;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinTable(name = "REGION_VIEW",
+               joinColumns = @JoinColumn(name = "PLACE_ID"),
+               inverseJoinColumns = @JoinColumn(name = "REGION_ID"))
+    private Country country;
+
+    public Country getCountry()
+    {
+        return country;
+    }
+
+    public void setCountry(Country country)
+    {
+        this.country = country;
+    }
+
+    public State getState()
+    {
+        return state;
+    }
+
+    public void setState(State state)
+    {
+        this.state = state;
+    }
+
     @Override
     public String getLink()
     {
-        return null;
+        Place[] places = {this, state};
+
+        return toString(places);
+    }
+
+    @Override
+    public String toString()
+    {
+        Place[] places = {this, state, country};
+
+        return toString(places);
     }
 }

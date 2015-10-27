@@ -117,7 +117,7 @@ public class PlaceTest
 
         for ( Place place : places )
         {
-            sb.append("\n").append(place.getName());
+            sb.append("\n").append(place.toString());
         }
 
         LOG.log(Level.INFO, sb.toString());
