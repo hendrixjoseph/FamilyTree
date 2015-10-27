@@ -24,15 +24,15 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import static org.junit.Assert.*;
 
 /**
  * @author Joe Hendrix
  */
 public class PlaceTest
 {
+
     private static final Logger LOG = Logger.getLogger(PlaceTest.class.getName());
 
     private static EntityManagerFactory emf;
@@ -41,7 +41,7 @@ public class PlaceTest
     @BeforeClass
     public static void setUpClass()
     {
-        emf = Persistence.createEntityManagerFactory("edu.wright.hendrix11.familyTree");
+        emf = Persistence.createEntityManagerFactory("edu.wright.hendrix11.familyTree.test");
         em = emf.createEntityManager();
     }
 
@@ -71,5 +71,55 @@ public class PlaceTest
     {
         TypedQuery<City> cityQuery = em.createNamedQuery(City.FIND_ALL, City.class);
         List<City> cities = cityQuery.getResultList();
+
+        outputPlaces(cities);
+    }
+
+    @Test
+    public void countyTest()
+    {
+        TypedQuery<County> countyQuery = em.createNamedQuery(County.FIND_ALL, County.class);
+        List<County> counties = countyQuery.getResultList();
+
+        outputPlaces(counties);
+    }
+
+    @Test
+    public void countryTest()
+    {
+        TypedQuery<Country> countryQuery = em.createNamedQuery(Country.FIND_ALL, Country.class);
+        List<Country> countries = countryQuery.getResultList();
+
+        outputPlaces(countries);
+    }
+
+    @Test
+    public void stateTest()
+    {
+        TypedQuery<State> stateQuery = em.createNamedQuery(State.FIND_ALL, State.class);
+        List<State> states = stateQuery.getResultList();
+
+        outputPlaces(states);
+    }
+
+    @Test
+    public void placeTest()
+    {
+        TypedQuery<Place> placeQuery = em.createNamedQuery(Place.FIND_ALL, Place.class);
+        List<Place> places = placeQuery.getResultList();
+
+        outputPlaces(places);
+    }
+
+    private void outputPlaces(List<? extends Place> places)
+    {
+        StringBuilder sb = new StringBuilder();
+
+        for ( Place place : places )
+        {
+            sb.append("\n").append(place.getName());
+        }
+
+        LOG.log(Level.INFO, sb.toString());
     }
 }

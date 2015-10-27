@@ -30,7 +30,7 @@ public class PlaceConverter implements Converter
 
     public Place getAsPlace(String value)
     {
-        return (Place)getAsObject(null, null, value);
+        return (Place) getAsObject(null, null, value);
     }
 
     @Override

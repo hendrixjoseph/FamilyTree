@@ -14,31 +14,47 @@ package edu.wright.hendrix11.familyTree.entity.event;
 
 import edu.wright.hendrix11.familyTree.entity.place.Place;
 
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import java.util.Date;
+
+import static javax.persistence.CascadeType.ALL;
 
 /**
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
-public interface Event
+@MappedSuperclass
+public abstract class Event
 {
+    @Temporal(TemporalType.DATE)
+    @Column(name = "ANNIVERSARY")
+    private Date date;
+    @ManyToOne(cascade = ALL)
+    @JoinColumn(name = "PLACE_ID")
+    private Place place;
 
-    /**
-     * @return
-     */
-    Date getDate();
+    public Date getDate()
+    {
+        return date;
+    }
 
-    /**
-     * @param date
-     */
-    void setDate(Date date);
+    public void setDate(Date date)
+    {
+        this.date = date;
+    }
 
-    /**
-     * @return
-     */
-    Place getPlace();
+    public Place getPlace()
+    {
+        return place;
+    }
 
-    /**
-     * @param place
-     */
-    void setPlace(Place place);
+    public void setPlace(Place place)
+    {
+        this.place = place;
+    }
 }

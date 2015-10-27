@@ -14,9 +14,7 @@ package edu.wright.hendrix11.familyTree.entity.event;
 
 import edu.wright.hendrix11.familyTree.entity.Person;
 import edu.wright.hendrix11.familyTree.entity.compositeKey.MarriagePK;
-import edu.wright.hendrix11.familyTree.entity.place.Place;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -24,12 +22,6 @@ import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import java.util.Date;
-
-import static javax.persistence.CascadeType.ALL;
 
 /**
  * @author Joe Hendrix <hendrix.11@wright.edu>
@@ -37,21 +29,14 @@ import static javax.persistence.CascadeType.ALL;
 @Entity
 @IdClass(MarriagePK.class)
 @NamedQuery(name = Marriage.FIND_ALL, query = "SELECT m FROM Marriage m")
-public class Marriage implements Event
+public class Marriage extends Event
 {
-
     public static final String FIND_ALL = "Marriage.findAll";
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "ANNIVERSARY")
-    private Date date;
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "HUSBAND")
     private Person husband;
-    @ManyToOne(cascade = ALL)
-    @JoinColumn(name = "PLACE_ID")
-    private Place place;
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "WIFE")
@@ -71,42 +56,6 @@ public class Marriage implements Event
     public void setHusband(Person husband)
     {
         this.husband = husband;
-    }
-
-    /**
-     * @return
-     */
-    @Override
-    public Place getPlace()
-    {
-        return place;
-    }
-
-    /**
-     * @param place
-     */
-    @Override
-    public void setPlace(Place place)
-    {
-        this.place = place;
-    }
-
-    /**
-     * @return
-     */
-    @Override
-    public Date getDate()
-    {
-        return date;
-    }
-
-    /**
-     * @param date
-     */
-    @Override
-    public void setDate(Date date)
-    {
-        this.date = date;
     }
 
     /**
