@@ -37,6 +37,10 @@ public abstract class Event
     @ManyToOne(cascade = ALL)
     @JoinColumn(name = "PLACE_ID")
     private Place place;
+    private boolean yearKnown;
+    private boolean monthKnown;
+    private boolean dayKnown
+    private boolean about;
 
     public Date getDate()
     {
@@ -56,5 +60,10 @@ public abstract class Event
     public void setPlace(Place place)
     {
         this.place = place;
+    }
+    
+    public String getDateString()
+    {
+        return "";
     }
 }
