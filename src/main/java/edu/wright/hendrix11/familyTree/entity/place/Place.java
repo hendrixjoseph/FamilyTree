@@ -16,11 +16,15 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
+
+import static javax.persistence.GenerationType.SEQUENCE;
 
 /**
  * @author Joe Hendrix
@@ -39,6 +43,8 @@ public abstract class Place
     public static final String FIND_BY_NAME = "Place.findByName";
 
     @Id
+    @SequenceGenerator(name = "PLACE_SEQUENCE", sequenceName = "PLACE_SEQUENCE", allocationSize = 1)
+    @GeneratedValue(strategy = SEQUENCE, generator = "PLACE_SEQUENCE")
     private int id;
     @Column(unique = true, nullable = false)
     private String name;
