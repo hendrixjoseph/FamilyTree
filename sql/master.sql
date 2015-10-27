@@ -1,15 +1,15 @@
 --------------------------------------------------------
---  File created - Saturday-October-24-2015   
+--  File created - Monday-October-26-2015   
 --------------------------------------------------------
 DROP TABLE "BOOLEAN" cascade constraints;
 DROP TABLE "DEFAULT_PERSON_TYPE" cascade constraints;
-DROP TABLE "GENDER" cascade constraints;
-DROP TABLE "PLACE_TYPE" cascade constraints;
 DROP TABLE "PERSON_INFO_TYPE" cascade constraints;
+DROP TABLE "PLACE_TYPE" cascade constraints;
 DROP TABLE "BIRTH" cascade constraints;
 DROP TABLE "BURIAL" cascade constraints;
 DROP TABLE "DEATH" cascade constraints;
 DROP TABLE "FATHER_OF" cascade constraints;
+DROP TABLE "GENDER" cascade constraints;
 DROP TABLE "MARRIAGE" cascade constraints;
 DROP TABLE "MOTHER_OF" cascade constraints;
 DROP TABLE "PERSON" cascade constraints;
@@ -21,48 +21,9 @@ DROP TABLE "SOURCE" cascade constraints;
 DROP SEQUENCE "PERSON_SEQUENCE";
 DROP SEQUENCE "PLACE_SEQUENCE";
 DROP VIEW "CHILDREN_VIEW";
+DROP VIEW "REGION_VIEW";
+DROP VIEW "REGION_VIEW_TEST";
 DROP VIEW "SPOUSE_VIEW";
-DROP TYPE "CUSTOM_DATE";
---------------------------------------------------------
---  DDL for Type CUSTOM_DATE
---------------------------------------------------------
-
-  CREATE OR REPLACE TYPE "CUSTOM_DATE" AS OBJECT 
-( 
-    DATE_OF DATE,
-    ABOUT NUMBER,
-    YEAR_KNOWN NUMBER,
-    MONTH_KNOWN NUMBER,
-    DAY_KNOWN NUMBER,
-    MEMBER FUNCTION IS_ABOUT RETURN BOOLEAN,
-    MEMBER FUNCTION IS_YEAR_KNOWN RETURN BOOLEAN,
-    MEMBER FUNCTION IS_MONTH_KNOWN RETURN BOOLEAN,
-    MEMBER FUNCTION IS_DAY_KNOWN RETURN BOOLEAN
-);
-/
-CREATE OR REPLACE TYPE BODY "CUSTOM_DATE" AS 
-   MEMBER FUNCTION IS_ABOUT RETURN BOOLEAN IS
-   BEGIN
-      RETURN ABOUT = 1;
-   END IS_ABOUT;
-   
-   MEMBER FUNCTION IS_YEAR_KNOWN RETURN BOOLEAN IS
-   BEGIN
-      RETURN YEAR_KNOWN = 1;
-   END IS_YEAR_KNOWN;
-   
-   MEMBER FUNCTION IS_MONTH_KNOWN RETURN BOOLEAN IS
-   BEGIN
-      RETURN MONTH_KNOWN = 1;
-   END IS_MONTH_KNOWN;
-   
-   MEMBER FUNCTION IS_DAY_KNOWN RETURN BOOLEAN IS
-   BEGIN
-      RETURN DAY_KNOWN = 1;
-   END IS_DAY_KNOWN;
-END;
-
-/
 --------------------------------------------------------
 --  DDL for Sequence PERSON_SEQUENCE
 --------------------------------------------------------
@@ -90,12 +51,12 @@ END;
 	"DEFAULT_PERSON_TYPE" VARCHAR2(20)
    ) ;
 --------------------------------------------------------
---  DDL for Table GENDER
+--  DDL for Table PERSON_INFO_TYPE
 --------------------------------------------------------
 
-  CREATE TABLE "GENDER" 
-   (	"ABBR" CHAR(1), 
-	"FULL_WORD" VARCHAR2(20)
+  CREATE TABLE "PERSON_INFO_TYPE" 
+   (	"ID" NUMBER, 
+	"TYPE" VARCHAR2(20)
    ) ;
 --------------------------------------------------------
 --  DDL for Table PLACE_TYPE
@@ -104,14 +65,6 @@ END;
   CREATE TABLE "PLACE_TYPE" 
    (	"ID" NUMBER, 
 	"TYPE" VARCHAR2(8)
-   ) ;
---------------------------------------------------------
---  DDL for Table PERSON_INFO_TYPE
---------------------------------------------------------
-
-  CREATE TABLE "PERSON_INFO_TYPE" 
-   (	"ID" NUMBER, 
-	"TYPE" VARCHAR2(20)
    ) ;
 --------------------------------------------------------
 --  DDL for Table BIRTH
@@ -147,6 +100,14 @@ END;
   CREATE TABLE "FATHER_OF" 
    (	"FATHER_ID" NUMBER, 
 	"CHILD_ID" NUMBER
+   ) ;
+--------------------------------------------------------
+--  DDL for Table GENDER
+--------------------------------------------------------
+
+  CREATE TABLE "GENDER" 
+   (	"ABBR" CHAR(1), 
+	"FULL_WORD" VARCHAR2(20)
    ) ;
 --------------------------------------------------------
 --  DDL for Table MARRIAGE
@@ -224,20 +185,41 @@ END;
 --  DDL for View CHILDREN_VIEW
 --------------------------------------------------------
 
-  CREATE OR REPLACE VIEW "CHILDREN_VIEW" ("ID", "NAME", "CHILD_ID", "CHILD_NAME") AS 
-  SELECT DISTINCT
-    P.ID,
-    P.NAME,
-    CHILD.ID CHILD_ID,
-    CHILD.NAME CHILD_NAME
-FROM 
-    PERSON P,
-    PERSON CHILD,
-    FATHER_OF,
-    MOTHER_OF
-WHERE
-    (P.ID = FATHER_OF.FATHER_ID AND CHILD.ID = FATHER_OF.CHILD_ID) OR
-    (P.ID = MOTHER_OF.MOTHER_ID AND CHILD.ID = MOTHER_OF.CHILD_ID);
+  CREATE OR REPLACE VIEW "CHILDREN_VIEW" ("ID", "CHILD_ID") AS 
+  SELECT
+    FATHER_ID ID,
+    CHILD_ID
+FROM
+    FATHER_OF
+UNION
+SELECT
+    MOTHER_ID ID,
+    CHILD_ID
+FROM
+    MOTHER_OF;
+--------------------------------------------------------
+--  DDL for View REGION_VIEW
+--------------------------------------------------------
+
+  CREATE OR REPLACE VIEW "REGION_VIEW" ("REGION_ID", "PLACE_ID") AS 
+  SELECT R1.REGION_ID,R3.PLACE_ID
+FROM REGION_OF R1, REGION_OF R2, REGION_OF R3
+WHERE R1.PLACE_ID = R2.REGION_ID
+  AND R2.PLACE_ID = R3.REGION_ID
+UNION 
+SELECT R1.REGION_ID,R2.PLACE_ID
+FROM REGION_OF R1, REGION_OF R2
+WHERE R1.PLACE_ID = R2.REGION_ID
+UNION  
+SELECT "REGION_ID","PLACE_ID" FROM REGION_OF;
+--------------------------------------------------------
+--  DDL for View REGION_VIEW_TEST
+--------------------------------------------------------
+
+  CREATE OR REPLACE VIEW "REGION_VIEW_TEST" ("RID", "REGION", "PID", "PLACE") AS 
+  SELECT P1.ID RID, P1.NAME REGION, P2.ID PID, P2.NAME PLACE
+FROM PLACE P1, PLACE P2, REGION_VIEW
+WHERE P1.ID = REGION_VIEW.REGION_ID AND P2.ID = REGION_VIEW.PLACE_ID;
 --------------------------------------------------------
 --  DDL for View SPOUSE_VIEW
 --------------------------------------------------------
@@ -277,20 +259,14 @@ SET DEFINE OFF;
 Insert into DEFAULT_PERSON_TYPE (ID,DEFAULT_PERSON_TYPE) values (1,'Same person');
 Insert into DEFAULT_PERSON_TYPE (ID,DEFAULT_PERSON_TYPE) values (2,'Last viewed person');
 Insert into DEFAULT_PERSON_TYPE (ID,DEFAULT_PERSON_TYPE) values (3,'Last edited person');
-REM INSERTING into GENDER
+REM INSERTING into PERSON_INFO_TYPE
 SET DEFINE OFF;
-Insert into GENDER (ABBR,FULL_WORD) values ('M','Male');
-Insert into GENDER (ABBR,FULL_WORD) values ('F','Female');
-Insert into GENDER (ABBR,FULL_WORD) values ('O','Other');
-Insert into GENDER (ABBR,FULL_WORD) values ('U','Unknown');
 REM INSERTING into PLACE_TYPE
 SET DEFINE OFF;
 Insert into PLACE_TYPE (ID,TYPE) values (1,'country');
 Insert into PLACE_TYPE (ID,TYPE) values (2,'state');
 Insert into PLACE_TYPE (ID,TYPE) values (3,'county');
 Insert into PLACE_TYPE (ID,TYPE) values (4,'city');
-REM INSERTING into PERSON_INFO_TYPE
-SET DEFINE OFF;
 REM INSERTING into CHILDREN_VIEW
 SET DEFINE OFF;
 --------------------------------------------------------
@@ -574,7 +550,7 @@ SET DEFINE OFF;
 --  Ref Constraints for Table PLACE
 --------------------------------------------------------
 
-  ALTER TABLE "PLACE" ADD CONSTRAINT "PLACE_TYPE_FK" FOREIGN KEY ("ID")
+  ALTER TABLE "PLACE" ADD CONSTRAINT "PLACE_TYPE_FK" FOREIGN KEY ("TYPE")
 	  REFERENCES "PLACE_TYPE" ("ID") ENABLE;
 --------------------------------------------------------
 --  Ref Constraints for Table REGION_OF

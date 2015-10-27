@@ -7,8 +7,95 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e01fcdf7-fba9-4a15-b4e3-2d3aaec35e67" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/entity/place/Place.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/entity/place/Place.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/runConfigurations/PlaceTest.xml" afterPath="$PROJECT_DIR$/.idea/runConfigurations/PlaceTest.xml" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\CONSTRAINTS\BIRTH.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\CONSTRAINTS\BOOLEAN.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\CONSTRAINTS\BURIAL.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\CONSTRAINTS\DEATH.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\CONSTRAINTS\DEFAULT_PERSON_TYPE.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\CONSTRAINTS\FATHER_OF.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\CONSTRAINTS\GENDER.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\CONSTRAINTS\MARRIAGE.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\CONSTRAINTS\MOTHER_OF.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\CONSTRAINTS\PERSON.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\CONSTRAINTS\PERSON_INFO.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\CONSTRAINTS\PERSON_INFO_TYPE.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\CONSTRAINTS\PLACE.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\CONSTRAINTS\PLACE_TYPE.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\CONSTRAINTS\REGION_OF.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\CONSTRAINTS\SETTINGS.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\CONSTRAINTS\SOURCE.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\DATA_TABLE\BIRTH.csv" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\DATA_TABLE\BOOLEAN.csv" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\DATA_TABLE\BURIAL.csv" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\DATA_TABLE\DEATH.csv" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\DATA_TABLE\DEFAULT_PERSON_TYPE.csv" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\DATA_TABLE\FATHER_OF.csv" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\DATA_TABLE\GENDER.csv" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\DATA_TABLE\MARRIAGE.csv" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\DATA_TABLE\MOTHER_OF.csv" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\DATA_TABLE\PERSON.csv" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\DATA_TABLE\PERSON_INFO.csv" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\DATA_TABLE\PERSON_INFO_TYPE.csv" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\DATA_TABLE\PLACE.csv" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\DATA_TABLE\PLACE_TYPE.csv" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\DATA_TABLE\REGION_OF.csv" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\DATA_TABLE\SETTINGS.csv" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\DATA_TABLE\SOURCE.csv" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\DATA_VIEW\CHILDREN_VIEW.csv" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\DATA_VIEW\SPOUSE_VIEW.csv" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\INDEXES\BIRTHS_PK.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\INDEXES\BOOLEAN_PK.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\INDEXES\BURIAL_PK.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\INDEXES\DEATHS_PK.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\INDEXES\DEFAULT_PERSON_TYPE_PK.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\INDEXES\FATHER_OF_PK.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\INDEXES\GENDERS_PK.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\INDEXES\MARRIAGE_PK.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\INDEXES\MOTHER_OF_PK.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\INDEXES\PERSON_INFO_TYPE_PK.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\INDEXES\PERSON_PK.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\INDEXES\PLACE_NAME_UK.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\INDEXES\PLACE_PK.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\INDEXES\PLACE_TYPE_PK.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\INDEXES\REGION_OF_PK.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\INDEXES\SOURCE_PK.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\REF_CONSTRAINTS\BIRTH.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\REF_CONSTRAINTS\BURIAL.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\REF_CONSTRAINTS\DEATH.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\REF_CONSTRAINTS\FATHER_OF.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\REF_CONSTRAINTS\MARRIAGE.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\REF_CONSTRAINTS\MOTHER_OF.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\REF_CONSTRAINTS\PERSON.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\REF_CONSTRAINTS\PERSON_INFO.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\REF_CONSTRAINTS\PLACE.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\REF_CONSTRAINTS\REGION_OF.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\REF_CONSTRAINTS\SETTINGS.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\SEQUENCES\PERSON_SEQUENCE.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\SEQUENCES\PLACE_SEQUENCE.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\TABLES\BIRTH.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\TABLES\BOOLEAN.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\TABLES\BURIAL.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\TABLES\DEATH.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\TABLES\DEFAULT_PERSON_TYPE.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\TABLES\FATHER_OF.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\TABLES\GENDER.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\TABLES\MARRIAGE.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\TABLES\MOTHER_OF.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\TABLES\PERSON.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\TABLES\PERSON_INFO.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\TABLES\PERSON_INFO_TYPE.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\TABLES\PLACE.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\TABLES\PLACE_TYPE.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\TABLES\REGION_OF.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\TABLES\SETTINGS.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\TABLES\SOURCE.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\TRIGGERS\FATHER_OF_TRIGGER.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\TRIGGERS\MOTHER_OF_TRIGGER.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\TRIGGERS\REGION_OF_TRIGGER.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\TYPES\CUSTOM_DATE.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\VIEWS\CHILDREN_VIEW.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\VIEWS\SPOUSE_VIEW.sql" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\sql\master.sql" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="familyTree.iws" />
@@ -1041,7 +1128,7 @@
       <workItem from="1445556707265" duration="9737000" />
       <workItem from="1445569820205" duration="2763000" />
       <workItem from="1445711200025" duration="7671000" />
-      <workItem from="1445822616563" duration="10454000" />
+      <workItem from="1445822616563" duration="11151000" />
     </task>
     <task id="LOCAL-00001" summary="whole bunch of EJB nonsense just to update...">
       <created>1445570986124</created>
@@ -1059,7 +1146,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38111000" />
+    <option name="totallyTimeSpent" value="38808000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="100" y="23" width="1397" height="821" extended-state="0" />
@@ -1083,7 +1170,7 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3997195" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959327" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32959327" sideWeight="0.49710566" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32959327" sideWeight="0.49710566" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24909486" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
