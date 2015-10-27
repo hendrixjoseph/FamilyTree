@@ -1,11 +1,15 @@
 <!-- 
-  When copying contents to index.md, do the following:
-  Remove: README.md
-  Remove: Readme 
-  Remove: user-content-
-  Replace: ]\(([^:http:#]) with ]\(https://github.com/hendrixjoseph/FamilyTree/blob/master/\1
-  Replace: ```(.+) with {% highlight \1 %}
-  Replace: ```[^A-z] with {% endhighlight %}
+  When copying contents to index.twiki, do the following:
+  Replace "Readme Table of Contents" with "Table of Contents"
+  Replace contents of Table of Contents with %TOC%
+  Replace # with +
+  Replace (\++) with ---\1
+  Replace ` with =
+  Replace: ]\(([^:http:#]) with ](https://github.com/hendrixjoseph/FamilyTree/blob/master/\1
+  Replace \[(.*?)]\((.*?)\) with [[\2][\1]]
+  Remove ( \|){2,}
+  Remove -+[ \|]* -+
+  Replace (.*\|.*) with | \1 |
 -->
 
 # FamilyTree
