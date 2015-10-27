@@ -169,7 +169,7 @@
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>2.10</version>
             </plugin>
-            <!-- plugin> Currently no css / javascript to minify...
+            <plugin>
                 <groupId>com.samaxes.maven</groupId>
                 <artifactId>minify-maven-plugin</artifactId>
                 <version>1.7.4</version>
@@ -178,7 +178,7 @@
                         <id>default-minify</id>
                         <phase>package</phase>
                         <configuration>
-                            <skipMinify>${sparta.debug}</skipMinify>
+                            <skipMinify>false</skipMinify>
                             <skipMerge>true</skipMerge>
                             <nosuffix>true</nosuffix>
                             <cssSourceDir>
@@ -187,19 +187,19 @@
                             <cssSourceIncludes>
                                 <cssSourceInclude>*.css</cssSourceInclude>
                             </cssSourceIncludes>
-                            <jsSourceDir>
+                            <!-- jsSourceDir>
                                 resources/javascript
                             </jsSourceDir>
                             <jsSourceIncludes>
                                 <jsSourceInclude>*.js</jsSourceInclude>
-                            </jsSourceIncludes>
+                            </jsSourceIncludes -->
                         </configuration>
                         <goals>
                             <goal>minify</goal>
                         </goals>
                     </execution>
                 </executions>
-            </plugin -->
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
