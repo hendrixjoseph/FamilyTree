@@ -294,7 +294,7 @@ public class GedcomImporter extends Importer
                 if ( city.getCountry() == null )
                 {
                     country = getCountry(info[1]);
-                    city.setCountry(country);
+                    city.setRegion(country);
                 }
 
                 return city;
@@ -307,7 +307,7 @@ public class GedcomImporter extends Importer
                 if ( county.getState() == null )
                 {
                     state = getState(info[1]);
-                    county.setState(state);
+                    county.setRegion(state);
                 }
 
                 return county;
@@ -319,7 +319,7 @@ public class GedcomImporter extends Importer
                 if ( city.getState() == null )
                 {
                     state = getState(info[1]);
-                    city.setState(state);
+                    city.setRegion(state);
                 }
 
                 return city;
@@ -331,8 +331,8 @@ public class GedcomImporter extends Importer
             county = getCounty(info[1]);
             state = getState(info[2]);
 
-            city.setCounty(county);
-            county.setState(state);
+            city.setRegion(county);
+            county.setRegion(state);
 
             return city;
         }
@@ -381,7 +381,7 @@ public class GedcomImporter extends Importer
                 date = YEAR_ONLY_FORMAT.parse(dateString);
                 event.setDayKnown(false);
                 event.setMonthKnown(false);
-                event.setYearKnown(false);
+                event.setYearKnown(true);
             }
             else
             {
