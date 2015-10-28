@@ -34,33 +34,14 @@ public class State extends Place
     public static final String FIND_ALL = "State.findAll";
     public static final String FIND_BY_NAME = "State.findByName";
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinTable(name = "REGION_OF",
-               joinColumns = @JoinColumn(name = "PLACE_ID"),
-               inverseJoinColumns = @JoinColumn(name = "REGION_ID"))
-    private Country country;
-
     public Country getCountry()
     {
-        return country;
-    }
-
-    public void setCountry(Country country)
-    {
-        this.country = country;
+        return getRegionByClass(Country.class);
     }
 
     @Override
     public String getLink()
     {
         return getName();
-    }
-
-    @Override
-    public String toString()
-    {
-        Place[] places = {this, country};
-
-        return toString(places);
     }
 }
