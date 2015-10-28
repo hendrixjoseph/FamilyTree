@@ -33,50 +33,29 @@ public class County extends Place
 
     public static final String FIND_ALL = "County.findAll";
     public static final String FIND_BY_NAME = "County.findByName";
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinTable(name = "REGION_VIEW",
-               joinColumns = @JoinColumn(name = "PLACE_ID"),
-               inverseJoinColumns = @JoinColumn(name = "REGION_ID"))
-    private Country country;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinTable(name = "REGION_VIEW",
-               joinColumns = @JoinColumn(name = "PLACE_ID"),
-               inverseJoinColumns = @JoinColumn(name = "REGION_ID"))
-    private State state;
 
     public Country getCountry()
     {
-        return country;
-    }
-
-    public void setCountry(Country country)
-    {
-        this.country = country;
+        return getRegionByClass(Country.class);
     }
 
     public State getState()
     {
-        return state;
-    }
-
-    public void setState(State state)
-    {
-        this.state = state;
+        return getRegionByClass(State.class);
     }
 
     @Override
     public String getLink()
     {
-        Place[] places = {this, state};
+      StringBuilder sb = new StringBuilder(name);
+      
+      State state = getState();
+      
+      if(state != null)
+      {
+        sb.append(", ").append(state.getName());
+      }
 
-        return toString(places);
-    }
-
-    @Override
-    public String toString()
-    {
-        Place[] places = {this, state, country};
-
-        return toString(places);
+      return sb.toString();
     }
 }
