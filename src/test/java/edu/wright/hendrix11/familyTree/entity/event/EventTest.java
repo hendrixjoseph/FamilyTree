@@ -24,8 +24,6 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.logging.Logger;
 
-import static org.junit.Assert.*;
-
 /**
  * @author Joe Hendrix
  */

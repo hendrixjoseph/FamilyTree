@@ -78,7 +78,7 @@ public abstract class Place
 
         for ( Place place : places )
         {
-            if(place != null)
+            if ( place != null )
             {
                 if ( !first )
                     sb.append(", ");

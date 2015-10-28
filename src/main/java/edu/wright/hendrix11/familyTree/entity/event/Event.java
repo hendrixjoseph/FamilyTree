@@ -31,16 +31,19 @@ import static javax.persistence.CascadeType.ALL;
 @MappedSuperclass
 public abstract class Event
 {
+    private boolean about;
     @Temporal(TemporalType.DATE)
     @Column(name = "ANNIVERSARY")
     private Date date;
+    @Column(name = "DAY_KNOWN")
+    private boolean dayKnown;
+    @Column(name = "MONTH_KNOWN")
+    private boolean monthKnown;
     @ManyToOne(cascade = ALL)
     @JoinColumn(name = "PLACE_ID")
     private Place place;
+    @Column(name = "YEAR_KNOWN")
     private boolean yearKnown;
-    private boolean monthKnown;
-    private boolean dayKnown
-    private boolean about;
 
     public Date getDate()
     {
@@ -61,7 +64,47 @@ public abstract class Event
     {
         this.place = place;
     }
-    
+
+    public boolean isYearKnown()
+    {
+        return yearKnown;
+    }
+
+    public void setYearKnown(boolean yearKnown)
+    {
+        this.yearKnown = yearKnown;
+    }
+
+    public boolean isAbout()
+    {
+        return about;
+    }
+
+    public void setAbout(boolean about)
+    {
+        this.about = about;
+    }
+
+    public boolean isDayKnown()
+    {
+        return dayKnown;
+    }
+
+    public void setDayKnown(boolean dayKnown)
+    {
+        this.dayKnown = dayKnown;
+    }
+
+    public boolean isMonthKnown()
+    {
+        return monthKnown;
+    }
+
+    public void setMonthKnown(boolean monthKnown)
+    {
+        this.monthKnown = monthKnown;
+    }
+
     public String getDateString()
     {
         return "";

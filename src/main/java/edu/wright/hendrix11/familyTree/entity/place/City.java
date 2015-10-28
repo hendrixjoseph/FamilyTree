@@ -35,7 +35,11 @@ public class City extends Place
 
     public static final String FIND_ALL = "City.findAll";
     public static final String FIND_BY_NAME = "City.findByName";
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinTable(name = "REGION_VIEW",
+               joinColumns = @JoinColumn(name = "PLACE_ID"),
+               inverseJoinColumns = @JoinColumn(name = "REGION_ID"))
+    private Country country;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinTable(name = "REGION_VIEW",
                joinColumns = @JoinColumn(name = "PLACE_ID"),
@@ -46,11 +50,6 @@ public class City extends Place
                joinColumns = @JoinColumn(name = "PLACE_ID"),
                inverseJoinColumns = @JoinColumn(name = "REGION_ID"))
     private State state;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinTable(name = "REGION_VIEW",
-               joinColumns = @JoinColumn(name = "PLACE_ID"),
-               inverseJoinColumns = @JoinColumn(name = "REGION_ID"))
-    private Country country;
 
     public Country getCountry()
     {
