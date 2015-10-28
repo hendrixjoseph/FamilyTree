@@ -48,6 +48,11 @@ public abstract class Place
     private int id;
     @Column(unique = true, nullable = false)
     private String name;
+      @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinTable(name = "REGION_OF",
+               joinColumns = @JoinColumn(name = "PLACE_ID"),
+               inverseJoinColumns = @JoinColumn(name = "REGION_ID"))
+    private Place region;
 
     public int getId()
     {
@@ -68,26 +73,49 @@ public abstract class Place
     {
         this.name = name;
     }
+    
+    public Place getRegion()
+    {
+      return region;
+    }
+    
+    public void setRegion(Place region)
+    {
+      this.region = region;
+    }
 
     public abstract String getLink();
-
-    protected String toString(Place[] places)
+    
+    protected Place getRegionByClass(Class<? extends Place> clazz)
     {
-        boolean first = true;
-        StringBuilder sb = new StringBuilder();
-
-        for ( Place place : places )
+      Place region = this.region;
+      
+      while(region != null)
+      {
+        if(clazz.equals(region.getClass()))
         {
-            if ( place != null )
-            {
-                if ( !first )
-                    sb.append(", ");
-
-                sb.append(place.getName());
-                first = false;
-            }
+          return region;
         }
-
-        return sb.toString();
+        
+        region = region.getRegion();
+      }
+      
+      return null;
+    }
+    
+    @Override
+    public String toString()
+    {
+      StringBuilder sb = new StringBuilder(name);
+      
+      Place region = this.region;
+      
+      while(region != null)
+      {
+        sb.append(", ").append(region.getName();
+        region = region.getRegion();
+      }
+      
+      return sb.toString();
     }
 }
