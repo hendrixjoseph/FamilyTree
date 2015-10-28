@@ -12,6 +12,10 @@ FamilyTree is a simple web application using JavaServerFaces, Java EE, and a SQL
 
 * [Contents of Repository](README.md#user-content-contents-of-repository) 
  * [Configuration files](README.md#user-content-configuration-files)
+   * [NetBeans Configuration Files](README.md#netBeans-configuration-files)
+    * [IntelliJ Configuration Files](README.md#intellij-configuration-files)
+    * [Maven Configuration Files](README.md#maven-configuration-files)
+    * [Git Configuration File](README.md#git-configuration-file)
  * [Source code](README.md#user-content-source-code)
  * [SQL](README.md#user-content-sql)
  * [Directory structure](README.md#user-content-directory-structure)
@@ -51,10 +55,10 @@ The following types of files can be found in this project:
 * `*.java`
 * `*.xhtml`
 * `*.sql`
+* `*.css`
 
 The following types of files are not currently found in this project, but some may be added in the future:
 
-* `*.css`
 * `*.js`
 
 ### SQL
