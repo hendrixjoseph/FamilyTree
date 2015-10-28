@@ -29,10 +29,10 @@ The following types of files can be found in this project:
 * `*.java`
 * `*.xhtml`
 * `*.sql`
+* `*.css`
 
 The following types of files are not currently found in this project, but some may be added in the future:
 
-* `*.css`
 * `*.js`
 
 ### SQL
