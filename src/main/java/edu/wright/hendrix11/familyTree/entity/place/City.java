@@ -49,7 +49,7 @@ public class City extends Place
 
     public State getState()
     {
-        return getRegionByClass(State.class);;
+        return getRegionByClass(State.class);
     }
 
     @Override
