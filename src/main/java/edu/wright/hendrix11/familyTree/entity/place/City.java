@@ -36,65 +36,41 @@ public class City extends Place
 
     public static final String FIND_ALL = "City.findAll";
     public static final String FIND_BY_NAME = "City.findByName";
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinTable(name = "REGION_VIEW",
-               joinColumns = @JoinColumn(name = "PLACE_ID"),
-               inverseJoinColumns = @JoinColumn(name = "REGION_ID"))
-    private Country country;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinTable(name = "REGION_VIEW",
-               joinColumns = @JoinColumn(name = "PLACE_ID"),
-               inverseJoinColumns = @JoinColumn(name = "REGION_ID"))
-    private County county;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinTable(name = "REGION_VIEW",
-               joinColumns = @JoinColumn(name = "PLACE_ID"),
-               inverseJoinColumns = @JoinColumn(name = "REGION_ID"))
-    private State state;
 
     public Country getCountry()
     {
-        return country;
-    }
-
-    public void setCountry(Country country)
-    {
-        this.country = country;
+        return getRegionByClass(Country.class);
     }
 
     public County getCounty()
     {
-        return county;
-    }
-
-    public void setCounty(County county)
-    {
-        this.county = county;
+        return getRegionByClass(County.class);
     }
 
     public State getState()
     {
-        return state;
-    }
-
-    public void setState(State state)
-    {
-        this.state = state;
+        return getRegionByClass(State.class);;
     }
 
     @Override
     public String getLink()
     {
-        Place[] places = {this, state};
+      StringBuilder sb = new StringBuilder(name);
+      
+      State state = getState();
+      
+      if(state != null)
+      {
+        sb.append(", ").append(state.getName());
+      }
+      else
+      {
+        Country country = getCountry();
+        
+        if(country != null)
+          sb.append(", ").append(country.getName());
+      }
 
-        return toString(places);
-    }
-
-    @Override
-    public String toString()
-    {
-        Place[] places = {this, county, state, country};
-
-        return toString(places);
+      return sb.toString();
     }
 }
