@@ -12,7 +12,6 @@
 
 package edu.wright.hendrix11.familyTree.importer;
 
-import edu.wright.hendrix11.familyTree.converter.PlaceConverter;
 import edu.wright.hendrix11.familyTree.entity.Gender;
 import edu.wright.hendrix11.familyTree.entity.Person;
 import edu.wright.hendrix11.familyTree.entity.event.Birth;
@@ -20,7 +19,10 @@ import edu.wright.hendrix11.familyTree.entity.event.Death;
 import edu.wright.hendrix11.familyTree.entity.event.Event;
 import edu.wright.hendrix11.familyTree.entity.event.Marriage;
 import edu.wright.hendrix11.familyTree.entity.place.City;
+import edu.wright.hendrix11.familyTree.entity.place.Country;
+import edu.wright.hendrix11.familyTree.entity.place.County;
 import edu.wright.hendrix11.familyTree.entity.place.Place;
+import edu.wright.hendrix11.familyTree.entity.place.State;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -46,8 +48,14 @@ public class GedcomImporter extends Importer
 
     private static final Logger LOG = Logger.getLogger(GedcomImporter.class.getName());
 
-    private static final DateFormat DATE_FORMAT = new SimpleDateFormat("dd MMM yyyy");
-    private static final PlaceConverter placeConverter = new PlaceConverter();
+    private static final DateFormat FULL_DATE_FORMAT = new SimpleDateFormat("dd MMM yyyy");
+    private static final String FULL_DATE_REGEX = "[0-9]{1,2}[ A-z]+[0-9]{4}";
+    private static final DateFormat MONTH_YEAR_ONLY_FORMAT = new SimpleDateFormat("MMM yyyy");
+    private static final String MONTH_YEAR_ONLY_REGEX = "[A-z]+ [0-9]{4}";
+    private static final DateFormat MONTH_DAY_ONLY_FORMAT = new SimpleDateFormat("dd MMM");
+    private static final String MONTH_DAY_ONLY_REGEX = "[0-9]{1,2} [A-z]+";
+    private static final DateFormat YEAR_ONLY_FORMAT = new SimpleDateFormat("yyyy");
+    private static final String YEAR_ONLY_REGEX = "[0-9]{4}";
 
     private Mode datePlace = Mode.NONE;
     private Mode familyInfo = Mode.NONE;
@@ -68,11 +76,23 @@ public class GedcomImporter extends Importer
     }
 
     /**
+     * @param em
+     */
+    @Override
+    public void processData(EntityManager em)
+    {
+        this.em = em;
+        em.getTransaction().begin();
+        processData();
+        em.getTransaction().commit();
+    }
+
+    /**
      *
      *
      */
     @Override
-    public void processData()
+    protected void processData()
     {
         try ( LineNumberReader in = new LineNumberReader(file) )
         {
@@ -164,64 +184,231 @@ public class GedcomImporter extends Importer
         LOG.log(Level.INFO, "Done! {0} marriages read in!", marriages.size());
     }
 
-    /**
-     * @param em
-     */
-    @Override
-    public void processData(EntityManager em)
+    private Country getCountry(String name)
     {
-        this.em = em;
-        em.getTransaction().begin();
-        processData();
-        em.getTransaction().commit();
+        TypedQuery<Country> countryQuery = em.createNamedQuery(Country.FIND_BY_NAME, Country.class);
+        List<Country> countryList = countryQuery.setParameter("name", name).getResultList();
+        Country country;
+
+        if ( countryList.isEmpty() )
+        {
+            country = new Country();
+            country.setName(name);
+            em.persist(country);
+        }
+        else
+        {
+            country = countryList.get(0);
+        }
+
+        return country;
     }
 
-    private Date processDate(String string)
+    private County getCounty(String name)
     {
-        try
+        TypedQuery<County> countyQuery = em.createNamedQuery(County.FIND_BY_NAME, County.class);
+        List<County> countyList = countyQuery.setParameter("name", name).getResultList();
+        County county;
+
+        if ( countyList.isEmpty() )
         {
-            return DATE_FORMAT.parse(string);
+            county = new County();
+            county.setName(name);
+            em.persist(county);
         }
-        catch ( ParseException ex )
+        else
         {
+            county = countyList.get(0);
+        }
+
+        return county;
+    }
+
+    private City getCity(String name)
+    {
+        TypedQuery<City> cityQuery = em.createNamedQuery(City.FIND_BY_NAME, City.class);
+        List<City> cityList = cityQuery.setParameter("name", name).getResultList();
+        City city;
+
+        if ( cityList.isEmpty() )
+        {
+            city = new City();
+            city.setName(name);
+            em.persist(city);
+        }
+        else
+        {
+            city = cityList.get(0);
+        }
+
+        return city;
+    }
+
+    private State getState(String name)
+    {
+        TypedQuery<State> stateQuery = em.createNamedQuery(State.FIND_BY_NAME, State.class);
+        stateQuery.setParameter("name", name);
+        List<State> stateList = stateQuery.getResultList();
+        State state;
+
+        if ( stateList.isEmpty() )
+        {
+            state = new State();
+            state.setName(name);
+            em.persist(state);
+        }
+        else
+        {
+            state = stateList.get(0);
+        }
+
+        return state;
+    }
+
+    private Place processPlace()
+    {
+        String[] info = datePlace.restOf(nextLine).split(",");
+
+        City city;
+        County county;
+        State state;
+        Country country;
+
+        if ( info.length == 1 )
+        {
+            if ( info[0].contains("County") )
+            {
+                return getCounty(info[0]);
+            }
+            else
+            {
+                return getCity(info[0]);
+            }
+        }
+        else if ( info.length == 2 )
+        {
+            if ( info[1].equals("Mexico") )
+            {
+                city = getCity(info[0]);
+
+                if ( city.getCountry() == null )
+                {
+                    country = getCountry(info[1]);
+                    city.setCountry(country);
+                }
+
+                return city;
+            }
+
+            if ( info[0].contains("County") )
+            {
+                county = getCounty(info[0]);
+
+                if ( county.getState() == null )
+                {
+                    state = getState(info[1]);
+                    county.setState(state);
+                }
+
+                return county;
+            }
+            else
+            {
+                city = getCity(info[0]);
+
+                if ( city.getState() == null )
+                {
+                    state = getState(info[1]);
+                    city.setState(state);
+                }
+
+                return city;
+            }
+        }
+        else if ( info.length == 3 )
+        {
+            city = getCity(info[0]);
+            county = getCounty(info[1]);
+            state = getState(info[2]);
+
+            city.setCounty(county);
+            county.setState(state);
+
+            return city;
+        }
+        else // length == 4
+        {
+            //TODO
             return null;
         }
     }
 
+    private void processEventDate(Event event)
+    {
+        String dateString = datePlace.restOf(nextLine);
+
+        event.setAbout(dateString.contains("ABT"));
+
+        dateString = dateString.replace("ABT ", "");
+
+        Date date = null;
+
+        try
+        {
+            if ( dateString.matches(FULL_DATE_REGEX) )
+            {
+                date = FULL_DATE_FORMAT.parse(dateString);
+                event.setDayKnown(true);
+                event.setMonthKnown(true);
+                event.setYearKnown(true);
+            }
+            else if ( dateString.matches(MONTH_YEAR_ONLY_REGEX) )
+            {
+                date = MONTH_YEAR_ONLY_FORMAT.parse(dateString);
+                event.setDayKnown(false);
+                event.setMonthKnown(true);
+                event.setYearKnown(true);
+            }
+            else if ( dateString.matches(MONTH_DAY_ONLY_REGEX) )
+            {
+                date = MONTH_DAY_ONLY_FORMAT.parse(dateString);
+                event.setDayKnown(true);
+                event.setMonthKnown(true);
+                event.setYearKnown(false);
+            }
+            else if ( dateString.matches(YEAR_ONLY_REGEX) )
+            {
+                date = YEAR_ONLY_FORMAT.parse(dateString);
+                event.setDayKnown(false);
+                event.setMonthKnown(false);
+                event.setYearKnown(false);
+            }
+            else
+            {
+                throw new ParseException(dateString, 0);
+            }
+        }
+        catch ( ParseException e )
+        {
+            StringBuilder sb = new StringBuilder(( e.getClass().getName() ));
+            sb.append(" Tried to process date string ");
+            sb.append(dateString);
+
+            LOG.log(Level.SEVERE, sb.toString(), e);
+        }
+
+        event.setDate(date);
+    }
+
     private void processEvent(Event event)
     {
-        String info = datePlace.restOf(nextLine);
-
         switch ( datePlace )
         {
             case DATE:
-                event.setDate(processDate(info));
+                processEventDate(event);
                 break;
             case PLACE:
-                Place place;
-
-                if ( em != null )
-                {
-                    //TODO
-                    TypedQuery<Place> placeQuery = em.createNamedQuery(City.FIND_BY_NAME, Place.class);
-                    placeQuery.setParameter("name", info);
-                    List<Place> placeList = placeQuery.getResultList();
-
-                    if ( placeList.isEmpty() )
-                    {
-                        place = placeConverter.getAsPlace(info);
-                    }
-                    else
-                    {
-                        place = placeList.get(0);
-                    }
-                }
-                else
-                {
-                    place = placeConverter.getAsPlace(info);
-                }
-
-                event.setPlace(place);
+                event.setPlace(processPlace());
                 break;
             case SOURCE:
 
@@ -244,15 +431,11 @@ public class GedcomImporter extends Importer
             case GENDER:
                 Gender gender;
 
-                if ( em != null )
-                    gender = em.find(Gender.class, info.charAt(0));
-                else
-                    gender = new Gender(info.charAt(0));
+                gender = em.find(Gender.class, info.charAt(0));
 
                 person.setGender(gender);
 
-                if ( em != null )
-                    em.persist(person);
+                em.persist(person);
 
                 personInfo = Mode.NONE;
 

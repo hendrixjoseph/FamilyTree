@@ -52,12 +52,9 @@ public abstract class Importer
     }
 
     /**
-     *
-     */
-    public abstract void processData();
-
-    /**
      * @param em
      */
     public abstract void processData(EntityManager em);
+
+    protected abstract void processData();
 }

@@ -12,6 +12,7 @@
 
 package edu.wright.hendrix11.familyTree.entity.place;
 
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -33,7 +34,7 @@ public class State extends Place
     public static final String FIND_ALL = "State.findAll";
     public static final String FIND_BY_NAME = "State.findByName";
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(name = "REGION_OF",
                joinColumns = @JoinColumn(name = "PLACE_ID"),
                inverseJoinColumns = @JoinColumn(name = "REGION_ID"))

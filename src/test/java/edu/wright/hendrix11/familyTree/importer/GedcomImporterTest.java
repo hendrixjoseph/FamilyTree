@@ -39,7 +39,7 @@ public class GedcomImporterTest
     @BeforeClass
     public static void setUpClass()
     {
-        emf = Persistence.createEntityManagerFactory("edu.wright.hendrix11.familyTree");
+        emf = Persistence.createEntityManagerFactory("edu.wright.hendrix11.familyTree.test");
     }
 
     @AfterClass
