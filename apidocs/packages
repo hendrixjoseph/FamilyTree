@@ -1,9 +1,10 @@
 edu.wright.hendrix11.familyTree.bean
 edu.wright.hendrix11.familyTree.converter
 edu.wright.hendrix11.familyTree.dataBean
-edu.wright.hendrix11.familyTree.entity
 edu.wright.hendrix11.familyTree.entity.compositeKey
+edu.wright.hendrix11.familyTree.entity
 edu.wright.hendrix11.familyTree.entity.event
+edu.wright.hendrix11.familyTree.entity.place
 edu.wright.hendrix11.familyTree.exporter
 edu.wright.hendrix11.familyTree.importer
 edu.wright.hendrix11.theme
