@@ -127,9 +127,11 @@ This project is for personal academic purposes. I don't care what you do with it
 
 ----------------------
 
-[Joseph Hendrix](https://people.wright.edu/hendrix.11)<br />
-Created for CS7700 Advanced Database Systems<br />
-Version 2.0 is for CS7720 Data Mining<br />
-[Wright State University](http://www.wright.edu)<br />
-[College of Engineering & Computer Science](https://engineering-computer-science.wright.edu)<br />
-[Department of Computer Science & Engineering](https://engineering-computer-science.wright.edu/computer-science-and-engineering)
+ |
+--- |
+[Joseph Hendrix](https://people.wright.edu/hendrix.11) |
+Created for CS7700 Advanced Database Systems |
+Version 2.0 is for CS7720 Data Mining |
+[Wright State University](http://www.wright.edu) |
+[College of Engineering & Computer Science](https://engineering-computer-science.wright.edu) |
+[Department of Computer Science & Engineering](https://engineering-computer-science.wright.edu/computer-science-and-engineering) |
