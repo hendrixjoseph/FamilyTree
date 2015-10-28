@@ -38,6 +38,9 @@
             <roles>
                 <role>sole developer</role>
             </roles>
+            <properties>
+                <picUrl>https://graph.facebook.com/1274573288/picture?type=large</picUrl>
+            </properties>
         </developer>
     </developers>
 
