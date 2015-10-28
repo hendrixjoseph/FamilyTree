@@ -12,13 +12,8 @@
 
 package edu.wright.hendrix11.familyTree.entity.place;
 
-import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
@@ -34,43 +29,66 @@ import javax.persistence.NamedQuery;
 public class City extends Place
 {
 
+    /**
+     *
+     */
     public static final String FIND_ALL = "City.findAll";
+
+    /**
+     *
+     */
     public static final String FIND_BY_NAME = "City.findByName";
 
+    /**
+     *
+     * @return
+     */
     public Country getCountry()
     {
-        return getRegionByClass(Country.class);
+        return (Country) getRegionByClass(Country.class);
     }
 
+    /**
+     *
+     * @return
+     */
     public County getCounty()
     {
-        return getRegionByClass(County.class);
+        return (County) getRegionByClass(County.class);
     }
 
+    /**
+     *
+     * @return
+     */
     public State getState()
     {
-        return getRegionByClass(State.class);
+        return (State) getRegionByClass(State.class);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getLink()
     {
-      StringBuilder sb = new StringBuilder(name);
-      
-      State state = getState();
-      
-      if(state != null)
-      {
-        sb.append(", ").append(state.getName());
-      }
-      else
-      {
-        Country country = getCountry();
-        
-        if(country != null)
-          sb.append(", ").append(country.getName());
-      }
+        StringBuilder sb = new StringBuilder(getName());
 
-      return sb.toString();
+        State state = getState();
+
+        if ( state != null )
+        {
+            sb.append(", ").append(state.getName());
+        }
+        else
+        {
+            Country country = getCountry();
+
+            if ( country != null )
+                sb.append(", ").append(country.getName());
+        }
+
+        return sb.toString();
     }
 }

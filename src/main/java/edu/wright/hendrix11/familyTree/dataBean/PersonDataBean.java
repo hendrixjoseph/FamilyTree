@@ -37,6 +37,10 @@ public class PersonDataBean extends AbstractDataBean<Person, Integer>
         initialize(em, Person.class);
     }
 
+    /**
+     *
+     * @return
+     */
     public Person findFirst()
     {
         TypedQuery<Person> personQuery = em.createNamedQuery(Person.FIND_FIRST, Person.class);

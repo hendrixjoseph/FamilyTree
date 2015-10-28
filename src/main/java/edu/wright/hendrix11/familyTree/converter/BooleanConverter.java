@@ -3,6 +3,10 @@ package edu.wright.hendrix11.familyTree.converter;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
+/**
+ *
+ * @author Joe
+ */
 @Converter(autoApply = true)
 public class BooleanConverter implements AttributeConverter<Boolean, Integer>
 {

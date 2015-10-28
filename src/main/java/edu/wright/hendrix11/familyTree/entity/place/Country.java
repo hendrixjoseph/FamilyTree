@@ -17,6 +17,10 @@ import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
+/**
+ *
+ * @author Joe
+ */
 @Entity
 @DiscriminatorValue(value = "1")
 @NamedQueries({
@@ -26,9 +30,20 @@ import javax.persistence.NamedQuery;
 public class Country extends Place
 {
 
+    /**
+     *
+     */
     public static final String FIND_ALL = "Country.findAll";
+
+    /**
+     *
+     */
     public static final String FIND_BY_NAME = "Country.findByName";
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getLink()
     {

@@ -22,6 +22,10 @@ import javax.inject.Named;
 
 import java.io.Serializable;
 
+/**
+ *
+ * @author Joe
+ */
 @Named
 @ViewScoped
 public class GenderBean extends AbstractBean<Gender> implements Serializable
@@ -30,6 +34,9 @@ public class GenderBean extends AbstractBean<Gender> implements Serializable
     @EJB
     GenderDataBean genderDataBean;
 
+    /**
+     *
+     */
     @Override
     @PostConstruct
     public void initialize()

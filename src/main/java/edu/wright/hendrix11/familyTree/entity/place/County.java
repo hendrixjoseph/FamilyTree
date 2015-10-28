@@ -12,16 +12,15 @@
 
 package edu.wright.hendrix11.familyTree.entity.place;
 
-import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
+/**
+ *
+ * @author Joe
+ */
 @Entity
 @DiscriminatorValue(value = "3")
 @NamedQueries({
@@ -31,31 +30,50 @@ import javax.persistence.NamedQuery;
 public class County extends Place
 {
 
+    /**
+     *
+     */
     public static final String FIND_ALL = "County.findAll";
+
+    /**
+     *
+     */
     public static final String FIND_BY_NAME = "County.findByName";
 
+    /**
+     *
+     * @return
+     */
     public Country getCountry()
     {
-        return getRegionByClass(Country.class);
+        return (Country) getRegionByClass(Country.class);
     }
 
+    /**
+     *
+     * @return
+     */
     public State getState()
     {
-        return getRegionByClass(State.class);
+        return (State) getRegionByClass(State.class);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getLink()
     {
-      StringBuilder sb = new StringBuilder(name);
-      
-      State state = getState();
-      
-      if(state != null)
-      {
-        sb.append(", ").append(state.getName());
-      }
+        StringBuilder sb = new StringBuilder(getName());
 
-      return sb.toString();
+        State state = getState();
+
+        if ( state != null )
+        {
+            sb.append(", ").append(state.getName());
+        }
+
+        return sb.toString();
     }
 }

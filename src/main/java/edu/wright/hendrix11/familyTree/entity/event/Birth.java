@@ -22,5 +22,9 @@ import javax.persistence.NamedQuery;
 @NamedQuery(name = Birth.FIND_ALL, query = "SELECT b FROM Birth b")
 public class Birth extends SinglePersonEvent
 {
+
+    /**
+     *
+     */
     public static final String FIND_ALL = "Birth.findAll";
 }

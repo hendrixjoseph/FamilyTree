@@ -52,6 +52,9 @@ import static javax.persistence.GenerationType.SEQUENCE;
 public class Person
 {
 
+    /**
+     *
+     */
     public static final String FIND_ALL = "Person.findAll";
     /**
      *

@@ -23,5 +23,8 @@ import javax.persistence.NamedQuery;
 public class Burial extends SinglePersonEvent
 {
 
+    /**
+     *
+     */
     public static final String FIND_ALL = "Burial.findAll";
 }

@@ -45,66 +45,118 @@ public abstract class Event
     @Column(name = "YEAR_KNOWN")
     private boolean yearKnown;
 
+    /**
+     *
+     * @return
+     */
     public Date getDate()
     {
         return date;
     }
 
+    /**
+     *
+     * @param date
+     */
     public void setDate(Date date)
     {
         this.date = date;
     }
 
+    /**
+     *
+     * @return
+     */
     public Place getPlace()
     {
         return place;
     }
 
+    /**
+     *
+     * @param place
+     */
     public void setPlace(Place place)
     {
         this.place = place;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isYearKnown()
     {
         return yearKnown;
     }
 
+    /**
+     *
+     * @param yearKnown
+     */
     public void setYearKnown(boolean yearKnown)
     {
         this.yearKnown = yearKnown;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isAbout()
     {
         return about;
     }
 
+    /**
+     *
+     * @param about
+     */
     public void setAbout(boolean about)
     {
         this.about = about;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isDayKnown()
     {
         return dayKnown;
     }
 
+    /**
+     *
+     * @param dayKnown
+     */
     public void setDayKnown(boolean dayKnown)
     {
         this.dayKnown = dayKnown;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isMonthKnown()
     {
         return monthKnown;
     }
 
+    /**
+     *
+     * @param monthKnown
+     */
     public void setMonthKnown(boolean monthKnown)
     {
         this.monthKnown = monthKnown;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDateString()
     {
         return "";

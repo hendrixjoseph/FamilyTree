@@ -31,6 +31,10 @@ import javax.persistence.NamedQuery;
 @NamedQuery(name = Marriage.FIND_ALL, query = "SELECT m FROM Marriage m")
 public class Marriage extends Event
 {
+
+    /**
+     *
+     */
     public static final String FIND_ALL = "Marriage.findAll";
 
     @Id

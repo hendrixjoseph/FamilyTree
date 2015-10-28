@@ -26,8 +26,16 @@ import javax.faces.convert.FacesConverter;
 public class PlaceConverter implements Converter
 {
 
+    /**
+     *
+     */
     public static final String NAME = "hendrix11.PlaceConverter";
 
+    /**
+     *
+     * @param value
+     * @return
+     */
     public Place getAsPlace(String value)
     {
         return (Place) getAsObject(null, null, value);

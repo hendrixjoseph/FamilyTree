@@ -12,14 +12,19 @@
 
 package edu.wright.hendrix11.familyTree.entity.place;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
@@ -39,7 +44,14 @@ import static javax.persistence.GenerationType.SEQUENCE;
 public abstract class Place
 {
 
+    /**
+     *
+     */
     public static final String FIND_ALL = "Place.findAll";
+
+    /**
+     *
+     */
     public static final String FIND_BY_NAME = "Place.findByName";
 
     @Id
@@ -48,74 +60,107 @@ public abstract class Place
     private int id;
     @Column(unique = true, nullable = false)
     private String name;
-      @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(name = "REGION_OF",
                joinColumns = @JoinColumn(name = "PLACE_ID"),
                inverseJoinColumns = @JoinColumn(name = "REGION_ID"))
     private Place region;
 
+    /**
+     *
+     * @return
+     */
     public int getId()
     {
         return id;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(int id)
     {
         this.id = id;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName()
     {
         return name;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name)
     {
         this.name = name;
     }
-    
+
+    /**
+     *
+     * @return
+     */
     public Place getRegion()
     {
-      return region;
-    }
-    
-    public void setRegion(Place region)
-    {
-      this.region = region;
+        return region;
     }
 
+    /**
+     *
+     * @param region
+     */
+    public void setRegion(Place region)
+    {
+        this.region = region;
+    }
+
+    /**
+     *
+     * @return
+     */
     public abstract String getLink();
-    
+
+    /**
+     *
+     * @param clazz
+     * @return
+     */
     protected Place getRegionByClass(Class<? extends Place> clazz)
     {
-      Place region = this.region;
-      
-      while(region != null)
-      {
-        if(clazz.equals(region.getClass()))
+        Place region = this.region;
+
+        while ( region != null )
         {
-          return region;
+            if ( clazz.equals(region.getClass()) )
+            {
+                return region;
+            }
+
+            region = region.getRegion();
         }
-        
-        region = region.getRegion();
-      }
-      
-      return null;
+
+        return null;
     }
-    
+
     @Override
     public String toString()
     {
-      StringBuilder sb = new StringBuilder(name);
-      
-      Place region = this.region;
-      
-      while(region != null)
-      {
-        sb.append(", ").append(region.getName();
-        region = region.getRegion();
-      }
-      
-      return sb.toString();
+        StringBuilder sb = new StringBuilder(name);
+
+        Place region = this.region;
+
+        while ( region != null )
+        {
+            sb.append(", ").append(region.getName());
+            region = region.getRegion();
+        }
+
+        return sb.toString();
     }
 }

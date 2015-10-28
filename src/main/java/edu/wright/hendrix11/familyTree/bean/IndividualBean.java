@@ -95,16 +95,27 @@ public class IndividualBean implements Serializable
         this.person = person;
     }
 
+    /**
+     *
+     * @return
+     */
     public Person getTempPerson()
     {
         return tempPerson;
     }
 
+    /**
+     *
+     * @param tempPerson
+     */
     public void setTempPerson(Person tempPerson)
     {
         this.tempPerson = tempPerson;
     }
 
+    /**
+     *
+     */
     public void updatePerson()
     {
         LOG.log(Level.SEVERE, "Still developing!! " + tempPerson.getName());

@@ -12,16 +12,15 @@
 
 package edu.wright.hendrix11.familyTree.entity.place;
 
-import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
+/**
+ *
+ * @author Joe
+ */
 @Entity
 @DiscriminatorValue(value = "2")
 @NamedQueries({
@@ -31,14 +30,29 @@ import javax.persistence.NamedQuery;
 public class State extends Place
 {
 
+    /**
+     *
+     */
     public static final String FIND_ALL = "State.findAll";
+
+    /**
+     *
+     */
     public static final String FIND_BY_NAME = "State.findByName";
 
+    /**
+     *
+     * @return
+     */
     public Country getCountry()
     {
-        return getRegionByClass(Country.class);
+        return (Country) getRegionByClass(Country.class);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getLink()
     {

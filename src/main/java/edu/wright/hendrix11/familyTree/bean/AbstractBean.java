@@ -18,34 +18,58 @@ import java.util.List;
 
 /**
  * @author Joe Hendrix
+ * @param <E>
  */
 public abstract class AbstractBean<E>
 {
 
     private AbstractDataBean<E, ?> dataBean;
 
+    /**
+     *
+     */
     public abstract void initialize();
 
+    /**
+     *
+     * @param dataBean
+     */
     protected void initialize(AbstractDataBean<E, ?> dataBean)
     {
         this.dataBean = dataBean;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<E> getEntities()
     {
         return dataBean.list();
     }
 
+    /**
+     *
+     * @return
+     */
     public int getPage()
     {
         return dataBean.getPage();
     }
 
+    /**
+     *
+     * @param page
+     */
     public void setPage(int page)
     {
         dataBean.setPage(page);
     }
 
+    /**
+     *
+     * @return
+     */
     public int getNumPages()
     {
         return dataBean.getNumPages();

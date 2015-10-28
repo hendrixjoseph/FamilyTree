@@ -20,6 +20,8 @@ import java.util.List;
 
 /**
  * @author Joe Hendrix <hendrix.11@wright.edu>
+ * @param <E>
+ * @param <K>
  */
 public abstract class AbstractDataBean<E, K>
 {
@@ -36,6 +38,11 @@ public abstract class AbstractDataBean<E, K>
      */
     public abstract void initialize();
 
+    /**
+     *
+     * @param em
+     * @param clazz
+     */
     protected void initialize(EntityManager em, Class<E> clazz)
     {
         if ( !clazz.isAnnotationPresent(Entity.class) )
@@ -56,16 +63,28 @@ public abstract class AbstractDataBean<E, K>
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public int getPage()
     {
         return page;
     }
 
+    /**
+     *
+     * @param page
+     */
     public void setPage(int page)
     {
         this.page = page;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getNumPages()
     {
         TypedQuery<E> query = em.createNamedQuery(findAllQuery, clazz);
@@ -74,27 +93,49 @@ public abstract class AbstractDataBean<E, K>
         return (int) Math.ceil(size / RECORDS_PER_PAGE);
     }
 
+    /**
+     *
+     * @return
+     */
     public List<E> list()
     {
         TypedQuery<E> query = em.createNamedQuery(findAllQuery, clazz);
         return query.setFirstResult(( page - 1 ) * RECORDS_PER_PAGE).setMaxResults(RECORDS_PER_PAGE).getResultList();
     }
 
+    /**
+     *
+     * @param key
+     * @return
+     */
     public E find(K key)
     {
         return em.find(clazz, key);
     }
 
+    /**
+     *
+     * @param e
+     * @return
+     */
     public K save(E e)
     {
         return null;
     }
 
+    /**
+     *
+     * @param e
+     */
     public void update(E e)
     {
         em.merge(e);
     }
 
+    /**
+     *
+     * @param e
+     */
     public void delete(E e)
     {
 

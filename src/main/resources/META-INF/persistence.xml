@@ -17,5 +17,8 @@
     <persistence-unit name="edu.wright.hendrix11.familyTree" transaction-type="JTA">
         <jta-data-source>jdbc/FamilyTree</jta-data-source>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+            <property name="eclipselink.weaving" value="static" />
+        </properties>
     </persistence-unit>
 </persistence>

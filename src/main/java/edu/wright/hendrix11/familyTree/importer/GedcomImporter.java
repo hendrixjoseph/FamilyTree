@@ -76,21 +76,17 @@ public class GedcomImporter extends Importer
     }
 
     /**
-     * @param em
+     * @param entityManager
      */
     @Override
-    public void processData(EntityManager em)
+    public void processData(EntityManager entityManager)
     {
-        this.em = em;
-        em.getTransaction().begin();
+        this.em = entityManager;
+        entityManager.getTransaction().begin();
         processData();
-        em.getTransaction().commit();
+        entityManager.getTransaction().commit();
     }
 
-    /**
-     *
-     *
-     */
     @Override
     protected void processData()
     {
@@ -159,6 +155,7 @@ public class GedcomImporter extends Importer
                                     marriage = new Marriage();
                                     marriage.setHusband(husband);
                                     marriage.setWife(wife);
+                                    em.persist(marriage);
                                 }
 
                                 if ( !marriages.contains(marriage) )
@@ -274,6 +271,11 @@ public class GedcomImporter extends Importer
         State state;
         Country country;
 
+        for(int i = 0; i < info.length; i++)
+        {
+            info[i] = info[i].trim();
+        }
+
         if ( info.length == 1 )
         {
             if ( info[0].contains("County") )
@@ -287,7 +289,7 @@ public class GedcomImporter extends Importer
         }
         else if ( info.length == 2 )
         {
-            if ( info[1].equals("Mexico") )
+            if ( "Mexico".equals(info[1]) )
             {
                 city = getCity(info[0]);
 
@@ -391,10 +393,9 @@ public class GedcomImporter extends Importer
         catch ( ParseException e )
         {
             StringBuilder sb = new StringBuilder(( e.getClass().getName() ));
-            sb.append(" Tried to process date string ");
-            sb.append(dateString);
+            sb.append(e.getMessage());
 
-            LOG.log(Level.SEVERE, sb.toString(), e);
+            LOG.log(Level.SEVERE, sb.toString());
         }
 
         event.setDate(date);
