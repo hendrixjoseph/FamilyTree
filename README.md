@@ -1,15 +1,7 @@
 <!-- 
   When copying contents to index.twiki, do the following:
-  Replace "Readme Table of Contents" with "Table of Contents"
-  Replace contents of Table of Contents with %TOC%
-  Replace # with +
-  Replace (\++) with ---\1
-  Replace ` with =
+  Remove table of contents
   Replace: ]\(([^:http:#]) with ](https://github.com/hendrixjoseph/FamilyTree/blob/master/\1
-  Replace \[(.*?)]\((.*?)\) with [[\2][\1]]
-  Remove ( \|){2,}
-  Remove -+[ \|]* -+
-  Replace (.*\|.*) with | \1 |
 -->
 
 # FamilyTree
