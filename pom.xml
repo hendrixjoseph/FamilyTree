@@ -147,6 +147,19 @@
                         </fileset>
                     </filesets>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>clean-site</id>
+                        <configuration>
+                            <failOnError>false</failOnError>
+                            <excludeDefaultDirectories>false</excludeDefaultDirectories>
+                        </configuration>
+                        <phase>pre-site</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
