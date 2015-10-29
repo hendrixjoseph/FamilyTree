@@ -58,13 +58,13 @@
                 <p:outputLabel value="Gender:" />
                 <p:outputLabel value="#{individualBean.person.gender}" />
                 <p:outputLabel value="Place of birth:" />
-                <hendrix11:googleMapLink placeName="#{individualBean.person.birth.place}" />
+                <hendrix11:googleMapLink place="#{individualBean.person.birth.place}" />
                 <p:outputLabel value="Date of birth:" />
-                <hendrix11:dateLabel date="#{individualBean.person.birth.date}" />
+                <p:outputLabel value="#{individualBean.person.birth.dateString}" />
                 <p:outputLabel value="Place of death:" />
-                <hendrix11:googleMapLink placeName="#{individualBean.person.death.place}" />
+                <hendrix11:googleMapLink place="#{individualBean.person.death.place}" />
                 <p:outputLabel value="Date of death:" />
-                <hendrix11:dateLabel date="#{individualBean.person.death.date}" />
+                <p:outputLabel value="#{individualBean.person.death.dateString}" />
             </p:panelGrid>
         </p:layoutUnit>
 

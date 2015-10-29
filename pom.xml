@@ -185,13 +185,13 @@
                             <skipMerge>true</skipMerge>
                             <nosuffix>true</nosuffix>
                             <cssSourceDir>
-                                resources/css
+                                WEB-INF/resource/css
                             </cssSourceDir>
                             <cssSourceIncludes>
                                 <cssSourceInclude>*.css</cssSourceInclude>
                             </cssSourceIncludes>
                             <!-- jsSourceDir>
-                                resources/javascript
+                                WEB-INF/resources/javascript
                             </jsSourceDir>
                             <jsSourceIncludes>
                                 <jsSourceInclude>*.js</jsSourceInclude>

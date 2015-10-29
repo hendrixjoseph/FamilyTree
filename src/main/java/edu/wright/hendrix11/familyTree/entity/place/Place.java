@@ -29,6 +29,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static javax.persistence.GenerationType.SEQUENCE;
 
 /**
@@ -120,6 +123,21 @@ public abstract class Place
         this.region = region;
     }
 
+    public List<Place> getPlaces()
+    {
+        List<Place> places = new ArrayList<>();
+
+        Place place = this;
+
+        while ( place != null )
+        {
+            places.add(place);
+            place = place.getRegion();
+        }
+
+        return places;
+    }
+
     /**
      *
      * @return
@@ -129,6 +147,7 @@ public abstract class Place
     /**
      *
      * @param clazz
+     *
      * @return
      */
     protected Place getRegionByClass(Class<? extends Place> clazz)
@@ -137,10 +156,8 @@ public abstract class Place
 
         while ( region != null )
         {
-            if ( clazz.equals(region.getClass()) )
-            {
+            if(clazz.equals(region.getClass()))
                 return region;
-            }
 
             region = region.getRegion();
         }

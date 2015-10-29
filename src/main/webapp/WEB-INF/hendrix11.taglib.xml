@@ -45,18 +45,9 @@
         <tag-name>googleMapLink</tag-name>
         <source>resource/tag/googleMapLink.xhtml</source>
         <attribute>
-            <name>placeName</name>
+            <name>place</name>
             <required>true</required>
-            <type>java.lang.String</type>
-        </attribute>
-    </tag>
-    <tag>
-        <tag-name>dateLabel</tag-name>
-        <source>resource/tag/dateLabel.xhtml</source>
-        <attribute>
-            <name>date</name>
-            <required>true</required>
-            <type>java.util.Date</type>
+            <type>edu.wright.hendrix11.familyTree.entity.place.Place</type>
         </attribute>
     </tag>
     <tag>

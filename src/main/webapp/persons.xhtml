@@ -62,19 +62,19 @@
                 </p:column>
 
                 <p:column headerText="Birth Place">
-                    <hendrix11:googleMapLink placeName="#{person.birth.place}" />
+                    <hendrix11:googleMapLink place="#{person.birth.place}" />
                 </p:column>
 
                 <p:column headerText="Birthdate">
-                    <hendrix11:dateLabel date="#{person.birth.date}" />
+                    <p:outputLabel value="#{person.birth.dateString}" />
                 </p:column>
 
                 <p:column headerText="Death Place">
-                    <hendrix11:googleMapLink placeName="#{person.death.place}" />
+                    <hendrix11:googleMapLink place="#{person.death.place}" />
                 </p:column>
 
                 <p:column headerText="Death Date">
-                    <hendrix11:dateLabel date="#{person.death.date}" />
+                    <p:outputLabel value="#{person.death.dateString}" />
                 </p:column>
 
                 <f:facet name="footer">

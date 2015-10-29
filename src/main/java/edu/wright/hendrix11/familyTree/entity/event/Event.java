@@ -21,6 +21,8 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static javax.persistence.CascadeType.ALL;
@@ -31,6 +33,9 @@ import static javax.persistence.CascadeType.ALL;
 @MappedSuperclass
 public abstract class Event
 {
+    private static final DateFormat MONTH_FORMAT = new SimpleDateFormat("MMM");
+    private static final DateFormat DAY_FORMAT = new SimpleDateFormat("d");
+    private static final DateFormat YEAR_FORMAT = new SimpleDateFormat("yyyy");
     private boolean about;
     @Temporal(TemporalType.DATE)
     @Column(name = "ANNIVERSARY")
@@ -159,6 +164,32 @@ public abstract class Event
      */
     public String getDateString()
     {
-        return "";
+        StringBuilder sb = new StringBuilder();
+
+        if(date != null)
+        {
+            if(about)
+                sb.append("About ");
+
+            if ( monthKnown )
+                sb.append(MONTH_FORMAT.format(date));
+
+            if(monthKnown && dayKnown)
+                sb.append(" ");
+
+            if(monthKnown && !dayKnown && yearKnown)
+                sb.append(", ");
+
+            if(dayKnown)
+                sb.append(DAY_FORMAT.format(date));
+
+            if(dayKnown && yearKnown)
+                sb.append(", ");
+
+            if(yearKnown)
+                sb.append(YEAR_FORMAT.format(date));
+        }
+
+        return sb.toString();
     }
 }

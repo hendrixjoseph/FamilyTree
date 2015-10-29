@@ -201,24 +201,44 @@ public class GedcomImporter extends Importer
         return country;
     }
 
-    private County getCounty(String name)
+    private List<County> getCounty(String name)
     {
         TypedQuery<County> countyQuery = em.createNamedQuery(County.FIND_BY_NAME, County.class);
         List<County> countyList = countyQuery.setParameter("name", name).getResultList();
-        County county;
 
         if ( countyList.isEmpty() )
         {
-            county = new County();
+            County county = new County();
             county.setName(name);
             em.persist(county);
-        }
-        else
-        {
-            county = countyList.get(0);
+            countyList.add(county);
         }
 
-        return county;
+        return countyList;
+    }
+
+    private County getCounty(String name, String stateName)
+    {
+        List<County> countyList = getCounty(name);
+
+        for(County c : countyList)
+        {
+            State s = c.getState();
+
+            if(s != null)
+            {
+                if(s.getName().equals(stateName))
+                    return c;
+            }
+            else
+            {
+                s = getState(stateName);
+                c.setRegion(s);
+                return c;
+            }
+        }
+
+        return countyList.get(0);
     }
 
     private City getCity(String name)
@@ -252,6 +272,7 @@ public class GedcomImporter extends Importer
         {
             state = new State();
             state.setName(name);
+            state.setRegion(getCountry("USA"));
             em.persist(state);
         }
         else
@@ -280,16 +301,20 @@ public class GedcomImporter extends Importer
         {
             if ( info[0].contains("County") )
             {
-                return getCounty(info[0]);
+                return getCounty(info[0]).get(0);
+            }
+            else if( "USA".equals(info[0]))
+            {
+                return getCountry(info[0]);
             }
             else
             {
-                return getCity(info[0]);
+                return getState(info[0]);
             }
         }
         else if ( info.length == 2 )
         {
-            if ( "Mexico".equals(info[1]) )
+            if ( "Mexico".equals(info[1]) || "Germany".equals(info[1]) )
             {
                 city = getCity(info[0]);
 
@@ -304,15 +329,7 @@ public class GedcomImporter extends Importer
 
             if ( info[0].contains("County") )
             {
-                county = getCounty(info[0]);
-
-                if ( county.getState() == null )
-                {
-                    state = getState(info[1]);
-                    county.setRegion(state);
-                }
-
-                return county;
+                return getCounty(info[0], info[1]);
             }
             else
             {
@@ -330,17 +347,14 @@ public class GedcomImporter extends Importer
         else if ( info.length == 3 )
         {
             city = getCity(info[0]);
-            county = getCounty(info[1]);
-            state = getState(info[2]);
-
+            county = getCounty(info[1],info[2]);
             city.setRegion(county);
-            county.setRegion(state);
 
             return city;
         }
         else // length == 4
         {
-            //TODO
+            LOG.log(Level.SEVERE, "Places of length > 3 not implemented yet: {0)", nextLine);
             return null;
         }
     }

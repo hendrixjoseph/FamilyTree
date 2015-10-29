@@ -14,7 +14,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:hendrix11="http://hendrix11.wright.edu/facelets"
                 xmlns:p="http://primefaces.org/ui">
-    <p:dataTable var="child" value="#{children}">
+    <p:dataTable var="child" value="#{children}" scrollable="true" scrollHeight="90%">
         <p:column headerText="Name">
             <hendrix11:personLink person="#{child}" />
         </p:column>
@@ -24,19 +24,19 @@
         </p:column>
 
         <p:column headerText="Place of Birth">
-            <hendrix11:googleMapLink placeName="#{child.birth.place}" />
+            <hendrix11:googleMapLink place="#{child.birth.place}" />
         </p:column>
 
         <p:column headerText="Date of Birth">
-            <hendrix11:dateLabel date="#{child.birth.date}" />
+            <p:outputLabel value="#{child.birth.dateString}" />
         </p:column>
 
         <p:column headerText="Place of Death">
-            <hendrix11:googleMapLink placeName="#{child.death.place}" />
+            <hendrix11:googleMapLink place="#{child.death.place}" />
         </p:column>
 
         <p:column headerText="Date of Death">
-            <hendrix11:dateLabel date="#{child.death.date}" />
+            <p:outputLabel value="#{child.death.dateString}" />
         </p:column>
     </p:dataTable>
 </ui:composition>

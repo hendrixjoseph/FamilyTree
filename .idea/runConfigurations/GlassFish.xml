@@ -1,6 +1,5 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="GlassFish" type="GlassfishConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="GlassFish 4.1.0" ALTERNATIVE_JRE_ENABLED="false" ALTERNATIVE_JRE_PATH="">
-    <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
     <option name="UPDATING_POLICY" value="restart-server" />
     <deployment>
       <artifact name="familyTree:war exploded">
@@ -70,9 +69,6 @@
     <method>
       <option name="Make" enabled="false" />
       <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="clean package -DskipTests" />
-      <option name="BuildArtifacts" enabled="true">
-        <artifact name="familyTree:war exploded" />
-      </option>
     </method>
   </configuration>
 </component>
