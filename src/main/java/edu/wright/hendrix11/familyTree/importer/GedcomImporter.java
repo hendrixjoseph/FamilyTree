@@ -61,7 +61,6 @@ public class GedcomImporter extends Importer
     private Mode familyInfo = Mode.NONE;
     private Mode inserting = Mode.NONE;
     private List<Marriage> marriages = new ArrayList<>();
-    private String nextLine = "";
     private HashMap<String, Person> people = new HashMap<>();
     private Mode personInfo = Mode.NONE;
 
@@ -73,18 +72,6 @@ public class GedcomImporter extends Importer
     public GedcomImporter(String fileName) throws FileNotFoundException
     {
         super(fileName);
-    }
-
-    /**
-     * @param entityManager
-     */
-    @Override
-    public void processData(EntityManager entityManager)
-    {
-        this.em = entityManager;
-        entityManager.getTransaction().begin();
-        processData();
-        entityManager.getTransaction().commit();
     }
 
     @Override
@@ -104,6 +91,8 @@ public class GedcomImporter extends Importer
 
             while ( ( nextLine = in.readLine() ) != null )
             {
+                lineNumber = in.getLineNumber();
+                
                 inserting = inserting.getInserting(nextLine);
                 personInfo = personInfo.getPersonInfoType(nextLine);
                 familyInfo = familyInfo.getFamilyInfoType(nextLine);
@@ -168,13 +157,13 @@ public class GedcomImporter extends Importer
                         }
                         break;
                     default:
-                        // Do nothing
+                        LOG.log(Level.INFO, "Line " + lineNumber + " not read: " + nextLine);
                 }
             }
         }
         catch ( IOException e )
         {
-            LOG.log(Level.SEVERE, e.getClass().getName(), e);
+            LOG.log(Level.SEVERE, e.getMessage(), e);
         }
 
         LOG.log(Level.INFO, "Done! {0} people read in!", people.size());
@@ -408,6 +397,7 @@ public class GedcomImporter extends Importer
         {
             StringBuilder sb = new StringBuilder(( e.getClass().getName() ));
             sb.append(e.getMessage());
+            sb.append(" on line ").append(lineNumber).append(".");
 
             LOG.log(Level.SEVERE, sb.toString());
         }
@@ -472,7 +462,7 @@ public class GedcomImporter extends Importer
                 processEvent(person.getDeath());
                 break;
             default:
-                // Do nothing
+                LOG.log(Level.INFO, "Line " + lineNumber + " not read: " + nextLine);
         }
 
     }
