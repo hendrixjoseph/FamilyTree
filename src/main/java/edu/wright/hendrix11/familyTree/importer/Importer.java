@@ -23,15 +23,11 @@ import java.io.FileReader;
 public abstract class Importer
 {
 
-    /**
-     *
-     */
     protected FileReader file;
-
-    /**
-     *
-     */
     protected EntityManager em;
+    protected String nextLine = "";
+    protected int lineNumber;
+    
 
     /**
      * @param fileName
@@ -52,9 +48,15 @@ public abstract class Importer
     }
 
     /**
-     * @param em
+     * @param entityManager
      */
-    public abstract void processData(EntityManager em);
+    public void processData(EntityManager entityManager)
+    {
+        this.em = entityManager;
+        entityManager.getTransaction().begin();
+        processData();
+        entityManager.getTransaction().commit();
+    }
 
     protected abstract void processData();
 }
