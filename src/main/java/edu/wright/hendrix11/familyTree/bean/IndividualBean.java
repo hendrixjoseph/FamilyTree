@@ -96,7 +96,6 @@ public class IndividualBean implements Serializable
     }
 
     /**
-     *
      * @return
      */
     public Person getTempPerson()
@@ -105,7 +104,6 @@ public class IndividualBean implements Serializable
     }
 
     /**
-     *
      * @param tempPerson
      */
     public void setTempPerson(Person tempPerson)

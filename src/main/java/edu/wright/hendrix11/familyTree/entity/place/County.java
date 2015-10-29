@@ -18,7 +18,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 /**
- *
  * @author Joe
  */
 @Entity
@@ -41,7 +40,6 @@ public class County extends Place
     public static final String FIND_BY_NAME = "County.findByName";
 
     /**
-     *
      * @return
      */
     public Country getCountry()
@@ -50,7 +48,6 @@ public class County extends Place
     }
 
     /**
-     *
      * @return
      */
     public State getState()
@@ -59,7 +56,6 @@ public class County extends Place
     }
 
     /**
-     *
      * @return
      */
     @Override

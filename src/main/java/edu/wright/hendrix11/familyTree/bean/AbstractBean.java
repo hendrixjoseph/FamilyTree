@@ -17,8 +17,9 @@ import edu.wright.hendrix11.familyTree.dataBean.AbstractDataBean;
 import java.util.List;
 
 /**
- * @author Joe Hendrix
  * @param <E>
+ *
+ * @author Joe Hendrix
  */
 public abstract class AbstractBean<E>
 {
@@ -31,7 +32,6 @@ public abstract class AbstractBean<E>
     public abstract void initialize();
 
     /**
-     *
      * @param dataBean
      */
     protected void initialize(AbstractDataBean<E, ?> dataBean)
@@ -40,7 +40,6 @@ public abstract class AbstractBean<E>
     }
 
     /**
-     *
      * @return
      */
     public List<E> getEntities()
@@ -49,7 +48,6 @@ public abstract class AbstractBean<E>
     }
 
     /**
-     *
      * @return
      */
     public int getPage()
@@ -58,7 +56,6 @@ public abstract class AbstractBean<E>
     }
 
     /**
-     *
      * @param page
      */
     public void setPage(int page)
@@ -67,7 +64,6 @@ public abstract class AbstractBean<E>
     }
 
     /**
-     *
      * @return
      */
     public int getNumPages()

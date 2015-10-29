@@ -32,8 +32,8 @@ public class PlaceConverter implements Converter
     public static final String NAME = "hendrix11.PlaceConverter";
 
     /**
-     *
      * @param value
+     *
      * @return
      */
     public Place getAsPlace(String value)

@@ -19,9 +19,10 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 /**
- * @author Joe Hendrix <hendrix.11@wright.edu>
  * @param <E>
  * @param <K>
+ *
+ * @author Joe Hendrix <hendrix.11@wright.edu>
  */
 public abstract class AbstractDataBean<E, K>
 {
@@ -39,7 +40,6 @@ public abstract class AbstractDataBean<E, K>
     public abstract void initialize();
 
     /**
-     *
      * @param em
      * @param clazz
      */
@@ -64,7 +64,6 @@ public abstract class AbstractDataBean<E, K>
     }
 
     /**
-     *
      * @return
      */
     public int getPage()
@@ -73,7 +72,6 @@ public abstract class AbstractDataBean<E, K>
     }
 
     /**
-     *
      * @param page
      */
     public void setPage(int page)
@@ -82,7 +80,6 @@ public abstract class AbstractDataBean<E, K>
     }
 
     /**
-     *
      * @return
      */
     public int getNumPages()
@@ -94,7 +91,6 @@ public abstract class AbstractDataBean<E, K>
     }
 
     /**
-     *
      * @return
      */
     public List<E> list()
@@ -104,8 +100,8 @@ public abstract class AbstractDataBean<E, K>
     }
 
     /**
-     *
      * @param key
+     *
      * @return
      */
     public E find(K key)
@@ -114,8 +110,8 @@ public abstract class AbstractDataBean<E, K>
     }
 
     /**
-     *
      * @param e
+     *
      * @return
      */
     public K save(E e)
@@ -124,7 +120,6 @@ public abstract class AbstractDataBean<E, K>
     }
 
     /**
-     *
      * @param e
      */
     public void update(E e)
@@ -133,7 +128,6 @@ public abstract class AbstractDataBean<E, K>
     }
 
     /**
-     *
      * @param e
      */
     public void delete(E e)

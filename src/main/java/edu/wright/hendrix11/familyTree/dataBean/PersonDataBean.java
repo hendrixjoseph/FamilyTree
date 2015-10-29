@@ -38,7 +38,6 @@ public class PersonDataBean extends AbstractDataBean<Person, Integer>
     }
 
     /**
-     *
      * @return
      */
     public Person findFirst()

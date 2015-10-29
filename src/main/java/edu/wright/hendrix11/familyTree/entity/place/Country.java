@@ -18,7 +18,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 /**
- *
  * @author Joe
  */
 @Entity
@@ -41,7 +40,6 @@ public class Country extends Place
     public static final String FIND_BY_NAME = "Country.findByName";
 
     /**
-     *
      * @return
      */
     @Override

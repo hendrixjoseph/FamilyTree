@@ -70,7 +70,6 @@ public abstract class Place
     private Place region;
 
     /**
-     *
      * @return
      */
     public int getId()
@@ -79,7 +78,6 @@ public abstract class Place
     }
 
     /**
-     *
      * @param id
      */
     public void setId(int id)
@@ -88,7 +86,6 @@ public abstract class Place
     }
 
     /**
-     *
      * @return
      */
     public String getName()
@@ -97,7 +94,6 @@ public abstract class Place
     }
 
     /**
-     *
      * @param name
      */
     public void setName(String name)
@@ -106,7 +102,6 @@ public abstract class Place
     }
 
     /**
-     *
      * @return
      */
     public Place getRegion()
@@ -115,7 +110,6 @@ public abstract class Place
     }
 
     /**
-     *
      * @param region
      */
     public void setRegion(Place region)
@@ -139,13 +133,11 @@ public abstract class Place
     }
 
     /**
-     *
      * @return
      */
     public abstract String getLink();
 
     /**
-     *
      * @param clazz
      *
      * @return
@@ -156,7 +148,7 @@ public abstract class Place
 
         while ( region != null )
         {
-            if(clazz.equals(region.getClass()))
+            if ( clazz.equals(region.getClass()) )
                 return region;
 
             region = region.getRegion();

@@ -40,7 +40,6 @@ public class City extends Place
     public static final String FIND_BY_NAME = "City.findByName";
 
     /**
-     *
      * @return
      */
     public Country getCountry()
@@ -49,7 +48,6 @@ public class City extends Place
     }
 
     /**
-     *
      * @return
      */
     public County getCounty()
@@ -58,7 +56,6 @@ public class City extends Place
     }
 
     /**
-     *
      * @return
      */
     public State getState()
@@ -67,7 +64,6 @@ public class City extends Place
     }
 
     /**
-     *
      * @return
      */
     @Override

@@ -27,7 +27,6 @@ public abstract class Importer
     protected EntityManager em;
     protected String nextLine = "";
     protected int lineNumber;
-    
 
     /**
      * @param fileName

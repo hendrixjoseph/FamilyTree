@@ -51,7 +51,6 @@ public abstract class Event
     private boolean yearKnown;
 
     /**
-     *
      * @return
      */
     public Date getDate()
@@ -60,7 +59,6 @@ public abstract class Event
     }
 
     /**
-     *
      * @param date
      */
     public void setDate(Date date)
@@ -69,7 +67,6 @@ public abstract class Event
     }
 
     /**
-     *
      * @return
      */
     public Place getPlace()
@@ -78,7 +75,6 @@ public abstract class Event
     }
 
     /**
-     *
      * @param place
      */
     public void setPlace(Place place)
@@ -87,7 +83,6 @@ public abstract class Event
     }
 
     /**
-     *
      * @return
      */
     public boolean isYearKnown()
@@ -96,7 +91,6 @@ public abstract class Event
     }
 
     /**
-     *
      * @param yearKnown
      */
     public void setYearKnown(boolean yearKnown)
@@ -105,7 +99,6 @@ public abstract class Event
     }
 
     /**
-     *
      * @return
      */
     public boolean isAbout()
@@ -114,7 +107,6 @@ public abstract class Event
     }
 
     /**
-     *
      * @param about
      */
     public void setAbout(boolean about)
@@ -123,7 +115,6 @@ public abstract class Event
     }
 
     /**
-     *
      * @return
      */
     public boolean isDayKnown()
@@ -132,7 +123,6 @@ public abstract class Event
     }
 
     /**
-     *
      * @param dayKnown
      */
     public void setDayKnown(boolean dayKnown)
@@ -141,7 +131,6 @@ public abstract class Event
     }
 
     /**
-     *
      * @return
      */
     public boolean isMonthKnown()
@@ -150,7 +139,6 @@ public abstract class Event
     }
 
     /**
-     *
      * @param monthKnown
      */
     public void setMonthKnown(boolean monthKnown)
@@ -159,34 +147,33 @@ public abstract class Event
     }
 
     /**
-     *
      * @return
      */
     public String getDateString()
     {
         StringBuilder sb = new StringBuilder();
 
-        if(date != null)
+        if ( date != null )
         {
-            if(about)
+            if ( about )
                 sb.append("About ");
 
             if ( monthKnown )
                 sb.append(MONTH_FORMAT.format(date));
 
-            if(monthKnown && dayKnown)
+            if ( monthKnown && dayKnown )
                 sb.append(" ");
 
-            if(monthKnown && !dayKnown && yearKnown)
+            if ( monthKnown && !dayKnown && yearKnown )
                 sb.append(", ");
 
-            if(dayKnown)
+            if ( dayKnown )
                 sb.append(DAY_FORMAT.format(date));
 
-            if(dayKnown && yearKnown)
+            if ( dayKnown && yearKnown )
                 sb.append(", ");
 
-            if(yearKnown)
+            if ( yearKnown )
                 sb.append(YEAR_FORMAT.format(date));
         }
 

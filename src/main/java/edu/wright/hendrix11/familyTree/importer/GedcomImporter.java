@@ -24,7 +24,6 @@ import edu.wright.hendrix11.familyTree.entity.place.County;
 import edu.wright.hendrix11.familyTree.entity.place.Place;
 import edu.wright.hendrix11.familyTree.entity.place.State;
 
-import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import java.io.FileNotFoundException;
@@ -92,7 +91,7 @@ public class GedcomImporter extends Importer
             while ( ( nextLine = in.readLine() ) != null )
             {
                 lineNumber = in.getLineNumber();
-                
+
                 inserting = inserting.getInserting(nextLine);
                 personInfo = personInfo.getPersonInfoType(nextLine);
                 familyInfo = familyInfo.getFamilyInfoType(nextLine);
@@ -210,13 +209,13 @@ public class GedcomImporter extends Importer
     {
         List<County> countyList = getCounty(name);
 
-        for(County c : countyList)
+        for ( County c : countyList )
         {
             State s = c.getState();
 
-            if(s != null)
+            if ( s != null )
             {
-                if(s.getName().equals(stateName))
+                if ( s.getName().equals(stateName) )
                     return c;
             }
             else
@@ -281,7 +280,7 @@ public class GedcomImporter extends Importer
         State state;
         Country country;
 
-        for(int i = 0; i < info.length; i++)
+        for ( int i = 0; i < info.length; i++ )
         {
             info[i] = info[i].trim();
         }
@@ -292,7 +291,7 @@ public class GedcomImporter extends Importer
             {
                 return getCounty(info[0]).get(0);
             }
-            else if( "USA".equals(info[0]))
+            else if ( "USA".equals(info[0]) )
             {
                 return getCountry(info[0]);
             }
@@ -336,7 +335,7 @@ public class GedcomImporter extends Importer
         else if ( info.length == 3 )
         {
             city = getCity(info[0]);
-            county = getCounty(info[1],info[2]);
+            county = getCounty(info[1], info[2]);
             city.setRegion(county);
 
             return city;

@@ -4,7 +4,6 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
 /**
- *
  * @author Joe
  */
 @Converter(autoApply = true)

@@ -18,13 +18,13 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 /**
- *
  * @author Joe
  */
 @Entity
 @DiscriminatorValue(value = "2")
 @NamedQueries({
-                      @NamedQuery(name = State.FIND_BY_NAME, query = "SELECT p FROM State p WHERE p.name = :name AND p.region = :region"),
+                      @NamedQuery(name = State.FIND_BY_NAME_AND_REGION,
+                                  query = "SELECT p FROM State p WHERE p.name = :name AND p.region = :region"),
                       @NamedQuery(name = State.FIND_BY_NAME, query = "SELECT p FROM State p WHERE p.name = :name"),
                       @NamedQuery(name = State.FIND_ALL, query = "SELECT p FROM State p")
               })
@@ -32,7 +32,7 @@ public class State extends Place
 {
 
     /**
-     * Contains the {@link String} to create a {@link TypedQuery} to get all States.
+     * Contains the {@link String} to create a {@link javax.persistence.TypedQuery} to get all States.
      */
     public static final String FIND_ALL = "State.findAll";
 
@@ -40,14 +40,13 @@ public class State extends Place
      *
      */
     public static final String FIND_BY_NAME = "State.findByName";
-    
-        /**
+
+    /**
      *
      */
     public static final String FIND_BY_NAME_AND_REGION = "State.findByNameAndRegion";
 
     /**
-     *
      * @return
      */
     public Country getCountry()
@@ -56,7 +55,6 @@ public class State extends Place
     }
 
     /**
-     *
      * @return
      */
     @Override
