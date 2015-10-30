@@ -28,19 +28,23 @@ import javax.persistence.NamedQuery;
               })
 public class County extends Place
 {
-
     /**
-     *
+     * Specifies the {@link String} that represents the {@link javax.persistence.NamedQuery} to create a {@link
+     * javax.persistence.TypedQuery} to get all counties.
      */
     public static final String FIND_ALL = "County.findAll";
 
     /**
-     *
+     * Specifies the {@link String} that represents the {@link javax.persistence.NamedQuery} to create a {@link
+     * javax.persistence.TypedQuery} to get all counties by name.
      */
     public static final String FIND_BY_NAME = "County.findByName";
 
     /**
-     * @return
+     * Returns the country that the county is in. Since most, if not all, counties are in the US, this will
+     * most likely return the USA.
+     * 
+     * @return the country that the county is in
      */
     public Country getCountry()
     {
@@ -48,7 +52,9 @@ public class County extends Place
     }
 
     /**
-     * @return
+     * Returns the state that the county is in.
+     * 
+     * @return the state that the county is in
      */
     public State getState()
     {
@@ -56,7 +62,9 @@ public class County extends Place
     }
 
     /**
-     * @return
+     * {@inheritDoc}
+     * 
+     * @return {@inheritDoc}
      */
     @Override
     public String getLink()
