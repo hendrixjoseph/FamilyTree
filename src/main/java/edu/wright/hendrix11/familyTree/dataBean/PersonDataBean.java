@@ -38,7 +38,12 @@ public class PersonDataBean extends AbstractDataBean<Person, Integer>
     }
 
     /**
-     * @return
+     * Returns the first person in the database. This method uses a {@link javax.persistence.TypedQuery}
+     * generated from the {@link javax.persistence.NamedQuery} represented by {@link Person#FIND_ALL}.
+     * 
+     * @return the first person in the database
+     * 
+     * @throws javax.persistence.NoResultException if there is no result
      */
     public Person findFirst()
     {
