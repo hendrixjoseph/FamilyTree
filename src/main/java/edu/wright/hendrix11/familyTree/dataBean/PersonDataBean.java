@@ -32,7 +32,7 @@ public class PersonDataBean extends AbstractDataBean<Person, Integer>
 
     @Override
     @PostConstruct
-    public void initialize()
+    protected void initialize()
     {
         initialize(em, Person.class);
     }
