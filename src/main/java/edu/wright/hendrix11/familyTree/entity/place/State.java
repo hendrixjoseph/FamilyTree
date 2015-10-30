@@ -32,22 +32,30 @@ public class State extends Place
 {
 
     /**
-     * Contains the {@link String} to create a {@link javax.persistence.TypedQuery} to get all States.
+     * Specifies the {@link String} that represents the {@link javax.persistence.NamedQuery} to create a {@link
+     * javax.persistence.TypedQuery} to get all states.
      */
     public static final String FIND_ALL = "State.findAll";
 
     /**
-     *
+     * Specifies the {@link String} that represents the {@link javax.persistence.NamedQuery} to create a {@link
+     * javax.persistence.TypedQuery} to get all states by name. It is expected, but not required, that only one
+     * state exists per name.
      */
     public static final String FIND_BY_NAME = "State.findByName";
 
     /**
-     *
+     * Specifies the {@link String} that represents the {@link javax.persistence.NamedQuery} to create a {@link
+     * javax.persistence.TypedQuery} to get all states by name. It is expected, but not required, that only one
+     * state exists per name and region.
      */
     public static final String FIND_BY_NAME_AND_REGION = "State.findByNameAndRegion";
 
     /**
-     * @return
+     * Returns the country that the state is in. Since most, if not all, states are US states, this will
+     * most likely return USA.
+     * 
+     * @return the country that the state is in
      */
     public Country getCountry()
     {
@@ -55,7 +63,9 @@ public class State extends Place
     }
 
     /**
-     * @return
+     * @return the state name
+     * 
+     * @see getName()
      */
     @Override
     public String getLink()
