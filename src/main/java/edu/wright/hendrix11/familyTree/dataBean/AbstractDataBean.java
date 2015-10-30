@@ -19,8 +19,9 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 /**
- * @param <E>
- * @param <K>
+ * @param <E> a class that has an {@link javax.persistence.Entity} annotation
+ * @param <K> the key for that class, will have the {@link javax.persistence.Id} 
+ * annotation in the associated  {@link javax.persistence.Entity} class
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
