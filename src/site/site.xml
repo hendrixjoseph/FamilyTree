@@ -18,7 +18,10 @@
         </links>
         <menu ref="modules" />
         <menu ref="reports" />
-        <menu name="CS7720 Documents"></menu>
+        <menu name="CS7720 Documents">
+            <item name="Project Proposal" href="documentation/cs7720/Hendrix_CS7720_Project_Proposal.docx" />
+            <item name="Proposal Email" href="documentation/cs7720/proposal_email.html" />
+        </menu>
         <menu name="CS7700 Documents">
             <item name="Final Report" href="documentation/cs7700/Hendrix_CS7700_Final_Report.docx" />
             <item name="Project Presentation" href="documentation/cs7700/Hendrix_CS7700_Project_Presentation.pptx" />

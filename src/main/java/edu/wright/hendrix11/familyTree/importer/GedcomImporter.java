@@ -78,10 +78,6 @@ public class GedcomImporter extends Importer
     {
         try ( LineNumberReader in = new LineNumberReader(file) )
         {
-            while ( !in.readLine().startsWith(Mode.PERSON.toString()) )
-            {
-            }
-
             Person person = null;
             Person husband = null;
             Person wife = null;
@@ -156,7 +152,7 @@ public class GedcomImporter extends Importer
                         }
                         break;
                     default:
-                        LOG.log(Level.INFO, "Line " + lineNumber + " not read: " + nextLine);
+                        outputUnusedLine(inserting);
                 }
             }
         }
@@ -291,28 +287,36 @@ public class GedcomImporter extends Importer
             {
                 return getCounty(info[0]).get(0);
             }
-            else if ( "USA".equals(info[0]) )
-            {
-                return getCountry(info[0]);
-            }
             else
             {
+                for(String knownCountry : KNOWN_COUNTRIES)
+                {
+                    if(knownCountry.equals(info[0]))
+                    {
+                        return getCountry(info[0]);
+                    }
+                }
+
                 return getState(info[0]);
             }
         }
         else if ( info.length == 2 )
         {
-            if ( "Mexico".equals(info[1]) || "Germany".equals(info[1]) )
+
+            for(String knownCountry : KNOWN_COUNTRIES)
             {
-                city = getCity(info[0]);
-
-                if ( city.getCountry() == null )
+                if(knownCountry.equals(info[1]))
                 {
-                    country = getCountry(info[1]);
-                    city.setRegion(country);
-                }
+                    city = getCity(info[0]);
 
-                return city;
+                    if ( city.getCountry() == null )
+                    {
+                        country = getCountry(info[1]);
+                        city.setRegion(country);
+                    }
+
+                    return city;
+                }
             }
 
             if ( info[0].contains("County") )
@@ -461,9 +465,15 @@ public class GedcomImporter extends Importer
                 processEvent(person.getDeath());
                 break;
             default:
-                LOG.log(Level.INFO, "Line " + lineNumber + " not read: " + nextLine);
+                if(!nextLine.startsWith("1 FAM"))
+                    outputUnusedLine(personInfo);
         }
 
+    }
+
+    private void outputUnusedLine(Mode mode)
+    {
+        LOG.log(Level.INFO, String.format("Mode %s: Line %d not read: %s", mode.name(), lineNumber, nextLine));
     }
 
     private enum Mode
@@ -551,7 +561,9 @@ public class GedcomImporter extends Importer
             {
                 if ( string.startsWith("1") )
                 {
-                    return NONE;
+                    Mode[] birthDeath = {BIRTH, DEATH};
+
+                    return getMode(birthDeath, string);
                 }
             }
 

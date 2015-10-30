@@ -16,13 +16,16 @@ import javax.persistence.EntityManager;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Joe Hendrix
  */
 public abstract class Importer
 {
-
+    private static final Logger LOG = Logger.getLogger(Importer.class.getName());
+    protected static final String[] KNOWN_COUNTRIES = {"Mexico", "Germany", "USA", "Ireland", "Spain"};
     protected FileReader file;
     protected EntityManager em;
     protected String nextLine = "";
@@ -53,9 +56,20 @@ public abstract class Importer
     {
         this.em = entityManager;
         entityManager.getTransaction().begin();
-        processData();
+
+        try
+        {
+            processData();
+        }
+        catch(Exception e)
+        {
+            LOG.log(Level.SEVERE, String.format("Failed on line %d: %s", lineNumber, nextLine));
+            throw e;
+        }
+
         entityManager.getTransaction().commit();
     }
 
     protected abstract void processData();
+
 }
