@@ -34,15 +34,8 @@ public abstract class AbstractDataBean<E, K>
     private String findAllQuery;
     private int page = 1;
 
-    /**
-     *
-     */
-    public abstract void initialize();
+    protected abstract void initialize();
 
-    /**
-     * @param em
-     * @param clazz
-     */
     protected void initialize(EntityManager em, Class<E> clazz)
     {
         if ( !clazz.isAnnotationPresent(Entity.class) )
@@ -64,7 +57,9 @@ public abstract class AbstractDataBean<E, K>
     }
 
     /**
-     * @return
+     * Returns the page number.
+     * 
+     * @return the page number
      */
     public int getPage()
     {
@@ -72,7 +67,9 @@ public abstract class AbstractDataBean<E, K>
     }
 
     /**
-     * @param page
+     * Sets the page number.
+     * 
+     * @param page the page number
      */
     public void setPage(int page)
     {
@@ -80,7 +77,11 @@ public abstract class AbstractDataBean<E, K>
     }
 
     /**
-     * @return
+     * Returns the number of pages available. This is calculated by taking the ceiling os the size of the
+     * result list divided by {@code RECORDS_PER_PAGE}, where {@code RECORDS_PER_PAGE} is currently set to
+     * {@value #RECORDS_PER_PAGE}.
+     * 
+     * @return the number of pages available
      */
     public int getNumPages()
     {
@@ -91,7 +92,10 @@ public abstract class AbstractDataBean<E, K>
     }
 
     /**
-     * @return
+     * Returns a list of the entities. This list is at most the size of {@code RECORDS_PER_PAGE}, which is currently
+     * set to {@value #RECORDS_PER_PAGE}.
+     * 
+     * @return a list of entities
      */
     public List<E> list()
     {
@@ -100,9 +104,11 @@ public abstract class AbstractDataBean<E, K>
     }
 
     /**
-     * @param key
+     * Returns the entity associated with the primary key.
+     * 
+     * @param key the primary key
      *
-     * @return
+     * @return the entity with the given primary key
      */
     public E find(K key)
     {
