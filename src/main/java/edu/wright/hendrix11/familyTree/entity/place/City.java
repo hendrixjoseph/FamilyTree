@@ -28,19 +28,22 @@ import javax.persistence.NamedQuery;
               })
 public class City extends Place
 {
-
     /**
-     *
+     * Specifies the {@link String} that represents the {@link javax.persistence.NamedQuery} to create a {@link
+     * javax.persistence.TypedQuery} to get all cities.
      */
     public static final String FIND_ALL = "City.findAll";
 
     /**
-     *
+     * Specifies the {@link String} that represents the {@link javax.persistence.NamedQuery} to create a {@link
+     * javax.persistence.TypedQuery} to get all states by name.
      */
     public static final String FIND_BY_NAME = "City.findByName";
 
     /**
-     * @return
+     * Returns the country that the city is in.
+     * 
+     * @return the country that the city is in
      */
     public Country getCountry()
     {
@@ -48,7 +51,9 @@ public class City extends Place
     }
 
     /**
-     * @return
+     * Returns the county that the city is in.
+     * 
+     * @return the county that the city is in
      */
     public County getCounty()
     {
@@ -56,7 +61,9 @@ public class City extends Place
     }
 
     /**
-     * @return
+     * Returns the state that the city is in.
+     * 
+     * @return the state that the city is in
      */
     public State getState()
     {
@@ -64,7 +71,9 @@ public class City extends Place
     }
 
     /**
-     * @return
+     * {@inheritDoc}
+     * 
+     * @return {@inheritDoc}
      */
     @Override
     public String getLink()
