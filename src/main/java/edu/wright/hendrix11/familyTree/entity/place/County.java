@@ -21,7 +21,7 @@ import javax.persistence.NamedQuery;
  * @author Joe
  */
 @Entity
-@DiscriminatorValue(value = "3")
+@DiscriminatorValue(value = "county")
 @NamedQueries({
                       @NamedQuery(name = County.FIND_BY_NAME, query = "SELECT p FROM County p WHERE p.name = :name"),
                       @NamedQuery(name = County.FIND_ALL, query = "SELECT p FROM County p")
