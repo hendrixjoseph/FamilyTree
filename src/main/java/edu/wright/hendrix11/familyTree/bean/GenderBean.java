@@ -27,19 +27,10 @@ import java.io.Serializable;
  */
 @Named
 @ViewScoped
-public class GenderBean extends AbstractBean<Gender> implements Serializable
+public class GenderBean implements Serializable
 {
-
-    @EJB
-    GenderDataBean genderDataBean;
-
-    /**
-     *
-     */
-    @Override
-    @PostConstruct
-    public void initialize()
+    public Gender[] getGenders()
     {
-        super.initialize(genderDataBean);
+        return Gender.values();
     }
 }
