@@ -46,7 +46,9 @@ import static javax.persistence.GenerationType.SEQUENCE;
                       @NamedQuery(name = Person.FIND_FIRST,
                                   query = "SELECT p FROM Person p WHERE p.id=(SELECT MIN(p2.id) FROM Person p2)"),
                       @NamedQuery(name = Person.FIND_ALL,
-                                  query = "SELECT p FROM Person p")
+                                  query = "SELECT p FROM Person p"),
+                      @NamedQuery(name = Person.COUNT_GENDERS,
+                                  query = "SELECT COUNT(p.id) FROM Person p WHERE p.gender = :gender")
               })
 @Table(name = "PERSON")
 public class Person
@@ -62,6 +64,11 @@ public class Person
      * javax.persistence.TypedQuery} to get the first person in the database.
      */
     public static final String FIND_FIRST = "Person.findFirst";
+    /**
+     * Specifies the {@link String} that represents the {@link javax.persistence.NamedQuery} to create a {@link
+     * javax.persistence.TypedQuery} to count the number of people of a specific gender.
+     */   
+    public static final String COUNT_GENDERS = "Person.countGenders";
     @Id
     @SequenceGenerator(name = "PERSON_SEQUENCE", sequenceName = "PERSON_SEQUENCE", allocationSize = 1)
     @GeneratedValue(strategy = SEQUENCE, generator = "PERSON_SEQUENCE")
