@@ -30,7 +30,6 @@ import javax.persistence.NamedQuery;
               })
 public class State extends Place
 {
-
     /**
      * Specifies the {@link String} that represents the {@link javax.persistence.NamedQuery} to create a {@link
      * javax.persistence.TypedQuery} to get all states.
@@ -63,7 +62,9 @@ public class State extends Place
     }
 
     /**
-     * @return the state name
+     * {@inheritDoc}
+     * 
+     * @return {@inheritDoc}
      * 
      * @see getName()
      */
