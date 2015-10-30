@@ -31,7 +31,7 @@ public class PlaceDataBean extends AbstractDataBean<Place, Integer>
 
     @Override
     @PostConstruct
-    public void initialize()
+    protected void initialize()
     {
         initialize(em, Place.class);
     }
