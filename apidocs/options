@@ -17,11 +17,9 @@
 -doctitle
 'Family Tree 2.0 API'
 -link
-'http://java.sun.com/javaee/javaserverfaces/apidocs'
+'http://www.primefaces.org/docs/api/5.2'
 -link
-'http://jcp.org/en/jsr/detail?id=52/apidocs'
--link
-'http://junit.org/apidocs'
+'https://docs.oracle.com/javaee/7/api'
 -linkoffline
 'http://docs.oracle.com/javase/8/docs/api' 'C:/Users/Joe/Git/FamilyTree/target/javadoc-bundle-options'
 -use
