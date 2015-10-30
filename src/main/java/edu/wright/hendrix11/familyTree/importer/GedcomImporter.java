@@ -437,12 +437,9 @@ public class GedcomImporter extends Importer
                 personInfo = Mode.NONE;
                 break;
             case GENDER:
-                Gender gender;
-
-                gender = em.find(Gender.class, info.charAt(0));
-
+                //TODO make sure info matches what Gender needs
+                Gender gender = Gender.valueOf(info);
                 person.setGender(gender);
-
                 em.persist(person);
 
                 personInfo = Mode.NONE;
@@ -463,6 +460,14 @@ public class GedcomImporter extends Importer
                 }
 
                 processEvent(person.getDeath());
+                break;
+            case BURIAL:
+                if ( person.getBurial() == null )
+                {
+                    person.setBurial(new Burial());
+                }
+
+                processEvent(person.getBurial());
                 break;
             default:
                 if(!nextLine.startsWith("1 FAM"))
@@ -489,6 +494,7 @@ public class GedcomImporter extends Importer
         GENDER("1 SEX "),
         BIRTH("1 BIRT"),
         DEATH("1 DEAT"),
+        BURIAL("1 BURI"),
         HUSB("1 HUSB "),
         WIFE("1 WIFE "),
         CHILD("1 CHIL "),
@@ -555,13 +561,13 @@ public class GedcomImporter extends Importer
 
         public Mode getPersonInfoType(String string)
         {
-            Mode[] modes = {NAME, GENDER, BIRTH, DEATH};
+            Mode[] modes = {NAME, GENDER, BIRTH, DEATH, BURIAL};
 
-            if ( this == BIRTH || this == DEATH )
+            if ( this == BIRTH || this == DEATH || this == BURIAL)
             {
                 if ( string.startsWith("1") )
                 {
-                    Mode[] birthDeath = {BIRTH, DEATH};
+                    Mode[] birthDeath = {BIRTH, DEATH, BURIAL};
 
                     return getMode(birthDeath, string);
                 }
