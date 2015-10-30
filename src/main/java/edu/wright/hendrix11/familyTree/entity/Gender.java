@@ -25,9 +25,9 @@ import javax.validation.constraints.NotNull;
 @NamedQuery(name = Gender.FIND_ALL, query = "SELECT g FROM Gender g")
 public class Gender
 {
-
     /**
-     *
+     * Specifies the {@link String} that represents the {@link javax.persistence.NamedQuery} to create a {@link
+     * javax.persistence.TypedQuery} to get all genders.
      */
     public static final String FIND_ALL = "Gender.findAll";
 
@@ -39,15 +39,15 @@ public class Gender
     private String fullWord;
 
     /**
-     *
+     * Public no-argument constructor for JPA.
      */
     public Gender()
     {
-
+        super();
     }
 
     /**
-     * @param abbr
+     * @param abbr the abbreviation for the gender
      */
     public Gender(char abbr)
     {
@@ -55,7 +55,11 @@ public class Gender
     }
 
     /**
-     * @return
+     * Returns the abbreviation for the gender. This is typically just the first letter.
+     * 
+     * @return the abbreviation for the gender
+     * 
+     * @see #getFullWord()
      */
     public char getAbbr()
     {
@@ -63,7 +67,9 @@ public class Gender
     }
 
     /**
-     * @param abbr
+     * Sets the abbreviation for the gender. This is typically just the first letter.
+     * 
+     * @param abbr the abbreviation for the gender
      */
     public void setAbbr(char abbr)
     {
@@ -71,7 +77,9 @@ public class Gender
     }
 
     /**
-     * @return
+     * Returns the entire word for the gender. Available values include Male, Female, Other, and Unknown.
+     * 
+     * @return the entire word for the gender
      */
     public String getFullWord()
     {
@@ -79,13 +87,21 @@ public class Gender
     }
 
     /**
-     * @param fullWord
+     * Sets the entire word for the gender. Available values include Male, Female, Other, and Unknown.
+     * 
+     * @param fullWord the entire word for the gender
      */
     public void setFullWord(String fullWord)
     {
         this.fullWord = fullWord;
     }
 
+    /**
+     * @return A string representation of the gender, which is just the full word.
+     *
+     * @see #getFullWord()
+     */
+    @Override
     public String toString()
     {
         return fullWord;
