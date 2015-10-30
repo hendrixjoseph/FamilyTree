@@ -21,7 +21,7 @@ import javax.persistence.NamedQuery;
  * @author Joe
  */
 @Entity
-@DiscriminatorValue(value = "2")
+@DiscriminatorValue(value = "state")
 @NamedQueries({
                       @NamedQuery(name = State.FIND_BY_NAME_AND_REGION,
                                   query = "SELECT p FROM State p WHERE p.name = :name AND p.region = :region"),
