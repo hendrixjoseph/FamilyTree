@@ -56,7 +56,7 @@
                                      oncomplete="PF('addMotherDialog').show()" />
                 </h:form>
                 <p:outputLabel value="Gender:" />
-                <p:outputLabel value="#{individualBean.person.gender}" />
+                <p:outputLabel value="#{individualBean.person.gender.toString()}" />
                 <p:outputLabel value="Place of birth:" />
                 <hendrix11:googleMapLink place="#{individualBean.person.birth.place}" />
                 <p:outputLabel value="Date of birth:" />

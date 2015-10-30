@@ -1,6 +1,6 @@
 --------------------------------------------------------
---  DDL for Index REGION_OF_PK
+--  DDL for Index GENDER_PK
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "REGION_OF_PK" ON "REGION_OF" ("PLACE_ID") 
+  CREATE UNIQUE INDEX "GENDER_PK" ON "GENDER" ("FULL_WORD") 
   ;

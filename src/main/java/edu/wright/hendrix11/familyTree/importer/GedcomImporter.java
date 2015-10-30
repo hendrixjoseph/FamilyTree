@@ -15,6 +15,7 @@ package edu.wright.hendrix11.familyTree.importer;
 import edu.wright.hendrix11.familyTree.entity.Gender;
 import edu.wright.hendrix11.familyTree.entity.Person;
 import edu.wright.hendrix11.familyTree.entity.event.Birth;
+import edu.wright.hendrix11.familyTree.entity.event.Burial;
 import edu.wright.hendrix11.familyTree.entity.event.Death;
 import edu.wright.hendrix11.familyTree.entity.event.Event;
 import edu.wright.hendrix11.familyTree.entity.event.Marriage;
@@ -289,9 +290,9 @@ public class GedcomImporter extends Importer
             }
             else
             {
-                for(String knownCountry : KNOWN_COUNTRIES)
+                for ( String knownCountry : KNOWN_COUNTRIES )
                 {
-                    if(knownCountry.equals(info[0]))
+                    if ( knownCountry.equals(info[0]) )
                     {
                         return getCountry(info[0]);
                     }
@@ -303,9 +304,9 @@ public class GedcomImporter extends Importer
         else if ( info.length == 2 )
         {
 
-            for(String knownCountry : KNOWN_COUNTRIES)
+            for ( String knownCountry : KNOWN_COUNTRIES )
             {
-                if(knownCountry.equals(info[1]))
+                if ( knownCountry.equals(info[1]) )
                 {
                     city = getCity(info[0]);
 
@@ -437,8 +438,7 @@ public class GedcomImporter extends Importer
                 personInfo = Mode.NONE;
                 break;
             case GENDER:
-                //TODO make sure info matches what Gender needs
-                Gender gender = Gender.valueOf(info);
+                Gender gender = Gender.getEnum(info);
                 person.setGender(gender);
                 em.persist(person);
 
@@ -470,7 +470,7 @@ public class GedcomImporter extends Importer
                 processEvent(person.getBurial());
                 break;
             default:
-                if(!nextLine.startsWith("1 FAM"))
+                if ( !nextLine.startsWith("1 FAM") )
                     outputUnusedLine(personInfo);
         }
 
@@ -563,7 +563,7 @@ public class GedcomImporter extends Importer
         {
             Mode[] modes = {NAME, GENDER, BIRTH, DEATH, BURIAL};
 
-            if ( this == BIRTH || this == DEATH || this == BURIAL)
+            if ( this == BIRTH || this == DEATH || this == BURIAL )
             {
                 if ( string.startsWith("1") )
                 {

@@ -1,6 +1,8 @@
 --------------------------------------------------------
---  DDL for Index PLACE_TYPE_PK
+--  DDL for Table FATHER
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "PLACE_TYPE_PK" ON "PLACE_TYPE" ("TYPE") 
-  ;
+  CREATE TABLE "FATHER" 
+   (	"ID" NUMBER, 
+	"CHILD_ID" NUMBER
+   ) ;

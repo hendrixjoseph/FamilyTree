@@ -17,6 +17,8 @@ import edu.wright.hendrix11.familyTree.entity.event.Burial;
 import edu.wright.hendrix11.familyTree.entity.event.Death;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -55,20 +57,19 @@ public class Person
 {
     /**
      * Specifies the {@link String} that represents the {@link javax.persistence.NamedQuery} to create a {@link
+     * javax.persistence.TypedQuery} to count the number of people of a specific gender.
+     */
+    public static final String COUNT_GENDERS = "Person.countGenders";
+    /**
+     * Specifies the {@link String} that represents the {@link javax.persistence.NamedQuery} to create a {@link
      * javax.persistence.TypedQuery} to get all people.
      */
     public static final String FIND_ALL = "Person.findAll";
-    
     /**
      * Specifies the {@link String} that represents the {@link javax.persistence.NamedQuery} to create a {@link
      * javax.persistence.TypedQuery} to get the first person in the database.
      */
     public static final String FIND_FIRST = "Person.findFirst";
-    /**
-     * Specifies the {@link String} that represents the {@link javax.persistence.NamedQuery} to create a {@link
-     * javax.persistence.TypedQuery} to count the number of people of a specific gender.
-     */   
-    public static final String COUNT_GENDERS = "Person.countGenders";
     @Id
     @SequenceGenerator(name = "PERSON_SEQUENCE", sequenceName = "PERSON_SEQUENCE", allocationSize = 1)
     @GeneratedValue(strategy = SEQUENCE, generator = "PERSON_SEQUENCE")
@@ -86,17 +87,17 @@ public class Person
     @OneToOne(cascade = ALL, mappedBy = "person")
     private Death death;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinTable(name = "FATHER_OF",
+    @JoinTable(name = "FATHER",
                joinColumns = @JoinColumn(name = "CHILD_ID"),
-               inverseJoinColumns = @JoinColumn(name = "FATHER_ID"))
+               inverseJoinColumns = @JoinColumn(name = "ID"))
     private Person father;
     @Enumerated(EnumType.STRING)
     @NotNull
     private Gender gender;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinTable(name = "MOTHER_OF",
+    @JoinTable(name = "MOTHER",
                joinColumns = @JoinColumn(name = "CHILD_ID"),
-               inverseJoinColumns = @JoinColumn(name = "MOTHER_ID"))
+               inverseJoinColumns = @JoinColumn(name = "ID"))
     private Person mother;
     @NotNull
     private String name;
@@ -109,7 +110,7 @@ public class Person
 
     /**
      * Returns the birth record for this person.
-     * 
+     *
      * @return the birth record for this person
      */
     public Birth getBirth()
@@ -118,9 +119,9 @@ public class Person
     }
 
     /**
-     * Sets the birth record for this person. Before setting the record, it associates this person with that
-     * record (via {@code birth.setPerson(this)}).
-     * 
+     * Sets the birth record for this person. Before setting the record, it associates this person with that record (via
+     * {@code birth.setPerson(this)}).
+     *
      * @param birth the birth record for this person
      */
     public void setBirth(Birth birth)
@@ -133,7 +134,7 @@ public class Person
 
     /**
      * Returns the burial record for this person.
-     * 
+     *
      * @return the burial record for this person
      */
     public Burial getBurial()
@@ -142,16 +143,16 @@ public class Person
     }
 
     /**
-     * Sets the burial record for this person. Before setting the record, it associates this person with that
-     * record (via {@code burial.setPerson(this)}).
-     * 
+     * Sets the burial record for this person. Before setting the record, it associates this person with that record
+     * (via {@code burial.setPerson(this)}).
+     *
      * @param burial the burial record for this person
      */
     public void setBurial(Burial burial)
     {
         if ( burial != null )
             burial.setPerson(this);
-            
+
         this.burial = burial;
     }
 
@@ -173,7 +174,7 @@ public class Person
 
     /**
      * Returns a list of all children of this person whose other parent is the specified spouse.
-     * 
+     *
      * @param spouse the other parent
      *
      * @return the list of all children for this person and the specified spouse
@@ -195,7 +196,7 @@ public class Person
 
     /**
      * Returns a list of all children of this person whose other parent is unknown.
-     * 
+     *
      * @return the list of all children for this person whose other parent is unknown
      */
     public List<Person> getChildrenNoSpouse()
@@ -215,7 +216,7 @@ public class Person
 
     /**
      * Returns the death record for this person.
-     * 
+     *
      * @return the death record for this person
      */
     public Death getDeath()
@@ -224,9 +225,9 @@ public class Person
     }
 
     /**
-     * Sets the death record for this person. Before setting the record, it associates this person with that
-     * record (via {@code death.setPerson(this)}).
-     * 
+     * Sets the death record for this person. Before setting the record, it associates this person with that record (via
+     * {@code death.setPerson(this)}).
+     *
      * @param death the death record for this person
      */
     public void setDeath(Death death)
@@ -238,7 +239,7 @@ public class Person
 
     /**
      * Returns the father of this person.
-     * 
+     *
      * @return the father of this person
      */
     public Person getFather()
@@ -248,7 +249,7 @@ public class Person
 
     /**
      * Sets the father of this person.
-     * 
+     *
      * @param father the father of this person
      */
     public void setFather(Person father)
@@ -258,7 +259,7 @@ public class Person
 
     /**
      * Returns the gender of this person. Available genders are male, female, other, and unknown.
-     * 
+     *
      * @return the gender of this person
      */
     public Gender getGender()
@@ -268,7 +269,7 @@ public class Person
 
     /**
      * Sets the gender of this person. Available genders are male, female, other, and unknown.
-     * 
+     *
      * @param gender the gender of this person
      */
     public void setGender(Gender gender)
@@ -278,7 +279,7 @@ public class Person
 
     /**
      * Returns the database primary key for this person. This key is autogenerated by the database.
-     * 
+     *
      * @return the database primary key for this person
      */
     public int getId()
@@ -288,7 +289,7 @@ public class Person
 
     /**
      * Sets the database primary key for this person. This key is autogenerated by the database.
-     * 
+     *
      * @param id the database primary key for this person
      */
     public void setId(int id)
@@ -298,7 +299,7 @@ public class Person
 
     /**
      * Returns the mother of this person.
-     * 
+     *
      * @return the mother of this person
      */
     public Person getMother()
@@ -308,7 +309,7 @@ public class Person
 
     /**
      * Sets the mother of this person.
-     * 
+     *
      * @param mother the mother of this person
      */
     public void setMother(Person mother)
@@ -318,7 +319,7 @@ public class Person
 
     /**
      * Returns the name of this person.
-     * 
+     *
      * @return the name of this person
      */
     public String getName()
@@ -328,7 +329,7 @@ public class Person
 
     /**
      * Sets the name of this person
-     * 
+     *
      * @param name the name of this person
      */
     public void setName(String name)
@@ -337,9 +338,9 @@ public class Person
     }
 
     /**
-     * Returns the list of known spouses of this person. A spouse is defined as either someone a person is
-     * married to or the other parent of a person's children.
-     * 
+     * Returns the list of known spouses of this person. A spouse is defined as either someone a person is married to or
+     * the other parent of a person's children.
+     *
      * @return the list of known spouses of this person
      */
     public List<Person> getSpouses()
@@ -348,9 +349,9 @@ public class Person
     }
 
     /**
-     * Sets the list of known spouses of this person. A spouse is defined as either someone a person is
-     * married to or the other parent of a person's children.
-     * 
+     * Sets the list of known spouses of this person. A spouse is defined as either someone a person is married to or
+     * the other parent of a person's children.
+     *
      * @param spouses the list of known spouses of this person
      */
     public void setSpouses(List<Person> spouses)
@@ -360,7 +361,7 @@ public class Person
 
     /**
      * Returns {@code true} if this person has a father, {@code false} otherwise.
-     * 
+     *
      * @return {@code true} if this person has a father, {@code false} otherwise
      */
     public boolean hasFather()
@@ -370,7 +371,7 @@ public class Person
 
     /**
      * Returns {@code true} if this person has a mother, {@code false} otherwise.
-     * 
+     *
      * @return {@code true} if this person has a mother, {@code false} otherwise
      */
     public boolean hasMother()
@@ -379,9 +380,9 @@ public class Person
     }
 
     /**
-     * Returns {@code true} if this person has at least one parent, {@code false} otherwise. This is done simply
-     * by or-ing {@link hasFather()} and {@link hasMother()}: {@code return hasFather() || hasMother();}.
-     * 
+     * Returns {@code true} if this person has at least one parent, {@code false} otherwise. This is done simply by
+     * or-ing {@link hasFather()} and {@link hasMother()}: {@code return hasFather() || hasMother();}.
+     *
      * @return {@code true} if this person has at least one parent, {@code false} otherwise
      */
     public boolean hasParent()
@@ -390,9 +391,9 @@ public class Person
     }
 
     /**
-     * Returns {@code true} if this person has both parents, {@code false} otherwise. This is done simply
-     * by and-ing {@link hasFather()} and {@link hasMother()}: {@code return hasFather() && hasMother();}.
-     * 
+     * Returns {@code true} if this person has both parents, {@code false} otherwise. This is done simply by and-ing
+     * {@link #hasFather()} and {@link #hasMother()}: {@code return hasFather() && hasMother();}.
+     *
      * @return {@code true} if this person has both parents, {@code false} otherwise
      */
     public boolean hasParents()
@@ -407,10 +408,10 @@ public class Person
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @return A string representation of the person, which is just the person's name.
      *
-     * @see getName()
+     * @see #getName()
      */
     @Override
     public String toString()

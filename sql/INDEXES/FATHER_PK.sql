@@ -1,6 +1,6 @@
 --------------------------------------------------------
---  DDL for Index PLACE_TYPE_PK
+--  DDL for Index FATHER_PK
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "PLACE_TYPE_PK" ON "PLACE_TYPE" ("TYPE") 
+  CREATE UNIQUE INDEX "FATHER_PK" ON "FATHER" ("CHILD_ID") 
   ;

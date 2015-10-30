@@ -41,9 +41,9 @@ public class County extends Place
     public static final String FIND_BY_NAME = "County.findByName";
 
     /**
-     * Returns the country that the county is in. Since most, if not all, counties are in the US, this will
-     * most likely return the USA.
-     * 
+     * Returns the country that the county is in. Since most, if not all, counties are in the US, this will most likely
+     * return the USA.
+     *
      * @return the country that the county is in
      */
     public Country getCountry()
@@ -53,7 +53,7 @@ public class County extends Place
 
     /**
      * Returns the state that the county is in.
-     * 
+     *
      * @return the state that the county is in
      */
     public State getState()
@@ -63,7 +63,7 @@ public class County extends Place
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @return {@inheritDoc}
      */
     @Override

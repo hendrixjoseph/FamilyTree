@@ -51,13 +51,13 @@ public abstract class Event
     private boolean yearKnown;
 
     /**
-     * Returns the date the event happened. Keep in mind this might be and approximate date, or not all
-     * fields may actually be known. Also, it is recommended to get the formatted date string from {@link #getDateString()}
-     * rather than just formatting the date this method returns, since {@link #getDateString()} takes into account 
-     * the boolean attributes.
-     * 
+     * Returns the date the event happened. Keep in mind this might be and approximate date, or not all fields may
+     * actually be known. Also, it is recommended to get the formatted date string from {@link #getDateString()} rather
+     * than just formatting the date this method returns, since {@link #getDateString()} takes into account the boolean
+     * attributes.
+     *
      * @return the date the event happened
-     * 
+     *
      * @see #getDateString()
      * @see #isYearKnown()
      * @see #isMonthKnown()
@@ -70,11 +70,11 @@ public abstract class Event
     }
 
     /**
-     * Set the date the event happened. Keep in mind this might be and approximate date, or not all
-     * fields may actually be known, so set the other fields accordingly.
-     * 
-     * @param  date the date the event happened
-     * 
+     * Set the date the event happened. Keep in mind this might be and approximate date, or not all fields may actually
+     * be known, so set the other fields accordingly.
+     *
+     * @param date the date the event happened
+     *
      * @see #setYearKnown()
      * @see #setMonthKnown()
      * @see #setDayKnown()
@@ -87,9 +87,9 @@ public abstract class Event
 
     /**
      * Returns the place this event happened. This event also happened in all regions of this place.
-     * 
+     *
      * @return the place this event happened
-     * 
+     *
      * @see edu.wright.hendrix11.familyTree.entity.place.Place#getRegion()
      * @see edu.wright.hendrix11.familyTree.entity.place.Place#getPlaces()
      */
@@ -100,7 +100,7 @@ public abstract class Event
 
     /**
      * Sets the place this event happened. This event also happened in all regions of this place.
-     * 
+     *
      * @param place the place this event happened
      */
     public void setPlace(Place place)
@@ -109,8 +109,8 @@ public abstract class Event
     }
 
     /**
-     * Returns {@code true} if the year is known. Sometimes not all information about the date of an event is known. 
-     * 
+     * Returns {@code true} if the year is known. Sometimes not all information about the date of an event is known.
+     *
      * @return {@code true} if the year is known
      */
     public boolean isYearKnown()
@@ -120,7 +120,7 @@ public abstract class Event
 
     /**
      * Sets the year is known or not. Sometimes not all information about the date of an event is known.
-     * 
+     *
      * @param yearKnown whether the year is known or not
      */
     public void setYearKnown(boolean yearKnown)
@@ -130,7 +130,7 @@ public abstract class Event
 
     /**
      * Returns {@code true} if the date is just an approximate.
-     * 
+     *
      * @return {@code true} if the date is just an approximate
      */
     public boolean isAbout()
@@ -140,7 +140,7 @@ public abstract class Event
 
     /**
      * Set if the date is an approximate date.
-     * 
+     *
      * @param about if the date is an approximate date
      */
     public void setAbout(boolean about)
@@ -149,8 +149,8 @@ public abstract class Event
     }
 
     /**
-     * Returns {@code true} if the day is known. Sometimes not all information about the date of an event is known. 
-     * 
+     * Returns {@code true} if the day is known. Sometimes not all information about the date of an event is known.
+     *
      * @return {@code true} if the day is known
      */
     public boolean isDayKnown()
@@ -160,7 +160,7 @@ public abstract class Event
 
     /**
      * Sets the day is known or not. Sometimes not all information about the date of an event is known.
-     * 
+     *
      * @param dayKnown whether the day is known or not
      */
     public void setDayKnown(boolean dayKnown)
@@ -169,8 +169,8 @@ public abstract class Event
     }
 
     /**
-     * Returns {@code true} if the month is known. Sometimes not all information about the date of an event is known. 
-     * 
+     * Returns {@code true} if the month is known. Sometimes not all information about the date of an event is known.
+     *
      * @return {@code true} if the month is known
      */
     public boolean isMonthKnown()
@@ -180,7 +180,7 @@ public abstract class Event
 
     /**
      * Sets the month is known or not. Sometimes not all information about the date of an event is known.
-     * 
+     *
      * @param monthKnown whether the month is known or not
      */
     public void setMonthKnown(boolean monthKnown)
@@ -189,10 +189,10 @@ public abstract class Event
     }
 
     /**
-     * Constructs and returns the date string. This method is better than just formatting the value from {@link #getDate()}
-     * since it takes into account the values from {@link #isMonthKnown()}, {@link #isDayKnown()}, {@link #isYearKnown()},
-     * and {@link #isAbout()}.
-     * 
+     * Constructs and returns the date string. This method is better than just formatting the value from {@link
+     * #getDate()} since it takes into account the values from {@link #isMonthKnown()}, {@link #isDayKnown()}, {@link
+     * #isYearKnown()}, and {@link #isAbout()}.
+     *
      * @return the formatted date string
      */
     public String getDateString()

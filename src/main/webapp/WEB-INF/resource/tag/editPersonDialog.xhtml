@@ -31,9 +31,9 @@
                                  size="#{inputLength}" immediate="true" />
 
                     <p:outputLabel value="Gender:" />
-                    <p:selectOneMenu id="gender" value="#{person.gender.fullWord}" style="width: 125px;">
+                    <p:selectOneMenu id="gender" value="#{person.gender}" style="width: 125px;">
                         <f:selectItem itemLabel="Select One" itemValue="notSelected" />
-                        <f:selectItems value="#{genderBean.entities}" />
+                        <f:selectItems value="#{genderBean.genders}" />
                     </p:selectOneMenu>
 
                     <p:outputLabel value="Place of birth:" />

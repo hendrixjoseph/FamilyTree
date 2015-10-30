@@ -66,6 +66,18 @@ public class PersonTest
     }
 
     @Test
+    public void countGenders()
+    {
+        TypedQuery<Long> countQuery = em.createNamedQuery(Person.COUNT_GENDERS, Long.class);
+        countQuery.setParameter("gender",Gender.MALE);
+        long count = countQuery.getSingleResult();
+
+        LOG.log(Level.INFO, String.format("There are %d males.", count));
+
+    }
+
+    @Test
+    @Ignore
     public void testFindFirst()
     {
         TypedQuery<Person> personQuery = em.createNamedQuery(Person.FIND_FIRST, Person.class);
@@ -88,7 +100,7 @@ public class PersonTest
         sb.append("\n\tID:\t").append(person.getId());
         sb.append("\n\tNAME:\t").append(person.getName());
         sb.append("\n\tBIRTH:\t").append(person.getBirth().getDate());
-        sb.append("\n\tGENDER:\t").append(person.getGender().getFullWord());
+        sb.append("\n\tGENDER:\t").append(person.getGender());
         sb.append("\n\tFATHER:\t").append(person.getFather().getName());
         sb.append("\n\tMOTHER:\t").append(person.getMother().getName());
 

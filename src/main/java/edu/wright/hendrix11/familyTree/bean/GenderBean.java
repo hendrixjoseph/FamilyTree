@@ -12,11 +12,8 @@
 
 package edu.wright.hendrix11.familyTree.bean;
 
-import edu.wright.hendrix11.familyTree.dataBean.GenderDataBean;
 import edu.wright.hendrix11.familyTree.entity.Gender;
 
-import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 

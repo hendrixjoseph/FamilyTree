@@ -12,10 +12,36 @@
 
 package edu.wright.hendrix11.familyTree.entity;
 
-public enum Gender 
+public enum Gender
 {
-    Male,
-    Female,
-    Other,
-    Unknown;
+    MALE,
+    FEMALE,
+    OTHER,
+    UNNOWN;
+
+    public static Gender getEnum(String name)
+    {
+        name = name.toUpperCase();
+
+        try
+        {
+            return Gender.valueOf(name);
+        }
+        catch(IllegalArgumentException e)
+        {
+            for(Gender gender : Gender.values())
+            {
+                if(gender.name().startsWith(name))
+                    return gender;
+            }
+
+            throw e;
+        }
+    }
+
+    @Override
+    public String toString()
+    {
+        return super.toString().toLowerCase();
+    }
 }

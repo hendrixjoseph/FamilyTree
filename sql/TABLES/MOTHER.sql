@@ -1,8 +1,8 @@
 --------------------------------------------------------
---  DDL for Table REGION_OF
+--  DDL for Table MOTHER
 --------------------------------------------------------
 
-  CREATE TABLE "REGION_OF" 
-   (	"REGION_ID" NUMBER, 
-	"PLACE_ID" NUMBER
+  CREATE TABLE "MOTHER" 
+   (	"ID" NUMBER, 
+	"CHILD_ID" NUMBER
    ) ;

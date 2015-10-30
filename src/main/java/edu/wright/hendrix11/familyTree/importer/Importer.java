@@ -61,7 +61,7 @@ public abstract class Importer
         {
             processData();
         }
-        catch(Exception e)
+        catch ( Exception e )
         {
             LOG.log(Level.SEVERE, String.format("Failed on line %d: %s", lineNumber, nextLine));
             throw e;

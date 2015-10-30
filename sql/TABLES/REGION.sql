@@ -1,6 +1,8 @@
 --------------------------------------------------------
---  DDL for Index PLACE_TYPE_PK
+--  DDL for Table REGION
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "PLACE_TYPE_PK" ON "PLACE_TYPE" ("TYPE") 
-  ;
+  CREATE TABLE "REGION" 
+   (	"ID" NUMBER, 
+	"PLACE_ID" NUMBER
+   ) ;

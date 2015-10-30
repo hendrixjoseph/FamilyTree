@@ -42,7 +42,7 @@ public class City extends Place
 
     /**
      * Returns the country that the city is in.
-     * 
+     *
      * @return the country that the city is in
      */
     public Country getCountry()
@@ -52,7 +52,7 @@ public class City extends Place
 
     /**
      * Returns the county that the city is in.
-     * 
+     *
      * @return the county that the city is in
      */
     public County getCounty()
@@ -62,7 +62,7 @@ public class City extends Place
 
     /**
      * Returns the state that the city is in.
-     * 
+     *
      * @return the state that the city is in
      */
     public State getState()
@@ -72,7 +72,7 @@ public class City extends Place
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @return {@inheritDoc}
      */
     @Override

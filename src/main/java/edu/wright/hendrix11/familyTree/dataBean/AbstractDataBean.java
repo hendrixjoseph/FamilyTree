@@ -20,8 +20,8 @@ import java.util.List;
 
 /**
  * @param <E> a class that has an {@link javax.persistence.Entity} annotation
- * @param <K> the key for that class, will have the {@link javax.persistence.Id} 
- * annotation in the associated  {@link javax.persistence.Entity} class
+ * @param <K> the key for that class, will have the {@link javax.persistence.Id} annotation in the associated  {@link
+ *            javax.persistence.Entity} class
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
@@ -59,7 +59,7 @@ public abstract class AbstractDataBean<E, K>
 
     /**
      * Returns the page number.
-     * 
+     *
      * @return the page number
      */
     public int getPage()
@@ -69,7 +69,7 @@ public abstract class AbstractDataBean<E, K>
 
     /**
      * Sets the page number.
-     * 
+     *
      * @param page the page number
      */
     public void setPage(int page)
@@ -78,10 +78,10 @@ public abstract class AbstractDataBean<E, K>
     }
 
     /**
-     * Returns the number of pages available. This is calculated by taking the ceiling os the size of the
-     * result list divided by {@code RECORDS_PER_PAGE}, where {@code RECORDS_PER_PAGE} is currently set to
-     * {@value #RECORDS_PER_PAGE}.
-     * 
+     * Returns the number of pages available. This is calculated by taking the ceiling os the size of the result list
+     * divided by {@code RECORDS_PER_PAGE}, where {@code RECORDS_PER_PAGE} is currently set to {@value
+     * #RECORDS_PER_PAGE}.
+     *
      * @return the number of pages available
      */
     public int getNumPages()
@@ -93,9 +93,9 @@ public abstract class AbstractDataBean<E, K>
     }
 
     /**
-     * Returns a list of the entities. This list is at most the size of {@code RECORDS_PER_PAGE}, which is currently
-     * set to {@value #RECORDS_PER_PAGE}.
-     * 
+     * Returns a list of the entities. This list is at most the size of {@code RECORDS_PER_PAGE}, which is currently set
+     * to {@value #RECORDS_PER_PAGE}.
+     *
      * @return a list of entities
      */
     public List<E> list()
@@ -106,7 +106,7 @@ public abstract class AbstractDataBean<E, K>
 
     /**
      * Returns the entity associated with the primary key.
-     * 
+     *
      * @param key the primary key
      *
      * @return the entity with the given primary key

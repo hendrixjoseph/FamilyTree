@@ -65,10 +65,10 @@ public class IndividualBean implements Serializable
 
     /**
      * Returns the id of the current {@link Person}.
-     * 
+     *
      * @return the id of the current {@link Person}
-     * 
-     * @see edu.wright.hendrix11.familyTree.entity.Person#getId()
+     *
+     * @see Person#getId()
      */
     public int getPersonId()
     {
@@ -77,10 +77,10 @@ public class IndividualBean implements Serializable
 
     /**
      * Sets the current {@link Person} based on the {@code personId}.
-     * 
+     *
      * @param personId the id of the {@link Person} to be set
-     * 
-     * @see edu.wright.hendrix11.familyTree.dataBean.PersonDataBean
+     *
+     * @see PersonDataBean
      */
     public void setPersonId(int personId)
     {
@@ -89,7 +89,7 @@ public class IndividualBean implements Serializable
 
     /**
      * Returns the currently set person.
-     * 
+     *
      * @return the currently set person
      */
     public Person getPerson()
@@ -99,7 +99,7 @@ public class IndividualBean implements Serializable
 
     /**
      * Sets the person to be viewed.
-     * 
+     *
      * @param person the person to be viewed
      */
     public void setPerson(Person person)
