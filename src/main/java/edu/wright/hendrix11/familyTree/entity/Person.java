@@ -83,8 +83,7 @@ public class Person
                joinColumns = @JoinColumn(name = "CHILD_ID"),
                inverseJoinColumns = @JoinColumn(name = "FATHER_ID"))
     private Person father;
-    @ManyToOne
-    @JoinColumn(name = "GENDER")
+    @Enumerated(EnumType.STRING)
     @NotNull
     private Gender gender;
     @ManyToOne(fetch = FetchType.LAZY)
