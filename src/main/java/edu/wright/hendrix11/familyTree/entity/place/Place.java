@@ -39,7 +39,7 @@ import static javax.persistence.GenerationType.SEQUENCE;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "TYPE", discriminatorType = DiscriminatorType.INTEGER)
+@DiscriminatorColumn(name = "TYPE")
 @NamedQueries({
                       @NamedQuery(name = Place.FIND_BY_NAME, query = "SELECT p FROM Place p WHERE p.name = :name"),
                       @NamedQuery(name = Place.FIND_ALL, query = "SELECT p FROM Place p")
