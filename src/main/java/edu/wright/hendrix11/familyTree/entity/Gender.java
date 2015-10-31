@@ -27,11 +27,11 @@ public enum Gender
         {
             return Gender.valueOf(name);
         }
-        catch(IllegalArgumentException e)
+        catch ( IllegalArgumentException e )
         {
-            for(Gender gender : Gender.values())
+            for ( Gender gender : Gender.values() )
             {
-                if(gender.name().startsWith(name))
+                if ( gender.name().startsWith(name) )
                     return gender;
             }
 

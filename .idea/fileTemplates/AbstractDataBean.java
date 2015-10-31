@@ -17,7 +17,7 @@ public class ${NAME}DataBean extends AbstractDataBean<${NAME},${ENTITY_KEY}>
 
     @Override
     @PostConstruct
-    public void initialize()
+    protected void initialize()
     {
         initialize(em, ${NAME}.class);
     }

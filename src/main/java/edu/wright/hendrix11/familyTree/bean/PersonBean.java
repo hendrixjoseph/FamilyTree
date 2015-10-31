@@ -12,7 +12,10 @@
 
 package edu.wright.hendrix11.familyTree.bean;
 
+import org.primefaces.model.chart.PieChartModel;
+
 import edu.wright.hendrix11.familyTree.dataBean.PersonDataBean;
+import edu.wright.hendrix11.familyTree.entity.Gender;
 import edu.wright.hendrix11.familyTree.entity.Person;
 
 import javax.annotation.PostConstruct;
@@ -31,12 +34,30 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
 {
 
     @EJB
-    PersonDataBean personDataBean;
+    private PersonDataBean personDataBean;
+
+    private PieChartModel genderPie;
 
     @Override
     @PostConstruct
     protected void initialize()
     {
         super.initialize(personDataBean);
+
+        genderPie = new PieChartModel();
+
+        Number numMales = personDataBean.countGender(Gender.MALE);
+        Number numFemales = personDataBean.countGender(Gender.FEMALE);
+
+        genderPie.set("Males", numMales);
+        genderPie.set("Females", numFemales);
+
+        genderPie.setLegendPosition("w");
+        genderPie.setShowDataLabels(true);
+    }
+
+    public PieChartModel getGenderPie()
+    {
+        return genderPie;
     }
 }

@@ -26,18 +26,21 @@
     </properties>
 
     <organization>
-        <name>Wright State Department of Computer Science and Engineering</name>
-        <url>https://engineering-computer-science.wright.edu/computer-science-and-engineering</url>
+        <name>Joseph Hendrix</name>
+        <url>http://hendrixjoseph.github.io/</url>
     </organization>
 
     <developers>
         <developer>
             <name>Joseph Hendrix</name>
             <email>hendrix.11@wright.edu</email>
-            <url>http://hendrixjoseph.github.io/</url>
+            <url>http://hendrixjoseph.github.io</url>
             <roles>
                 <role>sole developer</role>
             </roles>
+            <organization>
+                <![CDATA[<a href="http://www.wright.edu">Wright State University</a><br /><a href="https://engineering-computer-science.wright.edu">College of Engineering and Computer Science</a><br /><a href="https://engineering-computer-science.wright.edu/computer-science-and-engineering">Department of Computer Science and Engineering</a>]]>
+            </organization>
             <properties>
                 <picUrl>https://graph.facebook.com/1274573288/picture?type=large</picUrl>
             </properties>

@@ -28,9 +28,7 @@
     </ui:define>
 
     <ui:define name="menu">
-        <ui:include src="/WEB-INF/resource/template/menuTemplate.xhtml">
-            <ui:param name="personsView" value="#{true}" />
-        </ui:include>
+        <hendrix11:menu currentView="personsView" />
     </ui:define>
 
     <ui:define name="content">
@@ -54,7 +52,7 @@
                 </p:column>
 
                 <p:column headerText="Gender">
-                    <p:outputLabel value="#{person.gender}" />
+                    <p:outputLabel value="#{person.gender.toString()}" />
                 </p:column>
 
                 <p:column headerText="Number of children">

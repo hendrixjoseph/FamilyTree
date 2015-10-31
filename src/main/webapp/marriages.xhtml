@@ -10,6 +10,7 @@
   ~  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
   ~
   -->
+
 <ui:composition template="/WEB-INF/resource/template/main.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -19,7 +20,7 @@
 
     <ui:define name="metadata">
         <f:metadata>
-            <f:viewParam name="page" value="#{placeBean.page}" />
+            <f:viewParam name="page" value="#{marriageBean.page}" />
         </f:metadata>
     </ui:define>
 
@@ -28,23 +29,30 @@
     </ui:define>
 
     <ui:define name="menu">
-        <hendrix11:menu currentView="placesView" />
+        <hendrix11:menu currentView="marriagesView" />
     </ui:define>
 
     <ui:define name="content">
         <p:layoutUnit position="center">
-            <p:dataTable var="place" value="#{placeBean.entities}" scrollable="true" scrollHeight="90%"
+            <p:dataTable var="marriage" value="#{marriageBean.entities}"  scrollable="true" scrollHeight="90%"
                          styleClass="familyTree-dataTable">
-                <p:column headerText="Id">
-                    <p:outputLabel value="#{place.id}" />
+                <p:column headerText="Husband">
+                    husband
+                    <!-- hendrix11:personLink person="#{marriage.husband}}" / -->
                 </p:column>
-
-                <p:column headerText="Name">
-                    <hendrix11:googleMapLink place="#{place}" />
+                <p:column headerText="Wife">
+                    wife
+                    <hendrix11:personLink person="#{marriage.wife}}" />
+                </p:column>
+                <p:column headerText="Place">
+                    <hendrix11:googleMapLink place="#{marriage.place}" />
+                </p:column>
+                <p:column headerText="Date">
+                    <p:outputLabel value="#{marriage.dateString}" />
                 </p:column>
 
                 <f:facet name="footer">
-                    <hendrix11:pageNav dataBean="#{placeBean}" outcome="places" />
+                    <hendrix11:pageNav dataBean="#{marriageBean}" outcome="marriages" />
                 </f:facet>
             </p:dataTable>
         </p:layoutUnit>

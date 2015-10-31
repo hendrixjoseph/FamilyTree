@@ -16,6 +16,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.TypedQuery;
 
 /**
  * @author Joe
@@ -29,14 +30,14 @@ import javax.persistence.NamedQuery;
 public class County extends Place
 {
     /**
-     * Specifies the {@link String} that represents the {@link javax.persistence.NamedQuery} to create a {@link
-     * javax.persistence.TypedQuery} to get all counties.
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery}
+     * to get all counties.
      */
     public static final String FIND_ALL = "County.findAll";
 
     /**
-     * Specifies the {@link String} that represents the {@link javax.persistence.NamedQuery} to create a {@link
-     * javax.persistence.TypedQuery} to get all counties by name.
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery}
+     * to get all counties by name.
      */
     public static final String FIND_BY_NAME = "County.findByName";
 

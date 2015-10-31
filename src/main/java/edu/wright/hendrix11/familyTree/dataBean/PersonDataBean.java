@@ -18,6 +18,8 @@ import edu.wright.hendrix11.familyTree.entity.Person;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQuery;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
@@ -39,12 +41,12 @@ public class PersonDataBean extends AbstractDataBean<Person, Integer>
     }
 
     /**
-     * Returns the first person in the database. This method uses a {@link javax.persistence.TypedQuery} generated from
-     * the {@link javax.persistence.NamedQuery} represented by {@link Person#FIND_ALL}.
+     * Returns the first person in the database. This method uses a {@link TypedQuery} generated from
+     * the {@link NamedQuery} represented by {@link Person#FIND_ALL}.
      *
      * @return the first person in the database
      *
-     * @throws javax.persistence.NoResultException if there is no result
+     * @throws NoResultException if there is no result
      */
     public Person findFirst()
     {
@@ -55,7 +57,7 @@ public class PersonDataBean extends AbstractDataBean<Person, Integer>
     public long countGender(Gender gender)
     {
         TypedQuery<Long> countQuery = em.createNamedQuery(Person.COUNT_GENDERS, Long.class);
-        countQuery.setParameter("gender",gender);
+        countQuery.setParameter("gender", gender);
         return countQuery.getSingleResult();
     }
 }

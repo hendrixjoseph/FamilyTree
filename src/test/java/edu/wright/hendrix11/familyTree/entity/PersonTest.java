@@ -69,7 +69,7 @@ public class PersonTest
     public void countGenders()
     {
         TypedQuery<Long> countQuery = em.createNamedQuery(Person.COUNT_GENDERS, Long.class);
-        countQuery.setParameter("gender",Gender.MALE);
+        countQuery.setParameter("gender", Gender.MALE);
         long count = countQuery.getSingleResult();
 
         LOG.log(Level.INFO, String.format("There are %d males.", count));
@@ -77,7 +77,6 @@ public class PersonTest
     }
 
     @Test
-    @Ignore
     public void testFindFirst()
     {
         TypedQuery<Person> personQuery = em.createNamedQuery(Person.FIND_FIRST, Person.class);

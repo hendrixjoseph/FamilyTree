@@ -27,6 +27,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.TypedQuery;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,14 +47,14 @@ import static javax.persistence.GenerationType.SEQUENCE;
 public abstract class Place
 {
     /**
-     * Specifies the {@link String} that represents the {@link javax.persistence.NamedQuery} to create a {@link
-     * javax.persistence.TypedQuery} to get all places.
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery}
+     * to get all places.
      */
     public static final String FIND_ALL = "Place.findAll";
 
     /**
-     * Specifies the {@link String} that represents the {@link javax.persistence.NamedQuery} to create a {@link
-     * javax.persistence.TypedQuery} to get all places by name.
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery}
+     * to get all places by name.
      */
     public static final String FIND_BY_NAME = "Place.findByName";
 

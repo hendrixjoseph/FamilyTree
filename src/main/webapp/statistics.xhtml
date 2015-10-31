@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~  The MIT License (MIT)
+  ~
+  ~  View the full license at:
+  ~  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
+  ~
+  ~  Copyright (c) 2015 Joseph Hendrix
+  ~
+  ~  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
+  ~
+  -->
+
+<ui:composition template="/WEB-INF/resource/template/main.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:hendrix11="http://hendrix11.wright.edu/facelets">
+
+    <ui:define name="title">
+        Statistics
+    </ui:define>
+
+    <ui:define name="menu">
+        <hendrix11:menu currentView="statisticsView" />
+    </ui:define>
+
+    <ui:define name="content">
+        <p:layoutUnit position="center">
+            <p:chart type="pie" model="#{personBean.genderPie}" style="width:400px;height:300px" />
+        </p:layoutUnit>
+    </ui:define>
+
+</ui:composition>

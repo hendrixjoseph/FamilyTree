@@ -56,17 +56,17 @@ import static javax.persistence.GenerationType.SEQUENCE;
 public class Person
 {
     /**
-     * Specifies the {@link String} that represents the {@link javax.persistence.NamedQuery} to create a {@link
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link
      * javax.persistence.TypedQuery} to count the number of people of a specific gender.
      */
     public static final String COUNT_GENDERS = "Person.countGenders";
     /**
-     * Specifies the {@link String} that represents the {@link javax.persistence.NamedQuery} to create a {@link
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link
      * javax.persistence.TypedQuery} to get all people.
      */
     public static final String FIND_ALL = "Person.findAll";
     /**
-     * Specifies the {@link String} that represents the {@link javax.persistence.NamedQuery} to create a {@link
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link
      * javax.persistence.TypedQuery} to get the first person in the database.
      */
     public static final String FIND_FIRST = "Person.findFirst";
@@ -381,7 +381,7 @@ public class Person
 
     /**
      * Returns {@code true} if this person has at least one parent, {@code false} otherwise. This is done simply by
-     * or-ing {@link hasFather()} and {@link hasMother()}: {@code return hasFather() || hasMother();}.
+     * or-ing {@link #hasFather()} and {@link #hasMother()}: {@code return hasFather() || hasMother();}.
      *
      * @return {@code true} if this person has at least one parent, {@code false} otherwise
      */

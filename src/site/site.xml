@@ -13,9 +13,6 @@
 
 <project xmlns="http://maven.apache.org/DECORATION/1.6.0">
     <body>
-        <links>
-            <item name="On GitHub" href="https://github.com/hendrixjoseph/FamilyTree" />
-        </links>
         <menu ref="modules" />
         <menu ref="reports" />
         <menu name="CS7720 Documents">
@@ -41,6 +38,5 @@
             <item name="2015-07-06" href="documentation/Mike_Owens/your_oracle_sql_magic.html" />
             <item name="2015-07-02" href="documentation/Mike_Owens/too_many_joins.html" />
         </menu>
-        <footer>Copyright &copy; 2015 Joseph Hendrix</footer>
     </body>
 </project>

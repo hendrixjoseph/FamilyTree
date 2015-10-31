@@ -40,7 +40,7 @@ public class Country extends Place
     public static final String FIND_BY_NAME = "Country.findByName";
 
     /**
-     * @return
+     * @return {@inheritDoc}
      */
     @Override
     public String getLink()

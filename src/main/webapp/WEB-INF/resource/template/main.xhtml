@@ -15,7 +15,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:hendrix11="http://hendrix11.wright.edu/facelets">
 
     <h:head>
         <title>
@@ -30,7 +31,7 @@
             <p:layout fullPage="true">
                 <p:layoutUnit position="north" size="50">
                     <ui:insert name="menu">
-                        <ui:include src="menuTemplate.xhtml" />
+                        <hendrix11:menu />
                     </ui:insert>
                 </p:layoutUnit>
 

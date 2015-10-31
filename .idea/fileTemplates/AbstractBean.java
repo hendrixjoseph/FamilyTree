@@ -19,7 +19,7 @@ public class ${NAME}Bean extends AbstractBean<${NAME}> implements Serializable
 
     @Override
     @PostConstruct
-    public void initialize()
+    protected void initialize()
     {
         super.initialize(${NAME.toLowerCase()}DataBean);
     }

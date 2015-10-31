@@ -22,6 +22,7 @@ import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.TypedQuery;
 
 /**
  * @author Joe Hendrix <hendrix.11@wright.edu>
@@ -31,9 +32,9 @@ import javax.persistence.NamedQuery;
 @NamedQuery(name = Marriage.FIND_ALL, query = "SELECT m FROM Marriage m")
 public class Marriage extends Event
 {
-
     /**
-     *
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery}
+     * to get all marriage records.
      */
     public static final String FIND_ALL = "Marriage.findAll";
 

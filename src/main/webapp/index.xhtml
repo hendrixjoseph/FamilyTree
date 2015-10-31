@@ -28,9 +28,7 @@
     </ui:define>
 
     <ui:define name="menu">
-        <ui:include src="/WEB-INF/resource/template/menuTemplate.xhtml">
-            <ui:param name="individualView" value="#{true}" />
-        </ui:include>
+        <hendrix11:menu currentView="individualView" />
     </ui:define>
 
     <ui:define name="content">

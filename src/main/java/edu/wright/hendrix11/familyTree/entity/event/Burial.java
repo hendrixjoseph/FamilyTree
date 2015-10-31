@@ -14,6 +14,7 @@ package edu.wright.hendrix11.familyTree.entity.event;
 
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
+import javax.persistence.TypedQuery;
 
 /**
  * @author Joe Hendrix <hendrix.11@wright.edu>
@@ -22,9 +23,9 @@ import javax.persistence.NamedQuery;
 @NamedQuery(name = Burial.FIND_ALL, query = "SELECT b FROM Burial b")
 public class Burial extends SinglePersonEvent
 {
-
     /**
-     *
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery}
+     * to get all burial records.
      */
     public static final String FIND_ALL = "Burial.findAll";
 }
