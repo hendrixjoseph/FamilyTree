@@ -14,15 +14,23 @@ package edu.wright.hendrix11.familyTree.entity.event;
 
 import edu.wright.hendrix11.familyTree.entity.Person;
 
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  * @author Joe Hendrix
  */
-@MappedSuperclass
+@Entity
+@Table(name="EVENT")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "TYPE")
 public class SinglePersonEvent extends Event
 {
 

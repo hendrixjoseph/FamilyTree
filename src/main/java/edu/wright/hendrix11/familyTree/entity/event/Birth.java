@@ -12,6 +12,7 @@
 
 package edu.wright.hendrix11.familyTree.entity.event;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
 import javax.persistence.TypedQuery;
@@ -20,6 +21,7 @@ import javax.persistence.TypedQuery;
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
 @Entity
+@DiscriminatorValue(value = "birth")
 @NamedQuery(name = Birth.FIND_ALL, query = "SELECT b FROM Birth b")
 public class Birth extends SinglePersonEvent
 {

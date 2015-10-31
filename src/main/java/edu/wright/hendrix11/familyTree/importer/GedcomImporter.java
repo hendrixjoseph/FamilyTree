@@ -33,6 +33,7 @@ import java.io.LineNumberReader;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -47,15 +48,6 @@ public class GedcomImporter extends Importer
 {
 
     private static final Logger LOG = Logger.getLogger(GedcomImporter.class.getName());
-
-    private static final DateFormat FULL_DATE_FORMAT = new SimpleDateFormat("dd MMM yyyy");
-    private static final String FULL_DATE_REGEX = "[0-9]{1,2}[ A-z]+[0-9]{4}";
-    private static final DateFormat MONTH_YEAR_ONLY_FORMAT = new SimpleDateFormat("MMM yyyy");
-    private static final String MONTH_YEAR_ONLY_REGEX = "[A-z]+ [0-9]{4}";
-    private static final DateFormat MONTH_DAY_ONLY_FORMAT = new SimpleDateFormat("dd MMM");
-    private static final String MONTH_DAY_ONLY_REGEX = "[0-9]{1,2} [A-z]+";
-    private static final DateFormat YEAR_ONLY_FORMAT = new SimpleDateFormat("yyyy");
-    private static final String YEAR_ONLY_REGEX = "[0-9]{4}";
 
     private Mode datePlace = Mode.NONE;
     private Mode familyInfo = Mode.NONE;
@@ -360,53 +352,31 @@ public class GedcomImporter extends Importer
 
         dateString = dateString.replace("ABT ", "");
 
-        Date date = null;
+        String[] tokens = dateString.split(" ");
 
-        try
+        for(String token : tokens)
         {
-            if ( dateString.matches(FULL_DATE_REGEX) )
+            if(token.matches("[0-9]"))
             {
-                date = FULL_DATE_FORMAT.parse(dateString);
-                event.setDayKnown(true);
-                event.setMonthKnown(true);
-                event.setYearKnown(true);
-            }
-            else if ( dateString.matches(MONTH_YEAR_ONLY_REGEX) )
-            {
-                date = MONTH_YEAR_ONLY_FORMAT.parse(dateString);
-                event.setDayKnown(false);
-                event.setMonthKnown(true);
-                event.setYearKnown(true);
-            }
-            else if ( dateString.matches(MONTH_DAY_ONLY_REGEX) )
-            {
-                date = MONTH_DAY_ONLY_FORMAT.parse(dateString);
-                event.setDayKnown(true);
-                event.setMonthKnown(true);
-                event.setYearKnown(false);
-            }
-            else if ( dateString.matches(YEAR_ONLY_REGEX) )
-            {
-                date = YEAR_ONLY_FORMAT.parse(dateString);
-                event.setDayKnown(false);
-                event.setMonthKnown(false);
-                event.setYearKnown(true);
+                int number = Integer.parseInt(token);
+
+                if(number < 50)
+                    event.setDay(number);
+                else
+                    event.setYear(number);
             }
             else
             {
-                throw new ParseException(dateString, 0);
+                for(Month month : Month.values())
+                {
+                    if(month.name().startsWith(token))
+                    {
+                        event.setMonth(month);
+                        break;
+                    }
+                }
             }
         }
-        catch ( ParseException e )
-        {
-            StringBuilder sb = new StringBuilder(( e.getClass().getName() ));
-            sb.append(e.getMessage());
-            sb.append(" on line ").append(lineNumber).append(".");
-
-            LOG.log(Level.SEVERE, sb.toString());
-        }
-
-        event.setDate(date);
     }
 
     private void processEvent(Event event)
