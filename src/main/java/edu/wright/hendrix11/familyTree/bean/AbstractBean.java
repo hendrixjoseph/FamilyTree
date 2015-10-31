@@ -26,14 +26,8 @@ public abstract class AbstractBean<E>
 
     private AbstractDataBean<E, ?> dataBean;
 
-    /**
-     *
-     */
-    public abstract void initialize();
+    protected abstract void initialize();
 
-    /**
-     * @param dataBean
-     */
     protected void initialize(AbstractDataBean<E, ?> dataBean)
     {
         this.dataBean = dataBean;

@@ -40,11 +40,8 @@ public class IndividualBean implements Serializable
     private Person person;
     private Person tempPerson;
 
-    /**
-     *
-     */
     @PostConstruct
-    public void initialize()
+    protected void initialize()
     {
         person = personDataBean.findFirst();
 

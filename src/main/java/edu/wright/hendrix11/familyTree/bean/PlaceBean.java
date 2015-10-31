@@ -33,12 +33,9 @@ public class PlaceBean extends AbstractBean<Place> implements Serializable
     @EJB
     PlaceDataBean placeDataBean;
 
-    /**
-     *
-     */
     @Override
     @PostConstruct
-    public void initialize()
+    protected void initialize()
     {
         super.initialize(placeDataBean);
     }

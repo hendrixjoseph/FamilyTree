@@ -33,12 +33,9 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
     @EJB
     PersonDataBean personDataBean;
 
-    /**
-     *
-     */
     @Override
     @PostConstruct
-    public void initialize()
+    protected void initialize()
     {
         super.initialize(personDataBean);
     }

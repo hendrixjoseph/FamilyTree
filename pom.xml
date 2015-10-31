@@ -141,6 +141,9 @@
                     <filesets>
                         <fileset>
                             <directory>target/</directory>
+                            <includes>
+                                <include>target/</include>
+                            </includes>
                             <excludes>
                                 <exclude>target/site/</exclude>
                             </excludes>
@@ -247,6 +250,7 @@
                 <version>2.10.3</version>
                 <configuration>
                     <failOnError>false</failOnError>
+                    <show>public</show>
                     <bottom>
                         <![CDATA[Copyright &copy; 2015 <a href="http://hendrixjoseph.github.io" target="_blank">Joseph Hendrix</a>]]></bottom>
                     <detectLinks>false</detectLinks>
