@@ -65,7 +65,7 @@
     <orderEntry type="library" scope="PROVIDED" name="GlassFish 4.1.0 - CDI: Contexts and Dependency Injection" level="application_server_libraries" />
     <orderEntry type="library" scope="PROVIDED" name="GlassFish 4.1.0 - JSF" level="application_server_libraries" />
     <orderEntry type="library" scope="PROVIDED" name="GlassFish 4.1.0 - EJB" level="application_server_libraries" />
-    <orderEntry type="library" name="Maven: org.primefaces:primefaces:5.2" level="project" />
+    <orderEntry type="library" name="Maven: org.primefaces:primefaces:5.3" level="project" />
     <orderEntry type="library" name="Maven: com.sun.faces:jsf-api:2.2.2" level="project" />
     <orderEntry type="library" name="Maven: com.sun.faces:jsf-impl:2.2.2" level="project" />
     <orderEntry type="library" name="Maven: javax.servlet.jsp.jstl:jstl-api:1.2" level="project" />

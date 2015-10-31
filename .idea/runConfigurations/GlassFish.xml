@@ -68,7 +68,7 @@
     </ConfigurationWrapper>
     <method>
       <option name="Make" enabled="false" />
-      <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="clean package -DskipTests" />
+      <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="clean package -DskipTests -X -e" />
     </method>
   </configuration>
 </component>

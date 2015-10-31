@@ -33,8 +33,8 @@
             </p:submenu>
             <p:submenu label="Edit">
                 <p:menuitem value="Edit individual" update="@(#editDialog_form)" oncomplete="PF('editDialog').show()"
-                            rendered="#{individualView}" />
-                <p:submenu label="Detach..." rendered="#{individualView}">
+                            disabled="#{individualView}" />
+                <p:submenu label="Detach..." disabled="#{individualView}">
                     <p:menuitem value="Father" />
                     <p:menuitem value="Mother" />
                     <p:submenu label="Spouse">
@@ -49,10 +49,10 @@
 
             </p:submenu>
             <p:submenu label="View">
-                <p:menuitem value="Individual" url="index.xhtml" rendered="#{!individualView}" />
-                <p:menuitem value="Places" url="places.xhtml" rendered="#{!placesView}" />
-                <p:menuitem value="Marriages" url="marriages.xhtml" rendered="#{!marriageView}" />
-                <p:menuitem value="Index of Individuals" url="persons.xhtml" rendered="#{!personsView}" />
+                <p:menuitem value="Individual" url="index.xhtml" disabled="#{!individualView}" />
+                <p:menuitem value="Places" url="places.xhtml" disabled="#{!placesView}" />
+                <p:menuitem value="Marriages" url="marriages.xhtml" disabled="#{!marriageView}" />
+                <p:menuitem value="Index of Individuals" url="persons.xhtml" disabled="#{!personsView}" />
             </p:submenu>
 
             <p:submenu label="Database">
@@ -62,8 +62,13 @@
                 </p:submenu>
                 <p:menuitem value="View Schema" url="#" />
             </p:submenu>
+
+            <p:submenu label="Data Mining">
+                <p:menuitem value="Statistics" url="#" />
+            </p:submenu>
+
             <p:submenu label="Help">
-                <p:menuitem value="Javadoc" url="http://hendrixjoseph.github.io/FamilyTree/apidocs/index.html" />
+                <p:menuitem value="Javadoc" url="http://hendrixjoseph.github.io/FamilyTree/apidocs/" />
                 <p:menuitem value="About" onclick="PF('aboutDialog').show()" />
             </p:submenu>
         </p:menubar>

@@ -7,7 +7,7 @@
           <element id="module-output" name="familyTree" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: org.primefaces:primefaces:5.2" />
+          <element id="library" level="project" name="Maven: org.primefaces:primefaces:5.3" />
           <element id="library" level="project" name="Maven: com.sun.faces:jsf-api:2.2.2" />
           <element id="library" level="project" name="Maven: com.sun.faces:jsf-impl:2.2.2" />
           <element id="library" level="project" name="Maven: javax.servlet.jsp.jstl:jstl-api:1.2" />

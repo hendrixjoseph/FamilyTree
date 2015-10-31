@@ -75,9 +75,9 @@ public abstract class Event
      *
      * @param date the date the event happened
      *
-     * @see #setYearKnown()
-     * @see #setMonthKnown()
-     * @see #setDayKnown()
+     * @see #setYearKnown
+     * @see #setMonthKnown
+     * @see #setDayKnown
      * @see #setAbout
      */
     public void setDate(Date date)
@@ -90,8 +90,8 @@ public abstract class Event
      *
      * @return the place this event happened
      *
-     * @see edu.wright.hendrix11.familyTree.entity.place.Place#getRegion()
-     * @see edu.wright.hendrix11.familyTree.entity.place.Place#getPlaces()
+     * @see Place#getRegion()
+     * @see Place#getPlaces()
      */
     public Place getPlace()
     {
