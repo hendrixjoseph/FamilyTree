@@ -10,22 +10,23 @@
  *
  */
 
-package edu.wright.hendrix11.familyTree.dataBean;
+package edu.wright.hendrix11.familyTree.dataBean.place;
 
-import edu.wright.hendrix11.familyTree.entity.place.Place;
+import edu.wright.hendrix11.familyTree.dataBean.AbstractDataBean;
+import edu.wright.hendrix11.familyTree.entity.place.County;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  * @author Joe Hendrix
  */
 @Stateless
-public class PlaceDataBean extends AbstractDataBean<Place, Integer>
+public class CountyDataBean extends AbstractDataBean<County, Integer>
 {
-
     @PersistenceContext(unitName = "edu.wright.hendrix11.familyTree")
     private EntityManager em;
 
@@ -33,6 +34,6 @@ public class PlaceDataBean extends AbstractDataBean<Place, Integer>
     @PostConstruct
     protected void initialize()
     {
-        initialize(em, Place.class);
+        initialize(em, County.class);
     }
 }

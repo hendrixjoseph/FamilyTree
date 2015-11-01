@@ -28,7 +28,7 @@ import javax.persistence.NamedQuery;
                       @NamedQuery(name = State.FIND_BY_NAME, query = "SELECT p FROM State p WHERE p.name = :name"),
                       @NamedQuery(name = State.FIND_ALL, query = "SELECT p FROM State p")
               })
-public class State extends Place
+public class State extends Country
 {
     /**
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link
@@ -59,18 +59,5 @@ public class State extends Place
     public Country getCountry()
     {
         return (Country) getRegionByClass(Country.class);
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @return {@inheritDoc}
-     *
-     * @see #getName()
-     */
-    @Override
-    public String getLink()
-    {
-        return getName();
     }
 }

@@ -16,7 +16,7 @@
                 xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html">
 
     <ui:repeat value="#{place.places}" var="p" varStatus="s">
-        <p:link href="https://www.google.com/maps/place/#{p.link}" value="#{p.name}" />
+        <p:link href="#{p.link}" value="#{p.name}" />
         <h:outputText value=", " rendered="#{not s.last}" />
     </ui:repeat>
 </ui:composition>

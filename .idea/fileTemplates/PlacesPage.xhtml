@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition template="/WEB-INF/resource/template/main.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:hendrix11="http://hendrix11.wright.edu/facelets">
+
+    <ui:define name="metadata">
+        <f:metadata>
+            <f:viewParam name="page" value="#{${BEAN_NAME}Bean.page}" />
+        </f:metadata>
+    </ui:define>
+
+    <ui:define name="title">
+        ${NAME}
+    </ui:define>
+
+    <ui:define name="menu">
+        <hendrix11:menu currentView="${NAME}View" />
+    </ui:define>
+
+    <ui:define name="content">
+        <p:layoutUnit position="center">
+            <p:dataTable var="${BEAN_NAME}" value="#{${BEAN_NAME}Bean.entities}" scrollable="true" scrollHeight="90%"
+                         styleClass="familyTree-dataTable">
+                <p:column headerText="Id">
+                    <p:outputLabel value="#{${BEAN_NAME}.id}" />
+                </p:column>
+                
+                <p:column headerText="Name">
+                    <hendrix11:googleMapLink place="#{${BEAN_NAME}}" />
+                </p:column>
+            
+                <f:facet name="footer">
+                    <hendrix11:pageNav dataBean="#{${BEAN_NAME}Bean}" outcome="${NAME}" />
+                </f:facet>
+            </p:dataTable>
+        </p:layoutUnit>
+    </ui:define>
+
+    <ui:define name="dialogs">
+
+    </ui:define>
+</ui:composition>

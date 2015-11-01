@@ -45,12 +45,6 @@ public class Country extends Place
     @Override
     public String getLink()
     {
-        return getName();
-    }
-
-    @Override
-    public String toString()
-    {
-        return getName();
+        return mapLink(getName());
     }
 }

@@ -72,7 +72,7 @@ public class PlaceTest
         TypedQuery<City> cityQuery = em.createNamedQuery(City.FIND_ALL, City.class);
         List<City> cities = cityQuery.getResultList();
 
-        outputPlaces(cities);
+        outputPlaces("cityTest", cities);
     }
 
     @Test
@@ -81,7 +81,7 @@ public class PlaceTest
         TypedQuery<County> countyQuery = em.createNamedQuery(County.FIND_ALL, County.class);
         List<County> counties = countyQuery.getResultList();
 
-        outputPlaces(counties);
+        outputPlaces("countyTest", counties);
     }
 
     @Test
@@ -90,7 +90,7 @@ public class PlaceTest
         TypedQuery<Country> countryQuery = em.createNamedQuery(Country.FIND_ALL, Country.class);
         List<Country> countries = countryQuery.getResultList();
 
-        outputPlaces(countries);
+        outputPlaces("countryTest", countries);
     }
 
     @Test
@@ -99,7 +99,7 @@ public class PlaceTest
         TypedQuery<State> stateQuery = em.createNamedQuery(State.FIND_ALL, State.class);
         List<State> states = stateQuery.getResultList();
 
-        outputPlaces(states);
+        outputPlaces("stateTest", states);
     }
 
     @Test
@@ -108,12 +108,12 @@ public class PlaceTest
         TypedQuery<Place> placeQuery = em.createNamedQuery(Place.FIND_ALL, Place.class);
         List<Place> places = placeQuery.getResultList();
 
-        outputPlaces(places);
+        outputPlaces("placeTest", places);
     }
 
-    private void outputPlaces(List<? extends Place> places)
+    private void outputPlaces(String testName, List<? extends Place> places)
     {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder(testName);
 
         for ( Place place : places )
         {

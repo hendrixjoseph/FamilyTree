@@ -10,33 +10,30 @@
  *
  */
 
-package edu.wright.hendrix11.familyTree.bean;
+package edu.wright.hendrix11.familyTree.dataBean.place;
 
-import edu.wright.hendrix11.familyTree.dataBean.PlaceDataBean;
+import edu.wright.hendrix11.familyTree.dataBean.AbstractDataBean;
 import edu.wright.hendrix11.familyTree.entity.place.Place;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
-import javax.faces.view.ViewScoped;
-import javax.inject.Named;
-
-import java.io.Serializable;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  * @author Joe Hendrix
  */
-@Named
-@ViewScoped
-public class PlaceBean extends AbstractBean<Place> implements Serializable
+@Stateless
+public class PlaceDataBean extends AbstractDataBean<Place, Integer>
 {
 
-    @EJB
-    PlaceDataBean placeDataBean;
+    @PersistenceContext(unitName = "edu.wright.hendrix11.familyTree")
+    private EntityManager em;
 
     @Override
     @PostConstruct
     protected void initialize()
     {
-        super.initialize(placeDataBean);
+        initialize(em, Place.class);
     }
 }

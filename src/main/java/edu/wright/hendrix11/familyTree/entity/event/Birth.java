@@ -26,8 +26,8 @@ import javax.persistence.TypedQuery;
 public class Birth extends SinglePersonEvent
 {
     /**
-     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery}
-     * to get all birth records.
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
+     * birth records.
      */
     public static final String FIND_ALL = "Birth.findAll";
 }

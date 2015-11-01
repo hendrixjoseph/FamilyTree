@@ -20,39 +20,32 @@
 
     <ui:define name="metadata">
         <f:metadata>
-            <f:viewParam name="page" value="#{marriageBean.page}" />
+            <f:viewParam name="page" value="#{stateBean.page}" />
         </f:metadata>
     </ui:define>
 
     <ui:define name="title">
-        Places
+        states
     </ui:define>
 
     <ui:define name="menu">
-        <hendrix11:menu currentView="marriagesView" />
+        <hendrix11:menu currentView="statesView" />
     </ui:define>
 
     <ui:define name="content">
         <p:layoutUnit position="center">
-            <p:dataTable var="marriage" value="#{marriageBean.entities}" scrollable="true" scrollHeight="90%"
+            <p:dataTable var="state" value="#{stateBean.entities}" scrollable="true" scrollHeight="90%"
                          styleClass="familyTree-dataTable">
-                <p:column headerText="Husband">
-                    husband
-                    <!-- hendrix11:personLink person="#{marriage.husband}}" / -->
+                <p:column headerText="Id">
+                    <p:outputLabel value="#{state.id}" />
                 </p:column>
-                <p:column headerText="Wife">
-                    wife
-                    <hendrix11:personLink person="#{marriage.wife}}" />
-                </p:column>
-                <p:column headerText="Place">
-                    <hendrix11:googleMapLink place="#{marriage.place}" />
-                </p:column>
-                <p:column headerText="Date">
-                    <p:outputLabel value="#{marriage.dateString}" />
+
+                <p:column headerText="Name">
+                    <hendrix11:googleMapLink place="#{state}" />
                 </p:column>
 
                 <f:facet name="footer">
-                    <hendrix11:pageNav dataBean="#{marriageBean}" outcome="marriages" />
+                    <hendrix11:pageNav dataBean="#{stateBean}" outcome="states" />
                 </f:facet>
             </p:dataTable>
         </p:layoutUnit>

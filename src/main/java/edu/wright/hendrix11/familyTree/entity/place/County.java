@@ -27,30 +27,19 @@ import javax.persistence.TypedQuery;
                       @NamedQuery(name = County.FIND_BY_NAME, query = "SELECT p FROM County p WHERE p.name = :name"),
                       @NamedQuery(name = County.FIND_ALL, query = "SELECT p FROM County p")
               })
-public class County extends Place
+public class County extends State
 {
     /**
-     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery}
-     * to get all counties.
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
+     * counties.
      */
     public static final String FIND_ALL = "County.findAll";
 
     /**
-     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery}
-     * to get all counties by name.
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
+     * counties by name.
      */
     public static final String FIND_BY_NAME = "County.findByName";
-
-    /**
-     * Returns the country that the county is in. Since most, if not all, counties are in the US, this will most likely
-     * return the USA.
-     *
-     * @return the country that the county is in
-     */
-    public Country getCountry()
-    {
-        return (Country) getRegionByClass(Country.class);
-    }
 
     /**
      * Returns the state that the county is in.
@@ -73,12 +62,17 @@ public class County extends Place
         StringBuilder sb = new StringBuilder(getName());
 
         State state = getState();
+        Country country = getCountry();
 
         if ( state != null )
         {
             sb.append(", ").append(state.getName());
         }
+        else if( country != null )
+        {
+            sb.append(", ").append(country.getName());
+        }
 
-        return sb.toString();
+        return mapLink(sb.toString());
     }
 }

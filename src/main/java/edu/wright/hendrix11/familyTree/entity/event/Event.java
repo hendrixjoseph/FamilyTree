@@ -14,19 +14,16 @@ package edu.wright.hendrix11.familyTree.entity.event;
 
 import edu.wright.hendrix11.familyTree.entity.place.Place;
 
-import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.Month;
+import java.time.format.TextStyle;
 import java.util.Date;
+import java.util.Locale;
 
 import static javax.persistence.CascadeType.ALL;
 
@@ -37,12 +34,12 @@ import static javax.persistence.CascadeType.ALL;
 public abstract class Event
 {
     private boolean about = false;
+    private Integer day;
+    @Enumerated(EnumType.STRING)
+    private Month month;
     @ManyToOne(cascade = ALL)
     @JoinColumn(name = "PLACE_ID")
     private Place place;
-    @Enumerated(EnumType.STRING)
-    private Month month;
-    private Integer day;
     private Integer year;
 
     /**
@@ -60,14 +57,13 @@ public abstract class Event
         return null;
     }
 
-
     /**
      * Returns the place this event happened. This event also happened in all regions of this place.
      *
      * @return the place this event happened
      *
      * @see Place#getRegion()
-     * @see Place#getPlaces()
+     * @see Place#iterator()
      */
     public Place getPlace()
     {
@@ -142,6 +138,21 @@ public abstract class Event
     public String getDateString()
     {
         StringBuilder sb = new StringBuilder();
+
+        if ( month != null )
+            sb.append(month.getDisplayName(TextStyle.SHORT, Locale.US));
+
+        if ( month != null && day != null )
+            sb.append(" ");
+
+        if ( day != null )
+            sb.append(day);
+
+        if ( day != null && year != null )
+            sb.append(", ");
+
+        if ( year != null )
+            sb.append(year);
 
         return sb.toString();
     }

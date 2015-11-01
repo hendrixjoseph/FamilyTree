@@ -30,6 +30,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.TypedQuery;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import static javax.persistence.GenerationType.SEQUENCE;
@@ -44,17 +46,17 @@ import static javax.persistence.GenerationType.SEQUENCE;
                       @NamedQuery(name = Place.FIND_BY_NAME, query = "SELECT p FROM Place p WHERE p.name = :name"),
                       @NamedQuery(name = Place.FIND_ALL, query = "SELECT p FROM Place p")
               })
-public abstract class Place
+public abstract class Place implements Iterable<Place>
 {
     /**
-     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery}
-     * to get all places.
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
+     * places.
      */
     public static final String FIND_ALL = "Place.findAll";
 
     /**
-     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery}
-     * to get all places by name.
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
+     * places by name.
      */
     public static final String FIND_BY_NAME = "Place.findByName";
 
@@ -146,7 +148,13 @@ public abstract class Place
             place = place.getRegion();
         }
 
-        return places;
+        return Collections.unmodifiableList(places);
+    }
+
+    @Override
+    public Iterator<Place> iterator()
+    {
+        return getPlaces().iterator();
     }
 
     /**
@@ -156,31 +164,36 @@ public abstract class Place
 
     protected Place getRegionByClass(Class<? extends Place> clazz)
     {
-        Place region = this.region;
-
-        while ( region != null )
+        for ( Place region : this )
         {
             if ( clazz.equals(region.getClass()) )
                 return region;
-
-            region = region.getRegion();
         }
 
         return null;
     }
 
+    protected String mapLink(String string)
+    {
+        return "https://www.google.com/maps/place/" + string;
+    }
+
+    protected String queryLink(String string)
+    {
+        return "https://www.google.com/search?q=" + string;
+    }
+
     @Override
     public String toString()
     {
-        StringBuilder sb = new StringBuilder(name);
+        StringBuilder sb = new StringBuilder();
 
-        Place region = this.region;
-
-        while ( region != null )
+        for ( Place region : this )
         {
-            sb.append(", ").append(region.getName());
-            region = region.getRegion();
+            sb.append(region.getName()).append(", ");
         }
+
+        sb.setLength(sb.length() - 2);
 
         return sb.toString();
     }

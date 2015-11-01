@@ -10,29 +10,30 @@
  *
  */
 
-package edu.wright.hendrix11.familyTree.dataBean;
+package edu.wright.hendrix11.familyTree.dataBean.place;
 
-import edu.wright.hendrix11.familyTree.entity.compositeKey.MarriagePK;
-import edu.wright.hendrix11.familyTree.entity.event.Marriage;
+import edu.wright.hendrix11.familyTree.dataBean.AbstractDataBean;
+import edu.wright.hendrix11.familyTree.entity.place.State;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  * @author Joe Hendrix
  */
 @Stateless
-public class MarriageDataBean extends AbstractDataBean<Marriage, MarriagePK>
+public class StateDataBean extends AbstractDataBean<State, Integer>
 {
     @PersistenceContext(unitName = "edu.wright.hendrix11.familyTree")
     private EntityManager em;
 
     @Override
     @PostConstruct
-    public void initialize()
+    protected void initialize()
     {
-        initialize(em, Marriage.class);
+        initialize(em, State.class);
     }
 }

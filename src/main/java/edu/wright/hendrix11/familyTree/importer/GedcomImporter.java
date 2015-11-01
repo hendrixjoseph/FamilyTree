@@ -30,12 +30,8 @@ import javax.persistence.TypedQuery;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.LineNumberReader;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.Month;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
@@ -354,22 +350,22 @@ public class GedcomImporter extends Importer
 
         String[] tokens = dateString.split(" ");
 
-        for(String token : tokens)
+        for ( String token : tokens )
         {
-            if(token.matches("[0-9]"))
+            if ( token.matches("[0-9]") )
             {
                 int number = Integer.parseInt(token);
 
-                if(number < 50)
+                if ( number < 50 )
                     event.setDay(number);
                 else
                     event.setYear(number);
             }
             else
             {
-                for(Month month : Month.values())
+                for ( Month month : Month.values() )
                 {
-                    if(month.name().startsWith(token))
+                    if ( month.name().startsWith(token) )
                     {
                         event.setMonth(month);
                         break;

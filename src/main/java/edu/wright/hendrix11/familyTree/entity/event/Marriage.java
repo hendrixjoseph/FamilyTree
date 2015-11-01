@@ -33,8 +33,8 @@ import javax.persistence.TypedQuery;
 public class Marriage extends Event
 {
     /**
-     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery}
-     * to get all marriage records.
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
+     * marriage records.
      */
     public static final String FIND_ALL = "Marriage.findAll";
 

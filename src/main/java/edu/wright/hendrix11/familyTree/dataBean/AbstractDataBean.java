@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * @param <E> a class that has an {@link Entity} annotation
  * @param <K> the key for that class, which will have the {@link javax.persistence.Id} annotation in the associated
-*             {@link Entity} class
+ *            {@link Entity} class
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */

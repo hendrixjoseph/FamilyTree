@@ -27,29 +27,19 @@ import javax.persistence.TypedQuery;
                       @NamedQuery(name = City.FIND_BY_NAME, query = "SELECT p FROM City p WHERE p.name = :name"),
                       @NamedQuery(name = City.FIND_ALL, query = "SELECT p FROM City p")
               })
-public class City extends Place
+public class City extends County
 {
     /**
-     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery}
-     * to get all cities.
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
+     * cities.
      */
     public static final String FIND_ALL = "City.findAll";
 
     /**
-     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery}
-     * to get all states by name.
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
+     * states by name.
      */
     public static final String FIND_BY_NAME = "City.findByName";
-
-    /**
-     * Returns the country that the city is in.
-     *
-     * @return the country that the city is in
-     */
-    public Country getCountry()
-    {
-        return (Country) getRegionByClass(Country.class);
-    }
 
     /**
      * Returns the county that the city is in.
@@ -59,42 +49,5 @@ public class City extends Place
     public County getCounty()
     {
         return (County) getRegionByClass(County.class);
-    }
-
-    /**
-     * Returns the state that the city is in.
-     *
-     * @return the state that the city is in
-     */
-    public State getState()
-    {
-        return (State) getRegionByClass(State.class);
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @return {@inheritDoc}
-     */
-    @Override
-    public String getLink()
-    {
-        StringBuilder sb = new StringBuilder(getName());
-
-        State state = getState();
-
-        if ( state != null )
-        {
-            sb.append(", ").append(state.getName());
-        }
-        else
-        {
-            Country country = getCountry();
-
-            if ( country != null )
-                sb.append(", ").append(country.getName());
-        }
-
-        return sb.toString();
     }
 }

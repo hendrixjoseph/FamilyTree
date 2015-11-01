@@ -26,8 +26,8 @@ import javax.persistence.TypedQuery;
 public class Death extends SinglePersonEvent
 {
     /**
-     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery}
-     * to get all death records.
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
+     * death records.
      */
     public static final String FIND_ALL = "Death.findAll";
 }
