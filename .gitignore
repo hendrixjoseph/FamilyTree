@@ -3,3 +3,4 @@ ojdbc7.jar
 target/
 sql/Generated*.*
 hendrixfamily.fte.GED
+gedcomimporter.log

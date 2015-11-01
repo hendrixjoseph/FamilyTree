@@ -352,6 +352,8 @@ public class GedcomImporter extends Importer
 
         for ( String token : tokens )
         {
+            LOG.log(Level.SEVERE, "token: '" + token + "'");
+
             if ( token.matches("[0-9]") )
             {
                 int number = Integer.parseInt(token);

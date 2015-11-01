@@ -72,7 +72,7 @@ public class PlaceTest
         TypedQuery<City> cityQuery = em.createNamedQuery(City.FIND_ALL, City.class);
         List<City> cities = cityQuery.getResultList();
 
-        outputPlaces("cityTest", cities);
+        outputPlaces(City.FIND_ALL, cities);
     }
 
     @Test
@@ -81,7 +81,7 @@ public class PlaceTest
         TypedQuery<County> countyQuery = em.createNamedQuery(County.FIND_ALL, County.class);
         List<County> counties = countyQuery.getResultList();
 
-        outputPlaces("countyTest", counties);
+        outputPlaces(County.FIND_ALL, counties);
     }
 
     @Test
@@ -99,7 +99,7 @@ public class PlaceTest
         TypedQuery<State> stateQuery = em.createNamedQuery(State.FIND_ALL, State.class);
         List<State> states = stateQuery.getResultList();
 
-        outputPlaces("stateTest", states);
+        outputPlaces(State.FIND_ALL, states);
     }
 
     @Test
@@ -108,7 +108,7 @@ public class PlaceTest
         TypedQuery<Place> placeQuery = em.createNamedQuery(Place.FIND_ALL, Place.class);
         List<Place> places = placeQuery.getResultList();
 
-        outputPlaces("placeTest", places);
+        outputPlaces(Place.FIND_ALL, places);
     }
 
     private void outputPlaces(String testName, List<? extends Place> places)

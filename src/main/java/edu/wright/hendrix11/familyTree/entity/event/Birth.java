@@ -30,4 +30,9 @@ public class Birth extends SinglePersonEvent
      * birth records.
      */
     public static final String FIND_ALL = "Birth.findAll";
+
+    public Birth()
+    {
+        this.setType("birth");
+    }
 }

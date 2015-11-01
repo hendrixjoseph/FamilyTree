@@ -48,16 +48,21 @@
 
             </p:submenu>
             <p:submenu label="View">
-                <p:menuitem value="Individual" url="index.xhtml" disabled="#{currentView.equals('individualView')}" />
+                <p:menuitem value="Individual" url="/index.xhtml" disabled="#{currentView.equals('individualView')}" />
                 <p:submenu label="Places">
-                    <p:menuitem value="All Places" url="/places/places.xhtml" disabled="#{currentView.equals('placesView')}" />
-                    <p:menuitem value="Countries" url="/places/countries.xhtml" disabled="#{currentView.equals('countriesView')}" />
-                    <p:menuitem value="States" url="/places/states.xhtml" disabled="#{currentView.equals('statesView')}" />
-                    <p:menuitem value="Counties" url="/places/counties.xhtml" disabled="#{currentView.equals('countiesView')}" />
-                    <p:menuitem value="Cities" url="/places/cities.xhtml" disabled="#{currentView.equals('citiesView')}" />
+                    <p:menuitem value="All Places" url="/places/places.xhtml"
+                                disabled="#{currentView.equals('placesView')}" />
+                    <p:menuitem value="Countries" url="/places/countries.xhtml"
+                                disabled="#{currentView.equals('countriesView')}" />
+                    <p:menuitem value="States" url="/places/states.xhtml"
+                                disabled="#{currentView.equals('statesView')}" />
+                    <p:menuitem value="Counties" url="/places/counties.xhtml"
+                                disabled="#{currentView.equals('countiesView')}" />
+                    <p:menuitem value="Cities" url="/places/cities.xhtml"
+                                disabled="#{currentView.equals('citiesView')}" />
                 </p:submenu>
-                <p:menuitem value="Marriages" url="marriages.xhtml" disabled="#{currentView.equals('marriageView')}" />
-                <p:menuitem value="Index of Individuals" url="persons.xhtml"
+                <p:menuitem value="Marriages" url="/marriages.xhtml" disabled="#{currentView.equals('marriageView')}" />
+                <p:menuitem value="Index of Individuals" url="/persons.xhtml"
                             disabled="#{currentView.equals('personsView')}" />
             </p:submenu>
 

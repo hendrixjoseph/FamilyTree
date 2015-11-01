@@ -22,6 +22,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -55,5 +56,30 @@ public class EventTest
     {
         TypedQuery<Birth> birthQuery = em.createNamedQuery(Birth.FIND_ALL, Birth.class);
         List<Birth> births = birthQuery.getResultList();
+
+        outputEvents(Birth.FIND_ALL, births);
+    }
+
+    @Test
+    public void deathTest()
+    {
+        TypedQuery<Death> deathQuery = em.createNamedQuery(Death.FIND_ALL, Death.class);
+        List<Death> deaths = deathQuery.getResultList();
+
+        outputEvents(Death.FIND_ALL, deaths);
+    }
+
+    private void outputEvents(String testName, List<? extends Event> events)
+    {
+        StringBuilder sb = new StringBuilder(testName);
+
+        for ( Event event : events )
+        {
+            sb.append("\n").append(event.getClass().getSimpleName());
+            sb.append("\t").append(event.getDateString());
+            sb.append("\t").append(event.getPlace());
+        }
+
+        LOG.log(Level.INFO, sb.toString());
     }
 }

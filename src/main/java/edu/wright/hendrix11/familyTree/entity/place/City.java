@@ -27,7 +27,7 @@ import javax.persistence.TypedQuery;
                       @NamedQuery(name = City.FIND_BY_NAME, query = "SELECT p FROM City p WHERE p.name = :name"),
                       @NamedQuery(name = City.FIND_ALL, query = "SELECT p FROM City p")
               })
-public class City extends County
+public class City extends Place
 {
     /**
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
@@ -49,5 +49,35 @@ public class City extends County
     public County getCounty()
     {
         return (County) getRegionByClass(County.class);
+    }
+
+    public Country getCountry()
+    {
+        return (Country) getRegionByClass(Country.class);
+    }
+
+    public State getState()
+    {
+        return (State) getRegionByClass(State.class);
+    }
+
+    @Override
+    public String getLink()
+    {
+        StringBuilder sb = new StringBuilder(getName());
+
+        State state = getState();
+        Country country = getCountry();
+
+        if ( state != null )
+        {
+            sb.append(", ").append(state.getName());
+        }
+        else if ( country != null )
+        {
+            sb.append(", ").append(country.getName());
+        }
+
+        return mapLink(sb.toString());
     }
 }

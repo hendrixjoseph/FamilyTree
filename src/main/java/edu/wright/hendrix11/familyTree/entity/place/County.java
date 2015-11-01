@@ -27,7 +27,7 @@ import javax.persistence.TypedQuery;
                       @NamedQuery(name = County.FIND_BY_NAME, query = "SELECT p FROM County p WHERE p.name = :name"),
                       @NamedQuery(name = County.FIND_ALL, query = "SELECT p FROM County p")
               })
-public class County extends State
+public class County extends Place
 {
     /**
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
@@ -51,6 +51,11 @@ public class County extends State
         return (State) getRegionByClass(State.class);
     }
 
+    public Country getCountry()
+    {
+        return (Country) getRegionByClass(Country.class);
+    }
+
     /**
      * {@inheritDoc}
      *
@@ -68,7 +73,7 @@ public class County extends State
         {
             sb.append(", ").append(state.getName());
         }
-        else if( country != null )
+        else if ( country != null )
         {
             sb.append(", ").append(country.getName());
         }

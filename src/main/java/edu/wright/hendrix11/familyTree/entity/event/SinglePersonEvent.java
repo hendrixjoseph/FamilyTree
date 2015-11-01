@@ -13,10 +13,12 @@
 package edu.wright.hendrix11.familyTree.entity.event;
 
 import edu.wright.hendrix11.familyTree.entity.Person;
+import edu.wright.hendrix11.familyTree.entity.compositeKey.SinglePersonEventPK;
 
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
@@ -28,6 +30,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "EVENT")
+@IdClass(SinglePersonEventPK.class)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TYPE")
 public class SinglePersonEvent extends Event
@@ -37,6 +40,9 @@ public class SinglePersonEvent extends Event
     @OneToOne
     @JoinColumn(name = "PERSON_ID")
     private Person person;
+
+    @Id
+    private String type;
 
     /**
      * @return
@@ -52,5 +58,15 @@ public class SinglePersonEvent extends Event
     public void setPerson(Person person)
     {
         this.person = person;
+    }
+
+    public String getType()
+    {
+        return type;
+    }
+
+    public void setType(String type)
+    {
+        this.type = type;
     }
 }
