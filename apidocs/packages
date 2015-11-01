@@ -1,6 +1,8 @@
 edu.wright.hendrix11.familyTree.bean
+edu.wright.hendrix11.familyTree.bean.place
 edu.wright.hendrix11.familyTree.converter
 edu.wright.hendrix11.familyTree.dataBean
+edu.wright.hendrix11.familyTree.dataBean.place
 edu.wright.hendrix11.familyTree.entity.compositeKey
 edu.wright.hendrix11.familyTree.entity.event
 edu.wright.hendrix11.familyTree.entity
