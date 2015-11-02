@@ -40,6 +40,9 @@ public class County extends Place
     /**
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * counties by name.
+     * 
+     * For example: {@code TypedQuery<City> query = em.createNamedQuery(City.FIND_BY_NAME, City.class);}
+     *              {@code query..setParameter("name", name);
      */
     public static final String FIND_BY_NAME = "County.findByName";
 
