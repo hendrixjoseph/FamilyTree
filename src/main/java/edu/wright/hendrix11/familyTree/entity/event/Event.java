@@ -43,13 +43,13 @@ public abstract class Event
     private Integer year;
 
     /**
-     * Returns the date the event happened. Keep in mind this might be and approximate date, or not all fields may
+     * Returns the date the event happened. Keep in mind this might be and approximate date, and not all fields may
      * actually be known. Also, it is recommended to get the formatted date string from {@link #getDateString()} rather
      * than just formatting the date this method returns.
      *
      * @return the date the event happened
      *
-     * @see #getDateString()
+     * @see #getDateString
      * @see #isAbout
      */
     public Date getDate()
@@ -101,7 +101,9 @@ public abstract class Event
     }
 
     /**
-     * @return
+     * Returns the day of the month. If the day is not known, it will return {@code null}.
+     * 
+     * @return the day of the month
      */
     public Integer getDay()
     {
@@ -109,7 +111,9 @@ public abstract class Event
     }
 
     /**
-     * @param day
+     * Sets the day of the month.
+     * 
+     * @param day the day of the month
      */
     public void setDay(Integer day)
     {
@@ -117,7 +121,9 @@ public abstract class Event
     }
 
     /**
-     * @return
+     * Returns the month of the year. If the month is not known, it will return {@code null}.
+     * 
+     * @return the month of the year
      */
     public Month getMonth()
     {
@@ -125,7 +131,9 @@ public abstract class Event
     }
 
     /**
-     * @param month
+     * Sets the month of the year.
+     * 
+     * @param month the month of the year
      */
     public void setMonth(Month month)
     {
@@ -133,7 +141,9 @@ public abstract class Event
     }
 
     /**
-     * @return
+     * Returns the year. If the year is not known, it will return {@code null}.
+     * 
+     * @return the year
      */
     public Integer getYear()
     {
@@ -141,7 +151,9 @@ public abstract class Event
     }
 
     /**
-     * @param year
+     * Sets the year.
+     * 
+     * @param year the year
      */
     public void setYear(Integer year)
     {
