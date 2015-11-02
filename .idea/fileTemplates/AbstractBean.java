@@ -15,7 +15,7 @@ import java.io.Serializable;
 public class ${NAME}Bean extends AbstractBean<${NAME}> implements Serializable
 {
     @EJB
-    ${NAME}DataBean ${NAME.toLowerCase()}DataBean;
+    private ${NAME}DataBean ${NAME.toLowerCase()}DataBean;
 
     @Override
     @PostConstruct
