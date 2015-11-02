@@ -32,11 +32,8 @@ import java.io.Serializable;
 public class DeathBean extends AbstractBean<Death> implements Serializable
 {
     @EJB
-    DataBean<Death, Person> deathDataBean;
+    private DataBean<Death, Person> deathDataBean;
 
-    /**
-     *
-     */
     @Override
     @PostConstruct
     protected void initialize()
