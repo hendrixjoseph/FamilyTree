@@ -31,11 +31,8 @@ import java.io.Serializable;
 public class StateBean extends AbstractBean<State> implements Serializable
 {
     @EJB
-    DataBean<State, Integer> stateDataBean;
+    private DataBean<State, Integer> stateDataBean;
 
-    /**
-     *
-     */
     @Override
     @PostConstruct
     protected void initialize()
