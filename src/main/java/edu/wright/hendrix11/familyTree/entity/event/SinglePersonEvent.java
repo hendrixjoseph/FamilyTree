@@ -33,8 +33,16 @@ import javax.persistence.Table;
 @IdClass(SinglePersonEventPK.class)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TYPE")
+@NamedQuery(name = SinglePersonEvent.FIND_ALL, query = "SELECT e FROM SinglePersonEvent e")
 public abstract class SinglePersonEvent extends Event
 {
+    /**
+    * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery}
+    * to get all single-person events.
+    *
+    * For example: {@code TypedQuery<SinglePersonEvent> query = em.createNamedQuery(SinglePersonEvent.FIND_ALL, SinglePersonEvent.class);}
+    */
+    public static final String FIND_ALL = "SinglePersonEvent.findAll";
 
     @Id
     @OneToOne
@@ -45,7 +53,7 @@ public abstract class SinglePersonEvent extends Event
     private String type;
 
     /**
-     *
+     * No-arg constructor for JPA.
      */
     protected SinglePersonEvent()
     {
@@ -53,7 +61,9 @@ public abstract class SinglePersonEvent extends Event
     }
 
     /**
-     * @return
+     * Returns the person associated with this event.
+     * 
+     * @return the person associated with this event
      */
     public Person getPerson()
     {
@@ -61,7 +71,9 @@ public abstract class SinglePersonEvent extends Event
     }
 
     /**
-     * @param person
+     * Sets the person associated with this event.
+     * 
+     * @param person the person associated with this event
      */
     public void setPerson(Person person)
     {
@@ -69,7 +81,10 @@ public abstract class SinglePersonEvent extends Event
     }
 
     /**
-     * @return
+     * Returns the discriminator column value. Normally this isn't needed with JPA, but the discriminator column 
+     * is part of the primary key for this entity.
+     * 
+     * @return the discriminator column value
      */
     public String getType()
     {
