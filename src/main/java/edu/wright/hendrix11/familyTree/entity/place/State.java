@@ -33,20 +33,20 @@ public class State extends Place
     /**
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link
      * javax.persistence.TypedQuery} to get all states.
+     * 
+     * For example: {@code TypedQuery<State> query = em.createNamedQuery(State.FIND_ALL, State.class);}
      */
     public static final String FIND_ALL = "State.findAll";
 
     /**
-     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link
-     * javax.persistence.TypedQuery} to get all states by name. It is expected, but not required, that only one state
-     * exists per name.
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link javax.persistence.TypedQuery}
+     * to get all states by name. It is expected, but not required, that only one state exists per name.
      */
     public static final String FIND_BY_NAME = "State.findByName";
 
     /**
-     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link
-     * javax.persistence.TypedQuery} to get all states by name. It is expected, but not required, that only one state
-     * exists per name and region.
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link javax.persistence.TypedQuery}
+     * to get all states by name. It is expected, but not required, that only one state exists per name and region.
      */
     public static final String FIND_BY_NAME_AND_REGION = "State.findByNameAndRegion";
 
@@ -61,6 +61,11 @@ public class State extends Place
         return (Country) getRegionByClass(Country.class);
     }
 
+   /**
+  * {@inheritDoc}
+  *
+  * @return {@inheritDoc}
+  */
     @Override
     public String getLink()
     {
