@@ -32,11 +32,8 @@ import java.io.Serializable;
 public class BirthBean extends AbstractBean<Birth> implements Serializable
 {
     @EJB
-    DataBean<Birth, Person> birthDataBean;
+    private DataBean<Birth, Person> birthDataBean;
 
-    /**
-     *
-     */
     @Override
     @PostConstruct
     protected void initialize()
