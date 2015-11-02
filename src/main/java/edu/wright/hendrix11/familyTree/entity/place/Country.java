@@ -28,18 +28,23 @@ import javax.persistence.NamedQuery;
               })
 public class Country extends Place
 {
-
-    /**
-     *
-     */
+  /**
+  * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
+  * counties.
+  *
+  * For example: {@code TypedQuery<County> query = em.createNamedQuery(County.FIND_ALL, County.class);}
+  */
     public static final String FIND_ALL = "Country.findAll";
 
-    /**
-     *
-     */
+ /**
+  * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
+  * counties by name.
+  */
     public static final String FIND_BY_NAME = "Country.findByName";
 
     /**
+     * {@inheritDoc}
+     * 
      * @return {@inheritDoc}
      */
     @Override
