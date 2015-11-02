@@ -32,11 +32,8 @@ import java.io.Serializable;
 public class SinglePersonEventBean extends AbstractBean<SinglePersonEvent> implements Serializable
 {
     @EJB
-    DataBean<SinglePersonEvent, Person> eventDataBean;
+    private DataBean<SinglePersonEvent, Person> eventDataBean;
 
-    /**
-     *
-     */
     @Override
     @PostConstruct
     protected void initialize()
