@@ -31,11 +31,8 @@ import java.io.Serializable;
 public class CityBean extends AbstractBean<City> implements Serializable
 {
     @EJB
-    DataBean<City, Integer> cityDataBean;
+    private DataBean<City, Integer> cityDataBean;
 
-    /**
-     *
-     */
     @Override
     @PostConstruct
     protected void initialize()
