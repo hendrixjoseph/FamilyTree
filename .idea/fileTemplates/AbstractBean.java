@@ -21,6 +21,7 @@ public class ${NAME}Bean extends AbstractBean<${NAME}> implements Serializable
     @PostConstruct
     protected void initialize()
     {
+        ${NAME.toLowerCase()}DataBean.initialize(${NAME}.class);
         super.initialize(${NAME.toLowerCase()}DataBean);
     }
 }
