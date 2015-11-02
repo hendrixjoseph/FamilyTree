@@ -32,6 +32,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
 
 import java.util.ArrayList;
@@ -56,18 +57,24 @@ import static javax.persistence.GenerationType.SEQUENCE;
 public class Person
 {
     /**
-     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link
-     * javax.persistence.TypedQuery} to count the number of people of a specific gender.
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} 
+     * to count the number of people of a specific gender.
+     * 
+     * For example: {@code TypedQuery<Person> query = em.createNamedQuery(Person.COUNT_GENDERS, Person.class);}
      */
     public static final String COUNT_GENDERS = "Person.countGenders";
     /**
-     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link
-     * javax.persistence.TypedQuery} to get all people.
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} 
+     * to get all people.
+     *
+     * For example: {@code TypedQuery<Person> query = em.createNamedQuery(Person.FIND_ALL, Person.class);}
      */
     public static final String FIND_ALL = "Person.findAll";
     /**
-     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link
-     * javax.persistence.TypedQuery} to get the first person in the database.
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} 
+     * to get the first person in the database.
+     * 
+     * For example: {@code TypedQuery<Person> query = em.createNamedQuery(Person.FIND_FIRST, Person.class);}
      */
     public static final String FIND_FIRST = "Person.findFirst";
     @Id
