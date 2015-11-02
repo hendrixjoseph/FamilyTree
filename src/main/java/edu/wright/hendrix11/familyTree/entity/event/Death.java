@@ -28,6 +28,8 @@ public class Death extends SinglePersonEvent
     /**
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * death records.
+     * 
+     * For example: {@code TypedQuery<Death> query = em.createNamedQuery(Death.FIND_ALL, Death.class);}
      */
     public static final String FIND_ALL = "Death.findAll";
 }
