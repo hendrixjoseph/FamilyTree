@@ -26,21 +26,19 @@ public abstract class AbstractBean<E>
 
     private DataBean<E, ?> dataBean;
 
-    /**
-     *
-     */
     protected abstract void initialize();
 
-    /**
-     * @param dataBean
-     */
     protected void initialize(DataBean<E, ?> dataBean)
     {
         this.dataBean = dataBean;
     }
 
     /**
-     * @return
+     * Returns the list of entities. These entities are specified by the type E.
+     * 
+     * @return the list of entities
+     * 
+     * @see DataBean#list
      */
     public List<E> getEntities()
     {
@@ -48,7 +46,11 @@ public abstract class AbstractBean<E>
     }
 
     /**
-     * @return
+     * Returns the current page number.
+     * 
+     * @return the current page number
+     * 
+     * @see DataBean#getPage
      */
     public int getPage()
     {
@@ -56,7 +58,11 @@ public abstract class AbstractBean<E>
     }
 
     /**
-     * @param page
+     * Sets the current page number.
+     * 
+     * @param page the current page number
+     * 
+     * @see DataBean#setPage
      */
     public void setPage(int page)
     {
@@ -64,7 +70,11 @@ public abstract class AbstractBean<E>
     }
 
     /**
-     * @return
+     * Returns the total number of pages.
+     * 
+     * @return the total number of pages
+     * 
+     * @see DataBean#getNumPages
      */
     public int getNumPages()
     {
