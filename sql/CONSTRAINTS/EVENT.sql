@@ -1,0 +1,9 @@
+--------------------------------------------------------
+--  Constraints for Table EVENT
+--------------------------------------------------------
+
+  ALTER TABLE "EVENT" ADD CONSTRAINT "EVENT_PK" PRIMARY KEY ("PERSON_ID", "TYPE") ENABLE;
+  ALTER TABLE "EVENT" MODIFY ("TYPE" NOT NULL ENABLE);
+  ALTER TABLE "EVENT" MODIFY ("ABOUT" NOT NULL ENABLE);
+  ALTER TABLE "EVENT" ADD CONSTRAINT "EVENT_CHK" CHECK (DAY > 0 AND DAY <= 31 AND (ABOUT = 0 OR ABOUT = 1)) ENABLE;
+  ALTER TABLE "EVENT" MODIFY ("PERSON_ID" NOT NULL ENABLE);

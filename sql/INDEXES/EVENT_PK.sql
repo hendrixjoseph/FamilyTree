@@ -1,8 +1,6 @@
 --------------------------------------------------------
---  DDL for Table PLACE_TYPE
+--  DDL for Index EVENT_PK
 --------------------------------------------------------
 
-  CREATE TABLE "PLACE_TYPE" 
-   (	"ID" NUMBER, 
-	"TYPE" VARCHAR2(8)
-   ) ;
+  CREATE UNIQUE INDEX "EVENT_PK" ON "EVENT" ("PERSON_ID", "TYPE") 
+  ;
