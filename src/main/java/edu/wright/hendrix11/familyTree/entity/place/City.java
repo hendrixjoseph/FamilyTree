@@ -42,6 +42,7 @@ public class City extends Place
      * states by name.
      * 
      * For example: {@code TypedQuery<City> query = em.createNamedQuery(City.FIND_BY_NAME, City.class);}
+     *              {@code query..setParameter("name", name);
      */
     public static final String FIND_BY_NAME = "City.findByName";
 
