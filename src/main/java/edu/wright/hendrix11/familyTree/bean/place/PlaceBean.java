@@ -30,13 +30,9 @@ import java.io.Serializable;
 @ViewScoped
 public class PlaceBean extends AbstractBean<Place> implements Serializable
 {
-
     @EJB
-    DataBean<Place, Integer> placeDataBean;
+    private DataBean<Place, Integer> placeDataBean;
 
-    /**
-     *
-     */
     @Override
     @PostConstruct
     protected void initialize()
