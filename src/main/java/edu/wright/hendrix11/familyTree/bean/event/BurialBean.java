@@ -32,11 +32,8 @@ import java.io.Serializable;
 public class BurialBean extends AbstractBean<Burial> implements Serializable
 {
     @EJB
-    DataBean<Burial, Person> burialDataBean;
+    private DataBean<Burial, Person> burialDataBean;
 
-    /**
-     *
-     */
     @Override
     @PostConstruct
     protected void initialize()
