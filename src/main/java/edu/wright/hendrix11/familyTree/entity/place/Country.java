@@ -39,6 +39,9 @@ public class Country extends Place
  /**
   * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
   * counties by name.
+  * 
+  * For example: {@code TypedQuery<Country> query = em.createNamedQuery(Country.FIND_BY_NAME, Country.class);}
+  *              {@code query..setParameter("name", name);
   */
     public static final String FIND_BY_NAME = "Country.findByName";
 
