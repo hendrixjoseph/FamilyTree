@@ -414,7 +414,7 @@ public class Person
     }
 
     /**
-     * {@inheritDoc}
+     * Returns a string representation of the person, which is just the person's name.
      *
      * @return A string representation of the person, which is just the person's name.
      *
