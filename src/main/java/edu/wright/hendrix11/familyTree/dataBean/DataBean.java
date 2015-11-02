@@ -39,6 +39,9 @@ public class DataBean<E, K>
     private String findAllQuery;
     private int page = 1;
 
+    /**
+     * @param clazz
+     */
     public void initialize(Class<E> clazz)
     {
         if ( !clazz.isAnnotationPresent(Entity.class) )
@@ -58,8 +61,17 @@ public class DataBean<E, K>
         }
     }
 
-    protected void initialize(){}
+    /**
+     *
+     */
+    protected void initialize()
+    {
+    }
 
+    /**
+     * @param em
+     * @param clazz
+     */
     protected void initialize(EntityManager em, Class<E> clazz)
     {
         initialize(clazz);

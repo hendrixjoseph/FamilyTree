@@ -136,6 +136,9 @@ public abstract class Place implements Iterable<Place>
         this.region = region;
     }
 
+    /**
+     * @return
+     */
     public List<Place> getPlaces()
     {
         List<Place> places = new ArrayList<>();
@@ -162,6 +165,11 @@ public abstract class Place implements Iterable<Place>
      */
     public abstract String getLink();
 
+    /**
+     * @param clazz
+     *
+     * @return
+     */
     protected Place getRegionByClass(Class<? extends Place> clazz)
     {
         for ( Place region : this )
@@ -173,11 +181,21 @@ public abstract class Place implements Iterable<Place>
         return null;
     }
 
+    /**
+     * @param string
+     *
+     * @return
+     */
     protected String mapLink(String string)
     {
         return "https://www.google.com/maps/place/" + string;
     }
 
+    /**
+     * @param string
+     *
+     * @return
+     */
     protected String queryLink(String string)
     {
         return "https://www.google.com/search?q=" + string;

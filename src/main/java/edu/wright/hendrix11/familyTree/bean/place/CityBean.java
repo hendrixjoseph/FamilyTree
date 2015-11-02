@@ -23,6 +23,9 @@ import javax.inject.Named;
 
 import java.io.Serializable;
 
+/**
+ * @author Joe
+ */
 @Named
 @ViewScoped
 public class CityBean extends AbstractBean<City> implements Serializable
@@ -30,6 +33,9 @@ public class CityBean extends AbstractBean<City> implements Serializable
     @EJB
     DataBean<City, Integer> cityDataBean;
 
+    /**
+     *
+     */
     @Override
     @PostConstruct
     protected void initialize()

@@ -22,27 +22,43 @@ public class SinglePersonEventPK implements Serializable
     private int person;
     private String type;
 
+    /**
+     * @param person
+     * @param type
+     */
     public SinglePersonEventPK(int person, String type)
     {
         this.person = person;
         this.type = type;
     }
 
+    /**
+     * @return
+     */
     public int getPerson()
     {
         return person;
     }
 
+    /**
+     * @param person
+     */
     public void setPerson(int person)
     {
         this.person = person;
     }
 
+    /**
+     * @return
+     */
     public String getType()
     {
         return type;
     }
 
+    /**
+     * @param type
+     */
     public void setType(String type)
     {
         this.type = type;

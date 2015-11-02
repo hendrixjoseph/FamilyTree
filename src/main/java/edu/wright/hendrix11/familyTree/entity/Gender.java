@@ -12,13 +12,37 @@
 
 package edu.wright.hendrix11.familyTree.entity;
 
+/**
+ * @author Joe
+ */
 public enum Gender
 {
+
+    /**
+     *
+     */
     MALE,
+
+    /**
+     *
+     */
     FEMALE,
+
+    /**
+     *
+     */
     OTHER,
+
+    /**
+     *
+     */
     UNNOWN;
 
+    /**
+     * @param name
+     *
+     * @return
+     */
     public static Gender getEnum(String name)
     {
         name = name.toUpperCase();

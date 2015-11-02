@@ -23,6 +23,9 @@ import javax.inject.Named;
 
 import java.io.Serializable;
 
+/**
+ * @author Joe
+ */
 @Named
 @ViewScoped
 public class MarriageBean extends AbstractBean<Marriage> implements Serializable
@@ -30,6 +33,9 @@ public class MarriageBean extends AbstractBean<Marriage> implements Serializable
     @EJB
     DataBean<Marriage, MarriagePK> marriageDataBean;
 
+    /**
+     *
+     */
     @Override
     @PostConstruct
     protected void initialize()

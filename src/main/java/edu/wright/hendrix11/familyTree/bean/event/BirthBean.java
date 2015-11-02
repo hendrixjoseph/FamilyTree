@@ -24,6 +24,9 @@ import javax.inject.Named;
 
 import java.io.Serializable;
 
+/**
+ * @author Joe
+ */
 @Named
 @ViewScoped
 public class BirthBean extends AbstractBean<Birth> implements Serializable
@@ -31,6 +34,9 @@ public class BirthBean extends AbstractBean<Birth> implements Serializable
     @EJB
     DataBean<Birth, Person> birthDataBean;
 
+    /**
+     *
+     */
     @Override
     @PostConstruct
     protected void initialize()

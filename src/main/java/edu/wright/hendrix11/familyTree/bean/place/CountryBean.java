@@ -23,6 +23,9 @@ import javax.inject.Named;
 
 import java.io.Serializable;
 
+/**
+ * @author Joe
+ */
 @Named
 @ViewScoped
 public class CountryBean extends AbstractBean<Country> implements Serializable
@@ -30,6 +33,9 @@ public class CountryBean extends AbstractBean<Country> implements Serializable
     @EJB
     DataBean<Country, Integer> countryDataBean;
 
+    /**
+     *
+     */
     @Override
     @PostConstruct
     protected void initialize()

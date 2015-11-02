@@ -100,31 +100,49 @@ public abstract class Event
         this.about = about;
     }
 
+    /**
+     * @return
+     */
     public Integer getDay()
     {
         return day;
     }
 
+    /**
+     * @param day
+     */
     public void setDay(Integer day)
     {
         this.day = day;
     }
 
+    /**
+     * @return
+     */
     public Month getMonth()
     {
         return month;
     }
 
+    /**
+     * @param month
+     */
     public void setMonth(Month month)
     {
         this.month = month;
     }
 
+    /**
+     * @return
+     */
     public Integer getYear()
     {
         return year;
     }
 
+    /**
+     * @param year
+     */
     public void setYear(Integer year)
     {
         this.year = year;

@@ -23,13 +23,19 @@ import javax.inject.Named;
 
 import java.io.Serializable;
 
+/**
+ * @author Joe
+ */
 @Named
 @ViewScoped
 public class CountyBean extends AbstractBean<County> implements Serializable
 {
     @EJB
-    DataBean<County,Integer> countyDataBean;
+    DataBean<County, Integer> countyDataBean;
 
+    /**
+     *
+     */
     @Override
     @PostConstruct
     protected void initialize()

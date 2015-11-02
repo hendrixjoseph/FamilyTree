@@ -33,6 +33,9 @@ public class PersonDataBean extends DataBean<Person, Integer>
     @PersistenceContext(unitName = "edu.wright.hendrix11.familyTree")
     private EntityManager em;
 
+    /**
+     *
+     */
     @PostConstruct
     protected void initialize()
     {
@@ -53,6 +56,11 @@ public class PersonDataBean extends DataBean<Person, Integer>
         return personQuery.getSingleResult();
     }
 
+    /**
+     * @param gender
+     *
+     * @return
+     */
     public long countGender(Gender gender)
     {
         TypedQuery<Long> countQuery = em.createNamedQuery(Person.COUNT_GENDERS, Long.class);

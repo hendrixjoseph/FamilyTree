@@ -26,6 +26,10 @@ import java.io.Serializable;
 @ViewScoped
 public class GenderBean implements Serializable
 {
+
+    /**
+     * @return
+     */
     public Gender[] getGenders()
     {
         return Gender.values();

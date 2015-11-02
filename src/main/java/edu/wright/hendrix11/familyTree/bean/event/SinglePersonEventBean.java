@@ -24,6 +24,9 @@ import javax.inject.Named;
 
 import java.io.Serializable;
 
+/**
+ * @author Joe
+ */
 @Named
 @ViewScoped
 public class SinglePersonEventBean extends AbstractBean<SinglePersonEvent> implements Serializable
@@ -31,6 +34,9 @@ public class SinglePersonEventBean extends AbstractBean<SinglePersonEvent> imple
     @EJB
     DataBean<SinglePersonEvent, Person> eventDataBean;
 
+    /**
+     *
+     */
     @Override
     @PostConstruct
     protected void initialize()

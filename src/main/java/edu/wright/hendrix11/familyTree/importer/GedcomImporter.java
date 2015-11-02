@@ -62,6 +62,9 @@ public class GedcomImporter extends Importer
         super(fileName);
     }
 
+    /**
+     *
+     */
     @Override
     protected void processData()
     {
@@ -357,7 +360,7 @@ public class GedcomImporter extends Importer
                 int number = Integer.parseInt(token);
                 event.setDay(number);
             }
-            else if( token.matches("[0-9]{4}"))
+            else if ( token.matches("[0-9]{4}") )
             {
                 int number = Integer.parseInt(token);
                 event.setYear(number);

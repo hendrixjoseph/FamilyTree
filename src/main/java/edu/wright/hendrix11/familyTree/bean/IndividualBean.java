@@ -40,6 +40,9 @@ public class IndividualBean implements Serializable
     private Person person;
     private Person tempPerson;
 
+    /**
+     *
+     */
     @PostConstruct
     protected void initialize()
     {

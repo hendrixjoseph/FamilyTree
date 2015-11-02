@@ -23,6 +23,9 @@ import javax.inject.Named;
 
 import java.io.Serializable;
 
+/**
+ * @author Joe
+ */
 @Named
 @ViewScoped
 public class StateBean extends AbstractBean<State> implements Serializable
@@ -30,6 +33,9 @@ public class StateBean extends AbstractBean<State> implements Serializable
     @EJB
     DataBean<State, Integer> stateDataBean;
 
+    /**
+     *
+     */
     @Override
     @PostConstruct
     protected void initialize()

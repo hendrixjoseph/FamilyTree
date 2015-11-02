@@ -38,6 +38,9 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
 
     private PieChartModel genderPie;
 
+    /**
+     *
+     */
     @Override
     @PostConstruct
     protected void initialize()
@@ -56,6 +59,9 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
         genderPie.setShowDataLabels(true);
     }
 
+    /**
+     * @return
+     */
     public PieChartModel getGenderPie()
     {
         return genderPie;

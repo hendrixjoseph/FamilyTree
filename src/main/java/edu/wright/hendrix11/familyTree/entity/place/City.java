@@ -51,11 +51,17 @@ public class City extends Place
         return (County) getRegionByClass(County.class);
     }
 
+    /**
+     * @return
+     */
     public Country getCountry()
     {
         return (Country) getRegionByClass(Country.class);
     }
 
+    /**
+     * @return
+     */
     public State getState()
     {
         return (State) getRegionByClass(State.class);

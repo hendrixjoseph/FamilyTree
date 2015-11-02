@@ -44,6 +44,9 @@ public abstract class SinglePersonEvent extends Event
     @Id
     private String type;
 
+    /**
+     *
+     */
     protected SinglePersonEvent()
     {
         this.type = this.getClass().getSimpleName().toLowerCase();
@@ -65,13 +68,16 @@ public abstract class SinglePersonEvent extends Event
         this.person = person;
     }
 
+    /**
+     * @return
+     */
     public String getType()
     {
         return type;
     }
 
-//    public void setType(String type)
-//    {
-//        this.type = type;
-//    }
+    //    public void setType(String type)
+    //    {
+    //        this.type = type;
+    //    }
 }

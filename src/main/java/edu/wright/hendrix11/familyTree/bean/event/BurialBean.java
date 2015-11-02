@@ -24,6 +24,9 @@ import javax.inject.Named;
 
 import java.io.Serializable;
 
+/**
+ * @author Joe
+ */
 @Named
 @ViewScoped
 public class BurialBean extends AbstractBean<Burial> implements Serializable
@@ -31,6 +34,9 @@ public class BurialBean extends AbstractBean<Burial> implements Serializable
     @EJB
     DataBean<Burial, Person> burialDataBean;
 
+    /**
+     *
+     */
     @Override
     @PostConstruct
     protected void initialize()

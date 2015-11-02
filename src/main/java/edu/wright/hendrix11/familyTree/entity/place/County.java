@@ -51,6 +51,9 @@ public class County extends Place
         return (State) getRegionByClass(State.class);
     }
 
+    /**
+     * @return
+     */
     public Country getCountry()
     {
         return (Country) getRegionByClass(Country.class);
