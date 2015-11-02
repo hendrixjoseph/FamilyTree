@@ -28,6 +28,8 @@ public class Birth extends SinglePersonEvent
     /**
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * birth records.
+     * 
+     * For example: {@code TypedQuery<Birth> query = em.createNamedQuery(Birth.FIND_ALL, Birth.class);}
      */
     public static final String FIND_ALL = "Birth.findAll";
 }
