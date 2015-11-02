@@ -33,11 +33,8 @@ public class PersonDataBean extends DataBean<Person, Integer>
     @PersistenceContext(unitName = "edu.wright.hendrix11.familyTree")
     private EntityManager em;
 
-    /**
-     *
-     */
     @PostConstruct
-    protected void initialize()
+    private void initialize()
     {
         initialize(em, Person.class);
     }
@@ -57,9 +54,11 @@ public class PersonDataBean extends DataBean<Person, Integer>
     }
 
     /**
-     * @param gender
+     * Returns the number of people of the specified gender.
+     * 
+     * @param gender the gender to be counted
      *
-     * @return
+     * @return the number of people of the specified gender
      */
     public long countGender(Gender gender)
     {
