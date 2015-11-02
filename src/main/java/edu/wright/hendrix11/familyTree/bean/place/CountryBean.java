@@ -31,11 +31,8 @@ import java.io.Serializable;
 public class CountryBean extends AbstractBean<Country> implements Serializable
 {
     @EJB
-    DataBean<Country, Integer> countryDataBean;
+    private DataBean<Country, Integer> countryDataBean;
 
-    /**
-     *
-     */
     @Override
     @PostConstruct
     protected void initialize()
