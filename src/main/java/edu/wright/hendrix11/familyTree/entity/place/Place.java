@@ -202,6 +202,16 @@ public abstract class Place implements Iterable<Place>
         return "https://www.google.com/search?q=" + string;
     }
 
+    /**
+     * Returns a string representation of the place. This is the "fully qualified" name, which is a
+     * concatination of this place's name and the name of all regions this place is in, seperated by
+     * commas. For example, "Dayton, Ohio, USA".
+     *
+     * @return A string representation of the person, which is just the person's name.
+     *
+     * @see #getName()
+     * @see #getRegion
+     */
     @Override
     public String toString()
     {
