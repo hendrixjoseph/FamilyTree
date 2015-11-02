@@ -68,6 +68,7 @@ public class Person
      * to get all people.
      *
      * For example: {@code TypedQuery<Person> query = em.createNamedQuery(Person.FIND_ALL, Person.class);}
+     *              {@code query..setParameter("gender", gender);
      */
     public static final String FIND_ALL = "Person.findAll";
     /**
