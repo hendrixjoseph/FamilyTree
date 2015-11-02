@@ -41,6 +41,9 @@ public class State extends Place
     /**
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link javax.persistence.TypedQuery}
      * to get all states by name. It is expected, but not required, that only one state exists per name.
+     * 
+     * For example: {@code TypedQuery<State> query = em.createNamedQuery(State.FIND_BY_NAME, State.class);}
+     *              {@code query..setParameter("name", name);
      */
     public static final String FIND_BY_NAME = "State.findByName";
 
