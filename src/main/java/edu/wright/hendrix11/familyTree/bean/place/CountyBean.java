@@ -31,11 +31,8 @@ import java.io.Serializable;
 public class CountyBean extends AbstractBean<County> implements Serializable
 {
     @EJB
-    DataBean<County, Integer> countyDataBean;
+    private DataBean<County, Integer> countyDataBean;
 
-    /**
-     *
-     */
     @Override
     @PostConstruct
     protected void initialize()
