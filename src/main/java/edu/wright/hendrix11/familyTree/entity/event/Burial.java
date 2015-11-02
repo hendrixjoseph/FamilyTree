@@ -30,9 +30,4 @@ public class Burial extends SinglePersonEvent
      * burial records.
      */
     public static final String FIND_ALL = "Burial.findAll";
-
-    public Burial()
-    {
-        this.setType("burial");
-    }
 }

@@ -30,9 +30,4 @@ public class Death extends SinglePersonEvent
      * death records.
      */
     public static final String FIND_ALL = "Death.findAll";
-
-    public Death()
-    {
-        this.setType("death");
-    }
 }

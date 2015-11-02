@@ -27,13 +27,12 @@ import javax.persistence.TypedQuery;
  * @author Joe Hendrix
  */
 @Stateless
-public class PersonDataBean extends AbstractDataBean<Person, Integer>
+public class PersonDataBean extends DataBean<Person, Integer>
 {
 
     @PersistenceContext(unitName = "edu.wright.hendrix11.familyTree")
     private EntityManager em;
 
-    @Override
     @PostConstruct
     protected void initialize()
     {

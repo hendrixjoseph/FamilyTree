@@ -352,16 +352,15 @@ public class GedcomImporter extends Importer
 
         for ( String token : tokens )
         {
-            LOG.log(Level.SEVERE, "token: '" + token + "'");
-
-            if ( token.matches("[0-9]") )
+            if ( token.matches("[0-9]{1,2}") )
             {
                 int number = Integer.parseInt(token);
-
-                if ( number < 50 )
-                    event.setDay(number);
-                else
-                    event.setYear(number);
+                event.setDay(number);
+            }
+            else if( token.matches("[0-9]{4}"))
+            {
+                int number = Integer.parseInt(token);
+                event.setYear(number);
             }
             else
             {

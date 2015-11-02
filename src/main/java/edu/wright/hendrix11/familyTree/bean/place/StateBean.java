@@ -13,7 +13,7 @@
 package edu.wright.hendrix11.familyTree.bean.place;
 
 import edu.wright.hendrix11.familyTree.bean.AbstractBean;
-import edu.wright.hendrix11.familyTree.dataBean.place.StateDataBean;
+import edu.wright.hendrix11.familyTree.dataBean.DataBean;
 import edu.wright.hendrix11.familyTree.entity.place.State;
 
 import javax.annotation.PostConstruct;
@@ -28,12 +28,13 @@ import java.io.Serializable;
 public class StateBean extends AbstractBean<State> implements Serializable
 {
     @EJB
-    StateDataBean stateDataBean;
+    DataBean<State, Integer> stateDataBean;
 
     @Override
     @PostConstruct
     protected void initialize()
     {
+        stateDataBean.initialize(State.class);
         super.initialize(stateDataBean);
     }
 }

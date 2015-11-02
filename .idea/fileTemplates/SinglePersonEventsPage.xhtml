@@ -1,16 +1,5 @@
+#set( $beanName = ${NAME.substring(0,${NAME.lastIndexOf('s')})} )
 <?xml version='1.0' encoding='UTF-8' ?>
-<!--
-  ~  The MIT License (MIT)
-  ~
-  ~  View the full license at:
-  ~  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
-  ~
-  ~  Copyright (c) 2015 Joseph Hendrix
-  ~
-  ~  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
-  ~
-  -->
-
 <ui:composition template="/WEB-INF/resource/template/main.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -20,32 +9,32 @@
 
     <ui:define name="metadata">
         <f:metadata>
-            <f:viewParam name="page" value="#{countryBean.page}" />
+            <f:viewParam name="page" value="#${beanName}Bean{.page}" />
         </f:metadata>
     </ui:define>
 
     <ui:define name="title">
-        Countries
+        ${NAME.substring(0,1).toUpperCase()}${NAME.substring(1,${NAME.length()})}
     </ui:define>
 
     <ui:define name="menu">
-        <hendrix11:menu currentView="countriesView" />
+        <hendrix11:menu currentView="${NAME}View" />
     </ui:define>
 
     <ui:define name="content">
         <p:layoutUnit position="center">
-            <p:dataTable var="country" value="#{countryBean.entities}" scrollable="true" scrollHeight="90%"
+            <p:dataTable var="${beanName}" value="#{${beanName}Bean.entities}" scrollable="true" scrollHeight="90%"
                          styleClass="familyTree-dataTable">
                 <p:column headerText="Id">
-                    <p:outputLabel value="#{country.id}" />
+                    <p:outputLabel value="#{${beanName}.id}" />
                 </p:column>
-
-                <p:column headerText="Name">
-                    <hendrix11:googleMapLink place="#{country}" />
+                
+                <p:column headerText="Date">
+                    <p:outputLabel value="#{${beanName}.dateString}" />
                 </p:column>
-
+            
                 <f:facet name="footer">
-                    <hendrix11:pageNav dataBean="#{countryBean}" outcome="countries" />
+                    <hendrix11:pageNav dataBean="#{${beanName}Bean}" outcome="${NAME}" />
                 </f:facet>
             </p:dataTable>
         </p:layoutUnit>

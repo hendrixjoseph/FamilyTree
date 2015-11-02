@@ -10,11 +10,12 @@
  *
  */
 
-package edu.wright.hendrix11.familyTree.bean.place;
+package edu.wright.hendrix11.familyTree.bean.event;
 
 import edu.wright.hendrix11.familyTree.bean.AbstractBean;
 import edu.wright.hendrix11.familyTree.dataBean.DataBean;
-import edu.wright.hendrix11.familyTree.entity.place.County;
+import edu.wright.hendrix11.familyTree.entity.Person;
+import edu.wright.hendrix11.familyTree.entity.event.Burial;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -25,16 +26,16 @@ import java.io.Serializable;
 
 @Named
 @ViewScoped
-public class CountyBean extends AbstractBean<County> implements Serializable
+public class BurialBean extends AbstractBean<Burial> implements Serializable
 {
     @EJB
-    DataBean<County,Integer> countyDataBean;
+    DataBean<Burial, Person> burialDataBean;
 
     @Override
     @PostConstruct
     protected void initialize()
     {
-        countyDataBean.initialize(County.class);
-        super.initialize(countyDataBean);
+        burialDataBean.initialize(Burial.class);
+        super.initialize(burialDataBean);
     }
 }

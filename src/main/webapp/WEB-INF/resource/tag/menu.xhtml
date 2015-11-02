@@ -61,6 +61,11 @@
                     <p:menuitem value="Cities" url="/places/cities.xhtml"
                                 disabled="#{currentView.equals('citiesView')}" />
                 </p:submenu>
+                <p:submenu label="Events">
+                    <p:submenu label="Single Person Events">
+                        <p:menuitem value="All Events" url="events/singlePersonEvents.xhtml" disabled="#{currentView.equals('singlePersonEventView')}" />
+                    </p:submenu>
+                </p:submenu>
                 <p:menuitem value="Marriages" url="/marriages.xhtml" disabled="#{currentView.equals('marriageView')}" />
                 <p:menuitem value="Index of Individuals" url="/persons.xhtml"
                             disabled="#{currentView.equals('personsView')}" />
@@ -75,7 +80,7 @@
             </p:submenu>
 
             <p:submenu label="Data Mining">
-                <p:menuitem value="Statistics" url="statistics.xhtml"
+                <p:menuitem value="Statistics" url="/statistics.xhtml"
                             disabled="#{currentView.equals('statisticsView')}" />
             </p:submenu>
 

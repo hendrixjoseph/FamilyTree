@@ -33,7 +33,7 @@ import javax.persistence.Table;
 @IdClass(SinglePersonEventPK.class)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TYPE")
-public class SinglePersonEvent extends Event
+public abstract class SinglePersonEvent extends Event
 {
 
     @Id
@@ -43,6 +43,11 @@ public class SinglePersonEvent extends Event
 
     @Id
     private String type;
+
+    protected SinglePersonEvent()
+    {
+        this.type = this.getClass().getSimpleName().toLowerCase();
+    }
 
     /**
      * @return
@@ -65,8 +70,8 @@ public class SinglePersonEvent extends Event
         return type;
     }
 
-    public void setType(String type)
-    {
-        this.type = type;
-    }
+//    public void setType(String type)
+//    {
+//        this.type = type;
+//    }
 }

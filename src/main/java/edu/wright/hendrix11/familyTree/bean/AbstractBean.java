@@ -12,7 +12,7 @@
 
 package edu.wright.hendrix11.familyTree.bean;
 
-import edu.wright.hendrix11.familyTree.dataBean.AbstractDataBean;
+import edu.wright.hendrix11.familyTree.dataBean.DataBean;
 
 import java.util.List;
 
@@ -24,11 +24,11 @@ import java.util.List;
 public abstract class AbstractBean<E>
 {
 
-    private AbstractDataBean<E, ?> dataBean;
+    private DataBean<E, ?> dataBean;
 
     protected abstract void initialize();
 
-    protected void initialize(AbstractDataBean<E, ?> dataBean)
+    protected void initialize(DataBean<E, ?> dataBean)
     {
         this.dataBean = dataBean;
     }

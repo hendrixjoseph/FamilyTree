@@ -20,32 +20,33 @@
 
     <ui:define name="metadata">
         <f:metadata>
-            <f:viewParam name="page" value="#{countryBean.page}" />
+            <f:viewParam name="page" value="#{singlePersonEventBean.page}" />
         </f:metadata>
     </ui:define>
 
     <ui:define name="title">
-        Countries
+        SinglePersonEvents
     </ui:define>
 
     <ui:define name="menu">
-        <hendrix11:menu currentView="countriesView" />
+        <hendrix11:menu currentView="singlePersonEventsView" />
     </ui:define>
 
     <ui:define name="content">
         <p:layoutUnit position="center">
-            <p:dataTable var="country" value="#{countryBean.entities}" scrollable="true" scrollHeight="90%"
+            <p:dataTable var="singlePersonEvent" value="#{singlePersonEventBean.entities}" scrollable="true"
+                         scrollHeight="90%"
                          styleClass="familyTree-dataTable">
                 <p:column headerText="Id">
-                    <p:outputLabel value="#{country.id}" />
+                    <p:outputLabel value="#{singlePersonEvent.person.id}" />
                 </p:column>
 
-                <p:column headerText="Name">
-                    <hendrix11:googleMapLink place="#{country}" />
+                <p:column headerText="Date">
+                    <p:outputLabel value="#{singlePersonEvent.dateString}" />
                 </p:column>
 
                 <f:facet name="footer">
-                    <hendrix11:pageNav dataBean="#{countryBean}" outcome="countries" />
+                    <hendrix11:pageNav dataBean="#{singlePersonEventBean}" outcome="singlePersonEvents" />
                 </f:facet>
             </p:dataTable>
         </p:layoutUnit>

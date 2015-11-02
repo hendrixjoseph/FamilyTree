@@ -12,8 +12,10 @@
 
 package edu.wright.hendrix11.familyTree.dataBean;
 
+import javax.ejb.Stateless;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import java.util.List;
@@ -25,19 +27,19 @@ import java.util.List;
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
-public abstract class AbstractDataBean<E, K>
+@Stateless
+public class DataBean<E, K>
 {
 
     private static final int RECORDS_PER_PAGE = 50;
 
+    @PersistenceContext(unitName = "edu.wright.hendrix11.familyTree")
     private EntityManager em;
     private Class<E> clazz;
     private String findAllQuery;
     private int page = 1;
 
-    protected abstract void initialize();
-
-    protected void initialize(EntityManager em, Class<E> clazz)
+    public void initialize(Class<E> clazz)
     {
         if ( !clazz.isAnnotationPresent(Entity.class) )
         {
@@ -48,13 +50,20 @@ public abstract class AbstractDataBean<E, K>
         {
             findAllQuery = clazz.getField("FIND_ALL").get(null).toString();
 
-            this.em = em;
             this.clazz = clazz;
         }
         catch ( IllegalAccessException | NoSuchFieldException e )
         {
             throw new IllegalArgumentException(clazz.getName() + " does not have field \"public static final String FIND_ALL\"!");
         }
+    }
+
+    protected void initialize(){}
+
+    protected void initialize(EntityManager em, Class<E> clazz)
+    {
+        initialize(clazz);
+        this.em = em;
     }
 
     /**

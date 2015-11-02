@@ -13,7 +13,7 @@
 package edu.wright.hendrix11.familyTree.bean.place;
 
 import edu.wright.hendrix11.familyTree.bean.AbstractBean;
-import edu.wright.hendrix11.familyTree.dataBean.place.PlaceDataBean;
+import edu.wright.hendrix11.familyTree.dataBean.DataBean;
 import edu.wright.hendrix11.familyTree.entity.place.Place;
 
 import javax.annotation.PostConstruct;
@@ -32,12 +32,13 @@ public class PlaceBean extends AbstractBean<Place> implements Serializable
 {
 
     @EJB
-    PlaceDataBean placeDataBean;
+    DataBean<Place, Integer> placeDataBean;
 
     @Override
     @PostConstruct
     protected void initialize()
     {
+        placeDataBean.initialize(Place.class);
         super.initialize(placeDataBean);
     }
 }

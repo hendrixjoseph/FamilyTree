@@ -2,7 +2,8 @@
 
 import edu.wright.hendrix11.familyTree.bean.AbstractBean;
 import edu.wright.hendrix11.familyTree.dataBean.DataBean;
-import edu.wright.hendrix11.familyTree.entity.place.${NAME};
+import edu.wright.hendrix11.familyTree.entity.Person;
+import edu.wright.hendrix11.familyTree.entity.event.${NAME};
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -16,7 +17,7 @@ import java.io.Serializable;
 public class ${NAME}Bean extends AbstractBean<${NAME}> implements Serializable
 {
     @EJB
-    DataBean<${NAME}, Integer> ${NAME.toLowerCase()}DataBean;
+    DataBean<${NAME}, Person> ${NAME.toLowerCase()}DataBean;
 
     @Override
     @PostConstruct

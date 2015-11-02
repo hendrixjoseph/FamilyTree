@@ -12,7 +12,8 @@
 
 package edu.wright.hendrix11.familyTree.bean;
 
-import edu.wright.hendrix11.familyTree.dataBean.MarriageDataBean;
+import edu.wright.hendrix11.familyTree.dataBean.DataBean;
+import edu.wright.hendrix11.familyTree.entity.compositeKey.MarriagePK;
 import edu.wright.hendrix11.familyTree.entity.event.Marriage;
 
 import javax.annotation.PostConstruct;
@@ -27,12 +28,13 @@ import java.io.Serializable;
 public class MarriageBean extends AbstractBean<Marriage> implements Serializable
 {
     @EJB
-    MarriageDataBean marriageDataBean;
+    DataBean<Marriage, MarriagePK> marriageDataBean;
 
     @Override
     @PostConstruct
     protected void initialize()
     {
+        marriageDataBean.initialize(Marriage.class);
         super.initialize(marriageDataBean);
     }
 }
