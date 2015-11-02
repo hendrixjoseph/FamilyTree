@@ -51,12 +51,16 @@ public abstract class Place implements Iterable<Place>
     /**
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * places.
+     * 
+     * For example: {@code TypedQuery<Place> query = em.createNamedQuery(Place.FIND_ALL, Place.class);}
      */
     public static final String FIND_ALL = "Place.findAll";
 
     /**
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * places by name.
+     * 
+     * For example: {@code TypedQuery<Place> query = em.createNamedQuery(Place.FIND_BY_NAME, Place.class);}
      */
     public static final String FIND_BY_NAME = "Place.findByName";
 
@@ -137,7 +141,9 @@ public abstract class Place implements Iterable<Place>
     }
 
     /**
-     * @return
+     * Returns a list containing this place and all regions it is in.
+     * 
+     * @return a list of place
      */
     public List<Place> getPlaces()
     {
@@ -154,6 +160,12 @@ public abstract class Place implements Iterable<Place>
         return Collections.unmodifiableList(places);
     }
 
+    /**
+     * Returns an iterator containing this place and all regions it is in. This is just the iterator
+     * returned by {@link #getPlaces}.
+     * 
+     * @return a list of place
+     */
     @Override
     public Iterator<Place> iterator()
     {
@@ -161,15 +173,14 @@ public abstract class Place implements Iterable<Place>
     }
 
     /**
-     * @return the text necessary to generate a Google Map link
+     * Retruns  URL String, typically either a Google query or Google map link. A Google query follows the
+     * format {@code "https://www.google.com/search?q="} while a Google map link follows the format 
+     * {@code "https://www.google.com/maps/place/"}.
+     * 
+     * @return a URL String, typically either a Google query or Google map link.
      */
     public abstract String getLink();
 
-    /**
-     * @param clazz
-     *
-     * @return
-     */
     protected Place getRegionByClass(Class<? extends Place> clazz)
     {
         for ( Place region : this )
@@ -181,21 +192,11 @@ public abstract class Place implements Iterable<Place>
         return null;
     }
 
-    /**
-     * @param string
-     *
-     * @return
-     */
     protected String mapLink(String string)
     {
         return "https://www.google.com/maps/place/" + string;
     }
 
-    /**
-     * @param string
-     *
-     * @return
-     */
     protected String queryLink(String string)
     {
         return "https://www.google.com/search?q=" + string;
