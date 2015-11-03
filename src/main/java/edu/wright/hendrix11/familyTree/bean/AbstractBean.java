@@ -69,6 +69,16 @@ public abstract class AbstractBean<E>
         dataBean.setPage(page);
     }
 
+    public String getSort()
+    {
+        return dataBean.getSort();
+    }
+
+    public void setSort(String sort)
+    {
+        dataBean.setSort(sort);
+    }
+
     /**
      * Returns the total number of pages.
      *

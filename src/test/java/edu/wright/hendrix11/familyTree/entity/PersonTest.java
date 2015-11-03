@@ -23,7 +23,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -66,6 +70,7 @@ public class PersonTest
     }
 
     @Test
+    @Ignore
     public void countGenders()
     {
         TypedQuery<Long> countQuery = em.createNamedQuery(Person.COUNT_GENDERS, Long.class);
@@ -77,6 +82,7 @@ public class PersonTest
     }
 
     @Test
+    @Ignore
     public void testFindFirst()
     {
         TypedQuery<Person> personQuery = em.createNamedQuery(Person.FIND_FIRST, Person.class);
@@ -86,13 +92,23 @@ public class PersonTest
     }
 
     @Test
-    @Ignore
     public void test()
     {
-        Person person = em.find(Person.class, 9512);
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<Person> q = criteriaBuilder.createQuery(Person.class);
+        Root<Person> c = q.from(Person.class);
+        q.select(c).orderBy(criteriaBuilder.asc(c.get("name")));
+
+        TypedQuery<Person> query = em.createQuery(q);
+        List<Person> results = query.getResultList();
+
+        for(Person person : results)
+        {
+            LOG.log(Level.INFO, person.getName());
+        }
     }
 
-    public void outputPerson(Person person)
+    private void outputPerson(Person person)
     {
         StringBuilder sb = new StringBuilder();
 

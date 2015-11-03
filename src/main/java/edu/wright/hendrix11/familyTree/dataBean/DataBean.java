@@ -17,6 +17,9 @@ import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import java.util.List;
 
@@ -38,6 +41,7 @@ public class DataBean<E, K>
     private Class<E> clazz;
     private String findAllQuery;
     private int page = 1;
+    private String sort;
 
     /**
      * A Class object of the same type specified by E. This class must have both an @Entity annotation and field
@@ -71,6 +75,16 @@ public class DataBean<E, K>
     {
         initialize(clazz);
         this.em = em;
+    }
+
+    public String getSort()
+    {
+        return sort;
+    }
+
+    public void setSort(String sort)
+    {
+        this.sort = sort;
     }
 
     /**
@@ -116,8 +130,21 @@ public class DataBean<E, K>
      */
     public List<E> list()
     {
-        TypedQuery<E> query = em.createNamedQuery(findAllQuery, clazz);
-        return query.setFirstResult(( page - 1 ) * RECORDS_PER_PAGE).setMaxResults(RECORDS_PER_PAGE).getResultList();
+        if(sort == null)
+        {
+            TypedQuery<E> query = em.createNamedQuery(findAllQuery, clazz);
+            return query.setFirstResult(( page - 1 ) * RECORDS_PER_PAGE).setMaxResults(RECORDS_PER_PAGE).getResultList();
+        }
+        else
+        {
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<E> q = cb.createQuery(clazz);
+            Root<E> from = q.from(clazz);
+            q.select(from).orderBy(cb.asc(from.get(sort)));
+
+            TypedQuery<E> query = em.createQuery(q);
+            return query.getResultList();
+        }
     }
 
     /**
