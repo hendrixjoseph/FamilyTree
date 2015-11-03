@@ -40,13 +40,13 @@ public class DataBean<E, K>
     private int page = 1;
 
     /**
-     * A Class object of the same type specified by E. This class must have both an @Entity annotation
-     * and field \"public static final String FIND_ALL\"
-     * 
+     * A Class object of the same type specified by E. This class must have both an @Entity annotation and field
+     * \"public static final String FIND_ALL\"
+     *
      * @param clazz
-     * 
-     * @throws IllegalArgumentException if the class clazz does not have an @Entity annotation or 
-     *        field \"public static final String FIND_ALL\"
+     *
+     * @throws IllegalArgumentException if the class clazz does not have an @Entity annotation or field \"public static
+     *                                  final String FIND_ALL\"
      */
     public void initialize(Class<E> clazz)
     {

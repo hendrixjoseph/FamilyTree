@@ -22,8 +22,10 @@ import javax.persistence.IdClass;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.TypedQuery;
 
 /**
  * @author Joe Hendrix
@@ -37,11 +39,12 @@ import javax.persistence.Table;
 public abstract class SinglePersonEvent extends Event
 {
     /**
-    * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery}
-    * to get all single-person events.
-    *
-    * For example: {@code TypedQuery<SinglePersonEvent> query = em.createNamedQuery(SinglePersonEvent.FIND_ALL, SinglePersonEvent.class);}
-    */
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
+     * single-person events.
+     * <p>
+     * For example: {@code TypedQuery<SinglePersonEvent> query = em.createNamedQuery(SinglePersonEvent.FIND_ALL,
+     * SinglePersonEvent.class);}
+     */
     public static final String FIND_ALL = "SinglePersonEvent.findAll";
 
     @Id
@@ -62,7 +65,7 @@ public abstract class SinglePersonEvent extends Event
 
     /**
      * Returns the person associated with this event.
-     * 
+     *
      * @return the person associated with this event
      */
     public Person getPerson()
@@ -72,7 +75,7 @@ public abstract class SinglePersonEvent extends Event
 
     /**
      * Sets the person associated with this event.
-     * 
+     *
      * @param person the person associated with this event
      */
     public void setPerson(Person person)
@@ -81,9 +84,9 @@ public abstract class SinglePersonEvent extends Event
     }
 
     /**
-     * Returns the discriminator column value. Normally this isn't needed with JPA, but the discriminator column 
-     * is part of the primary key for this entity.
-     * 
+     * Returns the discriminator column value. Normally this isn't needed with JPA, but the discriminator column is part
+     * of the primary key for this entity.
+     *
      * @return the discriminator column value
      */
     public String getType()

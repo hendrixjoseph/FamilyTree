@@ -25,7 +25,7 @@
     </ui:define>
 
     <ui:define name="title">
-        SinglePersonEvents
+        Single Person Events
     </ui:define>
 
     <ui:define name="menu">
@@ -37,12 +37,20 @@
             <p:dataTable var="singlePersonEvent" value="#{singlePersonEventBean.entities}" scrollable="true"
                          scrollHeight="90%"
                          styleClass="familyTree-dataTable">
-                <p:column headerText="Id">
-                    <p:outputLabel value="#{singlePersonEvent.person.id}" />
+                <p:column headerText="Type">
+                    <p:outputLabel value="#{singlePersonEvent.type}" />
+                </p:column>
+
+                <p:column headerText="Person">
+                    <hendrix11:personLink person="#{singlePersonEvent.person}" />
                 </p:column>
 
                 <p:column headerText="Date">
                     <p:outputLabel value="#{singlePersonEvent.dateString}" />
+                </p:column>
+
+                <p:column headerText="Place">
+                    <hendrix11:googleMapLink place="#{singlePersonEvent.place}" />
                 </p:column>
 
                 <f:facet name="footer">

@@ -102,7 +102,7 @@ public abstract class Event
 
     /**
      * Returns the day of the month. If the day is not known, it will return {@code null}.
-     * 
+     *
      * @return the day of the month
      */
     public Integer getDay()
@@ -112,7 +112,7 @@ public abstract class Event
 
     /**
      * Sets the day of the month.
-     * 
+     *
      * @param day the day of the month
      */
     public void setDay(Integer day)
@@ -122,7 +122,7 @@ public abstract class Event
 
     /**
      * Returns the month of the year. If the month is not known, it will return {@code null}.
-     * 
+     *
      * @return the month of the year
      */
     public Month getMonth()
@@ -132,7 +132,7 @@ public abstract class Event
 
     /**
      * Sets the month of the year.
-     * 
+     *
      * @param month the month of the year
      */
     public void setMonth(Month month)
@@ -142,7 +142,7 @@ public abstract class Event
 
     /**
      * Returns the year. If the year is not known, it will return {@code null}.
-     * 
+     *
      * @return the year
      */
     public Integer getYear()
@@ -152,7 +152,7 @@ public abstract class Event
 
     /**
      * Sets the year.
-     * 
+     *
      * @param year the year
      */
     public void setYear(Integer year)
@@ -172,7 +172,7 @@ public abstract class Event
         if ( month != null )
             sb.append(month.getDisplayName(TextStyle.SHORT, Locale.US));
 
-        if ( month != null && day != null )
+        if ( month != null && (day != null || year != null) )
             sb.append(" ");
 
         if ( day != null )

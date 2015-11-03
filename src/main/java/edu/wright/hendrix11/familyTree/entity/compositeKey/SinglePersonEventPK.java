@@ -67,7 +67,7 @@ public class SinglePersonEventPK implements Serializable
     @Override
     public int hashCode()
     {
-        int result = getPerson();
+        int result = person;
         result = 31 * result + getType().hashCode();
         return result;
     }
@@ -82,9 +82,9 @@ public class SinglePersonEventPK implements Serializable
 
         SinglePersonEventPK that = (SinglePersonEventPK) o;
 
-        if ( getPerson() != that.getPerson() )
+        if ( person != that.getPerson() )
             return false;
-        return getType().equals(that.getType());
+        return type.equals(that.getType());
 
     }
 }

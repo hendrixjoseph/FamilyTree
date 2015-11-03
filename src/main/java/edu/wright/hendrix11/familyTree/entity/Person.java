@@ -57,24 +57,24 @@ import static javax.persistence.GenerationType.SEQUENCE;
 public class Person
 {
     /**
-     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} 
-     * to count the number of people of a specific gender.
-     * 
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to count the
+     * number of people of a specific gender.
+     * <p>
      * For example: {@code TypedQuery<Person> query = em.createNamedQuery(Person.COUNT_GENDERS, Person.class);}
      */
     public static final String COUNT_GENDERS = "Person.countGenders";
     /**
-     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} 
-     * to get all people.
-     *
-     * For example: {@code TypedQuery<Person> query = em.createNamedQuery(Person.FIND_ALL, Person.class);}
-     *              {@code query..setParameter("gender", gender);
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
+     * people.
+     * <p>
+     * For example: {@code TypedQuery<Person> query = em.createNamedQuery(Person.FIND_ALL, Person.class);} {@code
+     * query..setParameter("gender", gender);
      */
     public static final String FIND_ALL = "Person.findAll";
     /**
-     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} 
-     * to get the first person in the database.
-     * 
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get the
+     * first person in the database.
+     * <p>
      * For example: {@code TypedQuery<Person> query = em.createNamedQuery(Person.FIND_FIRST, Person.class);}
      */
     public static final String FIND_FIRST = "Person.findFirst";

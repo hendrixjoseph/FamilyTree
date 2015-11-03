@@ -55,7 +55,7 @@ public class PersonDataBean extends DataBean<Person, Integer>
 
     /**
      * Returns the number of people of the specified gender.
-     * 
+     *
      * @param gender the gender to be counted
      *
      * @return the number of people of the specified gender

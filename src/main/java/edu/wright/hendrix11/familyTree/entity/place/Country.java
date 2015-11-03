@@ -16,6 +16,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.TypedQuery;
 
 /**
  * @author Joe
@@ -28,26 +29,26 @@ import javax.persistence.NamedQuery;
               })
 public class Country extends Place
 {
-  /**
-  * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
-  * counties.
-  *
-  * For example: {@code TypedQuery<County> query = em.createNamedQuery(County.FIND_ALL, County.class);}
-  */
+    /**
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
+     * counties.
+     * <p>
+     * For example: {@code TypedQuery<County> query = em.createNamedQuery(County.FIND_ALL, County.class);}
+     */
     public static final String FIND_ALL = "Country.findAll";
 
- /**
-  * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
-  * counties by name.
-  * 
-  * For example: {@code TypedQuery<Country> query = em.createNamedQuery(Country.FIND_BY_NAME, Country.class);}
-  *              {@code query..setParameter("name", name);
-  */
+    /**
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
+     * counties by name.
+     * <p>
+     * For example: {@code TypedQuery<Country> query = em.createNamedQuery(Country.FIND_BY_NAME, Country.class);} {@code
+     * query..setParameter("name", name);
+     */
     public static final String FIND_BY_NAME = "Country.findByName";
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @return {@inheritDoc}
      */
     @Override

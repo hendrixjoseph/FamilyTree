@@ -32,7 +32,7 @@ public class City extends Place
     /**
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * cities.
-     * 
+     * <p>
      * For example: {@code TypedQuery<City> query = em.createNamedQuery(City.FIND_ALL, City.class);}
      */
     public static final String FIND_ALL = "City.findAll";
@@ -40,9 +40,9 @@ public class City extends Place
     /**
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * states by name.
-     * 
-     * For example: {@code TypedQuery<City> query = em.createNamedQuery(City.FIND_BY_NAME, City.class);}
-     *              {@code query..setParameter("name", name);
+     * <p>
+     * For example: {@code TypedQuery<City> query = em.createNamedQuery(City.FIND_BY_NAME, City.class);} {@code
+     * query..setParameter("name", name);
      */
     public static final String FIND_BY_NAME = "City.findByName";
 
@@ -56,31 +56,31 @@ public class City extends Place
         return (County) getRegionByClass(County.class);
     }
 
-   /**
-    * Returns the country that the city is in.
-    *
-    * @return the country that the city is in
-    */
+    /**
+     * Returns the country that the city is in.
+     *
+     * @return the country that the city is in
+     */
     public Country getCountry()
     {
         return (Country) getRegionByClass(Country.class);
     }
 
-   /**
-    * Returns the state that the city is in.
-    *
-    * @return the state that the city is in
-    */
+    /**
+     * Returns the state that the city is in.
+     *
+     * @return the state that the city is in
+     */
     public State getState()
     {
         return (State) getRegionByClass(State.class);
     }
 
-     /**
-    * {@inheritDoc}
-    *
-    * @return {@inheritDoc}
-    */
+    /**
+     * {@inheritDoc}
+     *
+     * @return {@inheritDoc}
+     */
     @Override
     public String getLink()
     {

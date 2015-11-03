@@ -51,7 +51,7 @@ public abstract class Place implements Iterable<Place>
     /**
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * places.
-     * 
+     * <p>
      * For example: {@code TypedQuery<Place> query = em.createNamedQuery(Place.FIND_ALL, Place.class);}
      */
     public static final String FIND_ALL = "Place.findAll";
@@ -59,9 +59,9 @@ public abstract class Place implements Iterable<Place>
     /**
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * places by name.
-     * 
-     * For example: {@code TypedQuery<Place> query = em.createNamedQuery(Place.FIND_BY_NAME, Place.class);}
-     *              {@code query..setParameter("name", name);
+     * <p>
+     * For example: {@code TypedQuery<Place> query = em.createNamedQuery(Place.FIND_BY_NAME, Place.class);} {@code
+     * query..setParameter("name", name);
      */
     public static final String FIND_BY_NAME = "Place.findByName";
 
@@ -143,7 +143,7 @@ public abstract class Place implements Iterable<Place>
 
     /**
      * Returns a list containing this place and all regions it is in.
-     * 
+     *
      * @return a list of place
      */
     public List<Place> getPlaces()
@@ -162,9 +162,9 @@ public abstract class Place implements Iterable<Place>
     }
 
     /**
-     * Returns an iterator containing this place and all regions it is in. This is just the iterator
-     * returned by {@link #getPlaces}.
-     * 
+     * Returns an iterator containing this place and all regions it is in. This is just the iterator returned by {@link
+     * #getPlaces}.
+     *
      * @return a list of place
      */
     @Override
@@ -174,10 +174,10 @@ public abstract class Place implements Iterable<Place>
     }
 
     /**
-     * Retruns  URL String, typically either a Google query or Google map link. A Google query follows the
-     * format {@code "https://www.google.com/search?q="} while a Google map link follows the format 
-     * {@code "https://www.google.com/maps/place/"}.
-     * 
+     * Retruns  URL String, typically either a Google query or Google map link. A Google query follows the format {@code
+     * "https://www.google.com/search?q="} while a Google map link follows the format {@code
+     * "https://www.google.com/maps/place/"}.
+     *
      * @return a URL String, typically either a Google query or Google map link.
      */
     public abstract String getLink();
@@ -204,9 +204,9 @@ public abstract class Place implements Iterable<Place>
     }
 
     /**
-     * Returns a string representation of the place. This is the "fully qualified" name, which is a
-     * concatination of this place's name and the name of all regions this place is in, seperated by
-     * commas. For example, "Dayton, Ohio, USA".
+     * Returns a string representation of the place. This is the "fully qualified" name, which is a concatination of
+     * this place's name and the name of all regions this place is in, seperated by commas. For example, "Dayton, Ohio,
+     * USA".
      *
      * @return A string representation of the person, which is just the person's name.
      *

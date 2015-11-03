@@ -25,12 +25,17 @@
         <p:layoutUnit position="center">
             <p:dataTable var="${beanName}" value="#{${beanName}Bean.entities}" scrollable="true" scrollHeight="90%"
                          styleClass="familyTree-dataTable">
-                <p:column headerText="Id">
-                    <p:outputLabel value="#{${beanName}.id}" />
+                
+                <p:column headerText="Person">
+                    <hendrix11:personLink person="#{singlePersonEvent.person}" />
                 </p:column>
                 
                 <p:column headerText="Date">
                     <p:outputLabel value="#{${beanName}.dateString}" />
+                </p:column>
+                
+                <p:column headerText="Place">
+                    <hendrix11:googleMapLink place="#{${beanName}.place}" />
                 </p:column>
             
                 <f:facet name="footer">

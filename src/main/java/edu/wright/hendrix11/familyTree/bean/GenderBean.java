@@ -29,7 +29,7 @@ public class GenderBean implements Serializable
 
     /**
      * Returns the array of genders.
-     * 
+     *
      * @return the array of genders
      */
     public Gender[] getGenders()
