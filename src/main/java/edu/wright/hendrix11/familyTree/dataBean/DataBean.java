@@ -143,7 +143,7 @@ public class DataBean<E, K>
             q.select(from).orderBy(cb.asc(from.get(sort)));
 
             TypedQuery<E> query = em.createQuery(q);
-            return query.getResultList();
+            return query.setFirstResult(( page - 1 ) * RECORDS_PER_PAGE).setMaxResults(RECORDS_PER_PAGE).getResultList();
         }
     }
 
