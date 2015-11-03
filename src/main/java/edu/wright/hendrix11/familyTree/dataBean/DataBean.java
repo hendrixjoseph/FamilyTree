@@ -150,14 +150,11 @@ public class DataBean<E, K>
                 CriteriaQuery<E> q = cb.createQuery(clazz);
                 Root<E> root = q.from(clazz);
 
+                List<Order> order = new ArrayList<>();
+
                 if(sort.equals("date"))
                 {
-                    List<Order> order = new ArrayList<>();
-                    order.add(cb.asc(root.get("year")));
-                    order.add(cb.asc(root.get("month")));
-                    order.add(cb.asc(root.get("day")));
-
-                    q.select(root).orderBy(order);
+                    order.addAll(dateOrder(cb, root));
                 }
                 else
                 {
@@ -167,11 +164,21 @@ public class DataBean<E, K>
 
                     for ( int i = 1; i < sorts.length; i++ )
                     {
-                        path = path.get(sorts[i]);
+                        if(sorts[i].equals("date"))
+                        {
+                            order.addAll(dateOrder(cb, root));
+                            break;
+                        }
+                        else
+                        {
+                            path = path.get(sorts[i]);
+                        }
                     }
 
-                    q.select(root).orderBy(cb.asc(path));
+                    order.add(0, cb.asc(path));
                 }
+
+                q.select(root).orderBy(order);
 
                 TypedQuery<E> query = em.createQuery(q);
                 return query.setFirstResult(( page - 1 ) * RECORDS_PER_PAGE).setMaxResults(RECORDS_PER_PAGE).getResultList();
@@ -192,6 +199,17 @@ public class DataBean<E, K>
                 throw e;
             }
         }
+    }
+
+    private List<Order> dateOrder(CriteriaBuilder cb, Root<E> root)
+    {
+        List<Order> order = new ArrayList<>();
+
+        order.add(cb.asc(root.get("year")));
+        order.add(cb.asc(root.get("month")));
+        order.add(cb.asc(root.get("day")));
+
+        return order;
     }
 
     /**
