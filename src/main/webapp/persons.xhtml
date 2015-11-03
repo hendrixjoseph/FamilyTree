@@ -44,7 +44,9 @@
                 </p:column>
 
                 <p:column>
-                    <f:facet name="header">Father</f:facet>
+                    <f:facet name="header">
+                        <hendrix11:pageSort dataBean="#{personBean}" text="Father" sort="father" />
+                    </f:facet>
                     <hendrix11:personLink person="#{person.father}" />
                 </p:column>
 

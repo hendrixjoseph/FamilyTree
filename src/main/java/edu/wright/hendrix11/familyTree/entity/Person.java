@@ -30,6 +30,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
@@ -67,8 +68,9 @@ public class Person
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * people.
      * <p>
-     * For example: {@code TypedQuery<Person> query = em.createNamedQuery(Person.FIND_ALL, Person.class);} {@code
-     * query..setParameter("gender", gender);
+     * For example:
+     * {@code TypedQuery<Person> query = em.createNamedQuery(Person.FIND_ALL, Person.class);}
+     * {@code query.setParameter("gender", gender);}
      */
     public static final String FIND_ALL = "Person.findAll";
     /**

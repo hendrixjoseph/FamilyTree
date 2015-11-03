@@ -65,6 +65,12 @@
                     <p:submenu label="Single Person Events">
                         <p:menuitem value="All Events" url="/events/singlePersonEvents.xhtml"
                                     disabled="#{currentView.equals('singlePersonEventsView')}" />
+                        <p:menuitem value="Births" url="/events/births.xhtml"
+                                    disabled="#{currentView.equals('birthsView')}" />
+                        <p:menuitem value="Deaths" url="/events/deaths.xhtml"
+                                    disabled="#{currentView.equals('deathsView')}" />
+                        <p:menuitem value="Burials" url="/events/burials.xhtml"
+                                    disabled="#{currentView.equals('burialsView')}" />
                     </p:submenu>
                 </p:submenu>
                 <p:menuitem value="Marriages" url="/marriages.xhtml" disabled="#{currentView.equals('marriageView')}" />

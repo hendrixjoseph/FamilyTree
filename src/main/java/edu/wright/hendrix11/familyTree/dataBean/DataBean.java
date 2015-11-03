@@ -12,6 +12,7 @@
 
 package edu.wright.hendrix11.familyTree.dataBean;
 
+import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
@@ -19,9 +20,14 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Order;
+import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @param <E> a class that has an {@link Entity} annotation
@@ -33,6 +39,7 @@ import java.util.List;
 @Stateless
 public class DataBean<E, K>
 {
+    private static final Logger LOG = Logger.getLogger(DataBean.class.getName());
 
     private static final int RECORDS_PER_PAGE = 50;
 
@@ -137,13 +144,53 @@ public class DataBean<E, K>
         }
         else
         {
-            CriteriaBuilder cb = em.getCriteriaBuilder();
-            CriteriaQuery<E> q = cb.createQuery(clazz);
-            Root<E> from = q.from(clazz);
-            q.select(from).orderBy(cb.asc(from.get(sort)));
+            try
+            {
+                CriteriaBuilder cb = em.getCriteriaBuilder();
+                CriteriaQuery<E> q = cb.createQuery(clazz);
+                Root<E> root = q.from(clazz);
 
-            TypedQuery<E> query = em.createQuery(q);
-            return query.setFirstResult(( page - 1 ) * RECORDS_PER_PAGE).setMaxResults(RECORDS_PER_PAGE).getResultList();
+                if(sort.equals("date"))
+                {
+                    List<Order> order = new ArrayList<>();
+                    order.add(cb.asc(root.get("year")));
+                    order.add(cb.asc(root.get("month")));
+                    order.add(cb.asc(root.get("day")));
+
+                    q.select(root).orderBy(order);
+                }
+                else
+                {
+                    String sorts[] = sort.split("\\.");
+
+                    Path<Object> path = root.get(sorts[0]);
+
+                    for ( int i = 1; i < sorts.length; i++ )
+                    {
+                        path = path.get(sorts[i]);
+                    }
+
+                    q.select(root).orderBy(cb.asc(path));
+                }
+
+                TypedQuery<E> query = em.createQuery(q);
+                return query.setFirstResult(( page - 1 ) * RECORDS_PER_PAGE).setMaxResults(RECORDS_PER_PAGE).getResultList();
+            }
+            catch(Exception e)
+            {
+                for(Throwable cause = e; cause != null; cause = cause.getCause())
+                {
+                    if(cause instanceof IllegalArgumentException)
+                    {
+                        LOG.log(Level.SEVERE, e.getMessage());
+
+                        sort = null;
+                        return list();
+                    }
+                }
+
+                throw e;
+            }
         }
     }
 

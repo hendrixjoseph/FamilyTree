@@ -20,54 +20,47 @@
 
     <ui:define name="metadata">
         <f:metadata>
-            <f:viewParam name="page" value="#{singlePersonEventBean.page}" />
-            <f:viewParam name="sort" value="#{singlePersonEventBean.sort}" />
+            <f:viewParam name="page" value="#{deathBean.page}" />
+            <f:viewParam name="sort" value="#{deathBean.sort}" />
         </f:metadata>
     </ui:define>
 
     <ui:define name="title">
-        Single Person Events
+        Deaths
     </ui:define>
 
     <ui:define name="menu">
-        <hendrix11:menu currentView="singlePersonEventsView" />
+        <hendrix11:menu currentView="deathsView" />
     </ui:define>
 
     <ui:define name="content">
         <p:layoutUnit position="center">
-            <p:dataTable var="singlePersonEvent" value="#{singlePersonEventBean.entities}" scrollable="true"
-                         scrollHeight="90%"
+            <p:dataTable var="death" value="#{deathBean.entities}" scrollable="true" scrollHeight="90%"
                          styleClass="familyTree-dataTable">
+
                 <p:column>
                     <f:facet name="header">
-                        <hendrix11:pageSort dataBean="#{singlePersonEventBean}" text="Type" sort="type" />
+                        <hendrix11:pageSort dataBean="#{deathBean}" text="Person" sort="person.name" />
                     </f:facet>
-                    <p:outputLabel value="#{singlePersonEvent.type}" />
+                    <hendrix11:personLink person="#{death.person}" />
                 </p:column>
 
                 <p:column>
                     <f:facet name="header">
-                        <hendrix11:pageSort dataBean="#{singlePersonEventBean}" text="Person" sort="person.name" />
+                        <hendrix11:pageSort dataBean="#{deathBean}" text="Date" sort="date" />
                     </f:facet>
-                    <hendrix11:personLink person="#{singlePersonEvent.person}" />
+                    <p:outputLabel value="#{death.dateString}" />
                 </p:column>
 
                 <p:column>
                     <f:facet name="header">
-                        <hendrix11:pageSort dataBean="#{singlePersonEventBean}" text="Date" sort="date" />
+                        <hendrix11:pageSort dataBean="#{deathBean}" text="Place" sort="place.name" />
                     </f:facet>
-                    <p:outputLabel value="#{singlePersonEvent.dateString}" />
-                </p:column>
-
-                <p:column>
-                    <f:facet name="header">
-                        <hendrix11:pageSort dataBean="#{singlePersonEventBean}" text="Place" sort="place.name" />
-                    </f:facet>
-                    <hendrix11:googleMapLink place="#{singlePersonEvent.place}" />
+                    <hendrix11:googleMapLink place="#{death.place}" />
                 </p:column>
 
                 <f:facet name="footer">
-                    <hendrix11:pageNav dataBean="#{singlePersonEventBean}" />
+                    <hendrix11:pageNav dataBean="#{deathBean}" />
                 </f:facet>
             </p:dataTable>
         </p:layoutUnit>

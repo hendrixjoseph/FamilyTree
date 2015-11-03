@@ -19,6 +19,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OrderBy;
 
 import java.time.Month;
 import java.time.format.TextStyle;
@@ -39,6 +40,7 @@ public abstract class Event
     private Month month;
     @ManyToOne(cascade = ALL)
     @JoinColumn(name = "PLACE_ID")
+    @OrderBy("name")
     private Place place;
     private Integer year;
 

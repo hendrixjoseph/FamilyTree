@@ -9,7 +9,8 @@
 
     <ui:define name="metadata">
         <f:metadata>
-            <f:viewParam name="page" value="#${beanName}Bean{.page}" />
+            <f:viewParam name="page" value="#{${beanName}Bean.page}" />
+            <f:viewParam name="sort" value="#{${beanName}Bean.sort}" />
         </f:metadata>
     </ui:define>
 
@@ -26,20 +27,29 @@
             <p:dataTable var="${beanName}" value="#{${beanName}Bean.entities}" scrollable="true" scrollHeight="90%"
                          styleClass="familyTree-dataTable">
                 
-                <p:column headerText="Person">
-                    <hendrix11:personLink person="#{singlePersonEvent.person}" />
+                <p:column>
+                    <f:facet name="header">
+                        <hendrix11:pageSort dataBean="#{${beanName}Bean}" text="Person" sort="person.name" />
+                    </f:facet>
+                    <hendrix11:personLink person="#{${beanName}.person}" />
                 </p:column>
                 
-                <p:column headerText="Date">
+                <p:column>
+                    <f:facet name="header">
+                        <hendrix11:pageSort dataBean="#{${beanName}Bean}" text="Date" sort="date" />
+                    </f:facet>
                     <p:outputLabel value="#{${beanName}.dateString}" />
                 </p:column>
                 
-                <p:column headerText="Place">
+                <p:column>
+                    <f:facet name="header">
+                        <hendrix11:pageSort dataBean="#{${beanName}Bean}" text="Place" sort="place.name" />
+                    </f:facet>
                     <hendrix11:googleMapLink place="#{${beanName}.place}" />
                 </p:column>
             
                 <f:facet name="footer">
-                    <hendrix11:pageNav dataBean="#{${beanName}Bean}" outcome="${NAME}" />
+                    <hendrix11:pageNav dataBean="#{${beanName}Bean}" />
                 </f:facet>
             </p:dataTable>
         </p:layoutUnit>

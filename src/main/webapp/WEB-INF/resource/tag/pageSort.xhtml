@@ -19,5 +19,6 @@
         <f:param name="page" value="#{dataBean.page}" />
         <f:param name="sort" value="#{sort}" />
     </p:link>
-    <h:outputText value=" " styleClass="fa fa-caret-down" rendered="#{dataBean.sort.equals(sort)}" />
+    <h:outputText value=" " rendered="#{dataBean.sort.equals(sort)}" />
+    <h:outputText styleClass="fa fa-caret-down" rendered="#{dataBean.sort.equals(sort)}" />
 </ui:composition>
