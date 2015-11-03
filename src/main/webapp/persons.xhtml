@@ -36,7 +36,10 @@
         <p:layoutUnit position="center">
             <p:dataTable var="person" value="#{personBean.entities}" scrollable="true" scrollHeight="90%"
                          styleClass="familyTree-dataTable">
-                <p:column headerText="Id">
+                <p:column>
+                    <f:facet name="header">
+                        <hendrix11:pageSort dataBean="#{personBean}" text="Id" sort="id" />
+                    </f:facet>
                     <p:outputLabel value="#{person.id}" />
                 </p:column>
 
@@ -51,10 +54,7 @@
 
                 <p:column>
                     <f:facet name="header">
-                        <p:link outcome="persons" value="Name">
-                            <f:param name="page" value="#{personBean.page}" />
-                            <f:param name="sort" value="name" />
-                        </p:link>
+                        <hendrix11:pageSort dataBean="#{personBean}" text="Name" sort="name" />
                     </f:facet>
                     <hendrix11:personLink person="#{person}" />
                 </p:column>
@@ -84,7 +84,7 @@
                 </p:column>
 
                 <f:facet name="footer">
-                    <hendrix11:pageNav dataBean="#{personBean}" outcome="persons" />
+                    <hendrix11:pageNav dataBean="#{personBean}" />
                 </f:facet>
             </p:dataTable>
         </p:layoutUnit>

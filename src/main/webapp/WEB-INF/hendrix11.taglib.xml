@@ -90,8 +90,22 @@
             <required>true</required>
             <type>edu.wright.hendrix11.familyTree.dataBean.DataBean</type>
         </attribute>
+    </tag>
+    <tag>
+        <tag-name>pageSort</tag-name>
+        <source>resource/tag/pageSort.xhtml</source>
         <attribute>
-            <name>outcome</name>
+            <name>dataBean</name>
+            <required>true</required>
+            <type>edu.wright.hendrix11.familyTree.dataBean.DataBean</type>
+        </attribute>
+        <attribute>
+            <name>text</name>
+            <required>true</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <name>sort</name>
             <required>true</required>
             <type>java.lang.String</type>
         </attribute>

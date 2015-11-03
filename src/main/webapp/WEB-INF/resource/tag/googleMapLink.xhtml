@@ -16,7 +16,7 @@
                 xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html">
 
     <ui:repeat value="#{place.places}" var="p" varStatus="s">
-        <p:link href="#{p.link}" value="#{p.name}" />
+        <p:link href="#{p.link}" value="#{p.name}" target="_blank" />
         <h:outputText value=", " rendered="#{not s.last}" />
     </ui:repeat>
 </ui:composition>

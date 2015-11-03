@@ -21,6 +21,7 @@
     <ui:define name="metadata">
         <f:metadata>
             <f:viewParam name="page" value="#{cityBean.page}" />
+            <f:viewParam name="sort" value="#{cityBean.sort}" />
         </f:metadata>
     </ui:define>
 
@@ -36,16 +37,22 @@
         <p:layoutUnit position="center">
             <p:dataTable var="city" value="#{cityBean.entities}" scrollable="true" scrollHeight="90%"
                          styleClass="familyTree-dataTable">
-                <p:column headerText="Id">
+                <p:column>
+                    <f:facet name="header">
+                        <hendrix11:pageSort dataBean="#{cityBean}" text="Id" sort="id" />
+                    </f:facet>
                     <p:outputLabel value="#{city.id}" />
                 </p:column>
 
-                <p:column headerText="Name">
+                <p:column>
+                    <f:facet name="header">
+                        <hendrix11:pageSort dataBean="#{cityBean}" text="Name" sort="name" />
+                    </f:facet>
                     <hendrix11:googleMapLink place="#{city}" />
                 </p:column>
 
                 <f:facet name="footer">
-                    <hendrix11:pageNav dataBean="#{cityBean}" outcome="cities" />
+                    <hendrix11:pageNav dataBean="#{cityBean}" />
                 </f:facet>
             </p:dataTable>
         </p:layoutUnit>

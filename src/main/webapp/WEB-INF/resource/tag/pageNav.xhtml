@@ -19,7 +19,7 @@
             <p:outputLabel value="#{page}" />
         </c:if>
         <c:if test="#{page != dataBean.page}">
-            <p:link outcome="#{outcome}" value="#{page}">
+            <p:link outcome="#{view.viewId}" value="#{page}">
                 <f:param name="page" value="#{page}" />
                 <f:param name="sort" value="#{dataBean.sort}" disable="#{dataBean.sort == null}" />
             </p:link>

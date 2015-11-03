@@ -29,3 +29,7 @@
 .page_nav {
     text-align: center;
 }
+
+a.ui-link {
+    text-decoration: underline !important;
+}

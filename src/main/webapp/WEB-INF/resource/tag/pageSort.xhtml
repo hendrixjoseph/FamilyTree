@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~  The MIT License (MIT)
+  ~
+  ~  View the full license at:
+  ~  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
+  ~
+  ~  Copyright (c) 2015 Joseph Hendrix
+  ~
+  ~  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
+  ~
+  -->
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+    <p:link outcome="#{view.viewId}" value="#{text}">
+        <f:param name="page" value="#{dataBean.page}" />
+        <f:param name="sort" value="#{sort}" />
+    </p:link>
+    <h:outputText value=" " styleClass="fa fa-caret-down" rendered="#{dataBean.sort.equals(sort)}" />
+</ui:composition>

@@ -31,6 +31,8 @@ public abstract class AbstractBean<E>
     protected void initialize(DataBean<E, ?> dataBean)
     {
         this.dataBean = dataBean;
+        dataBean.setPage(1);
+        dataBean.setSort(null);
     }
 
     /**
