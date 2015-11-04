@@ -20,12 +20,14 @@ import org.junit.Test;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import java.util.List;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -76,6 +78,7 @@ public class EventTest
     }
 
     @Test
+    @Ignore
     public void burialTest()
     {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
@@ -87,6 +90,19 @@ public class EventTest
         List<Burial> results = query.getResultList();
 
         outputEvents("burial test", results);
+    }
+
+    @Test
+    public void countBirthsTest()
+    {
+        Query namedQuery = em.createNamedQuery(Birth.COUNT_BY_YEAR);
+
+        List<Number[]> resultList = namedQuery.getResultList();
+
+        for(Object[] n : resultList)
+        {
+            LOG.log(Level.INFO, n[0].toString() + ": " + n[1].toString());
+        }
     }
 
     private void outputEvents(String testName, List<? extends Event> events)
