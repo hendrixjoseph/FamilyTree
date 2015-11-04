@@ -27,7 +27,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import java.util.List;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -95,11 +94,15 @@ public class EventTest
     @Test
     public void countBirthsTest()
     {
-        Query namedQuery = em.createNamedQuery(Birth.COUNT_BY_YEAR);
+        TypedQuery<Number[]> q = em.createNamedQuery(Birth.COUNT_BY_YEAR, Number[].class);
 
-        List<Number[]> resultList = namedQuery.getResultList();
+        Query namedQuery = em.createNamedQuery(Birth.COUNT_BY_YEAR2);
 
-        for(Object[] n : resultList)
+        LOG.log(Level.INFO, namedQuery.toString());
+
+        List<Object[]> resultList = namedQuery.getResultList();
+
+        for ( Object[] n : resultList )
         {
             LOG.log(Level.INFO, n[0].toString() + ": " + n[1].toString());
         }

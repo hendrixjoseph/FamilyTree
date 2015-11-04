@@ -102,7 +102,7 @@ public class PersonTest
         TypedQuery<Person> query = em.createQuery(q);
         List<Person> results = query.getResultList();
 
-        for(Person person : results)
+        for ( Person person : results )
         {
             LOG.log(Level.INFO, person.getName());
         }

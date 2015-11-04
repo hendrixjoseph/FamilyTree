@@ -174,7 +174,7 @@ public abstract class Event
         if ( month != null )
             sb.append(month.getDisplayName(TextStyle.SHORT, Locale.US));
 
-        if ( month != null && (day != null || year != null) )
+        if ( month != null && ( day != null || year != null ) )
             sb.append(" ");
 
         if ( day != null )

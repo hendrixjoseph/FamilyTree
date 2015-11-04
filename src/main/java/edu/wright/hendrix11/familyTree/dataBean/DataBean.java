@@ -12,7 +12,6 @@
 
 package edu.wright.hendrix11.familyTree.dataBean;
 
-import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
@@ -137,7 +136,7 @@ public class DataBean<E, K>
      */
     public List<E> list()
     {
-        if(sort == null)
+        if ( sort == null )
         {
             TypedQuery<E> query = em.createNamedQuery(findAllQuery, clazz);
             return query.setFirstResult(( page - 1 ) * RECORDS_PER_PAGE).setMaxResults(RECORDS_PER_PAGE).getResultList();
@@ -152,7 +151,7 @@ public class DataBean<E, K>
 
                 List<Order> order = new ArrayList<>();
 
-                if(sort.equals("date"))
+                if ( sort.equals("date") )
                 {
                     order.addAll(dateOrder(cb, root));
                 }
@@ -164,7 +163,7 @@ public class DataBean<E, K>
 
                     for ( int i = 1; i < sorts.length; i++ )
                     {
-                        if(sorts[i].equals("date"))
+                        if ( sorts[i].equals("date") )
                         {
                             order.addAll(dateOrder(cb, root));
                             break;
@@ -183,11 +182,11 @@ public class DataBean<E, K>
                 TypedQuery<E> query = em.createQuery(q);
                 return query.setFirstResult(( page - 1 ) * RECORDS_PER_PAGE).setMaxResults(RECORDS_PER_PAGE).getResultList();
             }
-            catch(Exception e)
+            catch ( Exception e )
             {
-                for(Throwable cause = e; cause != null; cause = cause.getCause())
+                for ( Throwable cause = e; cause != null; cause = cause.getCause() )
                 {
-                    if(cause instanceof IllegalArgumentException)
+                    if ( cause instanceof IllegalArgumentException )
                     {
                         LOG.log(Level.SEVERE, e.getMessage());
 
@@ -199,17 +198,6 @@ public class DataBean<E, K>
                 throw e;
             }
         }
-    }
-
-    private List<Order> dateOrder(CriteriaBuilder cb, Root<E> root)
-    {
-        List<Order> order = new ArrayList<>();
-
-        order.add(cb.asc(root.get("year")));
-        order.add(cb.asc(root.get("month")));
-        order.add(cb.asc(root.get("day")));
-
-        return order;
     }
 
     /**
@@ -248,5 +236,16 @@ public class DataBean<E, K>
     public void delete(E e)
     {
 
+    }
+
+    private List<Order> dateOrder(CriteriaBuilder cb, Root<E> root)
+    {
+        List<Order> order = new ArrayList<>();
+
+        order.add(cb.asc(root.get("year")));
+        order.add(cb.asc(root.get("month")));
+        order.add(cb.asc(root.get("day")));
+
+        return order;
     }
 }

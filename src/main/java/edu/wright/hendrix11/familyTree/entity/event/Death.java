@@ -14,6 +14,7 @@ package edu.wright.hendrix11.familyTree.entity.event;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.TypedQuery;
 
@@ -22,9 +23,15 @@ import javax.persistence.TypedQuery;
  */
 @Entity
 @DiscriminatorValue(value = "death")
-@NamedQuery(name = Death.FIND_ALL, query = "SELECT d FROM Death d")
+@NamedQueries({
+                      @NamedQuery(name = Death.FIND_ALL, query = "SELECT d FROM Death d"),
+                      @NamedQuery(name = Death.COUNT_BY_YEAR,
+                                  query = "SELECT COUNT(d.year), d.year FROM Death d WHERE d.year IS NOT NULL GROUP BY d.year ORDER BY d.year")
+
+              })
 public class Death extends SinglePersonEvent
 {
+    public static final String COUNT_BY_YEAR = "Death.countByYear";
     /**
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * death records.

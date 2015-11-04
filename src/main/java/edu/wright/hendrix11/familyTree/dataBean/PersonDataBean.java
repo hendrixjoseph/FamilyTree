@@ -14,6 +14,8 @@ package edu.wright.hendrix11.familyTree.dataBean;
 
 import edu.wright.hendrix11.familyTree.entity.Gender;
 import edu.wright.hendrix11.familyTree.entity.Person;
+import edu.wright.hendrix11.familyTree.entity.event.Birth;
+import edu.wright.hendrix11.familyTree.entity.event.Death;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
@@ -21,7 +23,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.NamedQuery;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+
+import java.util.List;
 
 /**
  * @author Joe Hendrix
@@ -65,5 +70,19 @@ public class PersonDataBean extends DataBean<Person, Integer>
         TypedQuery<Long> countQuery = em.createNamedQuery(Person.COUNT_GENDERS, Long.class);
         countQuery.setParameter("gender", gender);
         return countQuery.getSingleResult();
+    }
+
+    public List<Object[]> birthsPerYear()
+    {
+        Query namedQuery = em.createNamedQuery(Birth.COUNT_BY_YEAR);
+
+        return namedQuery.getResultList();
+    }
+
+    public List<Object[]> deathsPerYear()
+    {
+        Query namedQuery = em.createNamedQuery(Death.COUNT_BY_YEAR);
+
+        return namedQuery.getResultList();
     }
 }

@@ -12,6 +12,10 @@
 
 package edu.wright.hendrix11.familyTree.bean;
 
+import org.primefaces.model.chart.Axis;
+import org.primefaces.model.chart.AxisType;
+import org.primefaces.model.chart.BarChartModel;
+import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.PieChartModel;
 
 import edu.wright.hendrix11.familyTree.dataBean.PersonDataBean;
@@ -24,6 +28,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author Joe
@@ -37,16 +42,20 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
     private PersonDataBean personDataBean;
 
     private PieChartModel genderPie;
+    private BarChartModel barModel;
 
-    /**
-     *
-     */
     @Override
     @PostConstruct
     protected void initialize()
     {
         super.initialize(personDataBean);
 
+        initializeGenderPie();
+        initializeBarChart();
+    }
+
+    private void initializeGenderPie()
+    {
         genderPie = new PieChartModel();
 
         Number numMales = personDataBean.countGender(Gender.MALE);
@@ -59,11 +68,50 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
         genderPie.setShowDataLabels(true);
     }
 
+    private void initializeBarChart(String label, List<Object[]> data)
+    {
+        ChartSeries years = new ChartSeries();
+
+        years.setLabel(label);
+
+        for(Object[] o : data)
+        {
+            years.set(o[1].toString(), (Number) o[0]);
+        }
+
+        barModel.addSeries(years);
+    }
+
+    private void initializeBarChart()
+    {
+        barModel = new BarChartModel();
+
+        initializeBarChart("births", personDataBean.birthsPerYear());
+
+        barModel.setTitle("Births and deaths per year");
+        barModel.setLegendPosition("ne");
+
+        Axis xAxis = barModel.getAxis(AxisType.X);
+        xAxis.setLabel("Year");
+
+        Axis yAxis = barModel.getAxis(AxisType.Y);
+        yAxis.setLabel("People");
+        yAxis.setMin(0);
+        yAxis.setMax(20);
+
+        initializeBarChart("deaths", personDataBean.deathsPerYear());
+    }
+
     /**
      * @return
      */
     public PieChartModel getGenderPie()
     {
         return genderPie;
+    }
+
+    public BarChartModel getBarModel()
+    {
+        return barModel;
     }
 }
