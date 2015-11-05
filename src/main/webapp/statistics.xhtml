@@ -28,7 +28,8 @@
     <ui:define name="content">
         <p:layoutUnit position="center">
             <p:chart type="pie" model="#{personBean.genderPie}" style="width:400px;height:300px;" widgetVar="chart" />
-            <p:chart type="bar" model="#{personBean.barModel}" style="height:300px;"/>
+            <p:chart type="bar" model="#{personBean.birthDeathChartModel}" style="height:300px;"/>
+            <p:chart type="bar" model="#{personBean.agesChartModel}" style="height:300px;"/>
         </p:layoutUnit>
     </ui:define>
 

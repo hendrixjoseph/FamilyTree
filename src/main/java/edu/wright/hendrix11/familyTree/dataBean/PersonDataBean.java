@@ -85,4 +85,21 @@ public class PersonDataBean extends DataBean<Person, Integer>
 
         return namedQuery.getResultList();
     }
+
+    public List<Object[]> ages()
+    {
+        StringBuilder sb = new StringBuilder("SELECT COUNT(AGE),AGE FROM ");
+        sb.append("(SELECT (D.YEAR-B.YEAR) AS AGE ");
+        sb.append("FROM EVENT B,EVENT D ");
+        sb.append("WHERE B.PERSON_ID=D.PERSON_ID ");
+        sb.append("AND B.TYPE='birth' ");
+        sb.append("AND D.TYPE='death') ");
+        sb.append("GROUP BY AGE ");
+        sb.append("HAVING AGE IS NOT NULL ");
+        sb.append("ORDER BY AGE");
+
+        Query query = em.createNativeQuery(sb.toString());
+
+        return query.getResultList();
+    }
 }
