@@ -1,0 +1,164 @@
+              ------
+              sql
+              ------
+              Joseph Hendrix
+              ------
+              2015-11-04
+
+sql
+
+*----------+--------------+
+| From: | Joseph Hendrix |
+*----------+--------------+
+| Sent: | Wednesday, November 04, 2015 11:20 PM |
+*----------+--------------+
+| To: | Owens, Michael (TS) |
+*----------+--------------+
+| Subject: | RE: EXT :sql |
+*----------+--------------+
+
+
+  That gave me a lot of duplicates:
+
+*----------+--------------+
+| 0 | 1 |
+*----------+--------------+
+| 0 | 1 |
+*----------+--------------+
+| 0 | 1 |
+*----------+--------------+
+| 0 | 1 |
+*----------+--------------+
+| 0 | 1 |
+*----------+--------------+
+| 0 | 1 |
+*----------+--------------+
+| 0 | 1 |
+*----------+--------------+
+
+  What I had results were more like:
+
+*----------+--------------+
+| 17 | 0 |
+*----------+--------------+
+| 7 | 1 |
+*----------+--------------+
+| 6 | 2 |
+*----------+--------------+
+| 2 | 3 |
+*----------+--------------+
+| 5 | 4 |
+*----------+--------------+
+| 1 | 5 |
+*----------+--------------+
+| 2 | 6 |
+*----------+--------------+
+| 2 | 7 |
+*----------+--------------+
+| 2 | 10 |
+*----------+--------------+
+
+  All results put into a bar chart:
+
+*----------+--------------+
+| From: | Owens, Michael (TS) |
+*----------+--------------+
+| Sent: | Wednesday, November 04, 2015 9:25 AM |
+*----------+--------------+
+| To: | Joseph Hendrix |
+*----------+--------------+
+| Subject: | RE: EXT :sql |
+*----------+--------------+
+
+  How about this:
+
++-----+
+  Select (DEATH.YEAR - BIRTH.YEAR) age, count(*)
+  FROM
+        EVENT BIRTH,
+        EVENT DEATH
+      WHERE
+        BIRTH.PERSON_ID = DEATH.PERSON_ID
+        AND BIRTH.TYPE  = 'birth'
+        AND DEATH.TYPE  = 'death'
+  group by DEATH.YEAR,BIRTH.YEAR
++-----+
+
+*----------+--------------+
+| From: | Owens, Michael (TS) |
+*----------+--------------+
+| Sent: | Tuesday, November 03, 2015 8:15 PM |
+*----------+--------------+
+| To: | 'Joseph Hendrix' |
+*----------+--------------+
+| Subject: | RE: EXT :sql |
+*----------+--------------+
+
+  What do you your results to display as
+
+  Just display the first three lines your expecting from you SQL.
+
+  Do they both work and give the same results?
+
+*----------+--------------+
+| From: | Joseph Hendrix |
+*----------+--------------+
+| Sent: | Tuesday, November 03, 2015 6:55 PM |
+*----------+--------------+
+| To: | Owens, Michael (TS) |
+*----------+--------------+
+| Subject: | EXT :RE: sql |
+*----------+--------------+
+
+  Or is this better:
+
++-----+
+  SELECT
+    COUNT( AGE ),
+    AGE
+  FROM
+    (
+      SELECT
+        ( DEATH.YEAR - BIRTH.YEAR ) AS AGE
+      FROM
+        EVENT BIRTH,
+        EVENT DEATH
+      WHERE
+        BIRTH.PERSON_ID = DEATH.PERSON_ID
+        AND BIRTH.TYPE  = 'birth'
+        AND DEATH.TYPE  = 'death'
+    )
+  GROUP BY
+    AGE
+  ORDER BY
+    AGE;
++-----+
+
+*----------+--------------+
+| From: | Joseph Hendrix |
+*----------+--------------+
+| Sent: | Tuesday, November 03, 2015 6:51 PM |
+*----------+--------------+
+| To: | Owens, Michael (TS) |
+*----------+--------------+
+| Subject: | EXT :sql |
+*----------+--------------+
+
+  Does this query make sense:
+
++-----+
+  SELECT
+    COUNT(DEATH.YEAR - BIRTH.YEAR) AS COUNT,
+    ( DEATH.YEAR - BIRTH.YEAR ) AS AGE
+  FROM
+    EVENT BIRTH,
+    EVENT DEATH
+  WHERE
+    BIRTH.PERSON_ID = DEATH.PERSON_ID
+    AND BIRTH.TYPE  = 'birth'
+    AND DEATH.TYPE  = 'death'
+  GROUP BY
+    ( DEATH.YEAR - BIRTH.YEAR )
+  ORDER BY
+    AGE;
++-----+
