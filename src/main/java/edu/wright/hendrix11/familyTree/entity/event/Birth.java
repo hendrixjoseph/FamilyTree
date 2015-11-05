@@ -28,15 +28,12 @@ import javax.persistence.TypedQuery;
                       @NamedQuery(name = Birth.COUNT_BY_DECADE,
                                   query = "SELECT (b.year - MOD(b.year,10)) AS decade, COUNT(decade) FROM Birth b WHERE b.year IS NOT NULL GROUP BY decade"),
                       @NamedQuery(name = Birth.COUNT_BY_YEAR,
-                                  query = "SELECT COUNT(b.year), b.year FROM Birth b WHERE b.year IS NOT NULL GROUP BY b.year ORDER BY b.year"),
-                      @NamedQuery(name = Birth.COUNT_BY_YEAR2,
-                                  query = "SELECT COUNT(d.year), d.year - 50 FROM Death d LEFT OUTER JOIN Birth b ON b.person = d.person WHERE b.type IS NULL")
+                                  query = "SELECT COUNT(b.year), b.year FROM Birth b WHERE b.year IS NOT NULL GROUP BY b.year ORDER BY b.year")
               })
 public class Birth extends SinglePersonEvent
 {
     public static final String COUNT_BY_DECADE = "Birth.countByDecade";
     public static final String COUNT_BY_YEAR = "Birth.countByYear";
-    public static final String COUNT_BY_YEAR2 = "Birth.countByYear2";
     /**
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * birth records.
