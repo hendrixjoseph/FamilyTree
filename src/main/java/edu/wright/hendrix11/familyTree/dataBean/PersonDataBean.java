@@ -27,6 +27,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -73,27 +74,13 @@ public class PersonDataBean extends DataBean<Person, Integer>
         return countQuery.getSingleResult();
     }
 
-    public List<Object[]> birthsPerYear()
-    {
-        Query namedQuery = em.createNamedQuery(Birth.COUNT_BY_YEAR);
-
-        return namedQuery.getResultList();
-    }
-
-    public List<Object[]> deathsPerYear()
-    {
-        Query namedQuery = em.createNamedQuery(Death.COUNT_BY_YEAR);
-
-        return namedQuery.getResultList();
-    }
-
     public double averageAge()
     {
         String countQuery = "SELECT COUNT(AGE) FROM AGE_VIEW";
         String sumQuery = "SELECT SUM(AGE) FROM AGE_VIEW";
 
-        double count = ((BigDecimal) em.createNativeQuery(countQuery).getSingleResult()).doubleValue();
-        double sum = ((BigDecimal) em.createNativeQuery(sumQuery).getSingleResult()).doubleValue();
+        double count = ( (BigDecimal) em.createNativeQuery(countQuery).getSingleResult() ).doubleValue();
+        double sum = ( (BigDecimal) em.createNativeQuery(sumQuery).getSingleResult() ).doubleValue();
 
         return sum / count;
     }
@@ -108,21 +95,57 @@ public class PersonDataBean extends DataBean<Person, Integer>
         return query.getResultList();
     }
 
-    public List<Object[]> birthsPerDecade()
+    public List<Integer[]> birthsPerDecade()
     {
         Query query = em.createNativeQuery(perDecadeQuery("birth"));
 
-        return query.getResultList();
+        return processDecades(query.getResultList());
     }
 
-    public List<Object[]> deathsPerDecade()
+    public List<Integer[]> deathsPerDecade()
     {
         Query query = em.createNativeQuery(perDecadeQuery("death"));
 
-        return query.getResultList();
+        return processDecades(query.getResultList());
     }
 
+    private List<Integer[]> processDecades(List<Object[]> decades)
+    {
+        List<Integer[]> newDecades = new ArrayList<>();
 
+        for ( Object[] o : decades )
+        {
+            Integer number = ( (Number) o[0] ).intValue();
+            Integer decade = ( (Number) o[1] ).intValue();
+            Integer[] array = {number, decade};
+
+            if ( !newDecades.isEmpty() && !newDecades.get(newDecades.size() - 1)[1].equals(decade) )
+            {
+                for ( Integer i = newDecades.get(newDecades.size() - 1)[1] + 10; i < decade; i += 10 )
+                {
+                    Integer[] emptyDecade = {0, i};
+                    newDecades.add(emptyDecade);
+                }
+            }
+
+            newDecades.add(array);
+        }
+
+        return newDecades;
+    }
+
+    private String q()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT COUNT(*),(YEAR+50-MOD(YEAR+50,10)) ");
+        sb.append("FROM EVENT ");
+        sb.append("WHERE TYPE = 'birth' AND ");
+        sb.append("(NOT PERSON_ID IN (SELECT PERSON_ID FROM EVENT WHERE TYPE='death') ");
+        sb.append("OR EXISTS (SELECT * FROM EVENT WHERE TYPE='death' AND YEAR IS NULL)) ");
+        sb.append("GROUP BY (YEAR + 50 - MOD(YEAR + 50,10)) ");
+        sb.append("ORDER BY (YEAR + 50 - MOD(YEAR + 50,10))");
+        return sb.toString();
+    }
 
     private String perDecadeQuery(String event)
     {

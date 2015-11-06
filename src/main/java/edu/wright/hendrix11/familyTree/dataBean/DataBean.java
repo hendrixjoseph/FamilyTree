@@ -151,19 +151,19 @@ public class DataBean<E, K>
 
                 List<Order> order = new ArrayList<>();
 
-                if ( sort.equals("date") )
+                if ( "date".equals(sort) )
                 {
                     order.addAll(dateOrder(cb, root));
                 }
                 else
                 {
-                    String sorts[] = sort.split("\\.");
+                    String[] sorts = sort.split("\\.");
 
                     Path<Object> path = root.get(sorts[0]);
 
                     for ( int i = 1; i < sorts.length; i++ )
                     {
-                        if ( sorts[i].equals("date") )
+                        if ( "date".equals(sorts[i]) )
                         {
                             order.addAll(dateOrder(cb, root));
                             break;

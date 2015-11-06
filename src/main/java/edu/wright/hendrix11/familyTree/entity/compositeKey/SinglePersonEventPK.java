@@ -68,7 +68,7 @@ public class SinglePersonEventPK implements Serializable
     public int hashCode()
     {
         int result = person;
-        result = 31 * result + getType().hashCode();
+        result = 31 * result + type.hashCode();
         return result;
     }
 

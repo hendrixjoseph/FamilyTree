@@ -40,10 +40,9 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
 
     @EJB
     private PersonDataBean personDataBean;
-
+    private BarChartModel agesChartModel;
     private PieChartModel genderPie;
     private BarChartModel perDecadeChartModel;
-    private BarChartModel agesChartModel;
 
     @Override
     @PostConstruct
@@ -54,6 +53,24 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
         initializeGenderPie();
         initializeAgeChart();
         initializeBirthPerDecadeChart();
+    }
+
+    public BarChartModel getPerDecadeChartModel()
+    {
+        return perDecadeChartModel;
+    }
+
+    public BarChartModel getAgesChartModel()
+    {
+        return agesChartModel;
+    }
+
+    /**
+     * @return
+     */
+    public PieChartModel getGenderPie()
+    {
+        return genderPie;
     }
 
     private void initializeGenderPie()
@@ -78,7 +95,7 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
 
         List<Object[]> ages = personDataBean.ages();
 
-        for(Object[] age : ages)
+        for ( Object[] age : ages )
         {
             agesChart.set(age[1].toString(), (Number) age[0]);
         }
@@ -109,28 +126,24 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
 
         births.setLabel("births");
 
-        for ( Object[] o : personDataBean.birthsPerDecade() )
+        for ( Integer[] i : personDataBean.birthsPerDecade() )
         {
-            int number = ((Number) o[0]).intValue();
+            if ( max < i[0] )
+                max = i[0];
 
-            if(max < number)
-                max = number;
-
-            births.set(o[1].toString(), number);
+            births.set(i[1].toString(), i[0]);
         }
 
         ChartSeries deaths = new ChartSeries();
 
         deaths.setLabel("deaths");
 
-        for ( Object[] o : personDataBean.deathsPerDecade() )
+        for ( Integer[] i : personDataBean.deathsPerDecade() )
         {
-            int number = ((Number) o[0]).intValue();
+            if ( max < i[0] )
+                max = i[0];
 
-            if(max < number)
-                max = number;
-
-            deaths.set(o[1].toString(), number);
+            deaths.set(i[1].toString(), i[0]);
         }
 
         Axis xAxis = perDecadeChartModel.getAxis(AxisType.X);
@@ -143,23 +156,5 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
 
         perDecadeChartModel.addSeries(deaths);
         perDecadeChartModel.addSeries(births);
-    }
-
-    public BarChartModel getPerDecadeChartModel()
-    {
-        return perDecadeChartModel;
-    }
-
-    public BarChartModel getAgesChartModel()
-    {
-        return agesChartModel;
-    }
-
-    /**
-     * @return
-     */
-    public PieChartModel getGenderPie()
-    {
-        return genderPie;
     }
 }
