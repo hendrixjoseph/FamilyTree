@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Family Tree 2.0 &#x2013; Informal Project Proposal</title>
+    <title>Family Tree 2.0 &#x2013; sql</title>
     <style type="text/css" media="all">
       @import url("../../css/maven-base.css");
       @import url("../../css/maven-theme.css");
@@ -11,7 +11,7 @@
     </style>
     <link rel="stylesheet" href="../../css/print.css" type="text/css" media="print" />
       <meta name="author" content="Joseph Hendrix" />
-    <meta name="Date-Creation-yyyymmdd" content="20150528" />
+    <meta name="Date-Creation-yyyymmdd" content="20151104" />
     <meta name="Date-Revision-yyyymmdd" content="20151105" />
     <meta http-equiv="Content-Language" content="en" />
         
@@ -73,8 +73,8 @@
                           <a href="../../documentation/cs7700/Hendrix_CS7700_User_Manual.docx" title="User Manual">User Manual</a>
             </li>
                   <li class="none">
-            <strong>Informal Proposal</strong>
-          </li>
+                          <a href="../../documentation/cs7700/informal_proposal.html" title="Informal Proposal">Informal Proposal</a>
+            </li>
           </ul>
                        <h5>Other Documentation</h5>
                   <ul>
@@ -97,8 +97,8 @@
                        <h5>Emails with Mike Owens</h5>
                   <ul>
                   <li class="none">
-                          <a href="../../documentation/Mike_Owens/sql.html" title="2015-11-04">2015-11-04</a>
-            </li>
+            <strong>2015-11-04</strong>
+          </li>
                   <li class="none">
                           <a href="../../documentation/Mike_Owens/something_beautiful_i_wrote_last_night.html" title="2015-07-08">2015-07-08</a>
             </li>
@@ -119,48 +119,182 @@
     <div id="bodyColumn">
       <div id="contentBox">
         <div class="section">
-<h2><a name="Informal_Project_Proposal"></a>Informal Project Proposal</h2>
+<h2><a name="sql"></a>sql</h2>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td align="left">From:</td>
-<td align="left"><a class="externalLink" href="mailto:eric.saunders@wright.edu">Saunders, Eric</a></td></tr>
+<td align="left">Joseph Hendrix</td></tr>
 <tr class="b">
 <td align="left">Sent:</td>
-<td align="left">Thu 5/28/2015 10:00 PM</td></tr>
+<td align="left">Wednesday, November 04, 2015 11:20 PM</td></tr>
 <tr class="a">
 <td align="left">To:</td>
-<td align="left"><a class="externalLink" href="mailto:hendrix.11@wright.edu">Hendrix, Joseph David</a></td></tr></table>
-<p>Joe,</p>
-<p>Please submit your proposal document - you have been pre-approved.</p>
-<p>Thanks,</p>
-<p>Eric</p>
-<table border="0" class="bodyTable">
+<td align="left">Owens, Michael (TS)</td></tr>
+<tr class="b">
+<td align="left">Subject:</td>
+<td align="left">RE: EXT :sql</td></tr></table>
+<p>That gave me a lot of duplicates:</p>
+<table border="1" class="bodyTable">
 <tr class="a">
-<td align="left">On May 27, 2015, at 7:46 PM, Hendrix, Joseph David hendrix.11@wright.edu wrote:</td></tr></table>
-<p>Eric,</p>
-<p>For my project I would like to do a family tree. A 0NF database might contain a table as follows:</p>
-<ul>
-<li>Mother's Name</li>
-<li>Father's Name</li>
-<li>Person's Name</li>
-<li>Date of Birth</li>
-<li>Place of Birth</li>
-<li>Date of Death</li>
-<li>Place of Death</li>
-<li>Children's Names</li></ul>
-<p>Obviously this table would be normalized and maybe even split into multiple tables.</p>
-<p>There might be other tables to, such as a marriage table or contact table.</p>
-<p>As far as implementation details, I plan on using the following:</p>
-<ul>
-<li>NetBeans IDE</li>
-<li>Apache Tomcat</li>
-<li>JSF possibly with PrimeFaces and PrimeFaces extension components</li>
-<li>If need be, custom JSF components</li>
-<li>Oracle Express with appropriate JDBC driver</li></ul>
-<p>In the formal proposal I will include version numbers.</p>
-<p>There are two main reasons I have chosen those implementation details. First, they are free. Second, they are the components I am using at work so I already know how to use them to a degree.</p>
-<p>Let me know if this sound like a good idea.</p>
-<p>Joe Hendrix</p></div>
+<td align="left">0</td>
+<td align="left">1</td></tr>
+<tr class="b">
+<td align="left">0</td>
+<td align="left">1</td></tr>
+<tr class="a">
+<td align="left">0</td>
+<td align="left">1</td></tr>
+<tr class="b">
+<td align="left">0</td>
+<td align="left">1</td></tr>
+<tr class="a">
+<td align="left">0</td>
+<td align="left">1</td></tr>
+<tr class="b">
+<td align="left">0</td>
+<td align="left">1</td></tr>
+<tr class="a">
+<td align="left">0</td>
+<td align="left">1</td></tr></table>
+<p>What I had results were more like:</p>
+<table border="1" class="bodyTable">
+<tr class="a">
+<td align="left">17</td>
+<td align="left">0</td></tr>
+<tr class="b">
+<td align="left">7</td>
+<td align="left">1</td></tr>
+<tr class="a">
+<td align="left">6</td>
+<td align="left">2</td></tr>
+<tr class="b">
+<td align="left">2</td>
+<td align="left">3</td></tr>
+<tr class="a">
+<td align="left">5</td>
+<td align="left">4</td></tr>
+<tr class="b">
+<td align="left">1</td>
+<td align="left">5</td></tr>
+<tr class="a">
+<td align="left">2</td>
+<td align="left">6</td></tr>
+<tr class="b">
+<td align="left">2</td>
+<td align="left">7</td></tr>
+<tr class="a">
+<td align="left">2</td>
+<td align="left">10</td></tr></table>
+<p>All results put into a bar chart:</p>
+<dl>
+<dt>barchart.jpg</dt>
+<dd>Bar Chart
+<table border="1" class="bodyTable">
+<tr class="a">
+<td align="left">From:</td>
+<td align="left">Owens, Michael (TS)</td></tr>
+<tr class="b">
+<td align="left">Sent:</td>
+<td align="left">Wednesday, November 04, 2015 9:25 AM</td></tr>
+<tr class="a">
+<td align="left">To:</td>
+<td align="left">Joseph Hendrix</td></tr>
+<tr class="b">
+<td align="left">Subject:</td>
+<td align="left">RE: EXT :sql</td></tr></table>
+<p>How about this:</p>
+<div class="source">
+<pre>  Select (DEATH.YEAR - BIRTH.YEAR) age, count(*)
+  FROM
+        EVENT BIRTH,
+        EVENT DEATH
+      WHERE
+        BIRTH.PERSON_ID = DEATH.PERSON_ID
+        AND BIRTH.TYPE  = 'birth'
+        AND DEATH.TYPE  = 'death'
+  group by DEATH.YEAR,BIRTH.YEAR
+</pre></div>
+<table border="1" class="bodyTable">
+<tr class="a">
+<td align="left">From:</td>
+<td align="left">Owens, Michael (TS)</td></tr>
+<tr class="b">
+<td align="left">Sent:</td>
+<td align="left">Tuesday, November 03, 2015 8:15 PM</td></tr>
+<tr class="a">
+<td align="left">To:</td>
+<td align="left">'Joseph Hendrix'</td></tr>
+<tr class="b">
+<td align="left">Subject:</td>
+<td align="left">RE: EXT :sql</td></tr></table>
+<p>What do you your results to display as</p>
+<p>Just display the first three lines your expecting from you SQL.</p>
+<p>Do they both work and give the same results?</p>
+<table border="1" class="bodyTable">
+<tr class="a">
+<td align="left">From:</td>
+<td align="left">Joseph Hendrix</td></tr>
+<tr class="b">
+<td align="left">Sent:</td>
+<td align="left">Tuesday, November 03, 2015 6:55 PM</td></tr>
+<tr class="a">
+<td align="left">To:</td>
+<td align="left">Owens, Michael (TS)</td></tr>
+<tr class="b">
+<td align="left">Subject:</td>
+<td align="left">EXT :RE: sql</td></tr></table>
+<p>Or is this better:</p>
+<div class="source">
+<pre>  SELECT
+    COUNT( AGE ),
+    AGE
+  FROM
+    (
+      SELECT
+        ( DEATH.YEAR - BIRTH.YEAR ) AS AGE
+      FROM
+        EVENT BIRTH,
+        EVENT DEATH
+      WHERE
+        BIRTH.PERSON_ID = DEATH.PERSON_ID
+        AND BIRTH.TYPE  = 'birth'
+        AND DEATH.TYPE  = 'death'
+    )
+  GROUP BY
+    AGE
+  ORDER BY
+    AGE;
+</pre></div>
+<table border="1" class="bodyTable">
+<tr class="a">
+<td align="left">From:</td>
+<td align="left">Joseph Hendrix</td></tr>
+<tr class="b">
+<td align="left">Sent:</td>
+<td align="left">Tuesday, November 03, 2015 6:51 PM</td></tr>
+<tr class="a">
+<td align="left">To:</td>
+<td align="left">Owens, Michael (TS)</td></tr>
+<tr class="b">
+<td align="left">Subject:</td>
+<td align="left">EXT :sql</td></tr></table>
+<p>Does this query make sense:</p>
+<div class="source">
+<pre>  SELECT
+    COUNT(DEATH.YEAR - BIRTH.YEAR) AS COUNT,
+    ( DEATH.YEAR - BIRTH.YEAR ) AS AGE
+  FROM
+    EVENT BIRTH,
+    EVENT DEATH
+  WHERE
+    BIRTH.PERSON_ID = DEATH.PERSON_ID
+    AND BIRTH.TYPE  = 'birth'
+    AND DEATH.TYPE  = 'death'
+  GROUP BY
+    ( DEATH.YEAR - BIRTH.YEAR )
+  ORDER BY
+    AGE;
+</pre></div></dd></dl></div>
       </div>
     </div>
     <div class="clear">
