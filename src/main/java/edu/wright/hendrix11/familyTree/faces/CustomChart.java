@@ -21,13 +21,26 @@ import javax.faces.component.FacesComponent;
 /**
  * @author Joe Hendrix
  */
-@FacesComponent
+@FacesComponent(value = CustomChart.COMPONENT_TYPE)
 @ResourceDependencies({
-                              @ResourceDependency(library="primefaces", name="charts/charts.css"),
-                              @ResourceDependency(library="primefaces", name="jquery/jquery.js"),
-                              @ResourceDependency(library="primefaces", name="primefaces.js"),
-                              @ResourceDependency(library="primefaces", name="charts/charts.js")
+                              @ResourceDependency(library = "primefaces", name = "charts/charts.css"),
+                              @ResourceDependency(library = "primefaces", name = "jquery/jquery.js"),
+                              @ResourceDependency(library = "primefaces", name = "primefaces.js"),
+                              @ResourceDependency(library = "primefaces", name = "charts/charts.js")
                       })
 public class CustomChart extends Chart
 {
+    public static final String COMPONENT_FAMILY = "edu.wright.hendrix11.familyTree.faces";
+    public static final String COMPONENT_TYPE = "edu.wright.hendrix11.familyTree.faces.CustomChart";
+    public static final String DEFAULT_RENDERER = "edu.wright.hendrix11.familyTree.faces.CustomChartRenderer";
+
+    public CustomChart()
+    {
+        setRendererType(DEFAULT_RENDERER);
+    }
+
+    public String getFamily()
+    {
+        return COMPONENT_FAMILY;
+    }
 }

@@ -113,7 +113,7 @@
     <tag>
         <tag-name>chart</tag-name>
         <component>
-            <component-type>org.primefaces.component.Chart</component-type>
+            <component-type>edu.wright.hendrix11.familyTree.faces.CustomChart</component-type>
             <renderer-type>edu.wright.hendrix11.familyTree.faces.CustomChartRenderer</renderer-type>
         </component>
         <attribute>
