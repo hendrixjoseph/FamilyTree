@@ -145,7 +145,7 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
         years.setData(data);
 
         model.addSeries(years);
-        model.setDatatipFormat("%d people");
+        model.setDatatipFormat("%2$d people");
 
         return max;
     }
@@ -176,8 +176,10 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
         perDecadeChartModel.setTitle("Births and deaths per decade");
         perDecadeChartModel.setLegendPosition("ne");
 
-        int max = initializeChart(perDecadeChartModel, personDataBean.perDecade(BIRTHS), "births");
-        int max2 = initializeChart(perDecadeChartModel, personDataBean.perDecade(DEATHS), "deaths");
+        Map<Object, Number>[] perDecade = personDataBean.perDecade();
+
+        int max = initializeChart(perDecadeChartModel, perDecade[0], "births");
+        int max2 = initializeChart(perDecadeChartModel, perDecade[1], "deaths");
 
         Axis xAxis = perDecadeChartModel.getAxis(AxisType.X);
         xAxis.setLabel("Year");
@@ -185,6 +187,6 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
         Axis yAxis = perDecadeChartModel.getAxis(AxisType.Y);
         yAxis.setLabel("People");
         yAxis.setMin(0);
-        yAxis.setMax(Math.max(max, max2) + 2);
+        yAxis.setMax(Math.max(0, max2) + 2);
     }
 }

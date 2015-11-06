@@ -24,12 +24,16 @@ import javax.faces.context.ResponseWriter;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Joe Hendrix
  */
 public class CustomBarRenderer extends BarRenderer
 {
+    private static final Logger LOG = Logger.getLogger(CustomBarRenderer.class.getName());
+
     @Override
     protected void encodeData(FacesContext context, Chart chart) throws IOException
     {
@@ -41,6 +45,8 @@ public class CustomBarRenderer extends BarRenderer
         StringBuilder sb = new StringBuilder(",data:[");
         for ( ChartSeries series : model.getSeries() )
         {
+            LOG.log(Level.INFO, series.getLabel() + " size: " + series.getData().size());
+
             sb.append("[");
 
             for ( Number data : series.getData().values() )
