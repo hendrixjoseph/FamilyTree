@@ -14,8 +14,6 @@ package edu.wright.hendrix11.familyTree.dataBean;
 
 import edu.wright.hendrix11.familyTree.entity.Gender;
 import edu.wright.hendrix11.familyTree.entity.Person;
-import edu.wright.hendrix11.familyTree.entity.event.Birth;
-import edu.wright.hendrix11.familyTree.entity.event.Death;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
@@ -28,7 +26,12 @@ import javax.persistence.TypedQuery;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Joe Hendrix
@@ -36,6 +39,7 @@ import java.util.List;
 @Stateless
 public class PersonDataBean extends DataBean<Person, Integer>
 {
+    private static final Logger LOG = Logger.getLogger(PersonDataBean.class.getName());
 
     @PersistenceContext(unitName = "edu.wright.hendrix11.familyTree")
     private EntityManager em;
@@ -95,59 +99,62 @@ public class PersonDataBean extends DataBean<Person, Integer>
         return query.getResultList();
     }
 
-    public List<Integer[]> birthsPerDecade()
+    public Map<Object,Number> perDecadeClean(PerDecadeType event)
     {
-        Query query = em.createNativeQuery(perDecadeQuery("birth"));
+        Query query = em.createNativeQuery(perDecadeQueryClean(event));
 
         return processDecades(query.getResultList());
     }
 
-    public List<Integer[]> deathsPerDecade()
+    public Map<Object,Number> perDecade(PerDecadeType event)
     {
-        Query query = em.createNativeQuery(perDecadeQuery("death"));
+        Query query = em.createNativeQuery(perDecadeQuery(event));
 
         return processDecades(query.getResultList());
     }
 
-    private List<Integer[]> processDecades(List<Object[]> decades)
+    private Map<Object,Number> processDecades(List<Object[]> decades)
     {
-        List<Integer[]> newDecades = new ArrayList<>();
+        Map<Object,Number> newDecades = new LinkedHashMap<>();
 
         for ( Object[] o : decades )
         {
             Integer number = ( (Number) o[0] ).intValue();
             Integer decade = ( (Number) o[1] ).intValue();
-            Integer[] array = {number, decade};
 
-            if ( !newDecades.isEmpty() && !newDecades.get(newDecades.size() - 1)[1].equals(decade) )
-            {
-                for ( Integer i = newDecades.get(newDecades.size() - 1)[1] + 10; i < decade; i += 10 )
-                {
-                    Integer[] emptyDecade = {0, i};
-                    newDecades.add(emptyDecade);
-                }
-            }
-
-            newDecades.add(array);
+            newDecades.put(decade, number);
         }
 
         return newDecades;
     }
 
-    private String q()
+    private String perDecadeQueryClean(PerDecadeType event)
     {
+        PerDecadeType otherEvent = PerDecadeType.BIRTHS;
+        String plusMinus = "+";
+        int age = (int)averageAge();
+
+        if(event == PerDecadeType.BIRTHS)
+        {
+            plusMinus = "-";
+            otherEvent = PerDecadeType.DEATHS;
+        }
+
+        String groupBy = new StringBuilder("(YEAR").append(plusMinus).append(age).append("-MOD(YEAR").append(plusMinus).append(age).append(",10))").toString();
+
         StringBuilder sb = new StringBuilder();
-        sb.append("SELECT COUNT(*),(YEAR+50-MOD(YEAR+50,10)) ");
-        sb.append("FROM EVENT ");
-        sb.append("WHERE TYPE = 'birth' AND ");
-        sb.append("(NOT PERSON_ID IN (SELECT PERSON_ID FROM EVENT WHERE TYPE='death') ");
-        sb.append("OR EXISTS (SELECT * FROM EVENT WHERE TYPE='death' AND YEAR IS NULL)) ");
-        sb.append("GROUP BY (YEAR + 50 - MOD(YEAR + 50,10)) ");
-        sb.append("ORDER BY (YEAR + 50 - MOD(YEAR + 50,10))");
+        sb.append("SELECT COUNT(*),").append(groupBy);
+        sb.append(" FROM EVENT");
+        sb.append(" WHERE TYPE = '").append(otherEvent).append("' AND YEAR IS NOT NULL AND");
+        sb.append(" (NOT PERSON_ID IN (SELECT PERSON_ID FROM EVENT WHERE TYPE='").append(event).append("')");
+        sb.append(" OR EXISTS (SELECT * FROM EVENT WHERE TYPE='").append(event).append("' AND YEAR IS NULL))");
+        sb.append(" GROUP BY ").append(groupBy);
+        sb.append(" ORDER BY ").append(groupBy);
+        LOG.log(Level.INFO, sb.toString());
         return sb.toString();
     }
 
-    private String perDecadeQuery(String event)
+    private String perDecadeQuery(PerDecadeType event)
     {
         StringBuilder sb = new StringBuilder();
         sb.append("SELECT COUNT(*),(YEAR-MOD(YEAR,10)) ");
@@ -156,5 +163,24 @@ public class PersonDataBean extends DataBean<Person, Integer>
         sb.append("GROUP BY (YEAR-MOD(YEAR,10)) ");
         sb.append("ORDER BY (YEAR-MOD(YEAR,10))");
         return sb.toString();
+    }
+
+    public enum PerDecadeType
+    {
+        BIRTHS("birth"),
+        DEATHS("death");
+
+        private String string;
+
+        private PerDecadeType(String string)
+        {
+            this.string = string;
+        }
+
+        @Override
+        public String toString()
+        {
+            return string;
+        }
     }
 }

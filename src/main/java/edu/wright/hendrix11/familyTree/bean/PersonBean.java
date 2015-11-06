@@ -15,6 +15,7 @@ package edu.wright.hendrix11.familyTree.bean;
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.BarChartModel;
+import org.primefaces.model.chart.BarChartSeries;
 import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.PieChartModel;
 
@@ -29,6 +30,12 @@ import javax.inject.Named;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import static edu.wright.hendrix11.familyTree.dataBean.PersonDataBean.PerDecadeType.BIRTHS;
+import static edu.wright.hendrix11.familyTree.dataBean.PersonDataBean.PerDecadeType.DEATHS;
 
 /**
  * @author Joe
@@ -37,12 +44,14 @@ import java.util.List;
 @ViewScoped
 public class PersonBean extends AbstractBean<Person> implements Serializable
 {
+    private static final Logger LOG = Logger.getLogger(PersonBean.class.getName());
 
     @EJB
     private PersonDataBean personDataBean;
     private BarChartModel agesChartModel;
     private PieChartModel genderPie;
     private BarChartModel perDecadeChartModel;
+    private BarChartModel perDecadeCleanChartModel;
 
     @Override
     @PostConstruct
@@ -52,7 +61,8 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
 
         initializeGenderPie();
         initializeAgeChart();
-        initializeBirthPerDecadeChart();
+        initializePerDecadeChart();
+        initializePerDecadeCleanChart();
     }
 
     public BarChartModel getPerDecadeChartModel()
@@ -71,6 +81,11 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
     public PieChartModel getGenderPie()
     {
         return genderPie;
+    }
+
+    public BarChartModel getPerDecadeCleanChartModel()
+    {
+        return perDecadeCleanChartModel;
     }
 
     private void initializeGenderPie()
@@ -113,38 +128,56 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
         yAxis.setMax(25);
     }
 
-    private void initializeBirthPerDecadeChart()
+    private int initializeChart(BarChartModel model, Map<Object,Number> data, String label)
     {
+        ChartSeries years = new BarChartSeries();
+
+        years.setLabel(label);
+
         int max = 0;
 
+        for(Number value : data.values())
+        {
+            if(max < value.intValue())
+                max = value.intValue();
+        }
+
+        years.setData(data);
+
+        model.addSeries(years);
+        model.setDatatipFormat("%d people");
+
+        return max;
+    }
+
+    private void initializePerDecadeCleanChart()
+    {
+        perDecadeCleanChartModel = new BarChartModel();
+
+        perDecadeCleanChartModel.setTitle("Births and deaths per decade (estimated)");
+        perDecadeCleanChartModel.setLegendPosition("ne");
+
+        int max = initializeChart(perDecadeCleanChartModel, personDataBean.perDecadeClean(BIRTHS), "births");
+        int max2 = initializeChart(perDecadeCleanChartModel, personDataBean.perDecadeClean(DEATHS), "deaths");
+
+        Axis xAxis = perDecadeCleanChartModel.getAxis(AxisType.X);
+        xAxis.setLabel("Year");
+
+        Axis yAxis = perDecadeCleanChartModel.getAxis(AxisType.Y);
+        yAxis.setLabel("People");
+        yAxis.setMin(0);
+        yAxis.setMax(Math.max(max, max2) + 2);
+    }
+
+    private void initializePerDecadeChart()
+    {
         perDecadeChartModel = new BarChartModel();
 
         perDecadeChartModel.setTitle("Births and deaths per decade");
         perDecadeChartModel.setLegendPosition("ne");
 
-        ChartSeries births = new ChartSeries();
-
-        births.setLabel("births");
-
-        for ( Integer[] i : personDataBean.birthsPerDecade() )
-        {
-            if ( max < i[0] )
-                max = i[0];
-
-            births.set(i[1].toString(), i[0]);
-        }
-
-        ChartSeries deaths = new ChartSeries();
-
-        deaths.setLabel("deaths");
-
-        for ( Integer[] i : personDataBean.deathsPerDecade() )
-        {
-            if ( max < i[0] )
-                max = i[0];
-
-            deaths.set(i[1].toString(), i[0]);
-        }
+        int max = initializeChart(perDecadeChartModel, personDataBean.perDecade(BIRTHS), "births");
+        int max2 = initializeChart(perDecadeChartModel, personDataBean.perDecade(DEATHS), "deaths");
 
         Axis xAxis = perDecadeChartModel.getAxis(AxisType.X);
         xAxis.setLabel("Year");
@@ -152,9 +185,6 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
         Axis yAxis = perDecadeChartModel.getAxis(AxisType.Y);
         yAxis.setLabel("People");
         yAxis.setMin(0);
-        yAxis.setMax(max + 2);
-
-        perDecadeChartModel.addSeries(deaths);
-        perDecadeChartModel.addSeries(births);
+        yAxis.setMax(Math.max(max, max2) + 2);
     }
 }
