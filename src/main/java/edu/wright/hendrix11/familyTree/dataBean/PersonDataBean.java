@@ -26,6 +26,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -86,20 +87,51 @@ public class PersonDataBean extends DataBean<Person, Integer>
         return namedQuery.getResultList();
     }
 
+    public double averageAge()
+    {
+        String countQuery = "SELECT COUNT(AGE) FROM AGE_VIEW";
+        String sumQuery = "SELECT SUM(AGE) FROM AGE_VIEW";
+
+        double count = ((BigDecimal) em.createNativeQuery(countQuery).getSingleResult()).doubleValue();
+        double sum = ((BigDecimal) em.createNativeQuery(sumQuery).getSingleResult()).doubleValue();
+
+        return sum / count;
+    }
+
     public List<Object[]> ages()
     {
-        StringBuilder sb = new StringBuilder("SELECT COUNT(AGE),AGE FROM ");
-        sb.append("(SELECT (D.YEAR-B.YEAR) AS AGE ");
-        sb.append("FROM EVENT B,EVENT D ");
-        sb.append("WHERE B.PERSON_ID=D.PERSON_ID ");
-        sb.append("AND B.TYPE='birth' ");
-        sb.append("AND D.TYPE='death') ");
-        sb.append("GROUP BY AGE ");
-        sb.append("HAVING AGE IS NOT NULL ");
-        sb.append("ORDER BY AGE");
+        StringBuilder sb = new StringBuilder("SELECT COUNT(AGE),AGE FROM AGE_VIEW ");
+        sb.append("GROUP BY AGE ORDER BY AGE");
 
         Query query = em.createNativeQuery(sb.toString());
 
         return query.getResultList();
+    }
+
+    public List<Object[]> birthsPerDecade()
+    {
+        Query query = em.createNativeQuery(perDecadeQuery("birth"));
+
+        return query.getResultList();
+    }
+
+    public List<Object[]> deathsPerDecade()
+    {
+        Query query = em.createNativeQuery(perDecadeQuery("death"));
+
+        return query.getResultList();
+    }
+
+
+
+    private String perDecadeQuery(String event)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT COUNT(*),(YEAR-MOD(YEAR,10)) ");
+        sb.append("FROM EVENT WHERE EVENT.TYPE='").append(event).append("' ");
+        sb.append("AND EVENT.YEAR IS NOT NULL ");
+        sb.append("GROUP BY (YEAR-MOD(YEAR,10)) ");
+        sb.append("ORDER BY (YEAR-MOD(YEAR,10))");
+        return sb.toString();
     }
 }
