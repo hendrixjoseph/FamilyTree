@@ -106,35 +106,27 @@ public class PersonDataBean extends DataBean<Person, Integer>
         return null;
     }
 
-    public Map<Object,Number>[] perDecade()
+    public Map<String,Integer[]> perDecade()
     {
-        StringBuilder sb = new StringBuilder("SELECT NVL(CB.C,0),NVL(CD.C,0), NVL(CB.D,CD.D) DECADE FROM (");
-        sb.append(perDecadeQuery(PerDecadeType.BIRTHS)).append(") CB");
-        sb.append(" FULL OUTER JOIN (");
-        sb.append(perDecadeQuery(PerDecadeType.DEATHS)).append(") CD");
-        sb.append(" ON CB.D = CD.D ORDER BY DECADE");
-
-        Query query = em.createNativeQuery(sb.toString());
+        Query query = em.createNativeQuery("SELECT * FROM PER_DECADE_VIEW");
 
         return processDecades(query.getResultList());
     }
 
-    private Map<Object,Number>[] processDecades(List<Object[]> decades)
+    private Map<String,Integer[]> processDecades(List<Object[]> decades)
     {
-        Map<Object,Number> birthDecades = new LinkedHashMap<>();
-        Map<Object,Number> deathDecades = new LinkedHashMap<>();
+        Map<String,Integer[]> result = new LinkedHashMap<>();
 
         for ( Object[] o : decades )
         {
-            Number births = ( (Number) o[0] );
-            Number deaths = ( (Number) o[1] );
-            Number decade = ( (Number) o[1] );
-
-            birthDecades.put(decade, births);
-            deathDecades.put(decade, deaths);
+            Integer births = ( (Number) o[0] ).intValue();
+            Integer deaths = ( (Number) o[1] ).intValue();
+            String decade = o[2].toString();
+            Integer[] array = {births, deaths};
+            result.put(decade,array);
         }
 
-        return new Map[]{birthDecades, deathDecades};
+        return result;
     }
 
     private String perDecadeQueryClean(PerDecadeType event)
@@ -160,17 +152,6 @@ public class PersonDataBean extends DataBean<Person, Integer>
         sb.append(" GROUP BY ").append(groupBy);
         sb.append(" ORDER BY ").append(groupBy);
         LOG.log(Level.INFO, sb.toString());
-        return sb.toString();
-    }
-
-    private String perDecadeQuery(PerDecadeType event)
-    {
-        String groupBy = "(YEAR-MOD(YEAR,10))";
-
-        StringBuilder sb = new StringBuilder("SELECT COUNT(*) C,").append(groupBy).append(" D");
-        sb.append(" FROM EVENT WHERE EVENT.TYPE='").append(event).append("' ");
-        sb.append(" AND EVENT.YEAR IS NOT NULL ");
-        sb.append(" GROUP BY ").append(groupBy);
         return sb.toString();
     }
 

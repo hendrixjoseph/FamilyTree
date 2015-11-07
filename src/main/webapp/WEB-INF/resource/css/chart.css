@@ -1,0 +1,26 @@
+/*
+ *  The MIT License (MIT)
+ *
+ *  View the full license at:
+ *  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
+ *
+ *  Copyright (c) 2015 Joseph Hendrix
+ *
+ *  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
+ *
+ */
+
+.bar:hover {
+    fill: #A52A2A;
+}
+
+.bar {
+    fill: #4682B4;
+}
+
+.x-axis-label {
+    fill: black;
+    font: 10px sans-serif;
+    text-anchor: middle;
+}
+
