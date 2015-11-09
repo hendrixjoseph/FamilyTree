@@ -29,8 +29,8 @@ public abstract class Skew implements Transform
     @Override
     public String toString()
     {
-        StringBuilder sb = new StringBuilder("skew").append(xy.toUpper()).apppend("(").append(a).append(")");
+        Number[] args = {a};
         
-        return sb.toString();
+        return toString("skew" + xy.toUpperCase(), args);
     }
 }
