@@ -30,11 +30,8 @@ public class Translate extends XyTransform
     @Override
     public String toString()
     {
-        StringBuilder sb = new StringBuilder("translate(").append(x);
+        Number[] args = {x, y};
         
-        if(y != null)
-            sb.append(",").append(y);
-        
-        return sb.append(")").toString();
+        return toString("translate", args);
     }
 }
