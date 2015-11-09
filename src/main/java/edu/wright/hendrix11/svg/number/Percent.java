@@ -15,72 +15,10 @@ package edu.wright.hendrix11.svg.number;
 /**
  * @author Joe Hendrix
  */
-public class Percent<N extends Number> extends Number
+public class Percent<N extends Number> extends Unit<N>
 {
-    N number;
-
     public Percent(N number)
     {
-        this.number = number;
-    }
-
-    public Number getNumber()
-    {
-        return number;
-    }
-
-    public void setNumber(N number)
-    {
-        this.number = number;
-    }
-
-    @Override
-    public int intValue()
-    {
-        return number.intValue();
-    }
-
-    @Override
-    public long longValue()
-    {
-        return number.longValue();
-    }
-
-    @Override
-    public float floatValue()
-    {
-        return number.floatValue();
-    }
-
-    @Override
-    public double doubleValue()
-    {
-        return number.doubleValue();
-    }
-
-    @Override
-    public boolean equals(Object obj)
-    {
-        if(obj instanceof Percent)
-        {
-            Percent other = (Percent)obj;
-            return number.equals(other.getNumber());
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    @Override
-    public int hashCode()
-    {
-        return number.hashCode();
-    }
-
-    @Override
-    public String toString()
-    {
-        return number.toString() + "%";
+        super(number, "%");
     }
 }
