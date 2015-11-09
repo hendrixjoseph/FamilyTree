@@ -10,7 +10,7 @@
  *
  */
 
-package edu.wright.hendrix11.svg.component;
+package edu.wright.hendrix11.svg.component.shape;
 
 import javax.faces.context.ResponseWriter;
 
