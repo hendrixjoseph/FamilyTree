@@ -15,7 +15,7 @@ package edu.wright.hendrix11.svg.transform;
 /**
  * @author Joe Hendrix
  */
-public abstract class XyTransform implements Transform
+public abstract class XyTransform extends Transform
 {
     protected Number x;
     protected Number y;
