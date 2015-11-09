@@ -29,11 +29,8 @@ public class Scale extends XyTransform
 
     public String toString()
     {
-        StringBuilder sb = new StringBuilder("scale(").append(x);
+        Number[] args = {x, y};
         
-        if(y != null)
-            sb.append(",").append(y);
-        
-        return .append(")").toString();
+        return toString("scale", args);
     }
 }
