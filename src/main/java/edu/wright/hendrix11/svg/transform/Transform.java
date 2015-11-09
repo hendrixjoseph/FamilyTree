@@ -23,7 +23,8 @@ public abstract class Transform
     
     for(Number argument : arguments)
     {
-      sb.append(argument).append(",");
+      if(argument != null)
+          sb.append(argument).append(",");
     }
     
     sb.setLength(sb.length() - 1);
