@@ -15,6 +15,19 @@ package edu.wright.hendrix11.svg.transform;
 /**
  * @author Joe Hendrix
  */
-public interface Transform
+public abstract class Transform
 {
+  protected String toString(String name, Number[] arguments)
+  {
+    StringBuilder sb = new StringBuilder(name).append("(");
+    
+    for(Number argument : arguments)
+    {
+      sb.append(argument).append(",");
+    }
+    
+    sb.setLength(sb.length() - 1);
+    
+    return sb.append(")").toString();
+  }
 }
