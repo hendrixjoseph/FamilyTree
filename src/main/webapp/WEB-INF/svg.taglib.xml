@@ -20,8 +20,8 @@
     <tag>
         <tag-name>chart</tag-name>
         <component>
-            <component-type>edu.wright.hendrix11.svg.jsf.CustomChart</component-type>
-            <renderer-type>edu.wright.hendrix11.svg.jsf.CustomChartRenderer</renderer-type>
+            <component-type>edu.wright.hendrix11.svg.jsf.ChartComponent</component-type>
+            <renderer-type>edu.wright.hendrix11.svg.jsf.ChartRenderer</renderer-type>
         </component>
         <attribute>
             <name>styleClass</name>

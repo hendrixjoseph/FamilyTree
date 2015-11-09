@@ -20,15 +20,15 @@ import javax.faces.component.behavior.ClientBehavior;
 /**
  * @author Joe Hendrix
  */
-@FacesComponent(value = CustomChart.COMPONENT_TYPE)
+@FacesComponent(value = ChartComponent.COMPONENT_TYPE)
 @ResourceDependency(library = "css", name = "chart.css")
-public class CustomChart extends UIComponentBase
+public class ChartComponent extends UIComponentBase
 {
     public static final String COMPONENT_FAMILY = "edu.wright.hendrix11.svg";
-    public static final String COMPONENT_TYPE = "edu.wright.hendrix11.svg.jsf.CustomChart";
-    public static final String DEFAULT_RENDERER = "edu.wright.hendrix11.svg.jsf.CustomChartRenderer";
+    public static final String COMPONENT_TYPE = "edu.wright.hendrix11.svg.jsf.ChartComponent";
+    public static final String DEFAULT_RENDERER = "edu.wright.hendrix11.svg.jsf.ChartRenderer";
 
-    public CustomChart()
+    public ChartComponent()
     {
         setRendererType(DEFAULT_RENDERER);
     }

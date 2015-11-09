@@ -31,6 +31,26 @@ public class Unit<N extends Number> extends Number
         this.unit = unit;
     }
 
+    public Unit<Double> add(double d)
+    {
+        return new Unit<Double>(number.doubleValue() + d,unit);
+    }
+
+    public Unit<Integer> add(int i)
+    {
+        return new Unit<Integer>(number.intValue() + i,unit);
+    }
+
+    public Unit<Double> divide(double d)
+    {
+        return new Unit<Double>(number.doubleValue() / d, unit);
+    }
+
+    public Unit<Integer> divide(int i)
+    {
+        return new Unit<Integer>(number.intValue() / i, unit);
+    }
+
     public N getNumber()
     {
         return number;

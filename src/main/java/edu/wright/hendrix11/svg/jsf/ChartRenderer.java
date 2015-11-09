@@ -29,18 +29,18 @@ import java.io.IOException;
 /**
  * @author Joe Hendrix
  */
-@FacesRenderer(rendererType = CustomChart.DEFAULT_RENDERER, componentFamily = CustomChart.COMPONENT_FAMILY)
-public class CustomChartRenderer extends Renderer
+@FacesRenderer(rendererType = ChartComponent.DEFAULT_RENDERER, componentFamily = ChartComponent.COMPONENT_FAMILY)
+public class ChartRenderer extends Renderer
 {
     @Override
     public void encodeEnd(FacesContext context, UIComponent component) throws IOException
     {
         super.encodeEnd(context, component);
 
-        CustomChart chart = (CustomChart) component;
+        ChartComponent chart = (ChartComponent) component;
         ChartModel model = chart.getChartModel();
 
-        double width = 900;
+        double width = 100;
         double height = 500;
         double barWidth = width / model.getNumValues();
         double labelWidth = width / model.getNumLabels();
