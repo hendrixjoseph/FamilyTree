@@ -15,7 +15,7 @@ package edu.wright.hendrix11.svg.number;
 /**
  * @author Joe Hendrix
  */
-public class Percent<N extends Number> extends Number
+public class Unit<N extends Number> extends Number
 {
     N number;
     String unit;
@@ -31,7 +31,7 @@ public class Percent<N extends Number> extends Number
         this.unit = unit;
     }
 
-    public Number getNumber()
+    public N getNumber()
     {
         return number;
     }
