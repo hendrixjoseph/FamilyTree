@@ -19,9 +19,9 @@ public class Translate extends XyTransform
 {
     public Translate(Number x, Number y)
     {
-        super(x,y);
+        super(x, y);
     }
-    
+
     public Translate(Number x)
     {
         super(x);
@@ -31,7 +31,7 @@ public class Translate extends XyTransform
     public String toString()
     {
         Number[] args = {x, y};
-        
+
         return toString("translate", args);
     }
 }

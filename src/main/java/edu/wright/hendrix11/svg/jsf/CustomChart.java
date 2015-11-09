@@ -10,32 +10,23 @@
  *
  */
 
-package edu.wright.hendrix11.familyTree.faces;
+package edu.wright.hendrix11.svg.jsf;
 
-import org.primefaces.component.chart.Chart;
-
-import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.component.behavior.ClientBehavior;
 
-import java.util.Map;
-
 /**
  * @author Joe Hendrix
  */
 @FacesComponent(value = CustomChart.COMPONENT_TYPE)
-@ResourceDependency(library="css", name="chart.css")
+@ResourceDependency(library = "css", name = "chart.css")
 public class CustomChart extends UIComponentBase
 {
-    public static final String COMPONENT_FAMILY = "edu.wright.hendrix11.familyTree.faces";
-    public static final String COMPONENT_TYPE = "edu.wright.hendrix11.familyTree.faces.CustomChart";
-    public static final String DEFAULT_RENDERER = "edu.wright.hendrix11.familyTree.faces.CustomChartRenderer";
-
-    protected enum PropertyKeys {
-        styleClass, chartModel
-    }
+    public static final String COMPONENT_FAMILY = "edu.wright.hendrix11.svg";
+    public static final String COMPONENT_TYPE = "edu.wright.hendrix11.svg.jsf.CustomChart";
+    public static final String DEFAULT_RENDERER = "edu.wright.hendrix11.svg.jsf.CustomChartRenderer";
 
     public CustomChart()
     {
@@ -54,19 +45,29 @@ public class CustomChart extends UIComponentBase
         super.addClientBehavior(eventName, behavior);
     }
 
-    public String getStyleClass() {
+    public String getStyleClass()
+    {
         return (String) getStateHelper().eval(PropertyKeys.styleClass, null);
     }
 
-    public void setStyleClass(String string) {
+    public void setStyleClass(String string)
+    {
         getStateHelper().put(PropertyKeys.styleClass, string);
     }
 
-    public ChartModel getChartModel() {
+    public ChartModel getChartModel()
+    {
         return (ChartModel) getStateHelper().eval(PropertyKeys.chartModel, null);
     }
 
-    public void setChartModel(ChartModel model) {
+    public void setChartModel(ChartModel model)
+    {
         getStateHelper().put(PropertyKeys.chartModel, model);
+    }
+
+    protected enum PropertyKeys
+    {
+        styleClass,
+        chartModel
     }
 }

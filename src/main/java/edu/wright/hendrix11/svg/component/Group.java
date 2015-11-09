@@ -33,7 +33,7 @@ public class Group extends SvgComponent
     @Override
     public void encodeMiddle(ResponseWriter writer) throws IOException
     {
-        for(SvgComponent component : components)
+        for ( SvgComponent component : components )
         {
             component.encodeAll(writer);
         }

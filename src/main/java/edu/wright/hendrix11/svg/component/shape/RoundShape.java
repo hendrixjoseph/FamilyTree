@@ -12,6 +12,8 @@
 
 package edu.wright.hendrix11.svg.component.shape;
 
+import edu.wright.hendrix11.svg.component.SvgComponent;
+
 import javax.faces.context.ResponseWriter;
 
 import java.io.IOException;
@@ -25,14 +27,20 @@ public abstract class RoundShape extends SvgComponent
     {
         super(name);
     }
-    
+
     public void setCenterX(Number cx)
     {
-        put("cx",cx);
+        put("cx", cx);
     }
 
     public void setCenterY(Number cy)
     {
-        put("cy",cy);
+        put("cy", cy);
+    }
+
+    @Override
+    public void encodeMiddle(ResponseWriter writer) throws IOException
+    {
+
     }
 }

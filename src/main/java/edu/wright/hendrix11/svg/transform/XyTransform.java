@@ -25,9 +25,14 @@ public abstract class XyTransform extends Transform
         this.x = x;
         this.y = y;
     }
-    
+
     public XyTransform(Number x)
     {
         this.x = x;
+    }
+
+    protected XyTransform()
+    {
+
     }
 }

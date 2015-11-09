@@ -12,10 +12,6 @@
 
 package edu.wright.hendrix11.svg.component.shape;
 
-import javax.faces.context.ResponseWriter;
-
-import java.io.IOException;
-
 /**
  * @author Joe Hendrix
  */

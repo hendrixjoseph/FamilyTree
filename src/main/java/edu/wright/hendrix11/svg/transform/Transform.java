@@ -17,18 +17,23 @@ package edu.wright.hendrix11.svg.transform;
  */
 public abstract class Transform
 {
-  protected String toString(String name, Number[] arguments)
-  {
-    StringBuilder sb = new StringBuilder(name).append("(");
-    
-    for(Number argument : arguments)
+    protected Transform()
     {
-      if(argument != null)
-          sb.append(argument).append(",");
+
     }
-    
-    sb.setLength(sb.length() - 1);
-    
-    return sb.append(")").toString();
-  }
+
+    protected String toString(String name, Number[] arguments)
+    {
+        StringBuilder sb = new StringBuilder(name).append("(");
+
+        for ( Number argument : arguments )
+        {
+            if ( argument != null )
+                sb.append(argument).append(",");
+        }
+
+        sb.setLength(sb.length() - 1);
+
+        return sb.append(")").toString();
+    }
 }

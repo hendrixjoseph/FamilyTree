@@ -31,7 +31,7 @@ public class Text extends SvgComponent
     public Text(String text)
     {
         this();
-        setText(text);
+        this.text = text;
     }
 
     @Override
@@ -42,22 +42,22 @@ public class Text extends SvgComponent
 
     public void setX(Number x)
     {
-        put("x",x);
+        put("x", x);
     }
 
     public void setY(Number y)
     {
-        put("y",y);
+        put("y", y);
     }
 
     public void setDx(Number dx)
     {
-        put("dx",dx);
+        put("dx", dx);
     }
 
     public void setDy(Number dy)
     {
-        put("dy",dy);
+        put("dy", dy);
     }
 
     public String getText()

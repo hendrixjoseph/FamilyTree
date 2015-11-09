@@ -25,11 +25,9 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -99,23 +97,23 @@ public class PersonDataBean extends DataBean<Person, Integer>
         return query.getResultList();
     }
 
-    public Map<Object,Number> perDecadeClean(PerDecadeType event)
+    public Map<Object, Number> perDecadeClean(PerDecadeType event)
     {
         Query query = em.createNativeQuery(perDecadeQueryClean(event));
 
         return null;
     }
 
-    public Map<String,Integer[]> perDecade()
+    public Map<String, Integer[]> perDecade()
     {
         Query query = em.createNativeQuery("SELECT * FROM PER_DECADE_VIEW");
 
         return processDecades(query.getResultList());
     }
 
-    private Map<String,Integer[]> processDecades(List<Object[]> decades)
+    private Map<String, Integer[]> processDecades(List<Object[]> decades)
     {
-        Map<String,Integer[]> result = new LinkedHashMap<>();
+        Map<String, Integer[]> result = new LinkedHashMap<>();
 
         for ( Object[] o : decades )
         {
@@ -123,7 +121,7 @@ public class PersonDataBean extends DataBean<Person, Integer>
             Integer deaths = ( (Number) o[1] ).intValue();
             String decade = o[2].toString();
             Integer[] array = {births, deaths};
-            result.put(decade,array);
+            result.put(decade, array);
         }
 
         return result;
@@ -133,9 +131,9 @@ public class PersonDataBean extends DataBean<Person, Integer>
     {
         PerDecadeType otherEvent = PerDecadeType.BIRTHS;
         String plusMinus = "+";
-        int age = (int)averageAge();
+        int age = (int) averageAge();
 
-        if(event == PerDecadeType.BIRTHS)
+        if ( event == PerDecadeType.BIRTHS )
         {
             plusMinus = "-";
             otherEvent = PerDecadeType.DEATHS;
@@ -162,7 +160,7 @@ public class PersonDataBean extends DataBean<Person, Integer>
 
         private String string;
 
-        private PerDecadeType(String string)
+        PerDecadeType(String string)
         {
             this.string = string;
         }

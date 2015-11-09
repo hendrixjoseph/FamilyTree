@@ -23,9 +23,8 @@ import java.util.Map;
  */
 public abstract class SuperSvgClass
 {
+    private Map<String, Object> attributeMap = new HashMap<>();
     private String name;
-
-    private Map<String,Object> attributeMap = new HashMap<>();
 
     protected SuperSvgClass(String name)
     {
@@ -34,7 +33,7 @@ public abstract class SuperSvgClass
 
     public Object put(String key, Object value)
     {
-        if(value == null)
+        if ( value == null )
         {
             return attributeMap.remove(key);
         }
@@ -56,7 +55,7 @@ public abstract class SuperSvgClass
 
     public void setStyleClass(String styleClass)
     {
-        put("class",styleClass);
+        put("class", styleClass);
     }
 
     public String getStyle()
@@ -66,18 +65,18 @@ public abstract class SuperSvgClass
 
     public void setStyle(String style)
     {
-        put("style",style);
+        put("style", style);
     }
 
     public void encodeBegin(ResponseWriter writer) throws IOException
     {
-        writer.startElement(name,null);
+        writer.startElement(name, null);
 
-        for(String attribute : attributeMap.keySet())
+        for ( String attribute : attributeMap.keySet() )
         {
             Object value = attributeMap.get(attribute);
 
-            writer.writeAttribute(attribute,value,null);
+            writer.writeAttribute(attribute, value, null);
         }
     }
 

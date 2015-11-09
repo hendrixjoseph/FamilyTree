@@ -10,12 +10,12 @@
  *
  */
 
-package edu.wright.hendrix11.familyTree.faces;
+package edu.wright.hendrix11.svg.jsf;
 
-import edu.wright.hendrix11.svg.component.Group;
-import edu.wright.hendrix11.svg.component.Rectangle;
 import edu.wright.hendrix11.svg.Svg;
+import edu.wright.hendrix11.svg.component.Group;
 import edu.wright.hendrix11.svg.component.Text;
+import edu.wright.hendrix11.svg.component.shape.Rectangle;
 import edu.wright.hendrix11.svg.transform.Translate;
 
 import javax.faces.component.UIComponent;
@@ -37,7 +37,7 @@ public class CustomChartRenderer extends Renderer
     {
         super.encodeEnd(context, component);
 
-        CustomChart chart = (CustomChart)component;
+        CustomChart chart = (CustomChart) component;
         ChartModel model = chart.getChartModel();
 
         double width = 900;
@@ -54,7 +54,7 @@ public class CustomChartRenderer extends Renderer
         svg.setHeight(height);
 
         Group group = new Group();
-        group.setTransform(new Translate(40,20));
+        group.setTransform(new Translate(40, 20));
 
         svg.addComponent(group);
 
@@ -66,7 +66,7 @@ public class CustomChartRenderer extends Renderer
         double xLabel = 0;
         double xBar = 0;
 
-        for(String label : model.getAxisLabels())
+        for ( String label : model.getAxisLabels() )
         {
             Text text = new Text(label);
             text.setX(xLabel);
@@ -79,13 +79,13 @@ public class CustomChartRenderer extends Renderer
 
             xLabel += labelWidth;
 
-            for(Integer i : model.getData(label))
+            for ( Integer i : model.getData(label) )
             {
                 double barHeight = height - i * barHeightScale;
 
                 Rectangle rectangle = new Rectangle();
                 rectangle.setHeight(barHeight);
-                rectangle.setWidth(barWidth -  1);
+                rectangle.setWidth(barWidth - 1);
                 rectangle.setX(xBar);
                 rectangle.setY(height - barHeight);
                 rectangle.setStyleClass("bar");

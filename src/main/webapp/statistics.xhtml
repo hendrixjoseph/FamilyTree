@@ -15,19 +15,20 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:hendrix11="http://hendrix11.wright.edu/facelets">
+                xmlns:fam="http://hendrix11.wright.edu/familyTree"
+                xmlns:svg="http://hendrix11.wright.edu/svg">
 
     <ui:define name="title">
         Statistics
     </ui:define>
 
     <ui:define name="menu">
-        <hendrix11:menu currentView="statisticsView" />
+        <fam:menu currentView="statisticsView" />
     </ui:define>
 
     <ui:define name="content">
         <p:layoutUnit position="center">
-            <hendrix11:chart chartModel="#{personBean.perDecadeModel}" styleClass="custom" />
+            <svg:chart chartModel="#{personBean.perDecadeModel}" styleClass="custom" />
             <p:chart type="pie" model="#{personBean.genderPie}" style="width:400px;height:300px;" widgetVar="chart" />
             <p:chart type="bar" model="#{personBean.agesChartModel}" style="height:300px;" />
         </p:layoutUnit>

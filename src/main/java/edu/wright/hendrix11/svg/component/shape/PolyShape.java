@@ -12,9 +12,13 @@
 
 package edu.wright.hendrix11.svg.component.shape;
 
+import edu.wright.hendrix11.svg.component.SvgComponent;
+
 import javax.faces.context.ResponseWriter;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Joe Hendrix
@@ -23,17 +27,17 @@ public abstract class PolyShape extends SvgComponent
 {
     List<Point> points = new ArrayList<>();
 
-    protected RoundShape(String name)
+    protected PolyShape(String name)
     {
         super(name);
     }
-    
+
     public void setPoints(List<Point> points)
     {
         this.points = points;
         processPoints();
     }
-    
+
     public void addPoint(Point point)
     {
         points.add(point);
@@ -42,29 +46,35 @@ public abstract class PolyShape extends SvgComponent
 
     private void processPoints()
     {
-      StringBuilder sb = new StringBuilder();
-      
-      for(Point point : points)
-      {
-          sb.append(point).append(" ");
-      }
-      
-      sb.setLength(sb.length() - 1);
-      
-      put("points",sb.toString());
+        StringBuilder sb = new StringBuilder();
+
+        for ( Point point : points )
+        {
+            sb.append(point).append(" ");
+        }
+
+        sb.setLength(sb.length() - 1);
+
+        put("points", sb.toString());
     }
-    
+
+    @Override
+    public void encodeMiddle(ResponseWriter writer) throws IOException
+    {
+
+    }
+
     public class Point
     {
         private Number x;
         private Number y;
-        
+
         public Point(Number x, Number y)
         {
             this.x = x;
             this.y = y;
         }
-        
+
         @Override
         public String toString()
         {

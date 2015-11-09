@@ -19,9 +19,9 @@ public class Scale extends XyTransform
 {
     public Scale(Number x, Number y)
     {
-        super(x,y);
+        super(x, y);
     }
-    
+
     public Scale(Number x)
     {
         super(x);
@@ -30,7 +30,7 @@ public class Scale extends XyTransform
     public String toString()
     {
         Number[] args = {x, y};
-        
+
         return toString("scale", args);
     }
 }

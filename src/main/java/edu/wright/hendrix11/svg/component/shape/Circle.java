@@ -12,10 +12,6 @@
 
 package edu.wright.hendrix11.svg.component.shape;
 
-import javax.faces.context.ResponseWriter;
-
-import java.io.IOException;
-
 /**
  * @author Joe Hendrix
  */
@@ -25,9 +21,9 @@ public class Circle extends RoundShape
     {
         super("circle");
     }
-    
+
     public void setRadius(Number r)
     {
-        put("r",r);
+        put("r", r);
     }
 }

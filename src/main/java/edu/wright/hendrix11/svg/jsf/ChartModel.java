@@ -10,7 +10,7 @@
  *
  */
 
-package edu.wright.hendrix11.familyTree.faces;
+package edu.wright.hendrix11.svg.jsf;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -24,7 +24,7 @@ public class ChartModel
 {
     private static final Logger LOG = Logger.getLogger(ChartModel.class.getName());
 
-    Map<String, Integer[]> data = new LinkedHashMap<>();;
+    Map<String, Integer[]> data = new LinkedHashMap<>();
 
     public Map<String, Integer[]> getData()
     {
@@ -65,11 +65,11 @@ public class ChartModel
     {
         int max = 0;
 
-        for(Integer[] integers : data.values())
+        for ( Integer[] integers : data.values() )
         {
-            for(Integer i : integers)
+            for ( Integer i : integers )
             {
-                if(max < i)
+                if ( max < i )
                     max = i;
             }
         }

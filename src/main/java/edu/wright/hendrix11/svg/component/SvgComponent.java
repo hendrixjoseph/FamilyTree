@@ -25,13 +25,13 @@ public abstract class SvgComponent extends SuperSvgClass
         super(name);
     }
 
-    public void setTransform(Transform transform)
-    {
-        put("transform",transform);
-    }
-
     public Transform getTransform()
     {
-        return (Transform)get("transform");
+        return (Transform) get("transform");
+    }
+
+    public void setTransform(Transform transform)
+    {
+        put("transform", transform);
     }
 }

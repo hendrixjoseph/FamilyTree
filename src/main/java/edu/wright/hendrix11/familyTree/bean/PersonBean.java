@@ -22,7 +22,7 @@ import org.primefaces.model.chart.PieChartModel;
 import edu.wright.hendrix11.familyTree.dataBean.PersonDataBean;
 import edu.wright.hendrix11.familyTree.entity.Gender;
 import edu.wright.hendrix11.familyTree.entity.Person;
-import edu.wright.hendrix11.familyTree.faces.ChartModel;
+import edu.wright.hendrix11.svg.jsf.ChartModel;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -46,14 +46,13 @@ import static edu.wright.hendrix11.familyTree.dataBean.PersonDataBean.PerDecadeT
 public class PersonBean extends AbstractBean<Person> implements Serializable
 {
     private static final Logger LOG = Logger.getLogger(PersonBean.class.getName());
-
+    ChartModel perDecadeModel;
     @EJB
     private PersonDataBean personDataBean;
     private BarChartModel agesChartModel;
     private PieChartModel genderPie;
     private BarChartModel perDecadeChartModel;
     private BarChartModel perDecadeCleanChartModel;
-    ChartModel perDecadeModel;
 
     @Override
     @PostConstruct
@@ -138,7 +137,7 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
         yAxis.setMax(25);
     }
 
-    private int initializeChart(BarChartModel model, Map<Object,Number> data, String label)
+    private int initializeChart(BarChartModel model, Map<Object, Number> data, String label)
     {
         ChartSeries years = new BarChartSeries();
 
@@ -146,9 +145,9 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
 
         int max = 0;
 
-        for(Number value : data.values())
+        for ( Number value : data.values() )
         {
-            if(max < value.intValue())
+            if ( max < value.intValue() )
                 max = value.intValue();
         }
 
@@ -183,7 +182,7 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
     {
         Map<String, Integer[]> perDecade = personDataBean.perDecade();
 
-        for(String decade : perDecade.keySet())
+        for ( String decade : perDecade.keySet() )
         {
             LOG.log(Level.INFO, decade);
         }

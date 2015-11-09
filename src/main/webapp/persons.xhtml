@@ -15,7 +15,7 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:hendrix11="http://hendrix11.wright.edu/facelets">
+                xmlns:fam="http://hendrix11.wright.edu/familyTree">
 
     <ui:define name="metadata">
         <f:metadata>
@@ -29,7 +29,7 @@
     </ui:define>
 
     <ui:define name="menu">
-        <hendrix11:menu currentView="personsView" />
+        <fam:menu currentView="personsView" />
     </ui:define>
 
     <ui:define name="content">
@@ -38,35 +38,35 @@
                          styleClass="familyTree-dataTable">
                 <p:column>
                     <f:facet name="header">
-                        <hendrix11:pageSort dataBean="#{personBean}" text="Id" sort="id" />
+                        <fam:pageSort dataBean="#{personBean}" text="Id" sort="id" />
                     </f:facet>
                     <p:outputLabel value="#{person.id}" />
                 </p:column>
 
                 <p:column>
                     <f:facet name="header">
-                        <hendrix11:pageSort dataBean="#{personBean}" text="Father" sort="father.name" />
+                        <fam:pageSort dataBean="#{personBean}" text="Father" sort="father.name" />
                     </f:facet>
-                    <hendrix11:personLink person="#{person.father}" />
+                    <fam:personLink person="#{person.father}" />
                 </p:column>
 
                 <p:column>
                     <f:facet name="header">
-                        <hendrix11:pageSort dataBean="#{personBean}" text="Mother" sort="mother.name" />
+                        <fam:pageSort dataBean="#{personBean}" text="Mother" sort="mother.name" />
                     </f:facet>
-                    <hendrix11:personLink person="#{person.mother}" />
+                    <fam:personLink person="#{person.mother}" />
                 </p:column>
 
                 <p:column>
                     <f:facet name="header">
-                        <hendrix11:pageSort dataBean="#{personBean}" text="Name" sort="name" />
+                        <fam:pageSort dataBean="#{personBean}" text="Name" sort="name" />
                     </f:facet>
-                    <hendrix11:personLink person="#{person}" />
+                    <fam:personLink person="#{person}" />
                 </p:column>
 
                 <p:column>
                     <f:facet name="header">
-                        <hendrix11:pageSort dataBean="#{personBean}" text="Gender" sort="gender" />
+                        <fam:pageSort dataBean="#{personBean}" text="Gender" sort="gender" />
                     </f:facet>
                     <p:outputLabel value="#{person.gender.toString()}" />
                 </p:column>
@@ -77,34 +77,34 @@
 
                 <p:column>
                     <f:facet name="header">
-                        <hendrix11:pageSort dataBean="#{personBean}" text="Birth Place" sort="birth.place.name" />
+                        <fam:pageSort dataBean="#{personBean}" text="Birth Place" sort="birth.place.name" />
                     </f:facet>
-                    <hendrix11:googleMapLink place="#{person.birth.place}" />
+                    <fam:googleMapLink place="#{person.birth.place}" />
                 </p:column>
 
                 <p:column>
                     <f:facet name="header">
-                        <hendrix11:pageSort dataBean="#{personBean}" text="Birthdate" sort="birth.date" />
+                        <fam:pageSort dataBean="#{personBean}" text="Birthdate" sort="birth.date" />
                     </f:facet>
                     <p:outputLabel value="#{person.birth.dateString}" />
                 </p:column>
 
                 <p:column headerText="Death Place">
                     <f:facet name="header">
-                        <hendrix11:pageSort dataBean="#{personBean}" text="Death Place" sort="death.place.name" />
+                        <fam:pageSort dataBean="#{personBean}" text="Death Place" sort="death.place.name" />
                     </f:facet>
-                    <hendrix11:googleMapLink place="#{person.death.place}" />
+                    <fam:googleMapLink place="#{person.death.place}" />
                 </p:column>
 
                 <p:column headerText="Death Date">
                     <f:facet name="header">
-                        <hendrix11:pageSort dataBean="#{personBean}" text="Death Date" sort="death.date" />
+                        <fam:pageSort dataBean="#{personBean}" text="Death Date" sort="death.date" />
                     </f:facet>
                     <p:outputLabel value="#{person.death.dateString}" />
                 </p:column>
 
                 <f:facet name="footer">
-                    <hendrix11:pageNav dataBean="#{personBean}" />
+                    <fam:pageNav dataBean="#{personBean}" />
                 </f:facet>
             </p:dataTable>
         </p:layoutUnit>

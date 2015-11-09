@@ -12,11 +12,11 @@
   -->
 
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:hendrix11="http://hendrix11.wright.edu/facelets"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:fam="http://hendrix11.wright.edu/familyTree"
                 xmlns:p="http://primefaces.org/ui">
     <p:dataTable var="child" value="#{children}" scrollable="true" scrollHeight="90%">
         <p:column headerText="Name">
-            <hendrix11:personLink person="#{child}" />
+            <fam:personLink person="#{child}" />
         </p:column>
 
         <p:column headerText="Gender">
@@ -24,7 +24,7 @@
         </p:column>
 
         <p:column headerText="Place of Birth">
-            <hendrix11:googleMapLink place="#{child.birth.place}" />
+            <fam:googleMapLink place="#{child.birth.place}" />
         </p:column>
 
         <p:column headerText="Date of Birth">
@@ -32,7 +32,7 @@
         </p:column>
 
         <p:column headerText="Place of Death">
-            <hendrix11:googleMapLink place="#{child.death.place}" />
+            <fam:googleMapLink place="#{child.death.place}" />
         </p:column>
 
         <p:column headerText="Date of Death">

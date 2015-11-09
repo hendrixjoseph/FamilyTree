@@ -14,7 +14,7 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui" xmlns:hendrix11="http://hendrix11.wright.edu/facelets"
+                xmlns:p="http://primefaces.org/ui" xmlns:fam="http://hendrix11.wright.edu/familyTree"
                 xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:c="http://java.sun.com/jsp/jstl/core">
 
     <ui:define name="metadata">
@@ -28,7 +28,7 @@
     </ui:define>
 
     <ui:define name="menu">
-        <hendrix11:menu currentView="individualView" />
+        <fam:menu currentView="individualView" />
     </ui:define>
 
     <ui:define name="content">
@@ -40,14 +40,14 @@
                     #{individualBean.person.name}
                 </f:facet>
                 <p:outputLabel value="Father:" />
-                <hendrix11:personLink person="#{individualBean.person.father}"
+                <fam:personLink person="#{individualBean.person.father}"
                                       rendered="#{individualBean.person.hasFather()}" />
                 <h:form id="fatherForm" rendered="#{!individualBean.person.hasFather()}">
                     <p:commandButton value="Add father" update="@([id$=addFatherDialog_form])"
                                      oncomplete="PF('addFatherDialog').show()" />
                 </h:form>
                 <p:outputLabel value="Mother:" />
-                <hendrix11:personLink person="#{individualBean.person.mother}"
+                <fam:personLink person="#{individualBean.person.mother}"
                                       rendered="#{individualBean.person.hasMother()}" />
                 <h:form rendered="#{!individualBean.person.hasMother()}">
                     <p:commandButton value="Add mother" update="@([id$=addMotherDialog_form])"
@@ -56,11 +56,11 @@
                 <p:outputLabel value="Gender:" />
                 <p:outputLabel value="#{individualBean.person.gender.toString()}" />
                 <p:outputLabel value="Place of birth:" />
-                <hendrix11:googleMapLink place="#{individualBean.person.birth.place}" />
+                <fam:googleMapLink place="#{individualBean.person.birth.place}" />
                 <p:outputLabel value="Date of birth:" />
                 <p:outputLabel value="#{individualBean.person.birth.dateString}" />
                 <p:outputLabel value="Place of death:" />
-                <hendrix11:googleMapLink place="#{individualBean.person.death.place}" />
+                <fam:googleMapLink place="#{individualBean.person.death.place}" />
                 <p:outputLabel value="Date of death:" />
                 <p:outputLabel value="#{individualBean.person.death.dateString}" />
             </p:panelGrid>
@@ -70,7 +70,7 @@
             <p:tabView style="height: 90%;">
                 <c:forEach items="#{individualBean.person.spouses}" var="spouse">
                     <p:tab title="#{spouse.name}">
-                        <hendrix11:childTable children="#{individualBean.person.getChildren(spouse)}" />
+                        <fam:childTable children="#{individualBean.person.getChildren(spouse)}" />
 
                         <p>
                             <h:form>
@@ -87,7 +87,7 @@
                 </c:forEach>
                 <p:tab title="Children with unknown spouse"
                        rendered="#{individualBean.person.childrenNoSpouse.size() > 0}">
-                    <hendrix11:childTable children="#{individualBean.person.childrenNoSpouse}" />
+                    <fam:childTable children="#{individualBean.person.childrenNoSpouse}" />
                 </p:tab>
                 <p:tab title="Add spouse or children">
 

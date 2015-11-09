@@ -10,7 +10,9 @@
  *
  */
 
-package edu.wright.hendrix11.svg.component;
+package edu.wright.hendrix11.svg.component.shape;
+
+import edu.wright.hendrix11.svg.component.SvgComponent;
 
 import javax.faces.context.ResponseWriter;
 
@@ -34,31 +36,31 @@ public class Rectangle extends SvgComponent
 
     public void setHeight(Number height)
     {
-        put("height",height);
+        put("height", height);
     }
 
     public void setWidth(Number width)
     {
-        put("width",width);
+        put("width", width);
     }
 
     public void setX(Number x)
     {
-        put("x",x);
+        put("x", x);
     }
 
     public void setY(Number y)
     {
-        put("y",y);
+        put("y", y);
     }
-    
+
     public void setRx(Number rx)
     {
-        put("rx",rx);
+        put("rx", rx);
     }
 
     public void setRy(Number ry)
     {
-        put("ry",ry);
+        put("ry", ry);
     }
 }

@@ -456,41 +456,11 @@
                 <rule>
                   <match>
                     <AND>
-                      <NAME>xmlns:(?!(hendrix)|p).*</NAME>
                       <XML_ATTRIBUTE />
+                      <XML_NAMESPACE>xmlns.*</XML_NAMESPACE>
                     </AND>
                   </match>
                   <order>BY_NAME</order>
-                </rule>
-              </section>
-              <section>
-                <rule>
-                  <match>
-                    <AND>
-                      <NAME>xmlns:p</NAME>
-                      <XML_ATTRIBUTE />
-                    </AND>
-                  </match>
-                </rule>
-              </section>
-              <section>
-                <rule>
-                  <match>
-                    <AND>
-                      <NAME>xmlns:pe</NAME>
-                      <XML_ATTRIBUTE />
-                    </AND>
-                  </match>
-                </rule>
-              </section>
-              <section>
-                <rule>
-                  <match>
-                    <AND>
-                      <NAME>xmlns:hendrix11</NAME>
-                      <XML_ATTRIBUTE />
-                    </AND>
-                  </match>
                 </rule>
               </section>
             </rules>

@@ -16,7 +16,7 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:hendrix11="http://hendrix11.wright.edu/facelets">
+                xmlns:fam="http://hendrix11.wright.edu/familyTree">
 
     <ui:define name="metadata">
         <f:metadata>
@@ -29,7 +29,7 @@
     </ui:define>
 
     <ui:define name="menu">
-        <hendrix11:menu currentView="marriagesView" />
+        <fam:menu currentView="marriagesView" />
     </ui:define>
 
     <ui:define name="content">
@@ -42,17 +42,17 @@
                 </p:column>
                 <p:column headerText="Wife">
                     wife
-                    <hendrix11:personLink person="#{marriage.wife}}" />
+                    <fam:personLink person="#{marriage.wife}}" />
                 </p:column>
                 <p:column headerText="Place">
-                    <hendrix11:googleMapLink place="#{marriage.place}" />
+                    <fam:googleMapLink place="#{marriage.place}" />
                 </p:column>
                 <p:column headerText="Date">
                     <p:outputLabel value="#{marriage.dateString}" />
                 </p:column>
 
                 <f:facet name="footer">
-                    <hendrix11:pageNav dataBean="#{marriageBean}" />
+                    <fam:pageNav dataBean="#{marriageBean}" />
                 </f:facet>
             </p:dataTable>
         </p:layoutUnit>

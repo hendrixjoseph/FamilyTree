@@ -23,22 +23,22 @@ public class Matrix extends Transform
     private Number d;
     private Number e;
     private Number f;
-    
+
     public Matrix(Number a, Number b, Number c, Number d, Number e, Number f)
     {
-      this.a = a != null ? a : 0;
-      this.b = b != null ? b : 0;
-      this.c = c != null ? c : 0;
-      this.d = d != null ? d : 0;
-      this.e = e != null ? e : 0;
-      this.f = f != null ? f : 0;
+        this.a = a != null ? a : 0;
+        this.b = b != null ? b : 0;
+        this.c = c != null ? c : 0;
+        this.d = d != null ? d : 0;
+        this.e = e != null ? e : 0;
+        this.f = f != null ? f : 0;
     }
-    
+
     @Override
     public String toString()
     {
-      Number[] args = {a,b,c,d,e,f};
-      
-      return toString("matrix",args);
+        Number[] args = {a, b, c, d, e, f};
+
+        return toString("matrix", args);
     }
 }

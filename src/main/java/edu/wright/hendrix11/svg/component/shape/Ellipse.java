@@ -12,10 +12,6 @@
 
 package edu.wright.hendrix11.svg.component.shape;
 
-import javax.faces.context.ResponseWriter;
-
-import java.io.IOException;
-
 /**
  * @author Joe Hendrix
  */
@@ -23,16 +19,16 @@ public class Ellipse extends RoundShape
 {
     public Ellipse()
     {
-      super("ellipse");
+        super("ellipse");
     }
 
     public void setXRadius(Number rx)
     {
-        put("rx",rx);
+        put("rx", rx);
     }
-    
+
     public void setYRadius(Number ry)
     {
-        put("ry",ry);
+        put("ry", ry);
     }
 }

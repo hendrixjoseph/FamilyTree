@@ -25,7 +25,7 @@ public class Unit<N extends Number> extends Number
         this(unit);
         this.number = number;
     }
-    
+
     public Unit(String unit)
     {
         this.unit = unit;
@@ -66,11 +66,17 @@ public class Unit<N extends Number> extends Number
     }
 
     @Override
+    public int hashCode()
+    {
+        return number.hashCode();
+    }
+
+    @Override
     public boolean equals(Object obj)
     {
-        if(obj instanceof Unit)
+        if ( obj instanceof Unit )
         {
-            Unit other = (Unit)obj;
+            Unit other = (Unit) obj;
             return number.equals(other.getNumber()) && unit.equals(other.unit);
         }
         else
@@ -80,14 +86,8 @@ public class Unit<N extends Number> extends Number
     }
 
     @Override
-    public int hashCode()
-    {
-        return number.hashCode();
-    }
-
-    @Override
     public String toString()
     {
-        return number.toString() + unit;
+        return number + unit;
     }
 }

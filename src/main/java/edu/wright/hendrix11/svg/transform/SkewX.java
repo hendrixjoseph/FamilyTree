@@ -19,6 +19,6 @@ public abstract class SkewX extends Skew
 {
     public SkewX(Number a)
     {
-        super(a,"X");
+        super(a, "X");
     }
 }

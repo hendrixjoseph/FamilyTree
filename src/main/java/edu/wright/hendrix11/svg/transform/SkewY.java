@@ -19,6 +19,6 @@ public abstract class SkewY extends Skew
 {
     public SkewY(Number a)
     {
-        super(a,"Y");
+        super(a, "Y");
     }
 }

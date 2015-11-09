@@ -14,9 +14,9 @@
                 xmlns="http://xmlns.jcp.org/xml/ns/javaee"
                 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facelettaglibrary_2_2.xsd"
                 version="2.2">
-    <description>Custom UI Compentents made by Joseph Hendrix</description>
-    <namespace>http://hendrix11.wright.edu/facelets</namespace>
-    <short-name>hendrix11</short-name>
+    <description>Custom UI Compentents made by Joseph Hendrix for FamilyTree</description>
+    <namespace>http://hendrix11.wright.edu/familyTree</namespace>
+    <short-name>fam</short-name>
     <tag>
         <tag-name>menu</tag-name>
         <source>resource/tag/menu.xhtml</source>
@@ -108,23 +108,6 @@
             <name>sort</name>
             <required>true</required>
             <type>java.lang.String</type>
-        </attribute>
-    </tag>
-    <tag>
-        <tag-name>chart</tag-name>
-        <component>
-            <component-type>edu.wright.hendrix11.familyTree.faces.CustomChart</component-type>
-            <renderer-type>edu.wright.hendrix11.familyTree.faces.CustomChartRenderer</renderer-type>
-        </component>
-    <attribute>
-        <name>styleClass</name>
-        <required>true</required>
-        <type>java.lang.String</type>
-    </attribute>
-        <attribute>
-            <name>chartModel</name>
-            <required>true</required>
-            <type>edu.wright.hendrix11.familyTree.faces.ChartModel</type>
         </attribute>
     </tag>
 </facelet-taglib>

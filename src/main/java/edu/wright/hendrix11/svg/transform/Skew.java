@@ -25,12 +25,12 @@ public abstract class Skew extends Transform
         this.a = a;
         this.xy = xy;
     }
-    
+
     @Override
     public String toString()
     {
         Number[] args = {a};
-        
+
         return toString("skew" + xy.toUpperCase(), args);
     }
 }

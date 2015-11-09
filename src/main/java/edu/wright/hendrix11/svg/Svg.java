@@ -35,30 +35,30 @@ public class Svg extends SuperSvgClass
     @Override
     public void encodeMiddle(ResponseWriter writer) throws IOException
     {
-        for(SvgComponent component : components)
+        for ( SvgComponent component : components )
         {
             component.encodeAll(writer);
         }
     }
 
-    public void setWidth(Number width)
-    {
-        put("width",width);
-    }
-
     public Number getWidth()
     {
-        return (Number)get("width");
+        return (Number) get("width");
     }
 
-    public void setHeight(Number height)
+    public void setWidth(Number width)
     {
-        put("height",height);
+        put("width", width);
     }
 
     public Number getHeight()
     {
-        return (Number)get("height");
+        return (Number) get("height");
+    }
+
+    public void setHeight(Number height)
+    {
+        put("height", height);
     }
 
     public void addComponent(SvgComponent component)

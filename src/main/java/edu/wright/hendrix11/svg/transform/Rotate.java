@@ -21,10 +21,10 @@ public class Rotate extends XyTransform
 
     public Rotate(Number degrees, Number x, Number y)
     {
-        super(x,y);
+        super(x, y);
         this.degrees = degrees;
     }
-    
+
     public Rotate(Number degrees)
     {
         this.degrees = degrees;
@@ -34,7 +34,7 @@ public class Rotate extends XyTransform
     public String toString()
     {
         Number[] args = {degrees, x, y};
-        
-        return toString(rotate, args);
+
+        return toString("rotate", args);
     }
 }

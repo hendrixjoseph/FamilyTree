@@ -24,7 +24,7 @@
     <!-- Load custom tag into JSF web application -->
     <context-param>
         <param-name>javax.faces.FACELETS_LIBRARIES</param-name>
-        <param-value>/WEB-INF/hendrix11.taglib.xml</param-value>
+        <param-value>/WEB-INF/fam.taglib.xml;/WEB-INF/svg.taglib.xml</param-value>
     </context-param>
     <context-param>
         <param-name>javax.faces.WEBAPP_RESOURCES_DIRECTORY</param-name>

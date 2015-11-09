@@ -12,6 +12,8 @@
 
 package edu.wright.hendrix11.svg.component.shape;
 
+import edu.wright.hendrix11.svg.component.SvgComponent;
+
 import javax.faces.context.ResponseWriter;
 
 import java.io.IOException;
@@ -23,26 +25,32 @@ public class Line extends SvgComponent
 {
     protected Line()
     {
-        super(line);
+        super("line");
     }
-    
+
     public void setX1(Number x1)
     {
-        put("x1",x1);
+        put("x1", x1);
     }
 
     public void setY1(Number y1)
     {
-        put("y1",y1);
+        put("y1", y1);
     }
-    
+
     public void setX2(Number x2)
     {
-        put("x2",x2);
+        put("x2", x2);
     }
 
     public void setY2(Number y2)
     {
-        put("y2",y2);
+        put("y2", y2);
+    }
+
+    @Override
+    public void encodeMiddle(ResponseWriter writer) throws IOException
+    {
+
     }
 }
