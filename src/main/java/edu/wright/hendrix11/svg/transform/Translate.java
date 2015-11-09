@@ -25,9 +25,19 @@ public class Translate implements Transform
         this.x = x;
         this.y = y;
     }
+    
+    public Translate(Number x)
+    {
+        this.x = x;
+    }
 
     public String toString()
     {
-        return new StringBuilder("translate(").append(x).append(",").append(y).append(")").toString();
+        StringBuilder sb = new StringBuilder("translate(").append(x);
+        
+        if(y != null)
+            sb.append(",").append(y);
+        
+        return .append(")").toString();
     }
 }
