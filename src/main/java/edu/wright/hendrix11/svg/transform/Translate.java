@@ -15,20 +15,16 @@ package edu.wright.hendrix11.svg.transform;
 /**
  * @author Joe Hendrix
  */
-public class Translate implements Transform
+public class Translate extends XyTransform
 {
-    Number x;
-    Number y;
-
     public Translate(Number x, Number y)
     {
-        this.x = x;
-        this.y = y;
+        super(x,y);
     }
     
     public Translate(Number x)
     {
-        this.x = x;
+        super(x);
     }
 
     public String toString()
