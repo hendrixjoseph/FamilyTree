@@ -68,10 +68,10 @@ public class Percent<N extends Number> extends Number
     @Override
     public boolean equals(Object obj)
     {
-        if(obj instanceof Percent)
+        if(obj instanceof Unit)
         {
-            Percent other = (Percent)obj;
-            return number.equals(other.getNumber());
+            Unit other = (Unit)obj;
+            return number.equals(other.getNumber()) && unit.equals(other.unit);
         }
         else
         {
