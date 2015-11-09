@@ -22,6 +22,12 @@ import org.primefaces.component.chart.renderer.MeterGaugeRenderer;
 import org.primefaces.component.chart.renderer.OhlcRenderer;
 import org.primefaces.component.chart.renderer.PieRenderer;
 
+import edu.wright.hendrix11.svg.Group;
+import edu.wright.hendrix11.svg.Rectangle;
+import edu.wright.hendrix11.svg.Svg;
+import edu.wright.hendrix11.svg.Text;
+import edu.wright.hendrix11.svg.Translate;
+
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -54,70 +60,55 @@ public class CustomChartRenderer extends Renderer
 
         ResponseWriter writer = context.getResponseWriter();
 
-        writer.startElement("svg", null);
-        writer.writeAttribute("class", chart.getStyleClass(), "styleClass");
-        writer.writeAttribute("width", width, null);
-        writer.writeAttribute("height",height, null);
+        Svg svg = new Svg();
+        svg.setStyleClass(chart.getStyleClass()); // writer.writeAttribute("class", chart.getStyleClass(), "styleClass");
+        svg.setWidth(width);
+        svg.setHeight(height);
 
-        double x = 0;
+        Group group = new Group();
+        group.setTransform(new Translate(40,20));
 
-        writer.startElement("g", null);
-        writer.writeAttribute("transform","translate(40,20)",null);
+        svg.addComponent(group);
 
-        writer.startElement("g",null);
-        writer.writeAttribute("class","x-axis", null);
-//        writer.writeAttribute("transform","translate(0," + height + ")", null);
+        Group xAxis = new Group();
+        xAxis.setStyleClass("x-axis");
 
-        for(String label :model.getAxisLabels())
-        {
-//            writer.startElement("g", null);
-//            writer.writeAttribute("transform","translate(" + x + ",0",null);
-//            writer.writeAttribute("class","tick",null);
-//
-//            writer.startElement("line",null);
-//            writer.writeAttribute("x2","0",null);
-//            writer.writeAttribute("y2","6",null);
-//            writer.endElement("line");
+        group.addComponent(xAxis);
 
-            writer.startElement("text",null);
-            writer.writeAttribute("x",x,null);
-            writer.writeAttribute("y","9",null);
-            writer.writeAttribute("dy",".75em", null);
-            writer.writeAttribute("style","text-anchor: middle;",null);
-            writer.writeAttribute("class","x-axis-label",null);
-            writer.write(label);
-            writer.endElement("text");
-
-//            writer.endElement("g");
-
-            x += labelWidth;
-        }
-
-        writer.endElement("g");
-
-        x = 0;
+        double xLabel = 0;
+        double xBar = 0;
 
         for(String label : model.getAxisLabels())
         {
+            Text text = new Text(label);
+            text.setX(xLabel);
+            text.setY(9);
+            // writer.writeAttribute("dy",".75em", null);
+            text.setStyle("text-anchor: middle;");
+            text.setStyleClass("x-axis-label");
+
+            xAxis.addComponent(text);
+
+            xLabel += labelWidth;
+
             for(Integer i : model.getData(label))
             {
                 double barHeight = height - i * barHeightScale;
 
-                writer.startElement("rect", null);
-                writer.writeAttribute("height", barHeight, null);
-                writer.writeAttribute("width", barWidth - 1, null);
-                writer.writeAttribute("x",x,null);
-                writer.writeAttribute("y",height - barHeight,null);
-                writer.writeAttribute("class","bar",null);
-                writer.endElement("rect");
+                Rectangle rectangle = new Rectangle();
+                rectangle.setHeight(barHeight);
+                rectangle.setWidth(barWidth -  1);
+                rectangle.setX(xBar);
+                rectangle.setY(height - barHeight);
+                rectangle.setStyleClass("bar");
 
-                x += barWidth;
+                group.addComponent(rectangle);
+
+                xBar += barWidth;
             }
         }
 
-        writer.endElement("g");
-
-        writer.endElement("svg");
+        svg.encodeAll(writer);
     }
 
     @Override
