@@ -27,6 +27,7 @@ public class Translate extends XyTransform
         super(x);
     }
 
+    @Override
     public String toString()
     {
         StringBuilder sb = new StringBuilder("translate(").append(x);
@@ -34,6 +35,6 @@ public class Translate extends XyTransform
         if(y != null)
             sb.append(",").append(y);
         
-        return .append(")").toString();
+        return sb.append(")").toString();
     }
 }
