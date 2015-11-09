@@ -21,6 +21,11 @@ import java.io.IOException;
  */
 public abstract class RoundShape extends SvgComponent
 {
+    protected RoundShape(String name)
+    {
+        super(name);
+    }
+    
     public void setCenterX(Number cx)
     {
         put("cx",cx);
