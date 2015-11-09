@@ -15,7 +15,7 @@ package edu.wright.hendrix11.svg.transform;
 /**
  * @author Joe Hendrix
  */
-public abstract class Skew implements Transform
+public abstract class Skew extends Transform
 {
     private Number a;
     private String xy;
