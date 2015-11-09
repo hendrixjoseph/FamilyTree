@@ -51,4 +51,14 @@ public class Rectangle extends SvgComponent
     {
         put("y",y);
     }
+    
+    public void setRx(Number rx)
+    {
+        put("rx",rx);
+    }
+
+    public void setRy(Number ry)
+    {
+        put("ry",ry);
+    }
 }
