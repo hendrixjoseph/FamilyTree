@@ -10,7 +10,10 @@
  *
  */
 
-package edu.wright.hendrix11.svg;
+package edu.wright.hendrix11.svg.component;
+
+import edu.wright.hendrix11.svg.SuperSvgClass;
+import edu.wright.hendrix11.svg.transform.Transform;
 
 /**
  * @author Joe Hendrix

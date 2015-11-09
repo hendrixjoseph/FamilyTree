@@ -12,6 +12,8 @@
 
 package edu.wright.hendrix11.svg;
 
+import edu.wright.hendrix11.svg.component.SvgComponent;
+
 import javax.faces.context.ResponseWriter;
 
 import java.io.IOException;

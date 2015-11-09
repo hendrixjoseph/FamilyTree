@@ -12,21 +12,11 @@
 
 package edu.wright.hendrix11.familyTree.faces;
 
-import org.primefaces.component.chart.Chart;
-import org.primefaces.component.chart.ChartRenderer;
-import org.primefaces.component.chart.renderer.BasePlotRenderer;
-import org.primefaces.component.chart.renderer.BubbleRenderer;
-import org.primefaces.component.chart.renderer.DonutRenderer;
-import org.primefaces.component.chart.renderer.LineRenderer;
-import org.primefaces.component.chart.renderer.MeterGaugeRenderer;
-import org.primefaces.component.chart.renderer.OhlcRenderer;
-import org.primefaces.component.chart.renderer.PieRenderer;
-
-import edu.wright.hendrix11.svg.Group;
-import edu.wright.hendrix11.svg.Rectangle;
+import edu.wright.hendrix11.svg.component.Group;
+import edu.wright.hendrix11.svg.component.Rectangle;
 import edu.wright.hendrix11.svg.Svg;
-import edu.wright.hendrix11.svg.Text;
-import edu.wright.hendrix11.svg.Translate;
+import edu.wright.hendrix11.svg.component.Text;
+import edu.wright.hendrix11.svg.transform.Translate;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -35,8 +25,6 @@ import javax.faces.render.FacesRenderer;
 import javax.faces.render.Renderer;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author Joe Hendrix
