@@ -30,13 +30,11 @@ public class Rotate extends XyTransform
         this.degrees = degrees;
     }
 
+    @Override
     public String toString()
     {
-        StringBuilder sb = new StringBuilder("rotate(").append(degrees);
+        Number[] args = {degrees, x, y};
         
-        if(x != null && y != null)
-            sb.append(",").append(x).append(",").append(y);
-        
-        return .append(")").toString();
+        return toString(rotate, args);
     }
 }
