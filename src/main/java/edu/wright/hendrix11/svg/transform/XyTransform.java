@@ -17,8 +17,8 @@ package edu.wright.hendrix11.svg.transform;
  */
 public abstract class XyTransform implements Transform
 {
-    Number x;
-    Number y;
+    protected Number x;
+    protected Number y;
 
     public XyTransform(Number x, Number y)
     {
