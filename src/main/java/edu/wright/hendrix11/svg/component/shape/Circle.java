@@ -21,6 +21,11 @@ import java.io.IOException;
  */
 public class Circle extends RoundShape
 {
+    public Circle()
+    {
+        super("circle");
+    }
+    
     public void setRadius(Number r)
     {
         put("r",r);
