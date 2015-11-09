@@ -9,4 +9,10 @@ edu.wright.hendrix11.familyTree.entity
 edu.wright.hendrix11.familyTree.entity.place
 edu.wright.hendrix11.familyTree.exporter
 edu.wright.hendrix11.familyTree.importer
+edu.wright.hendrix11.svg.component
+edu.wright.hendrix11.svg.component.shape
+edu.wright.hendrix11.svg.jsf
+edu.wright.hendrix11.svg.number
+edu.wright.hendrix11.svg
+edu.wright.hendrix11.svg.transform
 edu.wright.hendrix11.theme
