@@ -88,22 +88,22 @@ public class ChartRenderer extends Renderer
 
                 double barHeight = height - datum * barHeightScale;
 
-                Rectangle rectangle = new Rectangle();
-                rectangle.setHeight(barHeight);
-                rectangle.setWidth(barWidth.add(-1.0));
-                rectangle.setX(xBar);
-                rectangle.setY(height - barHeight);
+                Rectangle bar = new Rectangle();
+                bar.setHeight(barHeight);
+                bar.setWidth(barWidth.add(-0.1));
+                bar.setX(xBar);
+                bar.setY(datum * barHeightScale);
 
                 if(model.getBarLabels() != null && model.getBarLabels().size() > i)
                 {
-                    rectangle.setStyleClass("bar " + model.getBarLabels().get(i));
+                    bar.setStyleClass("bar " + model.getBarLabels().get(i));
                 }
                 else
                 {
-                    rectangle.setStyleClass("bar");
+                    bar.setStyleClass("bar");
                 }
 
-                group.addComponent(rectangle);
+                group.addComponent(bar);
 
                 xBar = xBar.add(barWidth.doubleValue());
             }
