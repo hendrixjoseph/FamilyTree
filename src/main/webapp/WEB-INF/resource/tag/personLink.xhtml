@@ -14,11 +14,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
-    <c:if test="#{rendered == null}">
-        <c:set var="rendered" value="#{true}" />
-    </c:if>
-    <p:link outcome="index" value="#{person.name}" rendered="#{rendered}">
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <p:link outcome="index" value="#{person.name}" rendered="#{empty rendered ? true : rendered}">
         <f:param name="personId" value="#{person.id}" />
     </p:link>
 </ui:composition>
