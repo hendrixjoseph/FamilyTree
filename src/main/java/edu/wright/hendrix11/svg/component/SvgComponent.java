@@ -27,11 +27,11 @@ public abstract class SvgComponent extends SuperSvgClass
 
     public Transform getTransform()
     {
-        return (Transform) get("transform");
+        return (Transform) getAttribute("transform");
     }
 
     public void setTransform(Transform transform)
     {
-        put("transform", transform);
+        putAttribute("transform", transform);
     }
 }

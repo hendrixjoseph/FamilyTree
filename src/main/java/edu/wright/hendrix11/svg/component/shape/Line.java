@@ -30,22 +30,22 @@ public class Line extends SvgComponent
 
     public void setX1(Number x1)
     {
-        put("x1", x1);
+        putAttribute("x1", x1);
     }
 
     public void setY1(Number y1)
     {
-        put("y1", y1);
+        putAttribute("y1", y1);
     }
 
     public void setX2(Number x2)
     {
-        put("x2", x2);
+        putAttribute("x2", x2);
     }
 
     public void setY2(Number y2)
     {
-        put("y2", y2);
+        putAttribute("y2", y2);
     }
 
     @Override

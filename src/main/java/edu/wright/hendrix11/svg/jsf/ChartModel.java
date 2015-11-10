@@ -12,7 +12,9 @@
 
 package edu.wright.hendrix11.svg.jsf;
 
+import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -24,7 +26,8 @@ public class ChartModel
 {
     private static final Logger LOG = Logger.getLogger(ChartModel.class.getName());
 
-    Map<String, Integer[]> data = new LinkedHashMap<>();
+    private Map<String, Integer[]> data = new LinkedHashMap<>();
+    private List<String> barLabels;
 
     public Map<String, Integer[]> getData()
     {
@@ -49,6 +52,21 @@ public class ChartModel
     public Integer[] getData(String label)
     {
         return data.get(label);
+    }
+
+    public List<String> getBarLabels()
+    {
+        return barLabels;
+    }
+
+    public void setBarLabels(List<String> barLabels)
+    {
+        this.barLabels = barLabels;
+    }
+
+    public void setBarLabels(String[] barLabels)
+    {
+        setBarLabels(Arrays.asList(barLabels));
     }
 
     public int getNumLabels()

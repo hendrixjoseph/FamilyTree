@@ -30,12 +30,12 @@ public abstract class RoundShape extends SvgComponent
 
     public void setCenterX(Number cx)
     {
-        put("cx", cx);
+        putAttribute("cx", cx);
     }
 
     public void setCenterY(Number cy)
     {
-        put("cy", cy);
+        putAttribute("cy", cy);
     }
 
     @Override

@@ -16,6 +16,7 @@ import edu.wright.hendrix11.svg.Svg;
 import edu.wright.hendrix11.svg.component.Group;
 import edu.wright.hendrix11.svg.component.Text;
 import edu.wright.hendrix11.svg.component.shape.Rectangle;
+import edu.wright.hendrix11.svg.number.Percent;
 import edu.wright.hendrix11.svg.transform.Translate;
 
 import javax.faces.component.UIComponent;
@@ -40,16 +41,16 @@ public class ChartRenderer extends Renderer
         ChartComponent chart = (ChartComponent) component;
         ChartModel model = chart.getChartModel();
 
-        double width = 100;
-        double height = 500;
-        double barWidth = width / model.getNumValues();
-        double labelWidth = width / model.getNumLabels();
+        Percent<Double> width = new Percent<>(100.0);
+        double height = chart.getHeight().doubleValue();
+        Percent<Double> barWidth = width.divide((double)model.getNumValues());
+        Percent<Double> labelWidth = width.divide((double) model.getNumLabels());
         double barHeightScale = height / model.getMax();
 
         ResponseWriter writer = context.getResponseWriter();
 
         Svg svg = new Svg();
-        svg.setStyleClass(chart.getStyleClass()); // writer.writeAttribute("class", chart.getStyleClass(), "styleClass");
+        svg.setStyleClass(chart.getStyleClass(),"styleClass");
         svg.setWidth(width);
         svg.setHeight(height);
 
@@ -63,8 +64,8 @@ public class ChartRenderer extends Renderer
 
         group.addComponent(xAxis);
 
-        double xLabel = 0;
-        double xBar = 0;
+        Percent<Double> xLabel = new Percent<>(0.0);
+        Percent<Double> xBar = new Percent<>(0.0);
 
         for ( String label : model.getAxisLabels() )
         {
@@ -77,22 +78,34 @@ public class ChartRenderer extends Renderer
 
             xAxis.addComponent(text);
 
-            xLabel += labelWidth;
+            xLabel = xLabel.add(labelWidth.doubleValue());
 
-            for ( Integer i : model.getData(label) )
+            Integer[] data = model.getData(label);
+
+            for(int i = 0; i < data.length; i++)
             {
-                double barHeight = height - i * barHeightScale;
+                Integer datum = data[i];
+
+                double barHeight = height - datum * barHeightScale;
 
                 Rectangle rectangle = new Rectangle();
                 rectangle.setHeight(barHeight);
-                rectangle.setWidth(barWidth - 1);
+                rectangle.setWidth(barWidth.add(-1.0));
                 rectangle.setX(xBar);
                 rectangle.setY(height - barHeight);
-                rectangle.setStyleClass("bar");
+
+                if(model.getBarLabels() != null && model.getBarLabels().size() > i)
+                {
+                    rectangle.setStyleClass("bar " + model.getBarLabels().get(i));
+                }
+                else
+                {
+                    rectangle.setStyleClass("bar");
+                }
 
                 group.addComponent(rectangle);
 
-                xBar += barWidth;
+                xBar = xBar.add(barWidth.doubleValue());
             }
         }
 

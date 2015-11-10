@@ -24,14 +24,24 @@
             <renderer-type>edu.wright.hendrix11.svg.jsf.ChartRenderer</renderer-type>
         </component>
         <attribute>
-            <name>styleClass</name>
-            <required>true</required>
-            <type>java.lang.String</type>
-        </attribute>
-        <attribute>
             <name>chartModel</name>
             <required>true</required>
             <type>edu.wright.hendrix11.svg.jsf.ChartModel</type>
+        </attribute>
+        <attribute>
+            <name>width</name>
+            <required>true</required>
+            <type>java.lang.Number</type>
+        </attribute>
+        <attribute>
+            <name>height</name>
+            <required>true</required>
+            <type>java.lang.Number</type>
+        </attribute>
+        <attribute>
+            <name>styleClass</name>
+            <required>true</required>
+            <type>java.lang.String</type>
         </attribute>
     </tag>
     </facelet-taglib>

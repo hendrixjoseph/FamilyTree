@@ -12,6 +12,8 @@
 
 package edu.wright.hendrix11.svg.jsf;
 
+import edu.wright.hendrix11.svg.number.Percent;
+
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
@@ -65,9 +67,51 @@ public class ChartComponent extends UIComponentBase
         getStateHelper().put(PropertyKeys.chartModel, model);
     }
 
+    public Number getHeight()
+    {
+        return (Number) getStateHelper().eval(PropertyKeys.height, null);
+    }
+
+    public Number getWidth()
+    {
+        return (Number) getStateHelper().eval(PropertyKeys.width, null);
+    }
+
+    public void setWidth(Percent<?> width)
+    {
+        getStateHelper().put(PropertyKeys.width, width);
+    }
+
+    public void setWidth(Integer width)
+    {
+        getStateHelper().put(PropertyKeys.width, width);
+    }
+
+    public void setWidth(String width)
+    {
+        getStateHelper().put(PropertyKeys.width, width);
+    }
+
+    public void setHeight(Percent<?> height)
+    {
+        getStateHelper().put(PropertyKeys.height, height);
+    }
+
+    public void setHeight(Integer height)
+    {
+        getStateHelper().put(PropertyKeys.height, height);
+    }
+
+    public void setHeight(Double height)
+    {
+        getStateHelper().put(PropertyKeys.height, height);
+    }
+
     protected enum PropertyKeys
     {
         styleClass,
-        chartModel
+        chartModel,
+        width,
+        height
     }
 }

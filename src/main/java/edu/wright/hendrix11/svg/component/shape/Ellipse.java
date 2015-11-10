@@ -24,11 +24,11 @@ public class Ellipse extends RoundShape
 
     public void setXRadius(Number rx)
     {
-        put("rx", rx);
+        putAttribute("rx", rx);
     }
 
     public void setYRadius(Number ry)
     {
-        put("ry", ry);
+        putAttribute("ry", ry);
     }
 }

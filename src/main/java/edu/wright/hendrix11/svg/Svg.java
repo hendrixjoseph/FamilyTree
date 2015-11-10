@@ -43,22 +43,22 @@ public class Svg extends SuperSvgClass
 
     public Number getWidth()
     {
-        return (Number) get("width");
+        return (Number) getAttribute("width");
     }
 
     public void setWidth(Number width)
     {
-        put("width", width);
+        putAttribute("width", width);
     }
 
     public Number getHeight()
     {
-        return (Number) get("height");
+        return (Number) getAttribute("height");
     }
 
     public void setHeight(Number height)
     {
-        put("height", height);
+        putAttribute("height", height);
     }
 
     public void addComponent(SvgComponent component)

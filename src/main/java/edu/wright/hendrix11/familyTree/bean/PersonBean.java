@@ -63,10 +63,11 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
         perDecadeModel = new ChartModel();
 
         perDecadeModel.setData(personDataBean.perDecade());
+        String[] barLabels = {"births", "deaths"};
+        perDecadeModel.setBarLabels(barLabels);
 
         initializeGenderPie();
         initializeAgeChart();
-        initializePerDecadeChart();
     }
 
     public BarChartModel getPerDecadeChartModel()

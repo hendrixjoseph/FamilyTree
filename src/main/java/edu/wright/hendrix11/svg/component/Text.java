@@ -42,22 +42,22 @@ public class Text extends SvgComponent
 
     public void setX(Number x)
     {
-        put("x", x);
+        putAttribute("x", x);
     }
 
     public void setY(Number y)
     {
-        put("y", y);
+        putAttribute("y", y);
     }
 
     public void setDx(Number dx)
     {
-        put("dx", dx);
+        putAttribute("dx", dx);
     }
 
     public void setDy(Number dy)
     {
-        put("dy", dy);
+        putAttribute("dy", dy);
     }
 
     public String getText()

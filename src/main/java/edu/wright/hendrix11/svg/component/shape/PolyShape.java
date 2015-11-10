@@ -55,7 +55,7 @@ public abstract class PolyShape extends SvgComponent
 
         sb.setLength(sb.length() - 1);
 
-        put("points", sb.toString());
+        putAttribute("points", sb.toString());
     }
 
     @Override

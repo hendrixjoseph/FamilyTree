@@ -33,3 +33,11 @@
 a.ui-link {
     text-decoration: underline !important;
 }
+
+.bar.births {
+    fill: yellow;
+}
+
+.bar.deaths {
+    fill: black;
+}

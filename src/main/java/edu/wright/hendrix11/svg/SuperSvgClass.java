@@ -24,6 +24,7 @@ import java.util.Map;
 public abstract class SuperSvgClass
 {
     private Map<String, Object> attributeMap = new HashMap<>();
+    private Map<String, String> propertyMap = new HashMap<>();
     private String name;
 
     protected SuperSvgClass(String name)
@@ -31,10 +32,28 @@ public abstract class SuperSvgClass
         this.name = name;
     }
 
-    public Object put(String key, Object value)
+    public String getProperty(Object key)
+    {
+        return propertyMap.get(key);
+    }
+
+    public String putProperty(String key, String value)
+    {
+        if(value == null )
+        {
+            return propertyMap.remove(key);
+        }
+        else
+        {
+            return propertyMap.put(key, value);
+        }
+    }
+
+    public Object putAttribute(String key, Object value)
     {
         if ( value == null )
         {
+            propertyMap.remove(key);
             return attributeMap.remove(key);
         }
         else
@@ -43,7 +62,7 @@ public abstract class SuperSvgClass
         }
     }
 
-    public Object get(Object key)
+    public Object getAttribute(Object key)
     {
         return attributeMap.get(key);
     }
@@ -55,7 +74,13 @@ public abstract class SuperSvgClass
 
     public void setStyleClass(String styleClass)
     {
-        put("class", styleClass);
+        putAttribute("class", styleClass);
+    }
+
+    public void setStyleClass(String styleClass, String property)
+    {
+        setStyleClass(styleClass);
+        putProperty("class",property);
     }
 
     public String getStyle()
@@ -65,7 +90,7 @@ public abstract class SuperSvgClass
 
     public void setStyle(String style)
     {
-        put("style", style);
+        putAttribute("style", style);
     }
 
     public void encodeBegin(ResponseWriter writer) throws IOException
@@ -75,8 +100,9 @@ public abstract class SuperSvgClass
         for ( String attribute : attributeMap.keySet() )
         {
             Object value = attributeMap.get(attribute);
+            String property = propertyMap.get(attribute);
 
-            writer.writeAttribute(attribute, value, null);
+            writer.writeAttribute(attribute, value, property);
         }
     }
 

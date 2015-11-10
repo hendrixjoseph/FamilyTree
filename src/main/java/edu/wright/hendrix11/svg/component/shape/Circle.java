@@ -24,6 +24,6 @@ public class Circle extends RoundShape
 
     public void setRadius(Number r)
     {
-        put("r", r);
+        putAttribute("r", r);
     }
 }

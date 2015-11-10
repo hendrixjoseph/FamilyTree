@@ -36,31 +36,31 @@ public class Rectangle extends SvgComponent
 
     public void setHeight(Number height)
     {
-        put("height", height);
+        putAttribute("height", height);
     }
 
     public void setWidth(Number width)
     {
-        put("width", width);
+        putAttribute("width", width);
     }
 
     public void setX(Number x)
     {
-        put("x", x);
+        putAttribute("x", x);
     }
 
     public void setY(Number y)
     {
-        put("y", y);
+        putAttribute("y", y);
     }
 
     public void setRx(Number rx)
     {
-        put("rx", rx);
+        putAttribute("rx", rx);
     }
 
     public void setRy(Number ry)
     {
-        put("ry", ry);
+        putAttribute("ry", ry);
     }
 }
