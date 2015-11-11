@@ -34,10 +34,10 @@ a.ui-link {
     text-decoration: underline !important;
 }
 
-.bar.births {
+.bar.births, .legendBox.births {
     fill: yellow;
 }
 
-.bar.deaths {
+.bar.deaths, .legendBox.deaths {
     fill: black;
 }

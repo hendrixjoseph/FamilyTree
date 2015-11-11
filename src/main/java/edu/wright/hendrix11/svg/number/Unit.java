@@ -31,14 +31,24 @@ public class Unit<N extends Number> extends Number
         this.unit = unit;
     }
 
+    public Unit<Double> subtract(double d)
+    {
+        return new Unit<Double>(number.doubleValue() - d, unit);
+    }
+
+    public Unit<Integer> subtract(int i)
+    {
+        return new Unit<Integer>(number.intValue() - i, unit);
+    }
+
     public Unit<Double> add(double d)
     {
-        return new Unit<Double>(number.doubleValue() + d,unit);
+        return new Unit<Double>(number.doubleValue() + d, unit);
     }
 
     public Unit<Integer> add(int i)
     {
-        return new Unit<Integer>(number.intValue() + i,unit);
+        return new Unit<Integer>(number.intValue() + i, unit);
     }
 
     public Unit<Double> divide(double d)
@@ -51,14 +61,19 @@ public class Unit<N extends Number> extends Number
         return new Unit<Integer>(number.intValue() / i, unit);
     }
 
+    public boolean lessThan(int n)
+    {
+        return number.intValue() < n;
+    }
+
+    public boolean lessThan(double n)
+    {
+        return number.doubleValue() < n;
+    }
+
     public N getNumber()
     {
         return number;
-    }
-
-    public void setNumber(N number)
-    {
-        this.number = number;
     }
 
     @Override

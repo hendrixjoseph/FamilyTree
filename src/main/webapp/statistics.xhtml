@@ -16,7 +16,7 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:fam="http://hendrix11.wright.edu/familyTree"
-                xmlns:svg="http://hendrix11.wright.edu/svg" xmlns:f="http://java.sun.com/jsf/core">
+                xmlns:svg="http://hendrix11.wright.edu/svg">
 
     <ui:define name="title">
         Statistics
@@ -28,7 +28,7 @@
 
     <ui:define name="content">
         <p:layoutUnit position="center">
-            <svg:chart chartModel="#{personBean.perDecadeModel}" height="300" styleClass="custom" />
+            <svg:barChart chartModel="#{personBean.perDecadeModel}" height="300" styleClass="perDecadeChart" />
             <p:chart type="pie" model="#{personBean.genderPie}" style="width:400px;height:300px;" widgetVar="chart" />
             <p:chart type="bar" model="#{personBean.agesChartModel}" style="height:300px;" />
         </p:layoutUnit>

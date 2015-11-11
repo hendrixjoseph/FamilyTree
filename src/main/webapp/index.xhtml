@@ -41,14 +41,14 @@
                 </f:facet>
                 <p:outputLabel value="Father:" />
                 <fam:personLink person="#{individualBean.person.father}"
-                                      rendered="#{individualBean.person.hasFather()}" />
+                                rendered="#{individualBean.person.hasFather()}" />
                 <h:form id="fatherForm" rendered="#{!individualBean.person.hasFather()}">
                     <p:commandButton value="Add father" update="@([id$=addFatherDialog_form])"
                                      oncomplete="PF('addFatherDialog').show()" />
                 </h:form>
                 <p:outputLabel value="Mother:" />
                 <fam:personLink person="#{individualBean.person.mother}"
-                                      rendered="#{individualBean.person.hasMother()}" />
+                                rendered="#{individualBean.person.hasMother()}" />
                 <h:form rendered="#{!individualBean.person.hasMother()}">
                     <p:commandButton value="Add mother" update="@([id$=addMotherDialog_form])"
                                      oncomplete="PF('addMotherDialog').show()" />

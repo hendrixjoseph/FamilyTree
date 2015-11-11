@@ -23,7 +23,7 @@ import java.io.IOException;
  */
 public class Line extends SvgComponent
 {
-    protected Line()
+    public Line()
     {
         super("line");
     }

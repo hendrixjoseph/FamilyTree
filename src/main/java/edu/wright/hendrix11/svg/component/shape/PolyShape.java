@@ -44,6 +44,12 @@ public abstract class PolyShape extends SvgComponent
         processPoints();
     }
 
+    @Override
+    public void encodeMiddle(ResponseWriter writer) throws IOException
+    {
+
+    }
+
     private void processPoints()
     {
         StringBuilder sb = new StringBuilder();
@@ -56,12 +62,6 @@ public abstract class PolyShape extends SvgComponent
         sb.setLength(sb.length() - 1);
 
         putAttribute("points", sb.toString());
-    }
-
-    @Override
-    public void encodeMiddle(ResponseWriter writer) throws IOException
-    {
-
     }
 
     public class Point

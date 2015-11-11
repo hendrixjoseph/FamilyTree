@@ -77,6 +77,9 @@ public class Text extends SvgComponent
 
     public enum TextAnchor
     {
-        start, middle, end, inherit
+        start,
+        middle,
+        end,
+        inherit
     }
 }

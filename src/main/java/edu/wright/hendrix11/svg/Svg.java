@@ -12,8 +12,6 @@
 
 package edu.wright.hendrix11.svg;
 
-import edu.wright.hendrix11.svg.component.SvgComponent;
-
 import javax.faces.context.ResponseWriter;
 
 import java.io.IOException;
@@ -25,7 +23,7 @@ import java.util.List;
  */
 public class Svg extends SuperSvgClass
 {
-    private List<SvgComponent> components = new ArrayList<>();
+    private List<SuperSvgClass> components = new ArrayList<>();
 
     public Svg()
     {
@@ -35,7 +33,7 @@ public class Svg extends SuperSvgClass
     @Override
     public void encodeMiddle(ResponseWriter writer) throws IOException
     {
-        for ( SvgComponent component : components )
+        for ( SuperSvgClass component : components )
         {
             component.encodeAll(writer);
         }
@@ -61,7 +59,17 @@ public class Svg extends SuperSvgClass
         putAttribute("height", height);
     }
 
-    public void addComponent(SvgComponent component)
+    public void setX(Number x)
+    {
+        putAttribute("x", x);
+    }
+
+    public void setY(Number y)
+    {
+        putAttribute("y", y);
+    }
+
+    public void addComponent(SuperSvgClass component)
     {
         components.add(component);
     }

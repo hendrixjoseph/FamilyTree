@@ -24,8 +24,8 @@ import java.util.Map;
 public abstract class SuperSvgClass
 {
     private Map<String, Object> attributeMap = new HashMap<>();
-    private Map<String, String> propertyMap = new HashMap<>();
     private String name;
+    private Map<String, String> propertyMap = new HashMap<>();
 
     protected SuperSvgClass(String name)
     {
@@ -39,7 +39,7 @@ public abstract class SuperSvgClass
 
     public String putProperty(String key, String value)
     {
-        if(value == null )
+        if ( value == null )
         {
             return propertyMap.remove(key);
         }
@@ -80,7 +80,7 @@ public abstract class SuperSvgClass
     public void setStyleClass(String styleClass, String property)
     {
         setStyleClass(styleClass);
-        putProperty("class",property);
+        putProperty("class", property);
     }
 
     public String getStyle()

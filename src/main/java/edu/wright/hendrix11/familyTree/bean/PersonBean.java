@@ -22,6 +22,7 @@ import org.primefaces.model.chart.PieChartModel;
 import edu.wright.hendrix11.familyTree.dataBean.PersonDataBean;
 import edu.wright.hendrix11.familyTree.entity.Gender;
 import edu.wright.hendrix11.familyTree.entity.Person;
+import edu.wright.hendrix11.svg.jsf.ChartArrayModel;
 import edu.wright.hendrix11.svg.jsf.ChartModel;
 
 import javax.annotation.PostConstruct;
@@ -46,7 +47,7 @@ import static edu.wright.hendrix11.familyTree.dataBean.PersonDataBean.PerDecadeT
 public class PersonBean extends AbstractBean<Person> implements Serializable
 {
     private static final Logger LOG = Logger.getLogger(PersonBean.class.getName());
-    ChartModel perDecadeModel;
+    ChartArrayModel<Integer> perDecadeModel;
     @EJB
     private PersonDataBean personDataBean;
     private BarChartModel agesChartModel;
@@ -60,11 +61,14 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
     {
         super.initialize(personDataBean);
 
-        perDecadeModel = new ChartModel();
+        perDecadeModel = new ChartArrayModel<>();
 
         perDecadeModel.setData(personDataBean.perDecade());
         String[] barLabels = {"births", "deaths"};
         perDecadeModel.setBarLabels(barLabels);
+        perDecadeModel.setxAxisLabel("decade");
+        perDecadeModel.setyAxisLabel("people");
+        perDecadeModel.setTitle("Births and deaths per decade");
 
         initializeGenderPie();
         initializeAgeChart();

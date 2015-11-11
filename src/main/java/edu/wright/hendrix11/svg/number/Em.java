@@ -17,6 +17,9 @@ package edu.wright.hendrix11.svg.number;
  */
 public class Em<N extends Number> extends Unit<N>
 {
+    public static final Em<Double> HALF = new Em<>(0.5);
+    public static final Em<Integer> ONE = new Em<>(1);
+
     public Em(N number)
     {
         super(number, "em");

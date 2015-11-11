@@ -18,10 +18,10 @@
     <namespace>http://hendrix11.wright.edu/svg</namespace>
     <short-name>svg</short-name>
     <tag>
-        <tag-name>chart</tag-name>
+        <tag-name>barChart</tag-name>
         <component>
-            <component-type>edu.wright.hendrix11.svg.jsf.ChartComponent</component-type>
-            <renderer-type>edu.wright.hendrix11.svg.jsf.ChartRenderer</renderer-type>
+            <component-type>edu.wright.hendrix11.svg.jsf.BarChartComponent</component-type>
+            <renderer-type>edu.wright.hendrix11.svg.jsf.BarChartRenderer</renderer-type>
         </component>
         <attribute>
             <name>chartModel</name>
@@ -44,4 +44,4 @@
             <type>java.lang.String</type>
         </attribute>
     </tag>
-    </facelet-taglib>
+</facelet-taglib>

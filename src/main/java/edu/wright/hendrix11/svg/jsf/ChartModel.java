@@ -12,9 +12,6 @@
 
 package edu.wright.hendrix11.svg.jsf;
 
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -22,76 +19,50 @@ import java.util.logging.Logger;
 /**
  * @author Joe Hendrix
  */
-public class ChartModel
+public abstract class ChartModel<N extends Number>
 {
     private static final Logger LOG = Logger.getLogger(ChartModel.class.getName());
+    private String title;
+    private String xAxisLabel;
+    private String yAxisLabel;
 
-    private Map<String, Integer[]> data = new LinkedHashMap<>();
-    private List<String> barLabels;
+    public abstract Map<String, ?> getData();
 
-    public Map<String, Integer[]> getData()
+    public String getTitle()
     {
-        return data;
+        return title;
     }
 
-    public void setData(Map<String, Integer[]> data)
+    public void setTitle(String title)
     {
-        this.data = data;
+        this.title = title;
     }
 
-    public void put(String key, Integer[] value)
+    public String getxAxisLabel()
     {
-        data.put(key, value);
+        return xAxisLabel;
     }
 
-    public Set<String> getAxisLabels()
+    public void setxAxisLabel(String xAxisLabel)
     {
-        return data.keySet();
+        this.xAxisLabel = xAxisLabel;
     }
 
-    public Integer[] getData(String label)
+    public String getyAxisLabel()
     {
-        return data.get(label);
+        return yAxisLabel;
     }
 
-    public List<String> getBarLabels()
+    public void setyAxisLabel(String yAxisLabel)
     {
-        return barLabels;
+        this.yAxisLabel = yAxisLabel;
     }
 
-    public void setBarLabels(List<String> barLabels)
-    {
-        this.barLabels = barLabels;
-    }
+    public abstract Set<String> getAxisLabels();
 
-    public void setBarLabels(String[] barLabels)
-    {
-        setBarLabels(Arrays.asList(barLabels));
-    }
+    public abstract Integer getNumLabels();
 
-    public int getNumLabels()
-    {
-        return data.keySet().size();
-    }
+    public abstract Integer getNumValues();
 
-    public int getNumValues()
-    {
-        return data.values().size() * data.values().iterator().next().length;
-    }
-
-    public int getMax()
-    {
-        int max = 0;
-
-        for ( Integer[] integers : data.values() )
-        {
-            for ( Integer i : integers )
-            {
-                if ( max < i )
-                    max = i;
-            }
-        }
-
-        return max;
-    }
+    public abstract N getMax();
 }

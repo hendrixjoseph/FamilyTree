@@ -17,6 +17,10 @@ package edu.wright.hendrix11.svg.number;
  */
 public class Percent<N extends Number> extends Unit<N>
 {
+    public static final Percent<Double> FIFTY = new Percent<>(50.0);
+    public static final Percent<Double> ONE_HUNDRED = new Percent<>(100.0);
+    public static final Percent<Double> ZERO = new Percent<>(0.0);
+
     public Percent(N number)
     {
         super(number, "%");
@@ -32,6 +36,18 @@ public class Percent<N extends Number> extends Unit<N>
     public Percent<Integer> add(int i)
     {
         return new Percent<Integer>(number.intValue() + i);
+    }
+
+    @Override
+    public Percent<Double> subtract(double d)
+    {
+        return new Percent<Double>(number.doubleValue() - d);
+    }
+
+    @Override
+    public Percent<Integer> subtract(int i)
+    {
+        return new Percent<Integer>(number.intValue() - i);
     }
 
     @Override

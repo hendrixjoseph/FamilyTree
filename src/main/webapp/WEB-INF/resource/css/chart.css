@@ -14,13 +14,24 @@
     fill: #A52A2A;
 }
 
-.bar {
+.bar, .legendBox {
     fill: #4682B4;
 }
 
+.legendBox {
+    stroke-width: 1;
+    stroke: black;
+}
+
+.lines {
+    stroke: #000;
+}
+
 .x-axis-label {
-    fill: black;
-    font: 10px sans-serif;
     text-anchor: middle;
+}
+
+.y-axis-label {
+    text-anchor: end;
 }
 

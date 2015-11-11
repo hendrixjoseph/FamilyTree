@@ -12,39 +12,19 @@
 
 package edu.wright.hendrix11.svg.jsf;
 
-import edu.wright.hendrix11.svg.number.Percent;
-
-import javax.faces.application.ResourceDependency;
-import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
-import javax.faces.component.behavior.ClientBehavior;
 
 /**
  * @author Joe Hendrix
  */
-@FacesComponent(value = ChartComponent.COMPONENT_TYPE)
-@ResourceDependency(library = "css", name = "chart.css")
-public class ChartComponent extends UIComponentBase
+public abstract class SvgJsfComponent extends UIComponentBase
 {
     public static final String COMPONENT_FAMILY = "edu.wright.hendrix11.svg";
-    public static final String COMPONENT_TYPE = "edu.wright.hendrix11.svg.jsf.ChartComponent";
-    public static final String DEFAULT_RENDERER = "edu.wright.hendrix11.svg.jsf.ChartRenderer";
-
-    public ChartComponent()
-    {
-        setRendererType(DEFAULT_RENDERER);
-    }
 
     @Override
     public String getFamily()
     {
         return COMPONENT_FAMILY;
-    }
-
-    @Override
-    public void addClientBehavior(String eventName, ClientBehavior behavior)
-    {
-        super.addClientBehavior(eventName, behavior);
     }
 
     public String getStyleClass()
@@ -72,14 +52,14 @@ public class ChartComponent extends UIComponentBase
         return (Number) getStateHelper().eval(PropertyKeys.height, null);
     }
 
+    public void setHeight(Double height)
+    {
+        getStateHelper().put(PropertyKeys.height, height);
+    }
+
     public Number getWidth()
     {
         return (Number) getStateHelper().eval(PropertyKeys.width, null);
-    }
-
-    public void setWidth(Integer width)
-    {
-        getStateHelper().put(PropertyKeys.width, width);
     }
 
     public void setWidth(Double width)
@@ -87,12 +67,12 @@ public class ChartComponent extends UIComponentBase
         getStateHelper().put(PropertyKeys.width, width);
     }
 
-    public void setHeight(Integer height)
+    public void setWidth(Integer width)
     {
-        getStateHelper().put(PropertyKeys.height, height);
+        getStateHelper().put(PropertyKeys.width, width);
     }
 
-    public void setHeight(Double height)
+    public void setHeight(Integer height)
     {
         getStateHelper().put(PropertyKeys.height, height);
     }
