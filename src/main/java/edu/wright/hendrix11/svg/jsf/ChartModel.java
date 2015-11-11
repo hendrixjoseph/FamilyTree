@@ -28,6 +28,8 @@ public abstract class ChartModel<N extends Number>
 
     public abstract Map<String, ?> getData();
 
+    public abstract <N> N getData(String label);
+
     public String getTitle()
     {
         return title;
@@ -60,7 +62,10 @@ public abstract class ChartModel<N extends Number>
 
     public abstract Set<String> getAxisLabels();
 
-    public abstract Integer getNumLabels();
+    public Integer getNumLabels()
+    {
+        return getAxisLabels().size();
+    }
 
     public abstract Integer getNumValues();
 

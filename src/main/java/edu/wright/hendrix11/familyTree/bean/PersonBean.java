@@ -24,6 +24,7 @@ import edu.wright.hendrix11.familyTree.entity.Gender;
 import edu.wright.hendrix11.familyTree.entity.Person;
 import edu.wright.hendrix11.svg.jsf.ChartArrayModel;
 import edu.wright.hendrix11.svg.jsf.ChartModel;
+import edu.wright.hendrix11.svg.jsf.ChartSingleModel;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -48,12 +49,10 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
 {
     private static final Logger LOG = Logger.getLogger(PersonBean.class.getName());
     ChartArrayModel<Integer> perDecadeModel;
+    ChartSingleModel<Number> ageModel;
     @EJB
     private PersonDataBean personDataBean;
-    private BarChartModel agesChartModel;
     private PieChartModel genderPie;
-    private BarChartModel perDecadeChartModel;
-    private BarChartModel perDecadeCleanChartModel;
 
     @Override
     @PostConstruct
@@ -62,6 +61,7 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
         super.initialize(personDataBean);
 
         perDecadeModel = new ChartArrayModel<>();
+        ageModel = new ChartSingleModel<>();
 
         perDecadeModel.setData(personDataBean.perDecade());
         String[] barLabels = {"births", "deaths"};
@@ -70,23 +70,22 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
         perDecadeModel.setyAxisLabel("people");
         perDecadeModel.setTitle("Births and deaths per decade");
 
+        ageModel.setData(personDataBean.ages());
+        ageModel.setTitle("Ages");
+        ageModel.setyAxisLabel("people");
+        ageModel.setxAxisLabel("years");
+
         initializeGenderPie();
-        initializeAgeChart();
-    }
-
-    public BarChartModel getPerDecadeChartModel()
-    {
-        return perDecadeChartModel;
-    }
-
-    public BarChartModel getAgesChartModel()
-    {
-        return agesChartModel;
     }
 
     public ChartModel getPerDecadeModel()
     {
         return perDecadeModel;
+    }
+
+    public ChartSingleModel<Number> getAgeModel()
+    {
+        return ageModel;
     }
 
     /**
@@ -95,11 +94,6 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
     public PieChartModel getGenderPie()
     {
         return genderPie;
-    }
-
-    public BarChartModel getPerDecadeCleanChartModel()
-    {
-        return perDecadeCleanChartModel;
     }
 
     private void initializeGenderPie()
@@ -114,82 +108,5 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
 
         genderPie.setLegendPosition("w");
         genderPie.setShowDataLabels(true);
-    }
-
-    private void initializeAgeChart()
-    {
-        agesChartModel = new BarChartModel();
-
-        ChartSeries agesChart = new ChartSeries();
-
-        List<Object[]> ages = personDataBean.ages();
-
-        for ( Object[] age : ages )
-        {
-            agesChart.set(age[1].toString(), (Number) age[0]);
-        }
-
-        agesChartModel.addSeries(agesChart);
-
-        agesChartModel.setTitle(String.format("Average age: %.2f", personDataBean.averageAge()));
-
-        Axis xAxis = agesChartModel.getAxis(AxisType.X);
-        xAxis.setLabel("Age");
-
-        Axis yAxis = agesChartModel.getAxis(AxisType.Y);
-        yAxis.setLabel("People");
-        yAxis.setMin(0);
-        yAxis.setMax(25);
-    }
-
-    private int initializeChart(BarChartModel model, Map<Object, Number> data, String label)
-    {
-        ChartSeries years = new BarChartSeries();
-
-        years.setLabel(label);
-
-        int max = 0;
-
-        for ( Number value : data.values() )
-        {
-            if ( max < value.intValue() )
-                max = value.intValue();
-        }
-
-        years.setData(data);
-
-        model.addSeries(years);
-        model.setDatatipFormat("%2$d people");
-
-        return max;
-    }
-
-    private void initializePerDecadeCleanChart()
-    {
-        perDecadeCleanChartModel = new BarChartModel();
-
-        perDecadeCleanChartModel.setTitle("Births and deaths per decade (estimated)");
-        perDecadeCleanChartModel.setLegendPosition("ne");
-
-        int max = initializeChart(perDecadeCleanChartModel, personDataBean.perDecadeClean(BIRTHS), "births");
-        int max2 = initializeChart(perDecadeCleanChartModel, personDataBean.perDecadeClean(DEATHS), "deaths");
-
-        Axis xAxis = perDecadeCleanChartModel.getAxis(AxisType.X);
-        xAxis.setLabel("Year");
-
-        Axis yAxis = perDecadeCleanChartModel.getAxis(AxisType.Y);
-        yAxis.setLabel("People");
-        yAxis.setMin(0);
-        yAxis.setMax(Math.max(max, max2) + 2);
-    }
-
-    private void initializePerDecadeChart()
-    {
-        Map<String, Integer[]> perDecade = personDataBean.perDecade();
-
-        for ( String decade : perDecade.keySet() )
-        {
-            LOG.log(Level.INFO, decade);
-        }
     }
 }

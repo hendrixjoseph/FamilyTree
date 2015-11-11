@@ -87,14 +87,25 @@ public class PersonDataBean extends DataBean<Person, Integer>
         return sum / count;
     }
 
-    public List<Object[]> ages()
+    public Map<String,Number> ages()
     {
+        Map<String,Number> ageMap = new LinkedHashMap<>();
+
         StringBuilder sb = new StringBuilder("SELECT COUNT(AGE),AGE FROM AGE_VIEW ");
         sb.append("GROUP BY AGE ORDER BY AGE");
 
         Query query = em.createNativeQuery(sb.toString());
 
-        return query.getResultList();
+        List list = query.getResultList();
+
+        for(Object object : list)
+        {
+            Object[] o = (Object[])object;
+
+            ageMap.put(o[1].toString(),(Number)o[0]);
+        }
+
+        return ageMap;
     }
 
     public Map<Object, Number> perDecadeClean(PerDecadeType event)

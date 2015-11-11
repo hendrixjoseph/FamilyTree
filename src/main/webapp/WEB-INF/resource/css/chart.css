@@ -27,11 +27,11 @@
     stroke: #000;
 }
 
-.x-axis-label {
+.x-axis .label {
     text-anchor: middle;
 }
 
-.y-axis-label {
+.y-axis .label {
     text-anchor: end;
 }
 

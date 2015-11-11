@@ -98,12 +98,8 @@ public class BarChartRenderer extends Renderer
 
         svg.addComponent(xAxisAndBars);
 
-        LOG.log(Level.INFO,model.getClass().getName());
-        LOG.log(Level.INFO,ChartArrayModel.class.getName());
-
         if ( model.getClass().getName().equals(ChartArrayModel.class.getName()))
         {
-            LOG.log(Level.INFO,"Did I make it?");
             svg.addComponent(createLegend((ChartArrayModel<?>) model));
         }
 
@@ -157,6 +153,25 @@ public class BarChartRenderer extends Renderer
                     xBar = xBar.add(barWidth.doubleValue());
                 }
             }
+            else if(model instanceof ChartSingleModel)
+            {
+                ChartSingleModel singleModel = (ChartSingleModel)model;
+
+                double datum = singleModel.getData(label).doubleValue();
+
+                double barHeight = datum * barHeightScale;
+
+                Rectangle bar = new Rectangle();
+                bar.setHeight(barHeight);
+                bar.setWidth(barWidth.add(-0.1));
+                bar.setX(xBar);
+                bar.setY(height - datum * barHeightScale);
+                bar.setStyleClass("bar");
+
+                bars.addComponent(bar);
+
+                xBar = xBar.add(barWidth.doubleValue());
+            }
         }
 
         return bars;
@@ -172,7 +187,7 @@ public class BarChartRenderer extends Renderer
         lines.setStyleClass("lines");
 
         Group yAxisLabel = new Group();
-        yAxisLabel.setStyleClass("y-axis-labels");
+        yAxisLabel.setStyleClass("labels");
 
         if ( model.getyAxisLabel() != null )
         {
@@ -219,7 +234,7 @@ public class BarChartRenderer extends Renderer
                 yLabel.setDy(Em.HALF);
                 yLabel.setDx(new Em<>(-0.5));
                 yLabel.setText(String.format("%.2f", labelNumber));
-                yLabel.setStyleClass("y-axis-label");
+                yLabel.setStyleClass("label");
 
                 yAxisLabel.addComponent(yLabel);
             }
@@ -242,7 +257,7 @@ public class BarChartRenderer extends Renderer
             xLabel.setText(model.getxAxisLabel());
             xLabel.setX(Percent.FIFTY);
             xLabel.setDy(new Em<>(2));
-            xLabel.setStyleClass("x-axis-label");
+            xLabel.setStyleClass("main label");
 
             xAxis.addComponent(xLabel);
         }
@@ -263,7 +278,7 @@ public class BarChartRenderer extends Renderer
             text.setY(0);
             text.setDy(Em.ONE);
             // writer.writeAttribute("dy",".75em", null);
-            text.setStyleClass("x-axis-label");
+            text.setStyleClass("label");
 
             xAxis.addComponent(text);
 

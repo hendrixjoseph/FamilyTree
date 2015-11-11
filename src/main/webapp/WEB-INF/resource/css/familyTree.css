@@ -41,3 +41,7 @@ a.ui-link {
 .bar.deaths, .legendBox.deaths {
     fill: black;
 }
+
+.ageChart .x-axis .label {
+    font-size: 10px;
+}

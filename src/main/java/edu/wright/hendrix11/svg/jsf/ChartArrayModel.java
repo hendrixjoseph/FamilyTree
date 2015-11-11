@@ -34,7 +34,7 @@ public class ChartArrayModel<N extends Number> extends ChartModel<N>
 
     public List<String> getBarLabels()
     {
-        return new ArrayList<String>();
+        return barLabels;
     }
 
     public void setBarLabels(List<String> barLabels)
@@ -59,15 +59,10 @@ public class ChartArrayModel<N extends Number> extends ChartModel<N>
         return data.keySet();
     }
 
+    @Override
     public N[] getData(String label)
     {
         return data.get(label);
-    }
-
-    @Override
-    public Integer getNumLabels()
-    {
-        return data.keySet().size();
     }
 
     @Override
