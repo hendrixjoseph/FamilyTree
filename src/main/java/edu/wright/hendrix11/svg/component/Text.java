@@ -70,5 +70,13 @@ public class Text extends SvgComponent
         this.text = text;
     }
 
+    public void setTextAnchor(TextAnchor textAnchor)
+    {
+        putAttribute("text-anchor", textAnchor);
+    }
 
+    public enum TextAnchor
+    {
+        start, middle, end, inherit
+    }
 }

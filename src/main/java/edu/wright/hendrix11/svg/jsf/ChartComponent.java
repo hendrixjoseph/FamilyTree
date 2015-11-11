@@ -77,24 +77,14 @@ public class ChartComponent extends UIComponentBase
         return (Number) getStateHelper().eval(PropertyKeys.width, null);
     }
 
-    public void setWidth(Percent<?> width)
-    {
-        getStateHelper().put(PropertyKeys.width, width);
-    }
-
     public void setWidth(Integer width)
     {
         getStateHelper().put(PropertyKeys.width, width);
     }
 
-    public void setWidth(String width)
+    public void setWidth(Double width)
     {
         getStateHelper().put(PropertyKeys.width, width);
-    }
-
-    public void setHeight(Percent<?> height)
-    {
-        getStateHelper().put(PropertyKeys.height, height);
     }
 
     public void setHeight(Integer height)

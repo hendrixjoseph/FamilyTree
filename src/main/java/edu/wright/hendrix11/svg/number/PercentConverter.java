@@ -23,7 +23,7 @@ import javax.faces.convert.FacesConverter;
 /**
  * @author Joe Hendrix
  */
-@FacesConverter(forClass = Percent.class)
+@FacesConverter("percentConverter")
 public class PercentConverter implements Converter
 {
     public static final String NAME = "hendrix11.PercentConverter";
