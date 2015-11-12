@@ -48,4 +48,16 @@ public class Em<N extends Number & Comparable> extends Unit<N>
     {
         return new Em<Integer>(number.intValue() / i);
     }
+    
+    @Override    
+    public Em<Double> multiply(double d)
+    {
+        return new Em<Double>(number.doubleValue() * d;
+    }
+
+    @Override
+    public Em<Integer> multiply(int i)
+    {
+        return new Em<Integer>(number.intValue() * i);
+    }
 }
