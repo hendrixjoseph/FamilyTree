@@ -87,9 +87,9 @@ public class PersonDataBean extends DataBean<Person, Integer>
         return sum / count;
     }
 
-    public Map<String,Number> ages()
+    public Map<String,Integer> ages()
     {
-        Map<String,Number> ageMap = new LinkedHashMap<>();
+        Map<String,Integer> ageMap = new LinkedHashMap<>();
 
         StringBuilder sb = new StringBuilder("SELECT COUNT(AGE),AGE FROM AGE_VIEW ");
         sb.append("GROUP BY AGE ORDER BY AGE");
@@ -102,17 +102,17 @@ public class PersonDataBean extends DataBean<Person, Integer>
         {
             Object[] o = (Object[])object;
 
-            ageMap.put(o[1].toString(),(Number)o[0]);
+            ageMap.put(o[1].toString(),((Number)o[0]).intValue());
         }
 
         return ageMap;
     }
 
-    public Map<Object, Number> perDecadeClean(PerDecadeType event)
+    public Map<String, Integer[]> perDecadeClean()
     {
-        Query query = em.createNativeQuery(perDecadeQueryClean(event));
+        Query query = em.createNativeQuery("SELECT * FROM PER_DECADE_CLEAN_VIEW");
 
-        return null;
+        return processDecades(query.getResultList());
     }
 
     public Map<String, Integer[]> perDecade()
@@ -136,50 +136,5 @@ public class PersonDataBean extends DataBean<Person, Integer>
         }
 
         return result;
-    }
-
-    private String perDecadeQueryClean(PerDecadeType event)
-    {
-        PerDecadeType otherEvent = PerDecadeType.BIRTHS;
-        String plusMinus = "+";
-        int age = (int) averageAge();
-
-        if ( event == PerDecadeType.BIRTHS )
-        {
-            plusMinus = "-";
-            otherEvent = PerDecadeType.DEATHS;
-        }
-
-        String groupBy = new StringBuilder("(YEAR").append(plusMinus).append(age).append("-MOD(YEAR").append(plusMinus).append(age).append(",10))").toString();
-
-        StringBuilder sb = new StringBuilder();
-        sb.append("SELECT COUNT(*),").append(groupBy);
-        sb.append(" FROM EVENT");
-        sb.append(" WHERE TYPE = '").append(otherEvent).append("' AND YEAR IS NOT NULL AND");
-        sb.append(" (NOT PERSON_ID IN (SELECT PERSON_ID FROM EVENT WHERE TYPE='").append(event).append("')");
-        sb.append(" OR EXISTS (SELECT * FROM EVENT WHERE TYPE='").append(event).append("' AND YEAR IS NULL))");
-        sb.append(" GROUP BY ").append(groupBy);
-        sb.append(" ORDER BY ").append(groupBy);
-        LOG.log(Level.INFO, sb.toString());
-        return sb.toString();
-    }
-
-    public enum PerDecadeType
-    {
-        BIRTHS("birth"),
-        DEATHS("death");
-
-        private String string;
-
-        PerDecadeType(String string)
-        {
-            this.string = string;
-        }
-
-        @Override
-        public String toString()
-        {
-            return string;
-        }
     }
 }

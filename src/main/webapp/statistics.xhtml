@@ -29,6 +29,7 @@
     <ui:define name="content">
         <p:layoutUnit position="center">
             <svg:barChart chartModel="#{personBean.perDecadeModel}" height="300" styleClass="perDecadeChart" />
+            <svg:barChart chartModel="#{personBean.perDecadeCleanModel}" height="300" styleClass="perDecadeCleanChart" />
             <svg:barChart chartModel="#{personBean.ageModel}" height="300" styleClass="ageChart" />
             <p:chart type="pie" model="#{personBean.genderPie}" style="width:400px;height:300px;" widgetVar="chart" />
         </p:layoutUnit>

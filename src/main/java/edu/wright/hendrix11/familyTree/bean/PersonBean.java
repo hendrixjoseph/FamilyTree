@@ -37,9 +37,6 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static edu.wright.hendrix11.familyTree.dataBean.PersonDataBean.PerDecadeType.BIRTHS;
-import static edu.wright.hendrix11.familyTree.dataBean.PersonDataBean.PerDecadeType.DEATHS;
-
 /**
  * @author Joe
  */
@@ -49,7 +46,9 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
 {
     private static final Logger LOG = Logger.getLogger(PersonBean.class.getName());
     ChartArrayModel<Integer> perDecadeModel;
-    ChartSingleModel<Number> ageModel;
+    ChartArrayModel<Integer> perDecadeCleanModel;
+    ChartSingleModel<Integer> ageModel;
+
     @EJB
     private PersonDataBean personDataBean;
     private PieChartModel genderPie;
@@ -61,15 +60,14 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
         super.initialize(personDataBean);
 
         perDecadeModel = new ChartArrayModel<>();
-        ageModel = new ChartSingleModel<>();
-
         perDecadeModel.setData(personDataBean.perDecade());
-        String[] barLabels = {"births", "deaths"};
-        perDecadeModel.setBarLabels(barLabels);
-        perDecadeModel.setxAxisLabel("decade");
-        perDecadeModel.setyAxisLabel("people");
-        perDecadeModel.setTitle("Births and deaths per decade");
+        setupPerDecadeModel(perDecadeModel);
 
+        perDecadeCleanModel = new ChartArrayModel<>();
+        perDecadeCleanModel.setData(personDataBean.perDecadeClean());
+        setupPerDecadeModel(perDecadeCleanModel);
+
+        ageModel = new ChartSingleModel<>();
         ageModel.setData(personDataBean.ages());
         ageModel.setTitle("Ages");
         ageModel.setyAxisLabel("people");
@@ -78,12 +76,26 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
         initializeGenderPie();
     }
 
+    private void setupPerDecadeModel(ChartArrayModel<Integer> perDecadeModel)
+    {
+        String[] barLabels = {"births", "deaths"};
+        perDecadeModel.setBarLabels(barLabels);
+        perDecadeModel.setxAxisLabel("decade");
+        perDecadeModel.setyAxisLabel("people");
+        perDecadeModel.setTitle("Births and deaths per decade");
+    }
+
+    public ChartArrayModel<Integer> getPerDecadeCleanModel()
+    {
+        return perDecadeCleanModel;
+    }
+
     public ChartModel getPerDecadeModel()
     {
         return perDecadeModel;
     }
 
-    public ChartSingleModel<Number> getAgeModel()
+    public ChartSingleModel<Integer> getAgeModel()
     {
         return ageModel;
     }

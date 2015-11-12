@@ -15,7 +15,7 @@ package edu.wright.hendrix11.svg.number;
 /**
  * @author Joe Hendrix
  */
-public class Percent<N extends Number> extends Unit<N>
+public class Percent<N extends Number & Comparable> extends Unit<N>
 {
     public static final Percent<Double> FIFTY = new Percent<>(50.0);
     public static final Percent<Double> ONE_HUNDRED = new Percent<>(100.0);

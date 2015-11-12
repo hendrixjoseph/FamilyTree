@@ -20,7 +20,7 @@ import java.util.Set;
 /**
  * @author Joe Hendrix
  */
-public class ChartSingleModel<N extends Number> extends ChartModel<N>
+public class ChartSingleModel<N extends Number & Comparable> extends ChartModel<N>
 {
     private Map<String, N> data = new LinkedHashMap<>();
 
@@ -66,14 +66,7 @@ public class ChartSingleModel<N extends Number> extends ChartModel<N>
             }
             else
             {
-                if ( number instanceof Double )
-                {
-                    max = max.doubleValue() < number.doubleValue() ? number : max;
-                }
-                else
-                {
-                    max = max.intValue() < number.intValue() ? number : max;
-                }
+                max = max.compareTo(number) < 0 ? number : max;
             }
         }
 

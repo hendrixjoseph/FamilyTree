@@ -15,7 +15,7 @@ package edu.wright.hendrix11.svg.number;
 /**
  * @author Joe Hendrix
  */
-public class Em<N extends Number> extends Unit<N>
+public class Em<N extends Number & Comparable> extends Unit<N>
 {
     public static final Em<Double> HALF = new Em<>(0.5);
     public static final Em<Integer> ONE = new Em<>(1);

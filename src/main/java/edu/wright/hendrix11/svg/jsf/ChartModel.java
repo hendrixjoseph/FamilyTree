@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 /**
  * @author Joe Hendrix
  */
-public abstract class ChartModel<N extends Number>
+public abstract class ChartModel<N extends Number & Comparable>
 {
     private static final Logger LOG = Logger.getLogger(ChartModel.class.getName());
     private String title;

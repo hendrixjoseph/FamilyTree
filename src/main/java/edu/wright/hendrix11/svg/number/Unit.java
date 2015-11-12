@@ -15,7 +15,7 @@ package edu.wright.hendrix11.svg.number;
 /**
  * @author Joe Hendrix
  */
-public class Unit<N extends Number> extends Number
+public class Unit<N extends Number & Comparable> extends Number
 {
     N number;
     String unit;
@@ -61,14 +61,9 @@ public class Unit<N extends Number> extends Number
         return new Unit<Integer>(number.intValue() / i, unit);
     }
 
-    public boolean lessThan(int n)
+    public boolean lessThan(Number n)
     {
-        return number.intValue() < n;
-    }
-
-    public boolean lessThan(double n)
-    {
-        return number.doubleValue() < n;
+        return number.compareTo(n) < 0;
     }
 
     public N getNumber()

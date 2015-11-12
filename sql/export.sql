@@ -1,5 +1,5 @@
 --------------------------------------------------------
---  File created - Sunday-November-01-2015   
+--  File created - Wednesday-November-11-2015   
 --------------------------------------------------------
 DROP TABLE "EVENT" cascade constraints;
 DROP TABLE "FATHER" cascade constraints;
@@ -11,7 +11,10 @@ DROP TABLE "PLACE" cascade constraints;
 DROP TABLE "REGION" cascade constraints;
 DROP SEQUENCE "PERSON_SEQUENCE";
 DROP SEQUENCE "PLACE_SEQUENCE";
+DROP VIEW "AGE_VIEW";
 DROP VIEW "CHILDREN_VIEW";
+DROP VIEW "PER_DECADE_CLEAN_VIEW";
+DROP VIEW "PER_DECADE_VIEW";
 DROP VIEW "REGION_VIEW";
 DROP VIEW "REGION_VIEW_TEST";
 DROP VIEW "SPOUSE_VIEW";
@@ -103,6 +106,18 @@ DROP VIEW "SPOUSE_VIEW_TEST";
 	"PLACE_ID" NUMBER
    ) ;
 --------------------------------------------------------
+--  DDL for View AGE_VIEW
+--------------------------------------------------------
+
+  CREATE OR REPLACE VIEW "AGE_VIEW" ("AGE") AS 
+  SELECT (D.YEAR-B.YEAR) AS AGE
+FROM EVENT B,EVENT D
+WHERE B.PERSON_ID=D.PERSON_ID
+AND B.TYPE='birth'
+AND D.TYPE='death'
+AND B.YEAR IS NOT NULL
+AND D.YEAR IS NOT NULL;
+--------------------------------------------------------
 --  DDL for View CHILDREN_VIEW
 --------------------------------------------------------
 
@@ -118,6 +133,82 @@ SELECT
     CHILD_ID
 FROM
     MOTHER;
+--------------------------------------------------------
+--  DDL for View PER_DECADE_CLEAN_VIEW
+--------------------------------------------------------
+
+  CREATE OR REPLACE VIEW "PER_DECADE_CLEAN_VIEW" ("BIRTHS", "DEATHS", "DECADE") AS 
+  SELECT NVL( BIRTH.COUNT,0 ) BIRTHS,
+  NVL( DEATH.COUNT,0 ) DEATHS,
+  NVL( BIRTH.DECADE,DEATH.DECADE ) DECADE
+FROM
+  (
+    SELECT COUNT( * ) COUNT,
+      ( YEAR - MOD( YEAR,10 ) ) DECADE
+    FROM EVENT
+    WHERE TYPE = 'birth'
+      AND YEAR IS NOT NULL
+      AND( NOT PERSON_ID IN
+      (
+        SELECT PERSON_ID FROM EVENT WHERE TYPE = 'death'
+      )
+      OR EXISTS
+      (
+        SELECT * FROM EVENT WHERE TYPE = 'death' AND YEAR IS NULL
+      ) )
+    GROUP BY( YEAR - MOD( YEAR,10 ) )
+  )
+  BIRTH
+FULL OUTER JOIN
+  (
+    SELECT COUNT( * ) COUNT,
+      ( YEAR - MOD( YEAR,10 ) ) DECADE
+    FROM EVENT
+    WHERE TYPE = 'death'
+      AND YEAR IS NOT NULL
+      AND( NOT PERSON_ID IN
+      (
+        SELECT PERSON_ID FROM EVENT WHERE TYPE = 'birth'
+      )
+      OR EXISTS
+      (
+        SELECT * FROM EVENT WHERE TYPE = 'birth' AND YEAR IS NULL
+      ) )
+    GROUP BY( YEAR - MOD( YEAR,10 ) )
+  )
+  DEATH
+ON BIRTH.DECADE = DEATH.DECADE
+ORDER BY DECADE;
+--------------------------------------------------------
+--  DDL for View PER_DECADE_VIEW
+--------------------------------------------------------
+
+  CREATE OR REPLACE VIEW "PER_DECADE_VIEW" ("BIRTHS", "DEATHS", "DECADE") AS 
+  SELECT NVL( BIRTH.COUNT,0 ) BIRTHS,
+  NVL( DEATH.COUNT,0 ) DEATHS,
+  NVL( BIRTH.DECADE,DEATH.DECADE ) DECADE
+FROM
+  (
+    SELECT COUNT( * ) COUNT,
+      ( YEAR - MOD( YEAR,10 ) ) DECADE
+    FROM EVENT
+    WHERE EVENT.TYPE = 'birth'
+      AND EVENT.YEAR IS NOT NULL
+    GROUP BY( YEAR - MOD( YEAR,10 ) )
+  )
+  BIRTH
+FULL OUTER JOIN
+  (
+    SELECT COUNT( * ) COUNT,
+      ( YEAR - MOD( YEAR,10 ) ) DECADE
+    FROM EVENT
+    WHERE EVENT.TYPE = 'death'
+      AND EVENT.YEAR IS NOT NULL
+    GROUP BY( YEAR - MOD( YEAR,10 ) )
+  )
+  DEATH
+ON BIRTH.DECADE = DEATH.DECADE
+ORDER BY DECADE;
 --------------------------------------------------------
 --  DDL for View REGION_VIEW
 --------------------------------------------------------

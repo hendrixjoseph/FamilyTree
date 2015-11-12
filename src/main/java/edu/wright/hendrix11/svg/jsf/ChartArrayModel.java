@@ -22,9 +22,9 @@ import java.util.Set;
 /**
  * @author Joe Hendrix
  */
-public class ChartArrayModel<N extends Number> extends ChartModel<N>
+public class ChartArrayModel<N extends Number & Comparable> extends ChartModel<N>
 {
-    private List<String> barLabels;
+    private List<String> barLabels = new ArrayList<>();
     private Map<String, N[]> data = new LinkedHashMap<>();
 
     public void setBarLabels(String[] barLabels)
@@ -93,14 +93,7 @@ public class ChartArrayModel<N extends Number> extends ChartModel<N>
                 }
                 else
                 {
-                    if ( number instanceof Double )
-                    {
-                        max = max.doubleValue() < number.doubleValue() ? number : max;
-                    }
-                    else
-                    {
-                        max = max.intValue() < number.intValue() ? number : max;
-                    }
+                    max = max.compareTo(number) < 0 ? number : max;
                 }
             }
         }
