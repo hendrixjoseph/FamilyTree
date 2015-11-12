@@ -1,6 +1,6 @@
 # Exporting
 
-## For [master.sql](master.sql)
+## For [export.sql](export.sql)
 
 ![Single File Export Step 1](single_file_export_step_1.jpg "Single File Export Step 1")
 
