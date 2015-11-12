@@ -63,7 +63,7 @@ The following types of files are not currently found in this project, but some m
 
 ### SQL
 
-All the necessary SQL statements to create the database (should be) is in [sql/master.sql](sql/master.sql). All the subdirectories in [sql/](sql/) contain pretty much the same material as master.sql, they are only in different directories for easier human viewing.
+All the necessary SQL statements to create the database (should be) is in [`sql/export.sql`](sql/export.sql). All the subdirectories in [`sql/`](sql/) contain pretty much the same material as `export.sql`, they are only in different directories for easier human viewing.
 
 ### Directory structure
 
