@@ -61,4 +61,16 @@ public class Percent<N extends Number & Comparable> extends Unit<N>
     {
         return new Percent<Integer>(number.intValue() / i);
     }
+
+    @Override    
+    public Percent<Double> multiply(double d)
+    {
+        return new Percent<Double>(number.doubleValue() * d;
+    }
+
+    @Override
+    public Percent<Integer> multiply(int i)
+    {
+        return new Percent<Integer>(number.intValue() * i);
+    }
 }
