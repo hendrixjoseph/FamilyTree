@@ -60,10 +60,25 @@ public class Unit<N extends Number & Comparable> extends Number
     {
         return new Unit<Integer>(number.intValue() / i, unit);
     }
+    
+    public Unit<Double> multiply(double d)
+    {
+        return new Unit<Double>(number.doubleValue() * d, unit);
+    }
+
+    public Unit<Integer> multiply(int i)
+    {
+        return new Unit<Integer>(number.intValue() * i, unit);
+    }
 
     public boolean lessThan(Number n)
     {
         return number.compareTo(n) < 0;
+    }
+    
+    public boolean greaterThan(Number n)
+    {
+        return number.compareTo(n) > 0;
     }
 
     public N getNumber()
@@ -102,12 +117,17 @@ public class Unit<N extends Number & Comparable> extends Number
     }
 
     @Override
-    public boolean equals(Object obj)
+    public boolean equals(Object object)
     {
-        if ( obj instanceof Unit )
+        if ( object instanceof Unit )
         {
-            Unit other = (Unit) obj;
+            Unit other = (Unit) object;
             return number.equals(other.getNumber()) && unit.equals(other.unit);
+        }
+        else if ( object instanceof Number )
+        {
+            Number other = (Number) object;
+            return number.equals(other);
         }
         else
         {
