@@ -47,6 +47,7 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
     private static final Logger LOG = Logger.getLogger(PersonBean.class.getName());
     ChartArrayModel<Integer> perDecadeModel;
     ChartArrayModel<Integer> perDecadeCleanModel;
+    ChartArrayModel<Integer> perDecadeCombinedModel;
     ChartSingleModel<Integer> ageModel;
 
     @EJB
@@ -62,10 +63,17 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
         perDecadeModel = new ChartArrayModel<>();
         perDecadeModel.setData(personDataBean.perDecade());
         setupPerDecadeModel(perDecadeModel);
+        perDecadeModel.setTitle("Births and deaths per decade");
 
         perDecadeCleanModel = new ChartArrayModel<>();
         perDecadeCleanModel.setData(personDataBean.perDecadeClean());
         setupPerDecadeModel(perDecadeCleanModel);
+        perDecadeCleanModel.setTitle("Births and deaths per decade (estimated assuming average age)");
+
+        perDecadeCombinedModel = new ChartArrayModel<>();
+        perDecadeCombinedModel.setData(personDataBean.perDecadeCombined());
+        setupPerDecadeModel(perDecadeCombinedModel);
+        perDecadeCombinedModel.setTitle("Births and deaths per decade (estimated and known)");
 
         ageModel = new ChartSingleModel<>();
         ageModel.setData(personDataBean.ages());
@@ -82,7 +90,11 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
         perDecadeModel.setBarLabels(barLabels);
         perDecadeModel.setxAxisLabel("decade");
         perDecadeModel.setyAxisLabel("people");
-        perDecadeModel.setTitle("Births and deaths per decade");
+    }
+
+    public ChartArrayModel<Integer> getPerDecadeCombinedModel()
+    {
+        return perDecadeCombinedModel;
     }
 
     public ChartArrayModel<Integer> getPerDecadeCleanModel()

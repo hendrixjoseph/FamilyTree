@@ -78,13 +78,11 @@ public class PersonDataBean extends DataBean<Person, Integer>
 
     public double averageAge()
     {
-        String countQuery = "SELECT COUNT(AGE) FROM AGE_VIEW";
-        String sumQuery = "SELECT SUM(AGE) FROM AGE_VIEW";
+        String averageQuery = "SELECT AVG(AGE) FROM AGE_VIEW";
 
-        double count = ( (BigDecimal) em.createNativeQuery(countQuery).getSingleResult() ).doubleValue();
-        double sum = ( (BigDecimal) em.createNativeQuery(sumQuery).getSingleResult() ).doubleValue();
+        double avg = ( (BigDecimal) em.createNativeQuery(averageQuery).getSingleResult() ).doubleValue();
 
-        return sum / count;
+        return avg;
     }
 
     public Map<String,Integer> ages()
@@ -106,6 +104,13 @@ public class PersonDataBean extends DataBean<Person, Integer>
         }
 
         return ageMap;
+    }
+
+    public Map<String, Integer[]> perDecadeCombined()
+    {
+        Query query = em.createNativeQuery("SELECT * FROM PER_DECADE_COMBINED_VIEW");
+
+        return processDecades(query.getResultList());
     }
 
     public Map<String, Integer[]> perDecadeClean()
