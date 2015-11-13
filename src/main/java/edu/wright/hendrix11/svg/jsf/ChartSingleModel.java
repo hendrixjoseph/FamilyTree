@@ -12,47 +12,68 @@
 
 package edu.wright.hendrix11.svg.jsf;
 
-import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
 /**
+ * @param <N>
+ *
  * @author Joe Hendrix
  */
 public class ChartSingleModel<N extends Number & Comparable> extends ChartModel<N>
 {
     private Map<String, N> data = new LinkedHashMap<>();
 
+    /**
+     * @return
+     */
     @Override
     public Map<String, N> getData()
     {
         return data;
     }
 
+    /**
+     * @param data
+     */
+    public void setData(Map<String, N> data)
+    {
+        this.data = data;
+    }
+
+    /**
+     * @param label
+     *
+     * @return
+     */
     @Override
     public N getData(String label)
     {
         return data.get(label);
     }
 
+    /**
+     * @return
+     */
     @Override
     public Set<String> getAxisLabels()
     {
         return data.keySet();
     }
 
+    /**
+     * @return
+     */
     @Override
     public Integer getNumValues()
     {
         return data.size();
     }
 
-    public void setData(Map<String, N> data)
-    {
-        this.data = data;
-    }
-
+    /**
+     * @return
+     */
     @Override
     public N getMax()
     {

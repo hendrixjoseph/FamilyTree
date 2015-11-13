@@ -26,8 +26,14 @@ public abstract class AbstractBean<E>
 
     private DataBean<E, ?> dataBean;
 
+    /**
+     *
+     */
     protected abstract void initialize();
 
+    /**
+     * @param dataBean
+     */
     protected void initialize(DataBean<E, ?> dataBean)
     {
         this.dataBean = dataBean;
@@ -71,11 +77,17 @@ public abstract class AbstractBean<E>
         dataBean.setPage(page);
     }
 
+    /**
+     * @return
+     */
     public String getSort()
     {
         return dataBean.getSort();
     }
 
+    /**
+     * @param sort
+     */
     public void setSort(String sort)
     {
         dataBean.setSort(sort);

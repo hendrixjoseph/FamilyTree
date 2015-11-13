@@ -20,6 +20,8 @@ import java.util.Map;
 import java.util.Set;
 
 /**
+ * @param <N>
+ *
  * @author Joe Hendrix
  */
 public class ChartArrayModel<N extends Number & Comparable> extends ChartModel<N>
@@ -27,44 +29,70 @@ public class ChartArrayModel<N extends Number & Comparable> extends ChartModel<N
     private List<String> barLabels = new ArrayList<>();
     private Map<String, N[]> data = new LinkedHashMap<>();
 
+    /**
+     * @param barLabels
+     */
     public void setBarLabels(String[] barLabels)
     {
-        setBarLabels(Arrays.asList(barLabels));
+        this.barLabels = Arrays.asList(barLabels);
     }
 
+    /**
+     * @return
+     */
     public List<String> getBarLabels()
     {
         return barLabels;
     }
 
+    /**
+     * @param barLabels
+     */
     public void setBarLabels(List<String> barLabels)
     {
         this.barLabels = barLabels;
     }
 
+    /**
+     * @return
+     */
     @Override
     public Map<String, N[]> getData()
     {
         return data;
     }
 
+    /**
+     * @param data
+     */
     public void setData(Map<String, N[]> data)
     {
         this.data = data;
     }
 
+    /**
+     * @return
+     */
     @Override
     public Set<String> getAxisLabels()
     {
         return data.keySet();
     }
 
+    /**
+     * @param label
+     *
+     * @return
+     */
     @Override
     public N[] getData(String label)
     {
         return data.get(label);
     }
 
+    /**
+     * @return
+     */
     @Override
     public Integer getNumValues()
     {
@@ -78,6 +106,9 @@ public class ChartArrayModel<N extends Number & Comparable> extends ChartModel<N
         return i;
     }
 
+    /**
+     * @return
+     */
     @Override
     public N getMax()
     {

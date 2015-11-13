@@ -23,31 +23,52 @@ import java.io.IOException;
  */
 public class Line extends SvgComponent
 {
+
+    /**
+     *
+     */
     public Line()
     {
         super("line");
     }
 
+    /**
+     * @param x1
+     */
     public void setX1(Number x1)
     {
         putAttribute("x1", x1);
     }
 
+    /**
+     * @param y1
+     */
     public void setY1(Number y1)
     {
         putAttribute("y1", y1);
     }
 
+    /**
+     * @param x2
+     */
     public void setX2(Number x2)
     {
         putAttribute("x2", x2);
     }
 
+    /**
+     * @param y2
+     */
     public void setY2(Number y2)
     {
         putAttribute("y2", y2);
     }
 
+    /**
+     * @param writer
+     *
+     * @throws IOException
+     */
     @Override
     public void encodeMiddle(ResponseWriter writer) throws IOException
     {

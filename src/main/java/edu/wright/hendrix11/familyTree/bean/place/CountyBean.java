@@ -33,6 +33,9 @@ public class CountyBean extends AbstractBean<County> implements Serializable
     @EJB
     private DataBean<County, Integer> countyDataBean;
 
+    /**
+     *
+     */
     @Override
     @PostConstruct
     protected void initialize()

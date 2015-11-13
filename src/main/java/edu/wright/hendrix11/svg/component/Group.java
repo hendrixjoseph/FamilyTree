@@ -25,11 +25,19 @@ public class Group extends SvgComponent
 {
     private List<SvgComponent> components = new ArrayList<>();
 
+    /**
+     *
+     */
     public Group()
     {
         super("g");
     }
 
+    /**
+     * @param writer
+     *
+     * @throws IOException
+     */
     @Override
     public void encodeMiddle(ResponseWriter writer) throws IOException
     {
@@ -39,6 +47,9 @@ public class Group extends SvgComponent
         }
     }
 
+    /**
+     * @param component
+     */
     public void addComponent(SvgComponent component)
     {
         components.add(component);

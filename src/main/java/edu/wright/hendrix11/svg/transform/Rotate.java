@@ -19,12 +19,20 @@ public class Rotate extends XyTransform
 {
     private Number degrees;
 
+    /**
+     * @param degrees
+     * @param x
+     * @param y
+     */
     public Rotate(Number degrees, Number x, Number y)
     {
         super(x, y);
         this.degrees = degrees;
     }
 
+    /**
+     * @param degrees
+     */
     public Rotate(Number degrees)
     {
         this.degrees = degrees;

@@ -77,17 +77,27 @@ public class DataBean<E, K>
         }
     }
 
+    /**
+     * @param em
+     * @param clazz
+     */
     protected void initialize(EntityManager em, Class<E> clazz)
     {
         initialize(clazz);
         this.em = em;
     }
 
+    /**
+     * @return
+     */
     public String getSort()
     {
         return sort;
     }
 
+    /**
+     * @param sort
+     */
     public void setSort(String sort)
     {
         this.sort = sort;

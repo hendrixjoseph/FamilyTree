@@ -22,9 +22,20 @@ import javax.faces.component.FacesComponent;
 @ResourceDependency(library = "css", name = "chart.css")
 public class BarChartComponent extends SvgJsfComponent
 {
+
+    /**
+     *
+     */
     public static final String COMPONENT_TYPE = "edu.wright.hendrix11.svg.jsf.BarChartComponent";
+
+    /**
+     *
+     */
     public static final String DEFAULT_RENDERER = "edu.wright.hendrix11.svg.jsf.BarChartRenderer";
 
+    /**
+     *
+     */
     public BarChartComponent()
     {
         setRendererType(DEFAULT_RENDERER);

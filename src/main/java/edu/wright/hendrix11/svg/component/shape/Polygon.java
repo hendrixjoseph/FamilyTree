@@ -17,6 +17,10 @@ package edu.wright.hendrix11.svg.component.shape;
  */
 public class Polygon extends PolyShape
 {
+
+    /**
+     *
+     */
     protected Polygon()
     {
         super("polygon");

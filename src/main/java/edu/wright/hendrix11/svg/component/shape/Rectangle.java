@@ -23,42 +23,69 @@ import java.io.IOException;
  */
 public class Rectangle extends SvgComponent
 {
+
+    /**
+     *
+     */
     public Rectangle()
     {
         super("rect");
     }
 
+    /**
+     * @param writer
+     *
+     * @throws IOException
+     */
     @Override
     public void encodeMiddle(ResponseWriter writer) throws IOException
     {
 
     }
 
+    /**
+     * @param height
+     */
     public void setHeight(Number height)
     {
         putAttribute("height", height);
     }
 
+    /**
+     * @param width
+     */
     public void setWidth(Number width)
     {
         putAttribute("width", width);
     }
 
+    /**
+     * @param x
+     */
     public void setX(Number x)
     {
         putAttribute("x", x);
     }
 
+    /**
+     * @param y
+     */
     public void setY(Number y)
     {
         putAttribute("y", y);
     }
 
+    /**
+     * @param rx
+     */
     public void setRx(Number rx)
     {
         putAttribute("rx", rx);
     }
 
+    /**
+     * @param ry
+     */
     public void setRy(Number ry)
     {
         putAttribute("ry", ry);

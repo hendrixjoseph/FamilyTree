@@ -17,11 +17,21 @@ package edu.wright.hendrix11.svg.transform;
  */
 public abstract class Transform
 {
+
+    /**
+     *
+     */
     protected Transform()
     {
 
     }
 
+    /**
+     * @param name
+     * @param arguments
+     *
+     * @return
+     */
     protected String toString(String name, Number[] arguments)
     {
         StringBuilder sb = new StringBuilder(name).append("(");

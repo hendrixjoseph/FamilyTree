@@ -17,6 +17,10 @@ package edu.wright.hendrix11.svg.component.shape;
  */
 public class Polyline extends PolyShape
 {
+
+    /**
+     *
+     */
     protected Polyline()
     {
         super("polyline");

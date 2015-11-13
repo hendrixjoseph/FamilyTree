@@ -34,6 +34,9 @@ public class BirthBean extends AbstractBean<Birth> implements Serializable
     @EJB
     private DataBean<Birth, Person> birthDataBean;
 
+    /**
+     *
+     */
     @Override
     @PostConstruct
     protected void initialize()

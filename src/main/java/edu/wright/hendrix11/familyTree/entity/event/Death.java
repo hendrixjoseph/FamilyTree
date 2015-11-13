@@ -31,6 +31,10 @@ import javax.persistence.TypedQuery;
               })
 public class Death extends SinglePersonEvent
 {
+
+    /**
+     *
+     */
     public static final String COUNT_BY_YEAR = "Death.countByYear";
     /**
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all

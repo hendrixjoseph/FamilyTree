@@ -19,6 +19,10 @@ import javax.faces.component.UIComponentBase;
  */
 public abstract class SvgJsfComponent extends UIComponentBase
 {
+
+    /**
+     *
+     */
     public static final String COMPONENT_FAMILY = "edu.wright.hendrix11.svg";
 
     @Override
@@ -27,61 +31,110 @@ public abstract class SvgJsfComponent extends UIComponentBase
         return COMPONENT_FAMILY;
     }
 
+    /**
+     * @return
+     */
     public String getStyleClass()
     {
         return (String) getStateHelper().eval(PropertyKeys.styleClass, null);
     }
 
+    /**
+     * @param string
+     */
     public void setStyleClass(String string)
     {
         getStateHelper().put(PropertyKeys.styleClass, string);
     }
 
-    public ChartModel getChartModel()
+    /**
+     * @return
+     */
+    public ChartModel<?> getChartModel()
     {
-        return (ChartModel) getStateHelper().eval(PropertyKeys.chartModel, null);
+        return (ChartModel<?>) getStateHelper().eval(PropertyKeys.chartModel, null);
     }
 
-    public void setChartModel(ChartModel model)
+    /**
+     * @param model
+     */
+    public void setChartModel(ChartModel<?> model)
     {
         getStateHelper().put(PropertyKeys.chartModel, model);
     }
 
+    /**
+     * @return
+     */
     public Number getHeight()
     {
         return (Number) getStateHelper().eval(PropertyKeys.height, null);
     }
 
-    public void setHeight(Double height)
-    {
-        getStateHelper().put(PropertyKeys.height, height);
-    }
-
-    public Number getWidth()
-    {
-        return (Number) getStateHelper().eval(PropertyKeys.width, null);
-    }
-
-    public void setWidth(Double width)
-    {
-        getStateHelper().put(PropertyKeys.width, width);
-    }
-
-    public void setWidth(Integer width)
-    {
-        getStateHelper().put(PropertyKeys.width, width);
-    }
-
+    /**
+     * @param height
+     */
     public void setHeight(Integer height)
     {
         getStateHelper().put(PropertyKeys.height, height);
     }
 
+    /**
+     * @param height
+     */
+    public void setHeight(Double height)
+    {
+        getStateHelper().put(PropertyKeys.height, height);
+    }
+
+    /**
+     * @return
+     */
+    public Number getWidth()
+    {
+        return (Number) getStateHelper().eval(PropertyKeys.width, null);
+    }
+
+    /**
+     * @param width
+     */
+    public void setWidth(Integer width)
+    {
+        getStateHelper().put(PropertyKeys.width, width);
+    }
+
+    /**
+     * @param width
+     */
+    public void setWidth(Double width)
+    {
+        getStateHelper().put(PropertyKeys.width, width);
+    }
+
+    /**
+     *
+     */
     protected enum PropertyKeys
     {
+
+        /**
+         *
+         */
         styleClass,
+
+        /**
+         *
+         */
         chartModel,
+
+        /**
+         *
+         */
         width,
+
+        /**
+         *
+         */
         height
     }
 }

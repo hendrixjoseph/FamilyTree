@@ -17,16 +17,26 @@ package edu.wright.hendrix11.svg.component.shape;
  */
 public class Ellipse extends RoundShape
 {
+
+    /**
+     *
+     */
     public Ellipse()
     {
         super("ellipse");
     }
 
+    /**
+     * @param rx
+     */
     public void setXRadius(Number rx)
     {
         putAttribute("rx", rx);
     }
 
+    /**
+     * @param ry
+     */
     public void setYRadius(Number ry)
     {
         putAttribute("ry", ry);

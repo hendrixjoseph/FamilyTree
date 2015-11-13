@@ -17,6 +17,10 @@ package edu.wright.hendrix11.svg.transform;
  */
 public abstract class SkewY extends Skew
 {
+
+    /**
+     * @param a
+     */
     public SkewY(Number a)
     {
         super(a, "Y");

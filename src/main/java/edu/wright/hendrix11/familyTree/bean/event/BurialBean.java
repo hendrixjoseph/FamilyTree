@@ -34,6 +34,9 @@ public class BurialBean extends AbstractBean<Burial> implements Serializable
     @EJB
     private DataBean<Burial, Person> burialDataBean;
 
+    /**
+     *
+     */
     @Override
     @PostConstruct
     protected void initialize()

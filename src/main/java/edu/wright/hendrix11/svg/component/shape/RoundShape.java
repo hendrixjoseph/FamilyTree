@@ -23,21 +23,36 @@ import java.io.IOException;
  */
 public abstract class RoundShape extends SvgComponent
 {
+
+    /**
+     * @param name
+     */
     protected RoundShape(String name)
     {
         super(name);
     }
 
+    /**
+     * @param cx
+     */
     public void setCenterX(Number cx)
     {
         putAttribute("cx", cx);
     }
 
+    /**
+     * @param cy
+     */
     public void setCenterY(Number cy)
     {
         putAttribute("cy", cy);
     }
 
+    /**
+     * @param writer
+     *
+     * @throws IOException
+     */
     @Override
     public void encodeMiddle(ResponseWriter writer) throws IOException
     {

@@ -17,20 +17,38 @@ package edu.wright.hendrix11.svg.transform;
  */
 public abstract class XyTransform extends Transform
 {
+
+    /**
+     *
+     */
     protected Number x;
+
+    /**
+     *
+     */
     protected Number y;
 
+    /**
+     * @param x
+     * @param y
+     */
     public XyTransform(Number x, Number y)
     {
         this.x = x;
         this.y = y;
     }
 
+    /**
+     * @param x
+     */
     public XyTransform(Number x)
     {
         this.x = x;
     }
 
+    /**
+     *
+     */
     protected XyTransform()
     {
 

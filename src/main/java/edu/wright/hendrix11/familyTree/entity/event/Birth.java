@@ -32,7 +32,15 @@ import javax.persistence.TypedQuery;
               })
 public class Birth extends SinglePersonEvent
 {
+
+    /**
+     *
+     */
     public static final String COUNT_BY_DECADE = "Birth.countByDecade";
+
+    /**
+     *
+     */
     public static final String COUNT_BY_YEAR = "Birth.countByYear";
     /**
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all

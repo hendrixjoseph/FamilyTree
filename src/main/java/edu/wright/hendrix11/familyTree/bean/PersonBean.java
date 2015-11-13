@@ -12,11 +12,6 @@
 
 package edu.wright.hendrix11.familyTree.bean;
 
-import org.primefaces.model.chart.Axis;
-import org.primefaces.model.chart.AxisType;
-import org.primefaces.model.chart.BarChartModel;
-import org.primefaces.model.chart.BarChartSeries;
-import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.PieChartModel;
 
 import edu.wright.hendrix11.familyTree.dataBean.PersonDataBean;
@@ -32,9 +27,6 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -54,6 +46,9 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
     private PersonDataBean personDataBean;
     private PieChartModel genderPie;
 
+    /**
+     *
+     */
     @Override
     @PostConstruct
     protected void initialize()
@@ -84,29 +79,33 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
         initializeGenderPie();
     }
 
-    private void setupPerDecadeModel(ChartArrayModel<Integer> perDecadeModel)
-    {
-        String[] barLabels = {"births", "deaths"};
-        perDecadeModel.setBarLabels(barLabels);
-        perDecadeModel.setxAxisLabel("decade");
-        perDecadeModel.setyAxisLabel("people");
-    }
-
+    /**
+     * @return
+     */
     public ChartArrayModel<Integer> getPerDecadeCombinedModel()
     {
         return perDecadeCombinedModel;
     }
 
+    /**
+     * @return
+     */
     public ChartArrayModel<Integer> getPerDecadeCleanModel()
     {
         return perDecadeCleanModel;
     }
 
-    public ChartModel getPerDecadeModel()
+    /**
+     * @return
+     */
+    public ChartModel<?> getPerDecadeModel()
     {
         return perDecadeModel;
     }
 
+    /**
+     * @return
+     */
     public ChartSingleModel<Integer> getAgeModel()
     {
         return ageModel;
@@ -118,6 +117,14 @@ public class PersonBean extends AbstractBean<Person> implements Serializable
     public PieChartModel getGenderPie()
     {
         return genderPie;
+    }
+
+    private void setupPerDecadeModel(ChartArrayModel<Integer> perDecadeModel)
+    {
+        String[] barLabels = {"births", "deaths"};
+        perDecadeModel.setBarLabels(barLabels);
+        perDecadeModel.setxAxisLabel("decade");
+        perDecadeModel.setyAxisLabel("people");
     }
 
     private void initializeGenderPie()

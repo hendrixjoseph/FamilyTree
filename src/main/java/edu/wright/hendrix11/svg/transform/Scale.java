@@ -17,11 +17,19 @@ package edu.wright.hendrix11.svg.transform;
  */
 public class Scale extends XyTransform
 {
+
+    /**
+     * @param x
+     * @param y
+     */
     public Scale(Number x, Number y)
     {
         super(x, y);
     }
 
+    /**
+     * @param x
+     */
     public Scale(Number x)
     {
         super(x);

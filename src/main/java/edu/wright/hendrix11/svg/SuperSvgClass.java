@@ -27,16 +27,30 @@ public abstract class SuperSvgClass
     private String name;
     private Map<String, String> propertyMap = new HashMap<>();
 
+    /**
+     * @param name
+     */
     protected SuperSvgClass(String name)
     {
         this.name = name;
     }
 
+    /**
+     * @param key
+     *
+     * @return
+     */
     public String getProperty(Object key)
     {
         return propertyMap.get(key);
     }
 
+    /**
+     * @param key
+     * @param value
+     *
+     * @return
+     */
     public String putProperty(String key, String value)
     {
         if ( value == null )
@@ -49,6 +63,12 @@ public abstract class SuperSvgClass
         }
     }
 
+    /**
+     * @param key
+     * @param value
+     *
+     * @return
+     */
     public Object putAttribute(String key, Object value)
     {
         if ( value == null )
@@ -62,37 +82,63 @@ public abstract class SuperSvgClass
         }
     }
 
+    /**
+     * @param key
+     *
+     * @return
+     */
     public Object getAttribute(Object key)
     {
         return attributeMap.get(key);
     }
 
+    /**
+     * @return
+     */
     public String getStyleClass()
     {
         return attributeMap.get("class").toString();
     }
 
+    /**
+     * @param styleClass
+     */
     public void setStyleClass(String styleClass)
     {
         putAttribute("class", styleClass);
     }
 
+    /**
+     * @param styleClass
+     * @param property
+     */
     public void setStyleClass(String styleClass, String property)
     {
         setStyleClass(styleClass);
         putProperty("class", property);
     }
 
+    /**
+     * @return
+     */
     public String getStyle()
     {
         return attributeMap.get("style").toString();
     }
 
+    /**
+     * @param style
+     */
     public void setStyle(String style)
     {
         putAttribute("style", style);
     }
 
+    /**
+     * @param writer
+     *
+     * @throws IOException
+     */
     public void encodeBegin(ResponseWriter writer) throws IOException
     {
         writer.startElement(name, null);
@@ -106,13 +152,28 @@ public abstract class SuperSvgClass
         }
     }
 
+    /**
+     * @param writer
+     *
+     * @throws IOException
+     */
     public abstract void encodeMiddle(ResponseWriter writer) throws IOException;
 
+    /**
+     * @param writer
+     *
+     * @throws IOException
+     */
     public void encodeEnd(ResponseWriter writer) throws IOException
     {
         writer.endElement(name);
     }
 
+    /**
+     * @param writer
+     *
+     * @throws IOException
+     */
     public void encodeAll(ResponseWriter writer) throws IOException
     {
         encodeBegin(writer);

@@ -1,5 +1,5 @@
 --------------------------------------------------------
---  File created - Wednesday-November-11-2015   
+--  File created - Thursday-November-12-2015   
 --------------------------------------------------------
 DROP TABLE "EVENT" cascade constraints;
 DROP TABLE "FATHER" cascade constraints;
@@ -11,9 +11,11 @@ DROP TABLE "PLACE" cascade constraints;
 DROP TABLE "REGION" cascade constraints;
 DROP SEQUENCE "PERSON_SEQUENCE";
 DROP SEQUENCE "PLACE_SEQUENCE";
+DROP VIEW "AGE_TO_BIRTH_YEAR_VIEW";
 DROP VIEW "AGE_VIEW";
 DROP VIEW "CHILDREN_VIEW";
 DROP VIEW "PER_DECADE_CLEAN_VIEW";
+DROP VIEW "PER_DECADE_COMBINED_VIEW";
 DROP VIEW "PER_DECADE_VIEW";
 DROP VIEW "REGION_VIEW";
 DROP VIEW "REGION_VIEW_TEST";
@@ -106,11 +108,23 @@ DROP VIEW "SPOUSE_VIEW_TEST";
 	"PLACE_ID" NUMBER
    ) ;
 --------------------------------------------------------
+--  DDL for View AGE_TO_BIRTH_YEAR_VIEW
+--------------------------------------------------------
+
+  CREATE OR REPLACE VIEW "AGE_TO_BIRTH_YEAR_VIEW" ("AGE", "YEAR") AS 
+  SELECT AGE_VIEW.AGE, YEAR
+FROM PERSON,
+  AGE_VIEW,
+  EVENT
+WHERE PERSON.ID = AGE_VIEW.PERSON_ID
+  AND AGE_VIEW.PERSON_ID = EVENT.PERSON_ID
+  AND EVENT.TYPE = 'birth';
+--------------------------------------------------------
 --  DDL for View AGE_VIEW
 --------------------------------------------------------
 
-  CREATE OR REPLACE VIEW "AGE_VIEW" ("AGE") AS 
-  SELECT (D.YEAR-B.YEAR) AS AGE
+  CREATE OR REPLACE VIEW "AGE_VIEW" ("PERSON_ID", "AGE") AS 
+  SELECT B.PERSON_ID, (D.YEAR-B.YEAR) AS AGE
 FROM EVENT B,EVENT D
 WHERE B.PERSON_ID=D.PERSON_ID
 AND B.TYPE='birth'
@@ -144,40 +158,56 @@ FROM
 FROM
   (
     SELECT COUNT( * ) COUNT,
-      ( YEAR - MOD( YEAR,10 ) ) DECADE
-    FROM EVENT
-    WHERE TYPE = 'birth'
-      AND YEAR IS NOT NULL
-      AND( NOT PERSON_ID IN
-      (
-        SELECT PERSON_ID FROM EVENT WHERE TYPE = 'death'
-      )
-      OR EXISTS
-      (
-        SELECT * FROM EVENT WHERE TYPE = 'death' AND YEAR IS NULL
-      ) )
-    GROUP BY( YEAR - MOD( YEAR,10 ) )
-  )
-  BIRTH
-FULL OUTER JOIN
-  (
-    SELECT COUNT( * ) COUNT,
-      ( YEAR - MOD( YEAR,10 ) ) DECADE
-    FROM EVENT
-    WHERE TYPE = 'death'
-      AND YEAR IS NOT NULL
-      AND( NOT PERSON_ID IN
+      ( D.YEAR - AVERAGE - MOD( D.YEAR - AVERAGE,10 ) ) DECADE
+    FROM EVENT D, (SELECT AVG(AGE) AVERAGE FROM AGE_VIEW)
+    WHERE D.TYPE = 'death'
+      AND D.YEAR IS NOT NULL
+      AND( D.PERSON_ID NOT IN
       (
         SELECT PERSON_ID FROM EVENT WHERE TYPE = 'birth'
       )
       OR EXISTS
       (
-        SELECT * FROM EVENT WHERE TYPE = 'birth' AND YEAR IS NULL
+        SELECT * FROM EVENT B WHERE B.TYPE = 'birth' AND B.YEAR IS NULL AND B.PERSON_ID=D.PERSON_ID
       ) )
-    GROUP BY( YEAR - MOD( YEAR,10 ) )
+    GROUP BY( D.YEAR - AVERAGE - MOD( D.YEAR - AVERAGE,10 ) )
+  )
+  BIRTH
+FULL OUTER JOIN
+  (
+    SELECT COUNT( * ) COUNT,
+      ( B.YEAR + AVERAGE - MOD( B.YEAR + AVERAGE ,10 ) ) DECADE
+    FROM EVENT B, (SELECT AVG(AGE) AVERAGE FROM AGE_VIEW)
+    WHERE B.TYPE = 'birth'
+      AND B.YEAR IS NOT NULL
+      AND( B.PERSON_ID NOT IN
+      (
+        SELECT PERSON_ID FROM EVENT WHERE TYPE = 'death'
+      )
+      OR EXISTS
+      (
+        SELECT * FROM EVENT D WHERE D.TYPE = 'death' AND D.YEAR IS NULL AND D.PERSON_ID=B.PERSON_ID
+      ) )
+    GROUP BY( B.YEAR + AVERAGE - MOD( B.YEAR + AVERAGE ,10 ) )
   )
   DEATH
 ON BIRTH.DECADE = DEATH.DECADE
+ORDER BY DECADE;
+--------------------------------------------------------
+--  DDL for View PER_DECADE_COMBINED_VIEW
+--------------------------------------------------------
+
+  CREATE OR REPLACE VIEW "PER_DECADE_COMBINED_VIEW" ("BIRTHS", "DEATHS", "DECADE") AS 
+  SELECT SUM( BIRTHS ) BIRTHS,
+  SUM( DEATHS ) DEATHS,
+  DECADE
+FROM
+  (
+    SELECT * FROM PER_DECADE_VIEW
+    UNION
+    SELECT * FROM PER_DECADE_CLEAN_VIEW
+  )
+GROUP BY DECADE
 ORDER BY DECADE;
 --------------------------------------------------------
 --  DDL for View PER_DECADE_VIEW
@@ -255,18 +285,6 @@ FROM MARRIAGE M;
 FROM PERSON P, PERSON S, SPOUSE_VIEW SV
 WHERE P.ID = SV.ID AND S.ID = SV.SPOUSE_ID;
 --------------------------------------------------------
---  DDL for Index REGION_PK
---------------------------------------------------------
-
-  CREATE UNIQUE INDEX "REGION_PK" ON "REGION" ("PLACE_ID") 
-  ;
---------------------------------------------------------
---  DDL for Index MARRIAGE_PK
---------------------------------------------------------
-
-  CREATE UNIQUE INDEX "MARRIAGE_PK" ON "MARRIAGE" ("HUSBAND", "WIFE") 
-  ;
---------------------------------------------------------
 --  DDL for Index EVENT_PK
 --------------------------------------------------------
 
@@ -279,16 +297,22 @@ WHERE P.ID = SV.ID AND S.ID = SV.SPOUSE_ID;
   CREATE UNIQUE INDEX "FATHER_PK" ON "FATHER" ("CHILD_ID") 
   ;
 --------------------------------------------------------
---  DDL for Index PLACE_PK
---------------------------------------------------------
-
-  CREATE UNIQUE INDEX "PLACE_PK" ON "PLACE" ("ID") 
-  ;
---------------------------------------------------------
 --  DDL for Index GENDER_PK
 --------------------------------------------------------
 
   CREATE UNIQUE INDEX "GENDER_PK" ON "GENDER" ("FULL_WORD") 
+  ;
+--------------------------------------------------------
+--  DDL for Index MARRIAGE_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "MARRIAGE_PK" ON "MARRIAGE" ("HUSBAND", "WIFE") 
+  ;
+--------------------------------------------------------
+--  DDL for Index MOTHER_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "MOTHER_PK" ON "MOTHER" ("CHILD_ID") 
   ;
 --------------------------------------------------------
 --  DDL for Index PERSON_PK
@@ -297,10 +321,16 @@ WHERE P.ID = SV.ID AND S.ID = SV.SPOUSE_ID;
   CREATE UNIQUE INDEX "PERSON_PK" ON "PERSON" ("ID") 
   ;
 --------------------------------------------------------
---  DDL for Index MOTHER_PK
+--  DDL for Index PLACE_PK
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "MOTHER_PK" ON "MOTHER" ("CHILD_ID") 
+  CREATE UNIQUE INDEX "PLACE_PK" ON "PLACE" ("ID") 
+  ;
+--------------------------------------------------------
+--  DDL for Index REGION_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "REGION_PK" ON "REGION" ("PLACE_ID") 
   ;
 --------------------------------------------------------
 --  Constraints for Table FATHER

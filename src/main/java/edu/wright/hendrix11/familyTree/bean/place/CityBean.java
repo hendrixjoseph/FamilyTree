@@ -33,6 +33,9 @@ public class CityBean extends AbstractBean<City> implements Serializable
     @EJB
     private DataBean<City, Integer> cityDataBean;
 
+    /**
+     *
+     */
     @Override
     @PostConstruct
     protected void initialize()

@@ -34,6 +34,9 @@ public class SinglePersonEventBean extends AbstractBean<SinglePersonEvent> imple
     @EJB
     private DataBean<SinglePersonEvent, Person> eventDataBean;
 
+    /**
+     *
+     */
     @Override
     @PostConstruct
     protected void initialize()

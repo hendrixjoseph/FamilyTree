@@ -17,11 +17,18 @@ package edu.wright.hendrix11.svg.component.shape;
  */
 public class Circle extends RoundShape
 {
+
+    /**
+     *
+     */
     public Circle()
     {
         super("circle");
     }
 
+    /**
+     * @param r
+     */
     public void setRadius(Number r)
     {
         putAttribute("r", r);

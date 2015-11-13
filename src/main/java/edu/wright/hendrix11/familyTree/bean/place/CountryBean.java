@@ -33,6 +33,9 @@ public class CountryBean extends AbstractBean<Country> implements Serializable
     @EJB
     private DataBean<Country, Integer> countryDataBean;
 
+    /**
+     *
+     */
     @Override
     @PostConstruct
     protected void initialize()

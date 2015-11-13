@@ -27,23 +27,37 @@ public abstract class PolyShape extends SvgComponent
 {
     List<Point> points = new ArrayList<>();
 
+    /**
+     * @param name
+     */
     protected PolyShape(String name)
     {
         super(name);
     }
 
+    /**
+     * @param points
+     */
     public void setPoints(List<Point> points)
     {
         this.points = points;
         processPoints();
     }
 
+    /**
+     * @param point
+     */
     public void addPoint(Point point)
     {
         points.add(point);
         processPoints();
     }
 
+    /**
+     * @param writer
+     *
+     * @throws IOException
+     */
     @Override
     public void encodeMiddle(ResponseWriter writer) throws IOException
     {
@@ -64,11 +78,18 @@ public abstract class PolyShape extends SvgComponent
         putAttribute("points", sb.toString());
     }
 
+    /**
+     *
+     */
     public class Point
     {
         private Number x;
         private Number y;
 
+        /**
+         * @param x
+         * @param y
+         */
         public Point(Number x, Number y)
         {
             this.x = x;

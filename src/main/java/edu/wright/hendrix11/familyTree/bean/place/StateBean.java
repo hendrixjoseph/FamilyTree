@@ -33,6 +33,9 @@ public class StateBean extends AbstractBean<State> implements Serializable
     @EJB
     private DataBean<State, Integer> stateDataBean;
 
+    /**
+     *
+     */
     @Override
     @PostConstruct
     protected void initialize()

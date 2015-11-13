@@ -34,6 +34,9 @@ public class DeathBean extends AbstractBean<Death> implements Serializable
     @EJB
     private DataBean<Death, Person> deathDataBean;
 
+    /**
+     *
+     */
     @Override
     @PostConstruct
     protected void initialize()

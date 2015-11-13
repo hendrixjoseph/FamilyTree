@@ -24,6 +24,14 @@ public class Matrix extends Transform
     private Number e;
     private Number f;
 
+    /**
+     * @param a
+     * @param b
+     * @param c
+     * @param d
+     * @param e
+     * @param f
+     */
     public Matrix(Number a, Number b, Number c, Number d, Number e, Number f)
     {
         this.a = a != null ? a : 0;

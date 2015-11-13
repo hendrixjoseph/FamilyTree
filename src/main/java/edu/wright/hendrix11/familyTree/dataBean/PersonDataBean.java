@@ -28,7 +28,6 @@ import java.math.BigDecimal;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -76,36 +75,41 @@ public class PersonDataBean extends DataBean<Person, Integer>
         return countQuery.getSingleResult();
     }
 
+    /**
+     * @return
+     */
     public double averageAge()
     {
         String averageQuery = "SELECT AVG(AGE) FROM AGE_VIEW";
 
-        double avg = ( (BigDecimal) em.createNativeQuery(averageQuery).getSingleResult() ).doubleValue();
-
-        return avg;
+        return ( (BigDecimal) em.createNativeQuery(averageQuery).getSingleResult() ).doubleValue();
     }
 
-    public Map<String,Integer> ages()
+    /**
+     * @return
+     */
+    public Map<String, Integer> ages()
     {
-        Map<String,Integer> ageMap = new LinkedHashMap<>();
+        Map<String, Integer> ageMap = new LinkedHashMap<>();
 
         StringBuilder sb = new StringBuilder("SELECT COUNT(AGE),AGE FROM AGE_VIEW ");
         sb.append("GROUP BY AGE ORDER BY AGE");
 
         Query query = em.createNativeQuery(sb.toString());
 
-        List list = query.getResultList();
+        List<Object[]> list = query.getResultList();
 
-        for(Object object : list)
+        for ( Object[] o : list )
         {
-            Object[] o = (Object[])object;
-
-            ageMap.put(o[1].toString(),((Number)o[0]).intValue());
+            ageMap.put(o[1].toString(), ( (Number) o[0] ).intValue());
         }
 
         return ageMap;
     }
 
+    /**
+     * @return
+     */
     public Map<String, Integer[]> perDecadeCombined()
     {
         Query query = em.createNativeQuery("SELECT * FROM PER_DECADE_COMBINED_VIEW");
@@ -113,6 +117,9 @@ public class PersonDataBean extends DataBean<Person, Integer>
         return processDecades(query.getResultList());
     }
 
+    /**
+     * @return
+     */
     public Map<String, Integer[]> perDecadeClean()
     {
         Query query = em.createNativeQuery("SELECT * FROM PER_DECADE_CLEAN_VIEW");
@@ -120,6 +127,9 @@ public class PersonDataBean extends DataBean<Person, Integer>
         return processDecades(query.getResultList());
     }
 
+    /**
+     * @return
+     */
     public Map<String, Integer[]> perDecade()
     {
         Query query = em.createNativeQuery("SELECT * FROM PER_DECADE_VIEW");

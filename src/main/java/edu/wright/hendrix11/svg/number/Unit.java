@@ -13,6 +13,8 @@
 package edu.wright.hendrix11.svg.number;
 
 /**
+ * @param <N>
+ *
  * @author Joe Hendrix
  */
 public class Unit<N extends Number & Comparable> extends Number
@@ -20,67 +22,127 @@ public class Unit<N extends Number & Comparable> extends Number
     N number;
     String unit;
 
+    /**
+     * @param number
+     * @param unit
+     */
     public Unit(N number, String unit)
     {
         this(unit);
         this.number = number;
     }
 
+    /**
+     * @param unit
+     */
     public Unit(String unit)
     {
         this.unit = unit;
     }
 
+    /**
+     * @param d
+     *
+     * @return
+     */
     public Unit<Double> subtract(double d)
     {
-        return new Unit<Double>(number.doubleValue() - d, unit);
+        return new Unit<>(number.doubleValue() - d, unit);
     }
 
+    /**
+     * @param i
+     *
+     * @return
+     */
     public Unit<Integer> subtract(int i)
     {
-        return new Unit<Integer>(number.intValue() - i, unit);
+        return new Unit<>(number.intValue() - i, unit);
     }
 
+    /**
+     * @param d
+     *
+     * @return
+     */
     public Unit<Double> add(double d)
     {
-        return new Unit<Double>(number.doubleValue() + d, unit);
+        return new Unit<>(number.doubleValue() + d, unit);
     }
 
+    /**
+     * @param i
+     *
+     * @return
+     */
     public Unit<Integer> add(int i)
     {
-        return new Unit<Integer>(number.intValue() + i, unit);
+        return new Unit<>(number.intValue() + i, unit);
     }
 
+    /**
+     * @param d
+     *
+     * @return
+     */
     public Unit<Double> divide(double d)
     {
-        return new Unit<Double>(number.doubleValue() / d, unit);
+        return new Unit<>(number.doubleValue() / d, unit);
     }
 
+    /**
+     * @param i
+     *
+     * @return
+     */
     public Unit<Integer> divide(int i)
     {
-        return new Unit<Integer>(number.intValue() / i, unit);
+        return new Unit<>(number.intValue() / i, unit);
     }
-    
+
+    /**
+     * @param d
+     *
+     * @return
+     */
     public Unit<Double> multiply(double d)
     {
-        return new Unit<Double>(number.doubleValue() * d, unit);
+        return new Unit<>(number.doubleValue() * d, unit);
     }
 
+    /**
+     * @param i
+     *
+     * @return
+     */
     public Unit<Integer> multiply(int i)
     {
-        return new Unit<Integer>(number.intValue() * i, unit);
+        return new Unit<>(number.intValue() * i, unit);
     }
 
+    /**
+     * @param n
+     *
+     * @return
+     */
     public boolean lessThan(Number n)
     {
         return number.compareTo(n) < 0;
     }
-    
+
+    /**
+     * @param n
+     *
+     * @return
+     */
     public boolean greaterThan(Number n)
     {
         return number.compareTo(n) > 0;
     }
 
+    /**
+     * @return
+     */
     public N getNumber()
     {
         return number;
@@ -121,7 +183,7 @@ public class Unit<N extends Number & Comparable> extends Number
     {
         if ( object instanceof Unit )
         {
-            Unit other = (Unit) object;
+            Unit<?> other = (Unit<?>) object;
             return number.equals(other.getNumber()) && unit.equals(other.unit);
         }
         else if ( object instanceof Number )

@@ -20,16 +20,26 @@ import edu.wright.hendrix11.svg.transform.Transform;
  */
 public abstract class SvgComponent extends SuperSvgClass
 {
+
+    /**
+     * @param name
+     */
     protected SvgComponent(String name)
     {
         super(name);
     }
 
+    /**
+     * @return
+     */
     public Transform getTransform()
     {
         return (Transform) getAttribute("transform");
     }
 
+    /**
+     * @param transform
+     */
     public void setTransform(Transform transform)
     {
         putAttribute("transform", transform);

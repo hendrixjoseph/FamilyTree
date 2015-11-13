@@ -29,7 +29,6 @@ import javax.faces.render.FacesRenderer;
 import javax.faces.render.Renderer;
 
 import java.io.IOException;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -98,7 +97,7 @@ public class BarChartRenderer extends Renderer
 
         svg.addComponent(xAxisAndBars);
 
-        if ( model.getClass().getName().equals(ChartArrayModel.class.getName()))
+        if ( model.getClass().getName().equals(ChartArrayModel.class.getName()) )
         {
             svg.addComponent(createLegend((ChartArrayModel<?>) model));
         }
@@ -123,7 +122,7 @@ public class BarChartRenderer extends Renderer
         {
             if ( model instanceof ChartArrayModel )
             {
-                ChartArrayModel arrayModel = (ChartArrayModel) model;
+                ChartArrayModel<?> arrayModel = (ChartArrayModel<?>) model;
 
                 Number[] data = arrayModel.getData(label);
 
@@ -153,9 +152,9 @@ public class BarChartRenderer extends Renderer
                     xBar = xBar.add(barWidth.doubleValue());
                 }
             }
-            else if(model instanceof ChartSingleModel)
+            else if ( model instanceof ChartSingleModel )
             {
-                ChartSingleModel singleModel = (ChartSingleModel)model;
+                ChartSingleModel<?> singleModel = (ChartSingleModel<?>) model;
 
                 double datum = singleModel.getData(label).doubleValue();
 
@@ -264,7 +263,6 @@ public class BarChartRenderer extends Renderer
 
         xAxis.setTransform(new Translate(0, height));
 
-        Percent<Double> x = Percent.ZERO;
         Percent<Double> startX = Percent.ZERO;
         Percent<Double> endX;
         Percent<Double> labelWidth = width.divide(model.getNumLabels().doubleValue());
