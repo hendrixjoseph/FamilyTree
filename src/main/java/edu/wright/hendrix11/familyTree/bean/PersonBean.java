@@ -12,14 +12,8 @@
 
 package edu.wright.hendrix11.familyTree.bean;
 
-import org.primefaces.model.chart.PieChartModel;
-
 import edu.wright.hendrix11.familyTree.dataBean.PersonDataBean;
-import edu.wright.hendrix11.familyTree.entity.Gender;
 import edu.wright.hendrix11.familyTree.entity.Person;
-import edu.wright.hendrix11.svg.jsf.ChartArrayModel;
-import edu.wright.hendrix11.svg.jsf.ChartModel;
-import edu.wright.hendrix11.svg.jsf.ChartSingleModel;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -27,117 +21,19 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import java.io.Serializable;
-import java.util.logging.Logger;
 
-/**
- * @author Joe
- */
 @Named
 @ViewScoped
 public class PersonBean extends AbstractBean<Person> implements Serializable
 {
-    private static final Logger LOG = Logger.getLogger(PersonBean.class.getName());
-    ChartArrayModel<Integer> perDecadeModel;
-    ChartArrayModel<Integer> perDecadeCleanModel;
-    ChartArrayModel<Integer> perDecadeCombinedModel;
-    ChartSingleModel<Integer> ageModel;
-
     @EJB
     private PersonDataBean personDataBean;
-    private PieChartModel genderPie;
 
-    /**
-     *
-     */
     @Override
     @PostConstruct
     protected void initialize()
     {
+        personDataBean.initialize(Person.class);
         super.initialize(personDataBean);
-
-        perDecadeModel = new ChartArrayModel<>();
-        perDecadeModel.setData(personDataBean.perDecade());
-        setupPerDecadeModel(perDecadeModel);
-        perDecadeModel.setTitle("Births and deaths per decade");
-
-        perDecadeCleanModel = new ChartArrayModel<>();
-        perDecadeCleanModel.setData(personDataBean.perDecadeClean());
-        setupPerDecadeModel(perDecadeCleanModel);
-        perDecadeCleanModel.setTitle("Births and deaths per decade (estimated assuming average age)");
-
-        perDecadeCombinedModel = new ChartArrayModel<>();
-        perDecadeCombinedModel.setData(personDataBean.perDecadeCombined());
-        setupPerDecadeModel(perDecadeCombinedModel);
-        perDecadeCombinedModel.setTitle("Births and deaths per decade (estimated and known)");
-
-        ageModel = new ChartSingleModel<>();
-        ageModel.setData(personDataBean.ages());
-        ageModel.setTitle("Ages");
-        ageModel.setyAxisLabel("people");
-        ageModel.setxAxisLabel("years");
-
-        initializeGenderPie();
-    }
-
-    /**
-     * @return
-     */
-    public ChartArrayModel<Integer> getPerDecadeCombinedModel()
-    {
-        return perDecadeCombinedModel;
-    }
-
-    /**
-     * @return
-     */
-    public ChartArrayModel<Integer> getPerDecadeCleanModel()
-    {
-        return perDecadeCleanModel;
-    }
-
-    /**
-     * @return
-     */
-    public ChartModel<?> getPerDecadeModel()
-    {
-        return perDecadeModel;
-    }
-
-    /**
-     * @return
-     */
-    public ChartSingleModel<Integer> getAgeModel()
-    {
-        return ageModel;
-    }
-
-    /**
-     * @return
-     */
-    public PieChartModel getGenderPie()
-    {
-        return genderPie;
-    }
-
-    private void setupPerDecadeModel(ChartArrayModel<Integer> perDecadeModel)
-    {
-        String[] barLabels = {"births", "deaths"};
-        perDecadeModel.setBarLabels(barLabels);
-        perDecadeModel.setxAxisLabel("decade");
-        perDecadeModel.setyAxisLabel("people");
-    }
-
-    private void initializeGenderPie()
-    {
-        genderPie = new PieChartModel();
-
-        Number numMales = personDataBean.countGender(Gender.MALE);
-        Number numFemales = personDataBean.countGender(Gender.FEMALE);
-
-        genderPie.set("Males", numMales);
-        genderPie.set("Females", numFemales);
-
-        genderPie.setLegendPosition("w");
-        genderPie.setShowDataLabels(true);
     }
 }

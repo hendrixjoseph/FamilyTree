@@ -10,7 +10,7 @@
  *
  */
 
-package edu.wright.hendrix11.svg.jsf;
+package edu.wright.hendrix11.svg.jsf.barChart;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -21,22 +21,16 @@ import java.util.Set;
  *
  * @author Joe Hendrix
  */
-public class ChartSingleModel<N extends Number & Comparable> extends ChartModel<N>
+public class BarChartSingleModel<N extends Number & Comparable<N>> extends BarChartModel<N>
 {
     private Map<String, N> data = new LinkedHashMap<>();
 
-    /**
-     * @return
-     */
     @Override
     public Map<String, N> getData()
     {
         return data;
     }
 
-    /**
-     * @param data
-     */
     public void setData(Map<String, N> data)
     {
         this.data = data;

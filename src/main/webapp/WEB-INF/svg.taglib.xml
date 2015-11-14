@@ -20,13 +20,35 @@
     <tag>
         <tag-name>barChart</tag-name>
         <component>
-            <component-type>edu.wright.hendrix11.svg.jsf.BarChartComponent</component-type>
-            <renderer-type>edu.wright.hendrix11.svg.jsf.BarChartRenderer</renderer-type>
+            <component-type>edu.wright.hendrix11.svg.jsf.barChart.BarChartComponent</component-type>
+            <renderer-type>edu.wright.hendrix11.svg.jsf.barChart.BarChartRenderer</renderer-type>
         </component>
         <attribute>
             <name>chartModel</name>
             <required>true</required>
-            <type>edu.wright.hendrix11.svg.jsf.ChartModel</type>
+            <type>edu.wright.hendrix11.svg.jsf.barChart.BarChartModel</type>
+        </attribute>
+        <attribute>
+            <name>height</name>
+            <required>true</required>
+            <type>java.lang.Number</type>
+        </attribute>
+        <attribute>
+            <name>styleClass</name>
+            <required>true</required>
+            <type>java.lang.String</type>
+        </attribute>
+    </tag>
+    <tag>
+        <tag-name>scatterPlot</tag-name>
+        <component>
+            <component-type>edu.wright.hendrix11.svg.jsf.scatterPlot.ScatterPlotComponent</component-type>
+            <renderer-type>edu.wright.hendrix11.svg.jsf.scatterPlot.ScatterPlotRenderer</renderer-type>
+        </component>
+        <attribute>
+            <name>chartModel</name>
+            <required>true</required>
+            <type>edu.wright.hendrix11.svg.jsf.scatterPlot.ScatterPlotModel</type>
         </attribute>
         <attribute>
             <name>width</name>

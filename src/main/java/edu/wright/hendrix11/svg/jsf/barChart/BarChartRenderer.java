@@ -10,13 +10,14 @@
  *
  */
 
-package edu.wright.hendrix11.svg.jsf;
+package edu.wright.hendrix11.svg.jsf.barChart;
 
 import edu.wright.hendrix11.svg.Svg;
 import edu.wright.hendrix11.svg.component.Group;
 import edu.wright.hendrix11.svg.component.Text;
 import edu.wright.hendrix11.svg.component.shape.Line;
 import edu.wright.hendrix11.svg.component.shape.Rectangle;
+import edu.wright.hendrix11.svg.jsf.SvgJsfComponent;
 import edu.wright.hendrix11.svg.number.Em;
 import edu.wright.hendrix11.svg.number.Percent;
 import edu.wright.hendrix11.svg.transform.Rotate;
@@ -29,12 +30,13 @@ import javax.faces.render.FacesRenderer;
 import javax.faces.render.Renderer;
 
 import java.io.IOException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  * @author Joe Hendrix
  */
-@FacesRenderer(rendererType = BarChartComponent.DEFAULT_RENDERER, componentFamily = BarChartComponent.COMPONENT_FAMILY)
+@FacesRenderer(rendererType = BarChartComponent.DEFAULT_RENDERER, componentFamily = SvgJsfComponent.COMPONENT_FAMILY)
 public class BarChartRenderer extends Renderer
 {
     private static final Logger LOG = Logger.getLogger(BarChartRenderer.class.getName());
@@ -46,12 +48,14 @@ public class BarChartRenderer extends Renderer
     private static final Percent<Integer> Y_AXIS_POSITION = new Percent<>(5);
 
     Percent<Double> width;
-    private ChartModel<?> model;
+    private BarChartModel<?> model;
 
     @Override
     public void encodeEnd(FacesContext context, UIComponent component) throws IOException
     {
         super.encodeEnd(context, component);
+
+        LOG.log(Level.SEVERE, "Why does this need to be here?");
 
         BarChartComponent chart = (BarChartComponent) component;
         model = chart.getChartModel();
@@ -97,9 +101,9 @@ public class BarChartRenderer extends Renderer
 
         svg.addComponent(xAxisAndBars);
 
-        if ( model.getClass().getName().equals(ChartArrayModel.class.getName()) )
+        if ( model.getClass().getName().equals(BarChartArrayModel.class.getName()) )
         {
-            svg.addComponent(createLegend((ChartArrayModel<?>) model));
+            svg.addComponent(createLegend((BarChartArrayModel<?>) model));
         }
 
         svg.encodeAll(writer);
@@ -120,9 +124,9 @@ public class BarChartRenderer extends Renderer
 
         for ( String label : model.getAxisLabels() )
         {
-            if ( model instanceof ChartArrayModel )
+            if ( model instanceof BarChartArrayModel )
             {
-                ChartArrayModel<?> arrayModel = (ChartArrayModel<?>) model;
+                BarChartArrayModel<?> arrayModel = (BarChartArrayModel<?>) model;
 
                 Number[] data = arrayModel.getData(label);
 
@@ -152,9 +156,9 @@ public class BarChartRenderer extends Renderer
                     xBar = xBar.add(barWidth.doubleValue());
                 }
             }
-            else if ( model instanceof ChartSingleModel )
+            else if ( model instanceof BarChartSingleModel )
             {
-                ChartSingleModel<?> singleModel = (ChartSingleModel<?>) model;
+                BarChartSingleModel<?> singleModel = (BarChartSingleModel<?>) model;
 
                 double datum = singleModel.getData(label).doubleValue();
 
@@ -286,7 +290,7 @@ public class BarChartRenderer extends Renderer
         return xAxis;
     }
 
-    private Svg createLegend(ChartArrayModel<?> model)
+    private Svg createLegend(BarChartArrayModel<?> model)
     {
         Svg outer = new Svg();
         outer.setX(Percent.ONE_HUNDRED);

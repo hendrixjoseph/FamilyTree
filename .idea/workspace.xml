@@ -7,58 +7,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e01fcdf7-fba9-4a15-b4e3-2d3aaec35e67" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sql/single_file_export_step_1.jpg" afterPath="$PROJECT_DIR$/sql/single_file_export_step_1.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sql/VIEWS/AGE_VIEW.sql" afterPath="$PROJECT_DIR$/sql/VIEWS/AGE_VIEW.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/AbstractBean.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/AbstractBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/BarChartComponent.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/BarChartComponent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/BarChartRenderer.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/BarChartRenderer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/entity/event/Birth.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/entity/event/Birth.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/event/BirthBean.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/event/BirthBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/event/BurialBean.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/event/BurialBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/ChartArrayModel.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/ChartArrayModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/ChartModel.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/ChartModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/ChartSingleModel.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/ChartSingleModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/component/shape/Circle.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/component/shape/Circle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/place/CityBean.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/place/CityBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/place/CountryBean.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/place/CountryBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/place/CountyBean.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/place/CountyBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/DataBean.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/DataBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/entity/event/Death.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/entity/event/Death.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/event/DeathBean.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/event/DeathBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/component/shape/Ellipse.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/component/shape/Ellipse.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/number/Em.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/number/Em.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/component/Group.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/component/Group.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/component/shape/Line.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/component/shape/Line.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/Matrix.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/Matrix.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sql/VIEWS/PER_DECADE_CLEAN_VIEW.sql" afterPath="$PROJECT_DIR$/sql/VIEWS/PER_DECADE_CLEAN_VIEW.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/number/Percent.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/number/Percent.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/CorrelationBean.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/mining/CorrelationDataBean.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/GenericModel.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/scatterPlot/ScatterPlotComponent.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/scatterPlot/ScatterPlotModel.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/scatterPlot/ScatterPlotRenderer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/StatisticsBean.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/mining/StatisticsDataBean.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/correlation.xhtml" />
+      <change type="MOVED" beforePath="C:\Users\Joe\Git\FamilyTree\src\main\java\edu\wright\hendrix11\svg\jsf\BarChartComponent.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/barChart/BarChartComponent.java" />
+      <change type="MOVED" beforePath="C:\Users\Joe\Git\FamilyTree\src\main\java\edu\wright\hendrix11\svg\jsf\BarChartRenderer.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/barChart/BarChartRenderer.java" />
+      <change type="MOVED" beforePath="C:\Users\Joe\Git\FamilyTree\src\main\java\edu\wright\hendrix11\svg\jsf\ChartArrayModel.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/barChart/BarChartArrayModel.java" />
+      <change type="MOVED" beforePath="C:\Users\Joe\Git\FamilyTree\src\main\java\edu\wright\hendrix11\svg\jsf\ChartModel.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/barChart/BarChartModel.java" />
+      <change type="MOVED" beforePath="C:\Users\Joe\Git\FamilyTree\src\main\java\edu\wright\hendrix11\svg\jsf\ChartSingleModel.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/barChart/BarChartSingleModel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/PersonBean.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/PersonBean.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/PersonDataBean.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/PersonDataBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/entity/place/Place.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/entity/place/Place.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/place/PlaceBean.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/place/PlaceBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/component/shape/PolyShape.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/component/shape/PolyShape.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/component/shape/Polygon.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/component/shape/Polygon.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/component/shape/Polyline.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/component/shape/Polyline.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/component/shape/Rectangle.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/component/shape/Rectangle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/Rotate.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/Rotate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/component/shape/RoundShape.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/component/shape/RoundShape.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/Scale.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/Scale.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/event/SinglePersonEventBean.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/event/SinglePersonEventBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/Skew.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/Skew.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/SkewX.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/SkewX.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/SkewY.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/SkewY.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/place/StateBean.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/place/StateBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/SuperSvgClass.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/SuperSvgClass.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/Svg.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/Svg.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/component/SvgComponent.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/component/SvgComponent.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/SvgJsfComponent.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/SvgJsfComponent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/component/Text.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/component/Text.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/Transform.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/Transform.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/Translate.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/Translate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/number/Unit.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/number/Unit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/XyTransform.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/XyTransform.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sql/export.sql" afterPath="$PROJECT_DIR$/sql/export.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/resource/tag/menu.xhtml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/resource/tag/menu.xhtml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/statistics.xhtml" afterPath="$PROJECT_DIR$/src/main/webapp/statistics.xhtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/svg.taglib.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/svg.taglib.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="familyTree.iws" />
@@ -111,106 +79,101 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Em.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/number/Em.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="19" column="35" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="BarChartRenderer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/BarChartRenderer.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/barChart/BarChartRenderer.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="264" column="0" selection-start-line="264" selection-start-column="0" selection-end-line="264" selection-end-column="0" />
+              <caret line="118" column="41" selection-start-line="118" selection-start-column="41" selection-end-line="118" selection-end-column="41" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PersonBean.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/PersonBean.java">
+      <file leaf-file-name="StatisticsBean.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/StatisticsBean.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="100" column="23" selection-start-line="100" selection-start-column="23" selection-end-line="100" selection-end-column="23" />
+              <caret line="53" column="51" selection-start-line="53" selection-start-column="51" selection-end-line="53" selection-end-column="51" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PersonDataBean.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/PersonDataBean.java">
+      <file leaf-file-name="ScatterPlotModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/scatterPlot/ScatterPlotModel.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="102" column="9" selection-start-line="102" selection-start-column="9" selection-end-line="102" selection-end-column="9" />
-              <folding>
-                <marker date="1447388447648" expanded="true" signature="2282:2311" placeholder="SELECT AVG(A..AGE_VIEW..." />
-                <marker date="1447388447648" expanded="true" signature="3100:3138" placeholder="SELECT * FRO..PER_DECADE_COMBINED_VIEW..." />
-                <marker date="1447388447648" expanded="true" signature="3336:3371" placeholder="SELECT * FRO..PER_DECADE_CLEAN_VIEW..." />
-                <marker date="1447388447648" expanded="true" signature="3564:3593" placeholder="SELECT * FRO..PER_DECADE_VIEW..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SvgJsfComponent.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/SvgJsfComponent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="60" column="30" selection-start-line="60" selection-start-column="30" selection-end-line="60" selection-end-column="30" />
+              <caret line="21" column="117" selection-start-line="21" selection-start-column="117" selection-end-line="21" selection-end-column="117" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Unit.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/number/Unit.java">
+      <file leaf-file-name="CorrelationBean.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/CorrelationBean.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="185" column="35" selection-start-line="185" selection-start-column="35" selection-end-line="185" selection-end-column="35" />
+              <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChartArrayModel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/ChartArrayModel.java">
+      <file leaf-file-name="correlation.xhtml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/correlation.xhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
+            <state vertical-scroll-proportion="-9.961538">
+              <caret line="29" column="40" selection-start-line="29" selection-start-column="40" selection-end-line="29" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Skew.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/Skew.java">
+      <file leaf-file-name="svg.taglib.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/svg.taglib.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="37" column="31" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
+              <caret line="50" column="75" selection-start-line="50" selection-start-column="75" selection-end-line="50" selection-end-column="75" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SuperSvgClass.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/SuperSvgClass.java">
+      <file leaf-file-name="BarChartSingleModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/barChart/BarChartSingleModel.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="44" column="31" selection-start-line="44" selection-start-column="31" selection-end-line="44" selection-end-column="31" />
+              <caret line="23" column="65" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="65" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChartModel.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/ChartModel.java">
+      <file leaf-file-name="BarChartModel.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/barChart/BarChartModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.29820627">
-              <caret line="41" column="21" selection-start-line="41" selection-start-column="21" selection-end-line="41" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.39910313">
+              <caret line="25" column="68" selection-start-line="25" selection-start-column="68" selection-end-line="25" selection-end-column="68" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GenericModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/GenericModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BarChartArrayModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/barChart/BarChartArrayModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="32" column="33" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -231,11 +194,11 @@
         <option value="PlacesPage" />
         <option value="PlaceDataBean" />
         <option value="SingePersonEventBean" />
-        <option value="AbstractBean" />
-        <option value="ui composition" />
         <option value="SinglePersonEventsPage" />
         <option value="CSS File" />
         <option value="Tag Library Descriptor" />
+        <option value="AbstractBean" />
+        <option value="ui composition" />
         <option value="Class" />
       </list>
     </option>
@@ -252,23 +215,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/faces/CustomBarRenderer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/faces/CustomChart.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/AbstractSvgComponent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/Transform.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/Group.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/SvgComponent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/Translate.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/Rectangle.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/Text.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/faces/CustomChartRenderer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/number/DoublePercent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/number/NumberPercent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/faces/ChartModel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/component/shape/RoundShape.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/component/shape/PolyShape.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/Rotate.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/Transform.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/XyTransform.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/svg.tld" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/hendrix11.taglib.xml" />
@@ -276,7 +222,6 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/index.xhtml" />
         <option value="$PROJECT_DIR$/src/main/webapp/marriages.xhtml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/persons.xhtml" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/resource/tag/childTable.xhtml" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/CustomChartRenderer.java" />
@@ -288,21 +233,39 @@
         <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/component/shape/Line.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/ChartRenderer.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/ChartComponent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/BarChartComponent.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/svg.taglib.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/resource/css/chart.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/resource/css/familyTree.css" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/ChartModel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/ChartSingleModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/number/Percent.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/statistics.xhtml" />
         <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/number/Em.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/PersonBean.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/PersonDataBean.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/SvgJsfComponent.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/number/Unit.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/ChartArrayModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/ScatterPlotComponent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/BarChartComponent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/ScatterPlotRenderer.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/BarChartRenderer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/PersonDataBean.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/PersonBean.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/persons.xhtml" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/StatisticsBean.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/StatisticsDataBean.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/resource/tag/menu.xhtml" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/mining/CorrelationDataBean.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/ScatterPlotModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/ChartSingleModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/ChartArrayModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/BarChartArrayModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/ChartModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/BarChartModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/SvgJsfComponent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/barChart/BarChartComponent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/CorrelationBean.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/svg.taglib.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/correlation.xhtml" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/GenericModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/scatterPlot/ScatterPlotModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/barChart/BarChartArrayModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/barChart/BarChartSingleModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/barChart/BarChartModel.java" />
       </list>
     </option>
   </component>
@@ -598,33 +561,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="familyTree" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FamilyTree" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="events" />
+              <option name="myItemId" value="tag" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -728,6 +665,116 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="svg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jsf" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="familyTree" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FamilyTree" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hendrix11" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="svg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jsf" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scatterPlot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="familyTree" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FamilyTree" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hendrix11" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="svg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jsf" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="barChart" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="familyTree" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FamilyTree" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hendrix11" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="familyTree" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -763,6 +810,44 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="bean" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="familyTree" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FamilyTree" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hendrix11" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="familyTree" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bean" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mining" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -815,7 +900,7 @@
       <recent name="edu.wright.hendrix11.familyTree.entity.place" />
     </key>
   </component>
-  <component name="RunManager" selected="Maven.familyTree [site]">
+  <component name="RunManager" selected="GlassFish Server.GlassFish">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
@@ -1245,7 +1330,7 @@
       <workItem from="1447209741232" duration="20670000" />
       <workItem from="1447277414653" duration="9921000" />
       <workItem from="1447368836535" duration="2561000" />
-      <workItem from="1447386417764" duration="1707000" />
+      <workItem from="1447386417764" duration="8721000" />
     </task>
     <task id="LOCAL-00001" summary="whole bunch of EJB nonsense just to update...">
       <created>1445570986124</created>
@@ -1263,11 +1348,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="243403000" />
+    <option name="totallyTimeSpent" value="250417000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="122" y="12" width="1394" height="821" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959327" sideWeight="0.5054308" order="7" side_tool="true" content_ui="tabs" />
@@ -1282,6 +1367,7 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3997195" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959327" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3997195" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1299,7 +1385,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24981897" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959327" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1331,76 +1416,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/component/shape/Circle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26444444">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/component/shape/RoundShape.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.92444444">
-          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/component/shape/Polyline.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26444444">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/Matrix.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26444444">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/Rotate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="32" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/Scale.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/SkewX.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/SkewY.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/Translate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5466667">
-          <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/XyTransform.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.92444444">
-          <caret line="35" column="8" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/transform/Transform.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2822222">
@@ -1437,13 +1452,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/persons.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.346154">
-          <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/resource/tag/childTable.xhtml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.153846">
@@ -1459,13 +1467,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/resource/tag/googleMapLink.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/resource/tag/menu.xhtml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1547,14 +1548,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/svg.taglib.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/resource/css/familyTree.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1566,14 +1559,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="30" column="15" selection-start-line="30" selection-start-column="15" selection-end-line="30" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/BarChartComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="7" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1593,26 +1578,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/statistics.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="64" selection-start-line="34" selection-start-column="64" selection-end-line="34" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/component/shape/PolyShape.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="61" column="16" selection-start-line="61" selection-start-column="16" selection-end-line="61" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/ChartSingleModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3325">
-          <caret line="50" column="11" selection-start-line="50" selection-start-column="11" selection-end-line="50" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -1633,14 +1602,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/DataBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3325">
-          <caret line="229" column="20" selection-start-line="229" selection-start-column="20" selection-end-line="229" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/number/Em.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1649,47 +1610,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/PersonBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="100" column="23" selection-start-line="100" selection-start-column="23" selection-end-line="100" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/PersonDataBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="102" column="9" selection-start-line="102" selection-start-column="9" selection-end-line="102" selection-end-column="9" />
-          <folding>
-            <marker date="1447388447648" expanded="true" signature="2282:2311" placeholder="SELECT AVG(A..AGE_VIEW..." />
-            <marker date="1447388447648" expanded="true" signature="3100:3138" placeholder="SELECT * FRO..PER_DECADE_COMBINED_VIEW..." />
-            <marker date="1447388447648" expanded="true" signature="3336:3371" placeholder="SELECT * FRO..PER_DECADE_CLEAN_VIEW..." />
-            <marker date="1447388447648" expanded="true" signature="3564:3593" placeholder="SELECT * FRO..PER_DECADE_VIEW..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/SvgJsfComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="60" column="30" selection-start-line="60" selection-start-column="30" selection-end-line="60" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/number/Unit.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="185" column="35" selection-start-line="185" selection-start-column="35" selection-end-line="185" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/ChartArrayModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
           <folding />
         </state>
       </provider>
@@ -1710,18 +1634,193 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/BarChartRenderer.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/scatterPlot/ScatterPlotComponent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="264" column="0" selection-start-line="264" selection-start-column="0" selection-end-line="264" selection-end-column="0" />
+          <caret line="22" column="57" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/ChartModel.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/scatterPlot/ScatterPlotRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29820627">
-          <caret line="41" column="21" selection-start-line="41" selection-start-column="21" selection-end-line="41" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.46636772">
+          <caret line="26" column="102" selection-start-line="26" selection-start-column="102" selection-end-line="26" selection-end-column="102" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/IndividualBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/persons.xhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="4.2904763">
+          <caret line="106" column="55" selection-start-line="106" selection-start-column="45" selection-end-line="106" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/PersonBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/PersonDataBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="35" column="10" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/DataBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="229" column="20" selection-start-line="229" selection-start-column="20" selection-end-line="229" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/statistics.xhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="6.076923">
+          <caret line="15" column="60" selection-start-line="15" selection-start-column="60" selection-end-line="15" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/resource/tag/menu.xhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.615385">
+          <caret line="93" column="75" selection-start-line="93" selection-start-column="75" selection-end-line="93" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/mining/StatisticsDataBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.21605839">
+          <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="88" selection-end-column="85" />
+          <folding>
+            <marker date="1447463046533" expanded="true" signature="-1:-1" placeholder="SELECT AVG(A..AGE_VIEW..." />
+            <marker date="1447463046533" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..PER_DECADE_COMBINED_VIEW..." />
+            <marker date="1447463046533" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..PER_DECADE_CLEAN_VIEW..." />
+            <marker date="1447463046533" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..PER_DECADE_VIEW..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/mining/CorrelationDataBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="45" column="19" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
+          <folding>
+            <marker date="1447463296689" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..AGE_TO_BIRTH_YEAR_VIEW..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/SvgJsfComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="49" column="5" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/barChart/BarChartComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="56" column="5" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/CorrelationBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/svg.taglib.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="50" column="75" selection-start-line="50" selection-start-column="75" selection-end-line="50" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/correlation.xhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.961538">
+          <caret line="29" column="40" selection-start-line="29" selection-start-column="40" selection-end-line="29" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/StatisticsBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="53" column="51" selection-start-line="53" selection-start-column="51" selection-end-line="53" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/GenericModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/scatterPlot/ScatterPlotModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="117" selection-start-line="21" selection-start-column="117" selection-end-line="21" selection-end-column="117" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/barChart/BarChartArrayModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="33" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/barChart/BarChartRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="118" column="41" selection-start-line="118" selection-start-column="41" selection-end-line="118" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/barChart/BarChartSingleModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="65" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/barChart/BarChartModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39910313">
+          <caret line="25" column="68" selection-start-line="25" selection-start-column="68" selection-end-line="25" selection-end-column="68" />
           <folding />
         </state>
       </provider>

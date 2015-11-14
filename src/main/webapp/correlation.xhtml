@@ -19,26 +19,17 @@
                 xmlns:svg="http://hendrix11.wright.edu/svg">
 
     <ui:define name="title">
-        Statistics
+        Correlation
     </ui:define>
 
     <ui:define name="menu">
-        <fam:menu currentView="statisticsView" />
+        <fam:menu currentView="correlationView" />
     </ui:define>
 
     <ui:define name="content">
         <p:layoutUnit position="center">
-            <svg:barChart chartModel="#{statisticsBean.perDecadeModel}" height="300" styleClass="perDecadeChart" />
-            <svg:barChart chartModel="#{statisticsBean.perDecadeCleanModel}" height="300"
-                          styleClass="perDecadeCleanChart" />
-            <svg:barChart chartModel="#{statisticsBean.perDecadeCombinedModel}" height="300"
-                          styleClass="perDecadeCombinedChart" />
-            <svg:barChart chartModel="#{statisticsBean.ageModel}" height="300" styleClass="ageChart" />
-            <p:chart type="pie" model="#{statisticsBean.genderPie}" style="width:400px;height:300px;" widgetVar="chart" />
+            <svg:scatterPlot chartModel="#{correlationBean.ageToBirthModel}" height="300" width="300" styleClass="ageToBirthChart" />
         </p:layoutUnit>
-    </ui:define>
-
-    <ui:define name="dialogs">
     </ui:define>
 
 </ui:composition>

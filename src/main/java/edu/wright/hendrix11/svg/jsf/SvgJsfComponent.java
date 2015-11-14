@@ -12,6 +12,8 @@
 
 package edu.wright.hendrix11.svg.jsf;
 
+import edu.wright.hendrix11.svg.jsf.barChart.BarChartModel;
+
 import javax.faces.component.UIComponentBase;
 
 /**
@@ -45,22 +47,6 @@ public abstract class SvgJsfComponent extends UIComponentBase
     public void setStyleClass(String string)
     {
         getStateHelper().put(PropertyKeys.styleClass, string);
-    }
-
-    /**
-     * @return
-     */
-    public ChartModel<?> getChartModel()
-    {
-        return (ChartModel<?>) getStateHelper().eval(PropertyKeys.chartModel, null);
-    }
-
-    /**
-     * @param model
-     */
-    public void setChartModel(ChartModel<?> model)
-    {
-        getStateHelper().put(PropertyKeys.chartModel, model);
     }
 
     /**

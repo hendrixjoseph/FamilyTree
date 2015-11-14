@@ -10,7 +10,7 @@
  *
  */
 
-package edu.wright.hendrix11.svg.jsf;
+package edu.wright.hendrix11.svg.jsf.barChart;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,10 +24,21 @@ import java.util.Set;
  *
  * @author Joe Hendrix
  */
-public class ChartArrayModel<N extends Number & Comparable> extends ChartModel<N>
+public class BarChartArrayModel<N extends Number & Comparable<N>> extends BarChartModel<N>
 {
     private List<String> barLabels = new ArrayList<>();
     private Map<String, N[]> data = new LinkedHashMap<>();
+
+    @Override
+    public Map<String, N[]> getData()
+    {
+        return data;
+    }
+
+    public void setData(Map<String, N[]> data)
+    {
+        this.data = data;
+    }
 
     /**
      * @param barLabels
@@ -51,23 +62,6 @@ public class ChartArrayModel<N extends Number & Comparable> extends ChartModel<N
     public void setBarLabels(List<String> barLabels)
     {
         this.barLabels = barLabels;
-    }
-
-    /**
-     * @return
-     */
-    @Override
-    public Map<String, N[]> getData()
-    {
-        return data;
-    }
-
-    /**
-     * @param data
-     */
-    public void setData(Map<String, N[]> data)
-    {
-        this.data = data;
     }
 
     /**

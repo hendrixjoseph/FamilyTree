@@ -10,7 +10,9 @@
  *
  */
 
-package edu.wright.hendrix11.svg.jsf;
+package edu.wright.hendrix11.svg.jsf.barChart;
+
+import edu.wright.hendrix11.svg.jsf.SvgJsfComponent;
 
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
@@ -26,20 +28,31 @@ public class BarChartComponent extends SvgJsfComponent
     /**
      *
      */
-    public static final String COMPONENT_TYPE = "edu.wright.hendrix11.svg.jsf.BarChartComponent";
+    public static final String COMPONENT_TYPE = "edu.wright.hendrix11.svg.jsf.barChart.BarChartComponent";
 
     /**
      *
      */
-    public static final String DEFAULT_RENDERER = "edu.wright.hendrix11.svg.jsf.BarChartRenderer";
+    public static final String DEFAULT_RENDERER = "edu.wright.hendrix11.svg.jsf.barChart.BarChartRenderer";
 
-    /**
-     *
-     */
     public BarChartComponent()
     {
         setRendererType(DEFAULT_RENDERER);
     }
 
+    /**
+     * @return
+     */
+    public BarChartModel<?> getChartModel()
+    {
+        return (BarChartModel<?>) getStateHelper().eval(PropertyKeys.chartModel, null);
+    }
 
+    /**
+     * @param model
+     */
+    public void setChartModel(BarChartModel<?> model)
+    {
+        getStateHelper().put(PropertyKeys.chartModel, model);
+    }
 }
