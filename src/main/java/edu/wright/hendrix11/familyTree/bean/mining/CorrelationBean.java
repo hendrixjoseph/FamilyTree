@@ -21,7 +21,6 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import java.io.Serializable;
-import java.util.Map;
 
 /**
  * @author Joe Hendrix
@@ -33,7 +32,7 @@ public class CorrelationBean implements Serializable
     @EJB
     CorrelationDataBean dataBean;
 
-    ScatterPlotModel<Integer,Integer> ageToBirthModel;
+    ScatterPlotModel ageToBirthModel;
 
     /**
      *
@@ -45,7 +44,7 @@ public class CorrelationBean implements Serializable
         ageToBirthModel.setData(dataBean.ageToBirthYear());
     }
 
-    public ScatterPlotModel<Integer, Integer> getAgeToBirthModel()
+    public ScatterPlotModel getAgeToBirthModel()
     {
         return ageToBirthModel;
     }

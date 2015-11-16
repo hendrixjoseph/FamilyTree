@@ -17,7 +17,7 @@ package edu.wright.hendrix11.svg.number;
  *
  * @author Joe Hendrix
  */
-public class Unit<N extends Number & Comparable> extends Number
+public class Unit<N extends Number & Comparable<N>> extends Number
 {
     N number;
     String unit;
@@ -125,7 +125,7 @@ public class Unit<N extends Number & Comparable> extends Number
      *
      * @return
      */
-    public boolean lessThan(Number n)
+    public boolean lessThan(N n)
     {
         return number.compareTo(n) < 0;
     }
@@ -135,7 +135,7 @@ public class Unit<N extends Number & Comparable> extends Number
      *
      * @return
      */
-    public boolean greaterThan(Number n)
+    public boolean greaterThan(N n)
     {
         return number.compareTo(n) > 0;
     }

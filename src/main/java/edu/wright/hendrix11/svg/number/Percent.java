@@ -17,7 +17,7 @@ package edu.wright.hendrix11.svg.number;
  *
  * @author Joe Hendrix
  */
-public class Percent<N extends Number & Comparable> extends Unit<N>
+public class Percent<N extends Number & Comparable<N>> extends Unit<N>
 {
 
     /**

@@ -48,14 +48,12 @@ public class BarChartRenderer extends Renderer
     private static final Percent<Integer> Y_AXIS_POSITION = new Percent<>(5);
 
     Percent<Double> width;
-    private BarChartModel<?> model;
+    private BarChartModel model;
 
     @Override
     public void encodeEnd(FacesContext context, UIComponent component) throws IOException
     {
         super.encodeEnd(context, component);
-
-        LOG.log(Level.SEVERE, "Why does this need to be here?");
 
         BarChartComponent chart = (BarChartComponent) component;
         model = chart.getChartModel();
@@ -101,9 +99,9 @@ public class BarChartRenderer extends Renderer
 
         svg.addComponent(xAxisAndBars);
 
-        if ( model.getClass().getName().equals(BarChartArrayModel.class.getName()) )
+        if ( model.hasArrayData() )
         {
-            svg.addComponent(createLegend((BarChartArrayModel<?>) model));
+            svg.addComponent(createLegend(model));
         }
 
         svg.encodeAll(writer);
@@ -124,11 +122,9 @@ public class BarChartRenderer extends Renderer
 
         for ( String label : model.getAxisLabels() )
         {
-            if ( model instanceof BarChartArrayModel )
+            if ( model.hasArrayData() )
             {
-                BarChartArrayModel<?> arrayModel = (BarChartArrayModel<?>) model;
-
-                Number[] data = arrayModel.getData(label);
+                Number[] data = model.getArrayData(label);
 
                 for ( int i = 0; i < data.length; i++ )
                 {
@@ -142,9 +138,9 @@ public class BarChartRenderer extends Renderer
                     bar.setX(xBar);
                     bar.setY(height - datum * barHeightScale);
 
-                    if ( arrayModel.getBarLabels() != null && arrayModel.getBarLabels().size() > i )
+                    if ( model.getBarLabels() != null && model.getBarLabels().size() > i )
                     {
-                        bar.setStyleClass("bar " + arrayModel.getBarLabels().get(i));
+                        bar.setStyleClass("bar " + model.getBarLabels().get(i));
                     }
                     else
                     {
@@ -156,11 +152,9 @@ public class BarChartRenderer extends Renderer
                     xBar = xBar.add(barWidth.doubleValue());
                 }
             }
-            else if ( model instanceof BarChartSingleModel )
+            else
             {
-                BarChartSingleModel<?> singleModel = (BarChartSingleModel<?>) model;
-
-                double datum = singleModel.getData(label).doubleValue();
+                double datum = model.getData(label).doubleValue();
 
                 double barHeight = datum * barHeightScale;
 
@@ -290,7 +284,7 @@ public class BarChartRenderer extends Renderer
         return xAxis;
     }
 
-    private Svg createLegend(BarChartArrayModel<?> model)
+    private Svg createLegend(BarChartModel model)
     {
         Svg outer = new Svg();
         outer.setX(Percent.ONE_HUNDRED);

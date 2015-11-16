@@ -38,9 +38,9 @@ public class CorrelationDataBean
 
         Map<Integer, Integer> map = new HashMap<>();
 
-        for(Number[] number : list)
+        for ( Number[] number : list )
         {
-            map.put(number[0].intValue(),number[1].intValue());
+            map.put(number[0].intValue(), number[1].intValue());
         }
 
         return map;

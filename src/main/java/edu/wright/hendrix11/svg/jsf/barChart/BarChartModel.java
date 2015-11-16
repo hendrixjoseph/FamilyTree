@@ -12,35 +12,90 @@
 
 package edu.wright.hendrix11.svg.jsf.barChart;
 
+import com.sun.glass.ui.Window;
+
 import edu.wright.hendrix11.svg.jsf.GenericModel;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * @param <N>
- *
  * @author Joe Hendrix
  */
-public abstract class BarChartModel<N extends Number & Comparable<N>> extends GenericModel
+public class BarChartModel extends GenericModel
 {
     private static final Logger LOG = Logger.getLogger(BarChartModel.class.getName());
-
-    public abstract Map<String, ?> getData();
-
-    /**
-     * @param <N>
-     * @param label
-     *
-     * @return
-     */
-    public abstract <N> N getData(String label);
+    private Map<String, ? extends Number[]> arrayData = new LinkedHashMap<>();
+    private List<String> barLabels = new ArrayList<>();
+    private Map<String, ? extends Number> data = new LinkedHashMap<>();
 
     /**
+     * @param barLabels
+     */
+    public void setBarLabels(String[] barLabels)
+    {
+        this.barLabels = Arrays.asList(barLabels);
+    }
+
+    /**
      * @return
      */
-    public abstract Set<String> getAxisLabels();
+    public List<String> getBarLabels()
+    {
+        return barLabels;
+    }
+
+    /**
+     * @param barLabels
+     */
+    public void setBarLabels(List<String> barLabels)
+    {
+        this.barLabels = barLabels;
+    }
+
+    public Map<String, ? extends Number[]> getArrayData()
+    {
+        return arrayData;
+    }
+
+    public void setArrayData(Map<String, ? extends Number[]> arrayData)
+    {
+        data = new LinkedHashMap<>();
+        this.arrayData = arrayData;
+    }
+
+    public Map<String, ? extends Number> getData()
+    {
+        return data;
+    }
+
+    public void setData(Map<String, ? extends Number> data)
+    {
+        arrayData = new LinkedHashMap<>();
+        this.data = data;
+    }
+
+    /**
+     * @return
+     */
+    public Set<String> getAxisLabels()
+    {
+        if ( hasArrayData() )
+            return arrayData.keySet();
+        else
+            return data.keySet();
+    }
+
+    public Number[] getArrayData(String label)
+    {
+        return arrayData.get(label);
+    }
 
     /**
      * @return
@@ -53,10 +108,92 @@ public abstract class BarChartModel<N extends Number & Comparable<N>> extends Ge
     /**
      * @return
      */
-    public abstract Integer getNumValues();
+    public Integer getNumValues()
+    {
+        if ( hasArrayData() )
+        {
+            int i = 0;
+
+            for ( Number[] n : arrayData.values() )
+            {
+                i += n.length;
+            }
+
+            return i;
+        }
+        else
+        {
+            return data.size();
+        }
+    }
 
     /**
      * @return
      */
-    public abstract N getMax();
+    public Number getMax()
+    {
+        Number max = null;
+
+        if ( hasArrayData() )
+        {
+            for ( Number[] numbers : arrayData.values() )
+            {
+                for ( Number number : numbers )
+                {
+                    LOG.log(Level.SEVERE, "Max before: " + max);
+                    max = max(max, number);
+                    LOG.log(Level.SEVERE, "Max after: " + max);
+                }
+            }
+        }
+        else
+        {
+            for ( Number number : data.values() )
+            {
+                LOG.log(Level.SEVERE, "Max before: " + max);
+                max = max(max, number);
+                LOG.log(Level.SEVERE, "Max after: " + max);
+            }
+        }
+
+        return max;
+    }
+
+    public Number getData(String label)
+    {
+        return data.get(label);
+    }
+
+    public boolean hasArrayData()
+    {
+        return arrayData != null && arrayData.isEmpty();
+    }
+
+    private Number max(Number n1, Number n2)
+    {
+        if ( n1 == null && n2 == null )
+        {
+            return null;
+        }
+        else if ( n1 == null )
+        {
+            return n2;
+        }
+        else if ( n2 == null )
+        {
+            return n1;
+        }
+        else
+        {
+            if ( n1 instanceof Comparable )
+            {
+                Comparable compare = (Comparable) n1;
+                return compare.compareTo(n2) < 0 ? n2 : n1;
+            }
+            else
+            {
+                return n1.doubleValue() - n2.doubleValue() < 0 ? n2 : n1;
+            }
+        }
+    }
 }

@@ -16,9 +16,7 @@ import org.primefaces.model.chart.PieChartModel;
 
 import edu.wright.hendrix11.familyTree.dataBean.mining.StatisticsDataBean;
 import edu.wright.hendrix11.familyTree.entity.Gender;
-import edu.wright.hendrix11.svg.jsf.barChart.BarChartArrayModel;
 import edu.wright.hendrix11.svg.jsf.barChart.BarChartModel;
-import edu.wright.hendrix11.svg.jsf.barChart.BarChartSingleModel;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -36,10 +34,10 @@ import java.util.logging.Logger;
 public class StatisticsBean implements Serializable
 {
     private static final Logger LOG = Logger.getLogger(StatisticsBean.class.getName());
-    BarChartArrayModel<Integer> perDecadeModel;
-    BarChartArrayModel<Integer> perDecadeCleanModel;
-    BarChartArrayModel<Integer> perDecadeCombinedModel;
-    BarChartSingleModel<Integer> ageModel;
+    BarChartModel perDecadeModel;
+    BarChartModel perDecadeCleanModel;
+    BarChartModel perDecadeCombinedModel;
+    BarChartModel ageModel;
 
     @EJB
     private StatisticsDataBean statisticsDataBean;
@@ -51,22 +49,22 @@ public class StatisticsBean implements Serializable
     @PostConstruct
     protected void initialize()
     {
-        perDecadeModel = new BarChartArrayModel<>();
-        perDecadeModel.setData(statisticsDataBean.perDecade());
+        perDecadeModel = new BarChartModel();
+        perDecadeModel.setArrayData(statisticsDataBean.perDecade());
         setupPerDecadeModel(perDecadeModel);
         perDecadeModel.setTitle("Births and deaths per decade");
 
-        perDecadeCleanModel = new BarChartArrayModel<>();
-        perDecadeCleanModel.setData(statisticsDataBean.perDecadeClean());
+        perDecadeCleanModel = new BarChartModel();
+        perDecadeCleanModel.setArrayData(statisticsDataBean.perDecadeClean());
         setupPerDecadeModel(perDecadeCleanModel);
         perDecadeCleanModel.setTitle("Births and deaths per decade (estimated assuming average age)");
 
-        perDecadeCombinedModel = new BarChartArrayModel<>();
-        perDecadeCombinedModel.setData(statisticsDataBean.perDecadeCombined());
+        perDecadeCombinedModel = new BarChartModel();
+        perDecadeCombinedModel.setArrayData(statisticsDataBean.perDecadeCombined());
         setupPerDecadeModel(perDecadeCombinedModel);
         perDecadeCombinedModel.setTitle("Births and deaths per decade (estimated and known)");
 
-        ageModel = new BarChartSingleModel<>();
+        ageModel = new BarChartModel();
         ageModel.setData(statisticsDataBean.ages());
         ageModel.setTitle("Ages");
         ageModel.setyAxisLabel("people");
@@ -78,7 +76,7 @@ public class StatisticsBean implements Serializable
     /**
      * @return
      */
-    public BarChartArrayModel<Integer> getPerDecadeCombinedModel()
+    public BarChartModel getPerDecadeCombinedModel()
     {
         return perDecadeCombinedModel;
     }
@@ -86,7 +84,7 @@ public class StatisticsBean implements Serializable
     /**
      * @return
      */
-    public BarChartArrayModel<Integer> getPerDecadeCleanModel()
+    public BarChartModel getPerDecadeCleanModel()
     {
         return perDecadeCleanModel;
     }
@@ -94,7 +92,7 @@ public class StatisticsBean implements Serializable
     /**
      * @return
      */
-    public BarChartModel<?> getPerDecadeModel()
+    public BarChartModel getPerDecadeModel()
     {
         return perDecadeModel;
     }
@@ -102,7 +100,7 @@ public class StatisticsBean implements Serializable
     /**
      * @return
      */
-    public BarChartSingleModel<Integer> getAgeModel()
+    public BarChartModel getAgeModel()
     {
         return ageModel;
     }
@@ -115,7 +113,7 @@ public class StatisticsBean implements Serializable
         return genderPie;
     }
 
-    private void setupPerDecadeModel(BarChartArrayModel<Integer> perDecadeModel)
+    private void setupPerDecadeModel(BarChartModel perDecadeModel)
     {
         String[] barLabels = {"births", "deaths"};
         perDecadeModel.setBarLabels(barLabels);

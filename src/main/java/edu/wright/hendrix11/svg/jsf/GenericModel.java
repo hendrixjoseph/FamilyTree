@@ -12,8 +12,6 @@
 
 package edu.wright.hendrix11.svg.jsf;
 
-import java.util.Map;
-
 /**
  * @author Joe Hendrix
  */

@@ -19,18 +19,17 @@ import java.util.Map;
 /**
  * @author Joe Hendrix
  */
-public class ScatterPlotModel<X extends Number & Comparable<X>,Y extends Number & Comparable<Y>> extends GenericModel
+public class ScatterPlotModel extends GenericModel
 {
-    private Map<X,Y> data;
+    private Map<? extends Number, ? extends Number> data;
 
-    public Map<X, Y> getData()
+    public Map<? extends Number, ? extends Number> getData()
     {
         return data;
     }
 
-    public void setData(Map<X, Y> data)
+    public void setData(Map<? extends Number, ? extends Number> data)
     {
         this.data = data;
     }
-
 }

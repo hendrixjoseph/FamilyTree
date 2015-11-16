@@ -43,15 +43,15 @@ public class BarChartComponent extends SvgJsfComponent
     /**
      * @return
      */
-    public BarChartModel<?> getChartModel()
+    public BarChartModel getChartModel()
     {
-        return (BarChartModel<?>) getStateHelper().eval(PropertyKeys.chartModel, null);
+        return (BarChartModel) getStateHelper().eval(PropertyKeys.chartModel, null);
     }
 
     /**
      * @param model
      */
-    public void setChartModel(BarChartModel<?> model)
+    public void setChartModel(BarChartModel model)
     {
         getStateHelper().put(PropertyKeys.chartModel, model);
     }
