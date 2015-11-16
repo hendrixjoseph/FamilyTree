@@ -52,10 +52,10 @@ Finally, it contains [`.gitignore`](.gitignore) so I don't accidently commit and
 
 The following types of files can be found in this project:
 
-* `*.java`
-* `*.xhtml`
-* `*.sql`
-* `*.css`
+* [`*.java`](src/main/java)
+* [`*.xhtml`](src/main/webapp)
+* [`*.sql`](sql/)
+* [`*.css`](src/main/webapp/WEB-INF/resource/css)
 
 The following types of files are not currently found in this project, but some may be added in the future:
 
