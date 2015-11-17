@@ -42,6 +42,10 @@ a.ui-link {
     fill: black;
 }
 
+.ageChart .x-axis .main.label {
+    font-size: inherit;
+}
+
 .ageChart .x-axis .label {
     font-size: 10px;
 }
