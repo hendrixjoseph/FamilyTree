@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~  The MIT License (MIT)
+  ~
+  ~  View the full license at:
+  ~  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
+  ~
+  ~  Copyright (c) 2015 Joseph Hendrix
+  ~
+  ~  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
+  ~
+  -->
+
+<ui:composition template="/WEB-INF/resource/template/main.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:fam="http://hendrix11.wright.edu/familyTree"
+                xmlns:svg="http://hendrix11.wright.edu/svg">
+
+    <ui:define name="title">
+        Ages
+    </ui:define>
+
+    <ui:define name="menu">
+        <fam:menu currentView="agesView" />
+    </ui:define>
+
+    <ui:define name="content">
+        <p:layoutUnit position="center">
+            <svg:barChart chartModel="#{agesBean.ageModel}" height="300" styleClass="ageChart" />
+            <p:panelGrid columns="2">
+                <p:outputLabel value="Minimum age:" />
+                <p:outputLabel value="#{agesBean.minAge}" />
+
+                <p:outputLabel value="Q2:" />
+                <p:outputLabel value="#{agesBean.ageQ1}" />
+
+                <p:outputLabel value="Median age:" />
+                <p:outputLabel value="#{agesBean.medianAge}" />
+
+                <p:outputLabel value="Q3:" />
+                <p:outputLabel value="#{agesBean.ageQ3}" />
+
+                <p:outputLabel value="Maximum age:" />
+                <p:outputLabel value="#{agesBean.maxAge}" />
+
+                <p:outputLabel value="Average age:" />
+                <p:outputLabel value="#{agesBean.averageAge}" />
+            </p:panelGrid>
+        </p:layoutUnit>
+    </ui:define>
+
+    <ui:define name="dialogs">
+    </ui:define>
+
+</ui:composition>

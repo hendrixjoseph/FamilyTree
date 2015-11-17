@@ -88,6 +88,10 @@
             </p:submenu>
 
             <p:submenu label="Data Mining">
+                <p:menuitem value="Births &amp; Deaths" url="/mining/birthsAndDeaths.xhtml"
+                            disabled="#{currentView.equals('birthsDeathsView')}" />
+                <p:menuitem value="Ages" url="/mining/ages.xhtml"
+                            disabled="#{currentView.equals('agesView')}" />
                 <p:menuitem value="Statistics" url="/statistics.xhtml"
                             disabled="#{currentView.equals('statisticsView')}" />
                 <p:menuitem value="Correlation" url="/correlation.xhtml"

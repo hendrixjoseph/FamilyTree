@@ -12,8 +12,6 @@
 
 package edu.wright.hendrix11.svg.jsf.barChart;
 
-import com.sun.glass.ui.Window;
-
 import edu.wright.hendrix11.svg.jsf.GenericModel;
 
 import java.util.ArrayList;
@@ -166,7 +164,7 @@ public class BarChartModel extends GenericModel
 
     public boolean hasArrayData()
     {
-        return arrayData != null && arrayData.isEmpty();
+        return arrayData != null && !arrayData.isEmpty();
     }
 
     private Number max(Number n1, Number n2)
@@ -187,7 +185,7 @@ public class BarChartModel extends GenericModel
         {
             if ( n1 instanceof Comparable )
             {
-                Comparable compare = (Comparable) n1;
+                Comparable compare = (Comparable<?>) n1;
                 return compare.compareTo(n2) < 0 ? n2 : n1;
             }
             else

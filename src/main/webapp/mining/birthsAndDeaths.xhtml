@@ -16,20 +16,23 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:fam="http://hendrix11.wright.edu/familyTree"
-        >
+                xmlns:svg="http://hendrix11.wright.edu/svg">
 
     <ui:define name="title">
-        Statistics
+        Births and Deaths
     </ui:define>
 
     <ui:define name="menu">
-        <fam:menu currentView="statisticsView" />
+        <fam:menu currentView="birthsDeathsView" />
     </ui:define>
 
     <ui:define name="content">
         <p:layoutUnit position="center">
-            <p:chart type="pie" model="#{statisticsBean.genderPie}" style="width:400px;height:300px;"
-                     widgetVar="chart" />
+            <svg:barChart chartModel="#{statisticsBean.perDecadeModel}" height="300" styleClass="perDecadeChart" />
+            <svg:barChart chartModel="#{statisticsBean.perDecadeCleanModel}" height="300"
+                          styleClass="perDecadeCleanChart" />
+            <svg:barChart chartModel="#{statisticsBean.perDecadeCombinedModel}" height="300"
+                          styleClass="perDecadeCombinedChart" />
         </p:layoutUnit>
     </ui:define>
 

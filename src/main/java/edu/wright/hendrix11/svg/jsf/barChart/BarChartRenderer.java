@@ -51,9 +51,9 @@ public class BarChartRenderer extends Renderer
     private BarChartModel model;
 
     @Override
-    public void encodeEnd(FacesContext context, UIComponent component) throws IOException
+    public void encodeBegin(FacesContext context, UIComponent component) throws IOException
     {
-        super.encodeEnd(context, component);
+        LOG.log(Level.SEVERE, "Will it render?");
 
         BarChartComponent chart = (BarChartComponent) component;
         model = chart.getChartModel();

@@ -37,17 +37,13 @@ public class StatisticsBean implements Serializable
     BarChartModel perDecadeModel;
     BarChartModel perDecadeCleanModel;
     BarChartModel perDecadeCombinedModel;
-    BarChartModel ageModel;
 
     @EJB
     private StatisticsDataBean statisticsDataBean;
     private PieChartModel genderPie;
 
-    /**
-     *
-     */
     @PostConstruct
-    protected void initialize()
+    private void initialize()
     {
         perDecadeModel = new BarChartModel();
         perDecadeModel.setArrayData(statisticsDataBean.perDecade());
@@ -63,12 +59,6 @@ public class StatisticsBean implements Serializable
         perDecadeCombinedModel.setArrayData(statisticsDataBean.perDecadeCombined());
         setupPerDecadeModel(perDecadeCombinedModel);
         perDecadeCombinedModel.setTitle("Births and deaths per decade (estimated and known)");
-
-        ageModel = new BarChartModel();
-        ageModel.setData(statisticsDataBean.ages());
-        ageModel.setTitle("Ages");
-        ageModel.setyAxisLabel("people");
-        ageModel.setxAxisLabel("years");
 
         initializeGenderPie();
     }
@@ -95,14 +85,6 @@ public class StatisticsBean implements Serializable
     public BarChartModel getPerDecadeModel()
     {
         return perDecadeModel;
-    }
-
-    /**
-     * @return
-     */
-    public BarChartModel getAgeModel()
-    {
-        return ageModel;
     }
 
     /**

@@ -21,7 +21,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-import java.math.BigDecimal;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,38 +46,6 @@ public class StatisticsDataBean
         TypedQuery<Long> countQuery = em.createNamedQuery(Person.COUNT_GENDERS, Long.class);
         countQuery.setParameter("gender", gender);
         return countQuery.getSingleResult();
-    }
-
-    /**
-     * @return
-     */
-    public double averageAge()
-    {
-        String averageQuery = "SELECT AVG(AGE) FROM AGE_VIEW";
-
-        return ( (BigDecimal) em.createNativeQuery(averageQuery).getSingleResult() ).doubleValue();
-    }
-
-    /**
-     * @return
-     */
-    public Map<String, Integer> ages()
-    {
-        Map<String, Integer> ageMap = new LinkedHashMap<>();
-
-        StringBuilder sb = new StringBuilder("SELECT COUNT(AGE),AGE FROM AGE_VIEW ");
-        sb.append("GROUP BY AGE ORDER BY AGE");
-
-        Query query = em.createNativeQuery(sb.toString());
-
-        List<Object[]> list = query.getResultList();
-
-        for ( Object[] o : list )
-        {
-            ageMap.put(o[1].toString(), ( (Number) o[0] ).intValue());
-        }
-
-        return ageMap;
     }
 
     /**
