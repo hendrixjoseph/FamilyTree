@@ -138,9 +138,7 @@ public class BarChartModel extends GenericModel
             {
                 for ( Number number : numbers )
                 {
-                    LOG.log(Level.SEVERE, "Max before: " + max);
                     max = max(max, number);
-                    LOG.log(Level.SEVERE, "Max after: " + max);
                 }
             }
         }

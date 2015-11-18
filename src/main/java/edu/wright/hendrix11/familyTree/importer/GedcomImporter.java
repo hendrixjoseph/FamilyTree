@@ -19,6 +19,7 @@ import edu.wright.hendrix11.familyTree.entity.event.Burial;
 import edu.wright.hendrix11.familyTree.entity.event.Death;
 import edu.wright.hendrix11.familyTree.entity.event.Event;
 import edu.wright.hendrix11.familyTree.entity.event.Marriage;
+import edu.wright.hendrix11.familyTree.entity.place.Cemetery;
 import edu.wright.hendrix11.familyTree.entity.place.City;
 import edu.wright.hendrix11.familyTree.entity.place.Country;
 import edu.wright.hendrix11.familyTree.entity.place.County;
@@ -259,10 +260,33 @@ public class GedcomImporter extends Importer
         return state;
     }
 
+    private Place makeNewPlace(String name)
+    {
+        Place newPlace;
+
+        if(name.contains("Cemetery"))
+        {
+            newPlace = new Cemetery();
+        }
+        else if(name.contains("County"))
+        {
+            newPlace = new County();
+        }
+        else
+        {
+            newPlace = new City();
+        }
+
+        newPlace.setName(name);
+
+        return newPlace;
+    }
+
     private Place processPlace()
     {
         String[] info = datePlace.restOf(nextLine).split(",");
 
+        Cemetery cemetery;
         City city;
         County county;
         State state;
@@ -330,15 +354,40 @@ public class GedcomImporter extends Importer
         }
         else if ( info.length == 3 )
         {
-            city = getCity(info[0]);
-            county = getCounty(info[1], info[2]);
-            city.setRegion(county);
+            Place[] places = new Place[3];
 
-            return city;
+            places[0] = makeNewPlace(info[0]);
+            places[1] = makeNewPlace(info[1]);
+            places[2] = new State();
+            places[2].setName(info[2]);
+
+            for(int i = 0; i + 1 < places.length; i++)
+            {
+                places[i].setRegion(places[i+1]);
+            }
+
+            return places[0];
         }
-        else // length == 4
+        else if( info.length == 4 )
         {
-            LOG.log(Level.SEVERE, "Places of length > 3 not implemented yet: {0)", nextLine);
+            Place[] places = new Place[4];
+
+            places[0] = makeNewPlace(info[0]);
+            places[1] = makeNewPlace(info[1]);
+            places[2] = makeNewPlace(info[2]);
+            places[3] = new State();
+            places[3].setName(info[3]);
+
+            for(int i = 0; i + 1 < places.length; i++)
+            {
+                places[i].setRegion(places[i+1]);
+            }
+
+            return places[0];
+        }
+        else
+        {
+            LOG.log(Level.SEVERE, "Places of length > 4 not implemented yet: {0)", nextLine);
             return null;
         }
     }

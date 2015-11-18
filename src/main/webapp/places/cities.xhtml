@@ -16,7 +16,7 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:hendrix11="http://hendrix11.wright.edu/facelets">
+                xmlns:fam="http://hendrix11.wright.edu/familyTree">
 
     <ui:define name="metadata">
         <f:metadata>
@@ -30,7 +30,7 @@
     </ui:define>
 
     <ui:define name="menu">
-        <hendrix11:menu currentView="citiesView" />
+        <fam:menu currentView="citiesView" />
     </ui:define>
 
     <ui:define name="content">
@@ -39,20 +39,20 @@
                          styleClass="familyTree-dataTable">
                 <p:column>
                     <f:facet name="header">
-                        <hendrix11:pageSort dataBean="#{cityBean}" text="Id" sort="id" />
+                        <fam:pageSort dataBean="#{cityBean}" text="Id" sort="id" />
                     </f:facet>
                     <p:outputLabel value="#{city.id}" />
                 </p:column>
 
                 <p:column>
                     <f:facet name="header">
-                        <hendrix11:pageSort dataBean="#{cityBean}" text="Name" sort="name" />
+                        <fam:pageSort dataBean="#{cityBean}" text="Name" sort="name" />
                     </f:facet>
-                    <hendrix11:googleMapLink place="#{city}" />
+                    <fam:googleMapLink place="#{city}" />
                 </p:column>
 
                 <f:facet name="footer">
-                    <hendrix11:pageNav dataBean="#{cityBean}" />
+                    <fam:pageNav dataBean="#{cityBean}" />
                 </f:facet>
             </p:dataTable>
         </p:layoutUnit>

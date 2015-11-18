@@ -6,7 +6,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 @Entity
-@DiscriminatorValue(value = "${DiscriminatorValue}")
+@DiscriminatorValue(value = "${NAME.toLowerCase()}")
 @NamedQueries({
                       @NamedQuery(name = ${NAME}.FIND_BY_NAME, query = "SELECT p FROM ${NAME} p WHERE p.name = :name"),
                       @NamedQuery(name = ${NAME}.FIND_ALL, query = "SELECT p FROM ${NAME} p")

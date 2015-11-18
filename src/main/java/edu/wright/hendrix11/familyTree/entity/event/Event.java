@@ -36,7 +36,7 @@ public abstract class Event
 {
     private boolean about = false;
     private Integer day;
-    @Enumerated(EnumType.STRING)
+    @Enumerated
     private Month month;
     @ManyToOne(cascade = ALL)
     @JoinColumn(name = "PLACE_ID")
