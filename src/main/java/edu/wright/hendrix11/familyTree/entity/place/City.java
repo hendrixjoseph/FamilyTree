@@ -46,6 +46,15 @@ public class City extends Place
      */
     public static final String FIND_BY_NAME = "City.findByName";
 
+    public City()
+    {
+    }
+
+    public City(String name)
+    {
+        super(name);
+    }
+
     /**
      * Returns the county that the city is in.
      *

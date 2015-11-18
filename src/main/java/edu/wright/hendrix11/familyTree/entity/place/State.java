@@ -55,6 +55,15 @@ public class State extends Place
      */
     public static final String FIND_BY_NAME_AND_REGION = "State.findByNameAndRegion";
 
+    public State()
+    {
+    }
+
+    public State(String name)
+    {
+        super(name);
+    }
+
     /**
      * Returns the country that the state is in. Since most, if not all, states are US states, this will most likely
      * return USA.

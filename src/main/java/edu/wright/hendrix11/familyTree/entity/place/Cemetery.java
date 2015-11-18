@@ -18,7 +18,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 @Entity
-@DiscriminatorValue(value = "cemetary")
+@DiscriminatorValue(value = "cemetery")
 @NamedQueries({
                       @NamedQuery(name = Cemetery.FIND_BY_NAME,
                                   query = "SELECT p FROM Cemetery p WHERE p.name = :name"),
@@ -29,6 +29,15 @@ public class Cemetery extends Place
 
     public static final String FIND_ALL = "Cemetary.findAll";
     public static final String FIND_BY_NAME = "Cemetary.findByName";
+
+    public Cemetery()
+    {
+    }
+
+    public Cemetery(String name)
+    {
+        super(name);
+    }
 
     /**
      * Returns the city that the cemetary is in.

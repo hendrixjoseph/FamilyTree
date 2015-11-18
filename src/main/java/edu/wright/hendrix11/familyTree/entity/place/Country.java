@@ -46,6 +46,15 @@ public class Country extends Place
      */
     public static final String FIND_BY_NAME = "Country.findByName";
 
+    public Country()
+    {
+    }
+
+    public Country(String name)
+    {
+        super(name);
+    }
+
     /**
      * {@inheritDoc}
      *

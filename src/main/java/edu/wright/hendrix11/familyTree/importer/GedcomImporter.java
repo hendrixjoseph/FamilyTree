@@ -26,6 +26,7 @@ import edu.wright.hendrix11.familyTree.entity.place.County;
 import edu.wright.hendrix11.familyTree.entity.place.Place;
 import edu.wright.hendrix11.familyTree.entity.place.State;
 
+import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 
 import java.io.FileNotFoundException;
@@ -180,8 +181,21 @@ public class GedcomImporter extends Importer
 
     private List<County> getCounty(String name)
     {
+        List<County> countyList = new ArrayList<>();
+
         TypedQuery<County> countyQuery = em.createNamedQuery(County.FIND_BY_NAME, County.class);
-        List<County> countyList = countyQuery.setParameter("name", name).getResultList();
+
+        try
+        {
+            countyList = countyQuery.setParameter("name", name).getResultList();
+        }
+        catch(PersistenceException e)
+        {
+            if(!(e.getCause() instanceof NullPointerException))
+            {
+                throw e;
+            }
+        }
 
         if ( countyList.isEmpty() )
         {
@@ -260,26 +274,58 @@ public class GedcomImporter extends Importer
         return state;
     }
 
-    private Place makeNewPlace(String name)
+    private Place makeNewPlace(String[] names)
     {
-        Place newPlace;
+        Place[] places = new Place[names.length];
 
-        if(name.contains("Cemetery"))
+        for(int i = names.length - 1; i >= 0; i--)
         {
-            newPlace = new Cemetery();
-        }
-        else if(name.contains("County"))
-        {
-            newPlace = new County();
-        }
-        else
-        {
-            newPlace = new City();
+            if(i + 1 == names.length) // Last one, probably a state
+            {
+                places[i] = getState(names[i]);
+            }
+            else
+            {
+                List<? extends Place> list;
+                Place newPlace;
+
+                if(names[i].contains("Cemetery"))
+                {
+                    list = em.createNamedQuery(Cemetery.FIND_BY_NAME, Cemetery.class).setParameter("name", names[i]).getResultList();
+                    newPlace = new Cemetery(names[i]);
+                }
+                else if(names[i].contains("County"))
+                {
+                    list = getCounty(names[i]);
+                    newPlace = new County(names[i]);
+                }
+                else
+                {
+                    list = em.createNamedQuery(City.FIND_BY_NAME, City.class).setParameter("name", names[i]).getResultList();
+                    newPlace = new City(names[i]);
+                }
+
+                if(!list.isEmpty())
+                {
+                    for(Place place : list)
+                    {
+                        if(place.getRegion() != null && place.getRegion().equals(places[i+1]))
+                        {
+                            newPlace = place;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    newPlace.setRegion(places[i+1]);
+                }
+
+                places[i] = newPlace;
+            }
         }
 
-        newPlace.setName(name);
-
-        return newPlace;
+        return places[0];
     }
 
     private Place processPlace()
@@ -352,43 +398,9 @@ public class GedcomImporter extends Importer
                 return city;
             }
         }
-        else if ( info.length == 3 )
+        else // if length >= 3
         {
-            Place[] places = new Place[3];
-
-            places[0] = makeNewPlace(info[0]);
-            places[1] = makeNewPlace(info[1]);
-            places[2] = new State();
-            places[2].setName(info[2]);
-
-            for(int i = 0; i + 1 < places.length; i++)
-            {
-                places[i].setRegion(places[i+1]);
-            }
-
-            return places[0];
-        }
-        else if( info.length == 4 )
-        {
-            Place[] places = new Place[4];
-
-            places[0] = makeNewPlace(info[0]);
-            places[1] = makeNewPlace(info[1]);
-            places[2] = makeNewPlace(info[2]);
-            places[3] = new State();
-            places[3].setName(info[3]);
-
-            for(int i = 0; i + 1 < places.length; i++)
-            {
-                places[i].setRegion(places[i+1]);
-            }
-
-            return places[0];
-        }
-        else
-        {
-            LOG.log(Level.SEVERE, "Places of length > 4 not implemented yet: {0)", nextLine);
-            return null;
+            return makeNewPlace(info);
         }
     }
 
