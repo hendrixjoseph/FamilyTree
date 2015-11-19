@@ -72,7 +72,7 @@ public class ChartComponent extends UIComponentBase
         getStateHelper().put(PropertyKeys.style, string);
     }
 
-    public BarChartComponent()
+    public ChartComponent()
     {
         setRendererType(DEFAULT_RENDERER);
     }
@@ -80,20 +80,20 @@ public class ChartComponent extends UIComponentBase
     /**
      * @return
      */
-    public BarChartModel getChartModel()
-    {
-        return (BarChartModel) getStateHelper().eval(PropertyKeys.chartModel, null);
-    }
+//    public ChartModel getChartModel()
+//    {
+//        return (ChartModel) getStateHelper().eval(PropertyKeys.chartModel, null);
+//    }
 
     /**
      * @param model
      */
-    public void setChartModel(BarChartModel model)
-    {
-        getStateHelper().put(PropertyKeys.chartModel, model);
-    }
+//    public void setChartModel(ChartModel model)
+//    {
+//        getStateHelper().put(PropertyKeys.chartModel, model);
+//    }
     
-        /**
+    /**
      *
      */
     protected enum PropertyKeys
