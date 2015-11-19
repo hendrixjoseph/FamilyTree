@@ -26,10 +26,10 @@ public abstract class Importer
 {
     private static final Logger LOG = Logger.getLogger(Importer.class.getName());
 
-    /**
-     *
-     */
-    protected static final String[] KNOWN_COUNTRIES = {"Mexico", "Germany", "USA", "Ireland", "Spain"};
+    protected enum KnownCountry
+    {
+        Mexico, Germany, USA, Ireland, Spain
+    }
 
     /**
      *

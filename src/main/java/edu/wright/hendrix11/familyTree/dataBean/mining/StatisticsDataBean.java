@@ -12,6 +12,8 @@
 
 package edu.wright.hendrix11.familyTree.dataBean.mining;
 
+import org.eclipse.persistence.internal.sessions.factories.model.transport.Oc4jJGroupsTransportManagerConfig;
+
 import edu.wright.hendrix11.familyTree.entity.Gender;
 import edu.wright.hendrix11.familyTree.entity.Person;
 
@@ -21,6 +23,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import java.time.Month;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -76,6 +79,29 @@ public class StatisticsDataBean
         Query query = em.createNativeQuery("SELECT * FROM PER_DECADE_VIEW");
 
         return processDecades(query.getResultList());
+    }
+
+    public Map<Month, Integer[]> perMonth()
+    {
+        Query query = em.createNativeQuery("SELECT * FROM PER_MONTH_VIEW");
+
+        Map<Month, Integer[]> result = new LinkedHashMap<>();
+
+        List<Object[]> objects = query.getResultList();
+
+        Month[] months = Month.values();
+
+        for(Object[] o : objects)
+        {
+            Integer births = ( (Number) o[0] ).intValue();
+            Integer deaths = ( (Number) o[1] ).intValue();
+            Month month = months[((Number)o[2]).intValue()];
+
+            Integer[] array = {births, deaths};
+            result.put(month, array);
+        }
+
+        return result;
     }
 
     private Map<String, Integer[]> processDecades(List<Object[]> decades)

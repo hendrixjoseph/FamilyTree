@@ -34,6 +34,7 @@ import java.util.logging.Logger;
 public class StatisticsBean implements Serializable
 {
     private static final Logger LOG = Logger.getLogger(StatisticsBean.class.getName());
+    BarChartModel perMonthModel;
     BarChartModel perDecadeModel;
     BarChartModel perDecadeCleanModel;
     BarChartModel perDecadeCombinedModel;
@@ -45,6 +46,8 @@ public class StatisticsBean implements Serializable
     @PostConstruct
     private void initialize()
     {
+        perMonthModel = new BarChartModel();
+
         perDecadeModel = new BarChartModel();
         perDecadeModel.setArrayData(statisticsDataBean.perDecade());
         setupPerDecadeModel(perDecadeModel);

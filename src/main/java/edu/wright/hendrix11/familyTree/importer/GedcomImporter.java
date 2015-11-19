@@ -179,77 +179,58 @@ public class GedcomImporter extends Importer
         return country;
     }
 
-    private List<County> getCounty(String name)
+    private County getCounty(String name, State region)
     {
-        List<County> countyList = new ArrayList<>();
-
         TypedQuery<County> countyQuery = em.createNamedQuery(County.FIND_BY_NAME, County.class);
+        List<County> countyList = countyQuery.setParameter("name", name).getResultList();
 
-        try
+        for(County county : countyList)
         {
-            countyList = countyQuery.setParameter("name", name).getResultList();
-        }
-        catch(PersistenceException e)
-        {
-            if(!(e.getCause() instanceof NullPointerException))
+            if(county.getRegion().equals(region))
             {
-                throw e;
+                return county;
             }
         }
 
-        if ( countyList.isEmpty() )
-        {
-            County county = new County();
-            county.setName(name);
-            em.persist(county);
-            countyList.add(county);
-        }
-
-        return countyList;
+        County county = new County(name);
+        county.setRegion(region);
+        return county;
     }
 
-    private County getCounty(String name, String stateName)
-    {
-        List<County> countyList = getCounty(name);
-
-        for ( County c : countyList )
-        {
-            State s = c.getState();
-
-            if ( s != null )
-            {
-                if ( s.getName().equals(stateName) )
-                    return c;
-            }
-            else
-            {
-                s = getState(stateName);
-                c.setRegion(s);
-                return c;
-            }
-        }
-
-        return countyList.get(0);
-    }
-
-    private City getCity(String name)
+    private City getCity(String name, Place region)
     {
         TypedQuery<City> cityQuery = em.createNamedQuery(City.FIND_BY_NAME, City.class);
         List<City> cityList = cityQuery.setParameter("name", name).getResultList();
-        City city;
 
-        if ( cityList.isEmpty() )
+        for(City city : cityList)
         {
-            city = new City();
-            city.setName(name);
-            em.persist(city);
-        }
-        else
-        {
-            city = cityList.get(0);
+            if(city.getRegion().equals(region))
+            {
+                return city;
+            }
         }
 
+        City city = new City(name);
+        city.setRegion(region);
         return city;
+    }
+
+    private Cemetery getCemetery(String name, Place region)
+    {
+        TypedQuery<Cemetery> cemeteryQuery = em.createNamedQuery(Cemetery.FIND_BY_NAME, Cemetery.class);
+        List<Cemetery> cemeteryList = cemeteryQuery.setParameter("name", name).getResultList();
+
+        for(Cemetery cemetery : cemeteryList)
+        {
+            if(cemetery.getRegion().equals(region))
+            {
+                return cemetery;
+            }
+        }
+
+        Cemetery cemetery = new Cemetery(name);
+        cemetery.setRegion(region);
+        return cemetery;
     }
 
     private State getState(String name)
@@ -274,63 +255,10 @@ public class GedcomImporter extends Importer
         return state;
     }
 
-    private Place makeNewPlace(String[] names)
-    {
-        Place[] places = new Place[names.length];
-
-        for(int i = names.length - 1; i >= 0; i--)
-        {
-            if(i + 1 == names.length) // Last one, probably a state
-            {
-                places[i] = getState(names[i]);
-            }
-            else
-            {
-                List<? extends Place> list;
-                Place newPlace;
-
-                if(names[i].contains("Cemetery"))
-                {
-                    list = em.createNamedQuery(Cemetery.FIND_BY_NAME, Cemetery.class).setParameter("name", names[i]).getResultList();
-                    newPlace = new Cemetery(names[i]);
-                }
-                else if(names[i].contains("County"))
-                {
-                    list = getCounty(names[i]);
-                    newPlace = new County(names[i]);
-                }
-                else
-                {
-                    list = em.createNamedQuery(City.FIND_BY_NAME, City.class).setParameter("name", names[i]).getResultList();
-                    newPlace = new City(names[i]);
-                }
-
-                if(!list.isEmpty())
-                {
-                    for(Place place : list)
-                    {
-                        if(place.getRegion() != null && place.getRegion().equals(places[i+1]))
-                        {
-                            newPlace = place;
-                            break;
-                        }
-                    }
-                }
-                else
-                {
-                    newPlace.setRegion(places[i+1]);
-                }
-
-                places[i] = newPlace;
-            }
-        }
-
-        return places[0];
-    }
-
     private Place processPlace()
     {
         String[] info = datePlace.restOf(nextLine).split(",");
+        Place[] places = new Place[info.length];
 
         Cemetery cemetery;
         City city;
@@ -338,70 +266,47 @@ public class GedcomImporter extends Importer
         State state;
         Country country;
 
-        for ( int i = 0; i < info.length; i++ )
+        boolean first = true;
+
+        for(int i = info.length - 1; i >= 0; i--)
         {
             info[i] = info[i].trim();
-        }
 
-        if ( info.length == 1 )
-        {
-            if ( info[0].contains("County") )
+            if(first)
             {
-                return getCounty(info[0]).get(0);
-            }
-            else
-            {
-                for ( String knownCountry : KNOWN_COUNTRIES )
+                for(KnownCountry knownCountry : KnownCountry.values())
                 {
-                    if ( knownCountry.equals(info[0]) )
+                    if(knownCountry.name().equals(info[i]))
                     {
-                        return getCountry(info[0]);
+                        places[i] = getCountry(info[i]);
                     }
                 }
 
-                return getState(info[0]);
-            }
-        }
-        else if ( info.length == 2 )
-        {
-
-            for ( String knownCountry : KNOWN_COUNTRIES )
-            {
-                if ( knownCountry.equals(info[1]) )
+                if(places[i] == null)
                 {
-                    city = getCity(info[0]);
-
-                    if ( city.getCountry() == null )
-                    {
-                        country = getCountry(info[1]);
-                        city.setRegion(country);
-                    }
-
-                    return city;
+                    places[i] = getState(info[i]);
                 }
-            }
 
-            if ( info[0].contains("County") )
-            {
-                return getCounty(info[0], info[1]);
+                first = false;
             }
             else
             {
-                city = getCity(info[0]);
-
-                if ( city.getState() == null )
+                if(info[i].contains("Cemetery"))
                 {
-                    state = getState(info[1]);
-                    city.setRegion(state);
+                    places[i] = getCemetery(info[i], places[i+1]);
                 }
-
-                return city;
+                else if(info[i].contains("County") || (i == 1 && places.length == 3) || (i == 2 && places.length == 4))
+                {
+                    places[i] = getCounty(info[i], (State)places[i+1]);
+                }
+                else
+                {
+                    places[i] = getCity(info[i], places[i+1]);
+                }
             }
         }
-        else // if length >= 3
-        {
-            return makeNewPlace(info);
-        }
+
+        return places[0];
     }
 
     private void processEventDate(Event event)

@@ -4,3 +4,4 @@ target/
 sql/Generated*.*
 hendrixfamily.fte.GED
 gedcomimporter.log
+/gedcomimporter_unread.log
