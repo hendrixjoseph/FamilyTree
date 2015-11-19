@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+  ~  The MIT License (MIT)
+  ~
+  ~  View the full license at:
+  ~  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
+  ~
+  ~  Copyright (c) 2015 Joseph Hendrix
+  ~
+  ~  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
+  ~
+  -->
+<facelet-taglib xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+                xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facelettaglibrary_2_2.xsd"
+                version="2.2">
+    <description>C3 / D3 UI Compentents implemented by Joseph Hendrix</description>
+    <namespace>http://hendrix11.wright.edu/c3</namespace>
+    <short-name>c3</short-name>
+    <tag>
+        <tag-name>chart</tag-name>
+        <component>
+            <component-type>edu.wright.hendrix11.c3.ChartComponent</component-type>
+            <renderer-type>edu.wright.hendrix11.c3.ChartRenderer</renderer-type>
+        </component>
+        <!-- attribute>
+            <name>chartModel</name>
+            <required>true</required>
+            <type>edu.wright.hendrix11.svg.jsf.barChart.BarChartModel</type>
+        </attribute -->
+        <attribute>
+            <name>style</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <name>styleClass</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+    </tag>
+</facelet-taglib>
