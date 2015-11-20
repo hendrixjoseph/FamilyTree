@@ -12,6 +12,8 @@
 
 package edu.wright.hendrix11.c3;
 
+import org.apache.commons.lang3.StringUtils;
+
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -52,19 +54,17 @@ public class ChartRenderer extends Renderer
         writer.write(chart.getId());
         writer.write("',");
         writer.write("data:{");
-        writer.write("columns:[['mydata1',");
-
-        StringBuilder sb = new StringBuilder(model.getData().values().size() * 3);
-
-        for(Number data : model.getData().values())
+        
+        if(model.hasArrayData())
         {
-            sb.append(data).append(",");
+            
         }
-
-        sb.setLength(sb.length() - 1);
-
-        writer.write(sb.toString());
-        writer.write("]]");
+        else
+        {
+            writer.write("columns:[['data',");
+            writer.write(StringUtils.join(model.getData().values(),',');
+            writer.write("]]");
+        }
 
 //        writer.write("['mydata1',30,200,100,400,150,250],");
 //        writer.write("['data2',50,20,10,40,15,25]");
@@ -75,6 +75,11 @@ public class ChartRenderer extends Renderer
             writer.write(",type:'");
             writer.write(chart.getType());
             writer.write("'");
+        }
+        
+        if(chart.getGridX() != null || chart.getGridY() != null)
+        {
+            
         }
 
         writer.write("}});");
