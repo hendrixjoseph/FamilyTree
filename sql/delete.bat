@@ -2,6 +2,6 @@
 
 FOR /D %%D IN (*) DO RD/S/Q %%D
 
-DEL master.sql
+DEL export.sql
 
 PAUSE

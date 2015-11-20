@@ -25,27 +25,18 @@ import java.util.logging.Logger;
 public abstract class Importer
 {
     private static final Logger LOG = Logger.getLogger(Importer.class.getName());
-
-    protected enum KnownCountry
-    {
-        Mexico, Germany, USA, Ireland, Spain
-    }
-
     /**
      *
      */
     protected FileReader file;
-
     /**
      *
      */
     protected EntityManager em;
-
     /**
      *
      */
     protected String nextLine = "";
-
     /**
      *
      */
@@ -94,5 +85,14 @@ public abstract class Importer
      *
      */
     protected abstract void processData();
+
+    protected enum KnownCountry
+    {
+        Mexico,
+        Germany,
+        USA,
+        Ireland,
+        Spain
+    }
 
 }

@@ -26,7 +26,6 @@ import edu.wright.hendrix11.familyTree.entity.place.County;
 import edu.wright.hendrix11.familyTree.entity.place.Place;
 import edu.wright.hendrix11.familyTree.entity.place.State;
 
-import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 
 import java.io.FileNotFoundException;
@@ -184,9 +183,9 @@ public class GedcomImporter extends Importer
         TypedQuery<County> countyQuery = em.createNamedQuery(County.FIND_BY_NAME, County.class);
         List<County> countyList = countyQuery.setParameter("name", name).getResultList();
 
-        for(County county : countyList)
+        for ( County county : countyList )
         {
-            if(county.getRegion().equals(region))
+            if ( county.getRegion().equals(region) )
             {
                 return county;
             }
@@ -202,9 +201,9 @@ public class GedcomImporter extends Importer
         TypedQuery<City> cityQuery = em.createNamedQuery(City.FIND_BY_NAME, City.class);
         List<City> cityList = cityQuery.setParameter("name", name).getResultList();
 
-        for(City city : cityList)
+        for ( City city : cityList )
         {
-            if(city.getRegion().equals(region))
+            if ( city.getRegion().equals(region) )
             {
                 return city;
             }
@@ -220,9 +219,9 @@ public class GedcomImporter extends Importer
         TypedQuery<Cemetery> cemeteryQuery = em.createNamedQuery(Cemetery.FIND_BY_NAME, Cemetery.class);
         List<Cemetery> cemeteryList = cemeteryQuery.setParameter("name", name).getResultList();
 
-        for(Cemetery cemetery : cemeteryList)
+        for ( Cemetery cemetery : cemeteryList )
         {
-            if(cemetery.getRegion().equals(region))
+            if ( cemetery.getRegion().equals(region) )
             {
                 return cemetery;
             }
@@ -268,21 +267,21 @@ public class GedcomImporter extends Importer
 
         boolean first = true;
 
-        for(int i = info.length - 1; i >= 0; i--)
+        for ( int i = info.length - 1; i >= 0; i-- )
         {
             info[i] = info[i].trim();
 
-            if(first)
+            if ( first )
             {
-                for(KnownCountry knownCountry : KnownCountry.values())
+                for ( KnownCountry knownCountry : KnownCountry.values() )
                 {
-                    if(knownCountry.name().equals(info[i]))
+                    if ( knownCountry.name().equals(info[i]) )
                     {
                         places[i] = getCountry(info[i]);
                     }
                 }
 
-                if(places[i] == null)
+                if ( places[i] == null )
                 {
                     places[i] = getState(info[i]);
                 }
@@ -291,17 +290,17 @@ public class GedcomImporter extends Importer
             }
             else
             {
-                if(info[i].contains("Cemetery"))
+                if ( info[i].contains("Cemetery") )
                 {
-                    places[i] = getCemetery(info[i], places[i+1]);
+                    places[i] = getCemetery(info[i], places[i + 1]);
                 }
-                else if(info[i].contains("County") || (i == 1 && places.length == 3) || (i == 2 && places.length == 4))
+                else if ( info[i].contains("County") || ( i == 1 && places.length == 3 ) || ( i == 2 && places.length == 4 ) )
                 {
-                    places[i] = getCounty(info[i], (State)places[i+1]);
+                    places[i] = getCounty(info[i], (State) places[i + 1]);
                 }
                 else
                 {
-                    places[i] = getCity(info[i], places[i+1]);
+                    places[i] = getCity(info[i], places[i + 1]);
                 }
             }
         }

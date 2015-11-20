@@ -228,6 +228,26 @@ public abstract class Place implements Iterable<Place>
         return "https://www.google.com/search?q=" + string;
     }
 
+    @Override
+    public int hashCode()
+    {
+        return getId();
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if ( this == o )
+            return true;
+        if ( o == null || getClass() != o.getClass() )
+            return false;
+
+        Place place = (Place) o;
+
+        return id == place.getId();
+
+    }
+
     /**
      * Returns a string representation of the place. This is the "fully qualified" name, which is a concatination of
      * this place's name and the name of all regions this place is in, seperated by commas. For example, "Dayton, Ohio,
@@ -251,25 +271,5 @@ public abstract class Place implements Iterable<Place>
         sb.setLength(sb.length() - 2);
 
         return sb.toString();
-    }
-
-    @Override
-    public boolean equals(Object o)
-    {
-        if ( this == o )
-            return true;
-        if ( o == null || getClass() != o.getClass() )
-            return false;
-
-        Place place = (Place) o;
-
-        return id == place.getId();
-
-    }
-
-    @Override
-    public int hashCode()
-    {
-        return getId();
     }
 }

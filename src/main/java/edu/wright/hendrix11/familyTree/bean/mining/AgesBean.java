@@ -12,8 +12,8 @@
 
 package edu.wright.hendrix11.familyTree.bean.mining;
 
+import edu.wright.hendrix11.c3.ChartModel;
 import edu.wright.hendrix11.familyTree.dataBean.mining.AgesDataBean;
-import edu.wright.hendrix11.svg.jsf.barChart.BarChartModel;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -29,7 +29,7 @@ import java.io.Serializable;
 @ViewScoped
 public class AgesBean implements Serializable
 {
-    BarChartModel ageModel;
+    ChartModel ageModel;
 
     @EJB
     AgesDataBean dataBean;
@@ -37,7 +37,7 @@ public class AgesBean implements Serializable
     @PostConstruct
     private void initialize()
     {
-        ageModel = new BarChartModel();
+        ageModel = new ChartModel();
         ageModel.setData(dataBean.ages());
         ageModel.setTitle("Ages");
         ageModel.setyAxisLabel("people");
@@ -47,7 +47,7 @@ public class AgesBean implements Serializable
     /**
      * @return
      */
-    public BarChartModel getAgeModel()
+    public ChartModel getAgeModel()
     {
         return ageModel;
     }

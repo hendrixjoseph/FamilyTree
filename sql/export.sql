@@ -1,5 +1,5 @@
 --------------------------------------------------------
---  File created - Thursday-November-12-2015   
+--  File created - Thursday-November-19-2015   
 --------------------------------------------------------
 DROP TABLE "EVENT" cascade constraints;
 DROP TABLE "FATHER" cascade constraints;
@@ -17,6 +17,7 @@ DROP VIEW "CHILDREN_VIEW";
 DROP VIEW "PER_DECADE_CLEAN_VIEW";
 DROP VIEW "PER_DECADE_COMBINED_VIEW";
 DROP VIEW "PER_DECADE_VIEW";
+DROP VIEW "PER_MONTH_VIEW";
 DROP VIEW "REGION_VIEW";
 DROP VIEW "REGION_VIEW_TEST";
 DROP VIEW "SPOUSE_VIEW";
@@ -30,7 +31,7 @@ DROP VIEW "SPOUSE_VIEW_TEST";
 --  DDL for Sequence PLACE_SEQUENCE
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "PLACE_SEQUENCE"  MINVALUE 1 MAXVALUE 99999999999 INCREMENT BY 1 START WITH 241 CACHE 20 NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "PLACE_SEQUENCE"  MINVALUE 1 MAXVALUE 99999999999 INCREMENT BY 1 START WITH 261 CACHE 20 NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Table EVENT
 --------------------------------------------------------
@@ -39,7 +40,7 @@ DROP VIEW "SPOUSE_VIEW_TEST";
    (	"PERSON_ID" NUMBER, 
 	"TYPE" VARCHAR2(20), 
 	"PLACE_ID" NUMBER, 
-	"MONTH" VARCHAR2(20) DEFAULT NULL, 
+	"MONTH" NUMBER DEFAULT NULL, 
 	"DAY" NUMBER DEFAULT NULL, 
 	"YEAR" NUMBER DEFAULT NULL, 
 	"ABOUT" NUMBER DEFAULT 0
@@ -68,7 +69,7 @@ DROP VIEW "SPOUSE_VIEW_TEST";
    (	"HUSBAND" NUMBER, 
 	"WIFE" NUMBER, 
 	"PLACE_ID" NUMBER, 
-	"MONTH" VARCHAR2(20) DEFAULT NULL, 
+	"MONTH" NUMBER DEFAULT NULL, 
 	"DAY" NUMBER DEFAULT NULL, 
 	"YEAR" NUMBER DEFAULT NULL, 
 	"ABOUT" NUMBER DEFAULT 0
@@ -240,6 +241,36 @@ FULL OUTER JOIN
 ON BIRTH.DECADE = DEATH.DECADE
 ORDER BY DECADE;
 --------------------------------------------------------
+--  DDL for View PER_MONTH_VIEW
+--------------------------------------------------------
+
+  CREATE OR REPLACE VIEW "PER_MONTH_VIEW" ("BIRTHS", "DEATHS", "MONTH") AS 
+  SELECT NVL( BIRTH.COUNT,0 ) BIRTHS,
+  NVL( DEATH.COUNT,0 ) DEATHS,
+  NVL( BIRTH.MONTH,DEATH.MONTH ) MONTH
+FROM
+  (
+    SELECT COUNT( * ) COUNT,
+    MONTH
+    FROM EVENT
+    WHERE TYPE = 'birth'
+      AND MONTH IS NOT NULL
+    GROUP BY MONTH
+  )
+  BIRTH
+FULL OUTER JOIN
+  (
+    SELECT COUNT( * ) COUNT,
+    MONTH
+    FROM EVENT
+    WHERE TYPE = 'death'
+      AND MONTH IS NOT NULL
+    GROUP BY MONTH
+  )
+  DEATH
+ON BIRTH.MONTH = DEATH.MONTH
+ORDER BY MONTH;
+--------------------------------------------------------
 --  DDL for View REGION_VIEW
 --------------------------------------------------------
 
@@ -249,15 +280,23 @@ FROM REGION R1, REGION R2, REGION R3
 WHERE (R1.PLACE_ID = R2.ID
   AND R2.PLACE_ID = R3.ID)
   OR (R1.PLACE_ID = R3.ID)
-  OR (R1.PLACE_ID = R3.PLACE_ID);
+  OR (R1.PLACE_ID = R3.PLACE_ID)
+UNION
+SELECT UNIQUE R1.ID,R4.PLACE_ID
+FROM REGION R1, REGION R2, REGION R3, REGION R4
+WHERE (R1.PLACE_ID = R2.ID
+  AND R2.PLACE_ID = R3.ID
+  AND R3.PLACE_ID = R4.ID);
 --------------------------------------------------------
 --  DDL for View REGION_VIEW_TEST
 --------------------------------------------------------
 
-  CREATE OR REPLACE VIEW "REGION_VIEW_TEST" ("RID", "REGION", "PID", "PLACE") AS 
-  SELECT P1.ID RID, P1.NAME REGION, P2.ID PID, P2.NAME PLACE
+  CREATE OR REPLACE VIEW "REGION_VIEW_TEST" ("RID", "REGION", "R_TYPE", "PID", "PLACE", "TYPE") AS 
+  SELECT P1.ID RID, P1.NAME REGION, P1.TYPE R_TYPE,
+       P2.ID PID, P2.NAME PLACE, P2.TYPE TYPE
 FROM PLACE P1, PLACE P2, REGION_VIEW
-WHERE P1.ID = REGION_VIEW.ID AND P2.ID = REGION_VIEW.PLACE_ID;
+WHERE P1.ID = REGION_VIEW.ID AND P2.ID = REGION_VIEW.PLACE_ID
+ORDER BY PLACE, REGION;
 --------------------------------------------------------
 --  DDL for View SPOUSE_VIEW
 --------------------------------------------------------
@@ -285,6 +324,18 @@ FROM MARRIAGE M;
 FROM PERSON P, PERSON S, SPOUSE_VIEW SV
 WHERE P.ID = SV.ID AND S.ID = SV.SPOUSE_ID;
 --------------------------------------------------------
+--  DDL for Index REGION_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "REGION_PK" ON "REGION" ("PLACE_ID") 
+  ;
+--------------------------------------------------------
+--  DDL for Index MARRIAGE_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "MARRIAGE_PK" ON "MARRIAGE" ("HUSBAND", "WIFE") 
+  ;
+--------------------------------------------------------
 --  DDL for Index EVENT_PK
 --------------------------------------------------------
 
@@ -297,22 +348,16 @@ WHERE P.ID = SV.ID AND S.ID = SV.SPOUSE_ID;
   CREATE UNIQUE INDEX "FATHER_PK" ON "FATHER" ("CHILD_ID") 
   ;
 --------------------------------------------------------
+--  DDL for Index PLACE_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "PLACE_PK" ON "PLACE" ("ID") 
+  ;
+--------------------------------------------------------
 --  DDL for Index GENDER_PK
 --------------------------------------------------------
 
   CREATE UNIQUE INDEX "GENDER_PK" ON "GENDER" ("FULL_WORD") 
-  ;
---------------------------------------------------------
---  DDL for Index MARRIAGE_PK
---------------------------------------------------------
-
-  CREATE UNIQUE INDEX "MARRIAGE_PK" ON "MARRIAGE" ("HUSBAND", "WIFE") 
-  ;
---------------------------------------------------------
---  DDL for Index MOTHER_PK
---------------------------------------------------------
-
-  CREATE UNIQUE INDEX "MOTHER_PK" ON "MOTHER" ("CHILD_ID") 
   ;
 --------------------------------------------------------
 --  DDL for Index PERSON_PK
@@ -321,38 +366,11 @@ WHERE P.ID = SV.ID AND S.ID = SV.SPOUSE_ID;
   CREATE UNIQUE INDEX "PERSON_PK" ON "PERSON" ("ID") 
   ;
 --------------------------------------------------------
---  DDL for Index PLACE_PK
+--  DDL for Index MOTHER_PK
 --------------------------------------------------------
 
-  CREATE UNIQUE INDEX "PLACE_PK" ON "PLACE" ("ID") 
+  CREATE UNIQUE INDEX "MOTHER_PK" ON "MOTHER" ("CHILD_ID") 
   ;
---------------------------------------------------------
---  DDL for Index REGION_PK
---------------------------------------------------------
-
-  CREATE UNIQUE INDEX "REGION_PK" ON "REGION" ("PLACE_ID") 
-  ;
---------------------------------------------------------
---  Constraints for Table FATHER
---------------------------------------------------------
-
-  ALTER TABLE "FATHER" MODIFY ("ID" NOT NULL ENABLE);
-  ALTER TABLE "FATHER" ADD CONSTRAINT "FATHER_PK" PRIMARY KEY ("CHILD_ID") ENABLE;
-  ALTER TABLE "FATHER" MODIFY ("CHILD_ID" NOT NULL ENABLE);
---------------------------------------------------------
---  Constraints for Table REGION
---------------------------------------------------------
-
-  ALTER TABLE "REGION" ADD CONSTRAINT "REGION_OF_PK" PRIMARY KEY ("PLACE_ID") ENABLE;
-  ALTER TABLE "REGION" MODIFY ("PLACE_ID" NOT NULL ENABLE);
-  ALTER TABLE "REGION" MODIFY ("ID" NOT NULL ENABLE);
---------------------------------------------------------
---  Constraints for Table MOTHER
---------------------------------------------------------
-
-  ALTER TABLE "MOTHER" ADD CONSTRAINT "MOTHER_PK" PRIMARY KEY ("CHILD_ID") ENABLE;
-  ALTER TABLE "MOTHER" MODIFY ("CHILD_ID" NOT NULL ENABLE);
-  ALTER TABLE "MOTHER" MODIFY ("ID" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table PLACE
 --------------------------------------------------------
@@ -362,29 +380,19 @@ WHERE P.ID = SV.ID AND S.ID = SV.SPOUSE_ID;
   ALTER TABLE "PLACE" MODIFY ("NAME" NOT NULL ENABLE);
   ALTER TABLE "PLACE" MODIFY ("ID" NOT NULL ENABLE);
 --------------------------------------------------------
---  Constraints for Table GENDER
+--  Constraints for Table MOTHER
 --------------------------------------------------------
 
-  ALTER TABLE "GENDER" ADD CONSTRAINT "GENDER_PK" PRIMARY KEY ("FULL_WORD") ENABLE;
-  ALTER TABLE "GENDER" MODIFY ("FULL_WORD" NOT NULL ENABLE);
-  ALTER TABLE "GENDER" MODIFY ("ABBR" NOT NULL ENABLE);
+  ALTER TABLE "MOTHER" ADD CONSTRAINT "MOTHER_PK" PRIMARY KEY ("CHILD_ID") ENABLE;
+  ALTER TABLE "MOTHER" MODIFY ("CHILD_ID" NOT NULL ENABLE);
+  ALTER TABLE "MOTHER" MODIFY ("ID" NOT NULL ENABLE);
 --------------------------------------------------------
---  Constraints for Table MARRIAGE
---------------------------------------------------------
-
-  ALTER TABLE "MARRIAGE" MODIFY ("ABOUT" NOT NULL ENABLE);
-  ALTER TABLE "MARRIAGE" ADD CONSTRAINT "MARRIAGE_CHK" CHECK (DAY > 0 AND DAY <=31 AND (ABOUT = 0 OR ABOUT = 1)) ENABLE;
-  ALTER TABLE "MARRIAGE" ADD CONSTRAINT "MARRIAGE_PK" PRIMARY KEY ("HUSBAND", "WIFE") ENABLE;
-  ALTER TABLE "MARRIAGE" MODIFY ("WIFE" NOT NULL ENABLE);
-  ALTER TABLE "MARRIAGE" MODIFY ("HUSBAND" NOT NULL ENABLE);
---------------------------------------------------------
---  Constraints for Table PERSON
+--  Constraints for Table REGION
 --------------------------------------------------------
 
-  ALTER TABLE "PERSON" MODIFY ("GENDER" NOT NULL ENABLE);
-  ALTER TABLE "PERSON" ADD CONSTRAINT "PERSON_PK" PRIMARY KEY ("ID") ENABLE;
-  ALTER TABLE "PERSON" MODIFY ("NAME" NOT NULL ENABLE);
-  ALTER TABLE "PERSON" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "REGION" ADD CONSTRAINT "REGION_OF_PK" PRIMARY KEY ("PLACE_ID") ENABLE;
+  ALTER TABLE "REGION" MODIFY ("PLACE_ID" NOT NULL ENABLE);
+  ALTER TABLE "REGION" MODIFY ("ID" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table EVENT
 --------------------------------------------------------
@@ -394,6 +402,37 @@ WHERE P.ID = SV.ID AND S.ID = SV.SPOUSE_ID;
   ALTER TABLE "EVENT" MODIFY ("ABOUT" NOT NULL ENABLE);
   ALTER TABLE "EVENT" ADD CONSTRAINT "EVENT_CHK" CHECK (DAY > 0 AND DAY <= 31 AND (ABOUT = 0 OR ABOUT = 1)) ENABLE;
   ALTER TABLE "EVENT" MODIFY ("PERSON_ID" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table GENDER
+--------------------------------------------------------
+
+  ALTER TABLE "GENDER" ADD CONSTRAINT "GENDER_PK" PRIMARY KEY ("FULL_WORD") ENABLE;
+  ALTER TABLE "GENDER" MODIFY ("FULL_WORD" NOT NULL ENABLE);
+  ALTER TABLE "GENDER" MODIFY ("ABBR" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table PERSON
+--------------------------------------------------------
+
+  ALTER TABLE "PERSON" MODIFY ("GENDER" NOT NULL ENABLE);
+  ALTER TABLE "PERSON" ADD CONSTRAINT "PERSON_PK" PRIMARY KEY ("ID") ENABLE;
+  ALTER TABLE "PERSON" MODIFY ("NAME" NOT NULL ENABLE);
+  ALTER TABLE "PERSON" MODIFY ("ID" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table FATHER
+--------------------------------------------------------
+
+  ALTER TABLE "FATHER" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "FATHER" ADD CONSTRAINT "FATHER_PK" PRIMARY KEY ("CHILD_ID") ENABLE;
+  ALTER TABLE "FATHER" MODIFY ("CHILD_ID" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table MARRIAGE
+--------------------------------------------------------
+
+  ALTER TABLE "MARRIAGE" MODIFY ("ABOUT" NOT NULL ENABLE);
+  ALTER TABLE "MARRIAGE" ADD CONSTRAINT "MARRIAGE_CHK" CHECK (DAY > 0 AND DAY <=31 AND (ABOUT = 0 OR ABOUT = 1)) ENABLE;
+  ALTER TABLE "MARRIAGE" ADD CONSTRAINT "MARRIAGE_PK" PRIMARY KEY ("HUSBAND", "WIFE") ENABLE;
+  ALTER TABLE "MARRIAGE" MODIFY ("WIFE" NOT NULL ENABLE);
+  ALTER TABLE "MARRIAGE" MODIFY ("HUSBAND" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Ref Constraints for Table EVENT
 --------------------------------------------------------

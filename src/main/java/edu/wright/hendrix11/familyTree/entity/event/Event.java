@@ -14,7 +14,6 @@ package edu.wright.hendrix11.familyTree.entity.event;
 
 import edu.wright.hendrix11.familyTree.entity.place.Place;
 
-import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;

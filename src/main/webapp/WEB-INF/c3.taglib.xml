@@ -23,18 +23,28 @@
             <component-type>edu.wright.hendrix11.c3.ChartComponent</component-type>
             <renderer-type>edu.wright.hendrix11.c3.ChartRenderer</renderer-type>
         </component>
-        <!-- attribute>
+        <attribute>
             <name>chartModel</name>
             <required>true</required>
-            <type>edu.wright.hendrix11.svg.jsf.barChart.BarChartModel</type>
-        </attribute -->
+            <type>edu.wright.hendrix11.c3.ChartModel</type>
+        </attribute>
         <attribute>
-            <name>style</name>
+            <name>id</name>
+            <required>true</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <name>type</name>
             <required>false</required>
             <type>java.lang.String</type>
         </attribute>
         <attribute>
             <name>styleClass</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <name>style</name>
             <required>false</required>
             <type>java.lang.String</type>
         </attribute>

@@ -12,8 +12,6 @@
 
 package edu.wright.hendrix11.familyTree.dataBean.mining;
 
-import org.eclipse.persistence.internal.sessions.factories.model.transport.Oc4jJGroupsTransportManagerConfig;
-
 import edu.wright.hendrix11.familyTree.entity.Gender;
 import edu.wright.hendrix11.familyTree.entity.Person;
 
@@ -91,11 +89,11 @@ public class StatisticsDataBean
 
         Month[] months = Month.values();
 
-        for(Object[] o : objects)
+        for ( Object[] o : objects )
         {
             Integer births = ( (Number) o[0] ).intValue();
             Integer deaths = ( (Number) o[1] ).intValue();
-            Month month = months[((Number)o[2]).intValue()];
+            Month month = months[( (Number) o[2] ).intValue()];
 
             Integer[] array = {births, deaths};
             result.put(month, array);

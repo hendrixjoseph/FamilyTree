@@ -10,29 +10,41 @@
  *
  */
 
-package edu.wright.hendrix11.svg.jsf.barChart;
+package edu.wright.hendrix11.c3;
+
+import javax.faces.application.ResourceDependencies;
+import javax.faces.application.ResourceDependency;
+import javax.faces.component.FacesComponent;
+import javax.faces.component.UIComponentBase;
 
 /**
  * @author Joe Hendrix
  */
 @FacesComponent(value = ChartComponent.COMPONENT_TYPE)
-@ResourceDependency(library = "css", name = "chart.css")
+@ResourceDependencies({
+                              @ResourceDependency(library = "css", name = "c3.css"),
+                              @ResourceDependency(library = "js", name = "c3.min.js"),
+                              @ResourceDependency(library = "js", name = "d3.min.js")
+                      })
 public class ChartComponent extends UIComponentBase
 {
     /**
      *
      */
+    public static final String COMPONENT_FAMILY = "edu.wright.hendrix11.c3";
+    /**
+     *
+     */
     public static final String COMPONENT_TYPE = "edu.wright.hendrix11.c3.ChartComponent";
-
     /**
      *
      */
     public static final String DEFAULT_RENDERER = "edu.wright.hendrix11.c3.ChartRenderer";
-    
-        /**
-     *
-     */
-    public static final String COMPONENT_FAMILY = "edu.wright.hendrix11.c3";
+
+    public ChartComponent()
+    {
+        setRendererType(DEFAULT_RENDERER);
+    }
 
     @Override
     public String getFamily()
@@ -55,8 +67,8 @@ public class ChartComponent extends UIComponentBase
     {
         getStateHelper().put(PropertyKeys.styleClass, string);
     }
-    
-        /**
+
+    /**
      * @return
      */
     public String getStyle()
@@ -72,27 +84,38 @@ public class ChartComponent extends UIComponentBase
         getStateHelper().put(PropertyKeys.style, string);
     }
 
-    public ChartComponent()
+    /**
+     * @return
+     */
+    public String getType()
     {
-        setRendererType(DEFAULT_RENDERER);
+        return (String) getStateHelper().eval(PropertyKeys.type, null);
+    }
+
+    /**
+     * @param string
+     */
+    public void setType(String string)
+    {
+        getStateHelper().put(PropertyKeys.type, string);
     }
 
     /**
      * @return
      */
-//    public ChartModel getChartModel()
-//    {
-//        return (ChartModel) getStateHelper().eval(PropertyKeys.chartModel, null);
-//    }
+    public ChartModel getChartModel()
+    {
+        return (ChartModel) getStateHelper().eval(PropertyKeys.chartModel, null);
+    }
 
     /**
      * @param model
      */
-//    public void setChartModel(ChartModel model)
-//    {
-//        getStateHelper().put(PropertyKeys.chartModel, model);
-//    }
-    
+    public void setChartModel(ChartModel model)
+    {
+        getStateHelper().put(PropertyKeys.chartModel, model);
+    }
+
     /**
      *
      */
@@ -112,6 +135,7 @@ public class ChartComponent extends UIComponentBase
         /**
          *
          */
-        style
+        style,
+        type
     }
 }
