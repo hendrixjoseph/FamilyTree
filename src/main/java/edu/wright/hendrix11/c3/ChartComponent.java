@@ -92,6 +92,22 @@ public class ChartComponent extends UIComponentBase
         return (Boolean) getStateHelper().eval(PropertyKeys.gridX, null);
     }
     
+    /**
+     * @param gridX
+     */
+    public void setShowLegend(Boolean showLegend)
+    {
+        getStateHelper().put(PropertyKeys.showLegend, string);
+    }
+    
+    /**
+     * @return
+     */
+    public Boolean getShowLegend()
+    {
+        return (Boolean) getStateHelper().eval(PropertyKeys.showLegend, null);
+    }
+    
         /**
      * @param gridY
      */
@@ -122,6 +138,22 @@ public class ChartComponent extends UIComponentBase
     public String getType()
     {
         return (String) getStateHelper().eval(PropertyKeys.type, null);
+    }
+
+    /**
+     * @param string
+     */
+    public void setLegendPosition(String legendPosition)
+    {
+        getStateHelper().put(PropertyKeys.legendPosition, string);
+    }
+    
+        /**
+     * @return
+     */
+    public String getLegendPosition()
+    {
+        return (String) getStateHelper().eval(PropertyKeys.legendPosition, null);
     }
 
     /**
@@ -170,6 +202,8 @@ public class ChartComponent extends UIComponentBase
         style,
         type,
         gridX,
-        gridY
+        gridY,
+        showLegend,
+        legendPosition
     }
 }
