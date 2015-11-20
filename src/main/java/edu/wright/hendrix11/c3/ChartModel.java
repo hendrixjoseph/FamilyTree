@@ -126,66 +126,6 @@ public class ChartModel
         return arrayData.get(label);
     }
 
-    /**
-     * @return
-     */
-    public Integer getNumLabels()
-    {
-        return getAxisLabels().size();
-    }
-
-    /**
-     * @return
-     */
-    public Integer getNumValues()
-    {
-        if ( hasArrayData() )
-        {
-            int i = 0;
-
-            for ( Number[] n : arrayData.values() )
-            {
-                i += n.length;
-            }
-
-            return i;
-        }
-        else
-        {
-            return data.size();
-        }
-    }
-
-    /**
-     * @return
-     */
-    public Number getMax()
-    {
-        Number max = null;
-
-        if ( hasArrayData() )
-        {
-            for ( Number[] numbers : arrayData.values() )
-            {
-                for ( Number number : numbers )
-                {
-                    max = max(max, number);
-                }
-            }
-        }
-        else
-        {
-            for ( Number number : data.values() )
-            {
-                LOG.log(Level.SEVERE, "Max before: " + max);
-                max = max(max, number);
-                LOG.log(Level.SEVERE, "Max after: " + max);
-            }
-        }
-
-        return max;
-    }
-
     public Number getData(String label)
     {
         return data.get(label);
@@ -194,33 +134,5 @@ public class ChartModel
     public boolean hasArrayData()
     {
         return arrayData != null && !arrayData.isEmpty();
-    }
-
-    private Number max(Number n1, Number n2)
-    {
-        if ( n1 == null && n2 == null )
-        {
-            return null;
-        }
-        else if ( n1 == null )
-        {
-            return n2;
-        }
-        else if ( n2 == null )
-        {
-            return n1;
-        }
-        else
-        {
-            if ( n1 instanceof Comparable )
-            {
-                Comparable compare = (Comparable<?>) n1;
-                return compare.compareTo(n2) < 0 ? n2 : n1;
-            }
-            else
-            {
-                return n1.doubleValue() - n2.doubleValue() < 0 ? n2 : n1;
-            }
-        }
     }
 }
