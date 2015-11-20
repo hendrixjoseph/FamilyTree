@@ -61,11 +61,11 @@ public class ChartComponent extends UIComponentBase
     }
 
     /**
-     * @param string
+     * @param styleClass
      */
-    public void setStyleClass(String string)
+    public void setStyleClass(String styleClass)
     {
-        getStateHelper().put(PropertyKeys.styleClass, string);
+        getStateHelper().put(PropertyKeys.styleClass, styleClass);
     }
 
     /**
@@ -77,11 +77,43 @@ public class ChartComponent extends UIComponentBase
     }
 
     /**
-     * @param string
+     * @param gridX
      */
-    public void setStyle(String string)
+    public void setGridX(Boolean gridX)
     {
-        getStateHelper().put(PropertyKeys.style, string);
+        getStateHelper().put(PropertyKeys.gridX, string);
+    }
+    
+    /**
+     * @return
+     */
+    public Boolean getGridX()
+    {
+        return (Boolean) getStateHelper().eval(PropertyKeys.gridX, null);
+    }
+    
+        /**
+     * @param gridY
+     */
+    public void setGridY(Boolean gridY)
+    {
+        getStateHelper().put(PropertyKeys.gridY, string);
+    }
+    
+    /**
+     * @return
+     */
+    public Boolean getGridY()
+    {
+        return (Boolean) getStateHelper().eval(PropertyKeys.gridY, null);
+    }
+
+    /**
+     * @param style
+     */
+    public void setStyle(String style)
+    {
+        getStateHelper().put(PropertyKeys.style, style);
     }
 
     /**
@@ -136,6 +168,8 @@ public class ChartComponent extends UIComponentBase
          *
          */
         style,
-        type
+        type,
+        gridX,
+        gridY
     }
 }
