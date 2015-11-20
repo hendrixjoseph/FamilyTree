@@ -60,6 +60,7 @@ public class ChartRenderer extends Renderer
         writer.write("',");
 
         encodeData(chart, model, writer);
+        encodeAxis(chart, model, writer);
         encodeGrid(chart, writer);
 
         writer.write("});");
@@ -96,13 +97,21 @@ public class ChartRenderer extends Renderer
         }
     }
     
+    private void encodeAxis(ChartComponent chart, ChartModel model, ResponseWriter writer)
+    {
+        if(model.hasArrayData())
+        {
+            writer.write(",axis:{x:{type:'category'}}");
+        }
+    }
+    
     private void encodeData(ChartComponent chart, ChartModel model, ResponseWriter writer)
     {
         writer.write("data:{");
         
         if(model.hasArrayData())
         {
-            
+            encodeArrayData(chart, model, writer);
         }
         else
         {
@@ -123,5 +132,43 @@ public class ChartRenderer extends Renderer
         }
         
         writer.write("}");
+    }
+    
+    private void encodeArrayData(ChartComponent chart, ChartModel model, ResponseWriter writer)
+    {
+        List<String> barLabels = model.getBarLabels();
+        
+        if(barLabels == null || barLabels.isEmpty())
+        {
+            barLabels = new ArrayList<>();
+            
+            for(int i = 0; i < model.getArrayData().get(0).length; i++)
+            {
+                barLabels.add("data" + i);
+            }
+        }
+        
+        List<StringBuilder> data = new ArrayList<>();
+        
+        for(String label : model.getAxisLabels())
+        {
+            StringBuilder sb = new StringBuilder();
+            
+            sb.append("[");
+            sb.append("'");
+            sb.append(label);
+            sb.append("'");
+            sb.append(StringUtils.join(model.getArrayData(label),","));
+            sb.append("]");
+            
+            data.add(sb);
+        }
+        
+        writer.write("x:'x',rows:[['x','");
+        writer.write(StringUtils.join(barLabels,"','"));
+        writer.write("'],");
+        writer.write(StringUtils.join(data,"','"));
+        
+        writer.write("]");
     }
 }
