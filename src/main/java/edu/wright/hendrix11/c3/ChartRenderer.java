@@ -45,14 +45,59 @@ public class ChartRenderer extends Renderer
         }
 
         writer.endElement("div");
-
+        
+        encodeScript(chart, model, writer);
+    }
+    
+    private void encodeScript(ChartComponent chart, ChartModel model, ResponseWriter writer)
+    {
         writer.startElement("script", null);
         writer.writeAttribute("type", "text/javascript", null);
-
+        
         writer.write("var chart = c3.generate({");
         writer.write("bindto:'#");
         writer.write(chart.getId());
         writer.write("',");
+
+        encodeData(chart, model, writer);
+        encodeGrid(chart, writer);
+
+        writer.write("});");
+
+        writer.endElement("script");
+    }
+    
+    private void encodeGrid(ChartComponent chart, ResponseWriter writer)
+    {
+        if(chart.getGridX() != null || chart.getGridY() != null)
+        {
+            writer.write(",grid:{");
+            
+            if(chart.getGridX() != null)
+            {
+                writer.write("x:{show:");
+                writer.write(chart.getGridX());
+                writer.write("}");
+            }
+            
+            if(chart.getGridX() != null && chart.getGridY() != null)
+            {
+                writer.write(",");
+            }
+            
+            if(chart.getGridY() != null)
+            {
+                writer.write("y:{show:");
+                writer.write(chart.getGridY());
+                writer.write("}");
+            }
+            
+            writer.write("}");
+        }
+    }
+    
+    private void encodeData(ChartComponent chart, ChartModel model, ResponseWriter writer)
+    {
         writer.write("data:{");
         
         if(model.hasArrayData())
@@ -77,13 +122,6 @@ public class ChartRenderer extends Renderer
             writer.write("'");
         }
         
-        if(chart.getGridX() != null || chart.getGridY() != null)
-        {
-            
-        }
-
-        writer.write("}});");
-
-        writer.endElement("script");
+        writer.write("}");
     }
 }
