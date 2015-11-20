@@ -68,6 +68,35 @@ public class ChartRenderer extends Renderer
         writer.endElement("script");
     }
     
+    private void encodeLegend(ChartComponent chart, ResponseWriter writer)
+    {
+        if(chart.getShowLegend() != null || chart.getLegendPosition() != null)
+        {
+            writer.write(",legend:{");
+            
+            if(chart.getShowLegend() != null)
+            {
+                writer.write("show:");
+                writer.write(chart.getShowLegend());
+            }
+            
+            if(chart.getShowLegend() != null && chart.getLegendPosition() != null)
+            {
+                writer.write(",");
+            }
+            
+            if(chart.getLegendPosition() != null)
+            {
+                writer.write("position:'");
+                writer.write(chart.getLegendPosition());
+                writer.write("'");
+            }
+            
+            writer.write();
+            writer.write("}");
+        }
+    }
+    
     private void encodeGrid(ChartComponent chart, ResponseWriter writer)
     {
         if(chart.getGridX() != null || chart.getGridY() != null)
@@ -119,10 +148,6 @@ public class ChartRenderer extends Renderer
             writer.write(StringUtils.join(model.getData().values(),',');
             writer.write("]]");
         }
-
-//        writer.write("['mydata1',30,200,100,400,150,250],");
-//        writer.write("['data2',50,20,10,40,15,25]");
-//        writer.write("]");
 
         if(chart.getType() != null)
         {
