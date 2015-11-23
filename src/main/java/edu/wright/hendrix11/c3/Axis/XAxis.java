@@ -27,4 +27,14 @@ public class XAxis extends Axis
     {
         super("x");
     }
+    
+    public XLabel getLabel()
+    {
+        return (XLabel) super.getLabel();
+    }
+
+    public void setLabel(XLabel label)
+    {
+        super.setLabel(label);
+    }
 }
