@@ -19,15 +19,15 @@ import java.util.StringJoiner;
 /**
  * @author Joe Hendrix
  */
-public class Axis
+public abstract class Axis
 {
     Map<String, Object> map = new HashMap<>();
     private boolean localTime;
-    private Which which;
+    private String axis;
 
-    public Axis(Which which)
+    public Axis(String axis)
     {
-        this.which = which;
+        this.axis = axis;
     }
 
     public int getHeight()
@@ -132,16 +132,9 @@ public class Axis
         return returnValue.toString();
     }
 
-    public Which getWhich()
+    public String getAxis()
     {
-        return which;
-    }
-
-    public enum Which
-    {
-        x,
-        y,
-        y2
+        return axis;
     }
 
     public enum Type
