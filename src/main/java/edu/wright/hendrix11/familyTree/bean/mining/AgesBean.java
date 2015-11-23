@@ -44,14 +44,12 @@ public class AgesBean implements Serializable
         ageModel.setData(dataBean.ages());
         ageModel.setTitle("Ages");
 
-        Axis xAxis = new Axis(Which.x);
-        xAxis.setLabel(new Axis.Label("people"));
+        XAxis xAxis = new XAxis();
+        xAxis.setLabel(new XLabel("people"));
 
 
-        Axis yAxis = new Axis(Which.y);
-
-        ageModel.setyAxisLabel("people");
-        ageModel.setxAxisLabel("years");
+        YAxis yAxis = new Axis();
+        yAxis.setLabel(new YLabel("years"));
     }
 
     /**
