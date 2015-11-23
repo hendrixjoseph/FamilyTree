@@ -100,12 +100,12 @@ public abstract class Axis
         map.put("padding:", padding);
     }
 
-    public Label getLabel()
+    protected Label getLabel()
     {
         return (Label) map.get("label:");
     }
 
-    public void setLabel(Label label)
+    protected void setLabel(Label label)
     {
         map.put("label:", label);
     }
