@@ -12,13 +12,14 @@
 
 package edu.wright.hendrix11.c3;
 
+import edu.wright.hendrix11.c3.Axis.Axis;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -27,12 +28,23 @@ import java.util.logging.Logger;
 public class ChartModel
 {
     private static final Logger LOG = Logger.getLogger(ChartModel.class.getName());
-    private Map<String, ? extends Number[]> arrayData = new LinkedHashMap<>();
+    private Map<?, ? extends Number[]> arrayData = new LinkedHashMap<>();
     private List<String> barLabels = new ArrayList<>();
-    private Map<String, ? extends Number> data = new LinkedHashMap<>();
+    private Map<?, ? extends Number> data = new LinkedHashMap<>();
     private String title;
-    private String xAxisLabel;
-    private String yAxisLabel;
+    private Axis xAxis;
+    private Axis yAxis;
+    private boolean isCategory = false;
+
+    public boolean isCategory()
+    {
+        return isCategory;
+    }
+
+    public void setIsCategory(boolean isCategory)
+    {
+        this.isCategory = isCategory;
+    }
 
     public String getTitle()
     {
@@ -44,24 +56,35 @@ public class ChartModel
         this.title = title;
     }
 
-    public String getxAxisLabel()
+    public Axis getxAxis()
     {
-        return xAxisLabel;
+
+        return xAxis;
     }
 
-    public void setxAxisLabel(String xAxisLabel)
+    public void setxAxis(Axis xAxis)
     {
-        this.xAxisLabel = xAxisLabel;
+        if(xAxis.getWhich() != Axis.Which.x)
+        {
+            throw new IllegalArgumentException("x-axis needs to be x-axis, not " + xAxis.getWhich() + "!");
+        }
+
+        this.xAxis = xAxis;
     }
 
-    public String getyAxisLabel()
+    public Axis getyAxis()
     {
-        return yAxisLabel;
+        return yAxis;
     }
 
-    public void setyAxisLabel(String yAxisLabel)
+    public void setyAxis(Axis yAxis)
     {
-        this.yAxisLabel = yAxisLabel;
+        if(yAxis.getWhich() != Axis.Which.y)
+        {
+            throw new IllegalArgumentException("y-axis needs to be y-axis, not " + yAxis.getWhich() + "!");
+        }
+
+        this.yAxis = yAxis;
     }
 
     /**
@@ -88,23 +111,23 @@ public class ChartModel
         this.barLabels = barLabels;
     }
 
-    public Map<String, ? extends Number[]> getArrayData()
+    public Map<?, ? extends Number[]> getArrayData()
     {
         return arrayData;
     }
 
-    public void setArrayData(Map<String, ? extends Number[]> arrayData)
+    public void setArrayData(Map<?, ? extends Number[]> arrayData)
     {
         data = new LinkedHashMap<>();
         this.arrayData = arrayData;
     }
 
-    public Map<String, ? extends Number> getData()
+    public Map<?, ? extends Number> getData()
     {
         return data;
     }
 
-    public void setData(Map<String, ? extends Number> data)
+    public void setData(Map<?, ? extends Number> data)
     {
         arrayData = new LinkedHashMap<>();
         this.data = data;
@@ -113,7 +136,7 @@ public class ChartModel
     /**
      * @return
      */
-    public Set<String> getAxisLabels()
+    public Set<?> getAxisLabels()
     {
         if ( hasArrayData() )
             return arrayData.keySet();
@@ -121,12 +144,12 @@ public class ChartModel
             return data.keySet();
     }
 
-    public Number[] getArrayData(String label)
+    public Object[] getArrayData(Object label)
     {
         return arrayData.get(label);
     }
 
-    public Number getData(String label)
+    public Object getData(String label)
     {
         return data.get(label);
     }

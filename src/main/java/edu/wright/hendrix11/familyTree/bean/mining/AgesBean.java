@@ -12,6 +12,7 @@
 
 package edu.wright.hendrix11.familyTree.bean.mining;
 
+import edu.wright.hendrix11.c3.Axis.Axis;
 import edu.wright.hendrix11.c3.ChartModel;
 import edu.wright.hendrix11.familyTree.dataBean.mining.AgesDataBean;
 
@@ -21,6 +22,8 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import java.io.Serializable;
+
+import static edu.wright.hendrix11.c3.Axis.Axis.*;
 
 /**
  * @author Joe Hendrix
@@ -40,6 +43,13 @@ public class AgesBean implements Serializable
         ageModel = new ChartModel();
         ageModel.setData(dataBean.ages());
         ageModel.setTitle("Ages");
+
+        Axis xAxis = new Axis(Which.x);
+        xAxis.setLabel(new Axis.Label("people"));
+
+
+        Axis yAxis = new Axis(Which.y);
+
         ageModel.setyAxisLabel("people");
         ageModel.setxAxisLabel("years");
     }

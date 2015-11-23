@@ -21,6 +21,10 @@ import javax.faces.render.FacesRenderer;
 import javax.faces.render.Renderer;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Joe Hendrix
@@ -28,6 +32,8 @@ import java.io.IOException;
 @FacesRenderer(rendererType = ChartComponent.DEFAULT_RENDERER, componentFamily = ChartComponent.COMPONENT_FAMILY)
 public class ChartRenderer extends Renderer
 {
+    private static final Logger LOG = Logger.getLogger(ChartRenderer.class.getName());
+
     @Override
     public void encodeBegin(FacesContext context, UIComponent component) throws IOException
     {
@@ -45,15 +51,15 @@ public class ChartRenderer extends Renderer
         }
 
         writer.endElement("div");
-        
+
         encodeScript(chart, model, writer);
     }
-    
-    private void encodeScript(ChartComponent chart, ChartModel model, ResponseWriter writer)
+
+    private void encodeScript(ChartComponent chart, ChartModel model, ResponseWriter writer) throws IOException
     {
         writer.startElement("script", null);
         writer.writeAttribute("type", "text/javascript", null);
-        
+
         writer.write("var chart = c3.generate({");
         writer.write("bindto:'#");
         writer.write(chart.getId());
@@ -61,139 +67,162 @@ public class ChartRenderer extends Renderer
 
         encodeData(chart, model, writer);
         encodeAxis(chart, model, writer);
+        encodeLegend(chart, writer);
         encodeGrid(chart, writer);
 
         writer.write("});");
 
         writer.endElement("script");
     }
-    
-    private void encodeLegend(ChartComponent chart, ResponseWriter writer)
+
+    private void encodeLegend(ChartComponent chart, ResponseWriter writer) throws IOException
     {
-        if(chart.getShowLegend() != null || chart.getLegendPosition() != null)
+        if ( chart.getShowLegend() != null || chart.getLegendPosition() != null )
         {
             writer.write(",legend:{");
-            
-            if(chart.getShowLegend() != null)
+
+            if ( chart.getShowLegend() != null )
             {
                 writer.write("show:");
-                writer.write(chart.getShowLegend());
+                writer.write(chart.getShowLegend().toString());
             }
-            
-            if(chart.getShowLegend() != null && chart.getLegendPosition() != null)
+
+            if ( chart.getShowLegend() != null && chart.getLegendPosition() != null )
             {
                 writer.write(",");
             }
-            
-            if(chart.getLegendPosition() != null)
+
+            if ( chart.getLegendPosition() != null )
             {
                 writer.write("position:'");
                 writer.write(chart.getLegendPosition());
                 writer.write("'");
             }
-            
-            writer.write();
+
             writer.write("}");
         }
     }
-    
-    private void encodeGrid(ChartComponent chart, ResponseWriter writer)
+
+    private void encodeGrid(ChartComponent chart, ResponseWriter writer) throws IOException
     {
-        if(chart.getGridX() != null || chart.getGridY() != null)
+        if ( chart.getGridX() != null || chart.getGridY() != null )
         {
             writer.write(",grid:{");
-            
-            if(chart.getGridX() != null)
+
+            if ( chart.getGridX() != null )
             {
                 writer.write("x:{show:");
-                writer.write(chart.getGridX());
+                writer.write(chart.getGridX().toString());
                 writer.write("}");
             }
-            
-            if(chart.getGridX() != null && chart.getGridY() != null)
+
+            if ( chart.getGridX() != null && chart.getGridY() != null )
             {
                 writer.write(",");
             }
-            
-            if(chart.getGridY() != null)
+
+            if ( chart.getGridY() != null )
             {
                 writer.write("y:{show:");
-                writer.write(chart.getGridY());
+                writer.write(chart.getGridY().toString());
                 writer.write("}");
             }
-            
+
             writer.write("}");
         }
     }
-    
-    private void encodeAxis(ChartComponent chart, ChartModel model, ResponseWriter writer)
+
+    private void encodeAxis(ChartComponent chart, ChartModel model, ResponseWriter writer) throws IOException
     {
-        if(model.hasArrayData())
+        if(model.getxAxis() != null || model.getyAxis() != null)
         {
-            writer.write(",axis:{x:{type:'category'}}");
+            writer.write(",axis:{");
+
+            if(model.getxAxis() != null)
+            {
+                writer.write(model.getxAxis().toString());
+            }
+
+            if(model.getxAxis() != null && model.getyAxis() != null)
+            {
+                writer.write(",");
+            }
+
+            if(model.getyAxis() != null)
+            {
+                writer.write(model.getyAxis().toString());
+            }
+
+            writer.write("}");
         }
     }
-    
-    private void encodeData(ChartComponent chart, ChartModel model, ResponseWriter writer)
+
+    private void encodeData(ChartComponent chart, ChartModel model, ResponseWriter writer) throws IOException
     {
-        writer.write("data:{");
-        
-        if(model.hasArrayData())
+        writer.write("data:{x:'x',");
+
+        if ( model.hasArrayData() )
         {
             encodeArrayData(chart, model, writer);
         }
         else
         {
-            writer.write("columns:[['data',");
-            writer.write(StringUtils.join(model.getData().values(),',');
+            writer.write("columns:[['x',");
+
+            writer.write("'");
+            writer.write(StringUtils.join(model.getAxisLabels(),"','"));
+            writer.write("'");
+
+            writer.write("],['data',");
+            writer.write(StringUtils.join(model.getData().values(), ','));
             writer.write("]]");
         }
 
-        if(chart.getType() != null)
+        if ( chart.getType() != null )
         {
             writer.write(",type:'");
             writer.write(chart.getType());
             writer.write("'");
         }
-        
+
         writer.write("}");
     }
-    
-    private void encodeArrayData(ChartComponent chart, ChartModel model, ResponseWriter writer)
+
+    private void encodeArrayData(ChartComponent chart, ChartModel model, ResponseWriter writer) throws IOException
     {
         List<String> barLabels = model.getBarLabels();
-        
-        if(barLabels == null || barLabels.isEmpty())
+
+        if ( barLabels == null || barLabels.isEmpty() )
         {
             barLabels = new ArrayList<>();
-            
-            for(int i = 0; i < model.getArrayData().get(0).length; i++)
+
+            for ( int i = 0; i < model.getArrayData().get(0).length; i++ )
             {
                 barLabels.add("data" + i);
             }
         }
-        
+
         List<StringBuilder> data = new ArrayList<>();
-        
-        for(String label : model.getAxisLabels())
+
+        for ( Object label : model.getAxisLabels() )
         {
             StringBuilder sb = new StringBuilder();
-            
+
             sb.append("[");
             sb.append("'");
             sb.append(label);
             sb.append("'");
-            sb.append(StringUtils.join(model.getArrayData(label),","));
+            sb.append(StringUtils.join(model.getArrayData(label), ","));
             sb.append("]");
-            
+
             data.add(sb);
         }
-        
-        writer.write("x:'x',rows:[['x','");
-        writer.write(StringUtils.join(barLabels,"','"));
+
+        writer.write("rows:[['x','");
+        writer.write(StringUtils.join(barLabels, "','"));
         writer.write("'],");
-        writer.write(StringUtils.join(data,"','"));
-        
+        writer.write(StringUtils.join(data, "','"));
+
         writer.write("]");
     }
 }

@@ -77,13 +77,13 @@ public class ChartComponent extends UIComponentBase
     }
 
     /**
-     * @param gridX
+     * @param style
      */
-    public void setGridX(Boolean gridX)
+    public void setStyle(String style)
     {
-        getStateHelper().put(PropertyKeys.gridX, string);
+        getStateHelper().put(PropertyKeys.style, style);
     }
-    
+
     /**
      * @return
      */
@@ -91,15 +91,15 @@ public class ChartComponent extends UIComponentBase
     {
         return (Boolean) getStateHelper().eval(PropertyKeys.gridX, null);
     }
-    
+
     /**
      * @param gridX
      */
-    public void setShowLegend(Boolean showLegend)
+    public void setGridX(Boolean gridX)
     {
-        getStateHelper().put(PropertyKeys.showLegend, string);
+        getStateHelper().put(PropertyKeys.gridX, gridX);
     }
-    
+
     /**
      * @return
      */
@@ -107,15 +107,15 @@ public class ChartComponent extends UIComponentBase
     {
         return (Boolean) getStateHelper().eval(PropertyKeys.showLegend, null);
     }
-    
-        /**
-     * @param gridY
+
+    /**
+     * @param showLegend
      */
-    public void setGridY(Boolean gridY)
+    public void setShowLegend(Boolean showLegend)
     {
-        getStateHelper().put(PropertyKeys.gridY, string);
+        getStateHelper().put(PropertyKeys.showLegend, showLegend);
     }
-    
+
     /**
      * @return
      */
@@ -125,11 +125,11 @@ public class ChartComponent extends UIComponentBase
     }
 
     /**
-     * @param style
+     * @param gridY
      */
-    public void setStyle(String style)
+    public void setGridY(Boolean gridY)
     {
-        getStateHelper().put(PropertyKeys.style, style);
+        getStateHelper().put(PropertyKeys.gridY, gridY);
     }
 
     /**
@@ -141,14 +141,14 @@ public class ChartComponent extends UIComponentBase
     }
 
     /**
-     * @param string
+     * @param type
      */
-    public void setLegendPosition(String legendPosition)
+    public void setType(String type)
     {
-        getStateHelper().put(PropertyKeys.legendPosition, string);
+        getStateHelper().put(PropertyKeys.type, type);
     }
-    
-        /**
+
+    /**
      * @return
      */
     public String getLegendPosition()
@@ -157,11 +157,11 @@ public class ChartComponent extends UIComponentBase
     }
 
     /**
-     * @param string
+     * @param legendPosition
      */
-    public void setType(String string)
+    public void setLegendPosition(String legendPosition)
     {
-        getStateHelper().put(PropertyKeys.type, string);
+        getStateHelper().put(PropertyKeys.legendPosition, legendPosition);
     }
 
     /**
