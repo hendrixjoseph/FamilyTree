@@ -47,7 +47,6 @@ public class AgesBean implements Serializable
         XAxis xAxis = new XAxis();
         xAxis.setLabel(new XLabel("people"));
 
-
         YAxis yAxis = new Axis();
         yAxis.setLabel(new YLabel("years"));
     }
