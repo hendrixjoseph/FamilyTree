@@ -12,10 +12,6 @@
 
 package edu.wright.hendrix11.c3.Axis;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.StringJoiner;
-
 /**
  * @author Joe Hendrix
  */
@@ -27,7 +23,8 @@ public class XAxis extends Axis
     {
         super("x");
     }
-    
+
+    @Override
     public XLabel getLabel()
     {
         return (XLabel) super.getLabel();

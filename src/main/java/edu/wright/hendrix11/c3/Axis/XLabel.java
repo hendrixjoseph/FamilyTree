@@ -19,45 +19,26 @@ public class XLabel extends Label
 {
     private XLabelPosition position;
 
-    public Label(String text)
+    public XLabel(String text)
     {
         super(text);
     }
 
-    public Label(String text, XLabelPosition position)
+    public XLabel(String text, XLabelPosition position)
     {
         this(text);
-        this.position = position;
-        setPositoin(position.toString());
+        setPosition(position);
     }
-    
+
     public XLabelPosition getPosition()
     {
-      return position;
+        return position;
     }
-    
+
     public void setPosition(XLabelPosition position)
     {
         this.position = position;
-        setPositoin(position.toString());
-    }
-
-    public String toString()
-    {
-        StringBuilder sb = new StringBuilder("{text:'");
-        sb.append(text);
-        sb.append("'");
-
-        if ( position != null )
-        {
-            sb.append(",position:'");
-            sb.append(position.toString());
-            sb.append("'");
-        }
-
-        sb.append("}");
-
-        return sb.toString();
+        setPosition(position.toString());
     }
 
     public enum XLabelPosition

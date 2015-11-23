@@ -12,8 +12,6 @@
 
 package edu.wright.hendrix11.c3;
 
-import edu.wright.hendrix11.c3.Axis.Axis;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -31,10 +29,10 @@ public class ChartModel
     private Map<?, ? extends Number[]> arrayData = new LinkedHashMap<>();
     private List<String> barLabels = new ArrayList<>();
     private Map<?, ? extends Number> data = new LinkedHashMap<>();
+    private boolean isCategory = false;
     private String title;
     private XAxis xAxis;
     private YAxis yAxis;
-    private boolean isCategory = false;
 
     public boolean isCategory()
     {

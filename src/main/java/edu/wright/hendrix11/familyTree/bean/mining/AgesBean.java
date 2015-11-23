@@ -12,7 +12,10 @@
 
 package edu.wright.hendrix11.familyTree.bean.mining;
 
-import edu.wright.hendrix11.c3.Axis.Axis;
+import edu.wright.hendrix11.c3.Axis.XAxis;
+import edu.wright.hendrix11.c3.Axis.XLabel;
+import edu.wright.hendrix11.c3.Axis.YAxis;
+import edu.wright.hendrix11.c3.Axis.YLabel;
 import edu.wright.hendrix11.c3.ChartModel;
 import edu.wright.hendrix11.familyTree.dataBean.mining.AgesDataBean;
 
@@ -22,8 +25,6 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import java.io.Serializable;
-
-import static edu.wright.hendrix11.c3.Axis.Axis.*;
 
 /**
  * @author Joe Hendrix
@@ -47,7 +48,7 @@ public class AgesBean implements Serializable
         XAxis xAxis = new XAxis();
         xAxis.setLabel(new XLabel("people"));
 
-        YAxis yAxis = new Axis();
+        YAxis yAxis = new YAxis();
         yAxis.setLabel(new YLabel("years"));
     }
 

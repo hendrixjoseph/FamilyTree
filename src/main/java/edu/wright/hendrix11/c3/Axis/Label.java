@@ -25,13 +25,13 @@ public abstract class Label
         this.text = text;
     }
 
-    public Label(String text, LabelPosition position)
+    public Label(String text, String position)
     {
         this.text = text;
         this.position = position;
     }
-    
-    protected setPosition(String position)
+
+    protected void setPosition(String position)
     {
         this.position = position;
     }

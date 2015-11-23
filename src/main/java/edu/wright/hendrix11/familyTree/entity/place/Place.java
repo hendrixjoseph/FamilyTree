@@ -231,7 +231,7 @@ public abstract class Place implements Iterable<Place>
     @Override
     public int hashCode()
     {
-        return getId();
+        return id;
     }
 
     @Override

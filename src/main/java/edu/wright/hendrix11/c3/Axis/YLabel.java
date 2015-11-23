@@ -19,45 +19,26 @@ public class YLabel extends Label
 {
     private YLabelPosition position;
 
-    public Label(String text)
+    public YLabel(String text)
     {
-        this.text = text;
+        super(text);
     }
 
-    public Label(String text, YLabelPosition position)
+    public YLabel(String text, YLabelPosition position)
     {
         this(text);
-        this.position = position;
-        setPosition(position.toString());
+        setPosition(position);
     }
-    
+
     public YLabelPosition getPosition()
     {
-      return position;
+        return position;
     }
-    
+
     public void setPosition(YLabelPosition position)
     {
-      this.position = position;
-      setPositoin(position.toString()); 
-    }
-
-    public String toString()
-    {
-        StringBuilder sb = new StringBuilder("{text:'");
-        sb.append(text);
-        sb.append("'");
-
-        if ( position != null )
-        {
-            sb.append(",position:'");
-            sb.append(position);
-            sb.append("'");
-        }
-
-        sb.append("}");
-
-        return sb.toString();
+        this.position = position;
+        setPosition(position.toString());
     }
 
     public enum YLabelPosition

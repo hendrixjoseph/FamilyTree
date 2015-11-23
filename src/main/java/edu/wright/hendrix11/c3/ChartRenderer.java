@@ -23,7 +23,6 @@ import javax.faces.render.Renderer;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -134,21 +133,21 @@ public class ChartRenderer extends Renderer
 
     private void encodeAxis(ChartComponent chart, ChartModel model, ResponseWriter writer) throws IOException
     {
-        if(model.getxAxis() != null || model.getyAxis() != null)
+        if ( model.getxAxis() != null || model.getyAxis() != null )
         {
             writer.write(",axis:{");
 
-            if(model.getxAxis() != null)
+            if ( model.getxAxis() != null )
             {
                 writer.write(model.getxAxis().toString());
             }
 
-            if(model.getxAxis() != null && model.getyAxis() != null)
+            if ( model.getxAxis() != null && model.getyAxis() != null )
             {
                 writer.write(",");
             }
 
-            if(model.getyAxis() != null)
+            if ( model.getyAxis() != null )
             {
                 writer.write(model.getyAxis().toString());
             }
@@ -170,7 +169,7 @@ public class ChartRenderer extends Renderer
             writer.write("columns:[['x',");
 
             writer.write("'");
-            writer.write(StringUtils.join(model.getAxisLabels(),"','"));
+            writer.write(StringUtils.join(model.getAxisLabels(), "','"));
             writer.write("'");
 
             writer.write("],['data',");

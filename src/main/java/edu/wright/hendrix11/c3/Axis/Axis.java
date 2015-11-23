@@ -22,8 +22,8 @@ import java.util.StringJoiner;
 public abstract class Axis
 {
     Map<String, Object> map = new HashMap<>();
-    private boolean localTime;
     private String axis;
+    private boolean localTime;
 
     public Axis(String axis)
     {
@@ -100,6 +100,11 @@ public abstract class Axis
         map.put("padding:", padding);
     }
 
+    public String getAxis()
+    {
+        return axis;
+    }
+
     protected Label getLabel()
     {
         return (Label) map.get("label:");
@@ -115,7 +120,7 @@ public abstract class Axis
     {
         StringJoiner sj = new StringJoiner(",");
 
-        for(String field : map.keySet())
+        for ( String field : map.keySet() )
         {
             StringBuilder sb = new StringBuilder(field);
             sb.append(map.get(field));
@@ -130,11 +135,6 @@ public abstract class Axis
         returnValue.append("}}");
 
         return returnValue.toString();
-    }
-
-    public String getAxis()
-    {
-        return axis;
     }
 
     public enum Type
