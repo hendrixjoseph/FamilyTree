@@ -15,62 +15,42 @@ package edu.wright.hendrix11.c3.Axis;
 /**
  * @author Joe Hendrix
  */
-public class Label
+public abstract class Label
 {
-    public class Label
+    private String position;
+    private String text;
+
+    public Label(String text)
     {
-        private LabelPosition position;
-        private String text;
-
-        public Label(String text)
-        {
-            this.text = text;
-        }
-
-        public Label(String text, LabelPosition position)
-        {
-            this.text = text;
-            this.position = position;
-        }
-
-        public String toString()
-        {
-            StringBuilder sb = new StringBuilder("{text:'");
-            sb.append(text);
-            sb.append("'");
-
-            if ( position != null )
-            {
-                sb.append(",position:'");
-                sb.append(position.toString());
-                sb.append("'");
-            }
-
-            sb.append("}");
-
-            return sb.toString();
-        }
+        this.text = text;
     }
 
-    public enum LabelPosition
+    public Label(String text, LabelPosition position)
     {
-        inner_right,
-        inner_center,
-        inner_left,
-        outer_right,
-        outer_center,
-        outer_left,
-        inner_top,
-        inner_middle,
-        inner_bottom,
-        outer_top,
-        outer_middle,
-        outer_bottom;
+        this.text = text;
+        this.position = position;
+    }
+    
+    protected setPosition(String position)
+    {
+        this.position = position;
+    }
 
-        @Override
-        public String toString()
+    public String toString()
+    {
+        StringBuilder sb = new StringBuilder("{text:'");
+        sb.append(text);
+        sb.append("'");
+
+        if ( position != null )
         {
-            return super.toString().replace('_', '-');
+            sb.append(",position:'");
+            sb.append(position);
+            sb.append("'");
         }
+
+        sb.append("}");
+
+        return sb.toString();
     }
 }
