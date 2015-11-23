@@ -32,8 +32,8 @@ public class ChartModel
     private List<String> barLabels = new ArrayList<>();
     private Map<?, ? extends Number> data = new LinkedHashMap<>();
     private String title;
-    private Axis xAxis;
-    private Axis yAxis;
+    private XAxis xAxis;
+    private YAxis yAxis;
     private boolean isCategory = false;
 
     public boolean isCategory()
@@ -56,34 +56,24 @@ public class ChartModel
         this.title = title;
     }
 
-    public Axis getxAxis()
+    public XAxis getxAxis()
     {
 
         return xAxis;
     }
 
-    public void setxAxis(Axis xAxis)
+    public void setxAxis(XAxis xAxis)
     {
-        if(xAxis.getWhich() != Axis.Which.x)
-        {
-            throw new IllegalArgumentException("x-axis needs to be x-axis, not " + xAxis.getWhich() + "!");
-        }
-
         this.xAxis = xAxis;
     }
 
-    public Axis getyAxis()
+    public YAxis getyAxis()
     {
         return yAxis;
     }
 
-    public void setyAxis(Axis yAxis)
+    public void setyAxis(YAxis yAxis)
     {
-        if(yAxis.getWhich() != Axis.Which.y)
-        {
-            throw new IllegalArgumentException("y-axis needs to be y-axis, not " + yAxis.getWhich() + "!");
-        }
-
         this.yAxis = yAxis;
     }
 
