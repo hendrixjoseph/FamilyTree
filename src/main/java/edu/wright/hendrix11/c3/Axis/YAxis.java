@@ -35,6 +35,6 @@ public class YAxis extends Axis
 
     public void setLabel(YLabel label)
     {
-        super(label);
+        super.setLabel(label);
     }
 }
