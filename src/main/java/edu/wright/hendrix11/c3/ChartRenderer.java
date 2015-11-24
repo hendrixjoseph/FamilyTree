@@ -70,6 +70,7 @@ public class ChartRenderer extends Renderer
         writer.write("',");
 
         encodeData(chart, model, writer);
+        encodeColors(model, writer);
         encodeAxis(chart, model, writer);
         encodeLegend(chart, writer);
         encodeGrid(chart, writer);
@@ -77,6 +78,16 @@ public class ChartRenderer extends Renderer
         writer.write("});");
 
         writer.endElement("script");
+    }
+    
+    private void encodeColors(ChartModel model, ResponseWriter writer) throws IOException
+    {
+        if(model.getColors() != null && !model.getColors().isEmpty())
+        {
+            writer.write(",color:{pattern:['");
+            writer.write(StringUtils.join(model.getColors(), "','"));
+            writer.write("']}");
+        }
     }
 
     private void encodeLegend(ChartComponent chart, ResponseWriter writer) throws IOException
