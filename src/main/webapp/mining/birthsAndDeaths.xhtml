@@ -16,7 +16,7 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:fam="http://hendrix11.wright.edu/familyTree"
-                xmlns:svg="http://hendrix11.wright.edu/svg">
+                xmlns:c3="http://hendrix11.wright.edu/c3">
 
     <ui:define name="title">
         Births and Deaths
@@ -28,11 +28,14 @@
 
     <ui:define name="content">
         <p:layoutUnit position="center">
-            <svg:barChart chartModel="#{statisticsBean.perDecadeModel}" height="300" styleClass="perDecadeChart" />
-            <svg:barChart chartModel="#{statisticsBean.perDecadeCleanModel}" height="300"
-                          styleClass="perDecadeCleanChart" />
-            <svg:barChart chartModel="#{statisticsBean.perDecadeCombinedModel}" height="300"
-                          styleClass="perDecadeCombinedChart" />
+            <c3:chart chartModel="#{birthsAndDeathsBean.perMonthModel}" type="bar" id="perMonthChart"
+                      styleClass="charts" />
+            <c3:chart chartModel="#{birthsAndDeathsBean.perDecadeModel}" type="bar" id="perDecadeChart"
+                      styleClass="charts" />
+            <c3:chart chartModel="#{birthsAndDeathsBean.perDecadeCleanModel}" type="bar" id="perDecadeCleanChart"
+                      styleClass="charts" />
+            <c3:chart chartModel="#{birthsAndDeathsBean.perDecadeCombinedModel}" type="bar" id="perDecadeCombined"
+                      styleClass="charts" />
         </p:layoutUnit>
     </ui:define>
 

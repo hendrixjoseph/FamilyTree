@@ -12,11 +12,11 @@
 
 package edu.wright.hendrix11.familyTree.bean.mining;
 
-import edu.wright.hendrix11.c3.Axis.XAxis;
-import edu.wright.hendrix11.c3.Axis.XLabel;
-import edu.wright.hendrix11.c3.Axis.YAxis;
-import edu.wright.hendrix11.c3.Axis.YLabel;
 import edu.wright.hendrix11.c3.ChartModel;
+import edu.wright.hendrix11.c3.axis.XAxis;
+import edu.wright.hendrix11.c3.axis.XLabel;
+import edu.wright.hendrix11.c3.axis.YAxis;
+import edu.wright.hendrix11.c3.axis.YLabel;
 import edu.wright.hendrix11.familyTree.dataBean.mining.AgesDataBean;
 
 import javax.annotation.PostConstruct;
@@ -33,7 +33,7 @@ import java.io.Serializable;
 @ViewScoped
 public class AgesBean implements Serializable
 {
-    ChartModel ageModel;
+    ChartModel ageModel = new ChartModel();
 
     @EJB
     AgesDataBean dataBean;
@@ -41,15 +41,16 @@ public class AgesBean implements Serializable
     @PostConstruct
     private void initialize()
     {
-        ageModel = new ChartModel();
         ageModel.setData(dataBean.ages());
         ageModel.setTitle("Ages");
 
-        XAxis xAxis = new XAxis();
-        xAxis.setLabel(new XLabel("people"));
+        XAxis xAxis = new XAxis("people");
+        xAxis.getLabel().setPosition(XLabel.Position.outer_center);
+        ageModel.setxAxis(xAxis);
 
-        YAxis yAxis = new YAxis();
-        yAxis.setLabel(new YLabel("years"));
+        YAxis yAxis = new YAxis("years");
+        yAxis.getLabel().setPosition(YLabel.Position.outer_middle);
+        ageModel.setyAxis(yAxis);
     }
 
     /**
@@ -60,31 +61,55 @@ public class AgesBean implements Serializable
         return ageModel;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getAverageAge()
     {
         return dataBean.averageAge();
     }
 
+    /**
+     *
+     * @return
+     */
     public int getMaxAge()
     {
         return dataBean.maxAge();
     }
 
+    /**
+     *
+     * @return
+     */
     public double getMedianAge()
     {
         return dataBean.medianAge();
     }
 
+    /**
+     *
+     * @return
+     */
     public int getMinAge()
     {
         return dataBean.minAge();
     }
 
+    /**
+     *
+     * @return
+     */
     public int getAgeQ1()
     {
         return dataBean.ageQuartile(1);
     }
 
+    /**
+     *
+     * @return
+     */
     public int getAgeQ3()
     {
         return dataBean.ageQuartile(3);

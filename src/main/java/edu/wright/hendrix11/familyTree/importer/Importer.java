@@ -86,12 +86,35 @@ public abstract class Importer
      */
     protected abstract void processData();
 
+    /**
+     *
+     */
     protected enum KnownCountry
     {
+
+        /**
+         *
+         */
         Mexico,
+
+        /**
+         *
+         */
         Germany,
+
+        /**
+         *
+         */
         USA,
+
+        /**
+         *
+         */
         Ireland,
+
+        /**
+         *
+         */
         Spain
     }
 

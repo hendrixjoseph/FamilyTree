@@ -58,7 +58,7 @@ public abstract class SvgJsfComponent extends UIComponentBase
     /**
      * @param height
      */
-    public void setHeight(Double height)
+    public void setHeight(Integer height)
     {
         getStateHelper().put(PropertyKeys.height, height);
     }
@@ -66,7 +66,7 @@ public abstract class SvgJsfComponent extends UIComponentBase
     /**
      * @param height
      */
-    public void setHeight(Integer height)
+    public void setHeight(Double height)
     {
         getStateHelper().put(PropertyKeys.height, height);
     }
@@ -82,7 +82,7 @@ public abstract class SvgJsfComponent extends UIComponentBase
     /**
      * @param width
      */
-    public void setWidth(Double width)
+    public void setWidth(Integer width)
     {
         getStateHelper().put(PropertyKeys.width, width);
     }
@@ -90,7 +90,7 @@ public abstract class SvgJsfComponent extends UIComponentBase
     /**
      * @param width
      */
-    public void setWidth(Integer width)
+    public void setWidth(Double width)
     {
         getStateHelper().put(PropertyKeys.width, width);
     }

@@ -35,6 +35,9 @@ public class BarChartComponent extends SvgJsfComponent
      */
     public static final String DEFAULT_RENDERER = "edu.wright.hendrix11.svg.jsf.barChart.BarChartRenderer";
 
+    /**
+     *
+     */
     public BarChartComponent()
     {
         setRendererType(DEFAULT_RENDERER);

@@ -296,14 +296,15 @@
                         <argument>${settings.localRepository}/org/omnifaces/vdldoc/2.1/vdldoc-2.1.jar</argument>
                         <argument>-d</argument>
                         <argument>${project.build.directory}/site/vdldoc</argument>
-                        <!-- argument>-facesconfig</argument>
-                        <argument>src/main/webapp/WEB-INF/faces-config.xml</argument -->
+                        <argument>-facesconfig</argument>
+                        <argument>src/main/webapp/WEB-INF/faces-config.xml</argument>
                         <argument>-windowtitle</argument>
                         <argument>${project.name} VDL Documentation</argument>
                         <argument>-doctitle</argument>
                         <argument>${project.name} VDL Documentation</argument>
                         <argument>src/main/webapp/WEB-INF/fam.taglib.xml</argument>
                         <argument>src/main/webapp/WEB-INF/svg.taglib.xml</argument>
+                        <argument>src/main/webapp/WEB-INF/c3.taglib.xml</argument>
                     </arguments>
                 </configuration>
                 <dependencies>

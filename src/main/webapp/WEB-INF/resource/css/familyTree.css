@@ -49,3 +49,8 @@ a.ui-link {
 .ageChart .x-axis .label {
     font-size: 10px;
 }
+
+.charts {
+    width: 100%;
+    height: 300px;
+}

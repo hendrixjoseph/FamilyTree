@@ -12,6 +12,9 @@
 
 package edu.wright.hendrix11.c3;
 
+import edu.wright.hendrix11.c3.axis.XAxis;
+import edu.wright.hendrix11.c3.axis.YAxis;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -34,42 +37,92 @@ public class ChartModel
     private XAxis xAxis;
     private YAxis yAxis;
 
+    /**
+     *
+     * @return
+     */
     public boolean isCategory()
     {
         return isCategory;
     }
 
+    /**
+     *
+     * @param isCategory
+     */
     public void setIsCategory(boolean isCategory)
     {
         this.isCategory = isCategory;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTitle()
     {
         return title;
     }
 
+    /**
+     *
+     * @param title
+     */
     public void setTitle(String title)
     {
         this.title = title;
     }
 
+    /**
+     *
+     * @return
+     */
     public XAxis getxAxis()
     {
 
         return xAxis;
     }
 
+    /**
+     *
+     * @param label
+     */
+    public void setxAxis(String label)
+    {
+        this.xAxis = new XAxis(label);
+    }
+
+    /**
+     *
+     * @param xAxis
+     */
     public void setxAxis(XAxis xAxis)
     {
         this.xAxis = xAxis;
     }
 
+    /**
+     *
+     * @return
+     */
     public YAxis getyAxis()
     {
         return yAxis;
     }
 
+    /**
+     *
+     * @param label
+     */
+    public void setyAxis(String label)
+    {
+        this.yAxis = new YAxis(label);
+    }
+
+    /**
+     *
+     * @param yAxis
+     */
     public void setyAxis(YAxis yAxis)
     {
         this.yAxis = yAxis;
@@ -99,22 +152,38 @@ public class ChartModel
         this.barLabels = barLabels;
     }
 
+    /**
+     *
+     * @return
+     */
     public Map<?, ? extends Number[]> getArrayData()
     {
         return arrayData;
     }
 
+    /**
+     *
+     * @param arrayData
+     */
     public void setArrayData(Map<?, ? extends Number[]> arrayData)
     {
         data = new LinkedHashMap<>();
         this.arrayData = arrayData;
     }
 
+    /**
+     *
+     * @return
+     */
     public Map<?, ? extends Number> getData()
     {
         return data;
     }
 
+    /**
+     *
+     * @param data
+     */
     public void setData(Map<?, ? extends Number> data)
     {
         arrayData = new LinkedHashMap<>();
@@ -132,16 +201,30 @@ public class ChartModel
             return data.keySet();
     }
 
+    /**
+     *
+     * @param label
+     * @return
+     */
     public Object[] getArrayData(Object label)
     {
         return arrayData.get(label);
     }
 
+    /**
+     *
+     * @param label
+     * @return
+     */
     public Object getData(String label)
     {
         return data.get(label);
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean hasArrayData()
     {
         return arrayData != null && !arrayData.isEmpty();

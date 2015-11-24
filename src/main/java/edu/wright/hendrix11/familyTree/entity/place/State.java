@@ -55,10 +55,17 @@ public class State extends Place
      */
     public static final String FIND_BY_NAME_AND_REGION = "State.findByNameAndRegion";
 
+    /**
+     *
+     */
     public State()
     {
     }
 
+    /**
+     *
+     * @param name
+     */
     public State(String name)
     {
         super(name);

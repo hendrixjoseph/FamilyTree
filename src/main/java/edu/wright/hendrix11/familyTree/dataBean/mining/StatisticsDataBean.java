@@ -18,13 +18,7 @@ import edu.wright.hendrix11.familyTree.entity.Person;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-
-import java.time.Month;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author Joe Hendrix
@@ -47,74 +41,5 @@ public class StatisticsDataBean
         TypedQuery<Long> countQuery = em.createNamedQuery(Person.COUNT_GENDERS, Long.class);
         countQuery.setParameter("gender", gender);
         return countQuery.getSingleResult();
-    }
-
-    /**
-     * @return
-     */
-    public Map<String, Integer[]> perDecadeCombined()
-    {
-        Query query = em.createNativeQuery("SELECT * FROM PER_DECADE_COMBINED_VIEW");
-
-        return processDecades(query.getResultList());
-    }
-
-    /**
-     * @return
-     */
-    public Map<String, Integer[]> perDecadeClean()
-    {
-        Query query = em.createNativeQuery("SELECT * FROM PER_DECADE_CLEAN_VIEW");
-
-        return processDecades(query.getResultList());
-    }
-
-    /**
-     * @return
-     */
-    public Map<String, Integer[]> perDecade()
-    {
-        Query query = em.createNativeQuery("SELECT * FROM PER_DECADE_VIEW");
-
-        return processDecades(query.getResultList());
-    }
-
-    public Map<Month, Integer[]> perMonth()
-    {
-        Query query = em.createNativeQuery("SELECT * FROM PER_MONTH_VIEW");
-
-        Map<Month, Integer[]> result = new LinkedHashMap<>();
-
-        List<Object[]> objects = query.getResultList();
-
-        Month[] months = Month.values();
-
-        for ( Object[] o : objects )
-        {
-            Integer births = ( (Number) o[0] ).intValue();
-            Integer deaths = ( (Number) o[1] ).intValue();
-            Month month = months[( (Number) o[2] ).intValue()];
-
-            Integer[] array = {births, deaths};
-            result.put(month, array);
-        }
-
-        return result;
-    }
-
-    private Map<String, Integer[]> processDecades(List<Object[]> decades)
-    {
-        Map<String, Integer[]> result = new LinkedHashMap<>();
-
-        for ( Object[] o : decades )
-        {
-            Integer births = ( (Number) o[0] ).intValue();
-            Integer deaths = ( (Number) o[1] ).intValue();
-            String decade = o[2].toString();
-            Integer[] array = {births, deaths};
-            result.put(decade, array);
-        }
-
-        return result;
     }
 }

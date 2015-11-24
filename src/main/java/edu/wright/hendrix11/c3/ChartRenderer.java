@@ -49,6 +49,11 @@ public class ChartRenderer extends Renderer
             writer.writeAttribute("style", chart.getStyle(), "style");
         }
 
+        if ( chart.getStyleClass() != null )
+        {
+            writer.writeAttribute("class", chart.getStyleClass(), "styleClass");
+        }
+
         writer.endElement("div");
 
         encodeScript(chart, model, writer);
@@ -195,7 +200,7 @@ public class ChartRenderer extends Renderer
         {
             barLabels = new ArrayList<>();
 
-            for ( int i = 0; i < model.getArrayData().get(0).length; i++ )
+            for ( int i = 0; i < model.getArrayData().values().iterator().next().length; i++ )
             {
                 barLabels.add("data" + i);
             }
@@ -210,9 +215,9 @@ public class ChartRenderer extends Renderer
             sb.append("[");
             sb.append("'");
             sb.append(label);
-            sb.append("'");
-            sb.append(StringUtils.join(model.getArrayData(label), ","));
-            sb.append("]");
+            sb.append("','");
+            sb.append(StringUtils.join(model.getArrayData(label), "','"));
+            sb.append("']");
 
             data.add(sb);
         }
@@ -220,7 +225,7 @@ public class ChartRenderer extends Renderer
         writer.write("rows:[['x','");
         writer.write(StringUtils.join(barLabels, "','"));
         writer.write("'],");
-        writer.write(StringUtils.join(data, "','"));
+        writer.write(StringUtils.join(data, ","));
 
         writer.write("]");
     }

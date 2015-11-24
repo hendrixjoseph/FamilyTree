@@ -46,10 +46,17 @@ public class County extends Place
      */
     public static final String FIND_BY_NAME = "County.findByName";
 
+    /**
+     *
+     */
     public County()
     {
     }
 
+    /**
+     *
+     * @param name
+     */
     public County(String name)
     {
         super(name);

@@ -77,11 +77,18 @@ public abstract class Place implements Iterable<Place>
                inverseJoinColumns = @JoinColumn(name = "ID"))
     private Place region;
 
+    /**
+     *
+     */
     public Place()
     {
 
     }
 
+    /**
+     *
+     * @param name
+     */
     public Place(String name)
     {
         this.name = name;

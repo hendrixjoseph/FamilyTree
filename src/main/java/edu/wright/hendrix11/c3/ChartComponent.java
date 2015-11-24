@@ -41,6 +41,9 @@ public class ChartComponent extends UIComponentBase
      */
     public static final String DEFAULT_RENDERER = "edu.wright.hendrix11.c3.ChartRenderer";
 
+    /**
+     *
+     */
     public ChartComponent()
     {
         setRendererType(DEFAULT_RENDERER);
@@ -200,10 +203,30 @@ public class ChartComponent extends UIComponentBase
          *
          */
         style,
+
+        /**
+         *
+         */
         type,
+
+        /**
+         *
+         */
         gridX,
+
+        /**
+         *
+         */
         gridY,
+
+        /**
+         *
+         */
         showLegend,
+
+        /**
+         *
+         */
         legendPosition
     }
 }

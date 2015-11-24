@@ -41,6 +41,10 @@ public class AgesDataBean
         return ( (BigDecimal) em.createNativeQuery(averageQuery).getSingleResult() ).doubleValue();
     }
 
+    /**
+     *
+     * @return
+     */
     public double medianAge()
     {
         String medianQuery = "SELECT MEDIAN(AGE) FROM AGE_VIEW";
@@ -48,6 +52,10 @@ public class AgesDataBean
         return ( (BigDecimal) em.createNativeQuery(medianQuery).getSingleResult() ).doubleValue();
     }
 
+    /**
+     *
+     * @return
+     */
     public int minAge()
     {
         String minQuery = "SELECT MIN(AGE) FROM AGE_VIEW";
@@ -55,6 +63,10 @@ public class AgesDataBean
         return ( (BigDecimal) em.createNativeQuery(minQuery).getSingleResult() ).intValue();
     }
 
+    /**
+     *
+     * @return
+     */
     public int maxAge()
     {
         String maxQuery = "SELECT MAX(AGE) FROM AGE_VIEW";
@@ -62,6 +74,11 @@ public class AgesDataBean
         return ( (BigDecimal) em.createNativeQuery(maxQuery).getSingleResult() ).intValue();
     }
 
+    /**
+     *
+     * @param quartile
+     * @return
+     */
     public int ageQuartile(int quartile)
     {
         StringBuilder quartileQuery = new StringBuilder("SELECT MAX(AGE) FROM");

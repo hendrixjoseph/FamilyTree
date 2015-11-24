@@ -57,22 +57,38 @@ public class BarChartModel extends GenericModel
         this.barLabels = barLabels;
     }
 
+    /**
+     *
+     * @return
+     */
     public Map<String, ? extends Number[]> getArrayData()
     {
         return arrayData;
     }
 
+    /**
+     *
+     * @param arrayData
+     */
     public void setArrayData(Map<String, ? extends Number[]> arrayData)
     {
         data = new LinkedHashMap<>();
         this.arrayData = arrayData;
     }
 
+    /**
+     *
+     * @return
+     */
     public Map<String, ? extends Number> getData()
     {
         return data;
     }
 
+    /**
+     *
+     * @param data
+     */
     public void setData(Map<String, ? extends Number> data)
     {
         arrayData = new LinkedHashMap<>();
@@ -90,6 +106,11 @@ public class BarChartModel extends GenericModel
             return data.keySet();
     }
 
+    /**
+     *
+     * @param label
+     * @return
+     */
     public Number[] getArrayData(String label)
     {
         return arrayData.get(label);
@@ -155,11 +176,20 @@ public class BarChartModel extends GenericModel
         return max;
     }
 
+    /**
+     *
+     * @param label
+     * @return
+     */
     public Number getData(String label)
     {
         return data.get(label);
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean hasArrayData()
     {
         return arrayData != null && !arrayData.isEmpty();

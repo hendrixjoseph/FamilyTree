@@ -46,10 +46,17 @@ public class City extends Place
      */
     public static final String FIND_BY_NAME = "City.findByName";
 
+    /**
+     *
+     */
     public City()
     {
     }
 
+    /**
+     *
+     * @param name
+     */
     public City(String name)
     {
         super(name);

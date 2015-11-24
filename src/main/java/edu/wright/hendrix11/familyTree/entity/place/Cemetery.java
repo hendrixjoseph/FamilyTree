@@ -17,6 +17,10 @@ import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
+/**
+ *
+ * @author Joe
+ */
 @Entity
 @DiscriminatorValue(value = "cemetery")
 @NamedQueries({
@@ -27,13 +31,27 @@ import javax.persistence.NamedQuery;
 public class Cemetery extends Place
 {
 
+    /**
+     *
+     */
     public static final String FIND_ALL = "Cemetary.findAll";
+
+    /**
+     *
+     */
     public static final String FIND_BY_NAME = "Cemetary.findByName";
 
+    /**
+     *
+     */
     public Cemetery()
     {
     }
 
+    /**
+     *
+     * @param name
+     */
     public Cemetery(String name)
     {
         super(name);

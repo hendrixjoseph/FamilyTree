@@ -23,11 +23,19 @@ public class ScatterPlotModel extends GenericModel
 {
     private Map<? extends Number, ? extends Number> data;
 
+    /**
+     *
+     * @return
+     */
     public Map<? extends Number, ? extends Number> getData()
     {
         return data;
     }
 
+    /**
+     *
+     * @param data
+     */
     public void setData(Map<? extends Number, ? extends Number> data)
     {
         this.data = data;
