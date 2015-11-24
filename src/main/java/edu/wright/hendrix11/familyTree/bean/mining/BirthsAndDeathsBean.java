@@ -13,6 +13,7 @@
 package edu.wright.hendrix11.familyTree.bean.mining;
 
 import edu.wright.hendrix11.c3.ChartModel;
+import edu.wright.hendrix11.c3.Color;
 import edu.wright.hendrix11.c3.axis.Axis;
 import edu.wright.hendrix11.c3.axis.XLabel;
 import edu.wright.hendrix11.c3.axis.YLabel;
@@ -103,6 +104,8 @@ public class BirthsAndDeathsBean implements Serializable
         model.getxAxis().getLabel().setPosition(XLabel.Position.outer_center);
         model.getxAxis().setType(Axis.Type.category);
         model.setBarLabels(new String[]{"births", "deaths"});
+        model.addColor(Color.yellow);
+        model.addColor(Color.black);
 
         return model;
     }
