@@ -54,7 +54,6 @@ public class County extends Place
     }
 
     /**
-     *
      * @param name
      */
     public County(String name)

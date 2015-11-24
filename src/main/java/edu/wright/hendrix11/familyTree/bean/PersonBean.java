@@ -23,7 +23,6 @@ import javax.inject.Named;
 import java.io.Serializable;
 
 /**
- *
  * @author Joe
  */
 @Named

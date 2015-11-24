@@ -27,7 +27,6 @@ public abstract class Axis
     private Type type;
 
     /**
-     *
      * @param axis
      */
     protected Axis(String axis)
@@ -36,7 +35,6 @@ public abstract class Axis
     }
 
     /**
-     *
      * @return
      */
     public int getHeight()
@@ -45,7 +43,6 @@ public abstract class Axis
     }
 
     /**
-     *
      * @param height
      */
     public void setHeight(int height)
@@ -54,7 +51,6 @@ public abstract class Axis
     }
 
     /**
-     *
      * @return
      */
     public boolean isLocalTime()
@@ -63,7 +59,6 @@ public abstract class Axis
     }
 
     /**
-     *
      * @param localTime
      */
     public void setLocalTime(boolean localTime)
@@ -72,7 +67,6 @@ public abstract class Axis
     }
 
     /**
-     *
      * @return
      */
     public int getMax()
@@ -81,7 +75,6 @@ public abstract class Axis
     }
 
     /**
-     *
      * @param max
      */
     public void setMax(int max)
@@ -90,7 +83,6 @@ public abstract class Axis
     }
 
     /**
-     *
      * @return
      */
     public int getMin()
@@ -99,7 +91,6 @@ public abstract class Axis
     }
 
     /**
-     *
      * @param min
      */
     public void setMin(int min)
@@ -108,7 +99,6 @@ public abstract class Axis
     }
 
     /**
-     *
      * @return
      */
     public boolean isShow()
@@ -117,7 +107,6 @@ public abstract class Axis
     }
 
     /**
-     *
      * @param show
      */
     public void setShow(boolean show)
@@ -126,7 +115,6 @@ public abstract class Axis
     }
 
     /**
-     *
      * @return
      */
     public Type getType()
@@ -135,7 +123,6 @@ public abstract class Axis
     }
 
     /**
-     *
      * @param type
      */
     public void setType(Type type)
@@ -144,7 +131,6 @@ public abstract class Axis
     }
 
     /**
-     *
      * @return
      */
     public Padding getPadding()
@@ -153,7 +139,6 @@ public abstract class Axis
     }
 
     /**
-     *
      * @param padding
      */
     public void setPadding(Padding padding)
@@ -162,7 +147,6 @@ public abstract class Axis
     }
 
     /**
-     *
      * @return
      */
     protected Label getLabel()
@@ -171,7 +155,6 @@ public abstract class Axis
     }
 
     /**
-     *
      * @param label
      */
     protected void setLabel(Label label)
@@ -253,7 +236,6 @@ public abstract class Axis
         int right;
 
         /**
-         *
          * @param left
          * @param right
          */

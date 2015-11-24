@@ -28,7 +28,6 @@ public class XAxis extends Axis
     }
 
     /**
-     *
      * @param label
      */
     public XAxis(String label)
@@ -38,7 +37,6 @@ public class XAxis extends Axis
     }
 
     /**
-     *
      * @return
      */
     @Override
@@ -48,7 +46,6 @@ public class XAxis extends Axis
     }
 
     /**
-     *
      * @param label
      */
     public void setLabel(XLabel label)

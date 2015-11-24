@@ -54,7 +54,6 @@ public class City extends Place
     }
 
     /**
-     *
      * @param name
      */
     public City(String name)

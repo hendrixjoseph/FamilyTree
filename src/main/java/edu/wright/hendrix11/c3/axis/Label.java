@@ -21,7 +21,6 @@ public abstract class Label
     private String text;
 
     /**
-     *
      * @param text
      */
     public Label(String text)
@@ -30,7 +29,6 @@ public abstract class Label
     }
 
     /**
-     *
      * @param text
      * @param position
      */
@@ -40,28 +38,27 @@ public abstract class Label
         this.position = position;
     }
 
+    public String getText()
+    {
+        return text;
+    }
+
+    public void setText(String text)
+    {
+        this.text = text;
+    }
+
+    public boolean hasText()
+    {
+        return text != null && !text.isEmpty();
+    }
+
     /**
-     *
      * @param position
      */
     protected void setPosition(String position)
     {
         this.position = position;
-    }
-    
-    public String getText()
-    {
-        return text;
-    }
-    
-    public void setText(String text)
-    {
-        this.text = text;
-    }
-    
-    public boolean hasText()
-    {
-        return text != null && !text.isEmpty();
     }
 
     public String toString()

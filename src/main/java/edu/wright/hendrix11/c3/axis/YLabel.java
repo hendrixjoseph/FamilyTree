@@ -20,7 +20,6 @@ public class YLabel extends Label
     private Position position;
 
     /**
-     *
      * @param text
      */
     public YLabel(String text)
@@ -29,7 +28,6 @@ public class YLabel extends Label
     }
 
     /**
-     *
      * @param text
      * @param position
      */
@@ -40,7 +38,6 @@ public class YLabel extends Label
     }
 
     /**
-     *
      * @return
      */
     public Position getPosition()
@@ -49,7 +46,6 @@ public class YLabel extends Label
     }
 
     /**
-     *
      * @param position
      */
     public void setPosition(Position position)

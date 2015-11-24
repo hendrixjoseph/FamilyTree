@@ -45,21 +45,13 @@ public class BirthsAndDeathsBean implements Serializable
     @PostConstruct
     private void initialize()
     {
-        perMonthModel.setArrayData(dataBean.perMonth());
-        perMonthModel.setyAxis("people");
-        perMonthModel.getyAxis().getLabel().setPosition(YLabel.Position.outer_middle);
-        perMonthModel.setxAxis("month");
-        perMonthModel.getxAxis().getLabel().setPosition(XLabel.Position.outer_center);
-        perMonthModel.getxAxis().setType(Axis.Type.category);
-        perMonthModel.setBarLabels(new String[]{"births", "deaths"});
-
+        perMonthModel = generateModel(dataBean.perMonth(), "month");
         perDecadeModel = generateDecadeModel(dataBean.perDecade());
         perDecadeCleanModel = generateDecadeModel(dataBean.perDecadeClean());
         perDecadeCombinedModel = generateDecadeModel(dataBean.perDecadeCombined());
     }
 
     /**
-     *
      * @return
      */
     public ChartModel getPerDecadeCleanModel()
@@ -68,7 +60,6 @@ public class BirthsAndDeathsBean implements Serializable
     }
 
     /**
-     *
      * @return
      */
     public ChartModel getPerDecadeCombinedModel()
@@ -77,7 +68,6 @@ public class BirthsAndDeathsBean implements Serializable
     }
 
     /**
-     *
      * @return
      */
     public ChartModel getPerDecadeModel()
@@ -86,7 +76,6 @@ public class BirthsAndDeathsBean implements Serializable
     }
 
     /**
-     *
      * @return
      */
     public ChartModel getPerMonthModel()
@@ -96,11 +85,16 @@ public class BirthsAndDeathsBean implements Serializable
 
     private ChartModel generateDecadeModel(Map<String, Integer[]> data)
     {
+        return generateModel(data, "decade");
+    }
+
+    private ChartModel generateModel(Map<String, Integer[]> data, String xAxisLabel)
+    {
         ChartModel model = new ChartModel();
         model.setArrayData(data);
         model.setyAxis("people");
         model.getyAxis().getLabel().setPosition(YLabel.Position.outer_middle);
-        model.setxAxis("decade");
+        model.setxAxis(xAxisLabel);
         model.getxAxis().getLabel().setPosition(XLabel.Position.outer_center);
         model.getxAxis().setType(Axis.Type.category);
         model.setBarLabels(new String[]{"births", "deaths"});

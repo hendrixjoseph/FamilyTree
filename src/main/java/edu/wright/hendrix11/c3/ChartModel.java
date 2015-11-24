@@ -39,7 +39,6 @@ public class ChartModel
     private YAxis yAxis;
 
     /**
-     *
      * @return
      */
     public List<String> getColors()
@@ -48,34 +47,30 @@ public class ChartModel
     }
 
     /**
-     *
      * @param colors
-     */    
+     */
     public void setColors(List<String> colors)
     {
         this.colors = colors;
     }
 
     /**
-     *
      * @param color
-     */    
+     */
     public void addColor(String color)
     {
         colors.add(color);
     }
-    
+
     /**
-     *
      * @param color
-     */    
+     */
     public void addColor(Color color)
     {
         colors.add(color.toString());
     }
 
     /**
-     *
      * @return
      */
     public boolean isCategory()
@@ -84,7 +79,6 @@ public class ChartModel
     }
 
     /**
-     *
      * @param isCategory
      */
     public void setIsCategory(boolean isCategory)
@@ -93,7 +87,6 @@ public class ChartModel
     }
 
     /**
-     *
      * @return
      */
     public String getTitle()
@@ -102,7 +95,6 @@ public class ChartModel
     }
 
     /**
-     *
      * @param title
      */
     public void setTitle(String title)
@@ -111,7 +103,6 @@ public class ChartModel
     }
 
     /**
-     *
      * @return
      */
     public XAxis getxAxis()
@@ -121,16 +112,6 @@ public class ChartModel
     }
 
     /**
-     *
-     * @param label
-     */
-    public void setxAxis(String label)
-    {
-        this.xAxis = new XAxis(label);
-    }
-
-    /**
-     *
      * @param xAxis
      */
     public void setxAxis(XAxis xAxis)
@@ -139,7 +120,14 @@ public class ChartModel
     }
 
     /**
-     *
+     * @param label
+     */
+    public void setxAxis(String label)
+    {
+        this.xAxis = new XAxis(label);
+    }
+
+    /**
      * @return
      */
     public YAxis getyAxis()
@@ -148,21 +136,19 @@ public class ChartModel
     }
 
     /**
-     *
-     * @param label
-     */
-    public void setyAxis(String label)
-    {
-        this.yAxis = new YAxis(label);
-    }
-
-    /**
-     *
      * @param yAxis
      */
     public void setyAxis(YAxis yAxis)
     {
         this.yAxis = yAxis;
+    }
+
+    /**
+     * @param label
+     */
+    public void setyAxis(String label)
+    {
+        this.yAxis = new YAxis(label);
     }
 
     /**
@@ -190,7 +176,6 @@ public class ChartModel
     }
 
     /**
-     *
      * @return
      */
     public Map<?, ? extends Number[]> getArrayData()
@@ -199,7 +184,6 @@ public class ChartModel
     }
 
     /**
-     *
      * @param arrayData
      */
     public void setArrayData(Map<?, ? extends Number[]> arrayData)
@@ -209,7 +193,6 @@ public class ChartModel
     }
 
     /**
-     *
      * @return
      */
     public Map<?, ? extends Number> getData()
@@ -218,7 +201,6 @@ public class ChartModel
     }
 
     /**
-     *
      * @param data
      */
     public void setData(Map<?, ? extends Number> data)
@@ -239,8 +221,8 @@ public class ChartModel
     }
 
     /**
-     *
      * @param label
+     *
      * @return
      */
     public Object[] getArrayData(Object label)
@@ -249,8 +231,8 @@ public class ChartModel
     }
 
     /**
-     *
      * @param label
+     *
      * @return
      */
     public Object getData(String label)
@@ -259,7 +241,6 @@ public class ChartModel
     }
 
     /**
-     *
      * @return
      */
     public boolean hasArrayData()

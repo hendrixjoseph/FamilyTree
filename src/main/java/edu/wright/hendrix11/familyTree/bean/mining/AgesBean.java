@@ -44,11 +44,11 @@ public class AgesBean implements Serializable
         ageModel.setData(dataBean.ages());
         ageModel.setTitle("Ages");
 
-        XAxis xAxis = new XAxis("people");
+        XAxis xAxis = new XAxis("years");
         xAxis.getLabel().setPosition(XLabel.Position.outer_center);
         ageModel.setxAxis(xAxis);
 
-        YAxis yAxis = new YAxis("years");
+        YAxis yAxis = new YAxis("people");
         yAxis.getLabel().setPosition(YLabel.Position.outer_middle);
         ageModel.setyAxis(yAxis);
     }
@@ -62,7 +62,6 @@ public class AgesBean implements Serializable
     }
 
     /**
-     *
      * @return
      */
     public double getAverageAge()
@@ -71,7 +70,6 @@ public class AgesBean implements Serializable
     }
 
     /**
-     *
      * @return
      */
     public int getMaxAge()
@@ -80,7 +78,6 @@ public class AgesBean implements Serializable
     }
 
     /**
-     *
      * @return
      */
     public double getMedianAge()
@@ -89,7 +86,6 @@ public class AgesBean implements Serializable
     }
 
     /**
-     *
      * @return
      */
     public int getMinAge()
@@ -98,7 +94,6 @@ public class AgesBean implements Serializable
     }
 
     /**
-     *
      * @return
      */
     public int getAgeQ1()
@@ -107,7 +102,6 @@ public class AgesBean implements Serializable
     }
 
     /**
-     *
      * @return
      */
     public int getAgeQ3()

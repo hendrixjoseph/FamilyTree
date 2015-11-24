@@ -86,7 +86,6 @@ public abstract class Place implements Iterable<Place>
     }
 
     /**
-     *
      * @param name
      */
     public Place(String name)

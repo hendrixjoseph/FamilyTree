@@ -28,7 +28,6 @@ public class YAxis extends Axis
     }
 
     /**
-     *
      * @param label
      */
     public YAxis(String label)
@@ -38,7 +37,6 @@ public class YAxis extends Axis
     }
 
     /**
-     *
      * @return
      */
     @Override
@@ -48,7 +46,6 @@ public class YAxis extends Axis
     }
 
     /**
-     *
      * @param label
      */
     public void setLabel(YLabel label)

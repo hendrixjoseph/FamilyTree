@@ -58,7 +58,6 @@ public class BarChartModel extends GenericModel
     }
 
     /**
-     *
      * @return
      */
     public Map<String, ? extends Number[]> getArrayData()
@@ -67,7 +66,6 @@ public class BarChartModel extends GenericModel
     }
 
     /**
-     *
      * @param arrayData
      */
     public void setArrayData(Map<String, ? extends Number[]> arrayData)
@@ -77,7 +75,6 @@ public class BarChartModel extends GenericModel
     }
 
     /**
-     *
      * @return
      */
     public Map<String, ? extends Number> getData()
@@ -86,7 +83,6 @@ public class BarChartModel extends GenericModel
     }
 
     /**
-     *
      * @param data
      */
     public void setData(Map<String, ? extends Number> data)
@@ -107,8 +103,8 @@ public class BarChartModel extends GenericModel
     }
 
     /**
-     *
      * @param label
+     *
      * @return
      */
     public Number[] getArrayData(String label)
@@ -177,8 +173,8 @@ public class BarChartModel extends GenericModel
     }
 
     /**
-     *
      * @param label
+     *
      * @return
      */
     public Number getData(String label)
@@ -187,7 +183,6 @@ public class BarChartModel extends GenericModel
     }
 
     /**
-     *
      * @return
      */
     public boolean hasArrayData()

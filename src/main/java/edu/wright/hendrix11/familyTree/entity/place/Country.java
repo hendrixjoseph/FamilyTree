@@ -54,7 +54,6 @@ public class Country extends Place
     }
 
     /**
-     *
      * @param name
      */
     public Country(String name)

@@ -18,7 +18,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 /**
- *
  * @author Joe
  */
 @Entity
@@ -49,7 +48,6 @@ public class Cemetery extends Place
     }
 
     /**
-     *
      * @param name
      */
     public Cemetery(String name)

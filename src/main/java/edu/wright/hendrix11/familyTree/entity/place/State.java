@@ -63,7 +63,6 @@ public class State extends Place
     }
 
     /**
-     *
      * @param name
      */
     public State(String name)

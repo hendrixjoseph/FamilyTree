@@ -42,7 +42,6 @@ public class AgesDataBean
     }
 
     /**
-     *
      * @return
      */
     public double medianAge()
@@ -53,7 +52,6 @@ public class AgesDataBean
     }
 
     /**
-     *
      * @return
      */
     public int minAge()
@@ -64,7 +62,6 @@ public class AgesDataBean
     }
 
     /**
-     *
      * @return
      */
     public int maxAge()
@@ -75,8 +72,8 @@ public class AgesDataBean
     }
 
     /**
-     *
      * @param quartile
+     *
      * @return
      */
     public int ageQuartile(int quartile)

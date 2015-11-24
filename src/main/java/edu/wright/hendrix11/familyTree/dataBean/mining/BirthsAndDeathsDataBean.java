@@ -64,7 +64,6 @@ public class BirthsAndDeathsDataBean
     }
 
     /**
-     *
      * @return
      */
     public Map<String, Integer[]> perMonth()

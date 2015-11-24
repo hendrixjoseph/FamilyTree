@@ -79,10 +79,10 @@ public class ChartRenderer extends Renderer
 
         writer.endElement("script");
     }
-    
+
     private void encodeColors(ChartModel model, ResponseWriter writer) throws IOException
     {
-        if(model.getColors() != null && !model.getColors().isEmpty())
+        if ( model.getColors() != null && !model.getColors().isEmpty() )
         {
             writer.write(",color:{pattern:['");
             writer.write(StringUtils.join(model.getColors(), "','"));
@@ -174,25 +174,25 @@ public class ChartRenderer extends Renderer
 
     private void encodeData(ChartComponent chart, ChartModel model, ResponseWriter writer) throws IOException
     {
-        writer.write("data:{x:'x',");
+        String x = "x";
+
+        if ( model.getxAxis() != null && model.getxAxis().getLabel() != null && model.getxAxis().getLabel().hasText() )
+        {
+            x = model.getxAxis().getLabel().getText();
+        }
+
+        writer.write("data:{x:'");
+        writer.write(x);
+        writer.write("',");
 
         if ( model.hasArrayData() )
         {
-            encodeArrayData(chart, model, writer);
+            encodeArrayData(chart, model, writer, x);
         }
         else
         {
             writer.write("columns:[['");
-            
-            if ( model.getxAxis() != null && model.getxAxis().getLabel() != null && model.getxAxis().getLabel().hasText() )
-            {
-                writer.write(model.getxAxis().getLabel().getText());
-            }
-            else
-            {
-                writer.write("x");
-            }
-            
+            writer.write(x);
             writer.write("',");
 
             writer.write("'");
@@ -200,7 +200,7 @@ public class ChartRenderer extends Renderer
             writer.write("'");
 
             writer.write("],['");
-                
+
             if ( model.getyAxis() != null && model.getyAxis().getLabel() != null && model.getyAxis().getLabel().hasText() )
             {
                 writer.write(model.getyAxis().getLabel().getText());
@@ -209,7 +209,7 @@ public class ChartRenderer extends Renderer
             {
                 writer.write("data");
             }
-                
+
             writer.write("','");
             writer.write(StringUtils.join(model.getData().values(), "','"));
             writer.write("']]");
@@ -225,7 +225,7 @@ public class ChartRenderer extends Renderer
         writer.write("}");
     }
 
-    private void encodeArrayData(ChartComponent chart, ChartModel model, ResponseWriter writer) throws IOException
+    private void encodeArrayData(ChartComponent chart, ChartModel model, ResponseWriter writer, String x) throws IOException
     {
         List<String> barLabels = model.getBarLabels();
 
@@ -255,7 +255,9 @@ public class ChartRenderer extends Renderer
             data.add(sb);
         }
 
-        writer.write("rows:[['x','");
+        writer.write("rows:[['");
+        writer.write(x);
+        writer.write("','");
         writer.write(StringUtils.join(barLabels, "','"));
         writer.write("'],");
         writer.write(StringUtils.join(data, ","));
