@@ -48,6 +48,21 @@ public abstract class Label
     {
         this.position = position;
     }
+    
+    public String getText()
+    {
+        return text;
+    }
+    
+    public void setText(String text)
+    {
+        this.text = text;
+    }
+    
+    public boolean hasText()
+    {
+        return text != null && !text.isEmpty();
+    }
 
     public String toString()
     {
