@@ -177,7 +177,18 @@ public class ChartRenderer extends Renderer
             writer.write(StringUtils.join(model.getAxisLabels(), "','"));
             writer.write("'");
 
-            writer.write("],['data',");
+            writer.write("],['");
+                
+            if ( model.getxAxis() != null && model.getxAxis().getLabel() != null && model.getxAxis().getLabel().hasText() )
+            {
+                writer.write(model.getxAxis().getLabel().getText());
+            }
+            else
+            {
+                writer.write("data");
+            }
+                
+            writer.write("',");
             writer.write(StringUtils.join(model.getData().values(), ','));
             writer.write("]]");
         }
