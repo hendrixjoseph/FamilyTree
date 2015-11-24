@@ -64,6 +64,15 @@ public class ChartModel
     {
         colors.add(color);
     }
+    
+    /**
+     *
+     * @param color
+     */    
+    public void addColor(Color color)
+    {
+        colors.add(color.toString());
+    }
 
     /**
      *
