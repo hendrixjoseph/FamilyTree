@@ -31,11 +31,39 @@ public class ChartModel
     private static final Logger LOG = Logger.getLogger(ChartModel.class.getName());
     private Map<?, ? extends Number[]> arrayData = new LinkedHashMap<>();
     private List<String> barLabels = new ArrayList<>();
+    private List<String> colors = new ArrayList<>();
     private Map<?, ? extends Number> data = new LinkedHashMap<>();
     private boolean isCategory = false;
     private String title;
     private XAxis xAxis;
     private YAxis yAxis;
+
+    /**
+     *
+     * @return
+     */
+    public List<String> getColors()
+    {
+        return colors;
+    }
+
+    /**
+     *
+     * @param colors
+     */    
+    public void setColors(List<String> colors)
+    {
+        this.colors = colors;
+    }
+
+    /**
+     *
+     * @param color
+     */    
+    public void addColor(String color)
+    {
+        colors.add(color);
+    }
 
     /**
      *
