@@ -1,8 +1,12 @@
+edu.wright.hendrix11.c3
+edu.wright.hendrix11.c3.axis
 edu.wright.hendrix11.familyTree.bean
 edu.wright.hendrix11.familyTree.bean.event
+edu.wright.hendrix11.familyTree.bean.mining
 edu.wright.hendrix11.familyTree.bean.place
 edu.wright.hendrix11.familyTree.converter
 edu.wright.hendrix11.familyTree.dataBean
+edu.wright.hendrix11.familyTree.dataBean.mining
 edu.wright.hendrix11.familyTree.entity
 edu.wright.hendrix11.familyTree.entity.compositeKey
 edu.wright.hendrix11.familyTree.entity.event
@@ -13,6 +17,8 @@ edu.wright.hendrix11.svg
 edu.wright.hendrix11.svg.component
 edu.wright.hendrix11.svg.component.shape
 edu.wright.hendrix11.svg.jsf
+edu.wright.hendrix11.svg.jsf.barChart
+edu.wright.hendrix11.svg.jsf.scatterPlot
 edu.wright.hendrix11.svg.number
 edu.wright.hendrix11.svg.transform
 edu.wright.hendrix11.theme
