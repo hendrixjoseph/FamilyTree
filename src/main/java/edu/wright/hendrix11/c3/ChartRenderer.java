@@ -71,7 +71,7 @@ public class ChartRenderer extends Renderer
 
         encodeData(chart, model, writer);
         encodeColors(model, writer);
-        encodeAxis(chart, model, writer);
+        encodeAxis(model, writer);
         encodeLegend(chart, writer);
         encodeGrid(chart, writer);
 
@@ -147,7 +147,7 @@ public class ChartRenderer extends Renderer
         }
     }
 
-    private void encodeAxis(ChartComponent chart, ChartModel model, ResponseWriter writer) throws IOException
+    private void encodeAxis(ChartModel model, ResponseWriter writer) throws IOException
     {
         if ( model.getxAxis() != null || model.getyAxis() != null )
         {
@@ -182,7 +182,18 @@ public class ChartRenderer extends Renderer
         }
         else
         {
-            writer.write("columns:[['x',");
+            writer.write("columns:[['");
+            
+            if ( model.getxAxis() != null && model.getxAxis().getLabel() != null && model.getxAxis().getLabel().hasText() )
+            {
+                writer.write(model.getxAxis().getLabel().getText());
+            }
+            else
+            {
+                writer.write("x");
+            }
+            
+            writer.write("',");
 
             writer.write("'");
             writer.write(StringUtils.join(model.getAxisLabels(), "','"));
@@ -190,18 +201,18 @@ public class ChartRenderer extends Renderer
 
             writer.write("],['");
                 
-            if ( model.getxAxis() != null && model.getxAxis().getLabel() != null && model.getxAxis().getLabel().hasText() )
+            if ( model.getyAxis() != null && model.getyAxis().getLabel() != null && model.getyAxis().getLabel().hasText() )
             {
-                writer.write(model.getxAxis().getLabel().getText());
+                writer.write(model.getyAxis().getLabel().getText());
             }
             else
             {
                 writer.write("data");
             }
                 
-            writer.write("',");
-            writer.write(StringUtils.join(model.getData().values(), ','));
-            writer.write("]]");
+            writer.write("','");
+            writer.write(StringUtils.join(model.getData().values(), "','"));
+            writer.write("']]");
         }
 
         if ( chart.getType() != null )
