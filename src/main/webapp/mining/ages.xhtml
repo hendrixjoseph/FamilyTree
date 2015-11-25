@@ -29,7 +29,9 @@
     <ui:define name="content">
         <p:layoutUnit position="center">
             <c3:chart chartModel="#{agesBean.ageModel}" type="bar" id="ageChart" showLegend="false"
-                      style="width: 100%; height: 300px;" />
+                      title="Ages" styleClass="charts" />
+            <c3:chart chartModel="#{agesBean.meanMedianAgeModel}" type="spline" id="meanMedianChart"
+                      title="Mean and Meadian Age per Birth Year" styleClass="charts" />
             <p:panelGrid columns="2">
                 <p:outputLabel value="Minimum age:" />
                 <p:outputLabel value="#{agesBean.minAge}" />

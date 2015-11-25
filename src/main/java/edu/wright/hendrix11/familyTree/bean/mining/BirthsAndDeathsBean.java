@@ -35,12 +35,11 @@ import java.util.Map;
 public class BirthsAndDeathsBean implements Serializable
 {
     @EJB
-    BirthsAndDeathsDataBean dataBean;
-
-    ChartModel perMonthModel = new ChartModel();
-    ChartModel perDecadeModel;
-    ChartModel perDecadeCleanModel;
-    ChartModel perDecadeCombinedModel;
+    private BirthsAndDeathsDataBean dataBean;
+    private ChartModel perDecadeCleanModel;
+    private ChartModel perDecadeCombinedModel;
+    private ChartModel perDecadeModel;
+    private ChartModel perMonthModel = new ChartModel();
 
     @PostConstruct
     private void initialize()

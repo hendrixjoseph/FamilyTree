@@ -13,9 +13,7 @@
 package edu.wright.hendrix11.familyTree.bean.mining;
 
 import edu.wright.hendrix11.c3.ChartModel;
-import edu.wright.hendrix11.c3.axis.XAxis;
 import edu.wright.hendrix11.c3.axis.XLabel;
-import edu.wright.hendrix11.c3.axis.YAxis;
 import edu.wright.hendrix11.c3.axis.YLabel;
 import edu.wright.hendrix11.familyTree.dataBean.mining.AgesDataBean;
 
@@ -33,17 +31,15 @@ import java.io.Serializable;
 @ViewScoped
 public class AgesBean implements Serializable
 {
-    ChartModel ageModel = new ChartModel();
-    ChartModel meanMedianAgeModel = new ChartModel();
-
     @EJB
-    AgesDataBean dataBean;
+    private AgesDataBean dataBean;
+    private ChartModel ageModel = new ChartModel();
+    private ChartModel meanMedianAgeModel = new ChartModel();
 
     @PostConstruct
     private void initialize()
     {
         ageModel.setData(dataBean.ages());
-        ageModel.setTitle("Ages");
         ageModel.setxAxis("years");
         ageModel.getxAxis().getLabel().setPosition(XLabel.Position.outer_center);
 
@@ -51,13 +47,14 @@ public class AgesBean implements Serializable
         ageModel.getyAxis().getLabel().setPosition(YLabel.Position.outer_middle);
 
         meanMedianAgeModel.setArrayData(dataBean.meanMeadianAgesPerBirthYear());
-        meanMedianAgeModel.setTitle("Ages");
 
-        meanMedianAgeModel.setxAxis("years");
+        meanMedianAgeModel.setxAxis("year");
         meanMedianAgeModel.getxAxis().getLabel().setPosition(XLabel.Position.outer_center);
 
-        meanMedianAgeModel.setyAxis("people");
+        meanMedianAgeModel.setyAxis("age");
         meanMedianAgeModel.getyAxis().getLabel().setPosition(YLabel.Position.outer_middle);
+
+        meanMedianAgeModel.setBarLabels(new String[]{"mean age", "median age"});
     }
 
     public ChartModel getMeanMedianAgeModel()

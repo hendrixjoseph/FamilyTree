@@ -24,7 +24,7 @@ import javax.persistence.TypedQuery;
  * @author Joe Hendrix
  */
 @Stateless
-public class StatisticsDataBean
+public class GenderDataBean
 {
     @PersistenceContext(unitName = "edu.wright.hendrix11.familyTree")
     private EntityManager em;
@@ -36,10 +36,10 @@ public class StatisticsDataBean
      *
      * @return the number of people of the specified gender
      */
-    public long countGender(Gender gender)
+    public int countGender(Gender gender)
     {
         TypedQuery<Long> countQuery = em.createNamedQuery(Person.COUNT_GENDERS, Long.class);
         countQuery.setParameter("gender", gender);
-        return countQuery.getSingleResult();
+        return countQuery.getSingleResult().intValue();
     }
 }

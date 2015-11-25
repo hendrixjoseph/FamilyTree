@@ -29,12 +29,11 @@ import java.util.logging.Logger;
 public class ChartModel
 {
     private static final Logger LOG = Logger.getLogger(ChartModel.class.getName());
-    private Map<?, ? extends Number[]> arrayData = new LinkedHashMap<>();
+    private Map<String, ? extends Number[]> arrayData = new LinkedHashMap<>();
     private List<String> barLabels = new ArrayList<>();
     private List<String> colors = new ArrayList<>();
-    private Map<?, ? extends Number> data = new LinkedHashMap<>();
+    private Map<String, ? extends Number> data = new LinkedHashMap<>();
     private boolean isCategory = false;
-    private String title;
     private XAxis xAxis;
     private YAxis yAxis;
 
@@ -89,34 +88,10 @@ public class ChartModel
     /**
      * @return
      */
-    public String getTitle()
-    {
-        return title;
-    }
-
-    /**
-     * @param title
-     */
-    public void setTitle(String title)
-    {
-        this.title = title;
-    }
-
-    /**
-     * @return
-     */
     public XAxis getxAxis()
     {
 
         return xAxis;
-    }
-
-    /**
-     * @param xAxis
-     */
-    public void setxAxis(XAxis xAxis)
-    {
-        this.xAxis = xAxis;
     }
 
     /**
@@ -128,6 +103,14 @@ public class ChartModel
     }
 
     /**
+     * @param xAxis
+     */
+    public void setxAxis(XAxis xAxis)
+    {
+        this.xAxis = xAxis;
+    }
+
+    /**
      * @return
      */
     public YAxis getyAxis()
@@ -136,19 +119,19 @@ public class ChartModel
     }
 
     /**
-     * @param yAxis
-     */
-    public void setyAxis(YAxis yAxis)
-    {
-        this.yAxis = yAxis;
-    }
-
-    /**
      * @param label
      */
     public void setyAxis(String label)
     {
         this.yAxis = new YAxis(label);
+    }
+
+    /**
+     * @param yAxis
+     */
+    public void setyAxis(YAxis yAxis)
+    {
+        this.yAxis = yAxis;
     }
 
     /**
@@ -178,7 +161,7 @@ public class ChartModel
     /**
      * @return
      */
-    public Map<?, ? extends Number[]> getArrayData()
+    public Map<String, ? extends Number[]> getArrayData()
     {
         return arrayData;
     }
@@ -186,7 +169,7 @@ public class ChartModel
     /**
      * @param arrayData
      */
-    public void setArrayData(Map<?, ? extends Number[]> arrayData)
+    public void setArrayData(Map<String, ? extends Number[]> arrayData)
     {
         data = new LinkedHashMap<>();
         this.arrayData = arrayData;
@@ -195,7 +178,7 @@ public class ChartModel
     /**
      * @return
      */
-    public Map<?, ? extends Number> getData()
+    public Map<String, ? extends Number> getData()
     {
         return data;
     }
@@ -203,7 +186,7 @@ public class ChartModel
     /**
      * @param data
      */
-    public void setData(Map<?, ? extends Number> data)
+    public void setData(Map<String, ? extends Number> data)
     {
         arrayData = new LinkedHashMap<>();
         this.data = data;
@@ -212,7 +195,7 @@ public class ChartModel
     /**
      * @return
      */
-    public Set<?> getAxisLabels()
+    public Set<String> getAxisLabels()
     {
         if ( hasArrayData() )
             return arrayData.keySet();

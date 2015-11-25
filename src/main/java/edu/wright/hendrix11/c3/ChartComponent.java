@@ -154,6 +154,22 @@ public class ChartComponent extends UIComponentBase
     /**
      * @return
      */
+    public String getTitle()
+    {
+        return (String) getStateHelper().eval(PropertyKeys.title, null);
+    }
+
+    /**
+     * @param title
+     */
+    public void setTitle(String title)
+    {
+        getStateHelper().put(PropertyKeys.title, title);
+    }
+
+    /**
+     * @return
+     */
     public String getLegendPosition()
     {
         return (String) getStateHelper().eval(PropertyKeys.legendPosition, null);
@@ -227,6 +243,8 @@ public class ChartComponent extends UIComponentBase
         /**
          *
          */
-        legendPosition
+        legendPosition,
+
+        title
     }
 }

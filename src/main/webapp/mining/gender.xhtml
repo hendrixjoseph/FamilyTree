@@ -10,31 +10,26 @@
   ~  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
   ~
   -->
-
 <ui:composition template="/WEB-INF/resource/template/main.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:fam="http://hendrix11.wright.edu/familyTree"
-        >
+                xmlns:c3="http://hendrix11.wright.edu/c3">
 
     <ui:define name="title">
-        Statistics
+        Gender analysis
     </ui:define>
 
     <ui:define name="menu">
-        <fam:menu currentView="statisticsView" />
+        <fam:menu currentView="genderView" />
     </ui:define>
 
     <ui:define name="content">
         <p:layoutUnit position="center">
-            <p:chart type="pie" model="#{statisticsBean.genderPie}" style="width:400px;height:300px;"
-                     widgetVar="chart" />
-            <!-- c3:chart / -->
+            <c3:chart chartModel="#{genderStatsBean.genderModel}" id="genderPie" type="pie"
+                      style="width: 200px; height: 200px;" />
         </p:layoutUnit>
-    </ui:define>
-
-    <ui:define name="dialogs">
     </ui:define>
 
 </ui:composition>

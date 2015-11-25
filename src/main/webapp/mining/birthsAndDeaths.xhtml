@@ -29,13 +29,13 @@
     <ui:define name="content">
         <p:layoutUnit position="center">
             <c3:chart chartModel="#{birthsAndDeathsBean.perMonthModel}" type="bar" id="perMonthChart"
-                      styleClass="charts" />
+                      title="Births and Deaths per Month" styleClass="charts" />
             <c3:chart chartModel="#{birthsAndDeathsBean.perDecadeModel}" type="bar" id="perDecadeChart"
-                      styleClass="charts" />
+                      title="Birth and Deaths per Decade" styleClass="charts" />
             <c3:chart chartModel="#{birthsAndDeathsBean.perDecadeCleanModel}" type="bar" id="perDecadeCleanChart"
-                      styleClass="charts" />
+                      title="Births and Deaths per Decade, estimated assuming average age" styleClass="charts" />
             <c3:chart chartModel="#{birthsAndDeathsBean.perDecadeCombinedModel}" type="bar" id="perDecadeCombined"
-                      styleClass="charts" />
+                      title="Births and Deaths per Decade, known and estimated" styleClass="charts" />
         </p:layoutUnit>
     </ui:define>
 

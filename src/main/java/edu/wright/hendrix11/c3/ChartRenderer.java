@@ -23,6 +23,7 @@ import javax.faces.render.Renderer;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 import java.util.logging.Logger;
 
 /**
@@ -40,6 +41,15 @@ public class ChartRenderer extends Renderer
         ChartModel model = chart.getChartModel();
 
         ResponseWriter writer = context.getResponseWriter();
+
+        if ( chart.getTitle() != null )
+        {
+            writer.startElement("div", null);
+            writer.writeAttribute("style", "text-align: center;", null);
+            writer.writeAttribute("class", "title", null);
+            writer.write(chart.getTitle());
+            writer.endElement("div");
+        }
 
         writer.startElement("div", null);
         writer.writeAttribute("id", chart.getId(), "id");
@@ -181,38 +191,26 @@ public class ChartRenderer extends Renderer
             x = model.getxAxis().getLabel().getText();
         }
 
-        writer.write("data:{x:'");
-        writer.write(x);
-        writer.write("',");
+        writer.write("data:{");
 
-        if ( model.hasArrayData() )
+        if ( chart.getType().equals("pie") && !model.hasArrayData() )
         {
-            encodeArrayData(chart, model, writer, x);
+            encodePieData(model, writer);
         }
         else
         {
-            writer.write("columns:[['");
+            writer.write("x:'");
             writer.write(x);
             writer.write("',");
 
-            writer.write("'");
-            writer.write(StringUtils.join(model.getAxisLabels(), "','"));
-            writer.write("'");
-
-            writer.write("],['");
-
-            if ( model.getyAxis() != null && model.getyAxis().getLabel() != null && model.getyAxis().getLabel().hasText() )
+            if ( model.hasArrayData() )
             {
-                writer.write(model.getyAxis().getLabel().getText());
+                encodeArrayData(model, writer, x);
             }
             else
             {
-                writer.write("data");
+                encodeRegularData(model, writer, x);
             }
-
-            writer.write("','");
-            writer.write(StringUtils.join(model.getData().values(), "','"));
-            writer.write("']]");
         }
 
         if ( chart.getType() != null )
@@ -225,7 +223,54 @@ public class ChartRenderer extends Renderer
         writer.write("}");
     }
 
-    private void encodeArrayData(ChartComponent chart, ChartModel model, ResponseWriter writer, String x) throws IOException
+    private void encodeRegularData(ChartModel model, ResponseWriter writer, String x) throws IOException
+    {
+        writer.write("columns:[['");
+        writer.write(x);
+        writer.write("',");
+
+        writer.write("'");
+        writer.write(StringUtils.join(model.getAxisLabels(), "','"));
+        writer.write("'");
+
+        writer.write("],['");
+
+        if ( model.getyAxis() != null && model.getyAxis().getLabel() != null && model.getyAxis().getLabel().hasText() )
+        {
+            writer.write(model.getyAxis().getLabel().getText());
+        }
+        else
+        {
+            writer.write("data");
+        }
+
+        writer.write("','");
+        writer.write(StringUtils.join(model.getData().values(), "','"));
+        writer.write("']]");
+    }
+
+    private void encodePieData(ChartModel model, ResponseWriter writer) throws IOException
+    {
+        writer.write("columns:[");
+
+        StringJoiner sj = new StringJoiner(",");
+
+        for ( String label : model.getAxisLabels() )
+        {
+            StringBuilder sb = new StringBuilder("['");
+            sb.append(label);
+            sb.append("','");
+            sb.append(model.getData(label).toString());
+            sb.append("']");
+
+            sj.add(sb);
+        }
+
+        writer.write(sj.toString());
+        writer.write("]");
+    }
+
+    private void encodeArrayData(ChartModel model, ResponseWriter writer, String x) throws IOException
     {
         List<String> barLabels = model.getBarLabels();
 
