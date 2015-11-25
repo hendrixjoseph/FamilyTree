@@ -48,10 +48,10 @@ public class AgesBean implements Serializable
 
         meanMedianAgeModel.setArrayData(dataBean.meanMeadianAgesPerBirthYear());
 
-        meanMedianAgeModel.setxAxis("year");
+        meanMedianAgeModel.setxAxis("birth year");
         meanMedianAgeModel.getxAxis().getLabel().setPosition(XLabel.Position.outer_center);
 
-        meanMedianAgeModel.setyAxis("age");
+        meanMedianAgeModel.setyAxis("age at death");
         meanMedianAgeModel.getyAxis().getLabel().setPosition(YLabel.Position.outer_middle);
 
         meanMedianAgeModel.setBarLabels(new String[]{"mean age", "median age"});
