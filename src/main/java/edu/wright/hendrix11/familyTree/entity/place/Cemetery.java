@@ -33,12 +33,12 @@ public class Cemetery extends Place
     /**
      *
      */
-    public static final String FIND_ALL = "Cemetary.findAll";
+    public static final String FIND_ALL = "Cemetery.findAll";
 
     /**
      *
      */
-    public static final String FIND_BY_NAME = "Cemetary.findByName";
+    public static final String FIND_BY_NAME = "Cemetery.findByName";
 
     /**
      *
@@ -56,9 +56,9 @@ public class Cemetery extends Place
     }
 
     /**
-     * Returns the city that the cemetary is in.
+     * Returns the city that the cemetery is in.
      *
-     * @return the city that the cemetary is in
+     * @return the city that the cemetery is in
      */
     public City getCity()
     {
@@ -66,9 +66,9 @@ public class Cemetery extends Place
     }
 
     /**
-     * Returns the county that the cemetary is in.
+     * Returns the county that the cemetery is in.
      *
-     * @return the county that the cemetary is in
+     * @return the county that the cemetery is in
      */
     public County getCounty()
     {
@@ -76,9 +76,9 @@ public class Cemetery extends Place
     }
 
     /**
-     * Returns the country that the cemetary is in.
+     * Returns the country that the cemetery is in.
      *
-     * @return the country that the cemetary is in
+     * @return the country that the cemetery is in
      */
     public Country getCountry()
     {
@@ -86,9 +86,9 @@ public class Cemetery extends Place
     }
 
     /**
-     * Returns the state that the cemetary is in.
+     * Returns the state that the cemetery is in.
      *
-     * @return the state that the cemetary is in
+     * @return the state that the cemetery is in
      */
     public State getState()
     {
