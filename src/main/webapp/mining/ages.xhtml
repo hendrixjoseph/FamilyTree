@@ -30,8 +30,10 @@
         <p:layoutUnit position="center">
             <c3:chart chartModel="#{agesBean.ageModel}" type="bar" id="ageChart" showLegend="false"
                       title="Ages" styleClass="charts" />
-            <c3:chart chartModel="#{agesBean.meanMedianAgeModel}" type="spline" id="meanMedianChart"
+            <c3:chart chartModel="#{agesBean.meanMedianAgeAtBirthModel}" type="spline" id="birthChart"
                       title="Mean and Meadian Age per Birth Year" styleClass="charts" />
+            <c3:chart chartModel="#{agesBean.meanMedianAgeAtDeathModel}" type="spline" id="deathChart"
+                      title="Mean and Meadian Age per Death Year" styleClass="charts" />
             <p:panelGrid columns="2">
                 <p:outputLabel value="Minimum age:" />
                 <p:outputLabel value="#{agesBean.minAge}" />

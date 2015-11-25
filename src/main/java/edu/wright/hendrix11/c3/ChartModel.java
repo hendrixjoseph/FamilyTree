@@ -95,19 +95,19 @@ public class ChartModel
     }
 
     /**
-     * @param label
-     */
-    public void setxAxis(String label)
-    {
-        this.xAxis = new XAxis(label);
-    }
-
-    /**
      * @param xAxis
      */
     public void setxAxis(XAxis xAxis)
     {
         this.xAxis = xAxis;
+    }
+
+    /**
+     * @param label
+     */
+    public void setxAxis(String label)
+    {
+        this.xAxis = new XAxis(label);
     }
 
     /**
@@ -119,19 +119,19 @@ public class ChartModel
     }
 
     /**
-     * @param label
-     */
-    public void setyAxis(String label)
-    {
-        this.yAxis = new YAxis(label);
-    }
-
-    /**
      * @param yAxis
      */
     public void setyAxis(YAxis yAxis)
     {
         this.yAxis = yAxis;
+    }
+
+    /**
+     * @param label
+     */
+    public void setyAxis(String label)
+    {
+        this.yAxis = new YAxis(label);
     }
 
     /**

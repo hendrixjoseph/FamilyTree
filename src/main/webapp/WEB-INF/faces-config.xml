@@ -24,17 +24,4 @@
         </navigation-case>
     </navigation-rule>
 
-    <component>
-        <component-type>edu.wright.hendrix11.svg.jsf.barChart.BarChartComponent</component-type>
-        <component-class>edu.wright.hendrix11.svg.jsf.barChart.BarChartComponent</component-class>
-    </component>
-
-    <render-kit>
-        <renderer>
-            <component-family>edu.wright.hendrix11.svg</component-family>
-            <renderer-type>edu.wright.hendrix11.svg.jsf.barChart.BarChartRenderer</renderer-type>
-            <renderer-class>edu.wright.hendrix11.svg.jsf.barChart.BarChartRenderer</renderer-class>
-        </renderer>
-    </render-kit>
-
 </faces-config>

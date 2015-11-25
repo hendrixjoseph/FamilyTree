@@ -111,9 +111,19 @@ public class AgesDataBean
 
     public Map<String, Integer[]> meanMeadianAgesPerBirthYear()
     {
+        return meanMeadianAgesPerYear("BIRTH");
+    }
+
+    public Map<String, Integer[]> meanMeadianAgesPerDeathYear()
+    {
+        return meanMeadianAgesPerYear("DEATH");
+    }
+
+    private Map<String, Integer[]> meanMeadianAgesPerYear(String which)
+    {
         Map<String, Integer[]> result = new LinkedHashMap<>();
 
-        Query query = em.createNativeQuery("SELECT * FROM AGE_TO_BIRTH_YEAR_VIEW");
+        Query query = em.createNativeQuery("SELECT * FROM AGE_TO_" + which + "_YEAR_VIEW");
 
         List<Object[]> list = query.getResultList();
 

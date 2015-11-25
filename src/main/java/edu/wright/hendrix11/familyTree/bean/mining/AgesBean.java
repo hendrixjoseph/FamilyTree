@@ -23,6 +23,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import java.io.Serializable;
+import java.util.Map;
 
 /**
  * @author Joe Hendrix
@@ -34,7 +35,8 @@ public class AgesBean implements Serializable
     @EJB
     private AgesDataBean dataBean;
     private ChartModel ageModel = new ChartModel();
-    private ChartModel meanMedianAgeModel = new ChartModel();
+    private ChartModel meanMedianAgeAtBirthModel;
+    private ChartModel meanMedianAgeAtDeathModel;
 
     @PostConstruct
     private void initialize()
@@ -46,20 +48,18 @@ public class AgesBean implements Serializable
         ageModel.setyAxis("people");
         ageModel.getyAxis().getLabel().setPosition(YLabel.Position.outer_middle);
 
-        meanMedianAgeModel.setArrayData(dataBean.meanMeadianAgesPerBirthYear());
-
-        meanMedianAgeModel.setxAxis("birth year");
-        meanMedianAgeModel.getxAxis().getLabel().setPosition(XLabel.Position.outer_center);
-
-        meanMedianAgeModel.setyAxis("age at death");
-        meanMedianAgeModel.getyAxis().getLabel().setPosition(YLabel.Position.outer_middle);
-
-        meanMedianAgeModel.setBarLabels(new String[]{"mean age", "median age"});
+        meanMedianAgeAtBirthModel = generateMeanMedianAgeModel(dataBean.meanMeadianAgesPerBirthYear(), "birth");
+        meanMedianAgeAtDeathModel = generateMeanMedianAgeModel(dataBean.meanMeadianAgesPerDeathYear(), "death");
     }
 
-    public ChartModel getMeanMedianAgeModel()
+    public ChartModel getMeanMedianAgeAtBirthModel()
     {
-        return meanMedianAgeModel;
+        return meanMedianAgeAtBirthModel;
+    }
+
+    public ChartModel getMeanMedianAgeAtDeathModel()
+    {
+        return meanMedianAgeAtDeathModel;
     }
 
     /**
@@ -116,5 +116,22 @@ public class AgesBean implements Serializable
     public int getAgeQ3()
     {
         return dataBean.ageQuartile(3);
+    }
+
+    private ChartModel generateMeanMedianAgeModel(Map<String, Integer[]> map, String x)
+    {
+        ChartModel meanMedianAgeModel = new ChartModel();
+
+        meanMedianAgeModel.setArrayData(map);
+
+        meanMedianAgeModel.setxAxis(x + " year");
+        meanMedianAgeModel.getxAxis().getLabel().setPosition(XLabel.Position.outer_center);
+
+        meanMedianAgeModel.setyAxis("age at death");
+        meanMedianAgeModel.getyAxis().getLabel().setPosition(YLabel.Position.outer_middle);
+
+        meanMedianAgeModel.setBarLabels(new String[]{"mean age", "median age"});
+
+        return meanMedianAgeModel;
     }
 }
