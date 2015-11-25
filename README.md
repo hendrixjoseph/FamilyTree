@@ -57,9 +57,9 @@ The following types of files can be found in this project:
 * [`*.sql`](sql/)
 * [`*.css`](src/main/webapp/WEB-INF/resource/css)
 
-The following types of files are not currently found in this project, but some may be added in the future:
+The following file type currently exists in the project, however, the files themselves are not written by me:
 
-* `*.js`
+* [`*.js`](src/main/webapp/WEB-INF/resource/js)
 
 ### SQL
 
@@ -96,6 +96,11 @@ URL: | jdbc:oracle:thin:@localhost:1521:XE
 ## Tools
 
 In addition to the [dependencies](http://hendrixjoseph.github.io/FamilyTree/dependencies.html) listed in the [pom.xml](pom.xml), I am using the following:
+
+### JavaScript Libraries
+
+ * [Data-Driven Documents (D3)](http://d3js.org)
+ * [C3.js | D3-based reusable chart library](http://c3js.org)
 
 ### Server and Database
 
