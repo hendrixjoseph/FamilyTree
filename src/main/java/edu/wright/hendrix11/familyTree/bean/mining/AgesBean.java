@@ -34,6 +34,7 @@ import java.io.Serializable;
 public class AgesBean implements Serializable
 {
     ChartModel ageModel = new ChartModel();
+    ChartModel meanMedianAgeModel = new ChartModel();
 
     @EJB
     AgesDataBean dataBean;
@@ -43,14 +44,25 @@ public class AgesBean implements Serializable
     {
         ageModel.setData(dataBean.ages());
         ageModel.setTitle("Ages");
+        ageModel.setxAxis("years");
+        ageModel.getxAxis().getLabel().setPosition(XLabel.Position.outer_center);
 
-        XAxis xAxis = new XAxis("years");
-        xAxis.getLabel().setPosition(XLabel.Position.outer_center);
-        ageModel.setxAxis(xAxis);
+        ageModel.setyAxis("people");
+        ageModel.getyAxis().getLabel().setPosition(YLabel.Position.outer_middle);
 
-        YAxis yAxis = new YAxis("people");
-        yAxis.getLabel().setPosition(YLabel.Position.outer_middle);
-        ageModel.setyAxis(yAxis);
+        meanMedianAgeModel.setArrayData(dataBean.meanMeadianAgesPerBirthYear());
+        meanMedianAgeModel.setTitle("Ages");
+
+        meanMedianAgeModel.setxAxis("years");
+        meanMedianAgeModel.getxAxis().getLabel().setPosition(XLabel.Position.outer_center);
+
+        meanMedianAgeModel.setyAxis("people");
+        meanMedianAgeModel.getyAxis().getLabel().setPosition(YLabel.Position.outer_middle);
+    }
+
+    public ChartModel getMeanMedianAgeModel()
+    {
+        return meanMedianAgeModel;
     }
 
     /**

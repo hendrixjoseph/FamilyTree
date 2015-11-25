@@ -9,28 +9,6 @@
     <list default="true" id="e01fcdf7-fba9-4a15-b4e3-2d3aaec35e67" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/AgesBean.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/AgesBean.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/mining/AgesDataBean.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/mining/AgesDataBean.java" />
-      <change type="MODIFICATION" beforePath="C:\Users\Joe\Git\FamilyTree\src\main\java\edu\wright\hendrix11\c3\axis\Axis.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/c3/axis/Axis.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/barChart/BarChartModel.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/barChart/BarChartModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/BirthsAndDeathsBean.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/BirthsAndDeathsBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/mining/BirthsAndDeathsDataBean.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/mining/BirthsAndDeathsDataBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/entity/place/Cemetery.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/entity/place/Cemetery.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/c3/ChartModel.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/c3/ChartModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/c3/ChartRenderer.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/c3/ChartRenderer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/entity/place/City.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/entity/place/City.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/c3/Color.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/c3/Color.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/entity/place/Country.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/entity/place/Country.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/entity/place/County.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/entity/place/County.java" />
-      <change type="MODIFICATION" beforePath="C:\Users\Joe\Git\FamilyTree\src\main\java\edu\wright\hendrix11\c3\axis\Label.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/c3/axis/Label.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/PersonBean.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/PersonBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/entity/place/Place.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/entity/place/Place.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/scatterPlot/ScatterPlotModel.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/scatterPlot/ScatterPlotModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/entity/place/State.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/entity/place/State.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/SvgJsfComponent.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/SvgJsfComponent.java" />
-      <change type="MODIFICATION" beforePath="C:\Users\Joe\Git\FamilyTree\src\main\java\edu\wright\hendrix11\c3\axis\XAxis.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/c3/axis/XAxis.java" />
-      <change type="MODIFICATION" beforePath="C:\Users\Joe\Git\FamilyTree\src\main\java\edu\wright\hendrix11\c3\axis\XLabel.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/c3/axis/XLabel.java" />
-      <change type="MODIFICATION" beforePath="C:\Users\Joe\Git\FamilyTree\src\main\java\edu\wright\hendrix11\c3\axis\YAxis.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/c3/axis/YAxis.java" />
-      <change type="MODIFICATION" beforePath="C:\Users\Joe\Git\FamilyTree\src\main\java\edu\wright\hendrix11\c3\axis\YLabel.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/c3/axis/YLabel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="familyTree.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -105,9 +83,40 @@
       <file leaf-file-name="AgesBean.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/AgesBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.68609864">
-              <caret line="50" column="39" selection-start-line="50" selection-start-column="39" selection-end-line="50" selection-end-column="39" />
+            <state vertical-scroll-proportion="1.8834081">
+              <caret line="63" column="5" selection-start-line="63" selection-start-column="5" selection-end-line="63" selection-end-column="5" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AgesDataBean.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/mining/AgesDataBean.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="128" column="21" selection-start-line="128" selection-start-column="21" selection-end-line="128" selection-end-column="21" />
+              <folding>
+                <marker date="1448410304180" expanded="true" signature="834:863" placeholder="SELECT AVG(A..AGE_VIEW..." />
+                <marker date="1448410304180" expanded="true" signature="1071:1103" placeholder="SELECT MEDIA..AGE_VIEW..." />
+                <marker date="1448410304180" expanded="true" signature="1301:1330" placeholder="SELECT MIN(A..AGE_VIEW..." />
+                <marker date="1448410304180" expanded="true" signature="1522:1551" placeholder="SELECT MAX(A..AGE_VIEW..." />
+                <marker date="1448410304180" expanded="true" signature="2920:2956" placeholder="SELECT * FRO..AGE_TO_BIRTH_YEAR_VIEW..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BirthsAndDeathsDataBean.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/mining/BirthsAndDeathsDataBean.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="102" selection-end-column="9" />
+              <folding>
+                <marker date="1448407919165" expanded="true" signature="936:974" placeholder="SELECT * FRO..PER_DECADE_COMBINED_VIEW..." />
+                <marker date="1448407919165" expanded="true" signature="1172:1207" placeholder="SELECT * FRO..PER_DECADE_CLEAN_VIEW..." />
+                <marker date="1448407919165" expanded="true" signature="1400:1429" placeholder="SELECT * FRO..PER_DECADE_VIEW..." />
+                <marker date="1448407919165" expanded="true" signature="1621:1649" placeholder="SELECT * FRO..PER_MONTH_VIEW..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -148,7 +157,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/svg/jsf/barChart/BarChartModel.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/events/births.xhtml" />
         <option value="$PROJECT_DIR$/src/main/webapp/events/burials.xhtml" />
         <option value="$PROJECT_DIR$/src/main/webapp/events/deaths.xhtml" />
@@ -196,9 +204,10 @@
         <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/c3/axis/Axis.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/c3/Color.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/AgesBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/c3/ChartRenderer.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/BirthsAndDeathsBean.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/mining/AgesDataBean.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/AgesBean.java" />
       </list>
     </option>
   </component>
@@ -283,7 +292,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="122" />
     <option name="y" value="12" />
-    <option name="width" value="1392" />
+    <option name="width" value="1380" />
     <option name="height" value="821" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -1350,7 +1359,7 @@
       <workItem from="1447368836535" duration="2561000" />
       <workItem from="1447386417764" duration="25980000" />
       <workItem from="1447811080205" duration="38211000" />
-      <workItem from="1448407047500" duration="2239000" />
+      <workItem from="1448407047500" duration="3372000" />
     </task>
     <task id="LOCAL-00001" summary="whole bunch of EJB nonsense just to update...">
       <created>1445570986124</created>
@@ -1368,11 +1377,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="308126000" />
+    <option name="totallyTimeSpent" value="309259000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="122" y="12" width="1392" height="821" extended-state="0" />
-    <editor active="true" />
+    <frame x="122" y="12" width="1380" height="821" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959327" sideWeight="0.5054308" order="7" side_tool="true" content_ui="tabs" />
@@ -1391,10 +1400,10 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959327" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33520338" sideWeight="0.49456915" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33520338" sideWeight="0.49456915" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25436047" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25659823" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959327" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1707,22 +1716,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/mining/AgesDataBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/mining/BirthsAndDeathsDataBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="79" column="105" selection-start-line="79" selection-start-column="105" selection-end-line="79" selection-end-column="105" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/c3.taglib.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1871,10 +1864,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/mining/BirthsAndDeathsDataBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="102" selection-end-column="9" />
+          <folding>
+            <marker date="1448407919165" expanded="true" signature="936:974" placeholder="SELECT * FRO..PER_DECADE_COMBINED_VIEW..." />
+            <marker date="1448407919165" expanded="true" signature="1172:1207" placeholder="SELECT * FRO..PER_DECADE_CLEAN_VIEW..." />
+            <marker date="1448407919165" expanded="true" signature="1400:1429" placeholder="SELECT * FRO..PER_DECADE_VIEW..." />
+            <marker date="1448407919165" expanded="true" signature="1621:1649" placeholder="SELECT * FRO..PER_MONTH_VIEW..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/mining/AgesDataBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="128" column="21" selection-start-line="128" selection-start-column="21" selection-end-line="128" selection-end-column="21" />
+          <folding>
+            <marker date="1448410304180" expanded="true" signature="834:863" placeholder="SELECT AVG(A..AGE_VIEW..." />
+            <marker date="1448410304180" expanded="true" signature="1071:1103" placeholder="SELECT MEDIA..AGE_VIEW..." />
+            <marker date="1448410304180" expanded="true" signature="1301:1330" placeholder="SELECT MIN(A..AGE_VIEW..." />
+            <marker date="1448410304180" expanded="true" signature="1522:1551" placeholder="SELECT MAX(A..AGE_VIEW..." />
+            <marker date="1448410304180" expanded="true" signature="2920:2956" placeholder="SELECT * FRO..AGE_TO_BIRTH_YEAR_VIEW..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/AgesBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.68609864">
-          <caret line="50" column="39" selection-start-line="50" selection-start-column="39" selection-end-line="50" selection-end-column="39" />
+        <state vertical-scroll-proportion="1.8834081">
+          <caret line="63" column="5" selection-start-line="63" selection-start-column="5" selection-end-line="63" selection-end-column="5" />
           <folding />
         </state>
       </provider>

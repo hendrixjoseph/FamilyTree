@@ -108,4 +108,24 @@ public class AgesDataBean
 
         return ageMap;
     }
+
+    public Map<String, Integer[]> meanMeadianAgesPerBirthYear()
+    {
+        Map<String, Integer[]> result = new LinkedHashMap<>();
+
+        Query query = em.createNativeQuery("SELECT * FROM AGE_TO_BIRTH_YEAR_VIEW");
+
+        List<Object[]> list = query.getResultList();
+
+        for ( Object[] o : list )
+        {
+            Integer mean = ( (Number) o[0] ).intValue();
+            Integer median = ( (Number) o[1] ).intValue();
+            String year = o[2].toString();
+            Integer[] array = {mean, median};
+            result.put(year, array);
+        }
+
+        return result;
+    }
 }
