@@ -33,7 +33,8 @@
             <p:submenu label="Edit">
                 <p:menuitem value="Edit individual" update="@(#editDialog_form)" oncomplete="PF('editDialog').show()"
                             disabled="#{!facesContext.externalContext.requestServletPath.equals('/index.xhtml')}" />
-                <p:submenu label="Detach..." disabled="#{!facesContext.externalContext.requestServletPath.equals('/index.xhtml')}">
+                <p:submenu label="Detach..."
+                           disabled="#{!facesContext.externalContext.requestServletPath.equals('/index.xhtml')}">
                     <p:menuitem value="Father" />
                     <p:menuitem value="Mother" />
                     <p:submenu label="Spouse">

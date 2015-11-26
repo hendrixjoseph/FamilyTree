@@ -34,7 +34,7 @@ public class NamesDataBean
         return nameFrequency("FIRST");
     }
 
-    public Map<String,Integer> lastNameFrequency()
+    public Map<String, Integer> lastNameFrequency()
     {
         return nameFrequency("LAST");
     }
@@ -47,11 +47,11 @@ public class NamesDataBean
 
         List<Object[]> objects = em.createNativeQuery(query).setMaxResults(20).getResultList();
 
-        for(Object[] o : objects)
+        for ( Object[] o : objects )
         {
             String name = o[1].toString();
             Integer count = ( (Number) o[0] ).intValue();
-            map.put(name,count);
+            map.put(name, count);
         }
 
         return map;

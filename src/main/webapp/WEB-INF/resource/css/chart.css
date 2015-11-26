@@ -11,27 +11,27 @@
  */
 
 .bar:hover {
-    fill: #A52A2A;
+    fill : #A52A2A;
 }
 
 .bar, .legendBox {
-    fill: #4682B4;
+    fill : #4682B4;
 }
 
 .legendBox {
-    stroke-width: 1;
-    stroke: black;
+    stroke-width : 1;
+    stroke       : black;
 }
 
 .lines {
-    stroke: #000;
+    stroke : #000000;
 }
 
 .x-axis .label {
-    text-anchor: middle;
+    text-anchor : middle;
 }
 
 .y-axis .label {
-    text-anchor: end;
+    text-anchor : end;
 }
 

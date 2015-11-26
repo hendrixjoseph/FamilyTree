@@ -20,6 +20,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import java.util.List;
+
 /**
  * @author Joe Hendrix
  */
@@ -41,5 +43,24 @@ public class GenderDataBean
         TypedQuery<Long> countQuery = em.createNamedQuery(Person.COUNT_GENDERS, Long.class);
         countQuery.setParameter("gender", gender);
         return countQuery.getSingleResult().intValue();
+    }
+
+    public double averageAge(Gender gender)
+    {
+        StringBuilder sb = new StringBuilder("SELECT AVG(AGE) FROM AGE_VIEW, PERSON");
+        sb.append(" WHERE AGE_VIEW.PERSON_ID=PERSON.ID");
+        sb.append(" GROUP BY GENDER");
+        sb.append(" HAVING GENDER='").append(gender.name()).append("'");
+
+        List<Object> objects = em.createNativeQuery(sb.toString()).getResultList();
+
+        if ( objects.isEmpty() )
+        {
+            return 0;
+        }
+        else
+        {
+            return ( (Number) objects.get(0) ).doubleValue();
+        }
     }
 }

@@ -13,24 +13,22 @@
 package edu.wright.hendrix11.d3.wordCloud;
 
 import edu.wright.hendrix11.d3.MasterRenderer;
-import edu.wright.hendrix11.d3.chart.ChartComponent;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
-import javax.faces.render.Renderer;
 
 import java.io.IOException;
 import java.util.Map;
 import java.util.StringJoiner;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  * @author Joe Hendrix
  */
-@FacesRenderer(rendererType = WordCloudComponent.DEFAULT_RENDERER, componentFamily = WordCloudComponent.COMPONENT_FAMILY)
+@FacesRenderer(rendererType = WordCloudComponent.DEFAULT_RENDERER,
+               componentFamily = WordCloudComponent.COMPONENT_FAMILY)
 public class WordCloudRenderer extends MasterRenderer
 {
     private static final Logger LOG = Logger.getLogger(WordCloudRenderer.class.getName());
@@ -55,12 +53,12 @@ public class WordCloudRenderer extends MasterRenderer
         writer.write(cloud.getHeight().toString());
         writer.write("])");
         encodeWords(writer, cloud.getWords());
-        encodePadding(writer,cloud.getPadding());
+        encodePadding(writer, cloud.getPadding());
         writer.write(".rotate(function(){return ~~(Math.random()*2)*90;})");
         writer.write(".font('");
         writer.write(font);
         writer.write("').fontSize(function(d){return d.size;})");
-       // writer.write(".text(function(d){console.log(d);return d.text;})");
+        // writer.write(".text(function(d){console.log(d);return d.text;})");
         writer.write(".on('end',draw);");
 
         writer.write("layout.start();");
@@ -92,7 +90,7 @@ public class WordCloudRenderer extends MasterRenderer
 
         StringJoiner sj = new StringJoiner(",");
 
-        for(String word : wordMap.keySet())
+        for ( String word : wordMap.keySet() )
         {
             StringBuilder sb = new StringBuilder("['");
             sb.append(word);
@@ -110,7 +108,7 @@ public class WordCloudRenderer extends MasterRenderer
 
     private void encodePadding(ResponseWriter writer, Integer padding) throws IOException
     {
-        if(padding != null)
+        if ( padding != null )
         {
             writer.write(".padding(");
             writer.write(padding.toString());

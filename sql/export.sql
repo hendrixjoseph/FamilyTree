@@ -1,5 +1,5 @@
 --------------------------------------------------------
---  File created - Thursday-November-19-2015   
+--  File created - Thursday-November-26-2015   
 --------------------------------------------------------
 DROP TABLE "EVENT" cascade constraints;
 DROP TABLE "FATHER" cascade constraints;
@@ -12,8 +12,11 @@ DROP TABLE "REGION" cascade constraints;
 DROP SEQUENCE "PERSON_SEQUENCE";
 DROP SEQUENCE "PLACE_SEQUENCE";
 DROP VIEW "AGE_TO_BIRTH_YEAR_VIEW";
+DROP VIEW "AGE_TO_DEATH_YEAR_VIEW";
 DROP VIEW "AGE_VIEW";
 DROP VIEW "CHILDREN_VIEW";
+DROP VIEW "FIRST_NAME_COUNT_VIEW";
+DROP VIEW "LAST_NAME_COUNT_VIEW";
 DROP VIEW "PER_DECADE_CLEAN_VIEW";
 DROP VIEW "PER_DECADE_COMBINED_VIEW";
 DROP VIEW "PER_DECADE_VIEW";
@@ -112,20 +115,31 @@ DROP VIEW "SPOUSE_VIEW_TEST";
 --  DDL for View AGE_TO_BIRTH_YEAR_VIEW
 --------------------------------------------------------
 
-  CREATE OR REPLACE VIEW "AGE_TO_BIRTH_YEAR_VIEW" ("AGE", "YEAR") AS 
-  SELECT AGE_VIEW.AGE, YEAR
-FROM PERSON,
-  AGE_VIEW,
-  EVENT
-WHERE PERSON.ID = AGE_VIEW.PERSON_ID
-  AND AGE_VIEW.PERSON_ID = EVENT.PERSON_ID
-  AND EVENT.TYPE = 'birth';
+  CREATE OR REPLACE VIEW "AGE_TO_BIRTH_YEAR_VIEW" ("AVG_AGE", "MEDIAN_AGE", "BIRTH_YEAR") AS 
+  SELECT AVG(AGE) AVG_AGE, MEDIAN(AGE) MEDIAN_AGE, BIRTH_YEAR
+FROM AGE_VIEW
+GROUP BY BIRTH_YEAR
+ORDER BY BIRTH_YEAR;
+--------------------------------------------------------
+--  DDL for View AGE_TO_DEATH_YEAR_VIEW
+--------------------------------------------------------
+
+  CREATE OR REPLACE VIEW "AGE_TO_DEATH_YEAR_VIEW" ("AVG_AGE", "MEDIAN_AGE", "DEATH_YEAR") AS 
+  SELECT AVG( AGE ) AVG_AGE,
+    MEDIAN( AGE ) MEDIAN_AGE,
+    DEATH_YEAR
+  FROM AGE_VIEW
+  GROUP BY DEATH_YEAR
+  ORDER BY DEATH_YEAR;
 --------------------------------------------------------
 --  DDL for View AGE_VIEW
 --------------------------------------------------------
 
-  CREATE OR REPLACE VIEW "AGE_VIEW" ("PERSON_ID", "AGE") AS 
-  SELECT B.PERSON_ID, (D.YEAR-B.YEAR) AS AGE
+  CREATE OR REPLACE VIEW "AGE_VIEW" ("PERSON_ID", "AGE", "BIRTH_YEAR", "DEATH_YEAR") AS 
+  SELECT B.PERSON_ID, 
+      (D.YEAR-B.YEAR) AS AGE, 
+       B.YEAR AS BIRTH_YEAR, 
+       D.YEAR AS DEATH_YEAR       
 FROM EVENT B,EVENT D
 WHERE B.PERSON_ID=D.PERSON_ID
 AND B.TYPE='birth'
@@ -148,6 +162,24 @@ SELECT
     CHILD_ID
 FROM
     MOTHER;
+--------------------------------------------------------
+--  DDL for View FIRST_NAME_COUNT_VIEW
+--------------------------------------------------------
+
+  CREATE OR REPLACE VIEW "FIRST_NAME_COUNT_VIEW" ("COUNT", "FIRST_NAME") AS 
+  SELECT COUNT(FIRST_NAME) COUNT, FIRST_NAME
+FROM (SELECT REGEXP_SUBSTR(NAME,'^\w+') AS FIRST_NAME FROM PERSON)
+GROUP BY FIRST_NAME
+ORDER BY COUNT DESC;
+--------------------------------------------------------
+--  DDL for View LAST_NAME_COUNT_VIEW
+--------------------------------------------------------
+
+  CREATE OR REPLACE VIEW "LAST_NAME_COUNT_VIEW" ("COUNT", "LAST_NAME") AS 
+  SELECT COUNT(LAST_NAME) COUNT, LAST_NAME
+FROM (SELECT REGEXP_SUBSTR(NAME,'\w+$') AS LAST_NAME FROM PERSON)
+GROUP BY LAST_NAME
+ORDER BY COUNT DESC;
 --------------------------------------------------------
 --  DDL for View PER_DECADE_CLEAN_VIEW
 --------------------------------------------------------

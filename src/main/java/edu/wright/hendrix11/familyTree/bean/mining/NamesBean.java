@@ -20,8 +20,9 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -53,5 +54,15 @@ public class NamesBean implements Serializable
     public Map<String, Integer> getLastNameFrequency()
     {
         return lastNameFrequency;
+    }
+
+    public List<Map.Entry<String, Integer>> getFirstNameFrequencyList()
+    {
+        return new ArrayList(firstNameFrequency.entrySet());
+    }
+
+    public List<Map.Entry<String, Integer>> getLastNameFrequencyList()
+    {
+        return new ArrayList(lastNameFrequency.entrySet());
     }
 }

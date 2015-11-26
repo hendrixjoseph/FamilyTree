@@ -12,8 +12,9 @@
 
 package edu.wright.hendrix11.familyTree.bean.mining;
 
-import edu.wright.hendrix11.d3.chart.ChartModel;
 import edu.wright.hendrix11.d3.Color;
+import edu.wright.hendrix11.d3.chart.ChartModel;
+import edu.wright.hendrix11.familyTree.dataBean.mining.AgesDataBean;
 import edu.wright.hendrix11.familyTree.dataBean.mining.GenderDataBean;
 import edu.wright.hendrix11.familyTree.entity.Gender;
 
@@ -23,8 +24,12 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Joe Hendrix
@@ -33,6 +38,10 @@ import java.util.Map;
 @ViewScoped
 public class GenderStatsBean implements Serializable
 {
+    private static final Logger LOG = Logger.getLogger(GenderStatsBean.class.getName());
+    List<GenderAges> genderAges = new ArrayList<>();
+    @EJB
+    private AgesDataBean agesDataBean;
     @EJB
     private GenderDataBean dataBean;
     private ChartModel genderModel = new ChartModel();
@@ -47,10 +56,48 @@ public class GenderStatsBean implements Serializable
         genderModel.setData(genderMap);
         genderModel.addColor(Color.lightblue);
         genderModel.addColor(Color.lightpink);
+
+        genderAges.add(new GenderAges("Total", agesDataBean.averageAge()));
+        genderAges.add(new GenderAges(Gender.MALE, dataBean.averageAge(Gender.MALE)));
+        genderAges.add(new GenderAges(Gender.FEMALE, dataBean.averageAge(Gender.FEMALE)));
     }
 
     public ChartModel getGenderModel()
     {
         return genderModel;
+    }
+
+    public List<GenderAges> getGenderAges()
+    {
+        return genderAges;
+    }
+
+    public class GenderAges
+    {
+        private double age;
+        private String gender;
+
+        public GenderAges(String gender, Double age)
+        {
+            this.age = age;
+            this.gender = gender;
+        }
+
+        public GenderAges(Gender gender, Double age)
+        {
+            this.age = age;
+            this.gender = gender.toString();
+        }
+
+        public String getGender()
+        {
+            return gender;
+        }
+
+        public double getAge()
+        {
+            LOG.log(Level.INFO, gender + " " + age);
+            return age;
+        }
     }
 }

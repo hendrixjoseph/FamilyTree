@@ -15,7 +15,6 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:fam="http://hendrix11.wright.edu/familyTree"
                 xmlns:d3="http://hendrix11.wright.edu/d3">
 
     <ui:define name="title">
@@ -24,8 +23,29 @@
 
     <ui:define name="content">
         <p:layoutUnit position="center">
+            <p:outputLabel value="First name frequency:" />
             <d3:wordCloud id="firstNamesCloud" words="#{namesBean.firstNameFrequency}" width="500" height="500" />
+            <p:dataTable var="names" value="#{namesBean.firstNameFrequencyList}">
+                <p:column headerText="Name">
+                    <p:outputLabel value="#{names.key}" />
+                </p:column>
+
+                <p:column headerText="Count">
+                    <p:outputLabel value="#{names.value}" />
+                </p:column>
+            </p:dataTable>
+
+            <p:outputLabel value="Last name frequency:" />
             <d3:wordCloud id="lastNamesCloud" words="#{namesBean.lastNameFrequency}" width="500" height="500" />
+            <p:dataTable var="names" value="#{namesBean.lastNameFrequencyList}">
+                <p:column headerText="Name">
+                    <p:outputLabel value="#{names.key}" />
+                </p:column>
+
+                <p:column headerText="Count">
+                    <p:outputLabel value="#{names.value}" />
+                </p:column>
+            </p:dataTable>
         </p:layoutUnit>
     </ui:define>
 

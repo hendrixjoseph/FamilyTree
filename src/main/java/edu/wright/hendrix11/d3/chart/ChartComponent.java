@@ -17,7 +17,6 @@ import edu.wright.hendrix11.d3.MasterComponent;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
-import javax.faces.component.UIComponentBase;
 
 /**
  * @author Joe Hendrix
@@ -56,8 +55,6 @@ public class ChartComponent extends MasterComponent
     {
         return COMPONENT_FAMILY;
     }
-
-
 
     /**
      * @return

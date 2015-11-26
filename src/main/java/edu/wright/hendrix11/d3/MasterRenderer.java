@@ -24,7 +24,7 @@ public abstract class MasterRenderer extends Renderer
 {
     protected void encodeContainerDiv(ResponseWriter writer, String id, String styleClass, String style) throws IOException
     {
-        if(id == null)
+        if ( id == null )
             throw new NullPointerException("Id can't be null!");
 
         writer.startElement("div", null);
