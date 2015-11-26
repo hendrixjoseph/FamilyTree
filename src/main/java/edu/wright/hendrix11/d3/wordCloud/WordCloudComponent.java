@@ -19,6 +19,8 @@ import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 
+import java.util.Map;
+
 /**
  * @author Joe Hendrix
  */
@@ -120,6 +122,21 @@ public class WordCloudComponent extends MasterComponent
         getStateHelper().put(PropertyKeys.font, font);
     }
 
+    /**
+     * @return
+     */
+    public Map<String, Integer> getWords()
+    {
+        return (Map<String, Integer>) getStateHelper().eval(PropertyKeys.words, null);
+    }
+
+    /**
+     * @param words
+     */
+    public void setWords(Map<String, Integer> words)
+    {
+        getStateHelper().put(PropertyKeys.words, words);
+    }
 
     protected enum PropertyKeys
     {
@@ -130,6 +147,7 @@ public class WordCloudComponent extends MasterComponent
         width,
         height,
         padding,
-        font
+        font,
+        words
     }
 }

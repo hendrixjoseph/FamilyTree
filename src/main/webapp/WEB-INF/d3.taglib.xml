@@ -86,6 +86,11 @@
             <type>java.lang.String</type>
         </attribute>
         <attribute>
+            <name>words</name>
+            <required>true</required>
+            <type>java.util.Map&lt;java.lang.String,java.lang.Integer&gt;</type>
+        </attribute>
+        <attribute>
             <name>width</name>
             <required>true</required>
             <type>java.lang.Integer</type>

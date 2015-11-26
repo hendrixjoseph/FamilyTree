@@ -22,6 +22,8 @@ import javax.faces.render.FacesRenderer;
 import javax.faces.render.Renderer;
 
 import java.io.IOException;
+import java.util.Map;
+import java.util.StringJoiner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -51,10 +53,8 @@ public class WordCloudRenderer extends MasterRenderer
         writer.write(cloud.getWidth().toString());
         writer.write(",");
         writer.write(cloud.getHeight().toString());
-        writer.write("]).words([");
-        writer.write("['Hello',10], ['world',10], ['normally',10], ['you',10], ['want',10], ['more',10], ['words',10],['than',20],['this',10]");
-        writer.write("].map(function(d){");
-        writer.write("return {text:d[0],size:d[1]}}))");
+        writer.write("])");
+        encodeWords(writer, cloud.getWords());
         encodePadding(writer,cloud.getPadding());
         writer.write(".rotate(function(){return ~~(Math.random()*2)*90;})");
         writer.write(".font('");
@@ -84,6 +84,28 @@ public class WordCloudRenderer extends MasterRenderer
         writer.write(".text(function(d){return d.text;});}");
 
         endScript(writer);
+    }
+
+    private void encodeWords(ResponseWriter writer, Map<String, Integer> wordMap) throws IOException
+    {
+        writer.write(".words([");
+
+        StringJoiner sj = new StringJoiner(",");
+
+        for(String word : wordMap.keySet())
+        {
+            StringBuilder sb = new StringBuilder("['");
+            sb.append(word);
+            sb.append("',");
+            sb.append(wordMap.get(word));
+            sb.append("]");
+
+            sj.add(sb);
+        }
+
+        writer.write(sj.toString());
+        //writer.write("'Hello',10], ['world',10], ['normally',10], ['you',10], ['want',10], ['more',10], ['words',10],['than',20],['this',10]");
+        writer.write("].map(function(d){return {text:d[0],size:d[1]}}))");
     }
 
     private void encodePadding(ResponseWriter writer, Integer padding) throws IOException
