@@ -20,11 +20,6 @@
     <tag>
         <tag-name>menu</tag-name>
         <source>resource/tag/menu.xhtml</source>
-        <attribute>
-            <name>currentView</name>
-            <required>false</required>
-            <type>java.lang.String</type>
-        </attribute>
     </tag>
     <tag>
         <tag-name>editPersonDialog</tag-name>

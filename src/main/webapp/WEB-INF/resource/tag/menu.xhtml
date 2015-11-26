@@ -32,8 +32,8 @@
             </p:submenu>
             <p:submenu label="Edit">
                 <p:menuitem value="Edit individual" update="@(#editDialog_form)" oncomplete="PF('editDialog').show()"
-                            disabled="#{!currentView.equals('individualView')}" />
-                <p:submenu label="Detach..." disabled="#{!currentView.equals('individualView')}">
+                            disabled="#{!facesContext.externalContext.requestServletPath.equals('/index.xhtml')}" />
+                <p:submenu label="Detach..." disabled="#{!facesContext.externalContext.requestServletPath.equals('/index.xhtml')}">
                     <p:menuitem value="Father" />
                     <p:menuitem value="Mother" />
                     <p:submenu label="Spouse">
@@ -48,35 +48,36 @@
 
             </p:submenu>
             <p:submenu label="View">
-                <p:menuitem value="Individual" url="/index.xhtml" disabled="#{currentView.equals('individualView')}" />
+                <p:menuitem value="Individual" url="/index.xhtml"
+                            disabled="#{facesContext.externalContext.requestServletPath.equals('/index.xhtml')}" />
                 <p:submenu label="Places">
                     <p:menuitem value="All Places" url="/places/places.xhtml"
-                                disabled="#{currentView.equals('placesView')}" />
+                                disabled="#{facesContext.externalContext.requestServletPath.equals('/places/places.xhtml')}" />
                     <p:menuitem value="Countries" url="/places/countries.xhtml"
-                                disabled="#{currentView.equals('countriesView')}" />
+                                disabled="#{facesContext.externalContext.requestServletPath.equals('/places/countries.xhtml')}" />
                     <p:menuitem value="States" url="/places/states.xhtml"
-                                disabled="#{currentView.equals('statesView')}" />
+                                disabled="#{facesContext.externalContext.requestServletPath.equals('/places/states.xhtml')}" />
                     <p:menuitem value="Counties" url="/places/counties.xhtml"
-                                disabled="#{currentView.equals('countiesView')}" />
+                                disabled="#{facesContext.externalContext.requestServletPath.equals('/places/counties.xhtml')}" />
                     <p:menuitem value="Cities" url="/places/cities.xhtml"
-                                disabled="#{currentView.equals('citiesView')}" />
+                                disabled="#{facesContext.externalContext.requestServletPath.equals('/places/cities.xhtml')}" />
                 </p:submenu>
                 <p:submenu label="Events">
                     <p:menuitem value="Marriages" url="/events/marriages.xhtml"
-                                disabled="#{currentView.equals('marriagesView')}" />
+                                disabled="#{facesContext.externalContext.requestServletPath.equals('/events/marriages.xhtml')}" />
                     <p:submenu label="Single Person Events">
                         <p:menuitem value="All Events" url="/events/singlePersonEvents.xhtml"
-                                    disabled="#{currentView.equals('singlePersonEventsView')}" />
+                                    disabled="#{facesContext.externalContext.requestServletPath.equals('/events/singlePersonEvents.xhtml')}" />
                         <p:menuitem value="Births" url="/events/births.xhtml"
-                                    disabled="#{currentView.equals('birthsView')}" />
+                                    disabled="#{facesContext.externalContext.requestServletPath.equals('/events/births.xhtml')}" />
                         <p:menuitem value="Deaths" url="/events/deaths.xhtml"
-                                    disabled="#{currentView.equals('deathsView')}" />
+                                    disabled="#{facesContext.externalContext.requestServletPath.equals('/events/deaths.xhtml')}" />
                         <p:menuitem value="Burials" url="/events/burials.xhtml"
-                                    disabled="#{currentView.equals('burialsView')}" />
+                                    disabled="#{facesContext.externalContext.requestServletPath.equals('/events/burials.xhtml')}" />
                     </p:submenu>
                 </p:submenu>
                 <p:menuitem value="Index of Individuals" url="/persons.xhtml"
-                            disabled="#{currentView.equals('personsView')}" />
+                            disabled="#{facesContext.externalContext.requestServletPath.equals('/persons.xhtml')}" />
             </p:submenu>
 
             <p:submenu label="Database">
@@ -89,13 +90,13 @@
 
             <p:submenu label="Data Mining">
                 <p:menuitem value="Births &amp; Deaths" url="/mining/birthsAndDeaths.xhtml"
-                            disabled="#{currentView.equals('birthsDeathsView')}" />
+                            disabled="#{facesContext.externalContext.requestServletPath.equals('/mining/birthsAndDeaths.xhtml')}" />
                 <p:menuitem value="Ages" url="/mining/ages.xhtml"
-                            disabled="#{currentView.equals('agesView')}" />
+                            disabled="#{facesContext.externalContext.requestServletPath.equals('/mining/ages.xhtml')}" />
                 <p:menuitem value="Gender" url="/mining/gender.xhtml"
-                            disabled="#{currentView.equals('genderView')}" />
+                            disabled="#{facesContext.externalContext.requestServletPath.equals('/mining/gender.xhtml')}" />
                 <p:menuitem value="Names" url="/mining/names.xhtml"
-                            disabled="#{currentView.equals('namesView')}" />
+                            disabled="#{facesContext.externalContext.requestServletPath.equals('/mining/names.xhtml')}" />
             </p:submenu>
 
             <p:submenu label="Help">

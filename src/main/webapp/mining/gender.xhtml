@@ -21,10 +21,6 @@
         Gender analysis
     </ui:define>
 
-    <ui:define name="menu">
-        <fam:menu currentView="genderView" />
-    </ui:define>
-
     <ui:define name="content">
         <p:layoutUnit position="center">
             <d3:chart chartModel="#{genderStatsBean.genderModel}" id="genderPie" type="pie"

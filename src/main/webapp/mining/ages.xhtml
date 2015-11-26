@@ -22,10 +22,6 @@
         Ages
     </ui:define>
 
-    <ui:define name="menu">
-        <fam:menu currentView="agesView" />
-    </ui:define>
-
     <ui:define name="content">
         <p:layoutUnit position="center">
             <d3:chart chartModel="#{agesBean.ageModel}" type="bar" id="ageChart" showLegend="false"

@@ -22,10 +22,6 @@
         Births and Deaths
     </ui:define>
 
-    <ui:define name="menu">
-        <fam:menu currentView="birthsDeathsView" />
-    </ui:define>
-
     <ui:define name="content">
         <p:layoutUnit position="center">
             <d3:chart chartModel="#{birthsAndDeathsBean.perMonthModel}" type="bar" id="perMonthChart"
