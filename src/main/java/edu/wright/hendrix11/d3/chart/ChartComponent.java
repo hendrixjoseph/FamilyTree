@@ -12,6 +12,8 @@
 
 package edu.wright.hendrix11.d3.chart;
 
+import edu.wright.hendrix11.d3.MasterComponent;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
@@ -26,7 +28,7 @@ import javax.faces.component.UIComponentBase;
                               @ResourceDependency(library = "js", name = "c3.min.js"),
                               @ResourceDependency(library = "js", name = "d3.min.js")
                       })
-public class ChartComponent extends UIComponentBase
+public class ChartComponent extends MasterComponent
 {
     /**
      *
@@ -55,37 +57,7 @@ public class ChartComponent extends UIComponentBase
         return COMPONENT_FAMILY;
     }
 
-    /**
-     * @return
-     */
-    public String getStyleClass()
-    {
-        return (String) getStateHelper().eval(PropertyKeys.styleClass, null);
-    }
 
-    /**
-     * @param styleClass
-     */
-    public void setStyleClass(String styleClass)
-    {
-        getStateHelper().put(PropertyKeys.styleClass, styleClass);
-    }
-
-    /**
-     * @return
-     */
-    public String getStyle()
-    {
-        return (String) getStateHelper().eval(PropertyKeys.style, null);
-    }
-
-    /**
-     * @param style
-     */
-    public void setStyle(String style)
-    {
-        getStateHelper().put(PropertyKeys.style, style);
-    }
 
     /**
      * @return
@@ -208,17 +180,7 @@ public class ChartComponent extends UIComponentBase
         /**
          *
          */
-        styleClass,
-
-        /**
-         *
-         */
         chartModel,
-
-        /**
-         *
-         */
-        style,
 
         /**
          *

@@ -2,6 +2,6 @@ Thumbs.db
 ojdbc7.jar
 target/
 sql/Generated*.*
-hendrixfamily.fte.GED
+*.fte.GED
 gedcomimporter.log
 /gedcomimporter_unread.log

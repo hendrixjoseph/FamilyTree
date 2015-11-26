@@ -12,6 +12,8 @@
 
 package edu.wright.hendrix11.d3.wordCloud;
 
+import edu.wright.hendrix11.d3.MasterComponent;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
@@ -25,7 +27,7 @@ import javax.faces.component.UIComponentBase;
                               @ResourceDependency(library = "js", name = "d3.min.js"),
                               @ResourceDependency(library = "js", name = "d3.layout.cloud.js")
                       })
-public class WordCloudComponent extends UIComponentBase
+public class WordCloudComponent extends MasterComponent
 {
     /**
      *
@@ -52,5 +54,82 @@ public class WordCloudComponent extends UIComponentBase
     public String getFamily()
     {
         return COMPONENT_FAMILY;
+    }
+
+    /**
+     * @return
+     */
+    public Integer getWidth()
+    {
+        return (Integer) getStateHelper().eval(PropertyKeys.width, null);
+    }
+
+    /**
+     * @param width
+     */
+    public void setWidth(Integer width)
+    {
+        getStateHelper().put(PropertyKeys.width, width);
+    }
+
+    /**
+     * @return
+     */
+    public Integer getHeight()
+    {
+        return (Integer) getStateHelper().eval(PropertyKeys.height, null);
+    }
+
+    /**
+     * @param height
+     */
+    public void setHeight(Integer height)
+    {
+        getStateHelper().put(PropertyKeys.height, height);
+    }
+
+    /**
+     * @return
+     */
+    public Integer getPadding()
+    {
+        return (Integer) getStateHelper().eval(PropertyKeys.padding, null);
+    }
+
+    /**
+     * @param padding
+     */
+    public void setPadding(Integer padding)
+    {
+        getStateHelper().put(PropertyKeys.padding, padding);
+    }
+
+    /**
+     * @return
+     */
+    public String getFont()
+    {
+        return (String) getStateHelper().eval(PropertyKeys.font, null);
+    }
+
+    /**
+     * @param font
+     */
+    public void setFont(String font)
+    {
+        getStateHelper().put(PropertyKeys.font, font);
+    }
+
+
+    protected enum PropertyKeys
+    {
+
+        /**
+         *
+         */
+        width,
+        height,
+        padding,
+        font
     }
 }

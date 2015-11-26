@@ -20,7 +20,7 @@ import java.io.IOException;
 /**
  * @author Joe Hendrix
  */
-public class MasterRenderer extends Renderer
+public abstract class MasterRenderer extends Renderer
 {
     protected void encodeContainerDiv(ResponseWriter writer, String id, String styleClass, String style) throws IOException
     {
