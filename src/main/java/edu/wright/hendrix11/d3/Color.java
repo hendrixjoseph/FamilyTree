@@ -10,7 +10,7 @@
 *
 */
 
-package edu.wright.hendrix11.c3;
+package edu.wright.hendrix11.d3;
 
 public enum Color
 {

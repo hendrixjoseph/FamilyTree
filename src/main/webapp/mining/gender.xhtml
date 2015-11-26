@@ -15,7 +15,7 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:fam="http://hendrix11.wright.edu/familyTree"
-                xmlns:c3="http://hendrix11.wright.edu/c3">
+                xmlns:d3="http://hendrix11.wright.edu/d3">
 
     <ui:define name="title">
         Gender analysis
@@ -27,7 +27,7 @@
 
     <ui:define name="content">
         <p:layoutUnit position="center">
-            <c3:chart chartModel="#{genderStatsBean.genderModel}" id="genderPie" type="pie"
+            <d3:chart chartModel="#{genderStatsBean.genderModel}" id="genderPie" type="pie"
                       style="width: 200px; height: 200px;" />
         </p:layoutUnit>
     </ui:define>

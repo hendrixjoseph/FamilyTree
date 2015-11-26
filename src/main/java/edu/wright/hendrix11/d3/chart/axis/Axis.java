@@ -10,7 +10,7 @@
  *
  */
 
-package edu.wright.hendrix11.c3.axis;
+package edu.wright.hendrix11.d3.chart.axis;
 
 import java.util.HashMap;
 import java.util.Map;

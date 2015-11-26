@@ -10,10 +10,11 @@
  *
  */
 
-package edu.wright.hendrix11.c3;
+package edu.wright.hendrix11.d3.chart;
 
-import edu.wright.hendrix11.c3.axis.XAxis;
-import edu.wright.hendrix11.c3.axis.YAxis;
+import edu.wright.hendrix11.d3.Color;
+import edu.wright.hendrix11.d3.chart.axis.XAxis;
+import edu.wright.hendrix11.d3.chart.axis.YAxis;
 
 import java.util.ArrayList;
 import java.util.Arrays;

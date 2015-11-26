@@ -19,23 +19,16 @@
                 xmlns:d3="http://hendrix11.wright.edu/d3">
 
     <ui:define name="title">
-        Births and Deaths
+        Names Analysis
     </ui:define>
 
     <ui:define name="menu">
-        <fam:menu currentView="birthsDeathsView" />
+        <fam:menu currentView="namesView" />
     </ui:define>
 
     <ui:define name="content">
         <p:layoutUnit position="center">
-            <d3:chart chartModel="#{birthsAndDeathsBean.perMonthModel}" type="bar" id="perMonthChart"
-                      title="Births and Deaths per Month" styleClass="charts" />
-            <d3:chart chartModel="#{birthsAndDeathsBean.perDecadeModel}" type="bar" id="perDecadeChart"
-                      title="Birth and Deaths per Decade" styleClass="charts" />
-            <d3:chart chartModel="#{birthsAndDeathsBean.perDecadeCleanModel}" type="bar" id="perDecadeCleanChart"
-                      title="Births and Deaths per Decade, estimated assuming average age" styleClass="charts" />
-            <d3:chart chartModel="#{birthsAndDeathsBean.perDecadeCombinedModel}" type="bar" id="perDecadeCombined"
-                      title="Births and Deaths per Decade, known and estimated" styleClass="charts" />
+            <d3:wordCloud />
         </p:layoutUnit>
     </ui:define>
 

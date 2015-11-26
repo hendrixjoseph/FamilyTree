@@ -10,9 +10,11 @@
  *
  */
 
-package edu.wright.hendrix11.c3;
+package edu.wright.hendrix11.d3.chart;
 
 import org.apache.commons.lang3.StringUtils;
+
+import edu.wright.hendrix11.d3.MasterRenderer;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -30,7 +32,7 @@ import java.util.logging.Logger;
  * @author Joe Hendrix
  */
 @FacesRenderer(rendererType = ChartComponent.DEFAULT_RENDERER, componentFamily = ChartComponent.COMPONENT_FAMILY)
-public class ChartRenderer extends Renderer
+public class ChartRenderer extends MasterRenderer
 {
     private static final Logger LOG = Logger.getLogger(ChartRenderer.class.getName());
 
@@ -51,28 +53,14 @@ public class ChartRenderer extends Renderer
             writer.endElement("div");
         }
 
-        writer.startElement("div", null);
-        writer.writeAttribute("id", chart.getId(), "id");
-
-        if ( chart.getStyle() != null )
-        {
-            writer.writeAttribute("style", chart.getStyle(), "style");
-        }
-
-        if ( chart.getStyleClass() != null )
-        {
-            writer.writeAttribute("class", chart.getStyleClass(), "styleClass");
-        }
-
-        writer.endElement("div");
+        encodeContainerDiv(writer, chart.getId(), chart.getStyleClass(), chart.getStyle());
 
         encodeScript(chart, model, writer);
     }
 
     private void encodeScript(ChartComponent chart, ChartModel model, ResponseWriter writer) throws IOException
     {
-        writer.startElement("script", null);
-        writer.writeAttribute("type", "text/javascript", null);
+        startScript(writer);
 
         writer.write("var chart = c3.generate({");
         writer.write("bindto:'#");
@@ -87,7 +75,7 @@ public class ChartRenderer extends Renderer
 
         writer.write("});");
 
-        writer.endElement("script");
+        endScript(writer);
     }
 
     private void encodeColors(ChartModel model, ResponseWriter writer) throws IOException

@@ -12,8 +12,8 @@
 
 package edu.wright.hendrix11.familyTree.bean.mining;
 
-import edu.wright.hendrix11.c3.ChartModel;
-import edu.wright.hendrix11.c3.Color;
+import edu.wright.hendrix11.d3.chart.ChartModel;
+import edu.wright.hendrix11.d3.Color;
 import edu.wright.hendrix11.familyTree.dataBean.mining.GenderDataBean;
 import edu.wright.hendrix11.familyTree.entity.Gender;
 

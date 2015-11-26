@@ -10,7 +10,7 @@
  *
  */
 
-package edu.wright.hendrix11.c3;
+package edu.wright.hendrix11.d3.chart;
 
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
@@ -31,15 +31,15 @@ public class ChartComponent extends UIComponentBase
     /**
      *
      */
-    public static final String COMPONENT_FAMILY = "edu.wright.hendrix11.c3";
+    public static final String COMPONENT_FAMILY = "edu.wright.hendrix11.d3";
     /**
      *
      */
-    public static final String COMPONENT_TYPE = "edu.wright.hendrix11.c3.ChartComponent";
+    public static final String COMPONENT_TYPE = "edu.wright.hendrix11.d3.chart.ChartComponent";
     /**
      *
      */
-    public static final String DEFAULT_RENDERER = "edu.wright.hendrix11.c3.ChartRenderer";
+    public static final String DEFAULT_RENDERER = "edu.wright.hendrix11.d3.chart.ChartRenderer";
 
     /**
      *
