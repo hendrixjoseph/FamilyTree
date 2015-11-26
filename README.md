@@ -102,6 +102,7 @@ In addition to the [dependencies](http://hendrixjoseph.github.io/FamilyTree/depe
 
  * [Data-Driven Documents (D3)](http://d3js.org)
  * [C3.js | D3-based reusable chart library](http://c3js.org)
+ * [Word Cloud Generator](https://www.jasondavies.com/wordcloud)
 
 ### Server and Database
 
