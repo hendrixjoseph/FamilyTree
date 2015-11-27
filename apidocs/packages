@@ -1,5 +1,7 @@
-edu.wright.hendrix11.c3.axis
-edu.wright.hendrix11.c3
+edu.wright.hendrix11.d3.chart.axis
+edu.wright.hendrix11.d3.chart
+edu.wright.hendrix11.d3
+edu.wright.hendrix11.d3.wordCloud
 edu.wright.hendrix11.familyTree.bean
 edu.wright.hendrix11.familyTree.bean.event
 edu.wright.hendrix11.familyTree.bean.mining
@@ -15,9 +17,7 @@ edu.wright.hendrix11.familyTree.exporter
 edu.wright.hendrix11.familyTree.importer
 edu.wright.hendrix11.svg.component
 edu.wright.hendrix11.svg.component.shape
-edu.wright.hendrix11.svg.jsf.barChart
 edu.wright.hendrix11.svg.jsf
-edu.wright.hendrix11.svg.jsf.scatterPlot
 edu.wright.hendrix11.svg.number
 edu.wright.hendrix11.svg
 edu.wright.hendrix11.svg.transform
