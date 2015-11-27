@@ -36,7 +36,7 @@
             </p:dataTable>
 
             <p:outputLabel value="Last name frequency:" />
-            <d3:wordCloud id="lastNamesCloud" words="#{namesBean.lastNameFrequency}" width="500" height="500" />
+            <d3:wordCloud id="lastNamesCloud" words="#{namesBean.lastNameFrequency}" width="1000" height="500" />
             <p:dataTable var="names" value="#{namesBean.lastNameFrequencyList}">
                 <p:column headerText="Name">
                     <p:outputLabel value="#{names.key}" />

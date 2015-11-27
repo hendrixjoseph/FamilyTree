@@ -303,7 +303,7 @@
                         <argument>-doctitle</argument>
                         <argument>${project.name} VDL Documentation</argument>
                         <argument>src/main/webapp/WEB-INF/fam.taglib.xml</argument>
-                        <argument>src/main/webapp/WEB-INF/c3.taglib.xml</argument>
+                        <argument>src/main/webapp/WEB-INF/d3.taglib.xml</argument>
                     </arguments>
                 </configuration>
                 <dependencies>
