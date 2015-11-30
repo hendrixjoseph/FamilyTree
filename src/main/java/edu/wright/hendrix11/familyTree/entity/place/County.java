@@ -47,14 +47,14 @@ public class County extends Place
     public static final String FIND_BY_NAME = "County.findByName";
 
     /**
-     *
+     * No-argument constructor for JPA.
      */
     public County()
     {
     }
 
     /**
-     * @param name
+     * @param name the name the county
      */
     public County(String name)
     {
