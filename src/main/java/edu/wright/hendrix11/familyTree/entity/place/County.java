@@ -42,7 +42,7 @@ public class County extends Place
      * counties by name.
      * <p>
      * For example: {@code TypedQuery<County> query = em.createNamedQuery(County.FIND_BY_NAME, County.class);} {@code
-     * query..setParameter("name", name);
+     * query.setParameter("name", name);
      */
     public static final String FIND_BY_NAME = "County.findByName";
 
