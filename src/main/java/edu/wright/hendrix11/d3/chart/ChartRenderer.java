@@ -180,7 +180,7 @@ public class ChartRenderer extends MasterRenderer
 
         writer.write("data:{");
 
-        if ( chart.getType().equals("pie") && !model.hasArrayData() )
+        if ( "pie".equals(chart.getType()) && !model.hasArrayData() )
         {
             encodePieData(model, writer);
         }
@@ -247,7 +247,7 @@ public class ChartRenderer extends MasterRenderer
             StringBuilder sb = new StringBuilder("['");
             sb.append(label);
             sb.append("','");
-            sb.append(model.getData(label).toString());
+            sb.append(model.getData(label));
             sb.append("']");
 
             sj.add(sb);
