@@ -61,7 +61,7 @@ public abstract class Place implements Iterable<Place>
      * places by name.
      * <p>
      * For example: {@code TypedQuery<Place> query = em.createNamedQuery(Place.FIND_BY_NAME, Place.class);} {@code
-     * query..setParameter("name", name);
+     * query.setParameter("name", name);
      */
     public static final String FIND_BY_NAME = "Place.findByName";
 
