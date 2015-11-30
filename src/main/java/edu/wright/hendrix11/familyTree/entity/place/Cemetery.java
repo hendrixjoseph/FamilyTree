@@ -29,26 +29,32 @@ import javax.persistence.NamedQuery;
               })
 public class Cemetery extends Place
 {
-
     /**
-     *
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
+     * cemeteries.
+     * <p>
+     * For example: {@code TypedQuery<Cemetery> query = em.createNamedQuery(Cemetery.FIND_ALL, Cemetery.class);}
      */
     public static final String FIND_ALL = "Cemetery.findAll";
 
     /**
-     *
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
+     * cemeteries by name.
+     * <p>
+     * For example: {@code TypedQuery<Cemetery> query = em.createNamedQuery(Cemetery.FIND_BY_NAME, Cemetery.class);} 
+     * {@code query.setParameter("name", name);
      */
     public static final String FIND_BY_NAME = "Cemetery.findByName";
 
     /**
-     *
+     * No-argument constructor for JPA.
      */
     public Cemetery()
     {
     }
 
     /**
-     * @param name
+     * @param name the name of the cemetery
      */
     public Cemetery(String name)
     {
@@ -95,6 +101,11 @@ public class Cemetery extends Place
         return (State) getRegionByClass(State.class);
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @return {@inheritDoc}
+     */
     @Override
     public String getLink()
     {
