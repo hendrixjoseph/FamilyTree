@@ -47,14 +47,14 @@ public class Country extends Place
     public static final String FIND_BY_NAME = "Country.findByName";
 
     /**
-     *
+     * No-argument constructor for JPA.
      */
     public Country()
     {
     }
 
     /**
-     * @param name
+     * @param name the name of the country
      */
     public Country(String name)
     {
