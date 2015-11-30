@@ -47,14 +47,14 @@ public class City extends Place
     public static final String FIND_BY_NAME = "City.findByName";
 
     /**
-     *
+     * No-argument constructor for JPA.
      */
     public City()
     {
     }
 
     /**
-     * @param name
+     * @param name the name of the city
      */
     public City(String name)
     {
