@@ -56,14 +56,14 @@ public class State extends Place
     public static final String FIND_BY_NAME_AND_REGION = "State.findByNameAndRegion";
 
     /**
-     *
+     * No-argument constructor for JPA.
      */
     public State()
     {
     }
 
     /**
-     * @param name
+     * @param name the name of the state
      */
     public State(String name)
     {
