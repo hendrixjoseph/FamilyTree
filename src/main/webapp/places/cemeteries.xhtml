@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+  ~  The MIT License (MIT)
+  ~
+  ~  View the full license at:
+  ~  https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md
+  ~
+  ~  Copyright (c) 2015 Joseph Hendrix
+  ~
+  ~  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
+  ~
+  -->
+
+<ui:composition template="/WEB-INF/resource/template/main.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:fam="http://hendrix11.wright.edu/familyTree">
+
+    <ui:define name="metadata">
+        <f:metadata>
+            <f:viewParam name="page" value="#{cemeteryBean.page}" />
+            <f:viewParam name="sort" value="#{cemeteryBean.sort}" />
+        </f:metadata>
+    </ui:define>
+
+    <ui:define name="title">
+        Cemeteries
+    </ui:define>
+
+    <ui:define name="content">
+        <p:layoutUnit position="center">
+            <p:dataTable var="city" value="#{cemeteryBean.entities}" scrollable="true" scrollHeight="90%"
+                         styleClass="familyTree-dataTable">
+                <p:column>
+                    <f:facet name="header">
+                        <fam:pageSort dataBean="#{cemeteryBean}" text="Id" sort="id" />
+                    </f:facet>
+                    <p:outputLabel value="#{city.id}" />
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">
+                        <fam:pageSort dataBean="#{cemeteryBean}" text="Name" sort="name" />
+                    </f:facet>
+                    <fam:googleMapLink place="#{city}" />
+                </p:column>
+
+                <f:facet name="footer">
+                    <fam:pageNav dataBean="#{cemeteryBean}" />
+                </f:facet>
+            </p:dataTable>
+        </p:layoutUnit>
+    </ui:define>
+
+    <ui:define name="dialogs">
+
+    </ui:define>
+</ui:composition>
