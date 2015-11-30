@@ -267,15 +267,13 @@ public abstract class Place implements Iterable<Place>
     @Override
     public String toString()
     {
-        StringBuilder sb = new StringBuilder();
+        StringJoiner sj = new StringJoiner(", ");
 
         for ( Place region : this )
         {
-            sb.append(region.getName()).append(", ");
+            sj.add(region.getName());
         }
 
-        sb.setLength(sb.length() - 2);
-
-        return sb.toString();
+        return sj.toString();
     }
 }
