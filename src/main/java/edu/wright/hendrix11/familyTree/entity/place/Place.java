@@ -190,8 +190,8 @@ public abstract class Place implements Iterable<Place>
     }
 
     /**
-     * Returns a URL String, typically either a Google query or Google map link. A Google query follows the format {@code
-     * "https://www.google.com/search?q="} while a Google map link follows the format {@code
+     * Returns a URL String, typically either a Google query or Google map link. A Google query follows the format
+     * {@code "https://www.google.com/search?q="} while a Google map link follows the format {@code
      * "https://www.google.com/maps/place/"}.
      *
      * @return a URL String, typically either a Google query or Google map link.

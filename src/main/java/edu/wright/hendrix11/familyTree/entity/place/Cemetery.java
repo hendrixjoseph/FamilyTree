@@ -41,7 +41,7 @@ public class Cemetery extends Place
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * cemeteries by name.
      * <p>
-     * For example: {@code TypedQuery<Cemetery> query = em.createNamedQuery(Cemetery.FIND_BY_NAME, Cemetery.class);} 
+     * For example: {@code TypedQuery<Cemetery> query = em.createNamedQuery(Cemetery.FIND_BY_NAME, Cemetery.class);}
      * {@code query.setParameter("name", name);
      */
     public static final String FIND_BY_NAME = "Cemetery.findByName";

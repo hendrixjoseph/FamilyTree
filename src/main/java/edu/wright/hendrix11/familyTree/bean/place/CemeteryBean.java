@@ -14,7 +14,6 @@ package edu.wright.hendrix11.familyTree.bean.place;
 
 import edu.wright.hendrix11.familyTree.bean.AbstractBean;
 import edu.wright.hendrix11.familyTree.dataBean.DataBean;
-import edu.wright.hendrix11.familyTree.entity.place.City;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
