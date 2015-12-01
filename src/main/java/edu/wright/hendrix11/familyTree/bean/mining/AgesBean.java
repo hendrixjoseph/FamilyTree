@@ -23,6 +23,9 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -37,6 +40,7 @@ public class AgesBean implements Serializable
     private ChartModel ageModel = new ChartModel();
     private ChartModel meanMedianAgeAtBirthModel;
     private ChartModel meanMedianAgeAtDeathModel;
+    private Map<String,Double> statsMap = new LinkedHashMap<>();
 
     @PostConstruct
     private void initialize()
@@ -50,6 +54,18 @@ public class AgesBean implements Serializable
 
         meanMedianAgeAtBirthModel = generateMeanMedianAgeModel(dataBean.meanMeadianAgesPerBirthYear(), "birth");
         meanMedianAgeAtDeathModel = generateMeanMedianAgeModel(dataBean.meanMeadianAgesPerDeathYear(), "death");
+
+        statsMap.put("Minimum age:", (double) dataBean.minAge());
+        statsMap.put("Q2:", (double) dataBean.ageQuartile(2));
+        statsMap.put("Median age:", dataBean.medianAge());
+        statsMap.put("Q3:", (double) dataBean.ageQuartile(3));
+        statsMap.put("Maximum age:", (double) dataBean.maxAge());
+        statsMap.put("Average age:", dataBean.averageAge());
+    }
+
+    public List<Map.Entry<String, Integer>> getStatsMapList()
+    {
+        return new ArrayList(statsMap.entrySet());
     }
 
     public ChartModel getMeanMedianAgeAtBirthModel()
@@ -68,54 +84,6 @@ public class AgesBean implements Serializable
     public ChartModel getAgeModel()
     {
         return ageModel;
-    }
-
-    /**
-     * @return
-     */
-    public double getAverageAge()
-    {
-        return dataBean.averageAge();
-    }
-
-    /**
-     * @return
-     */
-    public int getMaxAge()
-    {
-        return dataBean.maxAge();
-    }
-
-    /**
-     * @return
-     */
-    public double getMedianAge()
-    {
-        return dataBean.medianAge();
-    }
-
-    /**
-     * @return
-     */
-    public int getMinAge()
-    {
-        return dataBean.minAge();
-    }
-
-    /**
-     * @return
-     */
-    public int getAgeQ1()
-    {
-        return dataBean.ageQuartile(1);
-    }
-
-    /**
-     * @return
-     */
-    public int getAgeQ3()
-    {
-        return dataBean.ageQuartile(3);
     }
 
     private ChartModel generateMeanMedianAgeModel(Map<String, Integer[]> map, String x)

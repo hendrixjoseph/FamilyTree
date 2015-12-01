@@ -34,23 +34,25 @@ a.ui-link {
     text-decoration : underline !important;
 }
 
-.bar.births, .legendBox.births {
-    fill : yellow;
-}
-
-.bar.deaths, .legendBox.deaths {
-    fill : black;
-}
-
-.ageChart .x-axis .main.label {
+/*.ageChart .x-axis .main.label {
     font-size : inherit;
 }
 
 .ageChart .x-axis .label {
     font-size : 10px;
-}
+}*/
 
 .charts {
     width  : 100%;
     height : 300px;
+}
+
+.nameHeader {
+    text-align: center;
+}
+
+.namesCloud svg {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }

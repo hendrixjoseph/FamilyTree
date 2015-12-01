@@ -23,8 +23,9 @@
 
     <ui:define name="content">
         <p:layoutUnit position="center">
-            <p:outputLabel value="First name frequency:" />
-            <d3:wordCloud id="firstNamesCloud" words="#{namesBean.firstNameFrequency}" width="500" height="500" />
+            <h2 class="nameHeader">First Name Frequency</h2>
+            <d3:wordCloud id="firstNamesCloud" styleClass="namesCloud"
+                          words="#{namesBean.firstNameFrequency}" width="500" height="500" />
             <p:dataTable var="names" value="#{namesBean.firstNameFrequencyList}">
                 <p:column headerText="Name">
                     <p:outputLabel value="#{names.key}" />
@@ -35,8 +36,9 @@
                 </p:column>
             </p:dataTable>
 
-            <p:outputLabel value="Last name frequency:" />
-            <d3:wordCloud id="lastNamesCloud" words="#{namesBean.lastNameFrequency}" width="1000" height="500" />
+            <h2 class="nameHeader">Last Name Frequency</h2>
+            <d3:wordCloud id="lastNamesCloud" styleClass="namesCloud"
+                          words="#{namesBean.lastNameFrequency}" width="1000" height="500" />
             <p:dataTable var="names" value="#{namesBean.lastNameFrequencyList}">
                 <p:column headerText="Name">
                     <p:outputLabel value="#{names.key}" />

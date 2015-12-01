@@ -29,25 +29,15 @@
                       title="Mean and Meadian Age per Birth Year" styleClass="charts" />
             <d3:chart chartModel="#{agesBean.meanMedianAgeAtDeathModel}" type="spline" id="deathChart"
                       title="Mean and Meadian Age per Death Year" styleClass="charts" />
-            <p:panelGrid columns="2">
-                <p:outputLabel value="Minimum age:" />
-                <p:outputLabel value="#{agesBean.minAge}" />
+            <p:dataTable var="stats" value="#{agesBean.statsMapList}">
+                <p:column headerText="Statistic">
+                    <p:outputLabel value="#{stats.key}" />
+                </p:column>
 
-                <p:outputLabel value="Q2:" />
-                <p:outputLabel value="#{agesBean.ageQ1}" />
-
-                <p:outputLabel value="Median age:" />
-                <p:outputLabel value="#{agesBean.medianAge}" />
-
-                <p:outputLabel value="Q3:" />
-                <p:outputLabel value="#{agesBean.ageQ3}" />
-
-                <p:outputLabel value="Maximum age:" />
-                <p:outputLabel value="#{agesBean.maxAge}" />
-
-                <p:outputLabel value="Average age:" />
-                <p:outputLabel value="#{agesBean.averageAge}" />
-            </p:panelGrid>
+                <p:column headerText="Value">
+                    <p:outputLabel value="#{stats.value} years" />
+                </p:column>
+            </p:dataTable>
         </p:layoutUnit>
     </ui:define>
 
