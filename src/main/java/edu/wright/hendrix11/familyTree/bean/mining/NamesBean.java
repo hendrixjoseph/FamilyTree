@@ -45,22 +45,34 @@ public class NamesBean implements Serializable
         firstNameFrequency = dataBean.firstNameFrequency();
         lastNameFrequency = dataBean.lastNameFrequency();
     }
-
-    public Map<String, Integer> getFirstNameFrequency()
-    {
-        return firstNameFrequency;
-    }
-
-    public Map<String, Integer> getLastNameFrequency()
-    {
-        return lastNameFrequency;
-    }
-
+    
+    /**
+     * Returns a list of first names to the number of occurences (frequency) of that name.
+     * <p>
+     * These values are first put into a {@link LinkedHashMap} then converted into a
+     * {@link List} of {@link Map.Entry}. This is to allow use in PrimeFaces' datatable 
+     * JSF element.
+     * 
+     * @return a list of first names to the number of occurences (frequency) of that name
+     * 
+     * @see NamesDataBean#firstNameFrequency
+     */
     public List<Map.Entry<String, Integer>> getFirstNameFrequencyList()
     {
         return new ArrayList(firstNameFrequency.entrySet());
     }
 
+    /**
+     * Returns a list of last names to the number of occurences (frequency) of that name.
+     * <p>
+     * These values are last put into a {@link LinkedHashMap} then converted into a
+     * {@link List} of {@link Map.Entry}. This is to allow use in PrimeFaces' datatable 
+     * JSF element.
+     * 
+     * @return a list of last names to the number of occurences (frequency) of that name
+     * 
+     * @see NamesDataBean#lastNameFrequency
+     */
     public List<Map.Entry<String, Integer>> getLastNameFrequencyList()
     {
         return new ArrayList(lastNameFrequency.entrySet());
