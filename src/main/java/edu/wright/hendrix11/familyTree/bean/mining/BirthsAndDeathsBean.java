@@ -51,7 +51,11 @@ public class BirthsAndDeathsBean implements Serializable
     }
 
     /**
-     * @return
+     * Returns a chart model containing births and deaths per decade.
+     * 
+     * @return a chart model containing births and deaths per decade
+     * 
+     * @see BirthsAndDeathsDataBean#perDecadeClean
      */
     public ChartModel getPerDecadeCleanModel()
     {
@@ -59,7 +63,11 @@ public class BirthsAndDeathsBean implements Serializable
     }
 
     /**
-     * @return
+     * Returns a chart model containing births and deaths per decade.
+     * 
+     * @return a chart model containing births and deaths per decade
+     * 
+     * @see BirthsAndDeathsDataBean#perDecadeCombined
      */
     public ChartModel getPerDecadeCombinedModel()
     {
@@ -67,7 +75,11 @@ public class BirthsAndDeathsBean implements Serializable
     }
 
     /**
-     * @return
+     * Returns a chart model containing births and deaths per decade.
+     * 
+     * @return a chart model containing births and deaths per decade
+     * 
+     * @see BirthsAndDeathsDataBean#perDecade
      */
     public ChartModel getPerDecadeModel()
     {
@@ -75,7 +87,11 @@ public class BirthsAndDeathsBean implements Serializable
     }
 
     /**
-     * @return
+     * Returns a chart model containing births and deaths per month.
+     * 
+     * @return a chart model containing births and deaths per month
+     * 
+     * @see BirthsAndDeathsDataBean#perMonth
      */
     public ChartModel getPerMonthModel()
     {
