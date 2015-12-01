@@ -23,6 +23,43 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * This class performs queries to three different views in the database: the {@code AGE_VIEW}, 
+ * {@code AGE_TO_BIRTH_YEAR_VIEW}, and {@code AGE_TO_DEATH_YEAR_VIEW}. The latter two views actually
+ * reference the first view.
+ * <p>
+ * The select statement for these views are defined as follows:
+ * <p>
+ * {@code AGE_VIEW}
+ * <blockquote><pre>{@code
+ * SELECT B.PERSON_ID,
+ * 	  (D.YEAR-B.YEAR) AS AGE,
+ * 	  B.YEAR AS BIRTH_YEAR,
+ * 	  D.YEAR AS DEATH_YEAR
+ * FROM EVENT B,EVENT D
+ * WHERE B.PERSON_ID=D.PERSON_ID
+ * 	AND B.TYPE='birth'
+ * 	AND D.TYPE='death'
+ * 	AND B.YEAR IS NOT NULL
+ * 	AND D.YEAR IS NOT NULL;
+ * }</pre></blockquote>
+ * <p>
+ * {@code AGE_TO_BIRTH_YEAR_VIEW}
+ * <blockquote><pre>{@code
+ * SELECT AVG(AGE) AVG_AGE, MEDIAN(AGE) MEDIAN_AGE, BIRTH_YEAR
+ * FROM AGE_VIEW
+ * GROUP BY BIRTH_YEAR
+ * ORDER BY BIRTH_YEAR;
+ * }</pre></blockquote>
+ * <p>
+ * {@code AGE_TO_DEATH_YEAR_VIEW}
+ * <blockquote><pre>{@code
+ * SELECT AVG(AGE) AVG_AGE, MEDIAN(AGE) MEDIAN_AGE, DEATH_YEAR
+ * FROM AGE_VIEW
+ * GROUP BY DEATH_YEAR
+ * ORDER BY DEATH_YEAR;
+ * }</pre></blockquote>
+ * <p>
+ * 
  * @author Joe Hendrix
  */
 @Stateless
