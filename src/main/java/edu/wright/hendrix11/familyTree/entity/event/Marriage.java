@@ -35,6 +35,8 @@ public class Marriage extends Event
     /**
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * marriage records.
+     * For example: 
+     * <blockquote><pre>{@code TypedQuery<Marriage> query = em.createNamedQuery(Marriage.FIND_ALL, Marriage.class);}</pre></blockquote>
      */
     public static final String FIND_ALL = "Marriage.findAll";
 
@@ -48,7 +50,9 @@ public class Marriage extends Event
     private Person wife;
 
     /**
-     * @return
+     * Returns the male person of the marriage.
+     * 
+     * @return the male person of the marriage
      */
     public Person getHusband()
     {
@@ -56,7 +60,9 @@ public class Marriage extends Event
     }
 
     /**
-     * @param husband
+     * Sets the male person of the marriage.
+     * 
+     * @param husband the male person of the marriage
      */
     public void setHusband(Person husband)
     {
@@ -64,7 +70,9 @@ public class Marriage extends Event
     }
 
     /**
-     * @return
+     * Returns the female person of the marriage.
+     * 
+     * @return the female person of the marriage
      */
     public Person getWife()
     {
@@ -72,32 +80,12 @@ public class Marriage extends Event
     }
 
     /**
-     * @param wife
+     * Sets the female person of the marriage.
+     * 
+     * @param wife the female person of the marriage
      */
     public void setWife(Person wife)
     {
         this.wife = wife;
     }
-
-    /**
-     * @return
-     */
-    public boolean hasHusband()
-    {
-        return hasSpouse(husband);
-    }
-
-    /**
-     * @return
-     */
-    public boolean hasWife()
-    {
-        return hasSpouse(wife);
-    }
-
-    private boolean hasSpouse(Person spouse)
-    {
-        return spouse != null;
-    }
-
 }
