@@ -14,7 +14,7 @@
                 xmlns="http://xmlns.jcp.org/xml/ns/javaee"
                 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facelettaglibrary_2_2.xsd"
                 version="2.2">
-    <description>C3 / D3 UI Compentents implemented by Joseph Hendrix</description>
+    <description><![CDATA[<a href="http://d3js.org">D3</a> UI Compentents implemented by Joseph Hendrix. D3 is written by <a href="http://bost.ocks.org/mike">Mike Bostock</a>]]></description>
     <namespace>http://hendrix11.wright.edu/d3</namespace>
     <short-name>d3</short-name>
     <tag>
