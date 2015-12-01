@@ -43,7 +43,7 @@ public class PersonDataBean extends DataBean<Person, Integer>
 
     /**
      * Returns the first person in the database. This method uses a {@link TypedQuery} generated from the {@link
-     * NamedQuery} represented by {@link Person#FIND_ALL}.
+     * NamedQuery} represented by {@link Person#FIND_FIRST}.
      *
      * @return the first person in the database
      *
