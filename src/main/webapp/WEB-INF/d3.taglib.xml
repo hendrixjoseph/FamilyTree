@@ -34,6 +34,7 @@
             <type>java.lang.String</type>
         </attribute>
         <attribute>
+            <description>The type of chart to render. Available values are line, spline, step, area, area-spline, area-step, bar, scatter, pie, donut, and gauge. Defaults to line.</description>
             <name>type</name>
             <required>false</required>
             <type>java.lang.String</type>
@@ -59,16 +60,19 @@
             <type>java.lang.String</type>
         </attribute>
         <attribute>
+            <description>The title of the chart.</description>
             <name>title</name>
             <required>false</required>
             <type>java.lang.String</type>
         </attribute>
         <attribute>
+            <description>The value of the class attribute of the div element that contains the chart.</description>
             <name>styleClass</name>
             <required>false</required>
             <type>java.lang.String</type>
         </attribute>
         <attribute>
+            <description>The value of the style attribute of the div element that contains the chart.</description>
             <name>style</name>
             <required>false</required>
             <type>java.lang.String</type>
