@@ -4,6 +4,8 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
 /**
+ * Converts between boolean and integer: {@code 1} is {@code true} and {@code 0} is {@code false}.
+ * 
  * @author Joe
  */
 @Converter(autoApply = true)
