@@ -23,25 +23,9 @@ import javax.persistence.TypedQuery;
  */
 @Entity
 @DiscriminatorValue(value = "birth")
-@NamedQueries({
-                      @NamedQuery(name = Birth.FIND_ALL, query = "SELECT b FROM Birth b"),
-                      @NamedQuery(name = Birth.COUNT_BY_DECADE,
-                                  query = "SELECT (b.year - MOD(b.year,10)) AS decade, COUNT(decade) FROM Birth b WHERE b.year IS NOT NULL GROUP BY decade"),
-                      @NamedQuery(name = Birth.COUNT_BY_YEAR,
-                                  query = "SELECT COUNT(b.year), b.year FROM Birth b WHERE b.year IS NOT NULL GROUP BY b.year ORDER BY b.year")
-              })
+@NamedQuery(name = Birth.FIND_ALL, query = "SELECT b FROM Birth b")
 public class Birth extends SinglePersonEvent
 {
-
-    /**
-     *
-     */
-    public static final String COUNT_BY_DECADE = "Birth.countByDecade";
-
-    /**
-     *
-     */
-    public static final String COUNT_BY_YEAR = "Birth.countByYear";
     /**
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * birth records.
