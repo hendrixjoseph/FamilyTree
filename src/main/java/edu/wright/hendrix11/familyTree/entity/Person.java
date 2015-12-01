@@ -60,22 +60,25 @@ public class Person
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to count the
      * number of people of a specific gender.
      * <p>
-     * For example: {@code TypedQuery<Person> query = em.createNamedQuery(Person.COUNT_GENDERS, Person.class);}
+     * For example:
+     * <blockquote><pre>{@code TypedQuery<Person> query = em.createNamedQuery(Person.COUNT_GENDERS, Person.class);}</pre></blockquote>
      */
     public static final String COUNT_GENDERS = "Person.countGenders";
     /**
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * people.
      * <p>
-     * For example: {@code TypedQuery<Person> query = em.createNamedQuery(Person.FIND_ALL, Person.class);} {@code
-     * query.setParameter("gender", gender);}
+     * For example: 
+     * <blockquote><pre>{@code TypedQuery<Person> query = em.createNamedQuery(Person.FIND_ALL, Person.class);}
+     * query.setParameter("gender", gender);}</pre></blockquote>
      */
     public static final String FIND_ALL = "Person.findAll";
     /**
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get the
      * first person in the database.
      * <p>
-     * For example: {@code TypedQuery<Person> query = em.createNamedQuery(Person.FIND_FIRST, Person.class);}
+     * For example: 
+     * <blockquote><pre>{@code TypedQuery<Person> query = em.createNamedQuery(Person.FIND_FIRST, Person.class);}</pre></blockquote>
      */
     public static final String FIND_FIRST = "Person.findFirst";
     @Id
@@ -165,6 +168,8 @@ public class Person
     }
 
     /**
+     * Returns the list of all children for this person.
+     * 
      * @return the list of all children for this person
      */
     public List<Person> getChildren()
@@ -173,6 +178,8 @@ public class Person
     }
 
     /**
+     * Sets the list of all children for this person.
+     * 
      * @param children the list of all children for this person
      */
     public void setChildren(List<Person> children)
@@ -266,7 +273,7 @@ public class Person
     }
 
     /**
-     * Returns the gender of this person. Available genders are male, female, other, and unknown.
+     * Returns the gender of this person. Available genders are {@link Gender#MALE male}, {@link Gender#FEMALE female}, {@link Gender#OTHER other}, and {@link Gender#UNKNOWN unknown}.
      *
      * @return the gender of this person
      */
@@ -276,7 +283,7 @@ public class Person
     }
 
     /**
-     * Sets the gender of this person. Available genders are male, female, other, and unknown.
+     * Sets the gender of this person. Available genders are {@link Gender#MALE male}, {@link Gender#FEMALE female}, {@link Gender#OTHER other}, and {@link Gender#UNKNOWN unknown}.
      *
      * @param gender the gender of this person
      */
@@ -417,7 +424,7 @@ public class Person
     /**
      * Returns a string representation of the person, which is just the person's name.
      *
-     * @return A string representation of the person, which is just the person's name.
+     * @return a string representation of the person, which is just the person's name.
      *
      * @see #getName()
      */
