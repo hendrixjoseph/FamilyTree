@@ -34,7 +34,7 @@ public class BirthsAndDeathsDataBean
     private EntityManager em;
 
     /**
-     * @return
+     * @return a map of decades to an array of births and deaths in that decade
      */
     public Map<String, Integer[]> perDecadeCombined()
     {
@@ -44,7 +44,7 @@ public class BirthsAndDeathsDataBean
     }
 
     /**
-     * @return
+     * @return a map of decades to an array of births and deaths in that decade
      */
     public Map<String, Integer[]> perDecadeClean()
     {
@@ -54,7 +54,7 @@ public class BirthsAndDeathsDataBean
     }
 
     /**
-     * @return
+     * @return a map of decades to an array of births and deaths in that decade
      */
     public Map<String, Integer[]> perDecade()
     {
