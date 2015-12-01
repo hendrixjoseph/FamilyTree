@@ -33,7 +33,8 @@ public class City extends Place
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * cities.
      * <p>
-     * For example: {@code TypedQuery<City> query = em.createNamedQuery(City.FIND_ALL, City.class);}
+     * For example: 
+     * <blockquote><pre>{@code TypedQuery<City> query = em.createNamedQuery(City.FIND_ALL, City.class);}
      */
     public static final String FIND_ALL = "City.findAll";
 
@@ -41,8 +42,9 @@ public class City extends Place
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * states by name.
      * <p>
-     * For example: {@code TypedQuery<City> query = em.createNamedQuery(City.FIND_BY_NAME, City.class);} {@code
-     * query.setParameter("name", name);
+     * For example:
+     * <blockquote><pre>{@code TypedQuery<City> query = em.createNamedQuery(City.FIND_BY_NAME, City.class);
+     * query.setParameter("name", name);}</pre></blockquote>
      */
     public static final String FIND_BY_NAME = "City.findByName";
 
@@ -54,6 +56,8 @@ public class City extends Place
     }
 
     /**
+     * Creates a new city with the specified name.
+     * 
      * @param name the name of the city
      */
     public City(String name)
