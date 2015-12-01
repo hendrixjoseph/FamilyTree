@@ -33,6 +33,8 @@ public class GenderDataBean
 
     /**
      * Returns the number of people of the specified gender.
+     * <p>
+     * This is calculated using the {@link NamedQuery} specified by {@link Person#COUNT_GENDERS}.
      *
      * @param gender the gender to be counted
      *
@@ -44,7 +46,16 @@ public class GenderDataBean
         countQuery.setParameter("gender", gender);
         return countQuery.getSingleResult().intValue();
     }
-
+    
+    /**
+     * Returns the average age of people of the specified gender.
+     * <p>
+     * This is calculated using the database's {@code AVG()} function.
+     * 
+     * @param gender the gender to be calculated
+     *
+     * @return the average age of people of the specified gender
+     */
     public double averageAge(Gender gender)
     {
         StringBuilder sb = new StringBuilder("SELECT AVG(AGE) FROM AGE_VIEW, PERSON");
