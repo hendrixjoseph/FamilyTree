@@ -33,7 +33,8 @@ public class Country extends Place
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * counties.
      * <p>
-     * For example: {@code TypedQuery<County> query = em.createNamedQuery(County.FIND_ALL, County.class);}
+     * For example: 
+     * <blockquote><pre>{@code TypedQuery<County> query = em.createNamedQuery(County.FIND_ALL, County.class);}</pre></blockquote>
      */
     public static final String FIND_ALL = "Country.findAll";
 
@@ -41,8 +42,9 @@ public class Country extends Place
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * counties by name.
      * <p>
-     * For example: {@code TypedQuery<Country> query = em.createNamedQuery(Country.FIND_BY_NAME, Country.class);} {@code
-     * query.setParameter("name", name);
+     * For example: 
+     * <blockquote><pre>{@code TypedQuery<Country> query = em.createNamedQuery(Country.FIND_BY_NAME, Country.class);
+     * query.setParameter("name", name);}</pre></blockquote>
      */
     public static final String FIND_BY_NAME = "Country.findByName";
 
@@ -54,6 +56,8 @@ public class Country extends Place
     }
 
     /**
+     * Creates a new country with the specified name.
+     * 
      * @param name the name of the country
      */
     public Country(String name)
