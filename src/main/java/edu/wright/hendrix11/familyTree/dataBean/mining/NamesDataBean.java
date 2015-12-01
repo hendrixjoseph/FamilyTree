@@ -21,6 +21,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * This class queries the database to get the most common names.
+ * 
  * @author Joe Hendrix
  */
 @Stateless
