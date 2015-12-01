@@ -42,8 +42,8 @@ public abstract class SinglePersonEvent extends Event
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * single-person events.
      * <p>
-     * For example: {@code TypedQuery<SinglePersonEvent> query = em.createNamedQuery(SinglePersonEvent.FIND_ALL,
-     * SinglePersonEvent.class);}
+     * For example: 
+     * <blockquote><pre>{@code TypedQuery<SinglePersonEvent> query = em.createNamedQuery(SinglePersonEvent.FIND_ALL, SinglePersonEvent.class);}</pre></blockquote>
      */
     public static final String FIND_ALL = "SinglePersonEvent.findAll";
 
@@ -93,9 +93,4 @@ public abstract class SinglePersonEvent extends Event
     {
         return type;
     }
-
-    //    public void setType(String type)
-    //    {
-    //        this.type = type;
-    //    }
 }
