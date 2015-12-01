@@ -63,23 +63,50 @@ public class AgesBean implements Serializable
         statsMap.put("Average age:", dataBean.averageAge());
     }
 
+    /**
+     * Returns a list of statistic labels to the statistic value.
+     * <p>
+     * These values are first put into a {@link LinkedHashMap} then converted into a
+     * {@link List} of {@link Map.Entry}. This is to allow use in PrimeFaces' datatable 
+     * JSF element.
+     * 
+     * @return a list of statistic labels to the statistic value
+     */
     public List<Map.Entry<String, Integer>> getStatsMapList()
     {
         return new ArrayList(statsMap.entrySet());
     }
 
+    /**
+     * Returns a chart model containing ages at birth data.
+     * 
+     * @return a chart model containing ages at birth data
+     * 
+     * @see AgesDataBean#meanMeadianAgesPerBirthYear
+     */
     public ChartModel getMeanMedianAgeAtBirthModel()
     {
         return meanMedianAgeAtBirthModel;
     }
 
+    /**
+     * Returns a chart model containing ages at death data.
+     * 
+     * @return a chart model containing ages at death data
+     * 
+     * @see AgesDataBean#meanMeadianAgesPerDeathYear
+     */
     public ChartModel getMeanMedianAgeAtDeathModel()
     {
         return meanMedianAgeAtDeathModel;
     }
 
     /**
-     * @return
+     * Returns a chart model containing age data.
+     * 
+     * @return a chart model containing age data
+     * 
+     * @see AgesDataBean#ages
      */
     public ChartModel getAgeModel()
     {
