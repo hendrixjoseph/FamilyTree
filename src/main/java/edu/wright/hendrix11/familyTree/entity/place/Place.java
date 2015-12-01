@@ -53,7 +53,8 @@ public abstract class Place implements Iterable<Place>
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * places.
      * <p>
-     * For example: {@code TypedQuery<Place> query = em.createNamedQuery(Place.FIND_ALL, Place.class);}
+     * For example: 
+     * <blockquote><pre>{@code TypedQuery<Place> query = em.createNamedQuery(Place.FIND_ALL, Place.class);}</pre></blockquote>
      */
     public static final String FIND_ALL = "Place.findAll";
 
@@ -61,8 +62,9 @@ public abstract class Place implements Iterable<Place>
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * places by name.
      * <p>
-     * For example: {@code TypedQuery<Place> query = em.createNamedQuery(Place.FIND_BY_NAME, Place.class);} {@code
-     * query.setParameter("name", name);
+     * For example: 
+     * <blockquote><pre>{@code TypedQuery<Place> query = em.createNamedQuery(Place.FIND_BY_NAME, Place.class);
+     * query.setParameter("name", name);}</pre></blockquote>
      */
     public static final String FIND_BY_NAME = "Place.findByName";
 
@@ -87,6 +89,8 @@ public abstract class Place implements Iterable<Place>
     }
 
     /**
+     * Creates a new place with the specified name.
+     * 
      * @param name the name of the place
      */
     public Place(String name)
@@ -136,8 +140,8 @@ public abstract class Place implements Iterable<Place>
 
     /**
      * Return the region of the place. The region is defined as a more general place. The chain of regions goes from
-     * {@link City} &#8594; {@link County} &#8594; {@link State} &#8594; {@link Country}. A {@link City}'s region does
-     * not have to be a {@link County}, it could also be a {@link State} or {@link Country}.
+     * {@link Cemetery} &#8594; {@link City} &#8594; {@link County} &#8594; {@link State} &#8594; {@link Country}. 
+     * A {@link City}'s region does not have to be a {@link County}, it could also be a {@link State} or {@link Country}.
      *
      * @return the region of the place
      */
@@ -148,8 +152,8 @@ public abstract class Place implements Iterable<Place>
 
     /**
      * Sets the region of the place. The region is defined as a more general place. The chain of regions goes from
-     * {@link City} &#8594; {@link County} &#8594; {@link State} &#8594; {@link Country}. A {@link City}'s region does
-     * not have to be a {@link County}, it could also be a {@link State} or {@link Country}.
+     * {@link Cemetery} &#8594; {@link City} &#8594; {@link County} &#8594; {@link State} &#8594; {@link Country}. 
+     * A {@link City}'s region does not have to be a {@link County}, it could also be a {@link State} or {@link Country}.
      *
      * @param region the region of the place
      */
