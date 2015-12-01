@@ -39,23 +39,27 @@ public enum Gender
     UNNOWN;
 
     /**
-     * @param name
+     * Returns the Gender that starts with the parameter.
+     * 
+     * @param startsWith the String that the Gender should start with
      *
-     * @return
+     * @return a Gender
+     * 
+     * @throws IllegalArgumentException If no Gender starts with the parameter
      */
-    public static Gender getEnum(String name)
+    public static Gender getEnum(String startsWith)
     {
-        name = name.toUpperCase();
+        startsWith = startsWith.toUpperCase();
 
         try
         {
-            return Gender.valueOf(name);
+            return Gender.valueOf(startsWith);
         }
         catch ( IllegalArgumentException e )
         {
             for ( Gender gender : Gender.values() )
             {
-                if ( gender.name().startsWith(name) )
+                if ( gender.name().startsWith(startsWith) )
                     return gender;
             }
 
@@ -63,6 +67,11 @@ public enum Gender
         }
     }
 
+    /**
+     * Returns the gender name, in lower case.
+     * 
+     * @return the gender name, in lower case
+     */
     @Override
     public String toString()
     {
