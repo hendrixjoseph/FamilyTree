@@ -23,24 +23,15 @@ import javax.persistence.TypedQuery;
  */
 @Entity
 @DiscriminatorValue(value = "death")
-@NamedQueries({
-                      @NamedQuery(name = Death.FIND_ALL, query = "SELECT d FROM Death d"),
-                      @NamedQuery(name = Death.COUNT_BY_YEAR,
-                                  query = "SELECT COUNT(d.year), d.year FROM Death d WHERE d.year IS NOT NULL GROUP BY d.year ORDER BY d.year")
-
-              })
+@NamedQuery(name = Death.FIND_ALL, query = "SELECT d FROM Death d")
 public class Death extends SinglePersonEvent
 {
-
-    /**
-     *
-     */
-    public static final String COUNT_BY_YEAR = "Death.countByYear";
     /**
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * death records.
      * <p>
-     * For example: {@code TypedQuery<Death> query = em.createNamedQuery(Death.FIND_ALL, Death.class);}
+     * For example: 
+     * <blockquote><pre>{@code TypedQuery<Death> query = em.createNamedQuery(Death.FIND_ALL, Death.class);}</pre></blockquote>
      */
     public static final String FIND_ALL = "Death.findAll";
 }
