@@ -29,7 +29,8 @@ public class Burial extends SinglePersonEvent
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * burial records.
      * <p>
-     * For example: {@code TypedQuery<Burial> query = em.createNamedQuery(Burial.FIND_ALL, Burial.class);}
+     * For example: 
+     * <blockquote><pre>{@code TypedQuery<Burial> query = em.createNamedQuery(Burial.FIND_ALL, Burial.class);}</pre></blockquote>
      */
     public static final String FIND_ALL = "Burial.findAll";
 }
