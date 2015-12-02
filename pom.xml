@@ -22,6 +22,7 @@
     <licenses>
         <license>
             <name>The MIT License (MIT)</name>
+     	    <url>https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
@@ -364,13 +365,13 @@
                             <report>distribution-management</report>
                             <report>index</report>
                             <report>issue-tracking</report>
-                            <!-- report>license</report -->
+                            <report>license</report>
                             <!-- report>mailing-list</report -->
                             <!-- report>modules</report -->
                             <report>plugin-management</report>
                             <report>plugins</report>
                             <report>project-team</report>
-                            <!-- report>scm</report -->
+                            <report>scm</report>
                             <report>summary</report>
                         </reports>
                     </reportSet>
