@@ -34,12 +34,14 @@ public class ChartModel
     private List<String> barLabels = new ArrayList<>();
     private List<String> colors = new ArrayList<>();
     private Map<String, ? extends Number> data = new LinkedHashMap<>();
-    private boolean isCategory = false;
     private XAxis xAxis;
     private YAxis yAxis;
 
     /**
-     * @return
+     * Returns the custom color pattern for the data. The first data has the first color, the second data has the second color,
+     * and so on.
+     * 
+     * @return the custom color pattern for the data
      */
     public List<String> getColors()
     {
@@ -47,7 +49,10 @@ public class ChartModel
     }
 
     /**
-     * @param colors
+     * Sets the custom color pattern for the data. The first data has the first color, the second data has the second color,
+     * and so on.
+     * 
+     * @param colors the custom color pattern for the data
      */
     public void setColors(List<String> colors)
     {
@@ -55,7 +60,10 @@ public class ChartModel
     }
 
     /**
-     * @param color
+     * Adds a color to the list of custom color patterns for the data. The first data has the first color, the second data has the second color,
+     * and so on.
+     * 
+     * @param color a String representation of a color
      */
     public void addColor(String color)
     {
@@ -63,27 +71,14 @@ public class ChartModel
     }
 
     /**
-     * @param color
+     * Adds a color to the list of custom color patterns for the data. The first data has the first color, the second data has the second color,
+     * and so on.
+     * 
+     * @param color a color from the color enum
      */
     public void addColor(Color color)
     {
         colors.add(color.toString());
-    }
-
-    /**
-     * @return
-     */
-    public boolean isCategory()
-    {
-        return isCategory;
-    }
-
-    /**
-     * @param isCategory
-     */
-    public void setIsCategory(boolean isCategory)
-    {
-        this.isCategory = isCategory;
     }
 
     /**
@@ -104,7 +99,9 @@ public class ChartModel
     }
 
     /**
-     * @param label
+     * Sets the text that will be displayed along the x axis.
+     * 
+     * @param label the text that will be displayed along the x axis
      */
     public void setxAxis(String label)
     {
@@ -128,7 +125,9 @@ public class ChartModel
     }
 
     /**
-     * @param label
+     * Sets the text that will be displayed along the y axis.
+     * 
+     * @param label the text that will be displayed along the y axis
      */
     public void setyAxis(String label)
     {
