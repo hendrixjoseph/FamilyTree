@@ -42,21 +42,25 @@
             <type>java.lang.String</type>
         </attribute>
         <attribute>
+            <description>Whether to show the grid along the x axis. Defaults to false.</description>
             <name>gridX</name>
             <required>false</required>
             <type>java.lang.Boolean</type>
         </attribute>
         <attribute>
+            <description>Whether to show the grid along the y axis. Defaults to false.</description>
             <name>gridY</name>
             <required>false</required>
             <type>java.lang.Boolean</type>
         </attribute>
         <attribute>
+            <description>Whether to show the legend. Defaults to true.</description>
             <name>showLegend</name>
             <required>false</required>
             <type>java.lang.Boolean</type>
         </attribute>
         <attribute>
+            <description><![CDATA[Where to show the legend. Possible values include:<ul><li>bottom</li><li>right</li><li>inset</li></ul>Defaults to bottom.]]></description>
             <name>legendPosition</name>
             <required>false</required>
             <type>java.lang.String</type>
