@@ -30,6 +30,7 @@
             <type>edu.wright.hendrix11.d3.chart.ChartModel</type>
         </attribute>
         <attribute>
+            <description>The value of the id attribute of the div element that contains the chart. This is necessary because it defines what the chart is bound to.</description>
             <name>id</name>
             <required>true</required>
             <type>java.lang.String</type>
@@ -81,46 +82,55 @@
     </tag>
     <tag>
         <tag-name>wordCloud</tag-name>
+        <description><![CDATA[Implementation of a <a href="https://www.jasondavies.com/wordcloud">D3 word cloud generator</a> by <a href="https://www.jasondavies.com">Jason Davies</a>.]]></description>
         <component>
             <component-type>edu.wright.hendrix11.d3.wordCloud.WordCloudComponent</component-type>
             <renderer-type>edu.wright.hendrix11.d3.chart.WordCloudRenderer</renderer-type>
         </component>
         <attribute>
+            <description>The value of the id attribute of the div element that contains the cloud. This is necessary because it defines what the cloud is bound to.</description>
             <name>id</name>
             <required>true</required>
             <type>java.lang.String</type>
         </attribute>
         <attribute>
+            <description>Map of the words (or rather, Strings, as they can have spaces) to the font size of that word. Typcially the size will be the number of occurences, but that is not a requirement.</description>
             <name>words</name>
             <required>true</required>
             <type>java.util.Map&lt;java.lang.String,java.lang.Integer&gt;</type>
         </attribute>
         <attribute>
+            <description>Width of the entire cloud.</description>
             <name>width</name>
             <required>true</required>
             <type>java.lang.Integer</type>
         </attribute>
         <attribute>
+            <description>Height of the entire cloud.</description>
             <name>height</name>
             <required>true</required>
             <type>java.lang.Integer</type>
         </attribute>
         <attribute>
+            <description>The numerical padding for each word / String.</description>
             <name>padding</name>
             <required>false</required>
             <type>java.lang.Integer</type>
         </attribute>
         <attribute>
+            <description>The font face for each word.</description>
             <name>font</name>
             <required>false</required>
             <type>java.lang.String</type>
         </attribute>
         <attribute>
+            <description>The value of the class attribute of the div element that contains the cloud.</description>
             <name>styleClass</name>
             <required>false</required>
             <type>java.lang.String</type>
         </attribute>
         <attribute>
+            <description>The value of the style attribute of the div element that contains the cloud.</description>
             <name>style</name>
             <required>false</required>
             <type>java.lang.String</type>
