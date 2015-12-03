@@ -18,7 +18,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 /**
- * @author Joe
+ * @author Joe Hendrix
  */
 @Entity
 @DiscriminatorValue(value = "cemetery")
