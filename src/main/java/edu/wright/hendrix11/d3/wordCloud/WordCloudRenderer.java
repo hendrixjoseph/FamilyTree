@@ -32,7 +32,10 @@ import java.util.logging.Logger;
 public class WordCloudRenderer extends MasterRenderer
 {
     private static final Logger LOG = Logger.getLogger(WordCloudRenderer.class.getName());
-
+    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void encodeBegin(FacesContext context, UIComponent component) throws IOException
     {
