@@ -34,7 +34,8 @@ public class State extends Place
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link
      * javax.persistence.TypedQuery} to get all states.
      * <p>
-     * For example: {@code TypedQuery<State> query = em.createNamedQuery(State.FIND_ALL, State.class);}
+     * For example: 
+     * <blockquote><pre>{@code TypedQuery<State> query = em.createNamedQuery(State.FIND_ALL, State.class);}}</pre></blockquote>
      */
     public static final String FIND_ALL = "State.findAll";
 
@@ -43,8 +44,9 @@ public class State extends Place
      * javax.persistence.TypedQuery} to get all states by name. It is expected, but not required, that only one state
      * exists per name.
      * <p>
-     * For example: {@code TypedQuery<State> query = em.createNamedQuery(State.FIND_BY_NAME, State.class);} {@code
-     * query..setParameter("name", name);
+     * For example: 
+     * <blockquote><pre>{@code TypedQuery<State> query = em.createNamedQuery(State.FIND_BY_NAME, State.class);
+     * query.setParameter("name", name);}</pre></blockquote>
      */
     public static final String FIND_BY_NAME = "State.findByName";
 
@@ -52,6 +54,11 @@ public class State extends Place
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link
      * javax.persistence.TypedQuery} to get all states by name. It is expected, but not required, that only one state
      * exists per name and region.
+     * <p>
+     * For example:
+     * <blockquote><pre>{@code TypedQuery<State> query = em.createNamedQuery(State.FIND_BY_NAME_AND_REGION, State.class);
+     * query.setParameter("name", name);
+     * query.setParameter("region", region);}</pre></blockquote>
      */
     public static final String FIND_BY_NAME_AND_REGION = "State.findByNameAndRegion";
 
