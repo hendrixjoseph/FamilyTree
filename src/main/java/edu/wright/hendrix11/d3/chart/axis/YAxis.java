@@ -52,4 +52,19 @@ public class YAxis extends Axis
     {
         super.setLabel(label);
     }
+    
+    /**
+     * @param label
+     */
+    public void setLabel(String label)
+    {
+        if(getLabel() != null)
+        {
+            super.setLabel(label);
+        }
+        else
+        {
+            super.setLabel(new YLabel(label));
+        }
+    }
 }
