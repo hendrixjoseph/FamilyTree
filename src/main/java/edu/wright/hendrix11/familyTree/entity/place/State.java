@@ -19,7 +19,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.TypedQuery;
 
 /**
- * @author Joe
+ * @author Joe Hendrix
  */
 @Entity
 @DiscriminatorValue(value = "state")
