@@ -24,6 +24,8 @@ import javax.persistence.TypedQuery;
 @Entity
 @DiscriminatorValue(value = "county")
 @NamedQueries({
+                      @NamedQuery(name = County.FIND_BY_NAME_AND_REGION,
+                                  query = "SELECT p FROM County p WHERE p.name = :name AND p.region = :region"),
                       @NamedQuery(name = County.FIND_BY_NAME, query = "SELECT p FROM County p WHERE p.name = :name"),
                       @NamedQuery(name = County.FIND_ALL, query = "SELECT p FROM County p")
               })
@@ -47,6 +49,17 @@ public class County extends Place
      * query.setParameter("name", name);}</pre></blockquote>
      */
     public static final String FIND_BY_NAME = "County.findByName";
+    
+    /**
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all 
+     * counties by name and region.
+     * <p>
+     * For example:
+     * <blockquote><pre>{@code TypedQuery<County> query = em.createNamedQuery(County.FIND_BY_NAME_AND_REGION, County.class);
+     * query.setParameter("name", name);
+     * query.setParameter("region", region);}</pre></blockquote>
+     */
+    public static final String FIND_BY_NAME_AND_REGION = "County.findByNameAndRegion";
 
     /**
      * No-argument constructor for JPA.
