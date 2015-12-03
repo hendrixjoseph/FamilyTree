@@ -86,7 +86,7 @@ public abstract class Importer
      */
     protected abstract void processData();
     
-        protected Country getCountry(String name)
+    protected Country getCountry(String name)
     {
         TypedQuery<Country> countryQuery = em.createNamedQuery(Country.FIND_BY_NAME, Country.class);
         List<Country> countryList = countryQuery.setParameter("name", name).getResultList();
