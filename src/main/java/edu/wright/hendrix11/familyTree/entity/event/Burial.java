@@ -30,8 +30,7 @@ public class Burial extends SinglePersonEvent
      * burial records.
      * <p>
      * For example:
-     * <blockquote><pre>{@code TypedQuery<Burial> query = em.createNamedQuery(Burial.FIND_ALL,
-     * Burial.class);}</pre></blockquote>
+     * <blockquote><pre>{@code TypedQuery<Burial> query = em.createNamedQuery(Burial.FIND_ALL, Burial.class);}</pre></blockquote>
      */
     public static final String FIND_ALL = "Burial.findAll";
 }
