@@ -67,4 +67,21 @@ public class XAxis extends Axis
             super.setLabel(new XLabel(label));
         }
     }
+    
+    /**
+     * @return
+     */
+    @Override
+    public XPadding getPadding()
+    {
+        return (XPadding) super.getPadding();
+    }
+
+    /**
+     * @param padding
+     */
+    public void setPadding(XPadding padding)
+    {
+        super.setPadding(padding);
+    }
 }
