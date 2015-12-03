@@ -36,7 +36,7 @@ public class County extends Place
      * counties.
      * <p>
      * For example:
-     * <blockquote><pre>{@code TypedQuery<County> query = em.createNamedQuery(County.FIND_ALL, County.class);}
+     * <blockquote><pre>{@code TypedQuery<County> query = em.createNamedQuery(County.FIND_ALL, County.class);}</pre></blockquote>
      */
     public static final String FIND_ALL = "County.findAll";
 
