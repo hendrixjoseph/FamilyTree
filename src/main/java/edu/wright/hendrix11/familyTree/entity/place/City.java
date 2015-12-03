@@ -24,6 +24,8 @@ import javax.persistence.TypedQuery;
 @Entity
 @DiscriminatorValue(value = "city")
 @NamedQueries({
+                      @NamedQuery(name = City.FIND_BY_NAME_AND_REGION,
+                                  query = "SELECT p FROM City p WHERE p.name = :name AND p.region = :region"),
                       @NamedQuery(name = City.FIND_BY_NAME, query = "SELECT p FROM City p WHERE p.name = :name"),
                       @NamedQuery(name = City.FIND_ALL, query = "SELECT p FROM City p")
               })
@@ -34,7 +36,7 @@ public class City extends Place
      * cities.
      * <p>
      * For example:
-     * <blockquote><pre>{@code TypedQuery<City> query = em.createNamedQuery(City.FIND_ALL, City.class);}
+     * <blockquote><pre>{@code TypedQuery<City> query = em.createNamedQuery(City.FIND_ALL, City.class);}</pre></blockquote>
      */
     public static final String FIND_ALL = "City.findAll";
 
@@ -47,6 +49,17 @@ public class City extends Place
      * query.setParameter("name", name);}</pre></blockquote>
      */
     public static final String FIND_BY_NAME = "City.findByName";
+    
+    /**
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all 
+     * cities by name and region.
+     * <p>
+     * For example:
+     * <blockquote><pre>{@code TypedQuery<City> query = em.createNamedQuery(City.FIND_BY_NAME_AND_REGION, City.class);
+     * query.setParameter("name", name);
+     * query.setParameter("region", region);}</pre></blockquote>
+     */
+    public static final String FIND_BY_NAME_AND_REGION = "City.findByNameAndRegion";
 
     /**
      * No-argument constructor for JPA.
