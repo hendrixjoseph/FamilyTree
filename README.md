@@ -92,10 +92,10 @@ In order to run this project, a Java EE server and a SQL database need to be ins
 
 <table>
 <tr><td>Pool name: </td><td>FamilyTreePool</td></tr>
-<tr><td>Resource type:</td><td>`java.sql.Driver`</td></tr>
+<tr><td>Resource type:</td><td><code>java.sql.Driver</code></td></tr>
 <tr><td>Database Driver Vendor: </td><td>Oracle</td></tr>
 <tr><td>Initial and Minimum Pool Size:</td><td>Zero</td></tr>
-<tr><td>URL:</td><td>jdbc:oracle:thin:@localhost:1521:XE</td></tr>
+<tr><td>URL:</td><td><code>jdbc:oracle:thin:@localhost:1521:XE</code></td></tr>
 </table>
 
 ## Tools
