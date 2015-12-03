@@ -23,6 +23,8 @@ import javax.persistence.NamedQuery;
 @Entity
 @DiscriminatorValue(value = "cemetery")
 @NamedQueries({
+                      @NamedQuery(name = Cemetery.FIND_BY_NAME_AND_REGION,
+                                  query = "SELECT p FROM Cemetery p WHERE p.name = :name AND p.region = :region"),
                       @NamedQuery(name = Cemetery.FIND_BY_NAME,
                                   query = "SELECT p FROM Cemetery p WHERE p.name = :name"),
                       @NamedQuery(name = Cemetery.FIND_ALL, query = "SELECT p FROM Cemetery p")
@@ -34,7 +36,7 @@ public class Cemetery extends Place
      * cemeteries.
      * <p>
      * For example:
-     * <blockquote><pre>{@code TypedQuery<Cemetery> query = em.createNamedQuery(Cemetery.FIND_ALL, Cemetery.class);}
+     * <blockquote><pre>{@code TypedQuery<Cemetery> query = em.createNamedQuery(Cemetery.FIND_ALL, Cemetery.class);}</pre></blockquote>
      */
     public static final String FIND_ALL = "Cemetery.findAll";
 
@@ -47,6 +49,17 @@ public class Cemetery extends Place
      * query.setParameter("name", name);}</pre></blockquote>
      */
     public static final String FIND_BY_NAME = "Cemetery.findByName";
+    
+    /**
+     * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all 
+     * cemeteries by name and region.
+     * <p>
+     * For example:
+     * <blockquote><pre>{@code TypedQuery<Cemetery> query = em.createNamedQuery(Cemetery.FIND_BY_NAME_AND_REGION, Cemetery.class);
+     * query.setParameter("name", name);
+     * query.setParameter("region", region);}</pre></blockquote>
+     */
+    public static final String FIND_BY_NAME_AND_REGION = "Cemetery.findByNameAndRegion";
 
     /**
      * No-argument constructor for JPA.
