@@ -153,6 +153,11 @@ public abstract class Axis
     {
         return (Label) map.get("label:");
     }
+    
+    /**
+     * @param label
+     */
+    public abstract void setLabel(String label);
 
     /**
      * @param label
