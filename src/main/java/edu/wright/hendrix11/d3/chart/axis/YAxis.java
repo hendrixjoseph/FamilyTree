@@ -67,4 +67,21 @@ public class YAxis extends Axis
             super.setLabel(new YLabel(label));
         }
     }
+    
+    /**
+     * @return
+     */
+    @Override
+    public YPadding getPadding()
+    {
+        return (YPadding) super.getPadding();
+    }
+
+    /**
+     * @param padding
+     */
+    public void setPadding(YPadding padding)
+    {
+        super.setPadding(padding);
+    }
 }
