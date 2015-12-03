@@ -25,7 +25,7 @@ import javax.inject.Named;
 import java.io.Serializable;
 
 /**
- * @author Joe
+ * @author Joe Hendrix
  */
 @Named
 @ViewScoped
