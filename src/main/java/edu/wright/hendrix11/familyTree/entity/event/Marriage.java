@@ -35,8 +35,7 @@ public class Marriage extends Event
     /**
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * marriage records. For example:
-     * <blockquote><pre>{@code TypedQuery<Marriage> query = em.createNamedQuery(Marriage.FIND_ALL,
-     * Marriage.class);}</pre></blockquote>
+     * <blockquote><pre>{@code TypedQuery<Marriage> query = em.createNamedQuery(Marriage.FIND_ALL, Marriage.class);}</pre></blockquote>
      */
     public static final String FIND_ALL = "Marriage.findAll";
 
