@@ -26,18 +26,18 @@ Finally, it contains [`.gitignore`](https://github.com/hendrixjoseph/FamilyTree/
 
 The following types of files can be found in this project:
 
-* `*.java`
-* `*.xhtml`
-* `*.sql`
-* `*.css`
+* [`*.java`](https://github.com/hendrixjoseph/FamilyTree/blob/master/src/main/java)
+* [`*.xhtml`](https://github.com/hendrixjoseph/FamilyTree/blob/master/src/main/webapp)
+* [`*.sql`](https://github.com/hendrixjoseph/FamilyTree/blob/master/sql/)
+* [`*.css`](https://github.com/hendrixjoseph/FamilyTree/blob/master/src/main/webapp/WEB-INF/resource/css)
 
-The following types of files are not currently found in this project, but some may be added in the future:
+The following file type currently exists in the project, however, the files themselves are not written by me:
 
-* `*.js`
+* [`*.js`](https://github.com/hendrixjoseph/FamilyTree/blob/master/src/main/webapp/WEB-INF/resource/js)
 
 ### SQL
 
-All the necessary SQL statements to create the database (should be) is in [sql/master.sql](https://github.com/hendrixjoseph/FamilyTree/blob/master/sql/master.sql). All the subdirectories in [sql/](https://github.com/hendrixjoseph/FamilyTree/blob/master/sql/) contain pretty much the same material as master.sql, they are only in different directories for easier human viewing.
+All the necessary SQL statements to create the database (should be) is in [`sql/export.sql`](https://github.com/hendrixjoseph/FamilyTree/blob/master/sql/export.sql). All the subdirectories in [`sql/`](https://github.com/hendrixjoseph/FamilyTree/blob/master/sql/) contain pretty much the same material as `export.sql`, they are only in different directories for easier human viewing.
 
 ### Directory structure
 
@@ -53,23 +53,33 @@ Once this project is downloaded, there is one step required before it can be bui
 
    Install the jar file with one of the following ways:
 
-   a. `mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=12.1.0.1 -Dpackaging=jar -Dfile=ojdbc7.jar -DgeneratePom=true`<br />
-   b. `mvn install:install-file -Dfile=ojdbc7.jar -DpomFile=ojdbc7.pom`<br />
-   c. I've included the equivalent of option b as a Maven action in NetBeans. In NetBeans, under the Projects view, right-click your project, go to "Custom", and select "install ojdbc7".
+   **a.** `mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=12.1.0.1 -Dpackaging=jar -Dfile=ojdbc7.jar -DgeneratePom=true`<br />
+   **b.** `mvn install:install-file -Dfile=ojdbc7.jar -DpomFile=ojdbc7.pom`
+   
+  Option b can also be easily done through either NetBeans or IntelliJ. I've set it up so there should be minimal clicks:
+  
+  **NetBeans:** Under the Projects view, right-click your project, go to "Custom", and select "install ojdbc7".<br />
+  **IntelliJ:** In the run configuration drop down in the top right, select "install ojdbc7.jar".
    
 In order to run this project, a Java EE server and a SQL database need to be installed beforehand. I use [GlassFish 4.1](https://glassfish.java.net/) and [Oracle Database 11g Express Edition](http://www.oracle.com/technetwork/database/database-technologies/express-edition/overview/index.html). You will also need to setup a JDBC connection pool in your Java EE server. [I found this website helpful for setting it up in GlassFish.](https://computingat40s.wordpress.com/how-to-setup-a-jdbc-connection-in-glassfish/) The settings I used (other than username and password) are:
 
- | |
---- | --- 
-Pool name:  | FamilyTreePool
-Resource type: | java.sql.Driver
-Database Driver Vendor:  | Oracle
-Initial and Minimum Pool Size: | Zero
-URL: | jdbc:oracle:thin:@localhost:1521:XE
+<table>
+<tr><td>Pool name: </td><td>FamilyTreePool</td></tr>
+<tr><td>Resource type:</td><td><code>java.sql.Driver</code></td></tr>
+<tr><td>Database Driver Vendor: </td><td>Oracle</td></tr>
+<tr><td>Initial and Minimum Pool Size:</td><td>Zero</td></tr>
+<tr><td>URL:</td><td><code>jdbc:oracle:thin:@localhost:1521:XE</code></td></tr>
+</table>
 
 ## Tools
 
 In addition to the [dependencies](http://hendrixjoseph.github.io/FamilyTree/dependencies.html) listed in the [pom.xml](pom.xml), I am using the following:
+
+### JavaScript Libraries
+
+ * [Data-Driven Documents (D3)](http://d3js.org)
+ * [C3.js | D3-based reusable chart library](http://c3js.org)
+ * [Word Cloud Generator](https://www.jasondavies.com/wordcloud)
 
 ### Server and Database
 
@@ -83,7 +93,7 @@ In addition to the [dependencies](http://hendrixjoseph.github.io/FamilyTree/depe
 * [IntelliJ IDEA 14.1.5](https://www.jetbrains.com/idea) Ultimate Edition [Student License](https://www.jetbrains.com/student)
 * [NetBeans IDE 8.0.2](https://netbeans.org)
 * [Oracle SQL Developer 4.1.0.19](http://www.oracle.com/technetwork/developer-tools/sql-developer/overview/index-097090.html)
-* [Notepad++ v6.7.8.2](https://notepad-plus-plus.org)
+* [Notepad++ v6.8.6](https://notepad-plus-plus.org)
 * [TortoiseGit 1.8.15.0](https://tortoisegit.org)
 * [Maven 3.3.3](https://maven.apache.org)
 
