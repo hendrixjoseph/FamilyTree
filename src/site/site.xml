@@ -10,7 +10,6 @@
   ~  Hosted on GitHub at https://github.com/hendrixjoseph/FamilyTree
   ~
   -->
-
 <project xmlns="http://maven.apache.org/DECORATION/1.6.0">
     <body>
         <head>
@@ -20,6 +19,9 @@
         <links>
             <item name="GitHub" href="https://github.com/hendrixjoseph/FamilyTree" />
         </links>
+        <bannerRight>
+          <src>images/Family-Tree-icon-128.png</src>
+        </bannerRight>
         <menu ref="modules" />
         <!-- menu ref="reports" / -->
         <menu name="CS7720 Documents">
