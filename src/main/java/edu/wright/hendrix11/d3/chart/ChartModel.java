@@ -82,7 +82,9 @@ public class ChartModel
     }
 
     /**
-     * @return
+     * Returns the x-axis.
+     * 
+     * @return the x-axis
      */
     public XAxis getxAxis()
     {
@@ -91,7 +93,9 @@ public class ChartModel
     }
 
     /**
-     * @param xAxis
+     * Sets the x-axis.
+     * 
+     * @param xAxis the x-axis
      */
     public void setxAxis(XAxis xAxis)
     {
@@ -109,7 +113,9 @@ public class ChartModel
     }
 
     /**
-     * @return
+     * Returns the y-axis.
+     * 
+     * @return the y-axis
      */
     public YAxis getyAxis()
     {
@@ -117,7 +123,9 @@ public class ChartModel
     }
 
     /**
-     * @param yAxis
+     * Sets the y-axis.
+     * 
+     * @param yAxis the y-axis
      */
     public void setyAxis(YAxis yAxis)
     {
