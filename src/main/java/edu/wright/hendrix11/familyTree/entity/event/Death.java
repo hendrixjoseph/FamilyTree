@@ -30,8 +30,7 @@ public class Death extends SinglePersonEvent
      * death records.
      * <p>
      * For example:
-     * <blockquote><pre>{@code TypedQuery<Death> query = em.createNamedQuery(Death.FIND_ALL,
-     * Death.class);}</pre></blockquote>
+     * <blockquote><pre>{@code TypedQuery<Death> query = em.createNamedQuery(Death.FIND_ALL, Death.class);}</pre></blockquote>
      */
     public static final String FIND_ALL = "Death.findAll";
 }
