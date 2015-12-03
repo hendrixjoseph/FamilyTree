@@ -16,7 +16,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,9 +34,9 @@ public class NamesDataBean
     /**
      * Returns a map of first names to the number of occurrences of that first name.
      * <p>
-     * Internally this is a {@link HashMap}. It only returns at most the top 20 names. Since the entire name is stored
-     * in the database as a single field, a regular expression is used in a view inside the database itself to count the
-     * first names.
+     * Internally this is a {@link LinkedHashMap}. It only returns at most the top 20 names. Since the entire name is
+     * stored in the database as a single field, a regular expression is used in a view inside the database itself to
+     * count the first names.
      * <p>
      * The select statement defining the view appears as follows:
      * <blockquote><pre>{@code
@@ -56,9 +56,9 @@ public class NamesDataBean
     /**
      * Returns a map of last names to the number of occurrences of that last name.
      * <p>
-     * Internally this is a {@link HashMap}. It only returns at most the top 20 names. Since the entire name is stored
-     * in the database as a single field, a regular expression is used in a view inside the database itself to count the
-     * last names.
+     * Internally this is a {@link LinkedHashMap}. It only returns at most the top 20 names. Since the entire name is
+     * stored in the database as a single field, a regular expression is used in a view inside the database itself to
+     * count the last names.
      * <p>
      * The select statement defining the view appears as follows:
      * <blockquote><pre>{@code
@@ -77,7 +77,7 @@ public class NamesDataBean
 
     private Map<String, Integer> nameFrequency(String lastOrFirst)
     {
-        Map<String, Integer> map = new HashMap<>();
+        Map<String, Integer> map = new LinkedHashMap<>();
 
         String query = "SELECT * FROM " + lastOrFirst + "_NAME_COUNT_VIEW";
 

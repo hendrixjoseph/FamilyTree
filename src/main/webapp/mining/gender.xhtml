@@ -14,7 +14,8 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:d3="http://hendrix11.wright.edu/d3">
+                xmlns:d3="http://hendrix11.wright.edu/d3" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
 
     <ui:define name="title">
         Gender analysis
@@ -23,15 +24,29 @@
     <ui:define name="content">
         <p:layoutUnit position="center">
             <d3:chart chartModel="#{genderStatsBean.genderModel}" id="genderPie" type="pie"
-                      style="width: 200px; height: 200px;" />
+                    />
 
             <p:dataTable var="people" value="#{genderStatsBean.genderAges}">
                 <p:column headerText="Gender">
-                    <p:outputLabel value="#{people.gender}" />
+                    <h:outputText value="#{people.gender}" />
                 </p:column>
 
                 <p:column headerText="Average age">
-                    <p:outputLabel value="#{people.age} years" />
+                    <h:outputText value="#{people.age}">
+                        <f:convertNumber pattern="#0.0# years" />
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="Difference">
+                    <h:outputText value="#{people.difference}">
+                        <f:convertNumber pattern="#0.0# years" />
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="Percent difference">
+                    <h:outputText value="#{people.percentDifference}">
+                        <f:convertNumber pattern="#0.0#%" />
+                    </h:outputText>
                 </p:column>
             </p:dataTable>
         </p:layoutUnit>

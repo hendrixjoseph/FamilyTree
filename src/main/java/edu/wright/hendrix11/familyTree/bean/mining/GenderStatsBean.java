@@ -28,7 +28,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -45,6 +44,7 @@ public class GenderStatsBean implements Serializable
     @EJB
     private GenderDataBean dataBean;
     private ChartModel genderModel = new ChartModel();
+    private double overallAge;
 
     @PostConstruct
     private void initialize()
@@ -57,9 +57,11 @@ public class GenderStatsBean implements Serializable
         genderModel.addColor(Color.lightblue);
         genderModel.addColor(Color.lightpink);
 
-        genderAges.add(new GenderAges("Total", agesDataBean.averageAge()));
+        overallAge = agesDataBean.averageAge();
+
         genderAges.add(new GenderAges(Gender.MALE, dataBean.averageAge(Gender.MALE)));
         genderAges.add(new GenderAges(Gender.FEMALE, dataBean.averageAge(Gender.FEMALE)));
+        genderAges.add(new GenderAges("overall", overallAge));
     }
 
     public ChartModel getGenderModel()
@@ -96,8 +98,17 @@ public class GenderStatsBean implements Serializable
 
         public double getAge()
         {
-            LOG.log(Level.INFO, gender + " " + age);
             return age;
+        }
+
+        public double getDifference()
+        {
+            return Math.abs(age - overallAge);
+        }
+
+        public double getPercentDifference()
+        {
+            return getDifference() / overallAge;
         }
     }
 }

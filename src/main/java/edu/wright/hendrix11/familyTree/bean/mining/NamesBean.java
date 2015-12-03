@@ -21,6 +21,7 @@ import javax.inject.Named;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -44,6 +45,16 @@ public class NamesBean implements Serializable
     {
         firstNameFrequency = dataBean.firstNameFrequency();
         lastNameFrequency = dataBean.lastNameFrequency();
+    }
+
+    public Map<String, Integer> getFirstNameFrequency()
+    {
+        return firstNameFrequency;
+    }
+
+    public Map<String, Integer> getLastNameFrequency()
+    {
+        return lastNameFrequency;
     }
 
     /**

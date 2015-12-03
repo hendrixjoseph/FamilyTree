@@ -13,9 +13,10 @@
 
 <project xmlns="http://maven.apache.org/DECORATION/1.6.0">
     <body>
-		<head>
-			<link href="/image/Family-Tree.ico?" rel="shortcut icon" type="image/x-icon" />
-		</head>
+        <head>
+            <link href="http://hendrixjoseph.github.io/FamilyTree/images/Family-Tree.ico?" rel="shortcut icon"
+                  type="image/x-icon" />
+        </head>
         <menu ref="modules" />
         <menu ref="reports" />
         <menu name="CS7720 Documents">

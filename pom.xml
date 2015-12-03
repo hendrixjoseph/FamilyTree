@@ -262,6 +262,7 @@
                 <configuration>
                     <failOnError>false</failOnError>
                     <show>public</show>
+                    <!-- top><![CDATA[]]></top -->
                     <bottom>
                         <![CDATA[Copyright &copy; 2015 <a href="http://hendrixjoseph.github.io" target="_blank">Joseph Hendrix</a>]]></bottom>
                     <detectLinks>false</detectLinks>
