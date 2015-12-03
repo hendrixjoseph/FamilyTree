@@ -61,8 +61,7 @@ public class Person
      * number of people of a specific gender.
      * <p>
      * For example:
-     * <blockquote><pre>{@code TypedQuery<Person> query = em.createNamedQuery(Person.COUNT_GENDERS,
-     * Person.class);}</pre></blockquote>
+     * <blockquote><pre>{@code TypedQuery<Person> query = em.createNamedQuery(Person.COUNT_GENDERS, Person.class);}</pre></blockquote>
      */
     public static final String COUNT_GENDERS = "Person.countGenders";
     /**
