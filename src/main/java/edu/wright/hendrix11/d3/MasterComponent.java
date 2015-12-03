@@ -20,9 +20,9 @@ import javax.faces.component.UIComponentBase;
 public abstract class MasterComponent extends UIComponentBase
 {
     /**
-     * Returns the value of the class attribute of the div element that contains the component.
+     * Returns the value of the {@code class} attribute of the {@code div} element that contains the component.
      *
-     * @return String the value of the class attribute of the div element that contains the component
+     * @return the value of the class attribute of the div element that contains the component
      */
     public String getStyleClass()
     {
@@ -30,7 +30,7 @@ public abstract class MasterComponent extends UIComponentBase
     }
 
     /**
-     * Sets the value of the class attribute of the div element that contains the component.
+     * Sets the value of the {@code class} attribute of the {@code div} element that contains the component.
      *
      * @param styleClass the value of the class attribute of the div element that contains the component
      */
@@ -40,9 +40,9 @@ public abstract class MasterComponent extends UIComponentBase
     }
 
     /**
-     * Returns the value of the style attribute of the div element that contains the component.
+     * Returns the value of the {@code style} attribute of the {@code div} element that contains the component.
      *
-     * @return String the value of the style attribute of the div element that contains the component
+     * @return the value of the style attribute of the div element that contains the component
      */
     public String getStyle()
     {
@@ -50,7 +50,7 @@ public abstract class MasterComponent extends UIComponentBase
     }
 
     /**
-     * Sets the value of the style attribute of the div element that contains the component.
+     * Sets the value of the {@code style} attribute of the {@code div} element that contains the component.
      *
      * @param style the value of the style attribute of the div element that contains the component
      */
