@@ -35,6 +35,9 @@ public class ChartRenderer extends MasterRenderer
 {
     private static final Logger LOG = Logger.getLogger(ChartRenderer.class.getName());
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void encodeBegin(FacesContext context, UIComponent component) throws IOException
     {
