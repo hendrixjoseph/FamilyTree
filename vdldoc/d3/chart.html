@@ -64,9 +64,7 @@
 <dl>
 <dt>Description:</dt>
 <dd>
-<div class="block">
-<i>No Description</i>
-</div>
+<div class="block">JSF implementation of <a href="https://github.com/masayuki0812">Masayuki Tanaka</a>'s <a href="http://c3js.org">C3 Javascript library</a>, which is a D3-based reusable chart library.</div>
 </dd>
 </dl>
 </li>
@@ -112,37 +110,37 @@
 <tr id="chartModel" class="rowColor">
 <td class="colFirst"><a href="#chartModel"><code>chartModel</code></a></td><td class="colOne"><code>true</code></td><td class="colOne"><code>javax.el.ValueExpression</code>
 <br>(<i>must evaluate to </i><code>edu.wright.hendrix11.d3.chart.ChartModel</code>)
-					</td><td class="colLast"><i>No Description</i></td>
+					</td><td class="colLast">The Java object holding the chart data and data configuration.</td>
 </tr>
 <tr id="id" class="altColor">
 <td class="colFirst"><a href="#id"><code>id</code></a></td><td class="colOne"><code>true</code></td><td class="colOne"><code>javax.el.ValueExpression</code>
 <br>(<i>must evaluate to </i><code>java.lang.String</code>)
-					</td><td class="colLast"><i>No Description</i></td>
+					</td><td class="colLast">The value of the id attribute of the div element that contains the chart. This is necessary because it defines what the chart is bound to.</td>
 </tr>
 <tr id="type" class="rowColor">
 <td class="colFirst"><a href="#type"><code>type</code></a></td><td class="colOne"><code>false</code></td><td class="colOne"><code>javax.el.ValueExpression</code>
 <br>(<i>must evaluate to </i><code>java.lang.String</code>)
-					</td><td class="colLast">The type of chart to render. Available values are line, spline, step, area, area-spline, area-step, bar, scatter, pie, donut, and gauge. Defaults to line.</td>
+					</td><td class="colLast">The type of chart to render. Available values are:<ul><li>line</li><li>spline</li><li>step</li><li>area</li><li>area-spline</li><li>area-step</li><li>bar</li><li>scatter</li><li>pie</li><li>donut</li><li>gauge</li></ul>Defaults to line.</td>
 </tr>
 <tr id="gridX" class="altColor">
 <td class="colFirst"><a href="#gridX"><code>gridX</code></a></td><td class="colOne"><code>false</code></td><td class="colOne"><code>javax.el.ValueExpression</code>
 <br>(<i>must evaluate to </i><code>java.lang.Boolean</code>)
-					</td><td class="colLast"><i>No Description</i></td>
+					</td><td class="colLast">Whether to show the grid along the x axis. Defaults to false.</td>
 </tr>
 <tr id="gridY" class="rowColor">
 <td class="colFirst"><a href="#gridY"><code>gridY</code></a></td><td class="colOne"><code>false</code></td><td class="colOne"><code>javax.el.ValueExpression</code>
 <br>(<i>must evaluate to </i><code>java.lang.Boolean</code>)
-					</td><td class="colLast"><i>No Description</i></td>
+					</td><td class="colLast">Whether to show the grid along the y axis. Defaults to false.</td>
 </tr>
 <tr id="showLegend" class="altColor">
 <td class="colFirst"><a href="#showLegend"><code>showLegend</code></a></td><td class="colOne"><code>false</code></td><td class="colOne"><code>javax.el.ValueExpression</code>
 <br>(<i>must evaluate to </i><code>java.lang.Boolean</code>)
-					</td><td class="colLast"><i>No Description</i></td>
+					</td><td class="colLast">Whether to show the legend. Defaults to true.</td>
 </tr>
 <tr id="legendPosition" class="rowColor">
 <td class="colFirst"><a href="#legendPosition"><code>legendPosition</code></a></td><td class="colOne"><code>false</code></td><td class="colOne"><code>javax.el.ValueExpression</code>
 <br>(<i>must evaluate to </i><code>java.lang.String</code>)
-					</td><td class="colLast"><i>No Description</i></td>
+					</td><td class="colLast">Where to show the legend. Possible values include:<ul><li>bottom</li><li>right</li><li>inset</li></ul>Defaults to bottom.</td>
 </tr>
 <tr id="title" class="altColor">
 <td class="colFirst"><a href="#title"><code>title</code></a></td><td class="colOne"><code>false</code></td><td class="colOne"><code>javax.el.ValueExpression</code>

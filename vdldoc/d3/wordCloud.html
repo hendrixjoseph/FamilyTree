@@ -64,9 +64,7 @@
 <dl>
 <dt>Description:</dt>
 <dd>
-<div class="block">
-<i>No Description</i>
-</div>
+<div class="block">Implementation of a <a href="https://www.jasondavies.com/wordcloud">D3 word cloud generator</a> by <a href="https://www.jasondavies.com">Jason Davies</a>.</div>
 </dd>
 </dl>
 </li>
@@ -112,42 +110,42 @@
 <tr id="id" class="rowColor">
 <td class="colFirst"><a href="#id"><code>id</code></a></td><td class="colOne"><code>true</code></td><td class="colOne"><code>javax.el.ValueExpression</code>
 <br>(<i>must evaluate to </i><code>java.lang.String</code>)
-					</td><td class="colLast"><i>No Description</i></td>
+					</td><td class="colLast">The value of the id attribute of the div element that contains the cloud. This is necessary because it defines what the cloud is bound to.</td>
 </tr>
 <tr id="words" class="altColor">
 <td class="colFirst"><a href="#words"><code>words</code></a></td><td class="colOne"><code>true</code></td><td class="colOne"><code>javax.el.ValueExpression</code>
 <br>(<i>must evaluate to </i><code>java.util.Map&lt;java.lang.String,java.lang.Integer&gt;</code>)
-					</td><td class="colLast"><i>No Description</i></td>
+					</td><td class="colLast">Map of the words (or rather, Strings, as they can have spaces) to the font size of that word. Typcially the size will be the number of occurences, but that is not a requirement.</td>
 </tr>
 <tr id="width" class="rowColor">
 <td class="colFirst"><a href="#width"><code>width</code></a></td><td class="colOne"><code>true</code></td><td class="colOne"><code>javax.el.ValueExpression</code>
 <br>(<i>must evaluate to </i><code>java.lang.Integer</code>)
-					</td><td class="colLast"><i>No Description</i></td>
+					</td><td class="colLast">Width of the entire cloud.</td>
 </tr>
 <tr id="height" class="altColor">
 <td class="colFirst"><a href="#height"><code>height</code></a></td><td class="colOne"><code>true</code></td><td class="colOne"><code>javax.el.ValueExpression</code>
 <br>(<i>must evaluate to </i><code>java.lang.Integer</code>)
-					</td><td class="colLast"><i>No Description</i></td>
+					</td><td class="colLast">Height of the entire cloud.</td>
 </tr>
 <tr id="padding" class="rowColor">
 <td class="colFirst"><a href="#padding"><code>padding</code></a></td><td class="colOne"><code>false</code></td><td class="colOne"><code>javax.el.ValueExpression</code>
 <br>(<i>must evaluate to </i><code>java.lang.Integer</code>)
-					</td><td class="colLast"><i>No Description</i></td>
+					</td><td class="colLast">The numerical padding for each word / String.</td>
 </tr>
 <tr id="font" class="altColor">
 <td class="colFirst"><a href="#font"><code>font</code></a></td><td class="colOne"><code>false</code></td><td class="colOne"><code>javax.el.ValueExpression</code>
 <br>(<i>must evaluate to </i><code>java.lang.String</code>)
-					</td><td class="colLast"><i>No Description</i></td>
+					</td><td class="colLast">The font face for each word.</td>
 </tr>
 <tr id="styleClass" class="rowColor">
 <td class="colFirst"><a href="#styleClass"><code>styleClass</code></a></td><td class="colOne"><code>false</code></td><td class="colOne"><code>javax.el.ValueExpression</code>
 <br>(<i>must evaluate to </i><code>java.lang.String</code>)
-					</td><td class="colLast"><i>No Description</i></td>
+					</td><td class="colLast">The value of the class attribute of the div element that contains the cloud.</td>
 </tr>
 <tr id="style" class="altColor">
 <td class="colFirst"><a href="#style"><code>style</code></a></td><td class="colOne"><code>false</code></td><td class="colOne"><code>javax.el.ValueExpression</code>
 <br>(<i>must evaluate to </i><code>java.lang.String</code>)
-					</td><td class="colLast"><i>No Description</i></td>
+					</td><td class="colLast">The value of the style attribute of the div element that contains the cloud.</td>
 </tr>
 </tbody>
 </table>
