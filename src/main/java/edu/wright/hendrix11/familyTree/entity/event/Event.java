@@ -102,9 +102,9 @@ public abstract class Event
     }
 
     /**
-     * Returns the day of the month. If the day is not known, it will return {@code null}.
+     * Returns the day of the month this event happened. If the day is not known, it will return {@code null}.
      *
-     * @return the day of the month
+     * @return the day of the month this event happened
      */
     public Integer getDay()
     {
@@ -112,9 +112,9 @@ public abstract class Event
     }
 
     /**
-     * Sets the day of the month.
+     * Sets the day of the month this event happened.
      *
-     * @param day the day of the month
+     * @param day the day of the month this event happened
      */
     public void setDay(Integer day)
     {
@@ -122,9 +122,9 @@ public abstract class Event
     }
 
     /**
-     * Returns the month of the year. If the month is not known, it will return {@code null}.
+     * Returns the month of the year this event happened. If the month is not known, it will return {@code null}.
      *
-     * @return the month of the year
+     * @return the month of the year this event happened
      */
     public Month getMonth()
     {
@@ -132,9 +132,9 @@ public abstract class Event
     }
 
     /**
-     * Sets the month of the year.
+     * Sets the month of the year this event happened.
      *
-     * @param month the month of the year
+     * @param month the month of the year this event happened
      */
     public void setMonth(Month month)
     {
@@ -142,9 +142,9 @@ public abstract class Event
     }
 
     /**
-     * Returns the year. If the year is not known, it will return {@code null}.
+     * Returns the year this event happened. If the year is not known, it will return {@code null}.
      *
-     * @return the year
+     * @return the year this event happened
      */
     public Integer getYear()
     {
@@ -152,7 +152,7 @@ public abstract class Event
     }
 
     /**
-     * Sets the year.
+     * Sets the year this event happened.
      *
      * @param year the year
      */
