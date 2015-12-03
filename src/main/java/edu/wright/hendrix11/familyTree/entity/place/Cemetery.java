@@ -33,7 +33,7 @@ public class Cemetery extends Place
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * cemeteries.
      * <p>
-     * For example: 
+     * For example:
      * <blockquote><pre>{@code TypedQuery<Cemetery> query = em.createNamedQuery(Cemetery.FIND_ALL, Cemetery.class);}
      */
     public static final String FIND_ALL = "Cemetery.findAll";
@@ -42,7 +42,7 @@ public class Cemetery extends Place
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * cemeteries by name.
      * <p>
-     * For example: 
+     * For example:
      * <blockquote><pre>{@code TypedQuery<Cemetery> query = em.createNamedQuery(Cemetery.FIND_BY_NAME, Cemetery.class);
      * query.setParameter("name", name);}</pre></blockquote>
      */
@@ -57,7 +57,7 @@ public class Cemetery extends Place
 
     /**
      * Creates a new cemetery with the specified name.
-     * 
+     *
      * @param name the name of the cemetery
      */
     public Cemetery(String name)

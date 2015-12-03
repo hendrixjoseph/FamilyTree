@@ -46,12 +46,12 @@ public class GenderDataBean
         countQuery.setParameter("gender", gender);
         return countQuery.getSingleResult().intValue();
     }
-    
+
     /**
      * Returns the average age of people of the specified gender.
      * <p>
      * This is calculated using the database's {@code AVG()} function.
-     * 
+     *
      * @param gender the gender to be calculated
      *
      * @return the average age of people of the specified gender

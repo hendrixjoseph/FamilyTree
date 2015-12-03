@@ -23,9 +23,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * This class performs queries to three different views in the database: the {@code AGE_VIEW}, 
- * {@code AGE_TO_BIRTH_YEAR_VIEW}, and {@code AGE_TO_DEATH_YEAR_VIEW}. The latter two views actually
- * reference the first view.
+ * This class performs queries to three different views in the database: the {@code AGE_VIEW}, {@code
+ * AGE_TO_BIRTH_YEAR_VIEW}, and {@code AGE_TO_DEATH_YEAR_VIEW}. The latter two views actually reference the first view.
  * <p>
  * The select statement for these views are defined as follows:
  * <p>
@@ -59,7 +58,7 @@ import java.util.Map;
  * ORDER BY DEATH_YEAR;
  * }</pre></blockquote>
  * <p>
- * 
+ *
  * @author Joe Hendrix
  */
 @Stateless
@@ -70,9 +69,9 @@ public class AgesDataBean
 
     /**
      * Returns the average age in the database. This average is calculated using the database's {@code AVG()} function,
-     * and only accounts for those ages that can be calculated, i.e. ages of persons that have both a known birth and death
-     * date.
-     * 
+     * and only accounts for those ages that can be calculated, i.e. ages of persons that have both a known birth and
+     * death date.
+     *
      * @return the average age in the database
      */
     public double averageAge()
@@ -84,9 +83,9 @@ public class AgesDataBean
 
     /**
      * Returns the median age in the database. This median is calculated using the database's {@code MEDIAN()} function,
-     * and only accounts for those ages that can be calculated, i.e. ages of persons that have both a known birth and death
-     * date.
-     * 
+     * and only accounts for those ages that can be calculated, i.e. ages of persons that have both a known birth and
+     * death date.
+     *
      * @return the median age in the database
      */
     public double medianAge()
@@ -98,9 +97,9 @@ public class AgesDataBean
 
     /**
      * Returns the minimum age in the database. This minimum is calculated using the database's {@code MIN()} function,
-     * and only accounts for those ages that can be calculated, i.e. ages of persons that have both a known birth and death
-     * date.
-     * 
+     * and only accounts for those ages that can be calculated, i.e. ages of persons that have both a known birth and
+     * death date.
+     *
      * @return the minimum age in the database
      */
     public int minAge()
@@ -112,9 +111,9 @@ public class AgesDataBean
 
     /**
      * Returns the maximum age in the database. This maximum is calculated using the database's {@code MAX()} function,
-     * and only accounts for those ages that can be calculated, i.e. ages of persons that have both a known birth and death
-     * date.
-     * 
+     * and only accounts for those ages that can be calculated, i.e. ages of persons that have both a known birth and
+     * death date.
+     *
      * @return the maximum age in the database
      */
     public int maxAge()
@@ -125,26 +124,26 @@ public class AgesDataBean
     }
 
     /**
-     * Returns the specified age quartile. Being a quartile, the parameter should range from 1 to 4. This method
-     * uses a nested query ({@ code SELECT AGE, NTILE(4) OVER (ORDER BY AGE) AS QUARTILE FROM AGE_VIEW}) to assign
-     * each value to a quartile, then selects the maximum value from the specified quartile.
+     * Returns the specified age quartile. Being a quartile, the parameter should range from 1 to 4. This method uses a
+     * nested query ({@ code SELECT AGE, NTILE(4) OVER (ORDER BY AGE) AS QUARTILE FROM AGE_VIEW}) to assign each value
+     * to a quartile, then selects the maximum value from the specified quartile.
      * <p>
-     * This method only accounts for those ages that can be calculated, i.e. ages of persons that have both a known birth 
-     * and death date.
-     * 
+     * This method only accounts for those ages that can be calculated, i.e. ages of persons that have both a known
+     * birth and death date.
+     *
      * @param quartile an integer, which should range from 1 to 4.
      *
      * @return the specified age quartile
-     * 
+     *
      * @throws IllegalArgumentException if the quartile is less than 1 or greater than 4
      */
     public int ageQuartile(int quartile)
     {
-        if(quartile < 1 || quartile > 4)
+        if ( quartile < 1 || quartile > 4 )
         {
             throw new IllegalArgumentException("Quartile should range from 1 to 4!");
         }
-        
+
         StringBuilder quartileQuery = new StringBuilder("SELECT MAX(AGE) FROM");
         quartileQuery.append(" (SELECT AGE,");
         quartileQuery.append(" NTILE(4) OVER (ORDER BY AGE) AS QUARTILE");
@@ -158,9 +157,9 @@ public class AgesDataBean
      * Returns a map of ages to number of people who lived to be that age. Internally this is a {@link LinkedHashMap}.
      * The ages are recorded as a {@link String} while the count of people is recorded as a {@link Integer}.
      * <p>
-     * This method only accounts for those ages that can be calculated, i.e. ages of persons that have both a known birth 
-     * and death date.
-     * 
+     * This method only accounts for those ages that can be calculated, i.e. ages of persons that have both a known
+     * birth and death date.
+     *
      * @return a map of ages to number of people who lived to be that age
      */
     public Map<String, Integer> ages()
@@ -183,14 +182,14 @@ public class AgesDataBean
     }
 
     /**
-     * Returns a map of years to the mean and median ages of people who where born that year.
-     * Internally this is a {@link LinkedHashMap}. The year is represented by a {@String} while
-     * the mean and median is represented by an {@link Integer} array of length 2. The zeroth value
-     * of the array is the mean, while the last value is the median.
+     * Returns a map of years to the mean and median ages of people who where born that year. Internally this is a
+     * {@link LinkedHashMap}. The year is represented by a {@String} while the mean and median is represented by an
+     * {@link Integer} array of length 2. The zeroth value of the array is the mean, while the last value is the
+     * median.
      * <p>
-     * This method only accounts for those ages that can be calculated, i.e. ages of persons that have both a known birth 
-     * and death date.
-     * 
+     * This method only accounts for those ages that can be calculated, i.e. ages of persons that have both a known
+     * birth and death date.
+     *
      * @return a map of years to the mean and median ages of people who where born that year
      */
     public Map<String, Integer[]> meanMeadianAgesPerBirthYear()
@@ -199,14 +198,13 @@ public class AgesDataBean
     }
 
     /**
-     * Returns a map of years to the mean and median ages of people who died that year.
-     * Internally this is a {@link LinkedHashMap}. The year is represented by a {@String} while
-     * the mean and median is represented by an {@link Integer} array of length 2. The zeroth value
-     * of the array is the mean, while the last value is the median.
+     * Returns a map of years to the mean and median ages of people who died that year. Internally this is a {@link
+     * LinkedHashMap}. The year is represented by a {@String} while the mean and median is represented by an {@link
+     * Integer} array of length 2. The zeroth value of the array is the mean, while the last value is the median.
      * <p>
-     * This method only accounts for those ages that can be calculated, i.e. ages of persons that have both a known birth 
-     * and death date.
-     * 
+     * This method only accounts for those ages that can be calculated, i.e. ages of persons that have both a known
+     * birth and death date.
+     *
      * @return a map of years to the mean and median ages of people who died that year
      */
     public Map<String, Integer[]> meanMeadianAgesPerDeathYear()

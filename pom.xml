@@ -12,17 +12,17 @@
     <description>FamilyTree is a simple web application using JavaServerFaces, Java EE, and a SQL database to load, display, edit, and examine a family tree. It was initially created as a project for CS7700 Advanced Database Systems at Wright State, and is currently being used for CS7720 Data Mining at the same school.</description>
     <inceptionYear>2015</inceptionYear>
     <url>http://hendrixjoseph.github.io/FamilyTree</url>
-    
+
     <scm>
-         <url>https://github.com/hendrixjoseph/FamilyTree</url>
-	<connection>https://github.com/hendrixjoseph/FamilyTree.git</connection>
-         <developerConnection>https://github.com/hendrixjoseph/FamilyTree.git</developerConnection>
+        <url>https://github.com/hendrixjoseph/FamilyTree</url>
+        <connection>scm:git:https://github.com/hendrixjoseph/FamilyTree.git</connection>
+        <developerConnection>scm:git:https://github.com/hendrixjoseph/FamilyTree.git</developerConnection>
     </scm>
 
     <licenses>
         <license>
             <name>The MIT License (MIT)</name>
-     	    <url>https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md</url>
+            <url>https://github.com/hendrixjoseph/FamilyTree/blob/master/LICENSE.md</url>
             <distribution>repo</distribution>
         </license>
     </licenses>

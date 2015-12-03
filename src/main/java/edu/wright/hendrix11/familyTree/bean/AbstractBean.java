@@ -80,11 +80,10 @@ public abstract class AbstractBean<E>
     /**
      * Returns the current sort String.
      * <p>
-     * The sort string is actually a query of sorts (pun intended?) where, when {@link #list} 
-     * is called, is sorted in a way where the string is seperated into a string array by the period (".")
-     * character, and then the query result is sorted by the first element of the string array, then the
-     * next element, and so on.
-     * 
+     * The sort string is actually a query of sorts (pun intended?) where, when {@link #list} is called, is sorted in a
+     * way where the string is seperated into a string array by the period (".") character, and then the query result is
+     * sorted by the first element of the string array, then the next element, and so on.
+     *
      * @return the current sort String
      */
     public String getSort()
@@ -95,11 +94,10 @@ public abstract class AbstractBean<E>
     /**
      * Sets the sort String.
      * <p>
-     * The sort string is actually a query of sorts (pun intended?) where, when {@link #list} 
-     * is called, is sorted in a way where the string is seperated into a string array by the period (".")
-     * character, and then the query result is sorted by the first element of the string array, then the
-     * next element, and so on.
-     * 
+     * The sort string is actually a query of sorts (pun intended?) where, when {@link #list} is called, is sorted in a
+     * way where the string is seperated into a string array by the period (".") character, and then the query result is
+     * sorted by the first element of the string array, then the next element, and so on.
+     *
      * @param sort the sort String
      */
     public void setSort(String sort)

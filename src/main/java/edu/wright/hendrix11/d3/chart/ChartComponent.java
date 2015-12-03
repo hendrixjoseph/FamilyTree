@@ -58,7 +58,7 @@ public class ChartComponent extends MasterComponent
 
     /**
      * Returns whether to show the grid along the x axis.
-     * 
+     *
      * @return Boolean whether to show the grid along the x axis
      */
     public Boolean getGridX()
@@ -68,7 +68,7 @@ public class ChartComponent extends MasterComponent
 
     /**
      * Sets whether to show the grid along the x axis.
-     * 
+     *
      * @param gridX whether to show the grid along the x axis
      */
     public void setGridX(Boolean gridX)
@@ -78,7 +78,7 @@ public class ChartComponent extends MasterComponent
 
     /**
      * Returns whether to show the legend.
-     * 
+     *
      * @return Boolean whether to show the legend
      */
     public Boolean getShowLegend()
@@ -88,7 +88,7 @@ public class ChartComponent extends MasterComponent
 
     /**
      * Sets whether to show the legend.
-     * 
+     *
      * @param showLegend whether to show the legend
      */
     public void setShowLegend(Boolean showLegend)
@@ -98,7 +98,7 @@ public class ChartComponent extends MasterComponent
 
     /**
      * Returns whether to show the grid along the y axis.
-     * 
+     *
      * @return Boolean whether to show the grid along the y axis
      */
     public Boolean getGridY()
@@ -108,7 +108,7 @@ public class ChartComponent extends MasterComponent
 
     /**
      * Sets whether to show the grid along the y axis.
-     * 
+     *
      * @param gridY whether to show the grid along the y axis
      */
     public void setGridY(Boolean gridY)
@@ -117,21 +117,10 @@ public class ChartComponent extends MasterComponent
     }
 
     /**
-     * Returns the type of chart to render. Available values are:
-     * <ul>
-     *  <li>line</li>
-     *  <li>spline</li>
-     *  <li>step</li>
-     *  <li>area</li>
-     *  <li>area-spline</li>
-     *  <li>area-step</li>
-     *  <li>bar</li>
-     *  <li>scatter</li>
-     *  <li>pie</li>
-     *  <li>donut</li>
-     *  <li>gauge</li>
-     * </ul>
-     * 
+     * Returns the type of chart to render. Available values are: <ul> <li>line</li> <li>spline</li> <li>step</li>
+     * <li>area</li> <li>area-spline</li> <li>area-step</li> <li>bar</li> <li>scatter</li> <li>pie</li> <li>donut</li>
+     * <li>gauge</li> </ul>
+     *
      * @return String the type of chart to render
      */
     public String getType()
@@ -140,21 +129,10 @@ public class ChartComponent extends MasterComponent
     }
 
     /**
-     * Sets the type of chart to render. Available values are:
-     * <ul>
-     *  <li>line</li>
-     *  <li>spline</li>
-     *  <li>step</li>
-     *  <li>area</li>
-     *  <li>area-spline</li>
-     *  <li>area-step</li>
-     *  <li>bar</li>
-     *  <li>scatter</li>
-     *  <li>pie</li>
-     *  <li>donut</li>
-     *  <li>gauge</li>
-     * </ul>
-     * 
+     * Sets the type of chart to render. Available values are: <ul> <li>line</li> <li>spline</li> <li>step</li>
+     * <li>area</li> <li>area-spline</li> <li>area-step</li> <li>bar</li> <li>scatter</li> <li>pie</li> <li>donut</li>
+     * <li>gauge</li> </ul>
+     *
      * @param type the type of chart to render
      */
     public void setType(String type)
@@ -164,7 +142,7 @@ public class ChartComponent extends MasterComponent
 
     /**
      * Returns the title of the chart.
-     * 
+     *
      * @return String the title of the chart
      */
     public String getTitle()
@@ -174,7 +152,7 @@ public class ChartComponent extends MasterComponent
 
     /**
      * Sets the title of the chart.
-     * 
+     *
      * @param title the title of the chart
      */
     public void setTitle(String title)
@@ -183,13 +161,9 @@ public class ChartComponent extends MasterComponent
     }
 
     /**
-     * Returns where to show the legend. Possible values include:
-     * <ul>
-     *  <li>bottom</li>
-     *  <li>right</li>
-     *  <li>inset</li>
+     * Returns where to show the legend. Possible values include: <ul> <li>bottom</li> <li>right</li> <li>inset</li>
      * </ul>
-     * 
+     *
      * @return String where to show the legend
      */
     public String getLegendPosition()
@@ -198,13 +172,8 @@ public class ChartComponent extends MasterComponent
     }
 
     /**
-     * Sets where to show the legend. Possible values include:
-     * <ul>
-     *  <li>bottom</li>
-     *  <li>right</li>
-     *  <li>inset</li>
-     * </ul>
-     * 
+     * Sets where to show the legend. Possible values include: <ul> <li>bottom</li> <li>right</li> <li>inset</li> </ul>
+     *
      * @param legendPosition where to show the legend
      */
     public void setLegendPosition(String legendPosition)
@@ -214,7 +183,7 @@ public class ChartComponent extends MasterComponent
 
     /**
      * Returns the Java object holding the chart data and data configuration.
-     * 
+     *
      * @return the Java object holding the chart data and data configuration
      */
     public ChartModel getChartModel()
@@ -224,7 +193,7 @@ public class ChartComponent extends MasterComponent
 
     /**
      * Sets the Java object holding the chart data and data configuration.
-     * 
+     *
      * @param model the Java object holding the chart data and data configuration
      */
     public void setChartModel(ChartModel model)

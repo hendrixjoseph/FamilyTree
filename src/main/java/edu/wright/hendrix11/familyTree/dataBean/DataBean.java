@@ -32,7 +32,8 @@ import java.util.logging.Logger;
 
 /**
  * @param <E> a class that has an @{@link Entity} annotation
- * @param <K> the key for that class, which will have the @{@link Id} annotation in the associated @{@link Entity} class
+ * @param <K> the key for that class, which will have the @{@link Id} annotation in the associated @{@link Entity}
+ *            class
  *
  * @author Joe Hendrix <hendrix.11@wright.edu>
  */
@@ -51,17 +52,17 @@ public class DataBean<E, K>
     private String sort;
 
     /**
-     * This method should be called before any other method is called. The reason this method is provided rather than simply
-     * using a constructor is that JPA will inject it into another class via the @{@link EJB} annotation using a no-argument
-     * constructor.
+     * This method should be called before any other method is called. The reason this method is provided rather than
+     * simply using a constructor is that JPA will inject it into another class via the @{@link EJB} annotation using a
+     * no-argument constructor.
      * <p>
-     * The {@link Class} object must be the same type specified by E. This class must have both an @{@link Entity} annotation and field
-     * {@code public static final String FIND_ALL}
+     * The {@link Class} object must be the same type specified by E. This class must have both an @{@link Entity}
+     * annotation and field {@code public static final String FIND_ALL}
      *
      * @param clazz a {@link Class} object of the same type specified by E
      *
-     * @throws IllegalArgumentException if the class clazz does not have an @{@link Entity} annotation or field {@code public static
-     *                                  final String FIND_ALL}
+     * @throws IllegalArgumentException if the class clazz does not have an @{@link Entity} annotation or field {@code
+     *                                  public static final String FIND_ALL}
      */
     public void initialize(Class<E> clazz)
     {
@@ -95,11 +96,10 @@ public class DataBean<E, K>
     /**
      * Returns the current sort String.
      * <p>
-     * The sort string is actually a query of sorts (pun intended?) where, when {@link #list} 
-     * is called, is sorted in a way where the string is seperated into a string array by the period (".")
-     * character, and then the query result is sorted by the first element of the string array, then the
-     * next element, and so on.
-     * 
+     * The sort string is actually a query of sorts (pun intended?) where, when {@link #list} is called, is sorted in a
+     * way where the string is seperated into a string array by the period (".") character, and then the query result is
+     * sorted by the first element of the string array, then the next element, and so on.
+     *
      * @return the current sort String
      */
     public String getSort()
@@ -110,11 +110,10 @@ public class DataBean<E, K>
     /**
      * Sets the sort String.
      * <p>
-     * The sort string is actually a query of sorts (pun intended?) where, when {@link #list} 
-     * is called, is sorted in a way where the string is seperated into a string array by the period (".")
-     * character, and then the query result is sorted by the first element of the string array, then the
-     * next element, and so on.
-     * 
+     * The sort string is actually a query of sorts (pun intended?) where, when {@link #list} is called, is sorted in a
+     * way where the string is seperated into a string array by the period (".") character, and then the query result is
+     * sorted by the first element of the string array, then the next element, and so on.
+     *
      * @param sort the sort String
      */
     public void setSort(String sort)

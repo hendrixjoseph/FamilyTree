@@ -33,7 +33,7 @@ public class City extends Place
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * cities.
      * <p>
-     * For example: 
+     * For example:
      * <blockquote><pre>{@code TypedQuery<City> query = em.createNamedQuery(City.FIND_ALL, City.class);}
      */
     public static final String FIND_ALL = "City.findAll";
@@ -57,7 +57,7 @@ public class City extends Place
 
     /**
      * Creates a new city with the specified name.
-     * 
+     *
      * @param name the name of the city
      */
     public City(String name)

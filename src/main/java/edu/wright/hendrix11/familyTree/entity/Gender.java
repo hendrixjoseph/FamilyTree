@@ -40,11 +40,11 @@ public enum Gender
 
     /**
      * Returns the Gender that starts with the parameter.
-     * 
+     *
      * @param startsWith the String that the Gender should start with
      *
      * @return a Gender
-     * 
+     *
      * @throws IllegalArgumentException If no Gender starts with the parameter
      */
     public static Gender getEnum(String startsWith)
@@ -69,7 +69,7 @@ public enum Gender
 
     /**
      * Returns the gender name, in lower case.
-     * 
+     *
      * @return the gender name, in lower case
      */
     @Override

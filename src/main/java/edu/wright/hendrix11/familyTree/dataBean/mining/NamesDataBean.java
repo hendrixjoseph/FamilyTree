@@ -22,7 +22,7 @@ import java.util.Map;
 
 /**
  * This class queries the database to get the most common names.
- * 
+ *
  * @author Joe Hendrix
  */
 @Stateless
@@ -34,9 +34,9 @@ public class NamesDataBean
     /**
      * Returns a map of first names to the number of occurrences of that first name.
      * <p>
-     * Internally this is a {@link HashMap}. It only returns at most the top 20 names.
-     * Since the entire name is stored in the database as a single field, a regular expression
-     * is used in a view inside the database itself to count the first names.
+     * Internally this is a {@link HashMap}. It only returns at most the top 20 names. Since the entire name is stored
+     * in the database as a single field, a regular expression is used in a view inside the database itself to count the
+     * first names.
      * <p>
      * The select statement defining the view appears as follows:
      * <blockquote><pre>{@code
@@ -45,20 +45,20 @@ public class NamesDataBean
      * GROUP BY FIRST_NAME
      * ORDER BY COUNT DESC;
      * }</pre></blockquote>
-     * 
+     *
      * @return a map of first names to the number of occurrences of that first name
-     */ 
+     */
     public Map<String, Integer> firstNameFrequency()
     {
         return nameFrequency("FIRST");
     }
-    
+
     /**
      * Returns a map of last names to the number of occurrences of that last name.
      * <p>
-     * Internally this is a {@link HashMap}. It only returns at most the top 20 names.
-     * Since the entire name is stored in the database as a single field, a regular expression
-     * is used in a view inside the database itself to count the last names.
+     * Internally this is a {@link HashMap}. It only returns at most the top 20 names. Since the entire name is stored
+     * in the database as a single field, a regular expression is used in a view inside the database itself to count the
+     * last names.
      * <p>
      * The select statement defining the view appears as follows:
      * <blockquote><pre>{@code
@@ -67,9 +67,9 @@ public class NamesDataBean
      * GROUP BY LAST_NAME
      * ORDER BY COUNT DESC;
      * }</pre></blockquote>
-     * 
+     *
      * @return a map of last names to the number of occurrences of that last name
-     */ 
+     */
     public Map<String, Integer> lastNameFrequency()
     {
         return nameFrequency("LAST");

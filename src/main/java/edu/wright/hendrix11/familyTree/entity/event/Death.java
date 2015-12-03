@@ -14,7 +14,6 @@ package edu.wright.hendrix11.familyTree.entity.event;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.TypedQuery;
 
@@ -30,8 +29,9 @@ public class Death extends SinglePersonEvent
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * death records.
      * <p>
-     * For example: 
-     * <blockquote><pre>{@code TypedQuery<Death> query = em.createNamedQuery(Death.FIND_ALL, Death.class);}</pre></blockquote>
+     * For example:
+     * <blockquote><pre>{@code TypedQuery<Death> query = em.createNamedQuery(Death.FIND_ALL,
+     * Death.class);}</pre></blockquote>
      */
     public static final String FIND_ALL = "Death.findAll";
 }

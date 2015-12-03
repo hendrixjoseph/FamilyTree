@@ -14,28 +14,28 @@ package edu.wright.hendrix11.d3.chart.axis;
 
 public class Tick
 {
-  Integer rotate;
-  Boolean multiline;
-  Integer count;
-  
-  public String toString()
-  {
-    StringBuilder sb = new StringBuilder("tick:{");
-    
-    StringJoiner sj = new StringJoiner(",");
-    
-    if(rotate != null)
-      sj.add("rotate:" + rotate);
-      
-    if(multiline != null)
-      sj.add("multiline:" + multiline);
-      
-    if(count != null)
-      sj.add("count:" + count);
-    
-    sb.append(sj);
-    sb.append("}");
-    
-    return sb.toString();
-  }
+    Integer rotate;
+    Boolean multiline;
+    Integer count;
+
+    public String toString()
+    {
+        StringBuilder sb = new StringBuilder("tick:{");
+
+        StringJoiner sj = new StringJoiner(",");
+
+        if ( rotate != null )
+            sj.add("rotate:" + rotate);
+
+        if ( multiline != null )
+            sj.add("multiline:" + multiline);
+
+        if ( count != null )
+            sj.add("count:" + count);
+
+        sb.append(sj);
+        sb.append("}");
+
+        return sb.toString();
+    }
 }

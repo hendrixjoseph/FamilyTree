@@ -40,7 +40,7 @@ public class AgesBean implements Serializable
     private ChartModel ageModel = new ChartModel();
     private ChartModel meanMedianAgeAtBirthModel;
     private ChartModel meanMedianAgeAtDeathModel;
-    private Map<String,Double> statsMap = new LinkedHashMap<>();
+    private Map<String, Double> statsMap = new LinkedHashMap<>();
 
     @PostConstruct
     private void initialize()
@@ -66,10 +66,9 @@ public class AgesBean implements Serializable
     /**
      * Returns a list of statistic labels to the statistic value.
      * <p>
-     * These values are first put into a {@link LinkedHashMap} then converted into a
-     * {@link List} of {@link Map.Entry}. This is to allow use in PrimeFaces' datatable 
-     * JSF element.
-     * 
+     * These values are first put into a {@link LinkedHashMap} then converted into a {@link List} of {@link Map.Entry}.
+     * This is to allow use in PrimeFaces' datatable JSF element.
+     *
      * @return a list of statistic labels to the statistic value
      */
     public List<Map.Entry<String, Integer>> getStatsMapList()
@@ -79,9 +78,9 @@ public class AgesBean implements Serializable
 
     /**
      * Returns a chart model containing ages at birth data.
-     * 
+     *
      * @return a chart model containing ages at birth data
-     * 
+     *
      * @see AgesDataBean#meanMeadianAgesPerBirthYear
      */
     public ChartModel getMeanMedianAgeAtBirthModel()
@@ -91,9 +90,9 @@ public class AgesBean implements Serializable
 
     /**
      * Returns a chart model containing ages at death data.
-     * 
+     *
      * @return a chart model containing ages at death data
-     * 
+     *
      * @see AgesDataBean#meanMeadianAgesPerDeathYear
      */
     public ChartModel getMeanMedianAgeAtDeathModel()
@@ -103,9 +102,9 @@ public class AgesBean implements Serializable
 
     /**
      * Returns a chart model containing age data.
-     * 
+     *
      * @return a chart model containing age data
-     * 
+     *
      * @see AgesDataBean#ages
      */
     public ChartModel getAgeModel()

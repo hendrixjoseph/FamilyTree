@@ -14,7 +14,6 @@ package edu.wright.hendrix11.familyTree.entity.event;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.TypedQuery;
 
@@ -30,8 +29,9 @@ public class Birth extends SinglePersonEvent
      * Specifies the {@link String} that represents the {@link NamedQuery} to create a {@link TypedQuery} to get all
      * birth records.
      * <p>
-     * For example: 
-     * <blockquote><pre>{@code TypedQuery<Birth> query = em.createNamedQuery(Birth.FIND_ALL, Birth.class);}</pre></blockquote>
+     * For example:
+     * <blockquote><pre>{@code TypedQuery<Birth> query = em.createNamedQuery(Birth.FIND_ALL,
+     * Birth.class);}</pre></blockquote>
      */
     public static final String FIND_ALL = "Birth.findAll";
 }

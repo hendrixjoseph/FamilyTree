@@ -38,9 +38,9 @@ public class ChartModel
     private YAxis yAxis;
 
     /**
-     * Returns the custom color pattern for the data. The first data has the first color, the second data has the second color,
-     * and so on.
-     * 
+     * Returns the custom color pattern for the data. The first data has the first color, the second data has the second
+     * color, and so on.
+     *
      * @return the custom color pattern for the data
      */
     public List<String> getColors()
@@ -49,9 +49,9 @@ public class ChartModel
     }
 
     /**
-     * Sets the custom color pattern for the data. The first data has the first color, the second data has the second color,
-     * and so on.
-     * 
+     * Sets the custom color pattern for the data. The first data has the first color, the second data has the second
+     * color, and so on.
+     *
      * @param colors the custom color pattern for the data
      */
     public void setColors(List<String> colors)
@@ -60,9 +60,9 @@ public class ChartModel
     }
 
     /**
-     * Adds a color to the list of custom color patterns for the data. The first data has the first color, the second data has the second color,
-     * and so on.
-     * 
+     * Adds a color to the list of custom color patterns for the data. The first data has the first color, the second
+     * data has the second color, and so on.
+     *
      * @param color a String representation of a color
      */
     public void addColor(String color)
@@ -71,9 +71,9 @@ public class ChartModel
     }
 
     /**
-     * Adds a color to the list of custom color patterns for the data. The first data has the first color, the second data has the second color,
-     * and so on.
-     * 
+     * Adds a color to the list of custom color patterns for the data. The first data has the first color, the second
+     * data has the second color, and so on.
+     *
      * @param color a color from the color enum
      */
     public void addColor(Color color)
@@ -91,21 +91,21 @@ public class ChartModel
     }
 
     /**
-     * @param xAxis
-     */
-    public void setxAxis(XAxis xAxis)
-    {
-        this.xAxis = xAxis;
-    }
-
-    /**
      * Sets the text that will be displayed along the x axis.
-     * 
+     *
      * @param label the text that will be displayed along the x axis
      */
     public void setxAxis(String label)
     {
         this.xAxis = new XAxis(label);
+    }
+
+    /**
+     * @param xAxis
+     */
+    public void setxAxis(XAxis xAxis)
+    {
+        this.xAxis = xAxis;
     }
 
     /**
@@ -117,21 +117,21 @@ public class ChartModel
     }
 
     /**
-     * @param yAxis
-     */
-    public void setyAxis(YAxis yAxis)
-    {
-        this.yAxis = yAxis;
-    }
-
-    /**
      * Sets the text that will be displayed along the y axis.
-     * 
+     *
      * @param label the text that will be displayed along the y axis
      */
     public void setyAxis(String label)
     {
         this.yAxis = new YAxis(label);
+    }
+
+    /**
+     * @param yAxis
+     */
+    public void setyAxis(YAxis yAxis)
+    {
+        this.yAxis = yAxis;
     }
 
     /**
