@@ -1,5 +1,5 @@
 <!-- 
-  When copying contents to index.twiki, do the following:
+  When copying contents to index.md, do the following:
   Remove table of contents
   Replace: ]\(([^:http:#]) with ](https://github.com/hendrixjoseph/FamilyTree/blob/master/\1
 -->
@@ -80,19 +80,23 @@ Once this project is downloaded, there is one step required before it can be bui
 
    Install the jar file with one of the following ways:
 
-   a. `mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=12.1.0.1 -Dpackaging=jar -Dfile=ojdbc7.jar -DgeneratePom=true`<br />
-   b. `mvn install:install-file -Dfile=ojdbc7.jar -DpomFile=ojdbc7.pom`<br />
-   c. I've included the equivalent of option b as a Maven action in NetBeans. In NetBeans, under the Projects view, right-click your project, go to "Custom", and select "install ojdbc7".
+   **a.** `mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc7 -Dversion=12.1.0.1 -Dpackaging=jar -Dfile=ojdbc7.jar -DgeneratePom=true`<br />
+   **b.** `mvn install:install-file -Dfile=ojdbc7.jar -DpomFile=ojdbc7.pom`
+   
+  Option b can also be easily done through either NetBeans or IntelliJ. I've set it up so there should be minimal clicks:
+  
+  **NetBeans:** Under the Projects view, right-click your project, go to "Custom", and select "install ojdbc7".<br />
+  **IntelliJ:** In the run configuration drop down in the top right, select "install ojdbc7.jar".
    
 In order to run this project, a Java EE server and a SQL database need to be installed beforehand. I use [GlassFish 4.1](https://glassfish.java.net/) and [Oracle Database 11g Express Edition](http://www.oracle.com/technetwork/database/database-technologies/express-edition/overview/index.html). You will also need to setup a JDBC connection pool in your Java EE server. [I found this website helpful for setting it up in GlassFish.](https://computingat40s.wordpress.com/how-to-setup-a-jdbc-connection-in-glassfish/) The settings I used (other than username and password) are:
 
- | |
---- | --- 
-Pool name:  | FamilyTreePool
-Resource type: | java.sql.Driver
-Database Driver Vendor:  | Oracle
-Initial and Minimum Pool Size: | Zero
-URL: | jdbc:oracle:thin:@localhost:1521:XE
+<table>
+<tr><td>Pool name: </td><td>FamilyTreePool</td></tr>
+<tr><td>Resource type:</td><td>`java.sql.Driver`</td></tr>
+<tr><td>Database Driver Vendor: </td><td>Oracle</td></tr>
+<tr><td>Initial and Minimum Pool Size:</td><td>Zero</td></tr>
+<tr><td>URL:</td><td>jdbc:oracle:thin:@localhost:1521:XE</td></tr>
+</table>
 
 ## Tools
 
