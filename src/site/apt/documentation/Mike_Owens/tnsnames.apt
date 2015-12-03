@@ -1,0 +1,78 @@
+            ------
+            tnsnames
+            ------
+            Joseph Hendrix
+            ------
+             2015-12-03
+
+tnsnames
+
+*----------+--------------+
+| From: |  Owens, Michael (TS) |
+*----------+--------------+
+| Sent: |  Thursday, December 03, 2015 11:26 AM |
+*----------+--------------+
+| To: |  Hendrix, Joseph D |
+*----------+--------------+
+| Subject: |  tnsnames |
+*----------+--------------+
+
+  Example:
+
++-----+
+joe =
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = LOH3PCE00349266.northgrum.com)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = XE)
+    )
+  )
++-----+
+
+*----------+--------------+
+| From: |  Hendrix, Joseph D (TS) |
+*----------+--------------+
+| Sent: |  Thursday, December 03, 2015 11:26 AM |
+*----------+--------------+
+| To: |  Owens, Michael |
+*----------+--------------+
+| Subject: |  tnsnames |
+*----------+--------------+
+
++-----+
+net_service_name=
+ (DESCRIPTION_LIST=
+  (DESCRIPTION=
+   (ADDRESS=(PROTOCOL=tcp)(HOST=sales1-svr)(PORT=1521))
+   (ADDRESS=(PROTOCOL=tcp)(HOST=sales2-svr)(PORT=1521)))
+   (CONNECT_DATA=
+     (SERVICE_NAME=sales.us.example.com)))
+  (DESCRIPTION=
+   (ADDRESS=(PROTOCOL=tcp)(HOST=hr1-svr)(PORT=1521))
+   (ADDRESS=(PROTOCOL=tcp)(HOST=hr2-svr)(PORT=1521)))
+   (CONNECT_DATA=
+     (SERVICE_NAME=hr.us.example.com))))
++-----+
+
+*----------+--------------+
+| From: |  Hendrix, Joseph D (TS) |
+*----------+--------------+
+| Sent: |  Thursday, December 03, 2015 11:25 AM |
+*----------+--------------+
+| To: |  Owens, Michael |
+*----------+--------------+
+| Subject: |  tnsnames |
+*----------+--------------+
+
++-----+
+net_service_name=
+ (DESCRIPTION=
+   (ADDRESS=(protocol_address_information))
+   (CONNECT_DATA=
+     (SERVICE_NAME=service_name)))
++-----+
+
+  Thanks,
+
+  Joe Hendrix
