@@ -109,7 +109,14 @@ public class ChartModel
      */
     public void setxAxis(String label)
     {
-        this.xAxis = new XAxis(label);
+        if(xAxis != null)
+        {
+            xAxis.setLabel(label);
+        }
+        else
+        {
+            this.xAxis = new XAxis(label);
+        }
     }
 
     /**
@@ -139,7 +146,14 @@ public class ChartModel
      */
     public void setyAxis(String label)
     {
-        this.yAxis = new YAxis(label);
+        if(yAxis != null)
+        {
+            yAxis.setLabel(label);
+        }
+        else
+        {
+            this.yAxis = new YAxis(label);
+        }
     }
 
     /**
