@@ -17,8 +17,11 @@
             <link href="http://hendrixjoseph.github.io/FamilyTree/images/Family-Tree.ico?" rel="shortcut icon"
                   type="image/x-icon" />
         </head>
+        <links>
+            <item name="GitHub" href="https://github.com/hendrixjoseph/FamilyTree" />
+        </links>
         <menu ref="modules" />
-        <menu ref="reports" />
+        <!-- menu ref="reports" / -->
         <menu name="CS7720 Documents">
             <item name="Project Proposal" href="documentation/cs7720/Hendrix_CS7720_Project_Proposal.docx" />
             <item name="Proposal Email" href="documentation/cs7720/proposal_email.html" />
