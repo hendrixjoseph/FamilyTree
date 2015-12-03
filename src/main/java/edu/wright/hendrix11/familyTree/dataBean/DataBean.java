@@ -31,18 +31,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * @param <E> a class that has an @{@link Entity} annotation
- * @param <K> the key for that class, which will have the @{@link Id} annotation in the associated @{@link Entity}
+ * @param <E> a class that has an {@link Entity @Entity} annotation
+ * @param <K> the key for that class, which will have the {@link Id @Id} annotation in the associated {@link Entity @Entity}
  *            class
  *
- * @author Joe Hendrix <hendrix.11@wright.edu>
+ * @author Joe Hendrix
  */
 @Stateless
 public class DataBean<E, K>
 {
     private static final Logger LOG = Logger.getLogger(DataBean.class.getName());
 
-    private static final int RECORDS_PER_PAGE = 50;
+    public static final int RECORDS_PER_PAGE = 50;
 
     @PersistenceContext(unitName = "edu.wright.hendrix11.familyTree")
     private EntityManager em;
@@ -53,15 +53,15 @@ public class DataBean<E, K>
 
     /**
      * This method should be called before any other method is called. The reason this method is provided rather than
-     * simply using a constructor is that JPA will inject it into another class via the @{@link EJB} annotation using a
+     * simply using a constructor is that JPA will inject it into another class via the {@link EJB @EJB} annotation using a
      * no-argument constructor.
      * <p>
-     * The {@link Class} object must be the same type specified by E. This class must have both an @{@link Entity}
+     * The {@link Class} object must be the same type specified by E. This class must have both an {@link Entity @Entity}
      * annotation and field {@code public static final String FIND_ALL}
      *
      * @param clazz a {@link Class} object of the same type specified by E
      *
-     * @throws IllegalArgumentException if the class clazz does not have an @{@link Entity} annotation or field {@code
+     * @throws IllegalArgumentException if the class clazz does not have an {@link Entity @Entity} annotation or field {@code
      *                                  public static final String FIND_ALL}
      */
     public void initialize(Class<E> clazz)
