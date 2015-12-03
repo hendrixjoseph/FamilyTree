@@ -157,7 +157,10 @@ public abstract class Axis
     /**
      * @param label
      */
-    public abstract void setLabel(String label);
+    public abstract void setLabel(String label)
+    {
+        getLabel().setText(label);
+    }
 
     /**
      * @param label
