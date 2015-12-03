@@ -185,7 +185,7 @@ public abstract class Axis
      * 
      * @param label the text for the axis label
      */
-    public abstract void setLabel(String label)
+    public void setLabel(String label)
     {
         getLabel().setText(label);
     }
@@ -261,30 +261,5 @@ public abstract class Axis
          *
          */
         right
-    }
-
-    /**
-     *
-     */
-    public class Padding
-    {
-        int left;
-        int right;
-
-        /**
-         * @param left
-         * @param right
-         */
-        public Padding(int left, int right)
-        {
-            this.left = left;
-            this.right = right;
-        }
-
-        @Override
-        public String toString()
-        {
-            return "{left:" + left + ",right:" + right + "}";
-        }
     }
 }
