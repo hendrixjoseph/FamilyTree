@@ -43,8 +43,7 @@ public abstract class SinglePersonEvent extends Event
      * single-person events.
      * <p>
      * For example:
-     * <blockquote><pre>{@code TypedQuery<SinglePersonEvent> query = em.createNamedQuery(SinglePersonEvent.FIND_ALL,
-     * SinglePersonEvent.class);}</pre></blockquote>
+     * <blockquote><pre>{@code TypedQuery<SinglePersonEvent> query = em.createNamedQuery(SinglePersonEvent.FIND_ALL, SinglePersonEvent.class);}</pre></blockquote>
      */
     public static final String FIND_ALL = "SinglePersonEvent.findAll";
 
