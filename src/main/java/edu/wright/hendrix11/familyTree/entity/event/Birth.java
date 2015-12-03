@@ -30,8 +30,7 @@ public class Birth extends SinglePersonEvent
      * birth records.
      * <p>
      * For example:
-     * <blockquote><pre>{@code TypedQuery<Birth> query = em.createNamedQuery(Birth.FIND_ALL,
-     * Birth.class);}</pre></blockquote>
+     * <blockquote><pre>{@code TypedQuery<Birth> query = em.createNamedQuery(Birth.FIND_ALL, Birth.class);}</pre></blockquote>
      */
     public static final String FIND_ALL = "Birth.findAll";
 }
