@@ -36,7 +36,7 @@ public enum Gender
     /**
      *
      */
-    UNNOWN;
+    UNKNOWN;
 
     /**
      * Returns the Gender that starts with the parameter.
