@@ -15,7 +15,7 @@ package edu.wright.hendrix11.d3.chart.axis;
 /**
  *
  */
-public class XPadding
+public class XPadding implements Padding
 {
     int left;
     int right;
