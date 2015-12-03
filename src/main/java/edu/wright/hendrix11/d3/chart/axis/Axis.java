@@ -67,7 +67,9 @@ public abstract class Axis
     }
 
     /**
-     * @return
+     * Returns the maximum value of the axis range.
+     * 
+     * @return the maximum value of the axis range
      */
     public int getMax()
     {
@@ -75,7 +77,9 @@ public abstract class Axis
     }
 
     /**
-     * @param max
+     * Sets the maximum value of the axis range.
+     * 
+     * @param max the maximum value of the axis range
      */
     public void setMax(int max)
     {
@@ -83,15 +87,19 @@ public abstract class Axis
     }
 
     /**
-     * @return
-     */
+     * Returns the minimum value of the axis range.
+     * 
+     * @return the minimum value of the axis range
+     */ 
     public int getMin()
     {
         return (int) map.get("min:");
     }
 
     /**
-     * @param min
+     * Sets the minimum value of the axis range.
+     * 
+     * @param min the minimum value of the axis range
      */
     public void setMin(int min)
     {
@@ -99,7 +107,9 @@ public abstract class Axis
     }
 
     /**
-     * @return
+     * Returns whether to show or hide the axis.
+     * 
+     * @return whether to show or hide the axis
      */
     public boolean isShow()
     {
@@ -107,7 +117,9 @@ public abstract class Axis
     }
 
     /**
-     * @param show
+     * Sets whether to show or hide the axis.
+     * 
+     * @param show whether to show or hide the axis
      */
     public void setShow(boolean show)
     {
@@ -115,7 +127,14 @@ public abstract class Axis
     }
 
     /**
-     * @return
+     * Returns the type of the axis. Uses the nested Type enum. Values are:
+     * <ul>
+     * <li>timeseries</li>
+     * <li>category</li>
+     * <li>indexed</li>
+     * </ul>
+     * 
+     * @return the type of the axis
      */
     public Type getType()
     {
@@ -123,7 +142,14 @@ public abstract class Axis
     }
 
     /**
-     * @param type
+     * Sets the type of the axis. Uses the nested Type enum. Values are:
+     * <ul>
+     * <li>timeseries</li>
+     * <li>category</li>
+     * <li>indexed</li>
+     * </ul>
+     * 
+     * @param type the type of the axis
      */
     public void setType(Type type)
     {
@@ -155,7 +181,9 @@ public abstract class Axis
     }
     
     /**
-     * @param label
+     * Sets the text for the axis label
+     * 
+     * @param label the text for the axis label
      */
     public abstract void setLabel(String label)
     {
