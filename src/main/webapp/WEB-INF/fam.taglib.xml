@@ -18,6 +18,7 @@
     <namespace>http://hendrix11.wright.edu/familyTree</namespace>
     <short-name>fam</short-name>
     <tag>
+        <description>The menu that is on the top of every page.</description>
         <tag-name>menu</tag-name>
         <source>resource/tag/menu.xhtml</source>
     </tag>
@@ -47,8 +48,10 @@
     </tag>
     <tag>
         <tag-name>googleMapLink</tag-name>
+        <description><![CDATA[Provides a link to either a Google Map, or a Google Query, depending on the value returned by the place's <code>getLink()</code> method.]]></description>
         <source>resource/tag/googleMapLink.xhtml</source>
         <attribute>
+            <description>The place to link to.</description>
             <name>place</name>
             <required>true</required>
             <type>edu.wright.hendrix11.familyTree.entity.place.Place</type>
@@ -56,13 +59,16 @@
     </tag>
     <tag>
         <tag-name>personLink</tag-name>
+        <description>Provides a link to the main entry for the specified person.</description>
         <source>resource/tag/personLink.xhtml</source>
         <attribute>
+            <description>The person to link to.</description>
             <name>person</name>
             <required>true</required>
             <type>edu.wright.hendrix11.familyTree.entity.Person</type>
         </attribute>
         <attribute>
+            <description>Whether the compenent is rendered.</description>
             <name>rendered</name>
             <required>false</required>
             <type>java.lang.Boolean</type>
@@ -79,8 +85,10 @@
     </tag>
     <tag>
         <tag-name>pageNav</tag-name>
+        <description>Provided a list of numbered links to the different pages available for the specified DataBean.</description>
         <source>resource/tag/pageNav.xhtml</source>
         <attribute>
+            <description>The DataBean to create the numbered page links.</description>
             <name>dataBean</name>
             <required>true</required>
             <type>edu.wright.hendrix11.familyTree.dataBean.DataBean</type>
@@ -88,6 +96,7 @@
     </tag>
     <tag>
         <tag-name>pageSort</tag-name>
+        <description>Provides a link that will sort the data specified by the sort string.</description>
         <source>resource/tag/pageSort.xhtml</source>
         <attribute>
             <name>dataBean</name>
@@ -95,11 +104,13 @@
             <type>edu.wright.hendrix11.familyTree.dataBean.DataBean</type>
         </attribute>
         <attribute>
+            <description>The text link to display.</description>
             <name>text</name>
             <required>true</required>
             <type>java.lang.String</type>
         </attribute>
         <attribute>
+            <description>The sort string is actually a query of sorts (pun intended?) where the string is seperated into a string array by the period (".") character, and then the query result is sorted by the first element of the string array, then the next element, and so on.</description>
             <name>sort</name>
             <required>true</required>
             <type>java.lang.String</type>
