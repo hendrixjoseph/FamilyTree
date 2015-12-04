@@ -1,9 +1,8 @@
 --------------------------------------------------------
---  File created - Thursday-November-26-2015   
+--  File created - Friday-December-04-2015   
 --------------------------------------------------------
 DROP TABLE "EVENT" cascade constraints;
 DROP TABLE "FATHER" cascade constraints;
-DROP TABLE "GENDER" cascade constraints;
 DROP TABLE "MARRIAGE" cascade constraints;
 DROP TABLE "MOTHER" cascade constraints;
 DROP TABLE "PERSON" cascade constraints;
@@ -55,14 +54,6 @@ DROP VIEW "SPOUSE_VIEW_TEST";
   CREATE TABLE "FATHER" 
    (	"ID" NUMBER, 
 	"CHILD_ID" NUMBER
-   ) ;
---------------------------------------------------------
---  DDL for Table GENDER
---------------------------------------------------------
-
-  CREATE TABLE "GENDER" 
-   (	"ABBR" CHAR(1), 
-	"FULL_WORD" VARCHAR2(10)
    ) ;
 --------------------------------------------------------
 --  DDL for Table MARRIAGE
@@ -386,12 +377,6 @@ WHERE P.ID = SV.ID AND S.ID = SV.SPOUSE_ID;
   CREATE UNIQUE INDEX "PLACE_PK" ON "PLACE" ("ID") 
   ;
 --------------------------------------------------------
---  DDL for Index GENDER_PK
---------------------------------------------------------
-
-  CREATE UNIQUE INDEX "GENDER_PK" ON "GENDER" ("FULL_WORD") 
-  ;
---------------------------------------------------------
 --  DDL for Index PERSON_PK
 --------------------------------------------------------
 
@@ -434,13 +419,6 @@ WHERE P.ID = SV.ID AND S.ID = SV.SPOUSE_ID;
   ALTER TABLE "EVENT" MODIFY ("ABOUT" NOT NULL ENABLE);
   ALTER TABLE "EVENT" ADD CONSTRAINT "EVENT_CHK" CHECK (DAY > 0 AND DAY <= 31 AND (ABOUT = 0 OR ABOUT = 1)) ENABLE;
   ALTER TABLE "EVENT" MODIFY ("PERSON_ID" NOT NULL ENABLE);
---------------------------------------------------------
---  Constraints for Table GENDER
---------------------------------------------------------
-
-  ALTER TABLE "GENDER" ADD CONSTRAINT "GENDER_PK" PRIMARY KEY ("FULL_WORD") ENABLE;
-  ALTER TABLE "GENDER" MODIFY ("FULL_WORD" NOT NULL ENABLE);
-  ALTER TABLE "GENDER" MODIFY ("ABBR" NOT NULL ENABLE);
 --------------------------------------------------------
 --  Constraints for Table PERSON
 --------------------------------------------------------
@@ -499,12 +477,6 @@ WHERE P.ID = SV.ID AND S.ID = SV.SPOUSE_ID;
 	  REFERENCES "PERSON" ("ID") ON DELETE CASCADE ENABLE;
   ALTER TABLE "MOTHER" ADD CONSTRAINT "MOTHER_FK" FOREIGN KEY ("ID")
 	  REFERENCES "PERSON" ("ID") ON DELETE CASCADE ENABLE;
---------------------------------------------------------
---  Ref Constraints for Table PERSON
---------------------------------------------------------
-
-  ALTER TABLE "PERSON" ADD CONSTRAINT "PERSON_GENDER_FK" FOREIGN KEY ("GENDER")
-	  REFERENCES "GENDER" ("FULL_WORD") ENABLE;
 --------------------------------------------------------
 --  Ref Constraints for Table REGION
 --------------------------------------------------------
