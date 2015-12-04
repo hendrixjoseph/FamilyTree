@@ -42,6 +42,9 @@ public class DataBean<E, K>
 {
     private static final Logger LOG = Logger.getLogger(DataBean.class.getName());
 
+    /**
+     *
+     */
     public static final int RECORDS_PER_PAGE = 50;
 
     @PersistenceContext(unitName = "edu.wright.hendrix11.familyTree")

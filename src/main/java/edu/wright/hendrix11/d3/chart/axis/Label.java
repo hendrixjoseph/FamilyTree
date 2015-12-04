@@ -38,16 +38,28 @@ public abstract class Label
         this.position = position;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getText()
     {
         return text;
     }
 
+    /**
+     *
+     * @param text
+     */
     public void setText(String text)
     {
         this.text = text;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean hasText()
     {
         return text != null && !text.isEmpty();

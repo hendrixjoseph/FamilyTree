@@ -22,6 +22,15 @@ import java.io.IOException;
  */
 public abstract class MasterRenderer extends Renderer
 {
+
+    /**
+     *
+     * @param writer
+     * @param id
+     * @param styleClass
+     * @param style
+     * @throws IOException
+     */
     protected void encodeContainerDiv(ResponseWriter writer, String id, String styleClass, String style) throws IOException
     {
         if ( id == null )
@@ -43,12 +52,22 @@ public abstract class MasterRenderer extends Renderer
         writer.endElement("div");
     }
 
+    /**
+     *
+     * @param writer
+     * @throws IOException
+     */
     protected void startScript(ResponseWriter writer) throws IOException
     {
         writer.startElement("script", null);
         writer.writeAttribute("type", "text/javascript", null);
     }
 
+    /**
+     *
+     * @param writer
+     * @throws IOException
+     */
     protected void endScript(ResponseWriter writer) throws IOException
     {
         writer.endElement("script");

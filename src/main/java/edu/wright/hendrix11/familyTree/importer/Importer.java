@@ -95,6 +95,11 @@ public abstract class Importer
      */
     protected abstract void processData();
 
+    /**
+     *
+     * @param name
+     * @return
+     */
     protected Country getCountry(String name)
     {
         TypedQuery<Country> countryQuery = em.createNamedQuery(Country.FIND_BY_NAME, Country.class);
@@ -115,6 +120,12 @@ public abstract class Importer
         return country;
     }
 
+    /**
+     *
+     * @param name
+     * @param region
+     * @return
+     */
     protected County getCounty(String name, State region)
     {
         TypedQuery<County> countyQuery = em.createNamedQuery(County.FIND_BY_NAME, County.class);
@@ -133,6 +144,12 @@ public abstract class Importer
         return county;
     }
 
+    /**
+     *
+     * @param name
+     * @param region
+     * @return
+     */
     protected City getCity(String name, Place region)
     {
         TypedQuery<City> cityQuery = em.createNamedQuery(City.FIND_BY_NAME, City.class);
@@ -151,6 +168,12 @@ public abstract class Importer
         return city;
     }
 
+    /**
+     *
+     * @param name
+     * @param region
+     * @return
+     */
     protected Cemetery getCemetery(String name, Place region)
     {
         TypedQuery<Cemetery> cemeteryQuery = em.createNamedQuery(Cemetery.FIND_BY_NAME, Cemetery.class);
@@ -169,6 +192,11 @@ public abstract class Importer
         return cemetery;
     }
 
+    /**
+     *
+     * @param name
+     * @return
+     */
     protected State getState(String name)
     {
         TypedQuery<State> stateQuery = em.createNamedQuery(State.FIND_BY_NAME, State.class);

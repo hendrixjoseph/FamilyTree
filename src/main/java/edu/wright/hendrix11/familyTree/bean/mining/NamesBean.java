@@ -47,11 +47,19 @@ public class NamesBean implements Serializable
         lastNameFrequency = dataBean.lastNameFrequency();
     }
 
+    /**
+     *
+     * @return
+     */
     public Map<String, Integer> getFirstNameFrequency()
     {
         return firstNameFrequency;
     }
 
+    /**
+     *
+     * @return
+     */
     public Map<String, Integer> getLastNameFrequency()
     {
         return lastNameFrequency;

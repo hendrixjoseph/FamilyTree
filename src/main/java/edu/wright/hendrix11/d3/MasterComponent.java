@@ -59,6 +59,9 @@ public abstract class MasterComponent extends UIComponentBase
         getStateHelper().put(PropertyKeys.style, style);
     }
 
+    /**
+     *
+     */
     protected enum PropertyKeys
     {
 
@@ -66,6 +69,10 @@ public abstract class MasterComponent extends UIComponentBase
          *
          */
         styleClass,
+
+        /**
+         *
+         */
         style
     }
 }
