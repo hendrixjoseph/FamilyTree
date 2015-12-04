@@ -22,6 +22,34 @@
     overflow : visible !important;
 }
 
+/*
+.ui-fileupload {
+    height: 16px;
+}
+*/
+
+.ui-fileupload-choose {
+    display: block;
+    box-shadow: none;
+}
+
+.ui-fileupload-choose,
+.ui-fileupload-content,
+.ui-fileupload-buttonbar,
+.ui-fileupload-choose .ui-button-text {
+    background: transparent !important;
+    font-weight: unset !important;
+    height: 16px !important;
+    width: 100% !important;
+    border: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.ui-fileupload-choose .ui-icon {
+    display: none;
+}
+
 .familyTree-dataTable {
     width : 100%;
 }

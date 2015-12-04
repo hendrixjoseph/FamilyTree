@@ -1,7 +1,7 @@
 Thumbs.db
 ojdbc7.jar
 target/
-sql/Generated*.*
 *.fte.GED
 gedcomimporter.log
 /gedcomimporter_unread.log
+tnsnames.ora
