@@ -59,7 +59,7 @@ public class WordCloudComponent extends MasterComponent
 
     /**
      * Returns the width of the entire cloud.
-     * 
+     *
      * @return the width of the entire cloud
      */
     public Integer getWidth()
@@ -69,7 +69,7 @@ public class WordCloudComponent extends MasterComponent
 
     /**
      * Sets the width of the entire cloud.
-     * 
+     *
      * @param width the width of the entire cloud
      */
     public void setWidth(Integer width)
@@ -79,7 +79,7 @@ public class WordCloudComponent extends MasterComponent
 
     /**
      * Returns the height of the entire cloud.
-     * 
+     *
      * @return the height of the entire cloud
      */
     public Integer getHeight()
@@ -89,7 +89,7 @@ public class WordCloudComponent extends MasterComponent
 
     /**
      * Sets the height of the entire cloud.
-     * 
+     *
      * @param height the height of the entire cloud
      */
     public void setHeight(Integer height)
@@ -99,7 +99,7 @@ public class WordCloudComponent extends MasterComponent
 
     /**
      * Returns the numerical padding for each word / String.
-     * 
+     *
      * @return the numerical padding for each word / String
      */
     public Integer getPadding()
@@ -109,7 +109,7 @@ public class WordCloudComponent extends MasterComponent
 
     /**
      * Sets the numerical padding for each word / String.
-     * 
+     *
      * @param padding the numerical padding for each word / String
      */
     public void setPadding(Integer padding)
@@ -119,7 +119,7 @@ public class WordCloudComponent extends MasterComponent
 
     /**
      * Returns the font face for each word.
-     * 
+     *
      * @return the font face for each word
      */
     public String getFont()
@@ -129,7 +129,7 @@ public class WordCloudComponent extends MasterComponent
 
     /**
      * Sets the font face for each word.
-     * 
+     *
      * @param font the font face for each word
      */
     public void setFont(String font)
@@ -138,10 +138,9 @@ public class WordCloudComponent extends MasterComponent
     }
 
     /**
-     * Returns the map of words (or rather, Strings, as they can have spaces) to the 
-     * font size of that word. Typcially the size will be the number of occurences, 
-     * but that is not a requirement.
-     * 
+     * Returns the map of words (or rather, Strings, as they can have spaces) to the font size of that word. Typcially
+     * the size will be the number of occurences, but that is not a requirement.
+     *
      * @return the map of words to the  font size of that word
      */
     public Map<String, Integer> getWords()
@@ -150,10 +149,9 @@ public class WordCloudComponent extends MasterComponent
     }
 
     /**
-     * Sets the map of words (or rather, Strings, as they can have spaces) to the 
-     * font size of that word. Typcially the size will be the number of occurences, 
-     * but that is not a requirement.
-     * 
+     * Sets the map of words (or rather, Strings, as they can have spaces) to the font size of that word. Typcially the
+     * size will be the number of occurences, but that is not a requirement.
+     *
      * @param words the map of words to the  font size of that word
      */
     public void setWords(Map<String, Integer> words)

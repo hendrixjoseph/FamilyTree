@@ -68,7 +68,7 @@ public abstract class Axis
 
     /**
      * Returns the maximum value of the axis range.
-     * 
+     *
      * @return the maximum value of the axis range
      */
     public int getMax()
@@ -78,7 +78,7 @@ public abstract class Axis
 
     /**
      * Sets the maximum value of the axis range.
-     * 
+     *
      * @param max the maximum value of the axis range
      */
     public void setMax(int max)
@@ -88,9 +88,9 @@ public abstract class Axis
 
     /**
      * Returns the minimum value of the axis range.
-     * 
+     *
      * @return the minimum value of the axis range
-     */ 
+     */
     public int getMin()
     {
         return (int) map.get("min:");
@@ -98,7 +98,7 @@ public abstract class Axis
 
     /**
      * Sets the minimum value of the axis range.
-     * 
+     *
      * @param min the minimum value of the axis range
      */
     public void setMin(int min)
@@ -108,7 +108,7 @@ public abstract class Axis
 
     /**
      * Returns whether to show or hide the axis.
-     * 
+     *
      * @return whether to show or hide the axis
      */
     public boolean isShow()
@@ -118,7 +118,7 @@ public abstract class Axis
 
     /**
      * Sets whether to show or hide the axis.
-     * 
+     *
      * @param show whether to show or hide the axis
      */
     public void setShow(boolean show)
@@ -127,13 +127,9 @@ public abstract class Axis
     }
 
     /**
-     * Returns the type of the axis. Uses the nested Type enum. Values are:
-     * <ul>
-     * <li>timeseries</li>
-     * <li>category</li>
-     * <li>indexed</li>
-     * </ul>
-     * 
+     * Returns the type of the axis. Uses the nested Type enum. Values are: <ul> <li>timeseries</li> <li>category</li>
+     * <li>indexed</li> </ul>
+     *
      * @return the type of the axis
      */
     public Type getType()
@@ -142,13 +138,9 @@ public abstract class Axis
     }
 
     /**
-     * Sets the type of the axis. Uses the nested Type enum. Values are:
-     * <ul>
-     * <li>timeseries</li>
-     * <li>category</li>
-     * <li>indexed</li>
-     * </ul>
-     * 
+     * Sets the type of the axis. Uses the nested Type enum. Values are: <ul> <li>timeseries</li> <li>category</li>
+     * <li>indexed</li> </ul>
+     *
      * @param type the type of the axis
      */
     public void setType(Type type)
@@ -173,21 +165,21 @@ public abstract class Axis
     }
 
     /**
-     * @return
-     */
-    protected Label getLabel()
-    {
-        return (Label) map.get("label:");
-    }
-    
-    /**
      * Sets the text for the axis label
-     * 
+     *
      * @param label the text for the axis label
      */
     public void setLabel(String label)
     {
         getLabel().setText(label);
+    }
+
+    /**
+     * @return
+     */
+    protected Label getLabel()
+    {
+        return (Label) map.get("label:");
     }
 
     /**

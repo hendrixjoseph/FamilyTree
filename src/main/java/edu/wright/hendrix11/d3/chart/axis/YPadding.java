@@ -13,8 +13,7 @@
 package edu.wright.hendrix11.d3.chart.axis;
 
 /**
- * The padding for the y-axis will create more space on the edge of the axis. 
- * Top and bottom will be treated as pixels.
+ * The padding for the y-axis will create more space on the edge of the axis. Top and bottom will be treated as pixels.
  */
 public class YPadding implements Padding
 {
@@ -23,7 +22,7 @@ public class YPadding implements Padding
 
     /**
      * @param top the padding on the top, in pixels
-     * @param  the padding on the bottom, in pixels
+     * @param the padding on the bottom, in pixels
      */
     public YPadding(int top, int bottom)
     {

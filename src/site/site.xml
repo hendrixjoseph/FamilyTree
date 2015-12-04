@@ -11,6 +11,9 @@
   ~
   -->
 <project xmlns="http://maven.apache.org/DECORATION/1.6.0">
+    <bannerRight>
+        <src>images/Family-Tree-icon-128.png</src>
+    </bannerRight>
     <body>
         <head>
             <link href="http://hendrixjoseph.github.io/FamilyTree/images/Family-Tree.ico?" rel="shortcut icon"
@@ -19,11 +22,8 @@
         <links>
             <item name="GitHub" href="https://github.com/hendrixjoseph/FamilyTree" />
         </links>
-        <bannerRight>
-          <src>images/Family-Tree-icon-128.png</src>
-        </bannerRight>
         <menu ref="modules" />
-        <!-- menu ref="reports" / -->
+        <menu ref="reports" />
         <menu name="CS7720 Documents">
             <item name="Project Proposal" href="documentation/cs7720/Hendrix_CS7720_Project_Proposal.docx" />
             <item name="Proposal Email" href="documentation/cs7720/proposal_email.html" />

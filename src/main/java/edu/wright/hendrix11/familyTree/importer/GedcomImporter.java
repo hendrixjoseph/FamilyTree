@@ -26,8 +26,6 @@ import edu.wright.hendrix11.familyTree.entity.place.County;
 import edu.wright.hendrix11.familyTree.entity.place.Place;
 import edu.wright.hendrix11.familyTree.entity.place.State;
 
-import javax.persistence.TypedQuery;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.LineNumberReader;

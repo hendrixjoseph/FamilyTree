@@ -54,7 +54,8 @@ public abstract class Place implements Iterable<Place>
      * places.
      * <p>
      * For example:
-     * <blockquote><pre>{@code TypedQuery<Place> query = em.createNamedQuery(Place.FIND_ALL, Place.class);}</pre></blockquote>
+     * <blockquote><pre>{@code TypedQuery<Place> query = em.createNamedQuery(Place.FIND_ALL,
+     * Place.class);}</pre></blockquote>
      */
     public static final String FIND_ALL = "Place.findAll";
 

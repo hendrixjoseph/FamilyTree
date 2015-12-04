@@ -12,10 +12,19 @@
 
 package edu.wright.hendrix11.familyTree.importer;
 
+import edu.wright.hendrix11.familyTree.entity.place.Cemetery;
+import edu.wright.hendrix11.familyTree.entity.place.City;
+import edu.wright.hendrix11.familyTree.entity.place.Country;
+import edu.wright.hendrix11.familyTree.entity.place.County;
+import edu.wright.hendrix11.familyTree.entity.place.Place;
+import edu.wright.hendrix11.familyTree.entity.place.State;
+
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -85,7 +94,7 @@ public abstract class Importer
      *
      */
     protected abstract void processData();
-    
+
     protected Country getCountry(String name)
     {
         TypedQuery<Country> countryQuery = em.createNamedQuery(Country.FIND_BY_NAME, Country.class);

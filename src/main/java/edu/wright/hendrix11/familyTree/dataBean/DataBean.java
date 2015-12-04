@@ -32,8 +32,8 @@ import java.util.logging.Logger;
 
 /**
  * @param <E> a class that has an {@link Entity @Entity} annotation
- * @param <K> the key for that class, which will have the {@link Id @Id} annotation in the associated {@link Entity @Entity}
- *            class
+ * @param <K> the key for that class, which will have the {@link Id @Id} annotation in the associated {@link Entity
+ *            @Entity} class
  *
  * @author Joe Hendrix
  */
@@ -53,16 +53,16 @@ public class DataBean<E, K>
 
     /**
      * This method should be called before any other method is called. The reason this method is provided rather than
-     * simply using a constructor is that JPA will inject it into another class via the {@link EJB @EJB} annotation using a
-     * no-argument constructor.
+     * simply using a constructor is that JPA will inject it into another class via the {@link EJB @EJB} annotation
+     * using a no-argument constructor.
      * <p>
-     * The {@link Class} object must be the same type specified by E. This class must have both an {@link Entity @Entity}
-     * annotation and field {@code public static final String FIND_ALL}
+     * The {@link Class} object must be the same type specified by E. This class must have both an {@link Entity
+     * @Entity} annotation and field {@code public static final String FIND_ALL}
      *
      * @param clazz a {@link Class} object of the same type specified by E
      *
-     * @throws IllegalArgumentException if the class clazz does not have an {@link Entity @Entity} annotation or field {@code
-     *                                  public static final String FIND_ALL}
+     * @throws IllegalArgumentException if the class clazz does not have an {@link Entity @Entity} annotation or field
+     *                                  {@code public static final String FIND_ALL}
      */
     public void initialize(Class<E> clazz)
     {

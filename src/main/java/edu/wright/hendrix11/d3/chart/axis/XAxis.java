@@ -48,17 +48,9 @@ public class XAxis extends Axis
     /**
      * @param label
      */
-    public void setLabel(XLabel label)
-    {
-        super.setLabel(label);
-    }
-    
-    /**
-     * @param label
-     */
     public void setLabel(String label)
     {
-        if(getLabel() != null)
+        if ( getLabel() != null )
         {
             super.setLabel(label);
         }
@@ -67,7 +59,15 @@ public class XAxis extends Axis
             super.setLabel(new XLabel(label));
         }
     }
-    
+
+    /**
+     * @param label
+     */
+    public void setLabel(XLabel label)
+    {
+        super.setLabel(label);
+    }
+
     /**
      * @return
      */
