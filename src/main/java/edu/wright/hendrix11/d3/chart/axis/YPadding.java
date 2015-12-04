@@ -22,7 +22,7 @@ public class YPadding implements Padding
 
     /**
      * @param top the padding on the top, in pixels
-     * @param the padding on the bottom, in pixels
+     * @param bottom
      */
     public YPadding(int top, int bottom)
     {

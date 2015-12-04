@@ -37,6 +37,7 @@ public class ChartRenderer extends MasterRenderer
 
     /**
      * {@inheritDoc}
+     * @throws java.io.IOException
      */
     @Override
     public void encodeBegin(FacesContext context, UIComponent component) throws IOException

@@ -64,48 +64,85 @@ public class GenderStatsBean implements Serializable
         genderAges.add(new GenderAges("overall", overallAge));
     }
 
+    /**
+     *
+     * @return
+     */
     public ChartModel getGenderModel()
     {
         return genderModel;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<GenderAges> getGenderAges()
     {
         return genderAges;
     }
 
+    /**
+     *
+     */
     public class GenderAges
     {
         private double age;
         private String gender;
 
+        /**
+         *
+         * @param gender
+         * @param age
+         */
         public GenderAges(String gender, Double age)
         {
             this.age = age;
             this.gender = gender;
         }
 
+        /**
+         *
+         * @param gender
+         * @param age
+         */
         public GenderAges(Gender gender, Double age)
         {
             this.age = age;
             this.gender = gender.toString();
         }
 
+        /**
+         *
+         * @return
+         */
         public String getGender()
         {
             return gender;
         }
 
+        /**
+         *
+         * @return
+         */
         public double getAge()
         {
             return age;
         }
 
+        /**
+         *
+         * @return
+         */
         public double getDifference()
         {
             return Math.abs(age - overallAge);
         }
 
+        /**
+         *
+         * @return
+         */
         public double getPercentDifference()
         {
             return getDifference() / overallAge;

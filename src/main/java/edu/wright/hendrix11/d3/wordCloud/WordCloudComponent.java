@@ -159,6 +159,9 @@ public class WordCloudComponent extends MasterComponent
         getStateHelper().put(PropertyKeys.words, words);
     }
 
+    /**
+     *
+     */
     protected enum PropertyKeys
     {
 
@@ -166,9 +169,25 @@ public class WordCloudComponent extends MasterComponent
          *
          */
         width,
+
+        /**
+         *
+         */
         height,
+
+        /**
+         *
+         */
         padding,
+
+        /**
+         *
+         */
         font,
+
+        /**
+         *
+         */
         words
     }
 }
