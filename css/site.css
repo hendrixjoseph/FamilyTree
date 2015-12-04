@@ -1,1 +1,6 @@
-/* You can override this file with your own styles */
+#bannerLeft {
+	float: left;
+	font-size: 4em;
+	font-weight: bold;
+	font-family: 'Rock Salt', cursive;
+}
