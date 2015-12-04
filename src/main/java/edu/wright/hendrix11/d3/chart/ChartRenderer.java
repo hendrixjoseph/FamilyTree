@@ -37,6 +37,7 @@ public class ChartRenderer extends MasterRenderer
 
     /**
      * {@inheritDoc}
+     *
      * @throws java.io.IOException
      */
     @Override

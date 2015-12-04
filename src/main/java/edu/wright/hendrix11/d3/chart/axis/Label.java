@@ -39,7 +39,6 @@ public abstract class Label
     }
 
     /**
-     *
      * @return
      */
     public String getText()
@@ -48,7 +47,6 @@ public abstract class Label
     }
 
     /**
-     *
      * @param text
      */
     public void setText(String text)
@@ -57,7 +55,6 @@ public abstract class Label
     }
 
     /**
-     *
      * @return
      */
     public boolean hasText()

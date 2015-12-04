@@ -65,7 +65,6 @@ public class GenderStatsBean implements Serializable
     }
 
     /**
-     *
      * @return
      */
     public ChartModel getGenderModel()
@@ -74,7 +73,6 @@ public class GenderStatsBean implements Serializable
     }
 
     /**
-     *
      * @return
      */
     public List<GenderAges> getGenderAges()
@@ -91,7 +89,6 @@ public class GenderStatsBean implements Serializable
         private String gender;
 
         /**
-         *
          * @param gender
          * @param age
          */
@@ -102,7 +99,6 @@ public class GenderStatsBean implements Serializable
         }
 
         /**
-         *
          * @param gender
          * @param age
          */
@@ -113,7 +109,6 @@ public class GenderStatsBean implements Serializable
         }
 
         /**
-         *
          * @return
          */
         public String getGender()
@@ -122,7 +117,6 @@ public class GenderStatsBean implements Serializable
         }
 
         /**
-         *
          * @return
          */
         public double getAge()
@@ -131,7 +125,6 @@ public class GenderStatsBean implements Serializable
         }
 
         /**
-         *
          * @return
          */
         public double getDifference()
@@ -140,7 +133,6 @@ public class GenderStatsBean implements Serializable
         }
 
         /**
-         *
          * @return
          */
         public double getPercentDifference()

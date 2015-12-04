@@ -21,7 +21,7 @@ public class YPadding implements Padding
     int bottom;
 
     /**
-     * @param top the padding on the top, in pixels
+     * @param top    the padding on the top, in pixels
      * @param bottom
      */
     public YPadding(int top, int bottom)

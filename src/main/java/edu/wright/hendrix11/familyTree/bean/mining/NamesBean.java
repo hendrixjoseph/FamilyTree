@@ -48,7 +48,6 @@ public class NamesBean implements Serializable
     }
 
     /**
-     *
      * @return
      */
     public Map<String, Integer> getFirstNameFrequency()
@@ -57,7 +56,6 @@ public class NamesBean implements Serializable
     }
 
     /**
-     *
      * @return
      */
     public Map<String, Integer> getLastNameFrequency()

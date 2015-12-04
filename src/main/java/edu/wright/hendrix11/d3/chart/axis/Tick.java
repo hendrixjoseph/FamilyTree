@@ -15,7 +15,6 @@ package edu.wright.hendrix11.d3.chart.axis;
 import java.util.StringJoiner;
 
 /**
- *
  * @author Joe
  */
 public class Tick

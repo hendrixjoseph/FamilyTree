@@ -35,6 +35,7 @@ public class WordCloudRenderer extends MasterRenderer
 
     /**
      * {@inheritDoc}
+     *
      * @throws java.io.IOException
      */
     @Override

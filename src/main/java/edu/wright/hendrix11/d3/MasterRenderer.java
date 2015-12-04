@@ -24,11 +24,11 @@ public abstract class MasterRenderer extends Renderer
 {
 
     /**
-     *
      * @param writer
      * @param id
      * @param styleClass
      * @param style
+     *
      * @throws IOException
      */
     protected void encodeContainerDiv(ResponseWriter writer, String id, String styleClass, String style) throws IOException
@@ -53,8 +53,8 @@ public abstract class MasterRenderer extends Renderer
     }
 
     /**
-     *
      * @param writer
+     *
      * @throws IOException
      */
     protected void startScript(ResponseWriter writer) throws IOException
@@ -64,8 +64,8 @@ public abstract class MasterRenderer extends Renderer
     }
 
     /**
-     *
      * @param writer
+     *
      * @throws IOException
      */
     protected void endScript(ResponseWriter writer) throws IOException

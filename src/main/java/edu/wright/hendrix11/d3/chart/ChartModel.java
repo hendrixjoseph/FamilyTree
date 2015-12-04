@@ -93,6 +93,16 @@ public class ChartModel
     }
 
     /**
+     * Sets the x-axis.
+     *
+     * @param xAxis the x-axis
+     */
+    public void setxAxis(XAxis xAxis)
+    {
+        this.xAxis = xAxis;
+    }
+
+    /**
      * Sets the text that will be displayed along the x axis.
      *
      * @param label the text that will be displayed along the x axis
@@ -110,16 +120,6 @@ public class ChartModel
     }
 
     /**
-     * Sets the x-axis.
-     *
-     * @param xAxis the x-axis
-     */
-    public void setxAxis(XAxis xAxis)
-    {
-        this.xAxis = xAxis;
-    }
-
-    /**
      * Returns the y-axis.
      *
      * @return the y-axis
@@ -127,6 +127,16 @@ public class ChartModel
     public YAxis getyAxis()
     {
         return yAxis;
+    }
+
+    /**
+     * Sets the y-axis.
+     *
+     * @param yAxis the y-axis
+     */
+    public void setyAxis(YAxis yAxis)
+    {
+        this.yAxis = yAxis;
     }
 
     /**
@@ -144,16 +154,6 @@ public class ChartModel
         {
             this.yAxis = new YAxis(label);
         }
-    }
-
-    /**
-     * Sets the y-axis.
-     *
-     * @param yAxis the y-axis
-     */
-    public void setyAxis(YAxis yAxis)
-    {
-        this.yAxis = yAxis;
     }
 
     /**
