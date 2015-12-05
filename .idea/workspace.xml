@@ -7,8 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e01fcdf7-fba9-4a15-b4e3-2d3aaec35e67" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/resource/css/familyTree.css" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/resource/css/familyTree.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/site/site.xml" afterPath="$PROJECT_DIR$/src/site/site.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/site/resources/css/site.css" afterPath="$PROJECT_DIR$/src/site/resources/css/site.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="familyTree.iws" />
@@ -97,7 +96,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/GenderStatsBean.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="110" column="48" selection-start-line="110" selection-start-column="48" selection-end-line="110" selection-end-column="48" />
+              <caret line="140" column="9" selection-start-line="140" selection-start-column="9" selection-end-line="140" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -107,17 +106,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/NamesBean.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="264" column="50" selection-start-line="264" selection-start-column="50" selection-end-line="264" selection-end-column="50" />
+              <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -133,21 +122,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="familyTree.css" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/resource/css/familyTree.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6367713">
-              <caret line="42" column="27" selection-start-line="42" selection-start-column="27" selection-end-line="42" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="site.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="site.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/site/resources/css/site.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+            <state vertical-scroll-proportion="0.68609864">
+              <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -238,9 +217,9 @@
         <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/NamesBean.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/importer/Importer.java" />
-        <option value="$PROJECT_DIR$/src/site/resources/css/site.css" />
         <option value="$PROJECT_DIR$/src/site/site.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/resource/css/familyTree.css" />
+        <option value="$PROJECT_DIR$/src/site/resources/css/site.css" />
       </list>
     </option>
   </component>
@@ -677,7 +656,7 @@
       <recent name="edu.wright.hendrix11.c3" />
     </key>
   </component>
-  <component name="RunManager" selected="GlassFish Server.GlassFish">
+  <component name="RunManager" selected="Maven.familyTree [site]">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
@@ -1114,7 +1093,7 @@
       <workItem from="1448421503539" duration="11391000" />
       <workItem from="1448509058331" duration="19588000" />
       <workItem from="1448654460125" duration="1109000" />
-      <workItem from="1448908453514" duration="25760000" />
+      <workItem from="1448908453514" duration="27874000" />
     </task>
     <task id="LOCAL-00001" summary="whole bunch of EJB nonsense just to update...">
       <created>1445570986124</created>
@@ -1132,7 +1111,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="367107000" />
+    <option name="totallyTimeSpent" value="369221000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="122" y="12" width="1380" height="821" extended-state="0" />
@@ -1509,7 +1488,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/GenderStatsBean.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="110" column="48" selection-start-line="110" selection-start-column="48" selection-end-line="110" selection-end-column="48" />
+          <caret line="140" column="9" selection-start-line="140" selection-start-column="9" selection-end-line="140" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -1527,7 +1506,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/NamesBean.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
+          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1564,10 +1543,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/resources/css/site.css">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/resource/css/familyTree.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+        <state vertical-scroll-proportion="0.44618833">
+          <caret line="37" column="25" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
           <folding />
         </state>
       </provider>
@@ -1580,10 +1559,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/resource/css/familyTree.css">
+    <entry file="file://$PROJECT_DIR$/src/site/resources/css/site.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6367713">
-          <caret line="42" column="27" selection-start-line="42" selection-start-column="27" selection-end-line="42" selection-end-column="27" />
+        <state vertical-scroll-proportion="0.68609864">
+          <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
           <folding />
         </state>
       </provider>
