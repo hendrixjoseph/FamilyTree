@@ -1,6 +1,21 @@
 #bannerLeft {
+	margin-left: 2%;
 	float: left;
 	font-size: 4em;
 	font-weight: bold;
 	font-family: 'Rock Salt', cursive;
+}
+
+#bannerRight {
+	margin-right: 2%;
+}
+
+.section {
+	padding: 0;
+}
+
+
+
+h2, h3, h4, #leftColumn, .source {
+	border-radius: 10px;
 }
