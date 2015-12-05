@@ -196,7 +196,7 @@ public class GedcomImporter extends Importer
                 {
                     places[i] = getCemetery(info[i], places[i + 1]);
                 }
-                else if ( info[i].contains("County") || ( i == 1 && places.length == 3 ) || ( i == 2 && places.length == 4 ) )
+                else if ( info[i].endsWith("County") || ( i == 1 && places.length == 3 ) || ( i == 2 && places.length == 4 ) )
                 {
                     places[i] = getCounty(info[i], (State) places[i + 1]);
                 }
