@@ -70,7 +70,7 @@ public class GedcomImporter extends Importer
     @Override
     protected void processData()
     {
-        CharMatcher idGetter = CharMatcher.is('@'');
+        CharMatcher idGetter = CharMatcher.is('@');
         
         try ( LineNumberReader in = new LineNumberReader(file) )
         {
