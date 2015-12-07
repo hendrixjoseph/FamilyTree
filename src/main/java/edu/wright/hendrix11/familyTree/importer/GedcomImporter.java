@@ -177,7 +177,7 @@ public class GedcomImporter extends Importer
             {
                 for ( KnownCountry knownCountry : KnownCountry.values() )
                 {
-                    if ( knownCountry.name().equals(info[i]) )
+                    if ( knownCountry.toString().equals(info[i]) )
                     {
                         places[i] = getCountry(info[i]);
                     }
@@ -198,7 +198,14 @@ public class GedcomImporter extends Importer
                 }
                 else if ( info[i].endsWith("County") || ( i == 1 && places.length == 3 ) || ( i == 2 && places.length == 4 ) )
                 {
-                    places[i] = getCounty(info[i], (State) places[i + 1]);
+                    if( places[i + 1] instanceof Country)
+                    {
+                        places[i] = getState(info[i], (Country) places[i + 1]);
+                    }
+                    else
+                    {
+                        places[i] = getCounty(info[i], (State) places[i + 1]);
+                    }
                 }
                 else
                 {

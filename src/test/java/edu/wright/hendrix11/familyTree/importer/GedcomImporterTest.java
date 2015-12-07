@@ -66,7 +66,7 @@ public class GedcomImporterTest
     @Test
     public void test() throws FileNotFoundException
     {
-        GedcomImporter importer = new GedcomImporter("hendrixfamily.fte.GED");
+        GedcomImporter importer = new GedcomImporter("thurmer.fte.GED");
         importer.processData(em);
     }
 }

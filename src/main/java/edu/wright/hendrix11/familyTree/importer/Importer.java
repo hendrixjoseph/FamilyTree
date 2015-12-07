@@ -219,6 +219,25 @@ public abstract class Importer
         return state;
     }
 
+    protected Place getState(String name, Country region)
+    {
+        TypedQuery<State> stateQuery = em.createNamedQuery(State.FIND_BY_NAME_AND_REGION, State.class);
+        stateQuery.setParameter("name", name);
+        stateQuery.setParameter("region", region);
+        List<State> stateList = stateQuery.getResultList();
+
+        if(stateList.isEmpty())
+        {
+            State state = new State(name);
+            state.setRegion(region);
+            return state;
+        }
+        else
+        {
+            return stateList.get(0);
+        }
+    }
+
     /**
      *
      */
@@ -253,7 +272,15 @@ public abstract class Importer
         /**
          *
          */
-        Spain
+        Spain,
+
+        South_Wales;
+
+        @Override
+        public String toString()
+        {
+            return name().replaceAll("_"," ");
+        }
     }
 
 }
