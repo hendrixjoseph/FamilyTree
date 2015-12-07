@@ -70,6 +70,8 @@ public class GedcomImporter extends Importer
     @Override
     protected void processData()
     {
+        CharMatcher idGetter = CharMatcher.is('@'');
+        
         try ( LineNumberReader in = new LineNumberReader(file) )
         {
             Person person = null;
@@ -92,8 +94,9 @@ public class GedcomImporter extends Importer
                     case NEW_PERSON:
                         person = new Person();
 
-                        String[] split = nextLine.split("@");
-                        String id = split[1];
+                        String id = idGetter.trimFrom(nextLine);
+                        //String[] split = nextLine.split("@");
+                        //String id = split[1];
 
                         people.put(id, person);
                         break;
@@ -110,18 +113,21 @@ public class GedcomImporter extends Importer
                         switch ( familyInfo )
                         {
                             case HUSB:
-                                split = nextLine.split("@");
-                                id = split[1];
+                                //split = nextLine.split("@");
+                                //id = split[1];
+                                id = idGetter.trimFrom(nextLine);
                                 husband = people.get(id);
                                 break;
                             case WIFE:
-                                split = nextLine.split("@");
-                                id = split[1];
+                                //split = nextLine.split("@");
+                                //id = split[1];
+                                id = idGetter.trimFrom(nextLine);
                                 wife = people.get(id);
                                 break;
                             case CHILD:
-                                split = nextLine.split("@");
-                                id = split[1];
+                                //split = nextLine.split("@");
+                                //id = split[1];
+                                id = idGetter.trimFrom(nextLine);
                                 child = people.get(id);
 
                                 child.setFather(husband);
@@ -282,7 +288,8 @@ public class GedcomImporter extends Importer
         switch ( personInfo )
         {
             case NAME:
-                info = info.replace("/", "");
+                info = CharMatcher.anyOf("/").removeFrom(info);
+                //info = info.replace("/", "");
                 person.setName(info);
 
                 personInfo = Mode.NONE;
