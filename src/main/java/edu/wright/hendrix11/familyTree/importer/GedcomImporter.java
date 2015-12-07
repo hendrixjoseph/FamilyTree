@@ -12,6 +12,9 @@
 
 package edu.wright.hendrix11.familyTree.importer;
 
+import com.google.common.base.CharMatcher;
+import com.google.common.base.Splitter;
+
 import edu.wright.hendrix11.familyTree.entity.Gender;
 import edu.wright.hendrix11.familyTree.entity.Person;
 import edu.wright.hendrix11.familyTree.entity.event.Birth;
@@ -158,8 +161,10 @@ public class GedcomImporter extends Importer
 
     private Place processPlace()
     {
-        String[] info = datePlace.restOf(nextLine).split(",");
-        Place[] places = new Place[info.length];
+        List<String> info = Splitter.on(',').trimResults().omitEmptyStrings().splitToList(datePlace.restOf(nextLine));
+
+        //String[] info = datePlace.restOf(nextLine).split(",");
+        Place[] places = new Place[info.size()];
 
         Cemetery cemetery;
         City city;
@@ -169,47 +174,47 @@ public class GedcomImporter extends Importer
 
         boolean first = true;
 
-        for ( int i = info.length - 1; i >= 0; i-- )
+        for ( int i = info.size() - 1; i >= 0; i-- )
         {
-            info[i] = info[i].trim();
+            //info[i] = info[i].trim();
 
             if ( first )
             {
                 for ( KnownCountry knownCountry : KnownCountry.values() )
                 {
-                    if ( knownCountry.toString().equals(info[i]) )
+                    if ( knownCountry.toString().equals(info.get(i)) )
                     {
-                        places[i] = getCountry(info[i]);
+                        places[i] = getCountry(info.get(i));
                     }
                 }
 
                 if ( places[i] == null )
                 {
-                    places[i] = getState(info[i]);
+                    places[i] = getState(info.get(i));
                 }
 
                 first = false;
             }
             else
             {
-                if ( info[i].contains("Cemetery") )
+                if ( info.get(i).contains("Cemetery") )
                 {
-                    places[i] = getCemetery(info[i], places[i + 1]);
+                    places[i] = getCemetery(info.get(i), places[i + 1]);
                 }
-                else if ( info[i].endsWith("County") || ( i == 1 && places.length == 3 ) || ( i == 2 && places.length == 4 ) )
+                else if ( info.get(i).endsWith("County") || ( i == 1 && places.length == 3 ) || ( i == 2 && places.length == 4 ) )
                 {
                     if( places[i + 1] instanceof Country)
                     {
-                        places[i] = getState(info[i], (Country) places[i + 1]);
+                        places[i] = getState(info.get(i), (Country) places[i + 1]);
                     }
                     else
                     {
-                        places[i] = getCounty(info[i], (State) places[i + 1]);
+                        places[i] = getCounty(info.get(i), (State) places[i + 1]);
                     }
                 }
                 else
                 {
-                    places[i] = getCity(info[i], places[i + 1]);
+                    places[i] = getCity(info.get(i), places[i + 1]);
                 }
             }
         }
@@ -223,9 +228,10 @@ public class GedcomImporter extends Importer
 
         event.setAbout(dateString.contains("ABT"));
 
-        dateString = dateString.replace("ABT ", "");
+        dateString = CharMatcher.anyOf("ABT").removeFrom(dateString);
 
-        String[] tokens = dateString.split(" ");
+        Iterable<String> tokens = Splitter.on(' ').split(dateString);
+        //String[] tokens = dateString.split(" ");
 
         for ( String token : tokens )
         {
