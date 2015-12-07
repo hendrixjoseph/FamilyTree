@@ -12,6 +12,8 @@
 
 package edu.wright.hendrix11.d3;
 
+import com.google.common.base.Joiner;
+
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.Renderer;
 
@@ -22,6 +24,7 @@ import java.io.IOException;
  */
 public abstract class MasterRenderer extends Renderer
 {
+    protected static final Joiner commaJoiner = Joiner.on(',');
 
     /**
      * @param writer
