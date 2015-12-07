@@ -276,7 +276,7 @@ public class GedcomImporter extends Importer
         switch ( personInfo )
         {
             case NAME:
-                info = info.replaceAll("/", "");
+                info = info.replace("/", "");
                 person.setName(info);
 
                 personInfo = Mode.NONE;
