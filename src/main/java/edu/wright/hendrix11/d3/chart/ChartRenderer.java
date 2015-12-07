@@ -13,6 +13,7 @@
 package edu.wright.hendrix11.d3.chart;
 
 import org.apache.commons.lang3.StringUtils;
+import com.google.common.base.Joiner;
 
 import edu.wright.hendrix11.d3.MasterRenderer;
 
@@ -87,7 +88,8 @@ public class ChartRenderer extends MasterRenderer
         if ( model.getColors() != null && !model.getColors().isEmpty() )
         {
             writer.write(",color:{pattern:['");
-            writer.write(StringUtils.join(model.getColors(), "','"));
+            writer.write(commaJoiner.join(model.getColors()));
+            //writer.write(StringUtils.join(model.getColors(), "','"));
             writer.write("']}");
         }
     }
@@ -222,7 +224,8 @@ public class ChartRenderer extends MasterRenderer
         writer.write("',");
 
         writer.write("'");
-        writer.write(StringUtils.join(model.getAxisLabels(), "','"));
+        writer.write(commaJoiner.join(model.getAxisLabels()));
+        //writer.write(StringUtils.join(model.getAxisLabels(), "','"));
         writer.write("'");
 
         writer.write("],['");
@@ -237,7 +240,7 @@ public class ChartRenderer extends MasterRenderer
         }
 
         writer.write("','");
-        writer.write(StringUtils.join(model.getData().values(), "','"));
+        writer.write(commaJoiner.join(model.getData().values()));
         writer.write("']]");
     }
 
@@ -286,7 +289,7 @@ public class ChartRenderer extends MasterRenderer
             sb.append("'");
             sb.append(label);
             sb.append("','");
-            sb.append(StringUtils.join(model.getArrayData(label), "','"));
+            sb.append(commaJoiner.join(model.getArrayData(label)));
             sb.append("']");
 
             data.add(sb);
@@ -295,9 +298,9 @@ public class ChartRenderer extends MasterRenderer
         writer.write("rows:[['");
         writer.write(x);
         writer.write("','");
-        writer.write(StringUtils.join(barLabels, "','"));
+        writer.write(commaJoiner.join(barLabels));
         writer.write("'],");
-        writer.write(StringUtils.join(data, ","));
+        writer.write(commaJoiner.join(data));
 
         writer.write("]");
     }
