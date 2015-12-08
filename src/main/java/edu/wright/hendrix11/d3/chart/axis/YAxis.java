@@ -48,14 +48,6 @@ public class YAxis extends Axis
     /**
      * @param label
      */
-    public void setLabel(YLabel label)
-    {
-        super.setLabel(label);
-    }
-
-    /**
-     * @param label
-     */
     public void setLabel(String label)
     {
         if ( getLabel() != null )
@@ -66,6 +58,14 @@ public class YAxis extends Axis
         {
             super.setLabel(new YLabel(label));
         }
+    }
+
+    /**
+     * @param label
+     */
+    public void setLabel(YLabel label)
+    {
+        super.setLabel(label);
     }
 
     /**

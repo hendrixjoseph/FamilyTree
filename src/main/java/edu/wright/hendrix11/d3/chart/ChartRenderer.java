@@ -12,9 +12,6 @@
 
 package edu.wright.hendrix11.d3.chart;
 
-import org.apache.commons.lang3.StringUtils;
-import com.google.common.base.Joiner;
-
 import edu.wright.hendrix11.d3.MasterRenderer;
 
 import javax.faces.component.UIComponent;

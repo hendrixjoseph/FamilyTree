@@ -14,6 +14,7 @@ package edu.wright.hendrix11.familyTree.importer;
 
 import com.google.common.base.CharMatcher;
 import com.google.common.base.Splitter;
+import com.google.common.collect.Lists;
 
 import edu.wright.hendrix11.familyTree.entity.Gender;
 import edu.wright.hendrix11.familyTree.entity.Person;
@@ -70,8 +71,6 @@ public class GedcomImporter extends Importer
     @Override
     protected void processData()
     {
-        CharMatcher idGetter = CharMatcher.is('@');
-        
         try ( LineNumberReader in = new LineNumberReader(file) )
         {
             Person person = null;
@@ -94,7 +93,7 @@ public class GedcomImporter extends Importer
                     case NEW_PERSON:
                         person = new Person();
 
-                        String id = idGetter.trimFrom(nextLine);
+                        String id = captureId(nextLine);
                         //String[] split = nextLine.split("@");
                         //String id = split[1];
 
@@ -115,19 +114,19 @@ public class GedcomImporter extends Importer
                             case HUSB:
                                 //split = nextLine.split("@");
                                 //id = split[1];
-                                id = idGetter.trimFrom(nextLine);
+                                id = captureId(nextLine);
                                 husband = people.get(id);
                                 break;
                             case WIFE:
                                 //split = nextLine.split("@");
                                 //id = split[1];
-                                id = idGetter.trimFrom(nextLine);
+                                id = captureId(nextLine);
                                 wife = people.get(id);
                                 break;
                             case CHILD:
                                 //split = nextLine.split("@");
                                 //id = split[1];
-                                id = idGetter.trimFrom(nextLine);
+                                id = captureId(nextLine);
                                 child = people.get(id);
 
                                 child.setFather(husband);
@@ -165,9 +164,16 @@ public class GedcomImporter extends Importer
         LOG.log(Level.INFO, "Done! {0} marriages read in!", marriages.size());
     }
 
+    private String captureId(String string)
+    {
+        return string.substring(string.indexOf('@') + 1, string.lastIndexOf('@'));
+    }
+
     private Place processPlace()
     {
-        List<String> info = Splitter.on(',').trimResults().omitEmptyStrings().splitToList(datePlace.restOf(nextLine));
+        //List<String> info = Splitter.on(',').trimResults().omitEmptyStrings().splitToList(datePlace.restOf(nextLine));
+        Iterable<String> split = Splitter.on(',').trimResults().omitEmptyStrings().split(datePlace.restOf(nextLine));
+        List<String> info = Lists.newArrayList(split);
 
         //String[] info = datePlace.restOf(nextLine).split(",");
         Place[] places = new Place[info.size()];
@@ -209,7 +215,7 @@ public class GedcomImporter extends Importer
                 }
                 else if ( info.get(i).endsWith("County") || ( i == 1 && places.length == 3 ) || ( i == 2 && places.length == 4 ) )
                 {
-                    if( places[i + 1] instanceof Country)
+                    if ( places[i + 1] instanceof Country )
                     {
                         places[i] = getState(info.get(i), (Country) places[i + 1]);
                     }

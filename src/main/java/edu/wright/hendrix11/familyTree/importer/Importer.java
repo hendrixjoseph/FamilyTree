@@ -12,6 +12,9 @@
 
 package edu.wright.hendrix11.familyTree.importer;
 
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
+
 import edu.wright.hendrix11.familyTree.entity.place.Cemetery;
 import edu.wright.hendrix11.familyTree.entity.place.City;
 import edu.wright.hendrix11.familyTree.entity.place.Country;
@@ -20,11 +23,11 @@ import edu.wright.hendrix11.familyTree.entity.place.Place;
 import edu.wright.hendrix11.familyTree.entity.place.State;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.List;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -50,6 +53,11 @@ public abstract class Importer
      *
      */
     protected int lineNumber;
+    private Multimap<String, Cemetery> cemeteries = ArrayListMultimap.create();
+    private Multimap<String, City> cities = ArrayListMultimap.create();
+    private Multimap<String, County> counties = ArrayListMultimap.create();
+    private HashMap<String, Country> countries = new HashMap<>();
+    private Multimap<String, State> states = ArrayListMultimap.create();
 
     /**
      * @param fileName
@@ -102,19 +110,14 @@ public abstract class Importer
      */
     protected Country getCountry(String name)
     {
-        TypedQuery<Country> countryQuery = em.createNamedQuery(Country.FIND_BY_NAME, Country.class);
-        List<Country> countryList = countryQuery.setParameter("name", name).getResultList();
-        Country country;
+        Country country = countries.get(name);
 
-        if ( countryList.isEmpty() )
+        if ( country == null )
         {
             country = new Country();
             country.setName(name);
+            countries.put(name, country);
             em.persist(country);
-        }
-        else
-        {
-            country = countryList.get(0);
         }
 
         return country;
@@ -128,8 +131,7 @@ public abstract class Importer
      */
     protected County getCounty(String name, State region)
     {
-        TypedQuery<County> countyQuery = em.createNamedQuery(County.FIND_BY_NAME, County.class);
-        List<County> countyList = countyQuery.setParameter("name", name).getResultList();
+        Collection<County> countyList = counties.get(name);
 
         for ( County county : countyList )
         {
@@ -141,6 +143,7 @@ public abstract class Importer
 
         County county = new County(name);
         county.setRegion(region);
+        counties.put(name, county);
         return county;
     }
 
@@ -152,8 +155,7 @@ public abstract class Importer
      */
     protected City getCity(String name, Place region)
     {
-        TypedQuery<City> cityQuery = em.createNamedQuery(City.FIND_BY_NAME, City.class);
-        List<City> cityList = cityQuery.setParameter("name", name).getResultList();
+        Collection<City> cityList = cities.get(name);
 
         for ( City city : cityList )
         {
@@ -165,6 +167,7 @@ public abstract class Importer
 
         City city = new City(name);
         city.setRegion(region);
+        cities.put(name, city);
         return city;
     }
 
@@ -176,8 +179,7 @@ public abstract class Importer
      */
     protected Cemetery getCemetery(String name, Place region)
     {
-        TypedQuery<Cemetery> cemeteryQuery = em.createNamedQuery(Cemetery.FIND_BY_NAME, Cemetery.class);
-        List<Cemetery> cemeteryList = cemeteryQuery.setParameter("name", name).getResultList();
+        Collection<Cemetery> cemeteryList = cemeteries.get(name);
 
         for ( Cemetery cemetery : cemeteryList )
         {
@@ -189,6 +191,7 @@ public abstract class Importer
 
         Cemetery cemetery = new Cemetery(name);
         cemetery.setRegion(region);
+        cemeteries.put(name, cemetery);
         return cemetery;
     }
 
@@ -199,9 +202,8 @@ public abstract class Importer
      */
     protected State getState(String name)
     {
-        TypedQuery<State> stateQuery = em.createNamedQuery(State.FIND_BY_NAME, State.class);
-        stateQuery.setParameter("name", name);
-        List<State> stateList = stateQuery.getResultList();
+        Collection<State> stateList = states.get(name);
+
         State state;
 
         if ( stateList.isEmpty() )
@@ -209,11 +211,12 @@ public abstract class Importer
             state = new State();
             state.setName(name);
             state.setRegion(getCountry("USA"));
+            states.put(name, state);
             em.persist(state);
         }
         else
         {
-            state = stateList.get(0);
+            state = stateList.iterator().next();
         }
 
         return state;
@@ -221,21 +224,20 @@ public abstract class Importer
 
     protected Place getState(String name, Country region)
     {
-        TypedQuery<State> stateQuery = em.createNamedQuery(State.FIND_BY_NAME_AND_REGION, State.class);
-        stateQuery.setParameter("name", name);
-        stateQuery.setParameter("region", region);
-        List<State> stateList = stateQuery.getResultList();
+        Collection<State> stateList = states.get(name);
 
-        if(stateList.isEmpty())
+        for ( State state : stateList )
         {
-            State state = new State(name);
-            state.setRegion(region);
-            return state;
+            if ( state.getRegion().equals(region) )
+            {
+                return state;
+            }
         }
-        else
-        {
-            return stateList.get(0);
-        }
+
+        State state = new State(name);
+        state.setRegion(region);
+        states.put(name, state);
+        return state;
     }
 
     /**
@@ -279,7 +281,7 @@ public abstract class Importer
         @Override
         public String toString()
         {
-            return name().replaceAll("_"," ");
+            return name().replaceAll("_", " ");
         }
     }
 

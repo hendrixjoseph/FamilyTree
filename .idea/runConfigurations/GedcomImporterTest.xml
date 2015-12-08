@@ -25,8 +25,9 @@
     <envs />
     <patterns />
     <method>
+      <option name="Make" enabled="false" />
       <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="clean" />
-      <option name="Make" enabled="true" />
+      <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="-Dtest=GedcomImporterTest test" />
     </method>
   </configuration>
 </component>
