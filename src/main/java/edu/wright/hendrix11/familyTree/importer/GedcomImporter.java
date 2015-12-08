@@ -92,11 +92,7 @@ public class GedcomImporter extends Importer
                 {
                     case NEW_PERSON:
                         person = new Person();
-
                         String id = captureId(nextLine);
-                        //String[] split = nextLine.split("@");
-                        //String id = split[1];
-
                         people.put(id, person);
                         break;
                     case PERSON:
@@ -112,20 +108,14 @@ public class GedcomImporter extends Importer
                         switch ( familyInfo )
                         {
                             case HUSB:
-                                //split = nextLine.split("@");
-                                //id = split[1];
                                 id = captureId(nextLine);
                                 husband = people.get(id);
                                 break;
                             case WIFE:
-                                //split = nextLine.split("@");
-                                //id = split[1];
                                 id = captureId(nextLine);
                                 wife = people.get(id);
                                 break;
                             case CHILD:
-                                //split = nextLine.split("@");
-                                //id = split[1];
                                 id = captureId(nextLine);
                                 child = people.get(id);
 
@@ -171,11 +161,9 @@ public class GedcomImporter extends Importer
 
     private Place processPlace()
     {
-        //List<String> info = Splitter.on(',').trimResults().omitEmptyStrings().splitToList(datePlace.restOf(nextLine));
         Iterable<String> split = Splitter.on(',').trimResults().omitEmptyStrings().split(datePlace.restOf(nextLine));
         List<String> info = Lists.newArrayList(split);
 
-        //String[] info = datePlace.restOf(nextLine).split(",");
         Place[] places = new Place[info.size()];
 
         Cemetery cemetery;
@@ -188,8 +176,6 @@ public class GedcomImporter extends Importer
 
         for ( int i = info.size() - 1; i >= 0; i-- )
         {
-            //info[i] = info[i].trim();
-
             if ( first )
             {
                 for ( KnownCountry knownCountry : KnownCountry.values() )
@@ -243,7 +229,6 @@ public class GedcomImporter extends Importer
         dateString = CharMatcher.anyOf("ABT").removeFrom(dateString);
 
         Iterable<String> tokens = Splitter.on(' ').split(dateString);
-        //String[] tokens = dateString.split(" ");
 
         for ( String token : tokens )
         {
@@ -295,7 +280,6 @@ public class GedcomImporter extends Importer
         {
             case NAME:
                 info = CharMatcher.anyOf("/").removeFrom(info);
-                //info = info.replace("/", "");
                 person.setName(info);
 
                 personInfo = Mode.NONE;
