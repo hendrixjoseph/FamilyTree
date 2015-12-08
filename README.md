@@ -142,11 +142,11 @@ This project is for personal academic purposes. I don't care what you do with it
 
 ----------------------
 
- |
---- |
-[Joseph Hendrix](https://people.wright.edu/hendrix.11) |
-Created for CS7700 Advanced Database Systems |
-Version 2.0 is for CS7720 Data Mining |
-[Wright State University](http://www.wright.edu) |
-[College of Engineering & Computer Science](https://engineering-computer-science.wright.edu) |
-[Department of Computer Science & Engineering](https://engineering-computer-science.wright.edu/computer-science-and-engineering) |
+<table>
+<tr><td><a href="https://people.wright.edu/hendrix.11">Joseph Hendrix</a></td></tr>
+<tr><td>Created for CS7700 Advanced Database Systems</td></tr>
+<tr><td>Version 2.0 is for CS7720 Data Mining</td></tr>
+<tr><td><a href="http://www.wright.edu">Wright State University</a></td></tr>
+<tr><td><a href="https://engineering-computer-science.wright.edu">College of Engineering & Computer Science</a></td></tr>
+<tr><td><a href="https://engineering-computer-science.wright.edu/computer-science-and-engineering">Department of Computer Science & Engineering</a></td></tr>
+</table>
