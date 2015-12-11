@@ -128,7 +128,7 @@ public class GedcomImporter extends Importer
                                     marriage = new Marriage();
                                     marriage.setHusband(husband);
                                     marriage.setWife(wife);
-                                    em.persist(marriage);
+                                    //em.persist(marriage);
                                 }
 
                                 if ( !marriages.contains(marriage) )
@@ -288,6 +288,7 @@ public class GedcomImporter extends Importer
                 Gender gender = Gender.getEnum(info);
                 person.setGender(gender);
                 em.persist(person);
+                LOG.log(Level.INFO, person.getId() + ": " + person.getName());
 
                 personInfo = Mode.NONE;
 
@@ -325,7 +326,7 @@ public class GedcomImporter extends Importer
 
     private void outputUnusedLine(Mode mode)
     {
-        LOG.log(Level.INFO, String.format("Mode %s: Line %d not read: %s", mode.name(), lineNumber, nextLine));
+        //LOG.log(Level.INFO, String.format("Mode %s: Line %d not read: %s", mode.name(), lineNumber, nextLine));
     }
 
     private enum Mode

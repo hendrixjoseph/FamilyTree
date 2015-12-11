@@ -425,6 +425,26 @@ public class Person
         return !( parent == null );
     }
 
+    @Override
+    public boolean equals(Object o)
+    {
+        if ( this == o )
+            return true;
+        if ( o == null || getClass() != o.getClass() )
+            return false;
+
+        Person person = (Person) o;
+
+        return id == person.id;
+
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return id;
+    }
+
     /**
      * Returns a string representation of the person, which is just the person's name.
      *

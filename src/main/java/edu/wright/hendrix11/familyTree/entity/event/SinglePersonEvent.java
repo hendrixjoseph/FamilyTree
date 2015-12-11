@@ -94,4 +94,28 @@ public abstract class SinglePersonEvent extends Event
     {
         return type;
     }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if ( this == o )
+            return true;
+        if ( o == null || getClass() != o.getClass() )
+            return false;
+
+        SinglePersonEvent that = (SinglePersonEvent) o;
+
+        if ( !person.equals(that.person) )
+            return false;
+        return type.equals(that.type);
+
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int result = person.hashCode();
+        result = 31 * result + type.hashCode();
+        return result;
+    }
 }

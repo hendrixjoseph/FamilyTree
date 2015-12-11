@@ -88,4 +88,28 @@ public class Marriage extends Event
     {
         this.wife = wife;
     }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if ( this == o )
+            return true;
+        if ( o == null || getClass() != o.getClass() )
+            return false;
+
+        Marriage marriage = (Marriage) o;
+
+        if ( !husband.equals(marriage.husband) )
+            return false;
+        return wife.equals(marriage.wife);
+
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int result = husband.hashCode();
+        result = 31 * result + wife.hashCode();
+        return result;
+    }
 }

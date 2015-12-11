@@ -117,7 +117,6 @@ public abstract class Importer
             country = new Country();
             country.setName(name);
             countries.put(name, country);
-            em.persist(country);
         }
 
         return country;
@@ -212,7 +211,6 @@ public abstract class Importer
             state.setName(name);
             state.setRegion(getCountry("USA"));
             states.put(name, state);
-            em.persist(state);
         }
         else
         {
