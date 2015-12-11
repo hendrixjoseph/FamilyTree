@@ -34,7 +34,7 @@
             <property name="javax.persistence.jdbc.user" value="${dbuser}" />
             <property name="javax.persistence.jdbc.password" value="${dbpassword}" />
             <property name="eclipselink.weaving" value="static" />
-            <property name="e"
+            <!-- property name="eclipselink.logging.level" value="fine" / -->
         </properties>
     </persistence-unit>
 </persistence>

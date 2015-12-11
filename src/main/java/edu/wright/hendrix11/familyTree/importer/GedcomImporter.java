@@ -288,7 +288,6 @@ public class GedcomImporter extends Importer
                 Gender gender = Gender.getEnum(info);
                 person.setGender(gender);
                 em.persist(person);
-                LOG.log(Level.INFO, person.getId() + ": " + person.getName());
 
                 personInfo = Mode.NONE;
 
