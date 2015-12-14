@@ -129,6 +129,18 @@
             <type>java.lang.String</type>
         </attribute>
         <attribute>
+            <description><![CDATA[The number that the dataset will be scaled to, from 0 to this number. See also <code>forceStretch</code>.]]></description>
+            <name>scaleTo</name>
+            <required>false</required>
+            <type>java.lang.Integer</type>
+        </attribute>
+        <attribute>
+            <description><![CDATA[If set to <code>true</code> and <code>scaleTo</code> is defined, then if the largest value is less than <code>scaleTo</code>, the dataset will be scaled. Otherwise, if scaling will only occur if the largest value is larger than <code>scaleTo</code>. Default is <code>false</code>]]></description>
+            <name>forceStretch</name>
+            <required>false</required>
+            <type>java.lang.Boolean</type>
+        </attribute>
+        <attribute>
             <description>The value of the class attribute of the div element that contains the cloud.</description>
             <name>styleClass</name>
             <required>false</required>
