@@ -195,10 +195,10 @@ public abstract class Axis
     {
         StringJoiner sj = new StringJoiner(",");
 
-        for ( String field : map.keySet() )
+        for (Map.Entry<String, Object> entry : map.entrySet())
         {
-            StringBuilder sb = new StringBuilder(field);
-            sb.append(map.get(field));
+            StringBuilder sb = new StringBuilder(entry.getKey());
+            sb.append(entry.getValue());
 
             sj.add(sb);
         }
