@@ -160,6 +160,64 @@ public class WordCloudComponent extends MasterComponent
     }
 
     /**
+     * Sets the number that the dataset will be scaled to, from 0 to this number.
+     *
+     * @param scaleTo the number that the dataset will be scaled to
+     * 
+     * @see #setForceStretch
+     */    
+    public void setScaleTo(Integer scaleTo)
+    {
+      getStateHelper().put(PropertyKeys.scaleTo, scaleTo);
+    }
+    
+    /**
+     * Returns the number that the dataset will be scaled to, from 0 to this number.
+     *
+     * @return the number that the dataset will be scaled to, from 0 to this number.
+     * 
+     * @see #isForceStretch
+     */
+    public Integer getScaleTo()
+    {
+      return (Integer) getStateHelper().eval(PropertyKeys.scaleTo, null);
+    }
+
+    /**
+     * Sets whether to scale the dataset when the largest value is less than the return value
+     * of {@link #getScaleTo}.
+     * 
+     * If set to {@code true} and {@code scaleTo} is defined, then if the largest value 
+     * is less than {@code scaleTo}, the dataset will be scaled. Otherwise, if scaling 
+     * will only occur if the largest value is larger than {@code scaleTo}.
+     *
+     * @param scaleTo whether to scale the dataset when the largest value is not large enough
+     * 
+     * @see #getScaleTo
+     */        
+    public void setForceStretch(Boolean forceStretch)
+    {
+      getStateHelper().put(PropertyKeys.forceStretch, forceStretch);
+    }
+
+    /**
+     * Returns whether to scale the dataset when the largest value is less than the return value
+     * of {@link #getScaleTo}.
+     * 
+     * If set to {@code true} and {@code scaleTo} is defined, then if the largest value 
+     * is less than {@code scaleTo}, the dataset will be scaled. Otherwise, if scaling 
+     * will only occur if the largest value is larger than {@code scaleTo}.
+     *
+     * @return whether to scale the dataset when the largest value is not large enough
+     * 
+     * @see #getScaleTo
+     */
+    public Boolean isForceStretch()
+    {
+      return (Boolean) getStateHelper().eval(PropertyKeys.forceStretch, null);
+    }
+
+    /**
      *
      */
     protected enum PropertyKeys
@@ -188,6 +246,8 @@ public class WordCloudComponent extends MasterComponent
         /**
          *
          */
-        words
+        words,
+        scaleTo,
+        forceStretch
     }
 }
