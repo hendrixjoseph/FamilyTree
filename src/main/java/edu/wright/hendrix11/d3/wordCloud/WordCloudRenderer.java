@@ -33,6 +33,33 @@ public class WordCloudRenderer extends MasterRenderer
 {
     private static final Logger LOG = Logger.getLogger(WordCloudRenderer.class.getName());
 
+    private Map<String, ? extends Number> scaleWords(Map<String, Integer> words, Integer scaleTo, Boolean forceStretch )
+    {
+      int max = scaleTo;
+      
+      for (Integer value : words.values())
+      {
+        max = Math.max(max, value);
+      }
+      
+      if(max == scaleTo || (max < scaleTo && forceStretch != null && !forceStretch))
+      {
+        return words;
+      }
+      
+      Map<String, Double> scaledWords = new LinkedHashMap<>(words.size());
+      
+      double scale = ((double) scaleTo) / max;
+      
+      for(Map.Entry<String, Integer> entry : words.entrySet())
+      {
+        double scaled = entry.getValue() * scale;
+        scaledWords.put(entry.getKey(), scaled);
+      }
+      
+      return scaledWords;
+    }
+
     /**
      * {@inheritDoc}
      *
@@ -43,6 +70,13 @@ public class WordCloudRenderer extends MasterRenderer
     {
         WordCloudComponent cloud = (WordCloudComponent) component;
         ResponseWriter writer = context.getResponseWriter();
+        
+        Map<String, ? extends Number> words = cloud.getWords();
+        
+        if(cloud.getScaleTo() != null)
+        {
+          words = scaleWords(words, cloud.getScaleTo(), cloudisForceStretch());
+        }
 
         String font = cloud.getFont() != null ? cloud.getFont() : "Impact";
 
@@ -57,7 +91,7 @@ public class WordCloudRenderer extends MasterRenderer
         writer.write(",");
         writer.write(cloud.getHeight().toString());
         writer.write("])");
-        encodeWords(writer, cloud.getWords());
+        encodeWords(writer, words);
         encodePadding(writer, cloud.getPadding());
         writer.write(".rotate(function(){return ~~(Math.random()*2)*90;})");
         writer.write(".font('");
@@ -89,25 +123,24 @@ public class WordCloudRenderer extends MasterRenderer
         endScript(writer);
     }
 
-    private void encodeWords(ResponseWriter writer, Map<String, Integer> wordMap) throws IOException
+    private void encodeWords(ResponseWriter writer, Map<String, ? extends Number> wordMap) throws IOException
     {
         writer.write(".words([");
 
         StringJoiner sj = new StringJoiner(",");
 
-        for ( String word : wordMap.keySet() )
+        for (Map.Entry<String, ? extends Number> entry : words.entrySet())
         {
             StringBuilder sb = new StringBuilder("['");
-            sb.append(word);
+            sb.append(entry.getKey());
             sb.append("',");
-            sb.append(wordMap.get(word));
+            sb.append(entry.getValue());
             sb.append("]");
 
             sj.add(sb);
         }
 
         writer.write(sj.toString());
-        //writer.write("'Hello',10], ['world',10], ['normally',10], ['you',10], ['want',10], ['more',10], ['words',10],['than',20],['this',10]");
         writer.write("].map(function(d){return {text:d[0],size:d[1]}}))");
     }
 
