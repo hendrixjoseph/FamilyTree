@@ -137,6 +137,16 @@
 <br>(<i>must evaluate to </i><code>java.lang.String</code>)
 					</td><td class="colLast">The font face for each word.</td>
 </tr>
+<tr id="scaleTo" class="rowColor">
+<td class="colFirst"><a href="#scaleTo"><code>scaleTo</code></a></td><td class="colOne"><code>false</code></td><td class="colOne"><code>javax.el.ValueExpression</code>
+<br>(<i>must evaluate to </i><code>java.lang.Integer</code>)
+					</td><td class="colLast">The number that the dataset will be scaled to, from 0 to this number. See also <code>forceStretch</code>.</td>
+</tr>
+<tr id="forceStretch" class="altColor">
+<td class="colFirst"><a href="#forceStretch"><code>forceStretch</code></a></td><td class="colOne"><code>false</code></td><td class="colOne"><code>javax.el.ValueExpression</code>
+<br>(<i>must evaluate to </i><code>java.lang.Boolean</code>)
+					</td><td class="colLast">If set to <code>true</code> and <code>scaleTo</code> is defined, then if the largest value is less than <code>scaleTo</code>, the dataset will be scaled. Otherwise, if scaling will only occur if the largest value is larger than <code>scaleTo</code>. Default is <code>false</code></td>
+</tr>
 <tr id="styleClass" class="rowColor">
 <td class="colFirst"><a href="#styleClass"><code>styleClass</code></a></td><td class="colOne"><code>false</code></td><td class="colOne"><code>javax.el.ValueExpression</code>
 <br>(<i>must evaluate to </i><code>java.lang.String</code>)
