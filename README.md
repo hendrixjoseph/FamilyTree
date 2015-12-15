@@ -4,6 +4,8 @@
   Replace: ]\(([^:http:#]) with ](https://github.com/hendrixjoseph/FamilyTree/blob/master/\1
 -->
 
+![FamilyTree Icon](src/site/resources/images/Family-Tree-icon-128.png)
+
 # FamilyTree
 
 FamilyTree is a simple web application using JavaServerFaces, Java EE, and a SQL database to load, display, edit, and examine a family tree. It was initially created as a project for CS7700 Advanced Database Systems at Wright State, and is currently being used for CS7720 Data Mining at the same school.
@@ -27,6 +29,7 @@ FamilyTree is a simple web application using JavaServerFaces, Java EE, and a SQL
    * [Desktop Tools](#user-content-desktop-tools)
     * [NetBeans Plugins](#user-content-netbeans-plugins)
     * [Android Tools](#user-content-android-tools)
+* [Icon](#icon)
 * [License](#user-content-license)
 
 ## Contents of Repository
@@ -135,6 +138,14 @@ In addition to the [dependencies](http://hendrixjoseph.github.io/FamilyTree/depe
 * [Quoda](http://www.getquoda.com/)
 
 Tested in [Firefox 39.0](https://www.mozilla.org/en-US/)
+
+## Icon
+
+The FamilyTree Icon (![FamilyTree Icon](src/site/resources/images/Family-Tree-icon-128.png))  is originally from:
+
+http://www.iconarchive.com/show/the-community-icons-by-afterglow/Family-Tree-icon.html
+
+which attributes it to http://www.afterglow.ie.
 
 ## License
 
