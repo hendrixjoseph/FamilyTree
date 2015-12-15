@@ -90,6 +90,14 @@ public class Marriage extends Event
     }
 
     @Override
+    public int hashCode()
+    {
+        int result = husband.hashCode();
+        result = 31 * result + wife.hashCode();
+        return result;
+    }
+
+    @Override
     public boolean equals(Object o)
     {
         if ( this == o )
@@ -103,13 +111,5 @@ public class Marriage extends Event
             return false;
         return wife.equals(marriage.wife);
 
-    }
-
-    @Override
-    public int hashCode()
-    {
-        int result = husband.hashCode();
-        result = 31 * result + wife.hashCode();
-        return result;
     }
 }

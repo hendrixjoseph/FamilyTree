@@ -20,6 +20,7 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.StringJoiner;
 import java.util.logging.Logger;
@@ -33,33 +34,6 @@ public class WordCloudRenderer extends MasterRenderer
 {
     private static final Logger LOG = Logger.getLogger(WordCloudRenderer.class.getName());
 
-    private Map<String, ? extends Number> scaleWords(Map<String, Integer> words, Integer scaleTo, Boolean forceStretch )
-    {
-      int max = scaleTo;
-      
-      for (Integer value : words.values())
-      {
-        max = Math.max(max, value);
-      }
-      
-      if(max == scaleTo || (max < scaleTo && forceStretch != null && !forceStretch))
-      {
-        return words;
-      }
-      
-      Map<String, Double> scaledWords = new LinkedHashMap<>(words.size());
-      
-      double scale = ((double) scaleTo) / max;
-      
-      for(Map.Entry<String, Integer> entry : words.entrySet())
-      {
-        double scaled = entry.getValue() * scale;
-        scaledWords.put(entry.getKey(), scaled);
-      }
-      
-      return scaledWords;
-    }
-
     /**
      * {@inheritDoc}
      *
@@ -70,12 +44,16 @@ public class WordCloudRenderer extends MasterRenderer
     {
         WordCloudComponent cloud = (WordCloudComponent) component;
         ResponseWriter writer = context.getResponseWriter();
-        
-        Map<String, ? extends Number> words = cloud.getWords();
-        
-        if(cloud.getScaleTo() != null)
+
+        Map<String, ? extends Number> words;
+
+        if ( cloud.getScaleTo() != null )
         {
-          words = scaleWords(words, cloud.getScaleTo(), cloudisForceStretch());
+            words = scaleWords(cloud.getWords(), cloud.getScaleTo(), cloud.isForceStretch());
+        }
+        else
+        {
+            words = cloud.getWords();
         }
 
         String font = cloud.getFont() != null ? cloud.getFont() : "Impact";
@@ -123,13 +101,40 @@ public class WordCloudRenderer extends MasterRenderer
         endScript(writer);
     }
 
+    private Map<String, ? extends Number> scaleWords(Map<String, Integer> words, Integer scaleTo, Boolean forceStretch)
+    {
+        int max = scaleTo;
+
+        for ( Integer value : words.values() )
+        {
+            max = Math.max(max, value);
+        }
+
+        if ( max == scaleTo || ( max < scaleTo && forceStretch != null && !forceStretch ) )
+        {
+            return words;
+        }
+
+        Map<String, Double> scaledWords = new LinkedHashMap<>(words.size());
+
+        double scale = ( (double) scaleTo ) / max;
+
+        for ( Map.Entry<String, Integer> entry : words.entrySet() )
+        {
+            double scaled = entry.getValue() * scale;
+            scaledWords.put(entry.getKey(), scaled);
+        }
+
+        return scaledWords;
+    }
+
     private void encodeWords(ResponseWriter writer, Map<String, ? extends Number> wordMap) throws IOException
     {
         writer.write(".words([");
 
         StringJoiner sj = new StringJoiner(",");
 
-        for (Map.Entry<String, ? extends Number> entry : words.entrySet())
+        for ( Map.Entry<String, ? extends Number> entry : wordMap.entrySet() )
         {
             StringBuilder sb = new StringBuilder("['");
             sb.append(entry.getKey());

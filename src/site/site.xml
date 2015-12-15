@@ -39,7 +39,6 @@
         <menu name="Other Documentation">
             <item name="JavaDoc" href="apidocs/index.html" />
             <item name="Tag Documentation" href="vdldoc/index.html" />
-            <item name="ER Diagram" href="documentation/er_diagram.html" />
             <item name="Schema" href="documentation/schema.html" />
             <item name="Screenshots" href="documentation/screenshots.html" />
         </menu>

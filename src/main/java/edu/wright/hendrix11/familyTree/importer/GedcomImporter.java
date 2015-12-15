@@ -128,7 +128,7 @@ public class GedcomImporter extends Importer
                                     marriage = new Marriage();
                                     marriage.setHusband(husband);
                                     marriage.setWife(wife);
-                                    //em.persist(marriage);
+                                    em.persist(marriage);
                                 }
 
                                 if ( !marriages.contains(marriage) )

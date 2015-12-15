@@ -31,7 +31,8 @@ import java.util.logging.Logger;
  * @author Joe Hendrix
  */
 public class InsertSampleDataTest
-{    private static final Logger LOG = Logger.getLogger(InsertSampleDataTest.class.getName());
+{
+    private static final Logger LOG = Logger.getLogger(InsertSampleDataTest.class.getName());
 
     private static EntityManagerFactory emf;
     private EntityManager em;

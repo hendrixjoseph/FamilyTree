@@ -216,7 +216,7 @@
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>2.10</version>
             </plugin>
-            <plugin>
+            <!-- plugin>
                 <groupId>de.empulse.eclipselink</groupId>
                 <artifactId>staticweave-maven-plugin</artifactId>
                 <version>1.0.0</version>
@@ -226,20 +226,20 @@
                         <goals>
                             <goal>weave</goal>
                         </goals>
-                        <!--configuration>
+                        <configuration>
                             <persistenceXMLLocation>META-INF/persistence.xml</persistenceXMLLocation>
                             <logLevel>FINE</logLevel>
-                        </configuration -->
+                        </configuration>
                     </execution>
                 </executions>
                 <dependencies>
                     <dependency>
                         <groupId>org.eclipse.persistence</groupId>
                         <artifactId>org.eclipse.persistence.jpa</artifactId>
-                        <version>2.6.1</version>
+                        <version>2.6.0</version>
                     </dependency>
                 </dependencies>
-            </plugin>
+            </plugin -->
             <plugin>
                 <groupId>com.samaxes.maven</groupId>
                 <artifactId>minify-maven-plugin</artifactId>

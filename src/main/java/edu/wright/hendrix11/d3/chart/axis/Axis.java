@@ -195,7 +195,7 @@ public abstract class Axis
     {
         StringJoiner sj = new StringJoiner(",");
 
-        for (Map.Entry<String, Object> entry : map.entrySet())
+        for ( Map.Entry<String, Object> entry : map.entrySet() )
         {
             StringBuilder sb = new StringBuilder(entry.getKey());
             sb.append(entry.getValue());

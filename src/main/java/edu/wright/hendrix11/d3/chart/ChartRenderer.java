@@ -85,8 +85,7 @@ public class ChartRenderer extends MasterRenderer
         if ( model.getColors() != null && !model.getColors().isEmpty() )
         {
             writer.write(",color:{pattern:['");
-            writer.write(commaJoiner.join(model.getColors()));
-            //writer.write(StringUtils.join(model.getColors(), "','"));
+            writer.write(commaQuoteJoiner.join(model.getColors()));
             writer.write("']}");
         }
     }
@@ -221,8 +220,7 @@ public class ChartRenderer extends MasterRenderer
         writer.write("',");
 
         writer.write("'");
-        writer.write(commaJoiner.join(model.getAxisLabels()));
-        //writer.write(StringUtils.join(model.getAxisLabels(), "','"));
+        writer.write(commaQuoteJoiner.join(model.getAxisLabels()));
         writer.write("'");
 
         writer.write("],['");
@@ -237,7 +235,7 @@ public class ChartRenderer extends MasterRenderer
         }
 
         writer.write("','");
-        writer.write(commaJoiner.join(model.getData().values()));
+        writer.write(commaQuoteJoiner.join(model.getData().values()));
         writer.write("']]");
     }
 
@@ -286,7 +284,7 @@ public class ChartRenderer extends MasterRenderer
             sb.append("'");
             sb.append(label);
             sb.append("','");
-            sb.append(commaJoiner.join(model.getArrayData(label)));
+            sb.append(commaQuoteJoiner.join(model.getArrayData(label)));
             sb.append("']");
 
             data.add(sb);
@@ -295,7 +293,7 @@ public class ChartRenderer extends MasterRenderer
         writer.write("rows:[['");
         writer.write(x);
         writer.write("','");
-        writer.write(commaJoiner.join(barLabels));
+        writer.write(commaQuoteJoiner.join(barLabels));
         writer.write("'],");
         writer.write(commaJoiner.join(data));
 

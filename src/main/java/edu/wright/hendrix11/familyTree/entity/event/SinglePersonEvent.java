@@ -96,6 +96,14 @@ public abstract class SinglePersonEvent extends Event
     }
 
     @Override
+    public int hashCode()
+    {
+        int result = person.hashCode();
+        result = 31 * result + type.hashCode();
+        return result;
+    }
+
+    @Override
     public boolean equals(Object o)
     {
         if ( this == o )
@@ -109,13 +117,5 @@ public abstract class SinglePersonEvent extends Event
             return false;
         return type.equals(that.type);
 
-    }
-
-    @Override
-    public int hashCode()
-    {
-        int result = person.hashCode();
-        result = 31 * result + type.hashCode();
-        return result;
     }
 }

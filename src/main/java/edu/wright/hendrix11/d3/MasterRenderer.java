@@ -25,6 +25,7 @@ import java.io.IOException;
 public abstract class MasterRenderer extends Renderer
 {
     protected static final Joiner commaJoiner = Joiner.on(',');
+    protected static final Joiner commaQuoteJoiner = Joiner.on("','");
 
     /**
      * @param writer
