@@ -141,7 +141,7 @@ Tested in [Firefox 39.0](https://www.mozilla.org/en-US/)
 
 ## Icon
 
-The FamilyTree Icon (![FamilyTree Icon](src/site/resources/images/Family-Tree-icon-128.png))  is originally from:
+The FamilyTree Icon (![FamilyTree Icon](src/site/resources/images/Family-Tree-icon-32.png))  is originally from:
 
 http://www.iconarchive.com/show/the-community-icons-by-afterglow/Family-Tree-icon.html
 
