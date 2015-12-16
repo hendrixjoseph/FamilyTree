@@ -127,17 +127,13 @@ In addition to the [dependencies](http://hendrixjoseph.github.io/FamilyTree/depe
 * [TortoiseGit 1.8.15.0](https://tortoisegit.org)
 * [Maven 3.3.3](https://maven.apache.org)
 
-#### NetBeans Plugins
-
-* [NetBeans License Changer Plugin](http://plugins.netbeans.org/plugin/17960/license-changer)
-
 #### Android Tools
 
 * [ForkHub for GitHub](https://play.google.com/store/apps/details?id=jp.forkhub) ([on GitHub](https://github.com/jonan/ForkHub))
 * [SGit](https://play.google.com/store/apps/details?id=me.sheimi.sgit) ([on GitHub](https://github.com/sheimi/SGit))
 * [Quoda](http://www.getquoda.com/)
 
-Tested in [Firefox 39.0](https://www.mozilla.org/en-US/)
+Tested in [Firefox 42](https://www.mozilla.org/en-US/)
 
 ## Icon
 
