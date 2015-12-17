@@ -37,7 +37,7 @@ public class WordCloudRenderer extends MasterRenderer
     /**
      * {@inheritDoc}
      *
-     * @throws java.io.IOException
+     * @throws IOException
      */
     @Override
     public void encodeBegin(FacesContext context, UIComponent component) throws IOException

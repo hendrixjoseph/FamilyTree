@@ -166,12 +166,6 @@ public class GedcomImporter extends Importer
 
         Place[] places = new Place[info.size()];
 
-        Cemetery cemetery;
-        City city;
-        County county;
-        State state;
-        Country country;
-
         boolean first = true;
 
         for ( int i = info.size() - 1; i >= 0; i-- )

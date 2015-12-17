@@ -139,5 +139,10 @@ public class GenderStatsBean implements Serializable
         {
             return getDifference() / overallAge;
         }
+
+        public double getPercent()
+        {
+            return age / overallAge;
+        }
     }
 }

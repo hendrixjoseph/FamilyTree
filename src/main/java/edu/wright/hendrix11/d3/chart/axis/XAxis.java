@@ -12,6 +12,10 @@
 
 package edu.wright.hendrix11.d3.chart.axis;
 
+import edu.wright.hendrix11.d3.chart.axis.label.XLabel;
+import edu.wright.hendrix11.d3.chart.axis.padding.XPadding;
+import edu.wright.hendrix11.d3.chart.axis.tick.XTick;
+
 /**
  * @author Joe Hendrix
  */
@@ -48,14 +52,7 @@ public class XAxis extends Axis
     /**
      * @param label
      */
-    public void setLabel(XLabel label)
-    {
-        super.setLabel(label);
-    }
-
-    /**
-     * @param label
-     */
+    @Override
     public void setLabel(String label)
     {
         if ( getLabel() != null )
@@ -66,6 +63,14 @@ public class XAxis extends Axis
         {
             super.setLabel(new XLabel(label));
         }
+    }
+
+    /**
+     * @param label
+     */
+    public void setLabel(XLabel label)
+    {
+        super.setLabel(label);
     }
 
     /**
@@ -83,5 +88,22 @@ public class XAxis extends Axis
     public void setPadding(XPadding padding)
     {
         super.setPadding(padding);
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public XTick getTick()
+    {
+        return (XTick) super.getTick();
+    }
+
+    /**
+     * @param tick
+     */
+    public void setTick(XTick tick)
+    {
+        super.setTick(tick);
     }
 }

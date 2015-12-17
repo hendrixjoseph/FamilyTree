@@ -12,6 +12,10 @@
 
 package edu.wright.hendrix11.d3.chart.axis;
 
+import edu.wright.hendrix11.d3.chart.axis.label.Label;
+import edu.wright.hendrix11.d3.chart.axis.padding.Padding;
+import edu.wright.hendrix11.d3.chart.axis.tick.Tick;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringJoiner;
@@ -188,6 +192,16 @@ public abstract class Axis
     protected void setLabel(Label label)
     {
         map.put("label:", label);
+    }
+
+    protected Tick getTick()
+    {
+        return (Tick) map.get("tick:");
+    }
+
+    protected void setTick(Tick tick)
+    {
+        map.put("tick:", tick);
     }
 
     @Override

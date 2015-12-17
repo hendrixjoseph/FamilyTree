@@ -1,3 +1,9 @@
+<!-- 
+  When copying contents to index.md, do the following:
+  Remove table of contents
+  Replace: ]\(([^:http:#]) with ](https://github.com/hendrixjoseph/FamilyTree/blob/master/\1
+-->
+
 # FamilyTree
 
 FamilyTree is a simple web application using JavaServerFaces, Java EE, and a SQL database to load, display, edit, and examine a family tree. It was initially created as a project for CS7700 Advanced Database Systems at Wright State, and is currently being used for CS7720 Data Mining at the same school.
@@ -97,17 +103,21 @@ In addition to the [dependencies](http://hendrixjoseph.github.io/FamilyTree/depe
 * [TortoiseGit 1.8.15.0](https://tortoisegit.org)
 * [Maven 3.3.3](https://maven.apache.org)
 
-#### NetBeans Plugins
-
-* [NetBeans License Changer Plugin](http://plugins.netbeans.org/plugin/17960/license-changer)
-
 #### Android Tools
 
 * [ForkHub for GitHub](https://play.google.com/store/apps/details?id=jp.forkhub) ([on GitHub](https://github.com/jonan/ForkHub))
 * [SGit](https://play.google.com/store/apps/details?id=me.sheimi.sgit) ([on GitHub](https://github.com/sheimi/SGit))
 * [Quoda](http://www.getquoda.com/)
 
-Tested in [Firefox 39.0](https://www.mozilla.org/en-US/)
+Tested in [Firefox 42](https://www.mozilla.org/en-US/)
+
+## Icon
+
+The FamilyTree Icon (![FamilyTree Icon](images/Family-Tree-icon-32.png))  is originally from:
+
+http://www.iconarchive.com/show/the-community-icons-by-afterglow/Family-Tree-icon.html
+
+which attributes it to http://www.afterglow.ie.
 
 ## License
 
@@ -115,11 +125,11 @@ This project is for personal academic purposes. I don't care what you do with it
 
 ----------------------
 
- |
---- |
-[Joseph Hendrix](https://people.wright.edu/hendrix.11) |
-Created for CS7700 Advanced Database Systems |
-Version 2.0 is for CS7720 Data Mining |
-[Wright State University](http://www.wright.edu) |
-[College of Engineering & Computer Science](https://engineering-computer-science.wright.edu) |
-[Department of Computer Science & Engineering](https://engineering-computer-science.wright.edu/computer-science-and-engineering) |
+<table>
+<tr><td><a href="https://people.wright.edu/hendrix.11">Joseph Hendrix</a></td></tr>
+<tr><td>Created for CS7700 Advanced Database Systems</td></tr>
+<tr><td>Version 2.0 is for CS7720 Data Mining</td></tr>
+<tr><td><a href="http://www.wright.edu">Wright State University</a></td></tr>
+<tr><td><a href="https://engineering-computer-science.wright.edu">College of Engineering &amp; Computer Science</a></td></tr>
+<tr><td><a href="https://engineering-computer-science.wright.edu/computer-science-and-engineering">Department of Computer Science &amp; Engineering</a></td></tr>
+</table>

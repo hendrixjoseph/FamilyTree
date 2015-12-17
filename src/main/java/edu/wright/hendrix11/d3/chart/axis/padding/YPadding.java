@@ -10,7 +10,7 @@
  *
  */
 
-package edu.wright.hendrix11.d3.chart.axis;
+package edu.wright.hendrix11.d3.chart.axis.padding;
 
 /**
  * The padding for the y-axis will create more space on the edge of the axis. Top and bottom will be treated as pixels.

@@ -36,7 +36,7 @@ public class ChartRenderer extends MasterRenderer
     /**
      * {@inheritDoc}
      *
-     * @throws java.io.IOException
+     * @throws IOException
      */
     @Override
     public void encodeBegin(FacesContext context, UIComponent component) throws IOException
@@ -64,8 +64,8 @@ public class ChartRenderer extends MasterRenderer
     {
         startScript(writer);
 
-        writer.write("var chart = c3.generate({");
-        writer.write("bindto:'#");
+        //writer.write("var chart=");
+        writer.write("c3.generate({bindto:'#");
         writer.write(chart.getId());
         writer.write("',");
 

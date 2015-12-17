@@ -1,16 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AnalysisUIOptions">
-    <option name="ANALYZE_TEST_SOURCES" value="false" />
     <option name="SCOPE_TYPE" value="8" />
     <option name="CUSTOM_SCOPE_NAME" value="My Scope" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e01fcdf7-fba9-4a15-b4e3-2d3aaec35e67" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\.idea\libraries\Maven__org_apache_commons_commons_lang3_3_4.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/familyTree.iml" afterPath="$PROJECT_DIR$/familyTree.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/familyTree_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/familyTree_war_exploded.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/axis/tick/XTick.java" />
+      <change type="DELETED" beforePath="C:\Users\Joe\Git\FamilyTree\src\site\apt\documentation\screenshots.apt" afterPath="" />
+      <change type="MOVED" beforePath="C:\Users\Joe\Git\FamilyTree\src\main\java\edu\wright\hendrix11\d3\chart\axis\Label.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/axis/label/Label.java" />
+      <change type="MOVED" beforePath="C:\Users\Joe\Git\FamilyTree\src\main\java\edu\wright\hendrix11\d3\chart\axis\Padding.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/axis/padding/Padding.java" />
+      <change type="MOVED" beforePath="C:\Users\Joe\Git\FamilyTree\src\main\java\edu\wright\hendrix11\d3\chart\axis\Tick.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/axis/tick/Tick.java" />
+      <change type="MOVED" beforePath="C:\Users\Joe\Git\FamilyTree\src\main\java\edu\wright\hendrix11\d3\chart\axis\XLabel.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/axis/label/XLabel.java" />
+      <change type="MOVED" beforePath="C:\Users\Joe\Git\FamilyTree\src\main\java\edu\wright\hendrix11\d3\chart\axis\XPadding.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/axis/padding/XPadding.java" />
+      <change type="MOVED" beforePath="C:\Users\Joe\Git\FamilyTree\src\main\java\edu\wright\hendrix11\d3\chart\axis\YLabel.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/axis/label/YLabel.java" />
+      <change type="MOVED" beforePath="C:\Users\Joe\Git\FamilyTree\src\main\java\edu\wright\hendrix11\d3\chart\axis\YPadding.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/axis/padding/YPadding.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/AgesBean.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/AgesBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/mining/AgesDataBean.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/mining/AgesDataBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/axis/Axis.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/axis/Axis.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/BirthsAndDeathsBean.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/BirthsAndDeathsBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/ChartModel.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/ChartModel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/ChartRenderer.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/ChartRenderer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/importer/GedcomImporter.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/importer/GedcomImporter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/GenderStatsBean.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/GenderStatsBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/importer/Importer.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/importer/Importer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/event/MarriageBean.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/event/MarriageBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/edu/wright/hendrix11/familyTree/entity/place/PlaceTest.java" afterPath="$PROJECT_DIR$/src/test/java/edu/wright/hendrix11/familyTree/entity/place/PlaceTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/wordCloud/WordCloudRenderer.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/wordCloud/WordCloudRenderer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/axis/XAxis.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/axis/XAxis.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/axis/YAxis.java" afterPath="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/axis/YAxis.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/mining/gender.xhtml" afterPath="$PROJECT_DIR$/src/main/webapp/mining/gender.xhtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/site/markdown/index.md" afterPath="$PROJECT_DIR$/src/site/markdown/index.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/site/site.xml" afterPath="$PROJECT_DIR$/src/site/site.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="familyTree.iws" />
@@ -63,74 +85,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GedcomImporter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/importer/GedcomImporter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="130" column="36" selection-start-line="130" selection-start-column="36" selection-end-line="130" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7802691">
-              <caret line="51" column="41" selection-start-line="51" selection-start-column="41" selection-end-line="51" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ChartRenderer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/ChartRenderer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="284" column="28" selection-start-line="284" selection-start-column="28" selection-end-line="284" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="site.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="site.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/site/site.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="40" column="70" selection-start-line="40" selection-start-column="70" selection-end-line="40" selection-end-column="70" />
+            <state vertical-scroll-proportion="0.88789237">
+              <caret line="42" column="67" selection-start-line="42" selection-start-column="67" selection-end-line="42" selection-end-column="67" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="screenshots.apt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/site/apt/documentation/screenshots.apt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MasterRenderer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/MasterRenderer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="26" column="61" selection-start-line="26" selection-start-column="61" selection-end-line="26" selection-end-column="61" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GedcomImporterTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/edu/wright/hendrix11/familyTree/importer/GedcomImporterTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="65" column="9" selection-start-line="65" selection-start-column="4" selection-end-line="65" selection-end-column="9" />
-              <folding>
-                <element signature="e#0#1542#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -172,15 +132,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/resource/js/test.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/hidden.xhtml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/resource/tag/menu.xhtml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/fam.taglib.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/persons.xhtml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/index.xhtml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/resource/template/main.xhtml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/places/states.xhtml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/places/places.xhtml" />
         <option value="$PROJECT_DIR$/src/main/webapp/places/countries.xhtml" />
         <option value="$PROJECT_DIR$/src/main/webapp/places/counties.xhtml" />
         <option value="$PROJECT_DIR$/src/main/webapp/places/cities.xhtml" />
@@ -198,9 +149,6 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/resource/css/chart.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/mining/ages.xhtml" />
         <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/AgesBean.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/axis/Tick.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/mining/gender.xhtml" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/GenderStatsBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/mining/NamesDataBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/NamesBean.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/resource/css/familyTree.css" />
@@ -209,20 +157,32 @@
         <option value="$PROJECT_DIR$/src/test/java/TrimFromTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/entity/event/Marriage.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/entity/event/SinglePersonEvent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/importer/Importer.java" />
         <option value="$PROJECT_DIR$/src/test/java/edu/wright/hendrix11/familyTree/entity/PersonTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/edu/wright/hendrix11/familyTree/importer/InsertSampleDataTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/entity/Person.java" />
         <option value="$PROJECT_DIR$/src/test/resources/META-INF/persistence.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/importer/GedcomImporter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/wordCloud/WordCloudRenderer.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/wordCloud/WordCloudComponent.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/MasterRenderer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/ChartRenderer.java" />
         <option value="$PROJECT_DIR$/src/site/apt/documentation/schema.apt" />
-        <option value="$PROJECT_DIR$/src/site/site.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/mining/AgesDataBean.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/axis/Tick.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/axis/Axis.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/axis/tick/Tick.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/axis/tick/XTick.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/BirthsAndDeathsBean.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/GenderStatsBean.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/mining/gender.xhtml" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/importer/Importer.java" />
+        <option value="$PROJECT_DIR$/src/test/java/edu/wright/hendrix11/familyTree/entity/place/PlaceTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/ChartRenderer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/wordCloud/WordCloudRenderer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/axis/XAxis.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/axis/YAxis.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/importer/GedcomImporter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/event/MarriageBean.java" />
+        <option value="$PROJECT_DIR$/src/site/site.xml" />
       </list>
     </option>
   </component>
@@ -408,36 +368,6 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="META-INF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="familyTree" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FamilyTree" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -454,72 +384,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="site" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="familyTree" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FamilyTree" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="site" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="familyTree" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FamilyTree" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="site" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="apt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="documentation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="familyTree" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FamilyTree" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -577,7 +441,7 @@
       <recent name="edu.wright.hendrix11.c3" />
     </key>
   </component>
-  <component name="RunManager" selected="Maven.familyTree [site]">
+  <component name="RunManager" selected="GlassFish Server.GlassFish">
     <configuration default="false" name="TrimFromTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="familyTree" />
@@ -1077,7 +941,7 @@
       <workItem from="1448908453514" duration="28142000" />
       <workItem from="1449512092641" duration="9501000" />
       <workItem from="1449793702245" duration="8476000" />
-      <workItem from="1450118334009" duration="6350000" />
+      <workItem from="1450118334009" duration="19364000" />
     </task>
     <task id="LOCAL-00001" summary="whole bunch of EJB nonsense just to update...">
       <created>1445570986124</created>
@@ -1095,7 +959,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="393816000" />
+    <option name="totallyTimeSpent" value="406830000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="122" y="12" width="1380" height="821" extended-state="0" />
@@ -1117,8 +981,9 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959327" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3997195" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959327" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33520338" sideWeight="0.49456915" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33520338" sideWeight="0.49456915" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25659823" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1131,7 +996,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24981897" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3997195" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1163,80 +1027,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/places/places.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.5">
-          <caret line="28" column="16" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/places/countries.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.153846">
-          <caret line="29" column="16" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/places/counties.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.153846">
-          <caret line="29" column="16" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/places/cities.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34047619">
-          <caret line="29" column="16" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/events/singlePersonEvents.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5619048">
-          <caret line="29" column="16" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/events/marriages.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.63095236">
-          <caret line="28" column="16" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/events/deaths.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54285717">
-          <caret line="29" column="16" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/events/burials.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6666667">
-          <caret line="29" column="16" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/events/births.xhtml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4738095">
           <caret line="29" column="16" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/mining/AgesDataBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="86" column="51" selection-start-line="86" selection-start-column="30" selection-end-line="86" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/mining/BirthsAndDeathsDataBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="80" column="58" selection-start-line="80" selection-start-column="29" selection-end-line="80" selection-end-column="58" />
         </state>
       </provider>
     </entry>
@@ -1254,24 +1048,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/mining/GenderDataBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="62" column="58" selection-start-line="62" selection-start-column="58" selection-end-line="62" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/place/CemeteryBean.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="30" column="49" selection-start-line="30" selection-start-column="49" selection-end-line="30" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/BirthsAndDeathsBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="52" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -1293,41 +1073,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="112" column="5" selection-start-line="112" selection-start-column="5" selection-end-line="112" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/axis/Tick.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6098655">
-          <caret line="26" column="12" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/mining/gender.xhtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="50" selection-start-line="39" selection-start-column="50" selection-end-line="39" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/GenderStatsBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="140" column="9" selection-start-line="140" selection-start-column="9" selection-end-line="140" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/mining/NamesDataBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="35" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/NamesBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1370,7 +1115,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/edu/wright/hendrix11/familyTree/importer/GedcomImporterTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.5044843">
           <caret line="65" column="9" selection-start-line="65" selection-start-column="4" selection-end-line="65" selection-end-column="9" />
           <folding>
             <element signature="e#0#1542#0" expanded="false" />
@@ -1450,28 +1195,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/importer/Importer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="84" column="32" selection-start-line="84" selection-start-column="32" selection-end-line="84" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#5943#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/resources/META-INF/persistence.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.55369925">
           <caret line="35" column="62" selection-start-line="35" selection-start-column="62" selection-end-line="35" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/wordCloud/WordCloudRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="136" column="64" selection-start-line="136" selection-start-column="64" selection-end-line="136" selection-end-column="64" />
           <folding />
         </state>
       </provider>
@@ -1492,17 +1219,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/importer/GedcomImporter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="130" column="36" selection-start-line="130" selection-start-column="36" selection-end-line="130" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/MasterRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.33183858">
           <caret line="26" column="61" selection-start-line="26" selection-start-column="61" selection-end-line="26" selection-end-column="61" />
           <folding />
         </state>
@@ -1541,34 +1260,201 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/ChartRenderer.java">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32286996">
+          <caret line="39" column="16" selection-start-line="39" selection-start-column="16" selection-end-line="39" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/mining/BirthsAndDeathsDataBean.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="284" column="28" selection-start-line="284" selection-start-column="28" selection-end-line="284" selection-end-column="28" />
+          <caret line="80" column="11" selection-start-line="80" selection-start-column="11" selection-end-line="80" selection-end-column="11" />
+          <folding>
+            <marker date="1449101743810" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..PER_DECADE_COMBINED_VIEW..." />
+            <marker date="1449101743810" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..PER_DECADE_CLEAN_VIEW..." />
+            <marker date="1449101743810" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..PER_DECADE_VIEW..." />
+            <marker date="1449101743810" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..PER_MONTH_VIEW..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/mining/GenderDataBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="63" column="72" selection-start-line="60" selection-start-column="46" selection-end-line="63" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/mining/AgesDataBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="91" column="5" selection-start-line="91" selection-start-column="5" selection-end-line="91" selection-end-column="5" />
+          <folding>
+            <marker date="1450318933385" expanded="true" signature="-1:-1" placeholder="SELECT AVG(A..AGE_VIEW..." />
+            <marker date="1450318933385" expanded="true" signature="-1:-1" placeholder="SELECT MEDIA..AGE_VIEW..." />
+            <marker date="1450318933385" expanded="true" signature="-1:-1" placeholder="SELECT MIN(A..AGE_VIEW..." />
+            <marker date="1450318933385" expanded="true" signature="-1:-1" placeholder="SELECT MAX(A..AGE_VIEW..." />
+            <marker date="1450318933385" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..AGE_TO_missingValue_YEAR_VIEW..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/axis/label/Label.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="79" column="9" selection-start-line="79" selection-start-column="9" selection-end-line="79" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/axis/tick/Tick.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="37" column="23" selection-start-line="37" selection-start-column="23" selection-end-line="37" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/ChartComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/axis/tick/XTick.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/BirthsAndDeathsBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.77130044">
+          <caret line="103" column="36" selection-start-line="103" selection-start-column="36" selection-end-line="103" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/GenderStatsBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="144" column="36" selection-start-line="144" selection-start-column="36" selection-end-line="144" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/mining/gender.xhtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.192308">
+          <caret line="52" column="57" selection-start-line="52" selection-start-column="57" selection-end-line="52" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/mining/NamesBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/dataBean/mining/NamesDataBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.94170403">
+          <caret line="36" column="35" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="35" />
+          <folding>
+            <marker date="1449118717144" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..missingValue_NAME_COUNT_VIEW..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/importer/Importer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29820627">
+          <caret line="59" column="12" selection-start-line="59" selection-start-column="12" selection-end-line="59" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/edu/wright/hendrix11/familyTree/entity/place/PlaceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5807175">
+          <caret line="119" column="40" selection-start-line="119" selection-start-column="40" selection-end-line="119" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/wordCloud/WordCloudRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29820627">
+          <caret line="39" column="15" selection-start-line="39" selection-start-column="15" selection-end-line="39" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/axis/Axis.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29820627">
+          <caret line="157" column="19" selection-start-line="157" selection-start-column="19" selection-end-line="157" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/axis/XAxis.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29820627">
+          <caret line="55" column="16" selection-start-line="55" selection-start-column="16" selection-end-line="55" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/axis/YAxis.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29820627">
+          <caret line="54" column="16" selection-start-line="54" selection-start-column="16" selection-end-line="54" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/d3/chart/ChartRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29820627">
+          <caret line="272" column="37" selection-start-line="272" selection-start-column="37" selection-end-line="272" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/importer/GedcomImporter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="166" column="48" selection-start-line="166" selection-start-column="48" selection-end-line="166" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#13424#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/wright/hendrix11/familyTree/bean/event/MarriageBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.76233184">
+          <caret line="31" column="42" selection-start-line="31" selection-start-column="42" selection-end-line="31" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/site/site.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="70" selection-start-line="40" selection-start-column="70" selection-end-line="40" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/site/apt/documentation/screenshots.apt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7802691">
-          <caret line="51" column="41" selection-start-line="51" selection-start-column="41" selection-end-line="51" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.88789237">
+          <caret line="42" column="67" selection-start-line="42" selection-start-column="67" selection-end-line="42" selection-end-column="67" />
           <folding />
         </state>
       </provider>

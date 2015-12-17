@@ -26,6 +26,7 @@
         <menu ref="modules" />
         <menu ref="reports" />
         <menu name="CS7720 Documents">
+            <item name="Project Report" href="documentation/cs7720/Hendrix_CS7720_Project_Report.docx" />
             <item name="Project Proposal" href="documentation/cs7720/Hendrix_CS7720_Project_Proposal.docx" />
             <item name="Proposal Email" href="documentation/cs7720/proposal_email.html" />
         </menu>
@@ -40,7 +41,6 @@
             <item name="JavaDoc" href="apidocs/index.html" />
             <item name="Tag Documentation" href="vdldoc/index.html" />
             <item name="Schema" href="documentation/schema.html" />
-            <item name="Screenshots" href="documentation/screenshots.html" />
         </menu>
         <menu name="Emails with Mike Owens">
             <item name="2015-12-02" href="documentation/Mike_Owens/tnsnames.html" />

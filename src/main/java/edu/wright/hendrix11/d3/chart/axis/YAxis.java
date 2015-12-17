@@ -12,6 +12,9 @@
 
 package edu.wright.hendrix11.d3.chart.axis;
 
+import edu.wright.hendrix11.d3.chart.axis.label.YLabel;
+import edu.wright.hendrix11.d3.chart.axis.padding.YPadding;
+
 /**
  * @author Joe Hendrix
  */
@@ -48,14 +51,7 @@ public class YAxis extends Axis
     /**
      * @param label
      */
-    public void setLabel(YLabel label)
-    {
-        super.setLabel(label);
-    }
-
-    /**
-     * @param label
-     */
+    @Override
     public void setLabel(String label)
     {
         if ( getLabel() != null )
@@ -66,6 +62,14 @@ public class YAxis extends Axis
         {
             super.setLabel(new YLabel(label));
         }
+    }
+
+    /**
+     * @param label
+     */
+    public void setLabel(YLabel label)
+    {
+        super.setLabel(label);
     }
 
     /**

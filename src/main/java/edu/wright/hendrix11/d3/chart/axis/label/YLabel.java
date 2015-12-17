@@ -10,19 +10,19 @@
  *
  */
 
-package edu.wright.hendrix11.d3.chart.axis;
+package edu.wright.hendrix11.d3.chart.axis.label;
 
 /**
  * @author Joe Hendrix
  */
-public class XLabel extends Label
+public class YLabel extends Label
 {
     private Position position;
 
     /**
      * @param text
      */
-    public XLabel(String text)
+    public YLabel(String text)
     {
         super(text);
     }
@@ -31,7 +31,7 @@ public class XLabel extends Label
      * @param text
      * @param position
      */
-    public XLabel(String text, Position position)
+    public YLabel(String text, Position position)
     {
         this(text);
         setPosition(position);
@@ -63,32 +63,32 @@ public class XLabel extends Label
         /**
          *
          */
-        inner_right,
+        inner_top,
 
         /**
          *
          */
-        inner_center,
+        inner_middle,
 
         /**
          *
          */
-        inner_left,
+        inner_bottom,
 
         /**
          *
          */
-        outer_right,
+        outer_top,
 
         /**
          *
          */
-        outer_center,
+        outer_middle,
 
         /**
          *
          */
-        outer_left;
+        outer_bottom;
 
         @Override
         public String toString()

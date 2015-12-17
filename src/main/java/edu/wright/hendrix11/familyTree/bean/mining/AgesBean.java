@@ -13,8 +13,8 @@
 package edu.wright.hendrix11.familyTree.bean.mining;
 
 import edu.wright.hendrix11.d3.chart.ChartModel;
-import edu.wright.hendrix11.d3.chart.axis.XLabel;
-import edu.wright.hendrix11.d3.chart.axis.YLabel;
+import edu.wright.hendrix11.d3.chart.axis.label.XLabel;
+import edu.wright.hendrix11.d3.chart.axis.label.YLabel;
 import edu.wright.hendrix11.familyTree.dataBean.mining.AgesDataBean;
 
 import javax.annotation.PostConstruct;

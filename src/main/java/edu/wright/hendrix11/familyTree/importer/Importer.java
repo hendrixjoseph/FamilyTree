@@ -28,6 +28,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -56,7 +57,7 @@ public abstract class Importer
     private Multimap<String, Cemetery> cemeteries = ArrayListMultimap.create();
     private Multimap<String, City> cities = ArrayListMultimap.create();
     private Multimap<String, County> counties = ArrayListMultimap.create();
-    private HashMap<String, Country> countries = new HashMap<>();
+    private Map<String, Country> countries = new HashMap<>();
     private Multimap<String, State> states = ArrayListMultimap.create();
 
     /**

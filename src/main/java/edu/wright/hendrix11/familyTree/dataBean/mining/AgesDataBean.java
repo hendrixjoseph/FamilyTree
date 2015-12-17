@@ -125,8 +125,8 @@ public class AgesDataBean
 
     /**
      * Returns the specified age quartile. Being a quartile, the parameter should range from 1 to 4. This method uses a
-     * nested query ({@ code SELECT AGE, NTILE(4) OVER (ORDER BY AGE) AS QUARTILE FROM AGE_VIEW}) to assign each value
-     * to a quartile, then selects the maximum value from the specified quartile.
+     * nested query ({@code SELECT AGE, NTILE(4) OVER (ORDER BY AGE) AS QUARTILE FROM AGE_VIEW}) to assign each value to
+     * a quartile, then selects the maximum value from the specified quartile.
      * <p>
      * This method only accounts for those ages that can be calculated, i.e. ages of persons that have both a known
      * birth and death date.

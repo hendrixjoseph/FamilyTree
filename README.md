@@ -154,6 +154,6 @@ This project is for personal academic purposes. I don't care what you do with it
 <tr><td>Created for CS7700 Advanced Database Systems</td></tr>
 <tr><td>Version 2.0 is for CS7720 Data Mining</td></tr>
 <tr><td><a href="http://www.wright.edu">Wright State University</a></td></tr>
-<tr><td><a href="https://engineering-computer-science.wright.edu">College of Engineering & Computer Science</a></td></tr>
-<tr><td><a href="https://engineering-computer-science.wright.edu/computer-science-and-engineering">Department of Computer Science & Engineering</a></td></tr>
+<tr><td><a href="https://engineering-computer-science.wright.edu">College of Engineering &amp; Computer Science</a></td></tr>
+<tr><td><a href="https://engineering-computer-science.wright.edu/computer-science-and-engineering">Department of Computer Science &amp; Engineering</a></td></tr>
 </table>

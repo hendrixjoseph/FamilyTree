@@ -48,6 +48,12 @@
                         <f:convertNumber pattern="#0.0#%" />
                     </h:outputText>
                 </p:column>
+
+                <p:column headerText="Percent">
+                    <h:outputText value="#{people.percent}">
+                        <f:convertNumber pattern="#0.0#%" />
+                    </h:outputText>
+                </p:column>
             </p:dataTable>
         </p:layoutUnit>
     </ui:define>

@@ -10,8 +10,9 @@
  *
  */
 
-package edu.wright.hendrix11.familyTree.bean;
+package edu.wright.hendrix11.familyTree.bean.event;
 
+import edu.wright.hendrix11.familyTree.bean.AbstractBean;
 import edu.wright.hendrix11.familyTree.dataBean.DataBean;
 import edu.wright.hendrix11.familyTree.entity.compositeKey.MarriagePK;
 import edu.wright.hendrix11.familyTree.entity.event.Marriage;

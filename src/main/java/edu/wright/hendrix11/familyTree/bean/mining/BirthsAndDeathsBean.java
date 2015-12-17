@@ -15,8 +15,9 @@ package edu.wright.hendrix11.familyTree.bean.mining;
 import edu.wright.hendrix11.d3.Color;
 import edu.wright.hendrix11.d3.chart.ChartModel;
 import edu.wright.hendrix11.d3.chart.axis.Axis;
-import edu.wright.hendrix11.d3.chart.axis.XLabel;
-import edu.wright.hendrix11.d3.chart.axis.YLabel;
+import edu.wright.hendrix11.d3.chart.axis.label.XLabel;
+import edu.wright.hendrix11.d3.chart.axis.label.YLabel;
+import edu.wright.hendrix11.d3.chart.axis.tick.XTick;
 import edu.wright.hendrix11.familyTree.dataBean.mining.BirthsAndDeathsDataBean;
 
 import javax.annotation.PostConstruct;
@@ -100,7 +101,7 @@ public class BirthsAndDeathsBean implements Serializable
 
     private ChartModel generateDecadeModel(Map<String, Integer[]> data)
     {
-        return generateModel(data, "decade");
+        return generateModel(data, "");
     }
 
     private ChartModel generateModel(Map<String, Integer[]> data, String xAxisLabel)
@@ -115,6 +116,11 @@ public class BirthsAndDeathsBean implements Serializable
         model.setBarLabels(new String[]{"births", "deaths"});
         model.addColor(Color.yellow);
         model.addColor(Color.black);
+
+        XTick xtick = new XTick();
+        xtick.setRotate(60);
+        xtick.setMultiline(false);
+        model.getxAxis().setTick(xtick);
 
         return model;
     }
